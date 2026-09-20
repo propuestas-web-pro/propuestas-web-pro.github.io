@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cerrajería J. Sánchez Elche | Cerrajero Urgente 24 Horas • Aperturas Sin Dañar</title>
+  <meta name="description" content="Apertura de puertas acorazadas y blindadas, cambio de bombines antibumping y antiganzúa, cerrojos de seguridad FAC y cajas fuertes.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #dc2626;
+      --primary-light: #ef4444;
+      --bg-dark: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f1f5f9;
+      --border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: 75px;
+    }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top Utility Bar */
+    .topbar {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+      padding: 0.55rem 0;
+      color: var(--text-muted);
+    }
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      margin-right: 6px;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 1.1rem 0;
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .brand-pill {
+      background: rgba(194, 136, 62, 0.15);
+      color: var(--primary);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .btn-nav {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.65rem 1.3rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: 2.85rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+    .hero p.lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      background: #25d366;
+      color: #ffffff;
+      padding: 0.95rem 1.8rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(37, 211, 102, 0.5);
+    }
+    .btn-secondary {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.95rem 1.6rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      background: var(--bg-surface);
+      border-color: var(--primary);
+    }
+
+    .hero-card-img {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+    }
+    .hero-card-img img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-floating-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge-stat { font-size: 1.35rem; font-weight: 800; color: var(--primary); }
+    .badge-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Interactive Engine */
+    .booking-engine-wrapper {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem;
+      margin: 2rem 0 4rem;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+    }
+    .engine-header { text-align: center; max-width: 650px; margin: 0 auto 2.25rem; }
+    .sub-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .engine-header h3 { font-size: 1.95rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .engine-header p { color: var(--text-muted); font-size: 0.98rem; }
+    
+    .engine-form { max-width: 780px; margin: 0 auto; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .form-control {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.2s;
+    }
+    .form-control:focus { border-color: var(--primary); }
+
+    .shift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.65rem;
+    }
+    .shift-pill {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .shift-pill.active, .shift-pill:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .btn-engine {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      padding: 1.1rem;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-engine:hover {
+      background: #22c35e;
+      transform: translateY(-1px);
+    }
+
+    /* Google Reviews Section */
+    .reviews-section {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title-wrap h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .google-badge-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 0.65rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+    .review-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .reviewer-name { font-weight: 700; font-size: 0.95rem; }
+    .reviewer-tag { font-size: 0.78rem; color: var(--text-muted); }
+    .stars { color: #f59e0b; font-size: 0.95rem; letter-spacing: 2px; }
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .review-verified {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #10b981;
+    }
+
+    /* Contact & Map Section */
+    .contact-section {
+      padding: 4.5rem 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .contact-info h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .contact-info p { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      color: var(--primary);
+      margin-top: 0.2rem;
+    }
+    .contact-label { font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .contact-value { font-weight: 600; font-size: 1rem; }
+    .map-frame {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 380px;
+    }
+
+    /* Sticky Mobile Bar */
+    .mobile-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      z-index: 999;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    }
+    .mobile-bar .btn-primary {
+      width: 100%;
+      justify-content: center;
+      box-shadow: none;
+    }
+
+    /* Official Corporate Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 3.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand { font-size: 1.2rem; font-weight: 800; color: #f8fafc; }
+    .footer-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.85rem; }
+    .footer-links a:hover { color: #f8fafc; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .mobile-bar { display: block; }
+      .hero h1 { font-size: 2.2rem; }
+      .form-row { grid-template-columns: 1fr; gap: 1rem; }
+      .booking-engine-wrapper { padding: 1.75rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div>
+        <span class="pulse-dot"></span>
+        <strong>Servicio Activo Hoy</strong> &bull; Elche y comarca, 03201 Alicante
+      </div>
+      <div>
+        Atención Directa: <a href="https://wa.me/34637635738" style="color: var(--primary); font-weight:700;">WhatsApp +34 637 63 57 38</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-flex">
+      <a href="#" class="brand-title">
+        <span>Cerrajería J. Sánchez Elche</span>
+        <span class="brand-pill">ELCHE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#reservas">Reservas & Servicios</a>
+        <a href="#opiniones">Opiniones Google</a>
+        <a href="#contacto">Ubicación</a>
+        <a href="https://wa.me/34637635738" class="btn-nav">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Contacto Inmediato
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-tag">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Elche y Comarca • Servicio de Urgencia 24h / 365 Días
+        </div>
+        <h1>Llegamos en 20 Minutos a Cualquier Punto de Elche</h1>
+        <p class="lead">Apertura de puertas acorazadas y blindadas, cambio de bombines antibumping y antiganzúa, cerrojos de seguridad FAC y cajas fuertes.</p>
+        <div class="hero-cta-group">
+          <a href="#reservas" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg> Reservar / Cita Online
+          </a>
+          <a href="https://wa.me/34637635738?text=Hola%2C%20quer%C3%ADa%20consultar%20disponibilidad" class="btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Hablar por WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="hero-card-img">
+        <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=1200&q=80" alt="Cerrajería J. Sánchez Elche" loading="lazy">
+        <div class="hero-floating-badge">
+          <div>
+            <div class="badge-stat">4.9 ★</div>
+            <div class="badge-label">380+ reseñas en Google</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="badge-stat">100%</div>
+            <div class="badge-label">Atención y Garantía</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sector Interactive Engine -->
+  <section class="container">
+    
+      <div class="booking-engine-wrapper" id="presupuesto">
+        <div class="engine-header">
+          <span class="sub-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> TRABAJOS GARANTIZADOS</span>
+          <h3>Calculadora de Presupuesto Rápido</h3>
+          <p>Detalla el tipo de trabajo que necesitas y te enviamos estimación de costes sin compromiso.</p>
+        </div>
+        <form class="engine-form" id="contractorForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tipo de Intervención</label>
+              <select class="form-control" id="conServicio">
+                <option value="Reforma Integral de Vivienda / Local">Reforma Integral de Vivienda / Local</option>
+                <option value="Reforma de Cocina o Baño">Reforma de Cocina o Baño</option>
+                <option value="Pintura Integral / Alisado de Gotelé">Pintura Integral / Alisado de Gotelé</option>
+                <option value="Apertura Urgente de Puerta / Cerradura">Apertura Urgente de Puerta (24h)</option>
+                <option value="Avería Fontanería / Fuga / Termo">Avería de Fontanería / Termo Eléctrico</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Metros Aprox o Urgencia</label>
+              <select class="form-control" id="conUrgency">
+                <option value="Urgencia Inmediata (Hoy mismo)">Urgencia Inmediata (Hoy mismo)</option>
+                <option value="Piso/Vivienda hasta 70m2">Piso / Vivienda hasta 70m2</option>
+                <option value="Vivienda 70m2 a 120m2">Vivienda 70m2 a 120m2</option>
+                <option value="Chalet o Local grande (+120m2)">Chalet o Local (+120m2)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-engine">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Pedir Presupuesto y Plazos por WhatsApp
+          </button>
+        </form>
+      </div>
+    
+  </section>
+
+  <!-- Reviews -->
+  <section id="opiniones" class="reviews-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div class="google-badge-hero">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg>
+          <span>Valoración Excelente de <strong>4.9 / 5.0</strong> en Google Maps</span>
+        </div>
+        <h2>Lo Que Opinan Quienes Ya Nos Conocen</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Transparencia y satisfacción real de clientes en Elche.</p>
+      </div>
+      <div class="reviews-grid">
+        
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-meta">
+          <div class="avatar">S</div>
+          <div>
+            <div class="reviewer-name">Sergio Maciá</div>
+            <div class="reviewer-tag">Cliente urgente</div>
+          </div>
+        </div>
+        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
+      </div>
+      <p class="review-text">"Me dejé las llaves dentro un domingo a medianoche. Llegó en 15 minutos y abrió la puerta sin romper nada. Trato de 10."</p>
+      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
+    </div>
+  
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-meta">
+          <div class="avatar">M</div>
+          <div>
+            <div class="reviewer-name">María José Rodes</div>
+            <div class="reviewer-tag">Local Guide • 42 reseñas</div>
+          </div>
+        </div>
+        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
+      </div>
+      <p class="review-text">"Nos instaló un bombín antibumping de máxima seguridad. Precio honesto y presupuestado por teléfono antes de venir."</p>
+      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
+    </div>
+  
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-meta">
+          <div class="avatar">Á</div>
+          <div>
+            <div class="reviewer-name">Ángel Pomares</div>
+            <div class="reviewer-tag">Cliente verificado</div>
+          </div>
+        </div>
+        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
+      </div>
+      <p class="review-text">"Rápido, educado y muy limpio en su trabajo. Guardado en contactos para cualquier emergencia."</p>
+      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
+    </div>
+  
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Map -->
+  <section id="contacto" class="contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="sub-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg> LOCALIZACIÓN & HORARIOS</span>
+        <h3>Ven a Visitarnos en Elche</h3>
+        <p>Estamos a tu completa disposición para resolver cualquier duda o atenderte presencialmente en nuestras instalaciones.</p>
+        
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">Elche y comarca, 03201 Alicante</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+          <div>
+            <div class="contact-label">Teléfono & WhatsApp</div>
+            <div class="contact-value"><a href="https://wa.me/34637635738">+34 637 63 57 38</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div>
+            <div class="contact-label">Horario de Atención</div>
+            <div class="contact-value">Lunes a Sábado: 09:30 a 22:30 (Horario continuo)</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+          <a href="https://wa.me/34637635738" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Abrir Chat Directo en WhatsApp
+          </a>
+        </div>
+      </div>
+      
+      <div class="map-frame">
+        <iframe 
+          src="https://www.google.com/maps?q=Cerrajer%C3%ADa%20J.%20S%C3%A1nchez%20Elche%20Elche%20y%20comarca%2C%2003201%20Alicante&output=embed" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Mobile Bar -->
+  <div class="mobile-bar">
+    <a href="https://wa.me/34637635738?text=Hola%2C%20quer%C3%ADa%20solicitar%20informaci%C3%B3n" class="btn-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Contactar por WhatsApp (+34 637 63 57 38)
+    </a>
+  </div>
+
+  <!-- Official Corporate Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-flex">
+        <div>
+          <div class="footer-brand">Cerrajería J. Sánchez Elche</div>
+          <p style="margin-top: 0.3rem;">Cerrajería urgente 24 horas y seguridad en Elche, Alicante.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#">Aviso Legal</a>
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Política de Cookies</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Cerrajería J. Sánchez Elche. Todos los derechos reservados.</div>
+        <div>Elche y comarca, 03201 Alicante</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Shift pill active toggle
+    const shiftPills = document.querySelectorAll('.shift-pill');
+    shiftPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const parent = pill.parentElement;
+        parent.querySelectorAll('.shift-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
+    });
+
+    // Handle Restaurant Booking
+    const bookingForm = document.getElementById('bookingForm');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const date = document.getElementById('bookDate').value;
+        const pax = document.getElementById('bookPax').value;
+        const activeShift = bookingForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || '14:00';
+        const specialty = document.getElementById('bookSpecialty').value;
+        const zone = document.getElementById('bookZone').value;
+
+        const msg = 'Hola, me gustaría reservar mesa en ' + 'Cerrajería J. Sánchez Elche' + ':\n' +
+                    '- Fecha: ' + date + '\n' +
+                    '- Hora: ' + activeShift + '\n' +
+                    '- Comensales: ' + pax + '\n' +
+                    '- Plato/Arroz: ' + specialty + '\n' +
+                    '- Zona: ' + zone;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Takeaway Order
+    const takeawayForm = document.getElementById('takeawayForm');
+    if (takeawayForm) {
+      takeawayForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const dish = document.getElementById('takeDish').value;
+        const rac = document.getElementById('takeRaciones').value;
+        const time = takeawayForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || '13:30h';
+        const msg = 'Hola, quería hacer un encargo para recoger:\n- Plato: ' + dish + '\n- Raciones: ' + rac + '\n- Hora de recogida: ' + time;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Clinical / Dental Appointment
+    const clinicalForm = document.getElementById('clinicalForm');
+    if (clinicalForm) {
+      clinicalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const motivo = document.getElementById('clinMotivo').value;
+        const horario = document.getElementById('clinHorario').value;
+        const date = document.getElementById('clinDate').value;
+        const msg = 'Hola, quería solicitar cita previa:\n- Motivo: ' + motivo + '\n- Día preferente: ' + date + '\n- Horario: ' + horario;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Physio Appointment
+    const physioForm = document.getElementById('physioForm');
+    if (physioForm) {
+      physioForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const zona = document.getElementById('physioZona').value;
+        const tiempo = document.getElementById('physioTiempo').value;
+        const horario = physioForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || 'Tardes';
+        const msg = 'Hola, me gustaría consultar disponibilidad para fisioterapia:\n- Zona/Lesión: ' + zona + '\n- Evolución: ' + tiempo + '\n- Preferencia horaria: ' + horario;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Workshop Quote
+    const workshopForm = document.getElementById('workshopForm');
+    if (workshopForm) {
+      workshopForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const serv = document.getElementById('workService').value;
+        const veh = document.getElementById('workVehicle').value;
+        const msg = 'Hola, quería pedir presupuesto de taller:\n- Vehículo: ' + veh + '\n- Intervención: ' + serv;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Salon Booking
+    const salonForm = document.getElementById('salonForm');
+    if (salonForm) {
+      salonForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const serv = document.getElementById('salServicio').value;
+        const date = document.getElementById('salDate').value;
+        const shift = salonForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || 'Tarde';
+        const msg = 'Hola, quería reservar cita en el salón:\n- Servicio: ' + serv + '\n- Día: ' + date + '\n- Franja: ' + shift;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+
+    // Handle Contractor Quote
+    const contractorForm = document.getElementById('contractorForm');
+    if (contractorForm) {
+      contractorForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const serv = document.getElementById('conServicio').value;
+        const urg = document.getElementById('conUrgency').value;
+        const msg = 'Hola, quería solicitar presupuesto para un trabajo:\n- Tipo: ' + serv + '\n- Detalle/Urgencia: ' + urg;
+        window.open('https://wa.me/34637635738?text=' + encodeURIComponent(msg), '_blank');
+      });
+    }
+  </script>
+</body>
+</html>

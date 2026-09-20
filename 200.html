@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuestas Web Pro • Estudio de Desarrollo Web & Captación Digital</title>
+  <meta name="description" content="Demos interactivas de alta gama para negocios en Elche y Orihuela. Sistemas de reservas directas a WhatsApp y diseño de alta conversión.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c2883e;
+      --primary-hover: #dfaa61;
+      --bg-dark: #090a0f;
+      --bg-surface: #12151e;
+      --bg-card: #181c28;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Top Bar */
+    .top-strip {
+      background: #050608;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .top-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #10b981;
+      font-weight: 700;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 5rem 0 3.5rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(194, 136, 62, 0.12) 0%, transparent 60%);
+    }
+    .agency-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(194, 136, 62, 0.12);
+      color: var(--primary-hover);
+      border: 1px solid rgba(194, 136, 62, 0.3);
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #ffffff 30%, var(--primary-hover) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.lead {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* Sections */
+    .catalog-section {
+      padding: 3rem 0;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+    .section-head h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .section-counter {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px -10px rgba(0, 0, 0, 0.5);
+    }
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+    }
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(194, 136, 62, 0.12);
+      color: var(--primary-hover);
+      border: 1px solid rgba(194, 136, 62, 0.25);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+    .card-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: #050608;
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 0 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer p { margin-bottom: 0.5rem; }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.3rem; }
+      .grid { grid-template-columns: 1fr; }
+      .section-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-strip">
+    <div class="container top-flex">
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        Red Global Fastly CDN &bull; 99.999% Disponibilidad Permanente
+      </div>
+      <div>
+        Certificado SSL SHA-256 Activo
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="agency-tag">ESTUDIO DE DESARROLLO WEB & CAPTACIÓN DIGITAL</div>
+      <h1><span>Propuestas Web Profesionales</span></h1>
+      <p class="lead">Prototipos interactivos de alta gama desarrollados a medida con motores de reserva inmediata y presupuestos directos por WhatsApp para negocios de Alicante.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Elche Section -->
+    <section class="catalog-section" id="elche">
+      <div class="section-head">
+        <h2>Negocios Seleccionados en Elche</h2>
+        <span class="section-counter">20 PROYECTOS ACTIVOS</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Restaurante Carlos Elche</h3>
+              <p>Arroces a la leña, carnes y cocina tradicional</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/restaurante-carlos/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Como en Casa Elche</h3>
+              <p>Comida casera tradicional & arroces para llevar</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/como-en-casa/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Gastrobar El Lloc</h3>
+              <p>Gastrobar, tapas de autor y coctelería</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/gastrobar-el-lloc/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Corporación Dental Elche</h3>
+              <p>Clínica dental avanzada e implantes</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/corporacion-dental-elche/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Dental Roca Elche</h3>
+              <p>Clínica dental familiar y estética dental</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/dental-roca-elche/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Clínica Dental Gustavo García del Río</h3>
+              <p>Odontología integral y prótesis dental</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/clinica-dental-gustavo-garcia/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>OMYOS Fisioterapia Elche</h3>
+              <p>Fisioterapia avanzada, osteopatía y ecografía</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/omyos-fisioterapia/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Clínica Antonio Reverte</h3>
+              <p>Fisioterapia general, readaptación y osteopatía</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/clinica-antonio-reverte/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>AM Fisioterapia Avanzada Elche</h3>
+              <p>Fisioterapia deportiva, neuromodulación y readaptación</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/am-fisioterapia-avanzada/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Taller Elche</h3>
+              <p>Mecánica general, chapa, pintura y diagnosis multimarca</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/taller-elche/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Talleres Hermanos Bri SL</h3>
+              <p>Taller electromecánica, chapa y neumáticos</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/talleres-hermanos-bri/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Barbería Más Estilo Elche</h3>
+              <p>Barbería masculina, degradados y cuidado de barba</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/barberia-mas-estilo/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Noemí Vives Belleza Integral</h3>
+              <p>Centro de estética avanzada, facial y corporal</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/noemi-vives-belleza/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Ana Úbeda Estilistas</h3>
+              <p>Peluquería, coloración orgánica y tratamientos capilares</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/ana-ubeda-estilistas/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Pepe Pintor Elche</h3>
+              <p>Pintor profesional de interiores, fachadas y gotelé</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/pepe-pintor-elche/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Adelante Grupo Aquino</h3>
+              <p>Reformas integrales de viviendas y locales</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/adelante-grupo-aquino/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Cerrajería J. Sánchez Elche</h3>
+              <p>Cerrajería urgente 24 horas y seguridad</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/cerrajeria-j-sanchez/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Autoescuela Trafik Elche</h3>
+              <p>Formación vial permisos B, A2, moto y cursos</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/autoescuela-trafik-elche/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Margarita Taller de Flores</h3>
+              <p>Floristería artesanal, ramos de novia y eventos</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/margarita-taller-de-flores/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Elche &bull; Alicante</div>
+              <h3>Dabel Pastelería & Cafetería</h3>
+              <p>Pastelería artesanal, tartas personalizadas y cafetería</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/elche/dabel-pasteleria/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+      </div>
+    </section>
+
+    <!-- Orihuela Section -->
+    <section class="catalog-section" id="orihuela">
+      <div class="section-head">
+        <h2>Negocios Seleccionados en Orihuela</h2>
+        <span class="section-counter">20 PROYECTOS ACTIVOS</span>
+      </div>
+      <div class="grid">
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Restaurante Villa Toscana Orihuela</h3>
+              <p>Cocina italiana y mediterránea artesanal</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/villa-toscana/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Speed Limit Cars</h3>
+              <p>Taller electromecánica & diagnosis avanzada</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/speed-limit-cars/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Pizzería Lucciana</h3>
+              <p>Pizzería artesana italiana</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/pizzeria-lucciana/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Autoescuela Orihuela</h3>
+              <p>Formación vial permisos B, A2, CAP</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/autoescuela-orihuela/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>OK Inmobiliaria</h3>
+              <p>Agencia inmobiliaria en Vega Baja</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/ok-inmobiliaria/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Reformas Generales AMR</h3>
+              <p>Empresa de reformas integrales, cocinas y baños</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/reformas-amr/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Arrocería El Sarmiento</h3>
+              <p>Arroces y paellas a leña de sarmiento</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/arroceria-el-sarmiento/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Gatsby Gastronomía</h3>
+              <p>Gastrobar & cocina mediterránea</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/gatsby-gastronomia/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Zenia Lounge</h3>
+              <p>Restaurante lounge & terraza cócteles</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/zenia-lounge/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Punto Amor</h3>
+              <p>Cocina creativa & cócteles</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/punto-amor/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Adriano's Restaurant</h3>
+              <p>Restaurante italiano & mediterráneo</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/adrianos-restaurant/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Cafetería Las Mimosas</h3>
+              <p>Cafetería, desayunos especiales & brunch</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/cafeteria-las-mimosas/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Fetta Nera</h3>
+              <p>Restaurante italiano, tapas & cócteles</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/fetta-nera/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>STETIA Medicina Estética</h3>
+              <p>Medicina estética avanzada y rejuvenecimiento</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/stetia-medicina-estetica/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Clínica Dental Castillo</h3>
+              <p>Clínica dental, implantes y ortodoncia</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/clinica-dental-castillo/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Clínica Dental Artedent</h3>
+              <p>Odontología y estética dental</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/clinica-dental-artedent/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Fisiocen Orihuela</h3>
+              <p>Fisioterapia, osteopatía y rehabilitación</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/fisiocen-orihuela/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Clínica Sananda</h3>
+              <p>Centro de fisioterapia y bienestar integral</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/clinica-sananda/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Talleres Vegadiesel Castrol Service</h3>
+              <p>Taller mecánico, pre-ITV y mantenimiento oficial Castrol</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/talleres-vegadiesel/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+          <div class="card">
+            <div>
+              <div class="card-meta">Orihuela &bull; Vega Baja</div>
+              <h3>Fontanería Borja</h3>
+              <p>Fontanería urgente, instalaciones y calefacción</p>
+            </div>
+            <a href="https://propuestas-web-pro.github.io/orihuela/fontaneria-borja/" class="card-btn" target="_blank">
+              Ver Propuesta Interactiva &rarr;
+            </a>
+          </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>Propuestas Web Pro</strong> &bull; Consultoría y Desarrollo Web de Alta Conversión.</p>
+      <p>Alojamiento distribuido en Fastly Enterprise CDN. Compatible con cualquier dispositivo, red WiFi y datos móviles 4G/5G en España.</p>
+      <p style="font-size: 0.8rem; margin-top: 1rem; opacity: 0.6;">&copy; 2026 Propuestas Web Pro. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
