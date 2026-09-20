@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alma by Rocío Sanz | Web Oficial & Reservas en Elche</title>
-  <meta name="description" content="Descubre el poder de una piel sana y luminosa con protocolos personalizados. Reserva tu cita online directamente sin intermediarios.">
+  <meta name="description" content="Higiene facial profunda, maderoterapia corporal y presoterapia en un oasis de relajación. Reserva tu sesión de bienestar online en 30 segundos.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Alma by Rocío Sanz - Elche">
-  <meta property="og:description" content="Descubre el poder de una piel sana y luminosa con protocolos personalizados. Reserva tu cita online directamente sin intermediarios.">
+  <meta property="og:description" content="Higiene facial profunda, maderoterapia corporal y presoterapia en un oasis de relajación. Reserva tu sesión de bienestar online en 30 segundos.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80">
   
   <!-- Fonts: Outfit for luxury headlines, Plus Jakarta Sans for crystal clear reading -->
@@ -59,7 +59,7 @@
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--text-main);
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     a {
@@ -146,7 +146,7 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      border: 2px solid #fde68a; /* Subtle Gold Border */
+      border: 2px solid #fde68a;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
     .brand-text h2 {
@@ -221,15 +221,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #fffbeb; /* Gold light */
-      border: 1px solid #fde68a; /* Gold border */
+      background: #fffbeb;
+      border: 1px solid #fde68a;
       padding: 6px 16px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      color: #b45309; /* Rich Gold */
+      color: #b45309;
       margin-bottom: 22px;
       box-shadow: 0 2px 6px rgba(217, 119, 6, 0.1);
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     .hero-content h1 {
@@ -257,6 +262,12 @@
     }
     @media (max-width: 920px) {
       .hero-actions { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions .btn-main, .hero-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     .btn-main {
@@ -485,6 +496,9 @@
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 26px;
     }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
     .service-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
@@ -514,8 +528,8 @@
       max-width: 72%;
     }
     .service-price {
-      background: #fffbeb; /* Gold light */
-      color: #b45309;       /* Rich Gold */
+      background: #fffbeb;
+      color: #b45309;
       border: 1px solid #fde68a;
       padding: 4px 12px;
       border-radius: 8px;
@@ -563,7 +577,7 @@
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
-    /* Live Booking Modal - Clean Light */
+    /* Live Booking Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -594,6 +608,9 @@
       position: relative;
       box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
       color: #0f172a;
+    }
+    @media (max-width: 480px) {
+      .modal-box { padding: 22px 18px; }
     }
     .modal-close {
       position: absolute;
@@ -658,14 +675,14 @@
     /* Slots Grid */
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
     .slot-pill {
       background: #f1f5f9;
       border: 1px solid var(--border-light);
-      padding: 9px 4px;
+      padding: 8px;
       border-radius: 8px;
       text-align: center;
       font-size: 13px;
@@ -674,353 +691,353 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .slot-pill.active {
+    .slot-pill:hover, .slot-pill.active {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
 
     .btn-submit-booking {
       width: 100%;
       background: #22c55e;
       color: #ffffff;
-      font-size: 16px;
-      font-weight: 800;
       padding: 16px;
       border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
       border: none;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 20px -4px rgba(34, 197, 94, 0.4);
-      transition: transform 0.2s, background 0.2s;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
+      transition: all 0.2s;
     }
     .btn-submit-booking:hover {
-      transform: translateY(-2px);
       background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(34, 197, 94, 0.45);
     }
 
     /* Reviews Section */
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 26px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
     }
     .review-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
       border-radius: 20px;
       padding: 26px;
-      box-shadow: var(--shadow-md);
-      position: relative;
+      box-shadow: var(--shadow-sm);
     }
-    .rc-header {
+    .rev-top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .rc-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      display: flex;
+    .rev-stars { color: #d97706; font-size: 14px; letter-spacing: 2px; }
+    .rev-time { font-size: 12px; color: #94a3b8; }
+    .rev-text { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .rev-author { font-size: 13px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+    .rev-author::before {
+      content: '✓';
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      font-size: 10px;
       font-weight: 800;
-      font-size: 16px;
-      border: 2px solid #fde68a;
-    }
-    .rc-author h4 { font-size: 15px; color: #0f172a; }
-    .rc-author span.rc-time { font-size: 12px; color: #64748b; font-weight: 500; }
-    .rc-stars {
-      color: #f59e0b; /* Bright Shining Gold */
-      font-size: 16px;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-    .rc-text {
-      font-size: 14px;
-      color: #334155;
-      font-style: italic;
-      line-height: 1.5;
     }
 
-    /* Schedule & Map Section */
+    /* Info Grid */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: stretch;
+      gap: 30px;
     }
-    @media (max-width: 880px) {
+    @media (max-width: 800px) {
       .info-grid { grid-template-columns: 1fr; }
     }
     .info-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 34px;
-      box-shadow: var(--shadow-md);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
     }
     .info-card h3 {
       font-size: 20px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #0f172a;
-    }
-    .schedule-list {
-      list-style: none;
     }
     .schedule-list li {
       display: flex;
       justify-content: space-between;
-      padding: 14px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #f1f5f9;
       font-size: 14px;
     }
-    .schedule-list li:last-child { border: none; }
-    .schedule-list span.day { font-weight: 700; color: #1e293b; }
-    .schedule-list span.hour { color: #64748b; font-weight: 600; }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-list .day { font-weight: 700; color: #334155; }
+    .schedule-list .hour { color: #2563eb; font-weight: 600; }
 
-    .location-details {
-      margin-top: 20px;
-    }
     .location-details p {
       font-size: 14px;
       color: #475569;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      margin-bottom: 10px;
     }
     .btn-maps {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 14px;
       transition: all 0.2s;
     }
     .btn-maps:hover {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
     }
 
-    /* FAQ Section */
+    /* FAQ Accordion */
     .faq-accordion {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
     }
     .faq-item {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 16px;
+      border-radius: 14px;
       margin-bottom: 14px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
     .faq-question {
-      padding: 20px 24px;
+      padding: 18px 22px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       color: #0f172a;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.2s;
     }
-    .faq-question:hover {
-      background: #f8fafc;
-    }
-    .faq-answer {
-      padding: 0 24px 20px;
-      font-size: 14px;
-      color: #475569;
-      display: none;
-      line-height: 1.6;
-    }
-    .faq-item.open .faq-answer {
-      display: block;
+    .faq-icon {
+      font-size: 12px;
+      color: #94a3b8;
+      transition: transform 0.2s;
     }
     .faq-item.open .faq-icon {
       transform: rotate(180deg);
       color: #2563eb;
     }
+    .faq-answer {
+      display: none;
+      padding: 0 22px 20px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
 
-    /* Footer */
+    /* Site Footer */
     footer.site-footer {
-      border-top: 1px solid var(--border-light);
       background: #ffffff;
-      padding: 45px 0;
+      border-top: 1px solid var(--border-light);
+      padding: 40px 0;
       text-align: center;
+    }
+    footer.site-footer p {
       font-size: 13px;
       color: #64748b;
+      margin-bottom: 6px;
     }
-    footer.site-footer p { margin-bottom: 8px; }
 
-    /* Sticky Mobile Bottom Bar */
+    /* Mobile Floating Bar */
     .mobile-bar {
+      display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 68px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-light);
-      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 16px;
+      padding: 10px 16px;
+      z-index: 900;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
     }
     @media (max-width: 880px) {
-      .mobile-bar { display: flex; }
+      .mobile-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+      }
     }
     .m-bar-btn {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       font-size: 11px;
       font-weight: 700;
       color: #475569;
+      background: none;
+      border: none;
       cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
     }
     .m-bar-btn.primary-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: #2563eb;
       color: #ffffff;
-      padding: 11px 22px;
+      padding: 10px 16px;
       border-radius: 12px;
-      font-weight: 800;
-      font-size: 13px;
+      flex: 1.8;
       flex-direction: row;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-      border: none;
+      gap: 6px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
     }
 
     /* Toast Notification */
     .toast-notice {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffffff;
-      border: 1px solid #22c55e;
-      color: #0f172a;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
+      bottom: 95px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
       z-index: 2000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      display: none;
+      display: flex;
       align-items: center;
       gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .toast-notice.show {
-      display: flex;
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- Demo Notice Header -->
+  <!-- Top Agency Banner -->
   <div class="agency-banner">
-    <span class="badge-gold">Propuesta Web Exclusiva</span>
-    <span>Demostración interactiva personalizada para <strong>Alma by Rocío Sanz</strong> en Elche</span>
-    <a href="https://wa.me/34644123456?text=Hola%2C%20me%20interesa%20la%20propuesta%20web%20para%20Alma%20by%20Roc%C3%ADo%20Sanz" class="cta-claim" target="_blank">Contactar con los Desarrolladores</a>
+    <span class="badge-gold">Demostración Web Exclusiva</span>
+    <span>Propuesta de presencia digital y reservas autónomas para <strong>Alma by Rocío Sanz</strong></span>
+    <a href="https://wa.me/34658743609?text=Hola,%20me%20interesa%20activar%20la%20propuesta%20web%20para%20Alma%20by%20Roc%C3%ADo%20Sanz" class="cta-claim" target="_blank">
+      Activar Esta Web 🚀
+    </a>
   </div>
 
-  <!-- Header -->
+  <!-- Navigation Header -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h2>Alma by Rocío Sanz</h2>
-          <p>Centro de Estética Avanzada, Cuidado Facial & Corporal</p>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand-logo">
+          <div class="brand-icon">✨</div>
+          <div class="brand-text">
+            <h2>Alma by Rocío Sanz</h2>
+            <p>Centro de Estética Avanzada, Cuidado Facial & Corporal</p>
+          </div>
         </div>
-      </a>
-      <nav class="desktop-nav">
-        <a href="#servicios">Servicios & Tarifas</a>
-        <a href="#ventajas">¿Por qué elegirnos?</a>
-        <a href="#opiniones">Reseñas Google</a>
-        <a href="#horarios">Horario & Ubicación</a>
-        <a href="#faq">Preguntas</a>
-      </nav>
-      <button class="btn-header-cta" onclick="openBookingModal()">
-        📅 Reservar Cita Online
-      </button>
+
+        <nav class="desktop-nav">
+          <a href="#servicios">Servicios</a>
+          <a href="#ventajas">Ventajas</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#contacto">Horario & Ubicación</a>
+        </nav>
+
+        <button class="btn-header-cta" onclick="openBookingModal()">
+          <span>📅</span>
+          <span>Reservar Cita</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>⭐ 5.0 (70+ Reseñas) • Estética Avanzada y Diagnóstico Facial</span>
-        </div>
-        <h1>Tratamientos Faciales de Alta Eficacia y Bienestar en Elche</h1>
-        <p class="hero-lead">Descubre el poder de una piel sana y luminosa con protocolos personalizados. Reserva tu cita online directamente sin intermediarios.</p>
-        <div class="hero-actions">
-          <button class="btn-main" onclick="openBookingModal()">
-            <span>📅 Pedir Cita Online (Sin Esperas)</span>
-          </button>
-          <a href="#servicios" class="btn-secondary">
-            <span>Ver Tarifas & Carta</span>
-          </a>
-        </div>
-        <div class="hero-trust">
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Confirmación Automática en WhatsApp</span>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>⭐ 5.0 en Google Maps • Elche Sur</span>
           </div>
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Sin intermediarios ni comisiones</span>
+          <h1>Tratamientos Faciales y Corporales de Última Generación en Elche</h1>
+          <p class="hero-lead">Higiene facial profunda, maderoterapia corporal y presoterapia en un oasis de relajación. Reserva tu sesión de bienestar online en 30 segundos.</p>
+
+          <div class="hero-actions">
+            <button class="btn-main" onclick="openBookingModal()">
+              <span>📅 Reservar Cita Online</span>
+            </button>
+            <a href="tel:34686286531" class="btn-secondary">
+              <span>📞 Llamar al +34 686 28 65 31</span>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="hero-image-wrapper">
-        <div class="hero-image-card">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80" alt="Alma by Rocío Sanz Elche" loading="lazy">
-          <div class="hero-floating-badge">
-            <div class="hfb-left">
-              <div class="hfb-avatar">✓</div>
-              <div class="hfb-text">
-                <h4>Reservas 24/7 Abiertas</h4>
-                <p>Huecos disponibles para esta semana</p>
-              </div>
+
+          <div class="hero-trust">
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Confirmación al Instante</span>
             </div>
-            <button class="btn-header-cta" style="padding: 7px 16px; font-size: 12px;" onclick="openBookingModal()">Reservar</button>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Sin Esperas ni Llamadas</span>
+            </div>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>100% Gratuito</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80" alt="Alma by Rocío Sanz en Elche">
+            <div class="hero-floating-badge">
+              <div class="hfb-left">
+                <div class="hfb-avatar">✓</div>
+                <div class="hfb-text">
+                  <h4>Cita Online 24/7</h4>
+                  <p>Directo a WhatsApp</p>
+                </div>
+              </div>
+              <span style="font-size: 22px;">📲</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1028,148 +1045,163 @@
   </section>
 
   <!-- Highlights Bar -->
-  <section class="highlights-bar" id="ventajas">
-    <div class="container highlights-grid">
-      
-        <div class="hl-item">
-          <div class="hl-icon">✨</div>
-          <div class="hl-text">
-            <h4>Diagnóstico Previo</h4>
-            <p>Cada piel es única. Analizamos tu tipo de cutis antes de seleccionar los activos a aplicar.</p>
+  <section class="highlights-bar">
+    <div class="container">
+      <div class="highlights-grid">
+        
+          <div class="hl-item">
+            <div class="hl-icon">🌸</div>
+            <div class="hl-text">
+              <h4>Cabina Privada Sensorial</h4>
+              <p>Música relajante, aromaterapia botánica y temperatura climatizada para una desconexión total.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">🌿</div>
-          <div class="hl-text">
-            <h4>Cosmética de Grado Médico</h4>
-            <p>Formulaciones seguras de alta biodisponibilidad y resultados visibles desde la 1ª sesión.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🔬</div>
+            <div class="hl-text">
+              <h4>Aparatología Certificada</h4>
+              <p>Equipamiento seguro de última generación con resultados visibles desde la primera sesión.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">🌸</div>
-          <div class="hl-text">
-            <h4>Espacio de Desconexión</h4>
-            <p>Cabina climatizada con luz tenue, aromaterapia y música relajante para tu bienestar.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🌿</div>
+            <div class="hl-text">
+              <h4>Alta Cosmética</h4>
+              <p>Principios activos concentrados libres de parabenos y no comedogénicos.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">⭐</div>
-          <div class="hl-text">
-            <h4>5.0 Estrellas Reales</h4>
-            <p>Más de 70 opiniones verificadas de clientas que confían plenamente en nuestro método.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">📲</div>
+            <div class="hl-text">
+              <h4>Cita en 1 Clic</h4>
+              <p>Elige tu tratamiento y reserva directamente en WhatsApp sin llamadas ni esperas.</p>
+            </div>
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </section>
 
-  <!-- Services & Pricing Section -->
+  <!-- Services Section -->
   <section class="section" id="servicios">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Carta & Servicios</span>
-        <h2>Servicios Profesionales con Tarifas Transparentes</h2>
-        <p>Elige tu servicio y haz tu reserva o encargo en segundos con confirmación directa en tu teléfono.</p>
+        <span class="section-tag">Carta de Servicios</span>
+        <h2>Tratamientos & Especialidades</h2>
+        <p>Elige tu servicio y reserva tu turno sin llamadas telefónicas ni esperas.</p>
       </div>
 
-      <!-- Categories Filter -->
       <div class="category-tabs">
         
-          <button class="tab-btn active" onclick="filterServices('Todos', this)">Todos</button>
+          <button class="tab-btn active" onclick="filterServices('Todos', this)">
+            Todos
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Faciales Avanzados', this)">Faciales Avanzados</button>
+          <button class="tab-btn " onclick="filterServices('Facial Avanzado', this)">
+            Facial Avanzado
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Higiene & Peeling', this)">Higiene & Peeling</button>
+          <button class="tab-btn " onclick="filterServices('Corporal & Madero', this)">
+            Corporal & Madero
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Mirada & Pestañas', this)">Mirada & Pestañas</button>
+          <button class="tab-btn " onclick="filterServices('Mirada & Pestañas', this)">
+            Mirada & Pestañas
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Corporales', this)">Corporales</button>
+          <button class="tab-btn " onclick="filterServices('Rituales Relax', this)">
+            Rituales Relax
+          </button>
         
       </div>
 
-      <!-- Services Cards -->
-      <div class="services-grid" id="servicesGrid">
+      <div class="services-grid">
         
-          <div class="service-card" data-category="Faciales Avanzados">
+          <div class="service-card" data-category="Facial Avanzado">
             <div>
               <div class="service-top">
-                <h3>Higiene Facial Profunda con Ultrasonidos</h3>
+                <h3>Higiene Facial Profunda con Punta de Diamante</h3>
+                <span class="service-price">35,00€</span>
+              </div>
+              <div class="service-duration">
+                <span>⏱️</span>
+                <span>Duración aproximada: 60 min</span>
+              </div>
+              <p class="service-desc">Doble limpieza, exfoliación mecánica con microdermoabrasión, extracción indolora, sérum vitamínico y mascarilla calmante.</p>
+            </div>
+            <button class="service-btn" onclick="bookSpecificService('Higiene Facial Profunda con Punta de Diamante', '35,00€')">
+              <span>📅 Seleccionar Servicio</span>
+            </button>
+          </div>
+        
+          <div class="service-card" data-category="Facial Avanzado">
+            <div>
+              <div class="service-top">
+                <h3>Tratamiento Dermapen / Microneedling Rejuvenecedor</h3>
+                <span class="service-price">49,00€</span>
+              </div>
+              <div class="service-duration">
+                <span>⏱️</span>
+                <span>Duración aproximada: 65 min</span>
+              </div>
+              <p class="service-desc">Inducción de colágeno y penetración de cóctel de ácido hialurónico no reticulado para atenuar líneas y poros.</p>
+            </div>
+            <button class="service-btn" onclick="bookSpecificService('Tratamiento Dermapen / Microneedling Rejuvenecedor', '49,00€')">
+              <span>📅 Seleccionar Servicio</span>
+            </button>
+          </div>
+        
+          <div class="service-card" data-category="Corporal & Madero">
+            <div>
+              <div class="service-top">
+                <h3>Sesión de Maderoterapia Reductora & Anticelulítica</h3>
                 <span class="service-price">38,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 60 min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 50 min</span>
               </div>
-              <p class="service-desc">Desincrustación de impurezas sin agresión, espátula ultrasónica, alta frecuencia calmante y mascarilla de alginatos.</p>
+              <p class="service-desc">Técnica milenaria con elementos de madera de cedro para tonificar, drenar y reafirmar abdomen o piernas.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Higiene Facial Profunda con Ultrasonidos', '38,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Sesión de Maderoterapia Reductora & Anticelulítica', '38,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Faciales Avanzados">
+          <div class="service-card" data-category="Corporal & Madero">
             <div>
               <div class="service-top">
-                <h3>Tratamiento Glow Antiedad & Vitamina C</h3>
-                <span class="service-price">45,00€</span>
+                <h3>Presoterapia Médica con Drenaje Linfático</h3>
+                <span class="service-price">20,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 55 min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 40 min</span>
               </div>
-              <p class="service-desc">Protocolo antioxidante intensivo que aporta luminosidad inmediata, unifica el tono y combate las líneas de expresión.</p>
+              <p class="service-desc">Alivia la sensación de piernas pesadas, mejora la circulación de retorno y elimina toxinas de forma no invasiva.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Tratamiento Glow Antiedad & Vitamina C', '45,00€')">
-              <span>📅 Reservar este servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Higiene & Peeling">
-            <div>
-              <div class="service-top">
-                <h3>Peeling Químico Renovador Personalizado</h3>
-                <span class="service-price">42,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ 45 min</span>
-              </div>
-              <p class="service-desc">Ácidos mandélico, glicólico o salicílico según las necesidades de tu piel para renovar la textura y cerrar poros.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Peeling Químico Renovador Personalizado', '42,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Presoterapia Médica con Drenaje Linfático', '20,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
           <div class="service-card" data-category="Mirada & Pestañas">
             <div>
               <div class="service-top">
-                <h3>Lifting de Pestañas con Tinte & Queratina</h3>
+                <h3>Lifting de Pestañas con Tinte & Tratamiento Keratina</h3>
                 <span class="service-price">30,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 50 min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 55 min</span>
               </div>
-              <p class="service-desc">Elevación natural de tus pestañas desde la raíz con efecto máscara durante 6-8 semanas sin dañarlas.</p>
+              <p class="service-desc">Curvatura natural y color negro intenso para tus pestañas naturales con duración de hasta 6 semanas.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Lifting de Pestañas con Tinte & Queratina', '30,00€')">
-              <span>📅 Reservar este servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Corporales">
-            <div>
-              <div class="service-top">
-                <h3>Masaje Drenante Reductor & Maderoterapia</h3>
-                <span class="service-price">39,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ 50 min</span>
-              </div>
-              <p class="service-desc">Movilización de líquidos retenidos, reactivación circulatoria y remodelación de la silueta.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Masaje Drenante Reductor & Maderoterapia', '39,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Lifting de Pestañas con Tinte & Tratamiento Keratina', '30,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
@@ -1177,51 +1209,42 @@
     </div>
   </section>
 
-  <!-- Google Reviews Section -->
+  <!-- Reviews Section -->
   <section class="section" id="opiniones" style="background: #f8fafc; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Opiniones Reales</span>
-        <h2>La Satisfacción de Nuestros Clientes en Elche</h2>
-        <p>Valoraciones reales extraídas de Google Maps que demuestran nuestro compromiso con la calidad y la atención personalizada.</p>
+        <h2>La Confianza de Nuestros Clientes</h2>
+        <p>Valoraciones públicas contrastadas en Google Maps.</p>
       </div>
 
       <div class="reviews-grid">
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">A</div>
-              <div class="rc-author">
-                <h4>Ana Isabel Belda</h4>
-                <span class="rc-time">Hace 1 semana • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 1 semana</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Rocío es encantadora y súper profesional. La higiene facial no duele nada y te deja la piel como la de un bebé. Da gusto ponerse en sus manos."</p>
+            <p class="rev-text">"Rocío tiene unas manos mágicas. La higiene facial me dejó la piel luminosa y súper limpia sin nada de rojeces. Mi centro de confianza en Elche."</p>
+            <div class="rev-author">Elena Campello</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">S</div>
-              <div class="rc-author">
-                <h4>Silvia Morales</h4>
-                <span class="rc-time">Hace 3 semanas • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 3 semanas</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"El lifting de pestañas más bonito que me han hecho. Muy meticulosa y atenta en todo momento. El centro es impecable."</p>
+            <p class="rev-text">"Las sesiones de maderoterapia son una maravilla, se nota el cambio de volumen y firmeza en pocas sesiones. Un 10 en trato y profesionalidad."</p>
+            <div class="rev-author">Sandra Miralles</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">B</div>
-              <div class="rc-author">
-                <h4>Beatriz Candela</h4>
-                <span class="rc-time">Hace 1 mes • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 1 mes</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Llevo meses haciéndome tratamientos faciales con Rocío y el cambio en mi piel ha sido increíble. Se nota la pasión que le pone a su trabajo."</p>
+            <p class="rev-text">"El ambiente del centro te transmite paz nada más entrar. Rocío te explica todo con un cariño y profesionalidad que se agradece muchísimo."</p>
+            <div class="rev-author">Nuria Pascual</div>
           </div>
         
       </div>
@@ -1229,30 +1252,30 @@
   </section>
 
   <!-- Schedule & Location Section -->
-  <section class="section" id="horarios">
+  <section class="section" id="contacto">
     <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Ubicación y Horarios</span>
+        <h2>Ven a Visitarnos en Elche</h2>
+      </div>
+
       <div class="info-grid">
         <div class="info-card">
           <h3><span>🕒</span> Horario de Atención</h3>
           <ul class="schedule-list">
             
               <li>
-                <span class="day">Martes y Viernes</span>
-                <span class="hour">09:30 - 19:30</span>
-              </li>
-            
-              <li>
-                <span class="day">Miércoles y Jueves</span>
-                <span class="hour">09:30 - 13:30 | 16:00 - 19:30</span>
+                <span class="day">Lunes a Viernes</span>
+                <span class="hour">09:30 - 13:30 | 16:30 - 20:00</span>
               </li>
             
               <li>
                 <span class="day">Sábados</span>
-                <span class="hour">09:30 - 14:00</span>
+                <span class="hour">Bajo cita previa</span>
               </li>
             
               <li>
-                <span class="day">Lunes y Domingos</span>
+                <span class="day">Domingos</span>
                 <span class="hour">Cerrado</span>
               </li>
             
@@ -1261,9 +1284,9 @@
         <div class="info-card">
           <h3><span>📍</span> Dónde Estamos</h3>
           <div class="location-details">
-            <p><strong>Dirección:</strong> Carrer Alcalde Juan Hernández Rizo, 6, Bajo, 03203 Elche, Alicante</p>
-            <p><strong>Teléfono / WhatsApp:</strong> +34 621 14 60 58</p>
-            <a href="https://maps.google.com/?q=Alma%20by%20Roc%C3%ADo%20Sanz%20Carrer%20Alcalde%20Juan%20Hern%C3%A1ndez%20Rizo%2C%206%2C%20Bajo%2C%2003203%20Elche%2C%20Alicante" target="_blank" class="btn-maps">
+            <p><strong>Dirección:</strong> Carrer Pere Joan Perpinyà, 48, 03204 Elche, Alicante</p>
+            <p><strong>Teléfono / WhatsApp:</strong> +34 686 28 65 31</p>
+            <a href="https://maps.google.com/?q=Alma%20by%20Roc%C3%ADo%20Sanz%20Carrer%20Pere%20Joan%20Perpiny%C3%A0%2C%2048%2C%2003204%20Elche%2C%20Alicante" target="_blank" class="btn-maps">
               <span>🗺️ Abrir en Google Maps</span>
             </a>
           </div>
@@ -1315,15 +1338,15 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p><strong>Alma by Rocío Sanz</strong> • Carrer Alcalde Juan Hernández Rizo, 6, Bajo, 03203 Elche, Alicante</p>
-      <p>Teléfono de contacto: <a href="tel:34621146058" style="color: var(--primary); font-weight: 700;">+34 621 14 60 58</a></p>
+      <p><strong>Alma by Rocío Sanz</strong> • Carrer Pere Joan Perpinyà, 48, 03204 Elche, Alicante</p>
+      <p>Teléfono de contacto: <a href="tel:34686286531" style="color: var(--primary); font-weight: 700;">+34 686 28 65 31</a></p>
       <p style="margin-top: 15px; font-size: 11px; opacity: 0.7;">Propuesta de presencia web profesional y sistema de reservas autónomo creada para Alma by Rocío Sanz.</p>
     </div>
   </footer>
 
   <!-- Mobile Floating Action Bar -->
   <div class="mobile-bar">
-    <a href="tel:34621146058" class="m-bar-btn">
+    <a href="tel:34686286531" class="m-bar-btn">
       <span style="font-size: 18px;">📞</span>
       <span>Llamar</span>
     </a>
@@ -1331,7 +1354,7 @@
       <span>📅</span>
       <span>Reservar Cita</span>
     </button>
-    <a href="https://maps.google.com/?q=Alma%20by%20Roc%C3%ADo%20Sanz%20Carrer%20Alcalde%20Juan%20Hern%C3%A1ndez%20Rizo%2C%206%2C%20Bajo%2C%2003203%20Elche%2C%20Alicante" target="_blank" class="m-bar-btn">
+    <a href="https://maps.google.com/?q=Alma%20by%20Roc%C3%ADo%20Sanz%20Carrer%20Pere%20Joan%20Perpiny%C3%A0%2C%2048%2C%2003204%20Elche%2C%20Alicante" target="_blank" class="m-bar-btn">
       <span style="font-size: 18px;">📍</span>
       <span>Maps</span>
     </a>
@@ -1351,7 +1374,7 @@
         <div class="form-group">
           <label for="bookService">Servicio deseado:</label>
           <select id="bookService" class="form-control" required>
-            <option value="Higiene Facial Profunda con Ultrasonidos (38,00€)">Higiene Facial Profunda con Ultrasonidos — 38,00€</option><option value="Tratamiento Glow Antiedad & Vitamina C (45,00€)">Tratamiento Glow Antiedad & Vitamina C — 45,00€</option><option value="Peeling Químico Renovador Personalizado (42,00€)">Peeling Químico Renovador Personalizado — 42,00€</option><option value="Lifting de Pestañas con Tinte & Queratina (30,00€)">Lifting de Pestañas con Tinte & Queratina — 30,00€</option><option value="Masaje Drenante Reductor & Maderoterapia (39,00€)">Masaje Drenante Reductor & Maderoterapia — 39,00€</option>
+            <option value="Higiene Facial Profunda con Punta de Diamante (35,00€)">Higiene Facial Profunda con Punta de Diamante — 35,00€</option><option value="Tratamiento Dermapen / Microneedling Rejuvenecedor (49,00€)">Tratamiento Dermapen / Microneedling Rejuvenecedor — 49,00€</option><option value="Sesión de Maderoterapia Reductora & Anticelulítica (38,00€)">Sesión de Maderoterapia Reductora & Anticelulítica — 38,00€</option><option value="Presoterapia Médica con Drenaje Linfático (20,00€)">Presoterapia Médica con Drenaje Linfático — 20,00€</option><option value="Lifting de Pestañas con Tinte & Tratamiento Keratina (30,00€)">Lifting de Pestañas con Tinte & Tratamiento Keratina — 30,00€</option>
           </select>
         </div>
 
@@ -1490,7 +1513,7 @@
       
       setTimeout(() => {
         closeBookingModal();
-        const waUrl = `https://wa.me/34621146058?text=${encodeURIComponent(formattedMessage)}`;
+        const waUrl = `https://wa.me/34686286531?text=${encodeURIComponent(formattedMessage)}`;
         window.open(waUrl, '_blank');
       }, 900);
     }

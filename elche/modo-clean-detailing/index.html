@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modo Clean Detailing | Web Oficial & Reservas en Elche</title>
-  <meta name="description" content="Protección cerámica, eliminación de microarañazos y desinfección profunda con inyección-extracción. Reserva tu cita para dejar tu coche como recién salido de concesionario.">
+  <meta name="description" content="Devolvemos el brillo de concesionario a tu coche. Limpieza integral de tapicería por inyección-extracción y corrección de pintura. Solicita presupuesto o cita online.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Modo Clean Detailing - Elche">
-  <meta property="og:description" content="Protección cerámica, eliminación de microarañazos y desinfección profunda con inyección-extracción. Reserva tu cita para dejar tu coche como recién salido de concesionario.">
+  <meta property="og:description" content="Devolvemos el brillo de concesionario a tu coche. Limpieza integral de tapicería por inyección-extracción y corrección de pintura. Solicita presupuesto o cita online.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80">
   
   <!-- Fonts: Outfit for luxury headlines, Plus Jakarta Sans for crystal clear reading -->
@@ -59,7 +59,7 @@
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--text-main);
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     a {
@@ -146,7 +146,7 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      border: 2px solid #fde68a; /* Subtle Gold Border */
+      border: 2px solid #fde68a;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
     .brand-text h2 {
@@ -221,15 +221,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #fffbeb; /* Gold light */
-      border: 1px solid #fde68a; /* Gold border */
+      background: #fffbeb;
+      border: 1px solid #fde68a;
       padding: 6px 16px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      color: #b45309; /* Rich Gold */
+      color: #b45309;
       margin-bottom: 22px;
       box-shadow: 0 2px 6px rgba(217, 119, 6, 0.1);
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     .hero-content h1 {
@@ -257,6 +262,12 @@
     }
     @media (max-width: 920px) {
       .hero-actions { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions .btn-main, .hero-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     .btn-main {
@@ -485,6 +496,9 @@
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 26px;
     }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
     .service-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
@@ -514,8 +528,8 @@
       max-width: 72%;
     }
     .service-price {
-      background: #fffbeb; /* Gold light */
-      color: #b45309;       /* Rich Gold */
+      background: #fffbeb;
+      color: #b45309;
       border: 1px solid #fde68a;
       padding: 4px 12px;
       border-radius: 8px;
@@ -563,7 +577,7 @@
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
-    /* Live Booking Modal - Clean Light */
+    /* Live Booking Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -594,6 +608,9 @@
       position: relative;
       box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
       color: #0f172a;
+    }
+    @media (max-width: 480px) {
+      .modal-box { padding: 22px 18px; }
     }
     .modal-close {
       position: absolute;
@@ -658,14 +675,14 @@
     /* Slots Grid */
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
     .slot-pill {
       background: #f1f5f9;
       border: 1px solid var(--border-light);
-      padding: 9px 4px;
+      padding: 8px;
       border-radius: 8px;
       text-align: center;
       font-size: 13px;
@@ -674,353 +691,353 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .slot-pill.active {
+    .slot-pill:hover, .slot-pill.active {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
 
     .btn-submit-booking {
       width: 100%;
       background: #22c55e;
       color: #ffffff;
-      font-size: 16px;
-      font-weight: 800;
       padding: 16px;
       border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
       border: none;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 20px -4px rgba(34, 197, 94, 0.4);
-      transition: transform 0.2s, background 0.2s;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
+      transition: all 0.2s;
     }
     .btn-submit-booking:hover {
-      transform: translateY(-2px);
       background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(34, 197, 94, 0.45);
     }
 
     /* Reviews Section */
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 26px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
     }
     .review-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
       border-radius: 20px;
       padding: 26px;
-      box-shadow: var(--shadow-md);
-      position: relative;
+      box-shadow: var(--shadow-sm);
     }
-    .rc-header {
+    .rev-top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .rc-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      display: flex;
+    .rev-stars { color: #d97706; font-size: 14px; letter-spacing: 2px; }
+    .rev-time { font-size: 12px; color: #94a3b8; }
+    .rev-text { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .rev-author { font-size: 13px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+    .rev-author::before {
+      content: '✓';
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      font-size: 10px;
       font-weight: 800;
-      font-size: 16px;
-      border: 2px solid #fde68a;
-    }
-    .rc-author h4 { font-size: 15px; color: #0f172a; }
-    .rc-author span.rc-time { font-size: 12px; color: #64748b; font-weight: 500; }
-    .rc-stars {
-      color: #f59e0b; /* Bright Shining Gold */
-      font-size: 16px;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-    .rc-text {
-      font-size: 14px;
-      color: #334155;
-      font-style: italic;
-      line-height: 1.5;
     }
 
-    /* Schedule & Map Section */
+    /* Info Grid */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: stretch;
+      gap: 30px;
     }
-    @media (max-width: 880px) {
+    @media (max-width: 800px) {
       .info-grid { grid-template-columns: 1fr; }
     }
     .info-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 34px;
-      box-shadow: var(--shadow-md);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
     }
     .info-card h3 {
       font-size: 20px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #0f172a;
-    }
-    .schedule-list {
-      list-style: none;
     }
     .schedule-list li {
       display: flex;
       justify-content: space-between;
-      padding: 14px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #f1f5f9;
       font-size: 14px;
     }
-    .schedule-list li:last-child { border: none; }
-    .schedule-list span.day { font-weight: 700; color: #1e293b; }
-    .schedule-list span.hour { color: #64748b; font-weight: 600; }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-list .day { font-weight: 700; color: #334155; }
+    .schedule-list .hour { color: #2563eb; font-weight: 600; }
 
-    .location-details {
-      margin-top: 20px;
-    }
     .location-details p {
       font-size: 14px;
       color: #475569;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      margin-bottom: 10px;
     }
     .btn-maps {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 14px;
       transition: all 0.2s;
     }
     .btn-maps:hover {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
     }
 
-    /* FAQ Section */
+    /* FAQ Accordion */
     .faq-accordion {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
     }
     .faq-item {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 16px;
+      border-radius: 14px;
       margin-bottom: 14px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
     .faq-question {
-      padding: 20px 24px;
+      padding: 18px 22px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       color: #0f172a;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.2s;
     }
-    .faq-question:hover {
-      background: #f8fafc;
-    }
-    .faq-answer {
-      padding: 0 24px 20px;
-      font-size: 14px;
-      color: #475569;
-      display: none;
-      line-height: 1.6;
-    }
-    .faq-item.open .faq-answer {
-      display: block;
+    .faq-icon {
+      font-size: 12px;
+      color: #94a3b8;
+      transition: transform 0.2s;
     }
     .faq-item.open .faq-icon {
       transform: rotate(180deg);
       color: #2563eb;
     }
+    .faq-answer {
+      display: none;
+      padding: 0 22px 20px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
 
-    /* Footer */
+    /* Site Footer */
     footer.site-footer {
-      border-top: 1px solid var(--border-light);
       background: #ffffff;
-      padding: 45px 0;
+      border-top: 1px solid var(--border-light);
+      padding: 40px 0;
       text-align: center;
+    }
+    footer.site-footer p {
       font-size: 13px;
       color: #64748b;
+      margin-bottom: 6px;
     }
-    footer.site-footer p { margin-bottom: 8px; }
 
-    /* Sticky Mobile Bottom Bar */
+    /* Mobile Floating Bar */
     .mobile-bar {
+      display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 68px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-light);
-      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 16px;
+      padding: 10px 16px;
+      z-index: 900;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
     }
     @media (max-width: 880px) {
-      .mobile-bar { display: flex; }
+      .mobile-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+      }
     }
     .m-bar-btn {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       font-size: 11px;
       font-weight: 700;
       color: #475569;
+      background: none;
+      border: none;
       cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
     }
     .m-bar-btn.primary-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: #2563eb;
       color: #ffffff;
-      padding: 11px 22px;
+      padding: 10px 16px;
       border-radius: 12px;
-      font-weight: 800;
-      font-size: 13px;
+      flex: 1.8;
       flex-direction: row;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-      border: none;
+      gap: 6px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
     }
 
     /* Toast Notification */
     .toast-notice {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffffff;
-      border: 1px solid #22c55e;
-      color: #0f172a;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
+      bottom: 95px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
       z-index: 2000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      display: none;
+      display: flex;
       align-items: center;
       gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .toast-notice.show {
-      display: flex;
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- Demo Notice Header -->
+  <!-- Top Agency Banner -->
   <div class="agency-banner">
-    <span class="badge-gold">Propuesta Web Exclusiva</span>
-    <span>Demostración interactiva personalizada para <strong>Modo Clean Detailing</strong> en Elche</span>
-    <a href="https://wa.me/34644123456?text=Hola%2C%20me%20interesa%20la%20propuesta%20web%20para%20Modo%20Clean%20Detailing" class="cta-claim" target="_blank">Contactar con los Desarrolladores</a>
+    <span class="badge-gold">Demostración Web Exclusiva</span>
+    <span>Propuesta de presencia digital y reservas autónomas para <strong>Modo Clean Detailing</strong></span>
+    <a href="https://wa.me/34658743609?text=Hola,%20me%20interesa%20activar%20la%20propuesta%20web%20para%20Modo%20Clean%20Detailing" class="cta-claim" target="_blank">
+      Activar Esta Web 🚀
+    </a>
   </div>
 
-  <!-- Header -->
+  <!-- Navigation Header -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h2>Modo Clean Detailing</h2>
-          <p>Detailing Automotriz, Pulido Cerámico & Limpieza de Tapicería</p>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand-logo">
+          <div class="brand-icon">✨</div>
+          <div class="brand-text">
+            <h2>Modo Clean Detailing</h2>
+            <p>Detailing Automotriz, Pulido Cerámico & Limpieza de Tapicería</p>
+          </div>
         </div>
-      </a>
-      <nav class="desktop-nav">
-        <a href="#servicios">Servicios & Tarifas</a>
-        <a href="#ventajas">¿Por qué elegirnos?</a>
-        <a href="#opiniones">Reseñas Google</a>
-        <a href="#horarios">Horario & Ubicación</a>
-        <a href="#faq">Preguntas</a>
-      </nav>
-      <button class="btn-header-cta" onclick="openBookingModal()">
-        📅 Reservar Cita Online
-      </button>
+
+        <nav class="desktop-nav">
+          <a href="#servicios">Servicios</a>
+          <a href="#ventajas">Ventajas</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#contacto">Horario & Ubicación</a>
+        </nav>
+
+        <button class="btn-header-cta" onclick="openBookingModal()">
+          <span>📅</span>
+          <span>Reservar Cita</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>⭐ 4.9 en Google Maps • Especialistas en Detailing & Protección Cerámica</span>
-        </div>
-        <h1>Detailing, Pulido de Carrocería y Limpieza Integral de Tapicerías en Elche</h1>
-        <p class="hero-lead">Protección cerámica, eliminación de microarañazos y desinfección profunda con inyección-extracción. Reserva tu cita para dejar tu coche como recién salido de concesionario.</p>
-        <div class="hero-actions">
-          <button class="btn-main" onclick="openBookingModal()">
-            <span>📅 Pedir Cita Online (Sin Esperas)</span>
-          </button>
-          <a href="#servicios" class="btn-secondary">
-            <span>Ver Tarifas & Carta</span>
-          </a>
-        </div>
-        <div class="hero-trust">
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Confirmación Automática en WhatsApp</span>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>⭐ 5.0 en Google Maps • Polígono de Carrús</span>
           </div>
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Sin intermediarios ni comisiones</span>
+          <h1>Detailing Automotriz Profesional y Protección Cerámica en Elche</h1>
+          <p class="hero-lead">Devolvemos el brillo de concesionario a tu coche. Limpieza integral de tapicería por inyección-extracción y corrección de pintura. Solicita presupuesto o cita online.</p>
+
+          <div class="hero-actions">
+            <button class="btn-main" onclick="openBookingModal()">
+              <span>📅 Reservar Cita Online</span>
+            </button>
+            <a href="tel:34601270095" class="btn-secondary">
+              <span>📞 Llamar al +34 601 27 00 95</span>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="hero-image-wrapper">
-        <div class="hero-image-card">
-          <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80" alt="Modo Clean Detailing Elche" loading="lazy">
-          <div class="hero-floating-badge">
-            <div class="hfb-left">
-              <div class="hfb-avatar">✓</div>
-              <div class="hfb-text">
-                <h4>Reservas 24/7 Abiertas</h4>
-                <p>Huecos disponibles para esta semana</p>
-              </div>
+
+          <div class="hero-trust">
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Confirmación al Instante</span>
             </div>
-            <button class="btn-header-cta" style="padding: 7px 16px; font-size: 12px;" onclick="openBookingModal()">Reservar</button>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Sin Esperas ni Llamadas</span>
+            </div>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>100% Gratuito</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80" alt="Modo Clean Detailing en Elche">
+            <div class="hero-floating-badge">
+              <div class="hfb-left">
+                <div class="hfb-avatar">✓</div>
+                <div class="hfb-text">
+                  <h4>Cita Online 24/7</h4>
+                  <p>Directo a WhatsApp</p>
+                </div>
+              </div>
+              <span style="font-size: 22px;">📲</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1028,132 +1045,163 @@
   </section>
 
   <!-- Highlights Bar -->
-  <section class="highlights-bar" id="ventajas">
-    <div class="container highlights-grid">
-      
-        <div class="hl-item">
-          <div class="hl-icon">🚗</div>
-          <div class="hl-text">
-            <h4>Cuidado al Detalle</h4>
-            <p>Tratamos cada vehículo con productos ph neutro, microfibras sin costuras y luz de inspección led.</p>
+  <section class="highlights-bar">
+    <div class="container">
+      <div class="highlights-grid">
+        
+          <div class="hl-item">
+            <div class="hl-icon">🚗</div>
+            <div class="hl-text">
+              <h4>Instalaciones Especializadas</h4>
+              <p>Nave acondicionada con iluminación LED de inspección de pintura en Carrús.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">💧</div>
-          <div class="hl-text">
-            <h4>Inyección-Extracción</h4>
-            <p>Extracción del agua sucia del interior de la espuma del asiento, no solo de la superficie.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🧪</div>
+            <div class="hl-text">
+              <h4>Química Alemana & Americana</h4>
+              <p>Productos de marcas punteras (Koch Chemie, CarPro, Meguiar's) que cuidan los materiales.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">🛡️</div>
-          <div class="hl-text">
-            <h4>Garantía de Acabado</h4>
-            <p>Selladores y cerámicas de gama profesional con alta resistencia química y térmica.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🛡️</div>
+            <div class="hl-text">
+              <h4>Garantía por Escrito</h4>
+              <p>Resultados impecables y duraderos en todos nuestros tratamientos cerámicos.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">📍</div>
-          <div class="hl-text">
-            <h4>Torrellano / Elche</h4>
-            <p>En plena Avenida Illice, cómodo acceso con amplio espacio para recepción y entrega de vehículos.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">📱</div>
+            <div class="hl-text">
+              <h4>Presupuesto Instantáneo</h4>
+              <p>Envía foto de tu coche por WhatsApp y recibe valoración técnica sin compromiso.</p>
+            </div>
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </section>
 
-  <!-- Services & Pricing Section -->
+  <!-- Services Section -->
   <section class="section" id="servicios">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Carta & Servicios</span>
-        <h2>Servicios Profesionales con Tarifas Transparentes</h2>
-        <p>Elige tu servicio y haz tu reserva o encargo en segundos con confirmación directa en tu teléfono.</p>
+        <span class="section-tag">Carta de Servicios</span>
+        <h2>Tratamientos & Especialidades</h2>
+        <p>Elige tu servicio y reserva tu turno sin llamadas telefónicas ni esperas.</p>
       </div>
 
-      <!-- Categories Filter -->
       <div class="category-tabs">
         
-          <button class="tab-btn active" onclick="filterServices('Todos', this)">Todos</button>
+          <button class="tab-btn active" onclick="filterServices('Todos', this)">
+            Todos
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Tapicerías', this)">Tapicerías</button>
+          <button class="tab-btn " onclick="filterServices('Limpieza Interior', this)">
+            Limpieza Interior
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Pulido & Brillo', this)">Pulido & Brillo</button>
+          <button class="tab-btn " onclick="filterServices('Pulido & Brillo', this)">
+            Pulido & Brillo
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Tratamiento Cerámico', this)">Tratamiento Cerámico</button>
+          <button class="tab-btn " onclick="filterServices('Protección Cerámica', this)">
+            Protección Cerámica
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Pre-ITV / Faros', this)">Pre-ITV / Faros</button>
+          <button class="tab-btn " onclick="filterServices('Packs Completos', this)">
+            Packs Completos
+          </button>
         
       </div>
 
-      <!-- Services Cards -->
-      <div class="services-grid" id="servicesGrid">
+      <div class="services-grid">
         
-          <div class="service-card" data-category="Tapicerías">
+          <div class="service-card" data-category="Limpieza Interior">
             <div>
               <div class="service-top">
-                <h3>Limpieza Integral de Tapicería (Inyección/Extracción)</h3>
-                <span class="service-price">Desde 65,00€</span>
+                <h3>Limpieza Integral de Tapicería por Inyección-Extracción</h3>
+                <span class="service-price">75,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 3h 30min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 180 min</span>
               </div>
-              <p class="service-desc">Asientos, suelo, techo, maletero y alfombrillas. Eliminación de manchas de grasa, café y neutralización de olores con ozono.</p>
+              <p class="service-desc">Desinfección de asientos de tela, paneles de puertas, moqueta del suelo y maletero con máquina de vapor.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Limpieza Integral de Tapicería (Inyección/Extracción)', 'Desde 65,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Limpieza Integral de Tapicería por Inyección-Extracción', '75,00€')">
+              <span>📅 Seleccionar Servicio</span>
+            </button>
+          </div>
+        
+          <div class="service-card" data-category="Limpieza Interior">
+            <div>
+              <div class="service-top">
+                <h3>Tratamiento Nutritivo & Limpieza de Asientos de Cuero</h3>
+                <span class="service-price">45,00€</span>
+              </div>
+              <div class="service-duration">
+                <span>⏱️</span>
+                <span>Duración aproximada: 90 min</span>
+              </div>
+              <p class="service-desc">Limpiador de pH neutro con cepillo de cerdas suaves y aplicación de crema acondicionadora mate anti-grietas.</p>
+            </div>
+            <button class="service-btn" onclick="bookSpecificService('Tratamiento Nutritivo & Limpieza de Asientos de Cuero', '45,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
           <div class="service-card" data-category="Pulido & Brillo">
             <div>
               <div class="service-top">
-                <h3>Pulido en 1 Paso + Sellado de Cera Carnauba</h3>
-                <span class="service-price">Desde 120,00€</span>
+                <h3>Pulido de Carrocería en 1 Paso (One Step Polish)</h3>
+                <span class="service-price">120,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 4h 00min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 240 min</span>
               </div>
-              <p class="service-desc">Eliminación del 70% de swirls (microarañazos de lavado), recuperación del tono original y brillo reflectante.</p>
+              <p class="service-desc">Eliminación del 70% de microarañazos (swirls), recuperación del brillo profundo y aplicación de cera de carnauba.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Pulido en 1 Paso + Sellado de Cera Carnauba', 'Desde 120,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Pulido de Carrocería en 1 Paso (One Step Polish)', '120,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Tratamiento Cerámico">
+          <div class="service-card" data-category="Protección Cerámica">
             <div>
               <div class="service-top">
-                <h3>Tratamiento Cerámico 9H Coating (3 Años)</h3>
-                <span class="service-price">Consultar vehículo</span>
+                <h3>Tratamiento Cerámico 9H Coating (Protección 2 Años)</h3>
+                <span class="service-price">250,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 1 día completo</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 1 día</span>
               </div>
-              <p class="service-desc">Protección hidrofóbica extrema contra lluvia ácida, rayos UV, excrementos de pájaros y facilidad de lavado brutal.</p>
+              <p class="service-desc">Sellado hidrofóbico cerámico que protege la pintura contra excrementos de aves, rayos UV y suciedad extrema.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Tratamiento Cerámico 9H Coating (3 Años)', 'Consultar vehículo')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Tratamiento Cerámico 9H Coating (Protección 2 Años)', '250,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Pre-ITV / Faros">
+          <div class="service-card" data-category="Pulido & Brillo">
             <div>
               <div class="service-top">
                 <h3>Restauración y Lacado UV de Faros Opacos</h3>
-                <span class="service-price">35,00€ el par</span>
+                <span class="service-price">35,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 1h 15min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 60 min</span>
               </div>
-              <p class="service-desc">Lijado al agua de 4 granos, pulido óptico y sellado con barniz UV para pasar la ITV con máxima visibilidad.</p>
+              <p class="service-desc">Lijado al agua multicapa, pulido y aplicación de polímero protector para pasar la ITV con máxima visibilidad nocturna.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Restauración y Lacado UV de Faros Opacos', '35,00€ el par')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Restauración y Lacado UV de Faros Opacos', '35,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
@@ -1161,51 +1209,42 @@
     </div>
   </section>
 
-  <!-- Google Reviews Section -->
+  <!-- Reviews Section -->
   <section class="section" id="opiniones" style="background: #f8fafc; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Opiniones Reales</span>
-        <h2>La Satisfacción de Nuestros Clientes en Elche</h2>
-        <p>Valoraciones reales extraídas de Google Maps que demuestran nuestro compromiso con la calidad y la atención personalizada.</p>
+        <h2>La Confianza de Nuestros Clientes</h2>
+        <p>Valoraciones públicas contrastadas en Google Maps.</p>
       </div>
 
       <div class="reviews-grid">
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">S</div>
-              <div class="rc-author">
-                <h4>Sergio Manzanera</h4>
-                <span class="rc-time">Hace 2 semanas • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 2 semanas</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Llevé un coche con la tapicería llena de manchas de los niños y parecía imposible de recuperar. Me lo dejaron como nuevo, impresionante. Muy serios y recomendables."</p>
+            <p class="rev-text">"Le hicieron la limpieza integral a mi coche que llevaba 4 años sin limpiarse a fondo por los niños y lo dejaron como recién salido de fábrica. Impresionante."</p>
+            <div class="rev-author">Sergio Manresa</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">D</div>
-              <div class="rc-author">
-                <h4>David Asensio</h4>
-                <span class="rc-time">Hace 1 mes • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 1 mes</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"El pulido y la protección cerámica que le hicieron a mi coche negro es una locura. El reflejo parece un espejo y el agua resbala sola. De 10."</p>
+            <p class="rev-text">"El tratamiento cerámico y el pulido valen cada euro. El agua resbala sola y el color negro tiene un brillo espejo brutal. Los mejores de Elche."</p>
+            <div class="rev-author">Ángel Vicente</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">J</div>
-              <div class="rc-author">
-                <h4>José Antonio Ruiz</h4>
-                <span class="rc-time">Hace 3 semanas • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 3 semanas</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Pulido de faros rápido, económico y pasé la ITV sin problemas. Trato de diez en Torrellano."</p>
+            <p class="rev-text">"Grandes profesionales en el polígono de Carrús. Rápidos, serios y muy cuidadosos con el vehículo. Repetiré sin duda."</p>
+            <div class="rev-author">David Quiles</div>
           </div>
         
       </div>
@@ -1213,8 +1252,13 @@
   </section>
 
   <!-- Schedule & Location Section -->
-  <section class="section" id="horarios">
+  <section class="section" id="contacto">
     <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Ubicación y Horarios</span>
+        <h2>Ven a Visitarnos en Elche</h2>
+      </div>
+
       <div class="info-grid">
         <div class="info-card">
           <h3><span>🕒</span> Horario de Atención</h3>
@@ -1227,7 +1271,7 @@
             
               <li>
                 <span class="day">Sábados</span>
-                <span class="hour">08:30 - 13:00</span>
+                <span class="hour">09:00 - 13:30</span>
               </li>
             
               <li>
@@ -1240,9 +1284,9 @@
         <div class="info-card">
           <h3><span>📍</span> Dónde Estamos</h3>
           <div class="location-details">
-            <p><strong>Dirección:</strong> Avinguda de Illice, 120, 03320 Elche (Torrellano), Alicante</p>
-            <p><strong>Teléfono / WhatsApp:</strong> +34 635 80 31 61</p>
-            <a href="https://maps.google.com/?q=Modo%20Clean%20Detailing%20Avinguda%20de%20Illice%2C%20120%2C%2003320%20Elche%20(Torrellano)%2C%20Alicante" target="_blank" class="btn-maps">
+            <p><strong>Dirección:</strong> Pol. Ind. Carrús, Carrer Monòver, 15, 03206 Elche, Alicante</p>
+            <p><strong>Teléfono / WhatsApp:</strong> +34 601 27 00 95</p>
+            <a href="https://maps.google.com/?q=Modo%20Clean%20Detailing%20Pol.%20Ind.%20Carr%C3%BAs%2C%20Carrer%20Mon%C3%B2ver%2C%2015%2C%2003206%20Elche%2C%20Alicante" target="_blank" class="btn-maps">
               <span>🗺️ Abrir en Google Maps</span>
             </a>
           </div>
@@ -1294,15 +1338,15 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p><strong>Modo Clean Detailing</strong> • Avinguda de Illice, 120, 03320 Elche (Torrellano), Alicante</p>
-      <p>Teléfono de contacto: <a href="tel:34635803161" style="color: var(--primary); font-weight: 700;">+34 635 80 31 61</a></p>
+      <p><strong>Modo Clean Detailing</strong> • Pol. Ind. Carrús, Carrer Monòver, 15, 03206 Elche, Alicante</p>
+      <p>Teléfono de contacto: <a href="tel:34601270095" style="color: var(--primary); font-weight: 700;">+34 601 27 00 95</a></p>
       <p style="margin-top: 15px; font-size: 11px; opacity: 0.7;">Propuesta de presencia web profesional y sistema de reservas autónomo creada para Modo Clean Detailing.</p>
     </div>
   </footer>
 
   <!-- Mobile Floating Action Bar -->
   <div class="mobile-bar">
-    <a href="tel:34635803161" class="m-bar-btn">
+    <a href="tel:34601270095" class="m-bar-btn">
       <span style="font-size: 18px;">📞</span>
       <span>Llamar</span>
     </a>
@@ -1310,7 +1354,7 @@
       <span>📅</span>
       <span>Reservar Cita</span>
     </button>
-    <a href="https://maps.google.com/?q=Modo%20Clean%20Detailing%20Avinguda%20de%20Illice%2C%20120%2C%2003320%20Elche%20(Torrellano)%2C%20Alicante" target="_blank" class="m-bar-btn">
+    <a href="https://maps.google.com/?q=Modo%20Clean%20Detailing%20Pol.%20Ind.%20Carr%C3%BAs%2C%20Carrer%20Mon%C3%B2ver%2C%2015%2C%2003206%20Elche%2C%20Alicante" target="_blank" class="m-bar-btn">
       <span style="font-size: 18px;">📍</span>
       <span>Maps</span>
     </a>
@@ -1330,7 +1374,7 @@
         <div class="form-group">
           <label for="bookService">Servicio deseado:</label>
           <select id="bookService" class="form-control" required>
-            <option value="Limpieza Integral de Tapicería (Inyección/Extracción) (Desde 65,00€)">Limpieza Integral de Tapicería (Inyección/Extracción) — Desde 65,00€</option><option value="Pulido en 1 Paso + Sellado de Cera Carnauba (Desde 120,00€)">Pulido en 1 Paso + Sellado de Cera Carnauba — Desde 120,00€</option><option value="Tratamiento Cerámico 9H Coating (3 Años) (Consultar vehículo)">Tratamiento Cerámico 9H Coating (3 Años) — Consultar vehículo</option><option value="Restauración y Lacado UV de Faros Opacos (35,00€ el par)">Restauración y Lacado UV de Faros Opacos — 35,00€ el par</option>
+            <option value="Limpieza Integral de Tapicería por Inyección-Extracción (75,00€)">Limpieza Integral de Tapicería por Inyección-Extracción — 75,00€</option><option value="Tratamiento Nutritivo & Limpieza de Asientos de Cuero (45,00€)">Tratamiento Nutritivo & Limpieza de Asientos de Cuero — 45,00€</option><option value="Pulido de Carrocería en 1 Paso (One Step Polish) (120,00€)">Pulido de Carrocería en 1 Paso (One Step Polish) — 120,00€</option><option value="Tratamiento Cerámico 9H Coating (Protección 2 Años) (250,00€)">Tratamiento Cerámico 9H Coating (Protección 2 Años) — 250,00€</option><option value="Restauración y Lacado UV de Faros Opacos (35,00€)">Restauración y Lacado UV de Faros Opacos — 35,00€</option>
           </select>
         </div>
 
@@ -1469,7 +1513,7 @@
       
       setTimeout(() => {
         closeBookingModal();
-        const waUrl = `https://wa.me/34635803161?text=${encodeURIComponent(formattedMessage)}`;
+        const waUrl = `https://wa.me/34601270095?text=${encodeURIComponent(formattedMessage)}`;
         window.open(waUrl, '_blank');
       }, 900);
     }

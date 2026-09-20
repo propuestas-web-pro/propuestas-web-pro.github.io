@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>V&P Beauty Studio Elche | Web Oficial & Reservas en Elche</title>
-  <meta name="description" content="Diseños de tendencia, refuerzo de uña natural y máxima precisión. Reserva tu cita online sin esperas ni llamadas interrumpidas.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VP Beauty Studio | Web Oficial & Reservas en Elche</title>
+  <meta name="description" content="Esmaltado semipermanente de larga duración, nivelación con rubber base y diseños nail art exclusivos. Reserva tu hueco en segundos sin llamadas.">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="V&P Beauty Studio Elche - Elche">
-  <meta property="og:description" content="Diseños de tendencia, refuerzo de uña natural y máxima precisión. Reserva tu cita online sin esperas ni llamadas interrumpidas.">
+  <meta property="og:title" content="VP Beauty Studio - Elche">
+  <meta property="og:description" content="Esmaltado semipermanente de larga duración, nivelación con rubber base y diseños nail art exclusivos. Reserva tu hueco en segundos sin llamadas.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80">
   
   <!-- Fonts: Outfit for luxury headlines, Plus Jakarta Sans for crystal clear reading -->
@@ -59,7 +59,7 @@
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--text-main);
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     a {
@@ -146,7 +146,7 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      border: 2px solid #fde68a; /* Subtle Gold Border */
+      border: 2px solid #fde68a;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
     .brand-text h2 {
@@ -221,15 +221,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #fffbeb; /* Gold light */
-      border: 1px solid #fde68a; /* Gold border */
+      background: #fffbeb;
+      border: 1px solid #fde68a;
       padding: 6px 16px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 700;
-      color: #b45309; /* Rich Gold */
+      color: #b45309;
       margin-bottom: 22px;
       box-shadow: 0 2px 6px rgba(217, 119, 6, 0.1);
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     .hero-content h1 {
@@ -257,6 +262,12 @@
     }
     @media (max-width: 920px) {
       .hero-actions { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions .btn-main, .hero-actions .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     .btn-main {
@@ -485,6 +496,9 @@
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 26px;
     }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
     .service-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
@@ -514,8 +528,8 @@
       max-width: 72%;
     }
     .service-price {
-      background: #fffbeb; /* Gold light */
-      color: #b45309;       /* Rich Gold */
+      background: #fffbeb;
+      color: #b45309;
       border: 1px solid #fde68a;
       padding: 4px 12px;
       border-radius: 8px;
@@ -563,7 +577,7 @@
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
-    /* Live Booking Modal - Clean Light */
+    /* Live Booking Modal */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -594,6 +608,9 @@
       position: relative;
       box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
       color: #0f172a;
+    }
+    @media (max-width: 480px) {
+      .modal-box { padding: 22px 18px; }
     }
     .modal-close {
       position: absolute;
@@ -658,14 +675,14 @@
     /* Slots Grid */
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
       gap: 8px;
       margin-top: 8px;
     }
     .slot-pill {
       background: #f1f5f9;
       border: 1px solid var(--border-light);
-      padding: 9px 4px;
+      padding: 8px;
       border-radius: 8px;
       text-align: center;
       font-size: 13px;
@@ -674,353 +691,353 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .slot-pill.active {
+    .slot-pill:hover, .slot-pill.active {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
 
     .btn-submit-booking {
       width: 100%;
       background: #22c55e;
       color: #ffffff;
-      font-size: 16px;
-      font-weight: 800;
       padding: 16px;
       border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
       border: none;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 20px -4px rgba(34, 197, 94, 0.4);
-      transition: transform 0.2s, background 0.2s;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
+      transition: all 0.2s;
     }
     .btn-submit-booking:hover {
-      transform: translateY(-2px);
       background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(34, 197, 94, 0.45);
     }
 
     /* Reviews Section */
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 26px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
     }
     .review-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
       border-radius: 20px;
       padding: 26px;
-      box-shadow: var(--shadow-md);
-      position: relative;
+      box-shadow: var(--shadow-sm);
     }
-    .rc-header {
+    .rev-top {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .rc-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      display: flex;
+    .rev-stars { color: #d97706; font-size: 14px; letter-spacing: 2px; }
+    .rev-time { font-size: 12px; color: #94a3b8; }
+    .rev-text { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .rev-author { font-size: 13px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+    .rev-author::before {
+      content: '✓';
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      font-size: 10px;
       font-weight: 800;
-      font-size: 16px;
-      border: 2px solid #fde68a;
-    }
-    .rc-author h4 { font-size: 15px; color: #0f172a; }
-    .rc-author span.rc-time { font-size: 12px; color: #64748b; font-weight: 500; }
-    .rc-stars {
-      color: #f59e0b; /* Bright Shining Gold */
-      font-size: 16px;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-    .rc-text {
-      font-size: 14px;
-      color: #334155;
-      font-style: italic;
-      line-height: 1.5;
     }
 
-    /* Schedule & Map Section */
+    /* Info Grid */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: stretch;
+      gap: 30px;
     }
-    @media (max-width: 880px) {
+    @media (max-width: 800px) {
       .info-grid { grid-template-columns: 1fr; }
     }
     .info-card {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 34px;
-      box-shadow: var(--shadow-md);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
     }
     .info-card h3 {
       font-size: 20px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: #0f172a;
-    }
-    .schedule-list {
-      list-style: none;
     }
     .schedule-list li {
       display: flex;
       justify-content: space-between;
-      padding: 14px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #f1f5f9;
       font-size: 14px;
     }
-    .schedule-list li:last-child { border: none; }
-    .schedule-list span.day { font-weight: 700; color: #1e293b; }
-    .schedule-list span.hour { color: #64748b; font-weight: 600; }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-list .day { font-weight: 700; color: #334155; }
+    .schedule-list .hour { color: #2563eb; font-weight: 600; }
 
-    .location-details {
-      margin-top: 20px;
-    }
     .location-details p {
       font-size: 14px;
       color: #475569;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      margin-bottom: 10px;
     }
     .btn-maps {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1d4ed8;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 700;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 14px;
       transition: all 0.2s;
     }
     .btn-maps:hover {
       background: #2563eb;
-      border-color: #2563eb;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      border-color: #2563eb;
     }
 
-    /* FAQ Section */
+    /* FAQ Accordion */
     .faq-accordion {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
     }
     .faq-item {
       background: #ffffff;
       border: 1px solid var(--border-light);
-      border-radius: 16px;
+      border-radius: 14px;
       margin-bottom: 14px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
     .faq-question {
-      padding: 20px 24px;
+      padding: 18px 22px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       color: #0f172a;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background 0.2s;
     }
-    .faq-question:hover {
-      background: #f8fafc;
-    }
-    .faq-answer {
-      padding: 0 24px 20px;
-      font-size: 14px;
-      color: #475569;
-      display: none;
-      line-height: 1.6;
-    }
-    .faq-item.open .faq-answer {
-      display: block;
+    .faq-icon {
+      font-size: 12px;
+      color: #94a3b8;
+      transition: transform 0.2s;
     }
     .faq-item.open .faq-icon {
       transform: rotate(180deg);
       color: #2563eb;
     }
+    .faq-answer {
+      display: none;
+      padding: 0 22px 20px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
 
-    /* Footer */
+    /* Site Footer */
     footer.site-footer {
-      border-top: 1px solid var(--border-light);
       background: #ffffff;
-      padding: 45px 0;
+      border-top: 1px solid var(--border-light);
+      padding: 40px 0;
       text-align: center;
+    }
+    footer.site-footer p {
       font-size: 13px;
       color: #64748b;
+      margin-bottom: 6px;
     }
-    footer.site-footer p { margin-bottom: 8px; }
 
-    /* Sticky Mobile Bottom Bar */
+    /* Mobile Floating Bar */
     .mobile-bar {
+      display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 68px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-light);
-      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 16px;
+      padding: 10px 16px;
+      z-index: 900;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
     }
     @media (max-width: 880px) {
-      .mobile-bar { display: flex; }
+      .mobile-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+      }
     }
     .m-bar-btn {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       font-size: 11px;
       font-weight: 700;
       color: #475569;
+      background: none;
+      border: none;
       cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
     }
     .m-bar-btn.primary-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: #2563eb;
       color: #ffffff;
-      padding: 11px 22px;
+      padding: 10px 16px;
       border-radius: 12px;
-      font-weight: 800;
-      font-size: 13px;
+      flex: 1.8;
       flex-direction: row;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-      border: none;
+      gap: 6px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
     }
 
     /* Toast Notification */
     .toast-notice {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #ffffff;
-      border: 1px solid #22c55e;
-      color: #0f172a;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
+      bottom: 95px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
       z-index: 2000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-      display: none;
+      display: flex;
       align-items: center;
       gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .toast-notice.show {
-      display: flex;
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- Demo Notice Header -->
+  <!-- Top Agency Banner -->
   <div class="agency-banner">
-    <span class="badge-gold">Propuesta Web Exclusiva</span>
-    <span>Demostración interactiva personalizada para <strong>V&P Beauty Studio Elche</strong> en Elche</span>
-    <a href="https://wa.me/34644123456?text=Hola%2C%20me%20interesa%20la%20propuesta%20web%20para%20V%26P%20Beauty%20Studio%20Elche" class="cta-claim" target="_blank">Contactar con los Desarrolladores</a>
+    <span class="badge-gold">Demostración Web Exclusiva</span>
+    <span>Propuesta de presencia digital y reservas autónomas para <strong>VP Beauty Studio</strong></span>
+    <a href="https://wa.me/34658743609?text=Hola,%20me%20interesa%20activar%20la%20propuesta%20web%20para%20VP%20Beauty%20Studio" class="cta-claim" target="_blank">
+      Activar Esta Web 🚀
+    </a>
   </div>
 
-  <!-- Header -->
+  <!-- Navigation Header -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h2>V&P Beauty Studio Elche</h2>
-          <p>Salón de Uñas Esculpidas, Nail Art & Mirada</p>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand-logo">
+          <div class="brand-icon">✨</div>
+          <div class="brand-text">
+            <h2>VP Beauty Studio</h2>
+            <p>Salón de Uñas Esculpidas, Nail Art & Mirada</p>
+          </div>
         </div>
-      </a>
-      <nav class="desktop-nav">
-        <a href="#servicios">Servicios & Tarifas</a>
-        <a href="#ventajas">¿Por qué elegirnos?</a>
-        <a href="#opiniones">Reseñas Google</a>
-        <a href="#horarios">Horario & Ubicación</a>
-        <a href="#faq">Preguntas</a>
-      </nav>
-      <button class="btn-header-cta" onclick="openBookingModal()">
-        📅 Reservar Cita Online
-      </button>
+
+        <nav class="desktop-nav">
+          <a href="#servicios">Servicios</a>
+          <a href="#ventajas">Ventajas</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#contacto">Horario & Ubicación</a>
+        </nav>
+
+        <button class="btn-header-cta" onclick="openBookingModal()">
+          <span>📅</span>
+          <span>Reservar Cita</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span>⭐ 4.9 en Google Maps • Especialistas en Uñas de Acrílico & Nail Art</span>
-        </div>
-        <h1>El Estudio Especializado en Manicura Rusa, Acrílico y Pestañas en Elche</h1>
-        <p class="hero-lead">Diseños de tendencia, refuerzo de uña natural y máxima precisión. Reserva tu cita online sin esperas ni llamadas interrumpidas.</p>
-        <div class="hero-actions">
-          <button class="btn-main" onclick="openBookingModal()">
-            <span>📅 Pedir Cita Online (Sin Esperas)</span>
-          </button>
-          <a href="#servicios" class="btn-secondary">
-            <span>Ver Tarifas & Carta</span>
-          </a>
-        </div>
-        <div class="hero-trust">
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Confirmación Automática en WhatsApp</span>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>⭐ 5.0 en Google Maps • Carrer Conrado Del Campo</span>
           </div>
-          <div class="hero-trust-item">
-            <span class="check">✓</span>
-            <span>Sin intermediarios ni comisiones</span>
+          <h1>Manicuras Rusas Impecables y Uñas de Élite en Elche</h1>
+          <p class="hero-lead">Esmaltado semipermanente de larga duración, nivelación con rubber base y diseños nail art exclusivos. Reserva tu hueco en segundos sin llamadas.</p>
+
+          <div class="hero-actions">
+            <button class="btn-main" onclick="openBookingModal()">
+              <span>📅 Reservar Cita Online</span>
+            </button>
+            <a href="tel:34624374345" class="btn-secondary">
+              <span>📞 Llamar al +34 624 37 43 45</span>
+            </a>
           </div>
-        </div>
-      </div>
-      <div class="hero-image-wrapper">
-        <div class="hero-image-card">
-          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80" alt="V&P Beauty Studio Elche Elche" loading="lazy">
-          <div class="hero-floating-badge">
-            <div class="hfb-left">
-              <div class="hfb-avatar">✓</div>
-              <div class="hfb-text">
-                <h4>Reservas 24/7 Abiertas</h4>
-                <p>Huecos disponibles para esta semana</p>
-              </div>
+
+          <div class="hero-trust">
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Confirmación al Instante</span>
             </div>
-            <button class="btn-header-cta" style="padding: 7px 16px; font-size: 12px;" onclick="openBookingModal()">Reservar</button>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>Sin Esperas ni Llamadas</span>
+            </div>
+            <div class="hero-trust-item">
+              <span class="check">✓</span>
+              <span>100% Gratuito</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80" alt="VP Beauty Studio en Elche">
+            <div class="hero-floating-badge">
+              <div class="hfb-left">
+                <div class="hfb-avatar">✓</div>
+                <div class="hfb-text">
+                  <h4>Cita Online 24/7</h4>
+                  <p>Directo a WhatsApp</p>
+                </div>
+              </div>
+              <span style="font-size: 22px;">📲</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1028,148 +1045,163 @@
   </section>
 
   <!-- Highlights Bar -->
-  <section class="highlights-bar" id="ventajas">
-    <div class="container highlights-grid">
-      
-        <div class="hl-item">
-          <div class="hl-icon">💅</div>
-          <div class="hl-text">
-            <h4>Manicura de Precisión</h4>
-            <p>Técnica de manicura combinada rusa que garantiza un esmaltado pegado a cutícula y mayor duración.</p>
+  <section class="highlights-bar">
+    <div class="container">
+      <div class="highlights-grid">
+        
+          <div class="hl-item">
+            <div class="hl-icon">💎</div>
+            <div class="hl-text">
+              <h4>Durabilidad Garantizada</h4>
+              <p>Esmaltados intactos durante más de 3 a 4 semanas gracias a la técnica rusa de nivelación.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">🎨</div>
-          <div class="hl-text">
-            <h4>Nail Art Personalizado</h4>
-            <p>Mano alzada, efectos cromados, encapsulados, french moderna y piedras Swarovski.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🧼</div>
+            <div class="hl-text">
+              <h4>Esterilización Grado Médico</h4>
+              <p>Instrumental desinfectado en autoclave y limas desechables individuales para cada clienta.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">🧼</div>
-          <div class="hl-text">
-            <h4>Esterilización Clínica</h4>
-            <p>Herramientas esterilizadas en autoclave y limas desechables individuales para cada clienta.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">🎨</div>
+            <div class="hl-text">
+              <h4>Nail Art a Mano Alzada</h4>
+              <p>Líneas finas, degradados baby boomer, pedrería y efectos cromados únicos.</p>
+            </div>
           </div>
-        </div>
-      
-        <div class="hl-item">
-          <div class="hl-icon">📅</div>
-          <div class="hl-text">
-            <h4>Cita en 2 Clics</h4>
-            <p>Elige tu servicio y horario sin perder tiempo esperando llamadas.</p>
+        
+          <div class="hl-item">
+            <div class="hl-icon">⚡</div>
+            <div class="hl-text">
+              <h4>Confirmación al Instante</h4>
+              <p>Reserva online directa sin llamadas innecesarias.</p>
+            </div>
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </section>
 
-  <!-- Services & Pricing Section -->
+  <!-- Services Section -->
   <section class="section" id="servicios">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Carta & Servicios</span>
-        <h2>Servicios Profesionales con Tarifas Transparentes</h2>
-        <p>Elige tu servicio y haz tu reserva o encargo en segundos con confirmación directa en tu teléfono.</p>
+        <span class="section-tag">Carta de Servicios</span>
+        <h2>Tratamientos & Especialidades</h2>
+        <p>Elige tu servicio y reserva tu turno sin llamadas telefónicas ni esperas.</p>
       </div>
 
-      <!-- Categories Filter -->
       <div class="category-tabs">
         
-          <button class="tab-btn active" onclick="filterServices('Todos', this)">Todos</button>
+          <button class="tab-btn active" onclick="filterServices('Todos', this)">
+            Todos
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Uñas Acrílicas', this)">Uñas Acrílicas</button>
+          <button class="tab-btn " onclick="filterServices('Manicura Rusa', this)">
+            Manicura Rusa
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Manicura Semipermanente', this)">Manicura Semipermanente</button>
+          <button class="tab-btn " onclick="filterServices('Uñas Esculpidas', this)">
+            Uñas Esculpidas
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Pedicura', this)">Pedicura</button>
+          <button class="tab-btn " onclick="filterServices('Pedicura Spa', this)">
+            Pedicura Spa
+          </button>
         
-          <button class="tab-btn " onclick="filterServices('Pestañas', this)">Pestañas</button>
+          <button class="tab-btn " onclick="filterServices('Mirada', this)">
+            Mirada
+          </button>
         
       </div>
 
-      <!-- Services Cards -->
-      <div class="services-grid" id="servicesGrid">
+      <div class="services-grid">
         
-          <div class="service-card" data-category="Uñas Acrílicas">
+          <div class="service-card" data-category="Manicura Rusa">
             <div>
               <div class="service-top">
-                <h3>Puesta Nueva de Uñas Acrílicas con Tips / Molde</h3>
-                <span class="service-price">Desde 30,00€</span>
+                <h3>Manicura Rusa Combinada + Nivelación Rubber Base</h3>
+                <span class="service-price">22,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 1h 30min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 75 min</span>
               </div>
-              <p class="service-desc">Estructura sólida, limado perfecto, longitud a elegir y esmaltado liso o baby boomer.</p>
+              <p class="service-desc">Limpieza profunda de cutículas con fresas de diamante, refuerzo de uña natural con rubber y esmaltado bajo cutícula.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Puesta Nueva de Uñas Acrílicas con Tips / Molde', 'Desde 30,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Manicura Rusa Combinada + Nivelación Rubber Base', '22,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Uñas Acrílicas">
+          <div class="service-card" data-category="Uñas Esculpidas">
             <div>
               <div class="service-top">
-                <h3>Relleno de Acrílico + Cambio de Diseño</h3>
-                <span class="service-price">23,00€</span>
+                <h3>Extensión de Uñas en Gel o Polygel con Molde</h3>
+                <span class="service-price">35,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 1h 15min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 110 min</span>
               </div>
-              <p class="service-desc">Rebalance de ápice, preparación de cutícula con fresa diamantada y esmaltado renovado.</p>
+              <p class="service-desc">Alargamiento estructural resistente y estilizado, forma almendrada, cuadrada o ballerina, con color liso o francesa.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Relleno de Acrílico + Cambio de Diseño', '23,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Extensión de Uñas en Gel o Polygel con Molde', '35,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Manicura Semipermanente">
+          <div class="service-card" data-category="Uñas Esculpidas">
             <div>
               <div class="service-top">
-                <h3>Manicura Rusa con Refuerzo Rubber Base</h3>
-                <span class="service-price">18,00€</span>
+                <h3>Relleno de Gel / Acrigel (hasta 4 semanas)</h3>
+                <span class="service-price">28,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 55 min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 90 min</span>
               </div>
-              <p class="service-desc">Limpieza profunda de cutícula bajo el eponiquio y base flexible niveladora que fortalece la uña natural.</p>
+              <p class="service-desc">Mantenimiento de cutícula, balance del punto de estrés, sellado y cambio de color o diseño.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Manicura Rusa con Refuerzo Rubber Base', '18,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Relleno de Gel / Acrigel (hasta 4 semanas)', '28,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Pedicura">
+          <div class="service-card" data-category="Pedicura Spa">
             <div>
               <div class="service-top">
-                <h3>Pedicura Completa SPA con Semipermanente</h3>
-                <span class="service-price">25,00€</span>
+                <h3>Pedicura Spa Completa con Retirada de Durezas</h3>
+                <span class="service-price">26,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 50 min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 60 min</span>
               </div>
-              <p class="service-desc">Retirada de durezas, exfoliación con sales marinas, hidratación profunda y esmaltado de uñas de pies.</p>
+              <p class="service-desc">Baño de sales aromáticas, torno podológico para talones sedosos, exfoliación y esmaltado semipermanente.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Pedicura Completa SPA con Semipermanente', '25,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Pedicura Spa Completa con Retirada de Durezas', '26,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
-          <div class="service-card" data-category="Pestañas">
+          <div class="service-card" data-category="Mirada">
             <div>
               <div class="service-top">
-                <h3>Extensiones de Pestañas Pelo a Pelo Clásicas</h3>
-                <span class="service-price">38,00€</span>
+                <h3>Diseño de Cejas con Henna o Tinte Híbrido</h3>
+                <span class="service-price">14,00€</span>
               </div>
               <div class="service-duration">
-                <span>⏱️ 1h 30min</span>
+                <span>⏱️</span>
+                <span>Duración aproximada: 35 min</span>
               </div>
-              <p class="service-desc">Efecto rímel natural, curva y grosor adaptados al ojo para intensificar la mirada sin peso.</p>
+              <p class="service-desc">Visagismo de cejas según estructura ósea, depilación con cera/hilo y sombreado temporal de alta definición.</p>
             </div>
-            <button class="service-btn" onclick="bookSpecificService('Extensiones de Pestañas Pelo a Pelo Clásicas', '38,00€')">
-              <span>📅 Reservar este servicio</span>
+            <button class="service-btn" onclick="bookSpecificService('Diseño de Cejas con Henna o Tinte Híbrido', '14,00€')">
+              <span>📅 Seleccionar Servicio</span>
             </button>
           </div>
         
@@ -1177,51 +1209,42 @@
     </div>
   </section>
 
-  <!-- Google Reviews Section -->
+  <!-- Reviews Section -->
   <section class="section" id="opiniones" style="background: #f8fafc; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Opiniones Reales</span>
-        <h2>La Satisfacción de Nuestros Clientes en Elche</h2>
-        <p>Valoraciones reales extraídas de Google Maps que demuestran nuestro compromiso con la calidad y la atención personalizada.</p>
+        <h2>La Confianza de Nuestros Clientes</h2>
+        <p>Valoraciones públicas contrastadas en Google Maps.</p>
       </div>
 
       <div class="reviews-grid">
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">L</div>
-              <div class="rc-author">
-                <h4>Lucía Sempere</h4>
-                <span class="rc-time">Hace 1 semana • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 1 semana</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Las mejores uñas de Elche sin dudarlo. El acrílico no se levanta ni con golpes y el diseño a mano alzada les quedó idéntico a la foto que llevé."</p>
+            <p class="rev-text">"La mejor manicura de Elche sin discusión. Las uñas me duran intactas 4 semanas enteras. El trabajo de cutícula es perfecto."</p>
+            <div class="rev-author">Lucía Antón</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">A</div>
-              <div class="rc-author">
-                <h4>Andrea Penalva</h4>
-                <span class="rc-time">Hace 3 semanas • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 3 semanas</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"La manicura con base rubber me ha salvado las uñas. Llevo 3 semanas con ellas intactas. Trato súper agradable y local muy higiénico."</p>
+            <p class="rev-text">"El local es precioso y súper limpio. Cuidan muchísimo la uña natural para que no se debilite. Súper recomendable."</p>
+            <div class="rev-author">Marina Esclapez</div>
           </div>
         
           <div class="review-card">
-            <div class="rc-header">
-              <div class="rc-avatar">N</div>
-              <div class="rc-author">
-                <h4>Noelia Serrano</h4>
-                <span class="rc-time">Hace 1 mes • Reseña Google Maps</span>
-              </div>
+            <div class="rev-top">
+              <span class="rev-stars">★★★★★</span>
+              <span class="rev-time">Hace 1 mes</span>
             </div>
-            <div class="rc-stars">★★★★★</div>
-            <p class="rc-text">"Me hice las pestañas para una boda y me encantaron. No pesan nada y quedan súper naturales. Volveré seguro."</p>
+            <p class="rev-text">"Puntualidad británica y un trato encantador. Siempre me sorprenden con el nail art que les pido."</p>
+            <div class="rev-author">Alba Trigueros</div>
           </div>
         
       </div>
@@ -1229,8 +1252,13 @@
   </section>
 
   <!-- Schedule & Location Section -->
-  <section class="section" id="horarios">
+  <section class="section" id="contacto">
     <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Ubicación y Horarios</span>
+        <h2>Ven a Visitarnos en Elche</h2>
+      </div>
+
       <div class="info-grid">
         <div class="info-card">
           <h3><span>🕒</span> Horario de Atención</h3>
@@ -1243,7 +1271,7 @@
             
               <li>
                 <span class="day">Sábados</span>
-                <span class="hour">09:30 - 14:00</span>
+                <span class="hour">09:00 - 14:00</span>
               </li>
             
               <li>
@@ -1256,9 +1284,9 @@
         <div class="info-card">
           <h3><span>📍</span> Dónde Estamos</h3>
           <div class="location-details">
-            <p><strong>Dirección:</strong> Carrer Vicente Blasco Ibáñez, 28, 03201 Elche, Alicante</p>
-            <p><strong>Teléfono / WhatsApp:</strong> +34 624 09 11 15</p>
-            <a href="https://maps.google.com/?q=V%26P%20Beauty%20Studio%20Elche%20Carrer%20Vicente%20Blasco%20Ib%C3%A1%C3%B1ez%2C%2028%2C%2003201%20Elche%2C%20Alicante" target="_blank" class="btn-maps">
+            <p><strong>Dirección:</strong> Carrer Conrado Del Campo, 19, 03204 Elche, Alicante</p>
+            <p><strong>Teléfono / WhatsApp:</strong> +34 624 37 43 45</p>
+            <a href="https://maps.google.com/?q=VP%20Beauty%20Studio%20Carrer%20Conrado%20Del%20Campo%2C%2019%2C%2003204%20Elche%2C%20Alicante" target="_blank" class="btn-maps">
               <span>🗺️ Abrir en Google Maps</span>
             </a>
           </div>
@@ -1310,15 +1338,15 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p><strong>V&P Beauty Studio Elche</strong> • Carrer Vicente Blasco Ibáñez, 28, 03201 Elche, Alicante</p>
-      <p>Teléfono de contacto: <a href="tel:34624091115" style="color: var(--primary); font-weight: 700;">+34 624 09 11 15</a></p>
-      <p style="margin-top: 15px; font-size: 11px; opacity: 0.7;">Propuesta de presencia web profesional y sistema de reservas autónomo creada para V&P Beauty Studio Elche.</p>
+      <p><strong>VP Beauty Studio</strong> • Carrer Conrado Del Campo, 19, 03204 Elche, Alicante</p>
+      <p>Teléfono de contacto: <a href="tel:34624374345" style="color: var(--primary); font-weight: 700;">+34 624 37 43 45</a></p>
+      <p style="margin-top: 15px; font-size: 11px; opacity: 0.7;">Propuesta de presencia web profesional y sistema de reservas autónomo creada para VP Beauty Studio.</p>
     </div>
   </footer>
 
   <!-- Mobile Floating Action Bar -->
   <div class="mobile-bar">
-    <a href="tel:34624091115" class="m-bar-btn">
+    <a href="tel:34624374345" class="m-bar-btn">
       <span style="font-size: 18px;">📞</span>
       <span>Llamar</span>
     </a>
@@ -1326,7 +1354,7 @@
       <span>📅</span>
       <span>Reservar Cita</span>
     </button>
-    <a href="https://maps.google.com/?q=V%26P%20Beauty%20Studio%20Elche%20Carrer%20Vicente%20Blasco%20Ib%C3%A1%C3%B1ez%2C%2028%2C%2003201%20Elche%2C%20Alicante" target="_blank" class="m-bar-btn">
+    <a href="https://maps.google.com/?q=VP%20Beauty%20Studio%20Carrer%20Conrado%20Del%20Campo%2C%2019%2C%2003204%20Elche%2C%20Alicante" target="_blank" class="m-bar-btn">
       <span style="font-size: 18px;">📍</span>
       <span>Maps</span>
     </a>
@@ -1338,7 +1366,7 @@
       <button class="modal-close" onclick="closeBookingModal()">✕</button>
       <div class="modal-header">
         <span class="section-tag" style="font-size: 11px;">Motor de Citas 24/7</span>
-        <h3>Reservar Cita en V&P Beauty Studio Elche</h3>
+        <h3>Reservar Cita en VP Beauty Studio</h3>
         <p>Elige servicio, fecha y hora. Tu reserva llegará confirmada a WhatsApp.</p>
       </div>
 
@@ -1346,7 +1374,7 @@
         <div class="form-group">
           <label for="bookService">Servicio deseado:</label>
           <select id="bookService" class="form-control" required>
-            <option value="Puesta Nueva de Uñas Acrílicas con Tips / Molde (Desde 30,00€)">Puesta Nueva de Uñas Acrílicas con Tips / Molde — Desde 30,00€</option><option value="Relleno de Acrílico + Cambio de Diseño (23,00€)">Relleno de Acrílico + Cambio de Diseño — 23,00€</option><option value="Manicura Rusa con Refuerzo Rubber Base (18,00€)">Manicura Rusa con Refuerzo Rubber Base — 18,00€</option><option value="Pedicura Completa SPA con Semipermanente (25,00€)">Pedicura Completa SPA con Semipermanente — 25,00€</option><option value="Extensiones de Pestañas Pelo a Pelo Clásicas (38,00€)">Extensiones de Pestañas Pelo a Pelo Clásicas — 38,00€</option>
+            <option value="Manicura Rusa Combinada + Nivelación Rubber Base (22,00€)">Manicura Rusa Combinada + Nivelación Rubber Base — 22,00€</option><option value="Extensión de Uñas en Gel o Polygel con Molde (35,00€)">Extensión de Uñas en Gel o Polygel con Molde — 35,00€</option><option value="Relleno de Gel / Acrigel (hasta 4 semanas) (28,00€)">Relleno de Gel / Acrigel (hasta 4 semanas) — 28,00€</option><option value="Pedicura Spa Completa con Retirada de Durezas (26,00€)">Pedicura Spa Completa con Retirada de Durezas — 26,00€</option><option value="Diseño de Cejas con Henna o Tinte Híbrido (14,00€)">Diseño de Cejas con Henna o Tinte Híbrido — 14,00€</option>
           </select>
         </div>
 
@@ -1473,7 +1501,7 @@
       const name = document.getElementById('bookName').value;
       const notes = document.getElementById('bookNotes').value;
 
-      const formattedMessage = `Hola V&P Beauty Studio Elche, me gustaría reservar la siguiente cita:\n\n` +
+      const formattedMessage = `Hola VP Beauty Studio, me gustaría reservar la siguiente cita:\n\n` +
         `📌 *Servicio:* ${service}\n` +
         `📅 *Fecha:* ${date}\n` +
         `⏰ *Hora:* ${time}\n` +
@@ -1485,7 +1513,7 @@
       
       setTimeout(() => {
         closeBookingModal();
-        const waUrl = `https://wa.me/34624091115?text=${encodeURIComponent(formattedMessage)}`;
+        const waUrl = `https://wa.me/34624374345?text=${encodeURIComponent(formattedMessage)}`;
         window.open(waUrl, '_blank');
       }, 900);
     }
