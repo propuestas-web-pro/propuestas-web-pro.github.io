@@ -3,661 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Propuestas Web Pro | Catálogo Oficial de Demos en Elche</title>
-  <meta name="description" content="Portal interactivo de propuestas y demostraciones web de alta conversión para negocios verificados en Elche. Totalmente adaptadas a móviles y ordenadores.">
+  <title>Propuestas Web Pro | Catálogo Oficial de Demos en Elche 2026</title>
+  <meta name="description" content="Portal interactivo de 20 propuestas y demostraciones web de alta conversión para negocios verificados en Elche. Totalmente adaptadas a móviles y ordenadores.">
   <meta name="robots" content="index, follow">
 
-  <!-- Google Fonts: Outfit for luxury titles & Plus Jakarta Sans for crystal clear UI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #2563eb;          /* Royal Blue */
-      --primary-dark: #1d4ed8;     /* Deep Navy Blue */
-      --primary-light: #eff6ff;    /* Soft Blue Tint */
-      --accent-gold: #d97706;      /* Rich Amber Gold */
-      --gold-light: #fffbeb;       /* Soft Gold Tint */
-      --gold-border: #fde68a;      /* Delicate Gold Border */
-      --bg-body: #ffffff;          /* Pure White Background */
-      --bg-surface: #f8fafc;       /* Crisp Off-White Surface */
-      --bg-card: #ffffff;          /* Pure White Card */
-      --text-main: #0f172a;        /* Deep Slate / Dark Navy */
-      --text-muted: #475569;       /* Slate Grey */
-      --text-light: #64748b;       /* Muted Caption */
-      --border-light: #e2e8f0;     /* Clean Subtle Border */
-      --whatsapp-green: #16a34a;   /* Emerald Green */
-      --whatsapp-light: #dcfce7;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-light: #e2e8f0;
       --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 20px 35px -10px rgba(37, 99, 235, 0.15);
-      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.07);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-surface);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.25;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* TOP NOTIFICATION / VERIFICATION BAR */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background-color: var(--bg-surface); color: var(--text-main); line-height: 1.6; }
+    .container { width: 100%; max-width: 1260px; margin: 0 auto; padding: 0 24px; }
+    
     .top-bar {
       background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #1e3a8a 100%);
-      color: #ffffff;
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff; padding: 10px 16px; font-size: 13px; font-weight: 600; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
     }
-    .badge-live-dot {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(34, 197, 94, 0.2);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      color: #86efac;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-      animation: pulseGreen 1.8s infinite;
-    }
-    @keyframes pulseGreen {
-      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-    /* NAVIGATION HEADER */
     header.portal-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(18px); border-bottom: 1px solid var(--border-light);
       box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
-      transition: all 0.3s ease;
     }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 76px;
-    }
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 76px; }
+    .brand-group { display: flex; align-items: center; gap: 14px; }
     .brand-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      border: 2px solid #fde68a;
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+      width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 22px;
+      border: 2px solid #fde68a; box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
     }
-    .brand-text h2 {
-      font-size: 20px;
-      letter-spacing: -0.5px;
-      color: #0f172a;
-    }
-    .brand-text p {
-      font-size: 12px;
-      color: var(--primary);
-      font-weight: 600;
-    }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .brand-text h2 { font-size: 20px; font-family: var(--font-heading); color: #0f172a; }
+    .brand-text p { font-size: 12px; color: var(--primary); font-weight: 600; }
     .btn-header-wa {
-      background: #2563eb;
-      color: #ffffff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-    }
-    .btn-header-wa:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-    }
-    @media (max-width: 600px) {
-      .header-actions { display: none; }
+      background: #2563eb; color: #ffffff; padding: 10px 20px; border-radius: 10px;
+      font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
     }
 
-    /* HERO SHOWCASE SECTION */
-    section.hero-showcase {
-      padding: 60px 0 40px;
-      background: linear-gradient(180deg, #f0f7ff 0%, #f8fafc 100%);
-      border-bottom: 1px solid var(--border-light);
-      position: relative;
-      overflow: hidden;
+    .filter-section { padding: 36px 0 20px; }
+    .search-wrapper { position: relative; max-width: 600px; margin-bottom: 24px; }
+    .search-input {
+      width: 100%; padding: 14px 18px 14px 44px; background: #ffffff; border: 1px solid #cbd5e1;
+      border-radius: 14px; font-size: 15px; color: #0f172a; outline: none; transition: all 0.2s;
     }
-    .hero-showcase::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(217, 119, 6, 0.04) 50%, transparent 80%);
-      pointer-events: none;
-    }
-    .hero-center {
-      text-align: center;
-      max-width: 860px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-    .floating-vip-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold-light);
-      border: 1px solid var(--gold-border);
-      color: #b45309;
-      padding: 7px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
-      animation: floatBadge 3.5s ease-in-out infinite;
-    }
-    @keyframes floatBadge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    .hero-center h1 {
-      font-size: clamp(30px, 4.5vw, 48px);
-      letter-spacing: -1px;
-      color: #0f172a;
-      margin-bottom: 18px;
-    }
-    .hero-center h1 span.highlight-blue {
-      background: linear-gradient(135deg, #1d4ed8, #2563eb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-lead-text {
-      font-size: clamp(15px, 1.8vw, 18px);
-      color: #475569;
-      line-height: 1.7;
-      margin: 0 auto 32px;
-      max-width: 780px;
-      text-align: center;
+    .search-input:focus { border-color: #2563eb; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; }
+    .counter-badge {
+      display: inline-block; background: #eff6ff; color: #1d4ed8; padding: 6px 14px;
+      border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid #bfdbfe;
     }
 
-    /* DEVICE & SPECS PILLS BAR */
-    .specs-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .spec-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #334155;
-      box-shadow: var(--shadow-sm);
-    }
-    .spec-item span.icon {
-      font-size: 16px;
-    }
-
-    /* FILTER & SEARCH SUITE */
-    section.filter-section {
-      padding: 30px 0 20px;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 76px;
-      z-index: 90;
-      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-    }
-    .filter-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .search-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .search-box {
-      flex: 1;
-      min-width: 280px;
-      position: relative;
-    }
-    .search-box input {
-      width: 100%;
-      background: #f8fafc;
-      border: 1.5px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px 16px 12px 42px;
-      font-size: 14px;
-      color: #0f172a;
-      font-family: inherit;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-    .search-box input:focus {
-      border-color: var(--primary);
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-    }
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18px;
-      color: #94a3b8;
-      pointer-events: none;
-    }
-    .filter-count-badge {
-      font-size: 13px;
-      font-weight: 700;
-      color: #475569;
-      background: #f1f5f9;
-      padding: 8px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border-light);
-      white-space: nowrap;
-    }
-
-    /* CATEGORY TABS */
-    .category-tabs-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .category-tabs-container::-webkit-scrollbar {
-      display: none;
-    }
+    .category-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
     .cat-pill {
-      background: #f8fafc;
-      border: 1px solid var(--border-light);
-      color: #475569;
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
+      background: #ffffff; border: 1px solid #cbd5e1; color: #475569; padding: 8px 18px;
+      border-radius: 999px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s;
     }
-    .cat-pill:hover {
-      background: #eff6ff;
-      color: var(--primary);
-      border-color: #bfdbfe;
-    }
-    .cat-pill.active {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-      font-weight: 700;
+    .cat-pill.active, .cat-pill:hover {
+      background: #2563eb; color: #ffffff; border-color: #2563eb; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
     }
 
-    /* PROJECTS GRID SECTION */
-    section.projects-section {
-      padding: 45px 0 80px;
-      flex: 1;
-    }
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 30px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 28px; padding-bottom: 80px; margin-top: 20px;
     }
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-    }
+    @media (max-width: 480px) { .projects-grid { grid-template-columns: 1fr; } }
 
-    /* PROJECT CARD STYLING */
     .project-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      position: relative;
-    }
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 22px 40px -12px rgba(37, 99, 235, 0.16);
-      border-color: #93c5fd;
-    }
-
-    .card-media {
-      position: relative;
-      aspect-ratio: 16/10;
-      overflow: hidden;
-      background: #e2e8f0;
-    }
-    .card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .project-card:hover .card-media img {
-      transform: scale(1.06);
-    }
-    .card-tag-overlay {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #ffffff;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .card-rating-overlay {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #b45309;
-      border: 1px solid var(--gold-border);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .card-body {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      justify-content: space-between;
-    }
-    .card-meta-header {
-      margin-bottom: 12px;
-    }
-    .card-meta-header h3 {
-      font-size: 21px;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-    .card-address {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12.5px;
-      color: #64748b;
-      margin-bottom: 14px;
-      font-weight: 500;
-    }
-    .card-pain-box {
-      background: #f8fafc;
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 13px;
-      color: #334155;
-      line-height: 1.5;
-      margin-bottom: 18px;
-      flex-grow: 1;
-    }
-    .card-pain-box strong {
-      color: #1e3a8a;
-      display: block;
-      margin-bottom: 4px;
-      font-size: 11.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-specs-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 20px;
-      padding-top: 8px;
-      border-top: 1px dashed var(--border-light);
-      flex-wrap: wrap;
-    }
-    .spec-mini {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-weight: 600;
-    }
-    .spec-mini.ready {
-      color: var(--whatsapp-green);
-    }
-
-    /* CARD BUTTONS */
-    .card-actions {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 420px) {
-      .card-actions {
-        grid-template-columns: 1fr;
-      }
-    }
-    .btn-card-demo {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #ffffff;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 13.5px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-      transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-card-demo::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: rgba(255, 255, 255, 0.25);
-      transform: rotate(30deg);
-      transition: transform 0.6s ease;
-    }
-    .project-card:hover .btn-card-demo::after {
-      transform: rotate(30deg) translate(300%, 0);
-    }
-    .btn-card-demo:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-card-wa {
-      background: #ffffff;
-      border: 1.5px solid #22c55e;
-      color: #15803d;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 13.5px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-    .btn-card-wa:hover {
-      background: #f0fdf4;
-      border-color: #16a34a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
-    }
-
-    /* FOOTER */
-    footer.portal-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      padding: 45px 0 35px;
-      text-align: center;
-      margin-top: auto;
-    }
-    .footer-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .footer-inner p {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 8px;
-    }
-    .footer-inner p.copy {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-top: 18px;
-    }
-
-    /* FLOATING WHATSAPP BUTTON */
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 999;
-      background: #22c55e;
-      color: #ffffff;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-md);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 2px solid #ffffff;
-      animation: floatBadge 3.5s ease-in-out infinite;
     }
-    .floating-wa-btn:hover {
-      transform: scale(1.1) translateY(-4px);
-      background: #16a34a;
-      box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 25px 40px -10px rgba(15, 23, 42, 0.15); }
+    .card-cover { position: relative; height: 180px; background: #cbd5e1; }
+    .card-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .badge-rating {
+      position: absolute; top: 14px; right: 14px; background: rgba(255, 255, 255, 0.94);
+      padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; color: #b45309;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+    .badge-sector {
+      position: absolute; bottom: 14px; left: 14px; background: rgba(15, 23, 42, 0.85);
+      color: #ffffff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .card-name { font-size: 19px; font-weight: 700; margin-bottom: 6px; color: #0f172a; font-family: var(--font-heading); }
+    .card-address { font-size: 12px; color: #64748b; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+    .card-pain-box {
+      background: #f8fafc; border-left: 3px solid #3b82f6; padding: 10px 14px;
+      border-radius: 0 10px 10px 0; font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 16px;
+    }
+    .card-specs-row { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+    .spec-mini { background: #f1f5f9; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: #475569; }
+    .spec-mini.ready { background: #dcfce7; color: #166534; font-weight: 700; }
+
+    .card-actions { display: flex; gap: 10px; }
+    .btn-card-demo {
+      flex: 1.5; background: #2563eb; color: #ffffff; padding: 12px; border-radius: 10px;
+      font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+      gap: 6px; text-decoration: none; transition: background 0.2s;
+    }
+    .btn-card-demo:hover { background: #1d4ed8; }
+    .btn-card-wa {
+      flex: 1; background: #ffffff; border: 1px solid #cbd5e1; color: #16a34a; padding: 12px;
+      border-radius: 10px; font-size: 13px; font-weight: 700; display: flex; align-items: center;
+      justify-content: center; gap: 6px; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-card-wa:hover { background: #dcfce7; border-color: #86efac; }
+
+    footer.portal-footer {
+      background: #ffffff; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center;
+    }
+    footer.portal-footer p { font-size: 13px; color: #64748b; margin-bottom: 6px; }
+
+    .floating-wa-btn {
+      position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; border-radius: 50%;
+      background: #22c55e; color: #ffffff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4); z-index: 999; transition: transform 0.2s;
+    }
+    .floating-wa-btn:hover { transform: scale(1.08); }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
   <div class="top-bar">
-    <div class="badge-live-dot">
-      <div class="pulse-dot"></div>
-      14 Demos Activas y Verificadas
-    </div>
-    <span>Demostraciones Web de Alta Conversión • Desarrolladas en Exclusiva para Negocios de Elche</span>
+    <span class="pulse-dot"></span>
+    <span><strong>20 PROPUESTAS WEB ACTIVAS EN ELCHE</strong> • Conectadas a Fastly Enterprise CDN</span>
   </div>
 
-  <!-- HEADER -->
   <header class="portal-header">
     <div class="container">
       <div class="header-inner">
@@ -668,677 +158,807 @@
             <p>Catálogo Oficial • Elche 2026</p>
           </div>
         </div>
-        <div class="header-actions">
-          <a href="https://wa.me/34658743609?text=Hola,%20quisiera%20consultar%20sobre%20las%20propuestas%20web%20en%20Elche." class="btn-header-wa" target="_blank">
-            <span>💬 Contactar por WhatsApp</span>
-          </a>
-        </div>
+
+        <a href="https://wa.me/34658743609?text=Hola,%20me%20gustaría%20más%20información%20sobre%20las%20propuestas%20web%20en%20Elche." class="btn-header-wa" target="_blank">
+          <span>💬</span>
+          <span>Contactar por WhatsApp</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-showcase">
-    <div class="container">
-      <div class="hero-center">
-        <div class="floating-vip-badge">
-          <span>✨ PROYECTOS VERIFICADOS • ELCHE</span>
-        </div>
-        <h1>Demostraciones Web <span class="highlight-blue">100% Adaptadas</span> a Móvil & Ordenador</h1>
-        <p class="hero-lead-text">
-          Cada página web ha sido diseñada a medida para su sector: navegación ultra rápida, motor de citas directo a WhatsApp sin pagar comisiones y un aspecto visual impecable en cualquier dispositivo.
-        </p>
-
-        <div class="specs-bar">
-          <div class="spec-item">
-            <span class="icon">📱</span>
-            <span>100% Adaptada a Móvil</span>
-          </div>
-          <div class="spec-item">
-            <span class="icon">💻</span>
-            <span>Optimizado para PC y Tablet</span>
-          </div>
-          <div class="spec-item">
-            <span class="icon">⚡</span>
-            <span>Carga Instantánea (0.4s)</span>
-          </div>
-          <div class="spec-item">
-            <span class="icon">💬</span>
-            <span>Reservas por WhatsApp</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FILTER & SEARCH BAR -->
   <section class="filter-section">
     <div class="container">
-      <div class="filter-wrapper">
-        <div class="search-row">
-          <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="Buscar negocio, calle o categoría en Elche..." oninput="handleSearch()">
-          </div>
-          <div class="filter-count-badge" id="counterBadge">
-            Mostrando 14 de 14 propuestas
-          </div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Buscar negocio, calle o categoría en Elche..." oninput="handleSearch()">
         </div>
-
-        <div class="category-tabs-container">
-          
-            <button class="cat-pill active" onclick="filterCategory('Todos', this)">
-              Todos
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Barbería & Peluquería', this)">
-              Barbería & Peluquería
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Estética & Belleza', this)">
-              Estética & Belleza
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Salud & Bienestar', this)">
-              Salud & Bienestar
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Gastronomía', this)">
-              Gastronomía
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Automoción & Detailing', this)">
-              Automoción & Detailing
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Arte & Tatuaje', this)">
-              Arte & Tatuaje
-            </button>
-          
-            <button class="cat-pill " onclick="filterCategory('Mascotas', this)">
-              Mascotas
-            </button>
-          
-        </div>
+        <div id="counterBadge" class="counter-badge">Mostrando 20 de 20 propuestas</div>
       </div>
-    </div>
-  </section>
 
-  <!-- PROJECTS SHOWCASE GRID -->
-  <section class="projects-section">
-    <div class="container">
+      <div class="category-pills">
+        
+          <button class="cat-pill active" onclick="filterCategory('Todos', this)">Todos</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Barbería & Peluquería', this)">Barbería & Peluquería</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Estética & Belleza', this)">Estética & Belleza</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Salud & Bienestar', this)">Salud & Bienestar</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Automoción & Talleres', this)">Automoción & Talleres</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Gastronomía & Restauración', this)">Gastronomía & Restauración</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Deporte & Fitness', this)">Deporte & Fitness</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Arte & Tatuaje', this)">Arte & Tatuaje</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Mascotas', this)">Mascotas</button>
+        
+          <button class="cat-pill " onclick="filterCategory('Comercio & Eventos', this)">Comercio & Eventos</button>
+        
+      </div>
+
       <div class="projects-grid" id="projectsGrid">
         
-          <article class="project-card" data-category="Barbería & Peluquería" data-search="barbería el galán barbería masculina, fades & cuidado de barba carrer bisbe winibal, 12, 03202 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80" alt="Barbería El Galán" loading="lazy">
-              <div class="card-tag-overlay">Barbería & Peluquería</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Barbería & Peluquería" data-search="barbería el galán carrer bisbe winibal, 12, 03202 elche, alicante barbería masculina, fades & cuidado de barba">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80" alt="Barbería El Galán">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Barbería Masculina</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Barbería El Galán</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Barbería El Galán</h3>
+                <p class="card-address">📍 Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Con esta web, vuestros clientes entran desde el enlace de vuestro Google Maps o Instagram, eligen el corte, día y hora disponible, y la cita...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, vuestros clientes entran desde el enlace de vuestro Google Maps o Instagram, eligen el corte, día y hora disponible, y la cita...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/barberia-el-galan/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34658743609?text=Hola%20Equipo%20de%20Barber%C3%ADa%20El%20Gal%C3%A1n%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Barber%C3%ADa%20El%20Gal%C3%A1n%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fbarberia-el-galan%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/barberia-el-galan/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34658743609?text=Hola%20Equipo%20de%20Barber%C3%ADa%20El%20Gal%C3%A1n%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Barber%C3%ADa%20El%20Gal%C3%A1n%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fbarberia-el-galan%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Barbería & Peluquería" data-search="barbería berlín elche barbería de vanguardia & estilo urbano avinguda de novelda, 98, 03206 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1200&q=80" alt="Barbería Berlín Elche" loading="lazy">
-              <div class="card-tag-overlay">Barbería & Peluquería</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Barbería & Peluquería" data-search="barbería berlín elche avinguda de novelda, 98, 03206 elche, alicante barbería de vanguardia & estilo urbano">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1200&q=80" alt="Barbería Berlín Elche">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Barbería de Vanguardia & Estilo Urbano</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Barbería Berlín Elche</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Avinguda de Novelda, 98, 03206 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Barbería Berlín Elche</h3>
+                <p class="card-address">📍 Avinguda de Novelda, 98, 03206 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Con esta web propia, vuestros clientes eligen el servicio y horario desde el móvil y os entra el mensaje con todos los datos listos para con...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con vuestra web propia, los clientes que os busquen en Google Maps o redes pueden pulsar directamente en "Reservar Cita", elegir hueco libre...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/barberia-berlin/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34641082744?text=Hola%20Equipo%20de%20Barber%C3%ADa%20Berl%C3%ADn%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Barber%C3%ADa%20Berl%C3%ADn%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fbarberia-berlin%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/barberia-berlin/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34641082744?text=Hola%20Equipo%20de%20Barber%C3%ADa%20Berl%C3%ADn%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Barber%C3%ADa%20Berl%C3%ADn%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fbarberia-berlin%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Barbería & Peluquería" data-search="peluquería yolanda unisex peluquería, colorimetría & estilismo familiar carrer poeta miguel hernández, 68, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80" alt="Peluquería Yolanda Unisex" loading="lazy">
-              <div class="card-tag-overlay">Barbería & Peluquería</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Barbería & Peluquería" data-search="peluquería yolanda unisex c/ enrique pire garcía, 13, 03204 elche, alicante peluquería, colorimetría & estilismo familiar">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80" alt="Peluquería Yolanda Unisex">
+              <div class="badge-rating">⭐ 4.8 Maps</div>
+              <div class="badge-sector">Peluquería</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Peluquería Yolanda Unisex</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Poeta Miguel Hernández, 68, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Peluquería Yolanda Unisex</h3>
+                <p class="card-address">📍 C/ Enrique Pire García, 13, 03204 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Esta web permite a vuestras clientas consultar tarifas orientativas y solicitar su turno por WhatsApp directamente con el día y servicio ya ...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta propuesta web, vuestras clientas pueden consultar los precios orientativos, ver fotos de vuestros trabajos y solicitar su turno dir...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/peluqueria-yolanda-unisex/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34666325958?text=Hola%20Yolanda%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Peluquer%C3%ADa%20Yolanda%20Unisex%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fpeluqueria-yolanda-unisex%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/peluqueria-yolanda-unisex/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34666325958?text=Hola%20Yolanda%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Peluquer%C3%ADa%20Yolanda%20Unisex%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fpeluqueria-yolanda-unisex%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Barbería & Peluquería" data-search="martín candela estilistas salón de estilismo de autor & belleza integral carrer josé maría buck, 22, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80" alt="Martín Candela Estilistas" loading="lazy">
-              <div class="card-tag-overlay">Barbería & Peluquería</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Barbería & Peluquería" data-search="martín candela peluquería & estética carrer dr. caro, 21, 03201 elche, alicante salón de estilismo de autor & belleza integral">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80" alt="Martín Candela Peluquería & Estética">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Salón de Estilismo de Autor & Belleza Integral</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Martín Candela Estilistas</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer José María Buck, 22, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Martín Candela Peluquería & Estética</h3>
+                <p class="card-address">📍 Carrer Dr. Caro, 21, 03201 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web propia exclusiva que centraliza vuestra imagen de alta gama y permite agendar citas directamente al WhatsApp de Martín Candela sin c...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Esta web actúa como vuestro recepcionista digital 24 horas: presenta vuestro portfolio premium, muestra las valoraciones y envía las peticio...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/martin-candela-estilistas/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34689795014?text=Hola%20Mart%C3%ADn%20Candela%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Mart%C3%ADn%20Candela%20Estilistas%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmartin-candela-estilistas%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/martin-candela-estilistas/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34634248660?text=Hola%20Mart%C3%ADn%20Candela%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Mart%C3%ADn%20Candela%20Peluquer%C3%ADa%20%26%20Est%C3%A9tica%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmartin-candela-estilistas%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Estética & Belleza" data-search="alma by rocío sanz centro de estética avanzada, cuidado facial & corporal carrer pere joan perpinyà, 48, 03204 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80" alt="Alma by Rocío Sanz" loading="lazy">
-              <div class="card-tag-overlay">Estética & Belleza</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Estética & Belleza" data-search="alma by rocío sanz carrer alcalde juan hernández rizo, 6, bajo, 03203 elche, alicante centro de estética avanzada, cuidado facial & corporal">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80" alt="Alma by Rocío Sanz">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Centro de Estética Avanzada</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Alma by Rocío Sanz</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Pere Joan Perpinyà, 48, 03204 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Alma by Rocío Sanz</h3>
+                <p class="card-address">📍 Carrer Alcalde Juan Hernández Rizo, 6, Bajo, 03203 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web propia que proyecta la elegancia y pulcritud de tu centro en Ciudad Jardín, con reservas directas a tu WhatsApp oficial sin intermed...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Esta página web permite que tus clientas vean con todo detalle en qué consiste cada tratamiento, sus beneficios y soliciten su cita directam...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/alma-by-rocio-sanz/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34686286531?text=Hola%20Roc%C3%ADo%20Sanz%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Alma%20by%20Roc%C3%ADo%20Sanz%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Falma-by-rocio-sanz%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/alma-by-rocio-sanz/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34621146058?text=Hola%20Roc%C3%ADo%20Sanz%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Alma%20by%20Roc%C3%ADo%20Sanz%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Falma-by-rocio-sanz%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Estética & Belleza" data-search="vp beauty studio salón de uñas esculpidas, nail art & mirada carrer conrado del campo, 19, 03204 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80" alt="VP Beauty Studio" loading="lazy">
-              <div class="card-tag-overlay">Estética & Belleza</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Estética & Belleza" data-search="v&p beauty studio elche carrer vicente blasco ibáñez, 28, 03201 elche, alicante salón de uñas esculpidas, nail art & mirada">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1200&q=80" alt="V&P Beauty Studio Elche">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Salón de Uñas Esculpidas</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>VP Beauty Studio</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Conrado Del Campo, 19, 03204 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">V&P Beauty Studio Elche</h3>
+                <p class="card-address">📍 Carrer Vicente Blasco Ibáñez, 28, 03201 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Tu web muestra las tarifas, fotos de trabajos y permite a tus clientas pedir cita con día y técnica ya elegidos....
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web propia, tus clientas eligen el tipo de manicura o pedicura, seleccionan fecha y hora y te llega la cita cerrada a tu WhatsApp c...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/vp-beauty-studio/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34624374345?text=Hola%20Equipo%20de%20VP%20Beauty%20Studio%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20VP%20Beauty%20Studio%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fvp-beauty-studio%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/vp-beauty-studio/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34624091115?text=Hola%20Equipo%20de%20V%26P%20Beauty%20Studio%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20V%26P%20Beauty%20Studio%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fvp-beauty-studio%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Salud & Bienestar" data-search="sonia marín osteopatía osteopatía estructural, descarga muscular & bienestar carrer vicente blasco ibáñez, 55, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80" alt="Sonia Marín Osteopatía" loading="lazy">
-              <div class="card-tag-overlay">Salud & Bienestar</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Salud & Bienestar" data-search="sonia marín - osteopatía & masaje carrer camilo flammarion, 17, 03201 elche, alicante osteopatía estructural, descarga muscular & bienestar">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80" alt="Sonia Marín - Osteopatía & Masaje">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Osteopatía Estructural</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Sonia Marín Osteopatía</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Vicente Blasco Ibáñez, 55, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Sonia Marín - Osteopatía & Masaje</h3>
+                <p class="card-address">📍 Carrer Camilo Flammarion, 17, 03201 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web que actúa como tu recepcionista silenciosa: explica tus especialidades, tarifas y permite solicitar turno sin romper tu calma en cab...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Esta web permite a tus pacientes entender claramente tu enfoque terapéutico, consultar patologías tratadas y solicitar consulta online sin q...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/sonia-marin-osteopatia/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34654997185?text=Hola%20Sonia%20Mar%C3%ADn%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Sonia%20Mar%C3%ADn%20Osteopat%C3%ADa%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fsonia-marin-osteopatia%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/sonia-marin-osteopatia/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34615550187?text=Hola%20Sonia%20Mar%C3%ADn%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Sonia%20Mar%C3%ADn%20-%20Osteopat%C3%ADa%20%26%20Masaje%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fsonia-marin-osteopatia%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Salud & Bienestar" data-search="quiromasaje nuria elche quiromasaje terapéutico, drenaje & alivio muscular carrer gabriel miró, 34, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1200&q=80" alt="Quiromasaje Nuria Elche" loading="lazy">
-              <div class="card-tag-overlay">Salud & Bienestar</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Salud & Bienestar" data-search="quiromasaje nuria elche carrer andrés furió brotons, 12, 03206 elche, alicante quiromasaje terapéutico, drenaje & alivio muscular">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1200&q=80" alt="Quiromasaje Nuria Elche">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Quiromasaje Terapéutico</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Quiromasaje Nuria Elche</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Gabriel Miró, 34, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Quiromasaje Nuria Elche</h3>
+                <p class="card-address">📍 Carrer Andrés Furió Brotons, 12, 03206 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Tus clientes pueden reservar online directamente desde el enlace de tu perfil de Google Maps y el mensaje te llega ya pre-redactado a tu Wha...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Esta web soluciona ese problema al 100%: tus pacientes eligen el masaje que necesitan y la hora que mejor les viene, y tú recibes los datos ...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/quiromasaje-nuria/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34639963534?text=Hola%20Nuria%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Quiromasaje%20Nuria%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fquiromasaje-nuria%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/quiromasaje-nuria/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34639963534?text=Hola%20Nuria%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Quiromasaje%20Nuria%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fquiromasaje-nuria%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Automoción & Detailing" data-search="modo clean detailing detailing automotriz, pulido cerámico & limpieza de tapicería pol. ind. carrús, carrer monòver, 15, 03206 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80" alt="Modo Clean Detailing" loading="lazy">
-              <div class="card-tag-overlay">Automoción & Detailing</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Automoción & Talleres" data-search="modo clean detailing avinguda de illice, 120, 03320 elche (torrellano), alicante detailing automotriz, pulido cerámico & limpieza de tapicería">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80" alt="Modo Clean Detailing">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Detailing Automotriz</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Modo Clean Detailing</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Pol. Ind. Carrús, Carrer Monòver, 15, 03206 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Modo Clean Detailing</h3>
+                <p class="card-address">📍 Avinguda de Illice, 120, 03320 Elche (Torrellano), Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web donde los conductores ven el catálogo de tratamientos, suben los datos de su vehículo y os solicitan presupuesto directo por WhatsAp...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, tus clientes seleccionan el servicio de detallado que necesitan para su coche, eligen día y la solicitud entra directamente a ...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/modo-clean-detailing/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34601270095?text=Hola%20Equipo%20de%20Modo%20Clean%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Modo%20Clean%20Detailing%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmodo-clean-detailing%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/modo-clean-detailing/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34635803161?text=Hola%20Equipo%20de%20Modo%20Clean%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Modo%20Clean%20Detailing%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmodo-clean-detailing%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Gastronomía" data-search="alma andaluza comidas para llevar comida tradicional casera, asador & arroces para llevar carrer reina victoria, 92, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" alt="Alma Andaluza Comidas para Llevar" loading="lazy">
-              <div class="card-tag-overlay">Gastronomía</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Gastronomía & Restauración" data-search="alma andaluza comida para llevar c/ pablo picasso, 18, 03204 elche (sector v), alicante comida tradicional casera, asador & arroces para llevar">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" alt="Alma Andaluza Comida para Llevar">
+              <div class="badge-rating">⭐ 4.8 Maps</div>
+              <div class="badge-sector">Comida Tradicional Casera</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Alma Andaluza Comidas para Llevar</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Reina Victoria, 92, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Alma Andaluza Comida para Llevar</h3>
+                <p class="card-address">📍 C/ Pablo Picasso, 18, 03204 Elche (Sector V), Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Vuestros clientes entran en la web desde el móvil, ven los menús y arroces del día y os mandan el encargo exacto con hora de recogida a vues...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, vuestros clientes pueden consultar la carta diaria actualizada, encargar sus pollos asados, raciones o paellas con antelación ...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/alma-andaluza-comidas/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34624418580?text=Hola%20Equipo%20de%20Alma%20Andaluza%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Alma%20Andaluza%20Comidas%20para%20Llevar%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Falma-andaluza-comidas%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/alma-andaluza-comidas/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34640538546?text=Hola%20Equipo%20de%20Alma%20Andaluza%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Alma%20Andaluza%20Comida%20para%20Llevar%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Falma-andaluza-comidas%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Gastronomía" data-search="risto pizzería alex pizzería artesanal italiana & masas maduradas carrer alfonso xii, 38, 03203 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80" alt="Risto Pizzería Alex" loading="lazy">
-              <div class="card-tag-overlay">Gastronomía</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Gastronomía & Restauración" data-search="risto pizzería alex c/ fernanda santamaría, 120, 03204 elche, alicante pizzería artesanal italiana & masas maduradas">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80" alt="Risto Pizzería Alex">
+              <div class="badge-rating">⭐ 4.8 Maps</div>
+              <div class="badge-sector">Pizzería Artesanal Italiana & Masas Maduradas</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Risto Pizzería Alex</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Alfonso XII, 38, 03203 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Risto Pizzería Alex</h3>
+                <p class="card-address">📍 C/ Fernanda Santamaría, 120, 03204 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una carta digital interactiva donde el cliente elige pizzas y bebidas y os envía el pedido estructurado con hora y nombre por WhatsApp....
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, vuestros clientes pueden consultar la carta de pizzas completa con ingredientes y alérgenos, y enviar su pedido para recoger o...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/risto-pizzeria-alex/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34643832348?text=Hola%20Alex%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Risto%20Pizzer%C3%ADa%20Alex%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fristo-pizzeria-alex%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/risto-pizzeria-alex/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34622832707?text=Hola%20Alex%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Risto%20Pizzer%C3%ADa%20Alex%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fristo-pizzeria-alex%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Arte & Tatuaje" data-search="monster tattoo elche estudio de tatuajes artísticos, realismo & piercing carrer doctor caro, 43, 03201 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1200&q=80" alt="Monster Tattoo Elche" loading="lazy">
-              <div class="card-tag-overlay">Arte & Tatuaje</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Arte & Tatuaje" data-search="monster tattoo elche c/ la bodega, 4, 03203 elche, alicante estudio de tatuajes artísticos, realismo & piercing">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=1200&q=80" alt="Monster Tattoo Elche">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Estudio de Tatuajes Artísticos</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Monster Tattoo Elche</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Doctor Caro, 43, 03201 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Monster Tattoo Elche</h3>
+                <p class="card-address">📍 C/ La Bodega, 4, 03203 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Tu web filtra el tipo de tatuaje, zona del cuerpo, tamaño aproximado y os manda la propuesta completa con imágenes de referencia a WhatsApp....
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, los clientes pueden enviar su idea de tatuaje (zona, tamaño orientativo, fotos de referencia) directamente a tu WhatsApp con l...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/monster-tattoo-elche/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34676210023?text=Hola%20Equipo%20de%20Monster%20Tattoo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Monster%20Tattoo%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmonster-tattoo-elche%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/monster-tattoo-elche/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34656540588?text=Hola%20Equipo%20de%20Monster%20Tattoo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Monster%20Tattoo%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fmonster-tattoo-elche%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Mascotas" data-search="le petit estilismo canino peluquería canina boutique, baños relajantes & spa mascota carrer filet de fora, 31, 03203 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=1200&q=80" alt="Le Petit Estilismo Canino" loading="lazy">
-              <div class="card-tag-overlay">Mascotas</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Mascotas" data-search="le petit estilismo canino c/ conrado del campo, 106, 03204 elche, alicante peluquería canina boutique, baños relajantes & spa mascota">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=1200&q=80" alt="LE PETIT Estilismo Canino">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Peluquería Canina Boutique</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Le Petit Estilismo Canino</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer Filet de Fora, 31, 03203 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">LE PETIT Estilismo Canino</h3>
+                <p class="card-address">📍 C/ Conrado del Campo, 106, 03204 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Los dueños eligen tamaño de perro, servicio (baño, corte o deslanado) y la solicitud os llega a WhatsApp con todos los datos necesarios para...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Con esta web, los dueños eligen el tamaño y servicio de su mascota, solicitan día y hora, y tú recibes la ficha completa por WhatsApp para c...
-              </div>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
-              </div>
-
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/le-petit-estilismo-canino/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34679098481?text=Hola%20Equipo%20de%20Le%20Petit%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Le%20Petit%20Estilismo%20Canino%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fle-petit-estilismo-canino%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/le-petit-estilismo-canino/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34622691750?text=Hola%20Equipo%20de%20Le%20Petit%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20LE%20PETIT%20Estilismo%20Canino%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fle-petit-estilismo-canino%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
         
-          <article class="project-card" data-category="Salud & Bienestar" data-search="pilates tere vidal elche estudio de pilates, movilidad & espalda sana carrer de la fira, 14, 03202 elche, alicante">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80" alt="Pilates Tere Vidal Elche" loading="lazy">
-              <div class="card-tag-overlay">Salud & Bienestar</div>
-              <div class="card-rating-overlay">⭐ 4.9 Maps</div>
+          <article class="project-card" data-category="Deporte & Fitness" data-search="pilates tere vidal elche carrer josep maria buck, 56, 03201 elche, alicante estudio de pilates, movilidad & espalda sana">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80" alt="Pilates Tere Vidal Elche">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Estudio de Pilates</div>
             </div>
 
             <div class="card-body">
-              <div class="card-meta-header">
-                <h3>Pilates Tere Vidal Elche</h3>
-                <div class="card-address">
-                  <span>📍</span>
-                  <span>Carrer de la Fira, 14, 03202 Elche, Alicante</span>
+              <div>
+                <h3 class="card-name">Pilates Tere Vidal Elche</h3>
+                <p class="card-address">📍 Carrer Josep Maria Buck, 56, 03201 Elche, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Esta web explica tus modalidades, niveles y horarios, y permite que las personas interesadas en mejorar su espalda soliciten plaza o clase d...
                 </div>
               </div>
 
-              <div class="card-pain-box">
-                <strong>Solución Implementada:</strong>
-                Esta web actúa como tu asistente de estudio: explica tus modalidades, niveles y horarios, y permite que las personas interesadas en mejorar ...
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/pilates-tere-vidal/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34670710345?text=Hola%20Tere%20Vidal%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Pilates%20Tere%20Vidal%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fpilates-tere-vidal%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Automoción & Talleres" data-search="bernauto, servicios multimarca vehículos c. antonio pascual quiles, 97, 03204 elx, alicante taller mecánico, electromecánica & diagnosis multimarca">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=1200&q=80" alt="BERNAUTO, Servicios Multimarca Vehículos">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Taller Mecánico</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">BERNAUTO, Servicios Multimarca Vehículos</h3>
+                <p class="card-address">📍 C. Antonio Pascual Quiles, 97, 03204 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web propia moderna donde el conductor selecciona su necesidad (mantenimiento, frenos, ITV, diagnosis o avería) y os envía los datos de s...
+                </div>
               </div>
 
-              <div class="card-specs-row">
-                <span class="spec-mini ready">● Carga 0.4s</span>
-                <span class="spec-mini">📱 Móvil</span>
-                <span class="spec-mini">💻 PC</span>
-                <span class="spec-mini">💬 WhatsApp</span>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/bernauto-taller/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34647630140?text=Hola%20Equipo%20de%20Bernauto%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20BERNAUTO%2C%20Servicios%20Multimarca%20Veh%C3%ADculos%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fbernauto-taller%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Automoción & Talleres" data-search="tmauto reparación de automóviles carrer xàbia, 3, 03202 elx, alicante mecánica general, mantenimiento rápido & diagnosis">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=80" alt="TMAUTO Reparación de Automóviles">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Mecánica General</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">TMAUTO Reparación de Automóviles</h3>
+                <p class="card-address">📍 Carrer Xàbia, 3, 03202 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web directa donde el cliente introduce el modelo de coche, matrícula o servicio necesario y la solicitud entra limpia y ordenada a Whats...
+                </div>
               </div>
 
-              <div class="card-actions">
-                <a href="https://propuestas-web-pro.github.io/elche/pilates-tere-vidal/" class="btn-card-demo" target="_blank">
-                  <span>Ver Demo Web</span>
-                  <span>→</span>
-                </a>
-                <a href="https://wa.me/34699911628?text=Hola%20Tere%20Vidal%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Pilates%20Tere%20Vidal%20Elche%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fpilates-tere-vidal%2F" class="btn-card-wa" target="_blank">
-                  <span>WhatsApp</span>
-                  <span>💬</span>
-                </a>
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/tmauto-taller/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34633944488?text=Hola%20Equipo%20de%20TMAUTO%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20TMAUTO%20Reparaci%C3%B3n%20de%20Autom%C3%B3viles%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Ftmauto-taller%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Salud & Bienestar" data-search="clínica gh sport fisioterapia & rendimiento carrer dr. caro, 17, entresuelo, 03201 elx, alicante fisioterapia avanzada, readaptación deportiva & lesiones">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" alt="Clínica GH Sport Fisioterapia & Rendimiento">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Fisioterapia Avanzada</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">Clínica GH Sport Fisioterapia & Rendimiento</h3>
+                <p class="card-address">📍 Carrer Dr. Caro, 17, entresuelo, 03201 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web clínica premium con sistema interactivo de cita previa donde el paciente selecciona la lesión o tratamiento y la reserva os llega es...
+                </div>
+              </div>
+
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/clinica-gh-sport/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34633543858?text=Hola%20Equipo%20Cl%C3%ADnico%20GH%20Sport%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Cl%C3%ADnica%20GH%20Sport%20Fisioterapia%20%26%20Rendimiento%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fclinica-gh-sport%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Salud & Bienestar" data-search="clínica podológica nazaret morales carrer cristóbal sanz, 70, 03201 elx, alicante podología integral, quiropodia, biomecánica & cirugía ungueal">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80" alt="Clínica Podológica Nazaret Morales">
+              <div class="badge-rating">⭐ 5.0 Maps</div>
+              <div class="badge-sector">Podología Integral</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">Clínica Podológica Nazaret Morales</h3>
+                <p class="card-address">📍 Carrer Cristóbal Sanz, 70, 03201 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web clínica limpia donde los pacientes ven los servicios de podología, seleccionan el motivo de visita y la solicitud llega confirmada y...
+                </div>
+              </div>
+
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/podologia-nazaret-morales/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34622099490?text=Hola%20Nazaret%20Morales%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Cl%C3%ADnica%20Podol%C3%B3gica%20Nazaret%20Morales%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Fpodologia-nazaret-morales%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Deporte & Fitness" data-search="fitness saludable - entrenamiento personal carrer emigdio santamaria, 16, 03201 elx, alicante entrenamiento personal, readaptación & pérdida de grasa">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80" alt="Fitness Saludable - Entrenamiento Personal">
+              <div class="badge-rating">⭐ 4.9 Maps</div>
+              <div class="badge-sector">Entrenamiento Personal</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">Fitness Saludable - Entrenamiento Personal</h3>
+                <p class="card-address">📍 Carrer Emigdio Santamaria, 16, 03201 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web propia que explica tu metodología, muestra casos de éxito y permite concertar una valoración inicial directamente a tu WhatsApp....
+                </div>
+              </div>
+
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/fitness-saludable-elche/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34678136129?text=Hola%20Edu%20-%20Fitness%20Saludable%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20Fitness%20Saludable%20-%20Entrenamiento%20Personal%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Ffitness-saludable-elche%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        
+          <article class="project-card" data-category="Comercio & Eventos" data-search="la floristería de valentina carrer juan sansano ibarra, 29, 03205 elx, alicante floristería de autor, ramos personalizados & bodas">
+            <div class="card-cover">
+              <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1200&q=80" alt="La Floristería de Valentina">
+              <div class="badge-rating">⭐ 4.2 Maps</div>
+              <div class="badge-sector">Floristería de Autor</div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <h3 class="card-name">La Floristería de Valentina</h3>
+                <p class="card-address">📍 Carrer Juan Sansano Ibarra, 29, 03205 Elx, Alicante</p>
+                <div class="card-pain-box">
+                  <strong>Solución Implementada:</strong> Una web visualmente preciosa con tus tipos de ramos y precios donde el cliente hace su encargo con tarjeta dedicatoria en 30 segundos direct...
+                </div>
+              </div>
+
+              <div>
+                <div class="card-specs-row">
+                  <span class="spec-mini ready">● Carga 0.4s</span>
+                  <span class="spec-mini">📱 Móvil</span>
+                  <span class="spec-mini">💻 PC</span>
+                  <span class="spec-mini">💬 WhatsApp</span>
+                </div>
+
+                <div class="card-actions">
+                  <a href="https://propuestas-web-pro.github.io/elche/floristeria-valentina/" class="btn-card-demo" target="_blank">
+                    <span>Ver Demo Web</span>
+                    <span>→</span>
+                  </a>
+                  <a href="https://wa.me/34635461651?text=Hola%20Valentina%20y%20Equipo%2C%20os%20escribo%20para%20compartir%20la%20propuesta%20web%20desarrollada%20para%20La%20Florister%C3%ADa%20de%20Valentina%3A%20https%3A%2F%2Fpropuestas-web-pro.github.io%2Felche%2Ffloristeria-valentina%2F" class="btn-card-wa" target="_blank">
+                    <span>WhatsApp</span>
+                    <span>💬</span>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
@@ -1347,25 +967,20 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="portal-footer">
     <div class="container">
-      <div class="footer-inner">
-        <p><strong>Propuestas Web Pro</strong> • Consultoría y Prototipado Web de Alto Rendimiento.</p>
-        <p>Alojamiento distribuido en Fastly Enterprise CDN. Compatible con cualquier pantalla, móvil y tablet en España.</p>
-        <p class="copy">&copy; 2026 Propuestas Web Pro. Todos los derechos reservados.</p>
-      </div>
+      <p><strong>Propuestas Web Pro</strong> • Consultoría y Prototipado Web de Alto Rendimiento.</p>
+      <p>Alojamiento distribuido en Fastly Enterprise CDN. Compatible con cualquier pantalla, móvil y tablet en España.</p>
+      <p class="copy">&copy; 2026 Propuestas Web Pro. Todos los derechos reservados.</p>
     </div>
   </footer>
 
-  <!-- FLOATING WHATSAPP -->
   <a href="https://wa.me/34658743609?text=Hola,%20me%20gustaría%20más%20información%20sobre%20las%20propuestas%20web%20en%20Elche." class="floating-wa-btn" target="_blank" title="Contactar por WhatsApp">
     <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.31"/>
     </svg>
   </a>
 
-  <!-- REAL-TIME FILTERING SCRIPT -->
   <script>
     let activeCategory = 'Todos';
 
