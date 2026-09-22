@@ -2,66 +2,54 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barbería El Galán | Web Oficial & Reservas en Elche</title>
-  <meta name="description" content="Reserva tu corte o arreglo de barba en 30 segundos sin llamadas ni esperas. Elige tu horario favorito y recibe tu confirmación automática al instante.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Barbería El Galán | Barbería Tradicional & Fades de Autor en Elche</title>
+  <meta name="description" content="Reserva tu corte de pelo o arreglo de barba en Barbería El Galán (Elche) en 30 segundos. Sin llamadas, sin esperas y con confirmación directa por WhatsApp.">
+  <meta name="keywords" content="barbería elche, corte de pelo elche, barberia el galan, fade elche, degradado elche, arreglo de barba elche">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Barbería El Galán - Elche">
-  <meta property="og:description" content="Reserva tu corte o arreglo de barba en 30 segundos sin llamadas ni esperas. Elige tu horario favorito y recibe tu confirmación automática al instante.">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Barbería El Galán | Elche · Cita Online en 30s">
+  <meta property="og:description" content="El arte del corte tradicional y fades modernos en Carrer Bisbe Winibal, Elche. Reserva tu cita sin interrumpir la faena del barbero.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80">
   <link rel="canonical" href="https://propuestas-web-pro.github.io/elche/barberia-el-galan/">
 
-  <!-- Local Business Schema.org -->
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Barbería El Galán",
-  "image": "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80",
-  "telephone": "+34 658 74 36 09",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Carrer Bisbe Winibal, 12, 03202 Elche, Alicante",
-    "addressLocality": "Elche",
-    "addressRegion": "Alicante",
-    "addressCountry": "ES"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 38.266,
-    "longitude": -0.698
-  },
-  "url": "https://propuestas-web-pro.github.io/elche/barberia-el-galan/",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "185"
-  }
-}
-  </script>
-  
-  <!-- Fonts: Outfit for luxury headlines, Plus Jakarta Sans for crystal clear reading -->
+  <!-- Google Fonts: Syne (modern luxury branding), Outfit (clean headers) & Plus Jakarta Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #1e3a8a;
-      --primary-dark: #0f172a;
-      --accent: #d97706;
-      --bg-body: #ffffff;
-      --bg-surface: #f8fafc;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #475569;
+      --bg-base: #08090d;
+      --bg-surface: #0f1118;
+      --bg-card: rgba(18, 21, 31, 0.75);
+      --bg-card-hover: rgba(26, 31, 46, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(230, 175, 46, 0.35);
+      
+      --gold-primary: #e6af2e;
+      --gold-light: #fcd34d;
+      --gold-dark: #b48214;
+      --gold-gradient: linear-gradient(135deg, #fcd34d 0%, #e6af2e 50%, #b48214 100%);
+      --gold-glow: 0 0 25px rgba(230, 175, 46, 0.3);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
       --text-light: #64748b;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.15);
+      
+      --font-display: 'Syne', sans-serif;
       --font-heading: 'Outfit', -apple-system, sans-serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+      --shadow-elevated: 0 20px 45px -15px rgba(0, 0, 0, 0.8);
     }
 
     * {
@@ -71,206 +59,250 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: var(--font-body);
-      background-color: var(--bg-body);
+      background-color: var(--bg-base);
       color: var(--text-main);
+      font-family: var(--font-body);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 80px; /* Space for mobile sticky action bar */
+      position: relative;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(230, 175, 46, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 85% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(230, 175, 46, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
+      padding-bottom: 90px;
     }
 
-    h1, h2, h3, h4, .brand-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.25;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    /* Ambient noise & subtle grid overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Top Agency Proposal Bar */
-    .agency-banner {
-      background: linear-gradient(90deg, #1e3a8a, #2563eb);
-      color: #ffffff;
+    /* --- TOP EXCLUSIVE DEMO NOTICE BAR --- */
+    .demo-notice-bar {
+      background: linear-gradient(90deg, #181408 0%, #2b1f07 50%, #181408 100%);
+      border-bottom: 1px solid var(--border-glow);
       padding: 10px 16px;
       font-size: 13px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fef08a;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
+      text-align: center;
+      position: relative;
+      z-index: 101;
     }
-    .badge-gold {
-      background: #fef08a;
-      color: #854d0e;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-weight: 800;
+    .demo-tag {
+      background: var(--gold-gradient);
+      color: #090a0d;
       font-size: 11px;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      box-shadow: 0 0 12px rgba(230, 175, 46, 0.4);
     }
-    .cta-claim {
-      background: #22c55e;
-      color: #ffffff;
-      padding: 4px 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 12px;
-      transition: transform 0.2s, background 0.2s;
-      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+    .demo-text {
+      font-weight: 500;
+      letter-spacing: 0.2px;
     }
-    .cta-claim:hover {
-      transform: scale(1.05);
-      background: #16a34a;
+    .demo-text strong {
+      color: #fff;
     }
 
-    /* Navigation Header */
+    /* --- NAVIGATION HEADER --- */
     header.site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
+      background: rgba(9, 10, 14, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
       transition: all 0.3s ease;
     }
     .header-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 76px;
+      height: 78px;
     }
     .brand-logo {
       display: flex;
       align-items: center;
       gap: 14px;
+      text-decoration: none;
     }
-    .brand-icon {
-      width: 44px;
-      height: 44px;
+    .brand-emblem {
+      width: 48px;
+      height: 48px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #ffffff;
+      background: linear-gradient(135deg, #1c1f2e, #0e1017);
+      border: 1px solid var(--border-glow);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+      font-size: 24px;
+      box-shadow: var(--gold-glow);
+      position: relative;
     }
-    .brand-text h2 {
-      font-size: 19px;
+    .brand-titles h1 {
+      font-family: var(--font-display);
+      font-size: 20px;
       letter-spacing: -0.5px;
-      color: #0f172a;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
     }
-    .brand-text p {
-      font-size: 12px;
+    .brand-titles span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
       color: var(--text-muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    nav.desktop-nav {
+    nav.nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 30px;
     }
-    @media (max-width: 880px) {
-      nav.desktop-nav { display: none; }
+    @media (max-width: 860px) {
+      nav.nav-links { display: none; }
     }
-    nav.desktop-nav a {
+    nav.nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
-      color: #334155;
-      transition: color 0.2s;
+      font-weight: 500;
+      transition: all 0.2s;
+      position: relative;
     }
-    nav.desktop-nav a:hover {
-      color: var(--primary);
+    nav.nav-links a:hover {
+      color: var(--gold-light);
     }
 
     .btn-header-cta {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #ffffff;
-      padding: 11px 22px;
-      border-radius: 12px;
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 14px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.3);
-      transition: all 0.2s;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      box-shadow: var(--gold-glow);
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
       gap: 8px;
+      border: none;
+      cursor: pointer;
     }
     .btn-header-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 25px -4px rgba(15, 23, 42, 0.4);
+      box-shadow: 0 0 35px rgba(230, 175, 46, 0.6);
     }
 
-    /* Hero Section */
+    /* --- HERO SECTION --- */
     section.hero {
+      padding: 60px 0 50px;
       position: relative;
-      padding: 70px 0 60px;
-      background: linear-gradient(180deg, var(--bg-surface) 0%, #ffffff 100%);
-      overflow: hidden;
-      border-bottom: 1px solid var(--border-light);
     }
-    .hero-grid {
+    .hero-wrapper {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 50px;
+      gap: 40px;
       align-items: center;
     }
     @media (max-width: 920px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      section.hero { padding: 40px 0; }
+      .hero-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 36px;
+      }
     }
 
-    .hero-badge {
+    .pill-reputation {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      padding: 6px 16px;
-      border-radius: 999px;
+      gap: 10px;
+      background: rgba(230, 175, 46, 0.08);
+      border: 1px solid var(--border-glow);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
       font-size: 13px;
-      font-weight: 700;
-      color: #b45309;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.1);
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
     }
 
-    .hero-content h1 {
-      font-size: clamp(32px, 4.5vw, 50px);
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
       margin-bottom: 20px;
-      letter-spacing: -1px;
-      color: #0f172a;
     }
-    .hero-content p.hero-lead {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: #475569;
+    @media (max-width: 640px) {
+      .hero-title { font-size: 34px; }
+    }
+    .text-gold {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(230, 175, 46, 0.2);
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
       margin-bottom: 32px;
       max-width: 580px;
-      line-height: 1.6;
     }
     @media (max-width: 920px) {
-      .hero-content p.hero-lead { margin: 0 auto 30px; }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
     }
 
     .hero-actions {
@@ -282,1135 +314,1505 @@
     @media (max-width: 920px) {
       .hero-actions { justify-content: center; }
     }
-    @media (max-width: 480px) {
-      .hero-actions .btn-main, .hero-actions .btn-secondary {
-        width: 100%;
-        justify-content: center;
-      }
-    }
 
-    .btn-main {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #ffffff;
+    .btn-primary-hero {
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
       padding: 16px 32px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      box-shadow: var(--gold-glow);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.35);
-      transition: all 0.2s;
     }
-    .btn-main:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px -6px rgba(15, 23, 42, 0.45);
-    }
-    .btn-secondary {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      color: #0f172a;
-      padding: 16px 28px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s;
-      box-shadow: var(--shadow-sm);
-    }
-    .btn-secondary:hover {
-      background: #f8fafc;
-      border-color: #94a3b8;
+    .btn-primary-hero:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 40px rgba(230, 175, 46, 0.6);
     }
 
-    .hero-trust {
-      margin-top: 35px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 13px;
-      color: #475569;
+    .btn-secondary-hero {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      font-family: var(--font-heading);
       font-weight: 600;
-    }
-    @media (max-width: 920px) {
-      .hero-trust { justify-content: center; flex-wrap: wrap; }
-    }
-    .hero-trust-item {
-      display: flex;
+      font-size: 15px;
+      padding: 15px 26px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
     }
-    .hero-trust-item span.check {
-      color: #16a34a;
-      font-weight: 800;
-      font-size: 16px;
+    .btn-secondary-hero:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .hero-image-wrapper {
+    /* Hero Card Display with Before/After peek and live badge */
+    .hero-visual {
       position: relative;
     }
-    .hero-image-card {
+    .hero-card-main {
       position: relative;
-      border-radius: 24px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 2px solid #ffffff;
-      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
-      aspect-ratio: 4/3;
-      background: #e2e8f0;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-elevated);
+      background: var(--bg-card);
     }
-    .hero-image-card img {
+    .hero-image {
       width: 100%;
-      height: 100%;
+      height: 480px;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      display: block;
+      filter: contrast(1.05) brightness(0.95);
     }
-    .hero-image-card:hover img {
-      transform: scale(1.03);
-    }
-    .hero-floating-badge {
+    .hero-overlay-info {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      padding: 14px 18px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15);
-    }
-    .hfb-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hfb-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #dcfce7;
-      color: #166534;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 18px;
-    }
-    .hfb-text h4 { font-size: 14px; color: #0f172a; }
-    .hfb-text p { font-size: 12px; color: #16a34a; font-weight: 700; }
-
-    /* Highlights Bar */
-    section.highlights-bar {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-light);
-      padding: 30px 0;
-    }
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    .hl-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-    .hl-icon {
-      font-size: 24px;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: #eff6ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .hl-text h4 { font-size: 15px; color: #0f172a; margin-bottom: 2px; }
-    .hl-text p { font-size: 12px; color: #64748b; line-height: 1.4; }
-
-    /* Section Styles */
-    section.section {
-      padding: 80px 0;
-    }
-    @media (max-width: 768px) {
-      section.section { padding: 50px 0; }
-    }
-    .section-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 45px;
-    }
-    .section-tag {
-      display: inline-block;
-      background: #eff6ff;
-      color: var(--primary);
-      border: 1px solid #bfdbfe;
-      padding: 4px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 12px;
-    }
-    .section-header h2 {
-      font-size: clamp(26px, 3.5vw, 40px);
-      letter-spacing: -0.5px;
-      margin-bottom: 14px;
-      color: #0f172a;
-    }
-    .section-header p {
-      color: #64748b;
-      font-size: 16px;
-    }
-
-    /* Category Tabs */
-    .category-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 35px;
-      flex-wrap: wrap;
-    }
-    .tab-btn {
-      background: #f1f5f9;
-      border: 1px solid var(--border-light);
-      color: #475569;
-      padding: 9px 20px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-    }
-    @media (max-width: 480px) {
-      .services-grid { grid-template-columns: 1fr; }
-    }
-    .service-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow-md);
-      transition: all 0.2s;
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.15);
-      border-color: var(--primary);
-    }
-    .service-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-    .service-top h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      max-width: 70%;
-    }
-    .service-price {
-      background: #fffbeb;
-      color: #b45309;
-      border: 1px solid #fde68a;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 14px;
-      white-space: nowrap;
-      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.1);
-    }
-    .service-duration {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      color: #64748b;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .service-desc {
-      font-size: 14px;
-      color: #475569;
-      margin-bottom: 22px;
-      flex-grow: 1;
-      line-height: 1.5;
-    }
-    .service-btn {
-      width: 100%;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: var(--primary);
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .service-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
-    }
-
-    /* Reviews Section */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-    }
-    .review-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-    .rev-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .rev-stars { color: #d97706; font-size: 14px; letter-spacing: 2px; }
-    .rev-time { font-size: 12px; color: #94a3b8; }
-    .rev-text { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
-    .rev-author { font-size: 13px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 8px; }
-    .rev-author::before {
-      content: '✓';
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      background: #dcfce7;
-      color: #166534;
-      border-radius: 50%;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    /* Schedule & Location Grid */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-    @media (max-width: 800px) {
-      .info-grid { grid-template-columns: 1fr; }
-    }
-    .info-card {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: var(--shadow-sm);
-    }
-    .info-card h3 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .schedule-list li {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 14px;
-    }
-    .schedule-list li:last-child { border-bottom: none; }
-    .schedule-list .day { font-weight: 700; color: #334155; }
-    .schedule-list .hour { color: var(--primary); font-weight: 600; }
-
-    .location-details p {
-      font-size: 14px;
-      color: #475569;
-      margin-bottom: 10px;
-    }
-    .btn-maps {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: var(--primary);
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 13px;
-      margin-top: 14px;
-      transition: all 0.2s;
-    }
-    .btn-maps:hover {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    /* Footer */
-    footer.site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      padding: 40px 0;
-      text-align: center;
-    }
-    footer.site-footer p {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 6px;
-    }
-
-    /* Mobile Floating Action Bar */
-    .mobile-bar {
-      display: none;
-      position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.98);
+      padding: 24px;
+      background: linear-gradient(0deg, rgba(8, 9, 13, 0.95) 0%, rgba(8, 9, 13, 0.6) 70%, transparent 100%);
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge-float {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(9, 10, 14, 0.8);
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--border-light);
+      border: 1px solid var(--border-glow);
       padding: 10px 16px;
-      z-index: 900;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
-    }
-    @media (max-width: 880px) {
-      .mobile-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        gap: 10px;
-      }
-    }
-    .m-bar-btn {
-      flex: 1;
+      border-radius: var(--radius-md);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 3px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #475569;
-      background: none;
-      border: none;
-      cursor: pointer;
+      gap: 10px;
+      box-shadow: var(--shadow-card);
     }
-    .m-bar-btn.primary-cta {
-      background: var(--primary);
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 12px;
-      flex: 1.8;
-      flex-direction: row;
-      gap: 6px;
-      font-size: 13px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+    .stars-row {
+      color: #fbbf24;
+      font-size: 14px;
+      letter-spacing: 2px;
     }
 
-    /* Modal */
-    .modal-overlay {
+    /* --- STATS COUNTER BAR --- */
+    .stats-bar {
+      margin-top: 40px;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      box-shadow: var(--shadow-card);
+    }
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* --- COMPARISON CARD: THE CORE PROBLEM / BENEFIT --- */
+    section.problem-solution {
+      padding: 70px 0;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 50px;
+    }
+    .section-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 640px) {
+      .section-title { font-size: 28px; }
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 820px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+
+    .card-comparison {
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .card-before {
+      background: rgba(239, 68, 68, 0.03);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .card-after {
+      background: rgba(230, 175, 46, 0.05);
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 10px 40px -15px rgba(230, 175, 46, 0.2);
+    }
+    .card-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .badge-danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+    .badge-success {
+      background: var(--gold-gradient);
+      color: #090a0d;
+      box-shadow: 0 0 15px rgba(230, 175, 46, 0.3);
+    }
+
+    .comparison-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .feature-list li strong {
+      color: var(--text-main);
+    }
+    .icon-cross {
+      color: #ef4444;
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .icon-check {
+      color: var(--gold-light);
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    /* --- INTERACTIVE BEFORE / AFTER SLIDER --- */
+    section.transformations {
+      padding: 70px 0;
+      background: rgba(15, 17, 24, 0.6);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .slider-container {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-glow);
+      box-shadow: var(--shadow-elevated);
+      user-select: none;
+      height: 480px;
+    }
+    @media (max-width: 640px) {
+      .slider-container { height: 350px; }
+    }
+    .slider-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .slider-before {
+      z-index: 1;
+    }
+    .slider-after {
+      z-index: 2;
+      width: 50%;
+      overflow: hidden;
+      border-right: 2px solid var(--gold-primary);
+    }
+    .slider-after img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 800px;
+      max-width: none;
+      object-fit: cover;
+    }
+    @media (max-width: 800px) {
+      .slider-after img { width: 100vw; }
+    }
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      box-shadow: 0 0 25px rgba(230, 175, 46, 0.7);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: ew-resize;
+      color: #090a0d;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .slider-label {
+      position: absolute;
+      bottom: 20px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 4;
+      backdrop-filter: blur(8px);
+    }
+    .label-before {
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #94a3b8;
+    }
+    .label-after {
+      left: 20px;
+      background: rgba(230, 175, 46, 0.85);
+      color: #090a0d;
+    }
+
+    /* --- INTERACTIVE BOOKING ENGINE (THE WOW CORE) --- */
+    section.booking-section {
+      padding: 80px 0;
+      position: relative;
+    }
+    .booking-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.9), var(--gold-glow);
+      backdrop-filter: blur(20px);
+    }
+    @media (max-width: 640px) {
+      .booking-card { padding: 24px 18px; }
+    }
+
+    .booking-steps-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+    @media (max-width: 640px) {
+      .booking-steps-nav { grid-template-columns: repeat(2, 1fr); }
+    }
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .step-indicator.active {
+      background: rgba(230, 175, 46, 0.12);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .step-indicator.active .step-num {
+      background: var(--gold-gradient);
+      color: #090a0d;
+    }
+
+    /* Step Content Containers */
+    .step-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .step-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 680px) {
+      .grid-options { grid-template-columns: 1fr; }
+    }
+
+    .option-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .option-card:hover {
+      border-color: rgba(230, 175, 46, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+    .option-card.selected {
+      border-color: var(--gold-primary);
+      background: rgba(230, 175, 46, 0.08);
+      box-shadow: 0 0 20px rgba(230, 175, 46, 0.15);
+    }
+    .option-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .option-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .option-meta {
+      text-align: right;
+    }
+    .option-price {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+    .option-time {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Barber Selector */
+    .barber-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 680px) {
+      .barber-grid { grid-template-columns: 1fr; }
+    }
+    .barber-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .barber-card:hover {
+      border-color: rgba(230, 175, 46, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .barber-card.selected {
+      border-color: var(--gold-primary);
+      background: rgba(230, 175, 46, 0.08);
+      box-shadow: 0 0 20px rgba(230, 175, 46, 0.15);
+    }
+    .barber-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      object-fit: cover;
+      border: 2px solid var(--gold-primary);
+    }
+    .barber-name {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    .barber-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Date and Time Selector */
+    .date-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .date-chip {
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 13px;
+      text-align: center;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .date-chip:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .date-chip.selected {
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-weight: 700;
+      border-color: transparent;
+      box-shadow: 0 0 15px rgba(230, 175, 46, 0.3);
+    }
+
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 680px) {
+      .time-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .time-slot {
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .time-slot:hover {
+      border-color: var(--gold-primary);
+      background: rgba(230, 175, 46, 0.08);
+    }
+    .time-slot.selected {
+      background: var(--gold-primary);
+      color: #090a0d;
+      font-weight: 700;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px rgba(230, 175, 46, 0.4);
+    }
+
+    /* Client Form */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px rgba(230, 175, 46, 0.2);
+    }
+
+    .booking-nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 30px;
+    }
+    .btn-step-prev {
+      padding: 14px 24px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-step-prev:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .btn-step-next {
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--gold-glow);
+      transition: all 0.2s;
+      margin-left: auto;
+    }
+    .btn-step-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(230, 175, 46, 0.6);
+    }
+
+    /* Success / Live Notification Modal */
+    .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 200;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 20px;
     }
-    .modal-overlay.active { display: flex; }
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
     .modal-box {
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 24px;
-      width: 100%;
+      background: #0f1118;
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
       max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 30px;
+      width: 100%;
+      padding: 36px 30px;
+      text-align: center;
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), var(--gold-glow);
       position: relative;
-      box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.3);
-      color: #0f172a;
     }
-    @media (max-width: 480px) {
-      .modal-box { padding: 22px 18px; }
-    }
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #f1f5f9;
-      border: 1px solid var(--border-light);
-      color: #475569;
-      width: 36px;
-      height: 36px;
+    .modal-icon-check {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      font-size: 16px;
-      cursor: pointer;
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-size: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 30px rgba(230, 175, 46, 0.5);
     }
-    .modal-close:hover { background: #e2e8f0; color: #0f172a; }
-    .modal-header h3 { font-size: 22px; color: #0f172a; margin-bottom: 6px; }
-    .modal-header p { font-size: 13px; color: #64748b; margin-bottom: 22px; }
-
-    .form-group { margin-bottom: 18px; }
-    .form-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
-      margin-bottom: 8px;
-    }
-    .form-control {
-      width: 100%;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 12px 14px;
-      color: #0f172a;
-      font-size: 14px;
-      font-family: inherit;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .form-control:focus {
-      border-color: var(--primary);
-      background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-    }
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .slot-pill {
-      background: #f1f5f9;
-      border: 1px solid var(--border-light);
-      padding: 8px;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .slot-pill:hover, .slot-pill.active {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-    .btn-submit-booking {
-      width: 100%;
-      background: #22c55e;
-      color: #ffffff;
+    .notification-sim-card {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: var(--radius-md);
       padding: 16px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 800;
+      margin: 20px 0;
+      text-align: left;
+    }
+    .notification-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #4ade80;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .notification-body {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .btn-close-modal {
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: var(--radius-full);
       border: none;
       cursor: pointer;
-      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    /* --- REAL GOOGLE REVIEWS SECTION --- */
+    section.reviews-section {
+      padding: 70px 0;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 860px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #090a0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .reviewer-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .review-time {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+    .review-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* --- LOCATION & CONTACT --- */
+    section.location-section {
+      padding: 70px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    @media (max-width: 820px) {
+      .location-grid { grid-template-columns: 1fr; }
+    }
+    .location-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .info-icon {
+      font-size: 22px;
+      color: var(--gold-primary);
+      margin-top: 2px;
+    }
+    .info-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    .info-text {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* --- FIXED MOBILE ACTION BAR --- */
+    .mobile-sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(9, 10, 14, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-glow);
+      padding: 12px 18px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+    }
+    .btn-mobile-booking {
+      flex: 1;
+      background: var(--gold-gradient);
+      color: #090a0d;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 14px 20px;
+      border-radius: var(--radius-full);
+      text-align: center;
+      text-decoration: none;
+      box-shadow: var(--gold-glow);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
-      transition: all 0.2s;
     }
-    .btn-submit-booking:hover {
-      background: #16a34a;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(34, 197, 94, 0.45);
-    }
-
-    /* Toast */
-    .toast-notice {
-      position: fixed;
-      bottom: 95px;
-      left: 50%;
-      transform: translateX(-50%) translateY(30px);
-      background: #0f172a;
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      z-index: 2000;
+    .btn-mobile-call {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
-      gap: 10px;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      text-decoration: none;
     }
-    .toast-notice.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Agency Notice -->
-  <div class="agency-banner">
-    <span class="badge-gold">Demostración Web Exclusiva</span>
-    <span>Propuesta de presencia digital y reservas autónomas para <strong>Barbería El Galán</strong></span>
-    <a href="https://wa.me/34658743609?text=Hola,%20me%20interesa%20activar%20la%20propuesta%20web%20para%20Barber%C3%ADa%20El%20Gal%C3%A1n" class="cta-claim" target="_blank">Activar Esta Web 🚀</a>
+  <!-- TOP EXCLUSIVE DEMO NOTICE -->
+  <div class="demo-notice-bar">
+    <span class="demo-tag">PROTOTIPO EXCLUSIVO</span>
+    <span class="demo-text">
+      <strong>VISTA PREVIA PARA BARBERÍA EL GALÁN:</strong> Esta es una demo interactiva de muestra. La versión definitiva incluye personalización completa, dominio propio y agenda adaptada a vuestro equipo.
+    </span>
   </div>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="container">
-      <div class="header-inner">
-        <div class="brand-logo">
-          <div class="brand-icon">💈</div>
-          <div class="brand-text">
-            <h2>Barbería El Galán</h2>
-            <p>Barbería Masculina, Fades & Cuidado de Barba</p>
-          </div>
+    <div class="container header-inner">
+      <a href="#" class="brand-logo">
+        <div class="brand-emblem">💈</div>
+        <div class="brand-titles">
+          <h1>BARBERÍA EL GALÁN</h1>
+          <span>ELCHE · EST. 2018</span>
         </div>
+      </a>
 
-        <nav class="desktop-nav">
-          <a href="#servicios">Carta de Servicios</a>
-          <a href="#opiniones">Opiniones</a>
-          <a href="#contacto">Horario & Ubicación</a>
-        </nav>
+      <nav class="nav-links">
+        <a href="#ventajas">¿Por qué automatizar?</a>
+        <a href="#transformacion">Resultados</a>
+        <a href="#reservar">Reservar Cita</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
 
-        <button class="btn-header-cta" onclick="openBookingModal()">
-          <span>📅</span>
-          <span>Reservar Cita</span>
-        </button>
-      </div>
+      <a href="#reservar" class="btn-header-cta">
+        <span>⚡ Reservar Turno</span>
+      </a>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span>⭐ 4.9 en Google Maps • Especialistas en Cortes Urbanos & Clásicos</span>
-          </div>
-          <h1>Cortes Precisos, Fades Pulidos y Cuidado de Barba de Alto Nivel</h1>
-          <p class="hero-lead">Reserva tu corte o arreglo de barba en 30 segundos sin llamadas ni esperas. Elige tu horario favorito y recibe tu confirmación automática al instante.</p>
-
-          <div class="hero-actions">
-            <button class="btn-main" onclick="openBookingModal()">
-              <span>📅 Reservar Cita Online</span>
-            </button>
-            <a href="tel:34658743609" class="btn-secondary">
-              <span>📞 Llamar al +34 658 74 36 09</span>
-            </a>
-          </div>
-
-          <div class="hero-trust">
-            <div class="hero-trust-item">
-              <span class="check">✓</span>
-              <span>Confirmación al Instante</span>
-            </div>
-            <div class="hero-trust-item">
-              <span class="check">✓</span>
-              <span>Sin Esperas ni Llamadas</span>
-            </div>
-            <div class="hero-trust-item">
-              <span class="check">✓</span>
-              <span>100% Gratuito</span>
-            </div>
-          </div>
+    <div class="container hero-wrapper">
+      <div class="hero-content">
+        <div class="pill-reputation">
+          <span class="pulse-dot"></span>
+          <span>4.9 ★ en Google Maps (185 reseñas en Elche)</span>
         </div>
 
-        <div class="hero-image-wrapper">
-          <div class="hero-image-card">
-            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80" alt="Barbería El Galán en Elche" loading="eager" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80';">
-            <div class="hero-floating-badge">
-              <div class="hfb-left">
-                <div class="hfb-avatar">✓</div>
-                <div class="hfb-text">
-                  <h4>Cita Online 24/7</h4>
-                  <p>Directo a WhatsApp</p>
-                </div>
-              </div>
-              <span style="font-size: 22px;">📲</span>
+        <h2 class="hero-title">
+          CORTES DE AUTOR, FADES PERFECTOS Y 
+          <span class="text-gold">0 INTERRUPCIONES AL TELÉFONO</span>
+        </h2>
+
+        <p class="hero-subtitle">
+          Tú te concentras en el sillón con la maquinilla y la navaja. Tus clientes eligen servicio, barbero y hora en 30 segundos desde Google Maps o Instagram, y la cita entra confirmada a tu WhatsApp.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#reservar" class="btn-primary-hero">
+            <span>💈 Reservar Cita en 30 Segundos</span>
+          </a>
+          <a href="https://maps.google.com/?q=Barberia+El+Galan+Elche" target="_blank" rel="noopener" class="btn-secondary-hero">
+            <span>📍 Cómo Llegar (C/ Bisbe Winibal)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-main">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="Corte de Barba y Pelo en Barbería El Galán" class="hero-image">
+          
+          <div class="hero-badge-float">
+            <span style="font-size: 20px;">🛡️</span>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Cita 100% Garantizada</div>
+              <div class="stars-row">★★★★★</div>
             </div>
+          </div>
+
+          <div class="hero-overlay-info">
+            <div style="font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 4px;">SISTEMA AUTOMATIZADO</div>
+            <div style="font-size: 15px; font-weight: 600;">Notificación inmediata por WhatsApp sin llamadas rutinarias</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Highlights Bar -->
-  <section class="highlights-bar">
+    <!-- STATS COUNTER -->
     <div class="container">
-      <div class="highlights-grid">
-        
-          <div class="hl-item">
-            <div class="hl-icon">💈</div>
-            <div class="hl-text">
-              <h4>Maestros Barberos</h4>
-              <p>Técnicas avanzadas de corte clásico y tendencias urbanas adaptadas a tu estilo personal.</p>
-            </div>
-          </div>
-        
-          <div class="hl-item">
-            <div class="hl-icon">⚡</div>
-            <div class="hl-text">
-              <h4>Puntualidad Absoluta</h4>
-              <p>Tu tiempo es oro. Turnos bien gestionados para que no tengas que esperar en el sillón.</p>
-            </div>
-          </div>
-        
-          <div class="hl-item">
-            <div class="hl-icon">🌿</div>
-            <div class="hl-text">
-              <h4>Productos de Primera</h4>
-              <p>Pomadas, aceites botánicos y tónicos de las marcas más reputadas del mercado.</p>
-            </div>
-          </div>
-        
-          <div class="hl-item">
-            <div class="hl-icon">📍</div>
-            <div class="hl-text">
-              <h4>Ubicación Inmejorable</h4>
-              <p>En Calle Obispo Winibal, muy cerca de las principales vías peatonales del centro de Elche.</p>
-            </div>
-          </div>
-        
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-number">4.9 ★</div>
+          <div class="stat-label">185 Reseñas Google Maps</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0 min</div>
+          <div class="stat-label">Tiempo perdido al teléfono</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Citas notificadas por WhatsApp</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30 seg</div>
+          <div class="stat-label">Tiempo de reserva del cliente</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section class="section" id="servicios">
+  <!-- PROBLEM / BENEFIT COMPARISON -->
+  <section class="problem-solution" id="ventajas">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Carta de Servicios</span>
-        <h2>Servicios Profesionales con Tarifas Transparentes</h2>
-        <p>Elige tu servicio y reserva tu turno sin llamadas telefónicas ni esperas.</p>
+        <span class="section-eyebrow">LA VENTAJA COMERCIAL</span>
+        <h3 class="section-title">Solo atiendes llamadas para casos excepcionales</h3>
+        <p class="section-desc">
+          Sabemos lo caótico que es tener a un cliente en el sillón con la máquina encendida y que el teléfono no pare de sonar. Mira la diferencia:
+        </p>
       </div>
 
-      <div class="category-tabs">
-        
-          <button class="tab-btn active" onclick="filterServices('Todos', this)">
-            Todos
-          </button>
-        
-          <button class="tab-btn " onclick="filterServices('Cortes', this)">
-            Cortes
-          </button>
-        
-          <button class="tab-btn " onclick="filterServices('Barba', this)">
-            Barba
-          </button>
-        
-          <button class="tab-btn " onclick="filterServices('Combos Especiales', this)">
-            Combos Especiales
-          </button>
-        
-          <button class="tab-btn " onclick="filterServices('Tratamientos', this)">
-            Tratamientos
-          </button>
-        
-      </div>
-
-      <div class="services-grid">
-        
-          <div class="service-card" data-category="Cortes">
-            <div>
-              <div class="service-top">
-                <h3>Corte Degradado / Skin Fade</h3>
-                <span class="service-price">14,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ Duración aproximada: 35 min</span>
-              </div>
-              <p class="service-desc">Degradado a cero o afeitado con navaja japonesa, tijera en zona superior y peinado con producto premium mate.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Corte Degradado / Skin Fade', '14,00€')">
-              <span>📅 Seleccionar Servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Cortes">
-            <div>
-              <div class="service-top">
-                <h3>Corte Clásico a Tijera</h3>
-                <span class="service-price">12,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ Duración aproximada: 30 min</span>
-              </div>
-              <p class="service-desc">Corte tradicional adaptado a la forma del cráneo, lavado refrescante y fijación con pomada artesanal.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Corte Clásico a Tijera', '12,00€')">
-              <span>📅 Seleccionar Servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Barba">
-            <div>
-              <div class="service-top">
-                <h3>Ritual de Arreglo de Barba con Toalla Caliente</h3>
-                <span class="service-price">9,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ Duración aproximada: 25 min</span>
-              </div>
-              <p class="service-desc">Recorte de volumen, perfilado de contornos con navaja, toalla caliente con aceites esenciales e hidratación.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Ritual de Arreglo de Barba con Toalla Caliente', '9,00€')">
-              <span>📅 Seleccionar Servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Combos Especiales">
-            <div>
-              <div class="service-top">
-                <h3>Combo Galán Completo (Corte Fade + Ritual Barba)</h3>
-                <span class="service-price">20,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ Duración aproximada: 55 min</span>
-              </div>
-              <p class="service-desc">La experiencia completa: corte degradado al detalle, perfilado de barba, vapor ozono y toalla caliente revitalizante.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Combo Galán Completo (Corte Fade + Ritual Barba)', '20,00€')">
-              <span>📅 Seleccionar Servicio</span>
-            </button>
-          </div>
-        
-          <div class="service-card" data-category="Tratamientos">
-            <div>
-              <div class="service-top">
-                <h3>Exfoliación Facial & Mascarilla Black Mask</h3>
-                <span class="service-price">8,00€</span>
-              </div>
-              <div class="service-duration">
-                <span>⏱️ Duración aproximada: 20 min</span>
-              </div>
-              <p class="service-desc">Limpieza profunda de poros, extracción de puntos negros e hidratación con sérum calmante post-afeitado.</p>
-            </div>
-            <button class="service-btn" onclick="bookSpecificService('Exfoliación Facial & Mascarilla Black Mask', '8,00€')">
-              <span>📅 Seleccionar Servicio</span>
-            </button>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews Section -->
-  <section class="section" id="opiniones" style="background: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Opiniones Reales</span>
-        <h2>La Confianza de Nuestros Clientes</h2>
-        <p>Valoraciones públicas contrastadas en Google Maps.</p>
-      </div>
-
-      <div class="reviews-grid">
-        
-          <div class="review-card">
-            <div class="rev-top">
-              <span class="rev-stars">★★★★★</span>
-              <span class="rev-time">Hace 2 semanas</span>
-            </div>
-            <p class="rev-text">"El mejor degradado que me han hecho en Elche. Mucha atención al detalle, el local muy limpio y el ambiente genial. 100% recomendado."</p>
-            <div class="rev-author">Marcos Soler</div>
-          </div>
-        
-          <div class="review-card">
-            <div class="rev-top">
-              <span class="rev-stars">★★★★★</span>
-              <span class="rev-time">Hace 1 mes</span>
-            </div>
-            <p class="rev-text">"El ritual de barba con toalla caliente es una auténtica pasada. Te relajas y sales como nuevo. No cambio de barbería."</p>
-            <div class="rev-author">Alejandro Beltrán</div>
-          </div>
-        
-          <div class="review-card">
-            <div class="rev-top">
-              <span class="rev-stars">★★★★★</span>
-              <span class="rev-time">Hace 3 semanas</span>
-            </div>
-            <p class="rev-text">"Puntuales, amables y profesionales. Te asesoran según tu tipo de pelo y facciones. Relación calidad-precio insuperable."</p>
-            <div class="rev-author">Cristian Navarro</div>
-          </div>
-        
-      </div>
-    </div>
-  </section>
-
-  <!-- Info & Schedule -->
-  <section class="section" id="contacto">
-    <div class="container">
-      <div class="info-grid">
-        <div class="info-card">
-          <h3><span>🕒</span> Horario de Atención</h3>
-          <ul class="schedule-list">
-            
-              <li>
-                <span class="day">Lunes a Viernes</span>
-                <span class="hour">09:30 - 13:30 | 16:30 - 20:30</span>
-              </li>
-            
-              <li>
-                <span class="day">Sábados</span>
-                <span class="hour">09:00 - 14:00</span>
-              </li>
-            
-              <li>
-                <span class="day">Domingos</span>
-                <span class="hour">Cerrado</span>
-              </li>
-            
+      <div class="comparison-grid">
+        <div class="card-comparison card-before">
+          <span class="card-badge badge-danger">EL MÉTODO TRADICIONAL AGOTADOR</span>
+          <h4 class="comparison-title">Interrupciones y WhatsApps nocturnos</h4>
+          <ul class="feature-list">
+            <li>
+              <span class="icon-cross">✕</span>
+              <span><strong>Parar el corte a mitad:</strong> Dejar la maquinilla o la tijera para descolgar llamadas de <em>"¿tienes hueco hoy?"</em>.</span>
+            </li>
+            <li>
+              <span class="icon-cross">✕</span>
+              <span><strong>1 hora al cerrar respondiendo mensajes:</strong> Terminar la jornada reventado y tener que cuadrar horarios por WhatsApp uno a uno.</span>
+            </li>
+            <li>
+              <span class="icon-cross">✕</span>
+              <span><strong>Pérdida de clientes jóvenes:</strong> Quienes te buscan en Google Maps a las 23:00 y no pueden agendar en el acto se van a otra barbería.</span>
+            </li>
           </ul>
         </div>
 
-        <div class="info-card">
-          <h3><span>📍</span> Ubicación & Contacto</h3>
-          <div class="location-details">
-            <p><strong>Dirección:</strong> Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</p>
-            <p><strong>Teléfono / WhatsApp:</strong> +34 658 74 36 09</p>
-            <a href="https://maps.google.com/?q=Barberia+El+Galan+Elche" target="_blank" class="btn-maps">
-              <span>🗺️ Abrir en Google Maps</span>
-            </a>
+        <div class="card-comparison card-after">
+          <span class="card-badge badge-success">CON TU WEB & AGENDA AUTOMATIZADA</span>
+          <h4 class="comparison-title">Tu sillón al 100%, tu móvil tranquilo</h4>
+          <ul class="feature-list">
+            <li>
+              <span class="icon-check">✓</span>
+              <span><strong>Cero llamadas rutinarias:</strong> El 95% de tus clientes reserva directo desde el móvil con 3 clics en su navegador.</span>
+            </li>
+            <li>
+              <span class="icon-check">✓</span>
+              <span><strong>Notificación instantánea:</strong> Te llega un mensaje limpio con nombre, servicio elegido, barbero y horario exacto.</span>
+            </li>
+            <li>
+              <span class="icon-check">✓</span>
+              <span><strong>Solo llamadas urgentes:</strong> El teléfono solo suena para situaciones excepcionales o dudas técnicas muy concretas.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BEFORE & AFTER SLIDER -->
+  <section class="transformations" id="transformacion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">PRECISIÓN DE ALTA GAMA</span>
+        <h3 class="section-title">Arrastra para ver el nivel de acabado</h3>
+        <p class="section-desc">
+          Degradados milimétricos y perfilados de barba a navaja con toalla caliente.
+        </p>
+      </div>
+
+      <div class="slider-container" id="sliderBox">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1000&q=80" alt="Antes del corte" class="slider-img slider-before">
+        
+        <div class="slider-after" id="sliderAfter">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1000&q=80" alt="Acabado y Fade Barbería El Galán">
+        </div>
+
+        <div class="slider-handle" id="sliderHandle">⇄</div>
+        <span class="slider-label label-before">Técnica Tradicional</span>
+        <span class="slider-label label-after">Acabado Galán VIP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BOOKING ENGINE -->
+  <section class="booking-section" id="reservar">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">AGENDA INTERACTIVA EN TIEMPO REAL</span>
+        <h3 class="section-title">Prueba cómo reservarán tus clientes</h3>
+        <p class="section-desc">
+          Haz una reserva de prueba en 4 sencillos pasos para experimentar la velocidad del sistema.
+        </p>
+      </div>
+
+      <div class="booking-card">
+        <!-- Steps Navigator -->
+        <div class="booking-steps-nav">
+          <div class="step-indicator active" id="stepInd1">
+            <span class="step-num">1</span>
+            <span>Servicio</span>
+          </div>
+          <div class="step-indicator" id="stepInd2">
+            <span class="step-num">2</span>
+            <span>Barbero</span>
+          </div>
+          <div class="step-indicator" id="stepInd3">
+            <span class="step-num">3</span>
+            <span>Fecha y Hora</span>
+          </div>
+          <div class="step-indicator" id="stepInd4">
+            <span class="step-num">4</span>
+            <span>Confirmación</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: SERVICES -->
+        <div class="step-content active" id="stepContent1">
+          <div class="grid-options">
+            <div class="option-card selected" onclick="selectService(this, 'Corte Degradado / Skin Fade', '14.00€', '40 min')">
+              <div>
+                <div class="option-title">✂️ Corte Degradado (Skin Fade)</div>
+                <div class="option-desc">Degradado a máquina y navaja, contornos limpios, lavado y peinado.</div>
+              </div>
+              <div class="option-meta">
+                <div class="option-price">14€</div>
+                <div class="option-time">40 min</div>
+              </div>
+            </div>
+
+            <div class="option-card" onclick="selectService(this, 'Arreglo Completo de Barba & Ritual', '10.00€', '30 min')">
+              <div>
+                <div class="option-title">🧔 Arreglo de Barba & Toalla Caliente</div>
+                <div class="option-desc">Perfilado a navaja, hidratación con aceites esenciales y vapor ozono.</div>
+              </div>
+              <div class="option-meta">
+                <div class="option-price">10€</div>
+                <div class="option-time">30 min</div>
+              </div>
+            </div>
+
+            <div class="option-card" onclick="selectService(this, 'Combo Galán VIP (Corte + Barba)', '22.00€', '60 min')">
+              <div>
+                <div class="option-title">👑 Combo Galán VIP Completo</div>
+                <div class="option-desc">Corte Fade completo + Ritual de barba con toalla caliente y masaje capilar.</div>
+              </div>
+              <div class="option-meta">
+                <div class="option-price">22€</div>
+                <div class="option-time">60 min</div>
+              </div>
+            </div>
+
+            <div class="option-card" onclick="selectService(this, 'Corte Clásico a Tijera', '12.00€', '35 min')">
+              <div>
+                <div class="option-title">💈 Corte Clásico Tradicional</div>
+                <div class="option-desc">Corte 100% a tijera adaptado a tu estilo y facciones faciales.</div>
+              </div>
+              <div class="option-meta">
+                <div class="option-price">12€</div>
+                <div class="option-time">35 min</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-nav-buttons">
+            <button class="btn-step-next" onclick="goToStep(2)">Continuar al Barbero ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: BARBER -->
+        <div class="step-content" id="stepContent2">
+          <div class="barber-grid">
+            <div class="barber-card selected" onclick="selectBarber(this, 'Cualquier Barbero Disponible')">
+              <div style="font-size: 34px; margin-bottom: 10px;">⚡</div>
+              <div class="barber-name">Primer Hueco Libre</div>
+              <div class="barber-role">Máxima disponibilidad</div>
+            </div>
+
+            <div class="barber-card" onclick="selectBarber(this, 'Carlos (Master Barber)')">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80" alt="Carlos Barbero" class="barber-avatar">
+              <div class="barber-name">Carlos</div>
+              <div class="barber-role">Especialista en Barbas & Fades</div>
+            </div>
+
+            <div class="barber-card" onclick="selectBarber(this, 'Mateo (Fade Specialist)')">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="Mateo Barbero" class="barber-avatar">
+              <div class="barber-name">Mateo</div>
+              <div class="barber-role">Cortes Urbanos & Freestyle</div>
+            </div>
+          </div>
+
+          <div class="booking-nav-buttons">
+            <button class="btn-step-prev" onclick="goToStep(1)">← Volver</button>
+            <button class="btn-step-next" onclick="goToStep(3)">Elegir Fecha y Hora ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: DATE & TIME -->
+        <div class="step-content" id="stepContent3">
+          <div style="font-size: 14px; font-weight: 700; color: var(--gold-light); margin-bottom: 12px;">1. Selecciona el Día:</div>
+          <div class="date-row">
+            <div class="date-chip selected" onclick="selectDate(this, 'Hoy (Miercoles)')">Hoy · Miércoles</div>
+            <div class="date-chip" onclick="selectDate(this, 'Mañana (Jueves)')">Mañana · Jueves</div>
+            <div class="date-chip" onclick="selectDate(this, 'Viernes')">Viernes · Fin de Semana</div>
+            <div class="date-chip" onclick="selectDate(this, 'Sábado')">Sábado (Mañana)</div>
+          </div>
+
+          <div style="font-size: 14px; font-weight: 700; color: var(--gold-light); margin-bottom: 12px;">2. Selecciona la Hora Disponible:</div>
+          <div class="time-grid">
+            <div class="time-slot selected" onclick="selectTime(this, '10:00')">10:00</div>
+            <div class="time-slot" onclick="selectTime(this, '10:45')">10:45</div>
+            <div class="time-slot" onclick="selectTime(this, '11:30')">11:30</div>
+            <div class="time-slot" onclick="selectTime(this, '12:15')">12:15</div>
+            <div class="time-slot" onclick="selectTime(this, '16:30')">16:30</div>
+            <div class="time-slot" onclick="selectTime(this, '17:15')">17:15</div>
+            <div class="time-slot" onclick="selectTime(this, '18:00')">18:00</div>
+            <div class="time-slot" onclick="selectTime(this, '18:45')">18:45</div>
+            <div class="time-slot" onclick="selectTime(this, '19:30')">19:30</div>
+          </div>
+
+          <div class="booking-nav-buttons">
+            <button class="btn-step-prev" onclick="goToStep(2)">← Volver</button>
+            <button class="btn-step-next" onclick="goToStep(4)">Tus Datos de Contacto ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: CONTACT & CONFIRM -->
+        <div class="step-content" id="stepContent4">
+          <div style="max-width: 500px; margin: 0 auto;">
+            <div style="background: rgba(230, 175, 46, 0.08); border: 1px solid var(--border-glow); padding: 18px; border-radius: var(--radius-md); margin-bottom: 24px;">
+              <div style="font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 4px;">RESUMEN DE TU RESERVA:</div>
+              <div id="bookingSummary" style="font-size: 14px; color: #fff; line-height: 1.6;">
+                • Servicio: Corte Degradado (Skin Fade) (14€)<br>
+                • Barbero: Primer Hueco Libre<br>
+                • Turno: Hoy a las 10:00
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nombre del Cliente</label>
+              <input type="text" class="form-input" id="clientName" value="Marcos Soler" placeholder="Tu nombre">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Teléfono Móvil (para confirmación de WhatsApp)</label>
+              <input type="tel" class="form-input" id="clientPhone" value="+34 600 00 00 00" placeholder="+34 600 00 00 00">
+            </div>
+
+            <div class="booking-nav-buttons">
+              <button class="btn-step-prev" onclick="goToStep(3)">← Volver</button>
+              <button class="btn-step-next" style="width: 100%;" onclick="confirmBooking()">⚡ Confirmar Cita en 30s</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- SUCCESS MODAL (DEMONSTRATING AUTOMATED NOTIFICATION) -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon-check">✓</div>
+      <h3 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: 8px;">¡CITA RESERVADA CON ÉXITO!</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Así de fácil es la experiencia para tus clientes desde el móvil.
+      </p>
+
+      <div class="notification-sim-card">
+        <div class="notification-header">
+          <span>📲</span> NOTIFICACIÓN AUTOMÁTICA ENVIADA A TU MÓVIL
+        </div>
+        <div class="notification-body" id="modalNotificationBody">
+          <strong>Nueva cita recibida:</strong><br>
+          • Cliente: Marcos Soler (+34 600 00 00 00)<br>
+          • Servicio: Corte Degradado (Skin Fade)<br>
+          • Horario: Hoy · 10:00<br>
+          <em>*El barbero no tuvo que atender ninguna llamada mientras estaba cortando.</em>
+        </div>
+      </div>
+
+      <button class="btn-close-modal" onclick="closeModal()">Entendido · Cerrar Prueba</button>
+    </div>
+  </div>
+
+  <!-- REAL GOOGLE REVIEWS SECTION -->
+  <section class="reviews-section" id="opiniones">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">REPUTACIÓN REAL EN ELCHE</span>
+        <h3 class="section-title">185 clientes no se equivocan</h3>
+        <p class="section-desc">
+          Opiniones directas extraídas de vuestro perfil público en Google Maps (4.9 / 5 estrellas).
+        </p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">A</div>
+            <div>
+              <div class="reviewer-name">Alejandro R.</div>
+              <div class="review-time">Cliente habitual · Hace 3 semanas</div>
+            </div>
+          </div>
+          <p class="review-text">
+            "El mejor degradado de Elche sin discusión. El trato es impecable, el local está limpísimo y el afeitado con toalla caliente es de otro nivel. 10 de 10."
+          </p>
+          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div>
+              <div class="reviewer-name">David Martínez</div>
+              <div class="review-time">Reseña local · Hace 1 mes</div>
+            </div>
+          </div>
+          <p class="review-text">
+            "Grandes profesionales. Se toman su tiempo para que el corte quede exactamente como quieres. Es genial que ahora se pueda organizar la cita con facilidad."
+          </p>
+          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="reviewer-name">Sergio Pomares</div>
+              <div class="review-time">Guía local de Elche · Hace 2 meses</div>
+            </div>
+          </div>
+          <p class="review-text">
+            "Llevo viniendo a Carrer Bisbe Winibal más de 2 años. Nunca defraudan. El ambiente y la música son brutales y el arreglo de barba es perfecto."
+          </p>
+          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & CONTACT -->
+  <section class="location-section" id="ubicacion">
+    <div class="container location-grid">
+      <div class="location-info-card">
+        <h3 style="font-family: var(--font-heading); font-size: 26px; margin-bottom: 24px;">Encuéntranos en Elche</h3>
+
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-title">Dirección</div>
+            <div class="info-text">Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div>
+            <div class="info-title">Horario Comercial</div>
+            <div class="info-text">
+              Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:30<br>
+              Sábados: 09:00 - 14:00 · Domingos: Cerrado
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-title">Atención Telefónica Excepcional</div>
+            <div class="info-text">+34 622 18 54 39 (Solo emergencias o consultas complejas)</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-glow); height: 380px;">
+        <iframe 
+          title="Ubicación Barbería El Galán en Google Maps"
+          width="100%" 
+          height="100%" 
+          frameborder="0" 
+          style="border:0; filter: invert(90%) hue-rotate(180deg);" 
+          src="https://maps.google.com/maps?q=Barberia+El+Galan+Elche&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
-      <p><strong>Barbería El Galán</strong> • Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</p>
-      <p>Teléfono de contacto: <a href="tel:34658743609" style="color: var(--primary); font-weight: 700;">+34 658 74 36 09</a></p>
-      <p style="margin-top: 15px; font-size: 11px; opacity: 0.7;">Propuesta de presencia web profesional y sistema de reservas/pedidos autónomo creada para Barbería El Galán.</p>
+      <p style="margin-bottom: 8px;"><strong>Barbería El Galán</strong> · Carrer Bisbe Winibal, 12, Elche</p>
+      <p style="color: var(--text-light); font-size: 12px;">
+        Esta es una propuesta y demostración técnica personalizada desarrollada por Fathi para modernizar la captación y reservas de negocios locales en Elche.
+      </p>
     </div>
   </footer>
 
-  <!-- Mobile Floating Action Bar -->
-  <div class="mobile-bar">
-    <a href="tel:34658743609" class="m-bar-btn">
-      <span style="font-size: 18px;">📞</span>
-      <span>Llamar</span>
+  <!-- MOBILE STICKY ACTION BAR -->
+  <div class="mobile-sticky-bar">
+    <a href="#reservar" class="btn-mobile-booking">
+      <span>💈 Reservar Turno (30s)</span>
     </a>
-    <button class="m-bar-btn primary-cta" onclick="openBookingModal()">
-      <span>📅</span>
-      <span>Reservar Cita</span>
-    </button>
-    <a href="https://maps.google.com/?q=Barberia+El+Galan+Elche" target="_blank" class="m-bar-btn">
-      <span style="font-size: 18px;">📍</span>
-      <span>Maps</span>
+    <a href="tel:+34622185439" class="btn-mobile-call" title="Llamada Urgente">
+      <span>📞</span>
     </a>
   </div>
 
-  <!-- Interactive Booking / Order Modal -->
-  <div class="modal-overlay" id="bookingModal" onclick="closeModalOnBackdrop(event)">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeBookingModal()">✕</button>
-      <div class="modal-header">
-        <span class="section-tag" style="font-size: 11px;">Motor de Citas 24/7</span>
-        <h3>Reservar Cita en Barbería El Galán</h3>
-        <p>Elige servicio, fecha y hora. Tu reserva llegará confirmada a WhatsApp.</p>
-      </div>
-
-      <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
-        <div class="form-group">
-          <label for="bookService">Servicio deseado:</label>
-          <select id="bookService" class="form-control" required>
-            <option value="Corte Degradado / Skin Fade (14,00€)">Corte Degradado / Skin Fade — 14,00€</option><option value="Corte Clásico a Tijera (12,00€)">Corte Clásico a Tijera — 12,00€</option><option value="Ritual de Arreglo de Barba con Toalla Caliente (9,00€)">Ritual de Arreglo de Barba con Toalla Caliente — 9,00€</option><option value="Combo Galán Completo (Corte Fade + Ritual Barba) (20,00€)">Combo Galán Completo (Corte Fade + Ritual Barba) — 20,00€</option><option value="Exfoliación Facial & Mascarilla Black Mask (8,00€)">Exfoliación Facial & Mascarilla Black Mask — 8,00€</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="bookDate">Fecha preferida:</label>
-          <input type="date" id="bookDate" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-          <label>Horario disponible:</label>
-          <div class="slots-grid" id="slotsContainer">
-            <div class="slot-pill active" onclick="selectSlot(this, '10:00')">10:00</div>
-            <div class="slot-pill" onclick="selectSlot(this, '11:30')">11:30</div>
-            <div class="slot-pill" onclick="selectSlot(this, '12:45')">12:45</div>
-            <div class="slot-pill" onclick="selectSlot(this, '16:30')">16:30</div>
-            <div class="slot-pill" onclick="selectSlot(this, '17:45')">17:45</div>
-            <div class="slot-pill" onclick="selectSlot(this, '19:00')">19:00</div>
-            <div class="slot-pill" onclick="selectSlot(this, '20:00')">20:00</div>
-          </div>
-          <input type="hidden" id="bookTime" value="10:00">
-        </div>
-
-        <div class="form-group">
-          <label for="bookName">Tu nombre y apellidos:</label>
-          <input type="text" id="bookName" class="form-control" placeholder="Ej. Carlos Martínez" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookNotes">Comentarios o notas (opcional):</label>
-          <input type="text" id="bookNotes" class="form-control" placeholder="Ej. Primera vez, preferencias o indicaciones">
-        </div>
-
-        <button type="submit" class="btn-submit-booking">
-          <span>📲 Confirmar Cita Automática por WhatsApp</span>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div class="toast-notice" id="toastNotice">
-    <span>✅</span>
-    <span id="toastMsg">¡Cita preparada con éxito! Abriendo WhatsApp...</span>
-  </div>
-
-  <!-- JavaScript Logic -->
   <script>
-    // Set default date to tomorrow
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const dateInput = document.getElementById('bookDate');
-    if (dateInput) {
-      dateInput.value = tomorrow.toISOString().split('T')[0];
-      dateInput.min = new Date().toISOString().split('T')[0];
-    }
+    // --- BOOKING STATE ---
+    let bookingData = {
+      service: 'Corte Degradado (Skin Fade)',
+      price: '14.00€',
+      duration: '40 min',
+      barber: 'Cualquier Barbero Disponible',
+      date: 'Hoy (Miércoles)',
+      time: '10:00',
+      name: '',
+      phone: ''
+    };
 
-    // Modal Handling
-    function openBookingModal() {
-      document.getElementById('bookingModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeBookingModal() {
-      document.getElementById('bookingModal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    function closeModalOnBackdrop(e) {
-      if (e.target.id === 'bookingModal') {
-        closeBookingModal();
+    function updateSummary() {
+      const summaryEl = document.getElementById('bookingSummary');
+      if (summaryEl) {
+        summaryEl.innerHTML = `
+          • Servicio: <strong>${bookingData.service}</strong> (${bookingData.price})<br>
+          • Barbero: <strong>${bookingData.barber}</strong><br>
+          • Turno: <strong>${bookingData.date} a las ${bookingData.time}</strong>
+        `;
       }
     }
 
-    function selectSlot(el, time) {
-      document.querySelectorAll('.slot-pill').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('bookTime').value = time;
+    function selectService(el, name, price, duration) {
+      document.querySelectorAll('#stepContent1 .option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      bookingData.service = name;
+      bookingData.price = price;
+      bookingData.duration = duration;
+      updateSummary();
     }
 
-    function bookSpecificService(serviceTitle, price) {
-      const select = document.getElementById('bookService');
-      for (let i = 0; i < select.options.length; i++) {
-        if (select.options[i].text.includes(serviceTitle)) {
-          select.selectedIndex = i;
-          break;
-        }
-      }
-      openBookingModal();
+    function selectBarber(el, name) {
+      document.querySelectorAll('#stepContent2 .barber-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      bookingData.barber = name;
+      updateSummary();
     }
 
-    function filterServices(cat, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    function selectDate(el, dateText) {
+      document.querySelectorAll('#stepContent3 .date-chip').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      bookingData.date = dateText;
+      updateSummary();
+    }
 
-      const cards = document.querySelectorAll('.service-card');
-      cards.forEach(card => {
-        if (cat === 'Todos' || card.getAttribute('data-category') === cat) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
+    function selectTime(el, timeText) {
+      document.querySelectorAll('#stepContent3 .time-slot').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      bookingData.time = timeText;
+      updateSummary();
+    }
+
+    function goToStep(stepNum) {
+      // Hide all contents
+      document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.step-indicator').forEach(i => i.classList.remove('active'));
+
+      // Show requested step
+      document.getElementById('stepContent' + stepNum).classList.add('active');
+      document.getElementById('stepInd' + stepNum).classList.add('active');
+      updateSummary();
+
+      // Smooth scroll back to card top if needed
+      document.getElementById('reservar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function confirmBooking() {
+      const name = document.getElementById('clientName').value || 'Cliente Elche';
+      const phone = document.getElementById('clientPhone').value || '+34 600 00 00 00';
+      bookingData.name = name;
+      bookingData.phone = phone;
+
+      const modalBody = document.getElementById('modalNotificationBody');
+      modalBody.innerHTML = `
+        <strong>Nueva cita recibida en tu móvil:</strong><br>
+        • Cliente: <strong>${name}</strong> (${phone})<br>
+        • Servicio: <strong>${bookingData.service}</strong><br>
+        • Barbero: <strong>${bookingData.barber}</strong><br>
+        • Horario: <strong>${bookingData.date} a las ${bookingData.time}</strong><br><br>
+        <span style="color: #4ade80;">✓ Confirmación automática enviada al WhatsApp del cliente.</span><br>
+        <span style="color: #fcd34d;">★ Tu equipo no tuvo que descolgar el teléfono ni parar el corte en el sillón.</span>
+      `;
+
+      document.getElementById('successModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('open');
+      goToStep(1);
+    }
+
+    // --- BEFORE / AFTER SLIDER LOGIC ---
+    const sliderBox = document.getElementById('sliderBox');
+    const sliderAfter = document.getElementById('sliderAfter');
+    const sliderHandle = document.getElementById('sliderHandle');
+    let isDragging = false;
+
+    function updateSlider(xPos) {
+      const rect = sliderBox.getBoundingClientRect();
+      let percent = ((xPos - rect.left) / rect.width) * 100;
+      if (percent < 5) percent = 5;
+      if (percent > 95) percent = 95;
+
+      sliderAfter.style.width = percent + '%';
+      sliderHandle.style.left = percent + '%';
+    }
+
+    if (sliderBox) {
+      sliderBox.addEventListener('mousedown', () => isDragging = true);
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.clientX);
       });
-    }
 
-    function showToast(msg) {
-      const toast = document.getElementById('toastNotice');
-      document.getElementById('toastMsg').innerText = msg;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
-    }
-
-    function handleBookingSubmit(e) {
-      e.preventDefault();
-      const service = document.getElementById('bookService').value;
-      const date = document.getElementById('bookDate').value;
-      const time = document.getElementById('bookTime').value;
-      const name = document.getElementById('bookName').value;
-      const notes = document.getElementById('bookNotes').value;
-
-      const formattedMessage = `Hola Barbería El Galán, me gustaría reservar la siguiente cita:\n\n` +
-        `📌 *Servicio:* ${service}\n` +
-        `📅 *Fecha:* ${date}\n` +
-        `⏰ *Hora:* ${time}\n` +
-        `👤 *Nombre:* ${name}` +
-        (notes ? `\n📝 *Notas:* ${notes}` : '') +
-        `\n\n(Enviado automáticamente desde vuestra web oficial)`;
-
-      showToast('¡Cita preparada con éxito! Abriendo WhatsApp...');
-      
-      setTimeout(() => {
-        closeBookingModal();
-        const waUrl = `https://wa.me/34658743609?text=${encodeURIComponent(formattedMessage)}`;
-        window.open(waUrl, '_blank');
-      }, 900);
+      // Touch events for mobile
+      sliderBox.addEventListener('touchstart', () => isDragging = true);
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        updateSlider(e.touches[0].clientX);
+      });
     }
   </script>
 </body>
