@@ -2,54 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Barbería El Galán | Barbería Tradicional & Fades de Autor en Elche</title>
-  <meta name="description" content="Reserva tu corte de pelo o arreglo de barba en Barbería El Galán (Elche) en 30 segundos. Sin llamadas, sin esperas y con confirmación directa por WhatsApp.">
-  <meta name="keywords" content="barbería elche, corte de pelo elche, barberia el galan, fade elche, degradado elche, arreglo de barba elche">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Barbería El Galán | Cita Online en 30s · Elche</title>
+  <meta name="description" content="Reserva tu corte o barba en Barbería El Galán (Elche). Sin llamadas, sin esperas y con confirmación directa a tu móvil.">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph / Meta -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Barbería El Galán | Elche · Cita Online en 30s">
-  <meta property="og:description" content="El arte del corte tradicional y fades modernos en Carrer Bisbe Winibal, Elche. Reserva tu cita sin interrumpir la faena del barbero.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=80">
-  <link rel="canonical" href="https://propuestas-web-pro.github.io/elche/barberia-el-galan/">
-
-  <!-- Google Fonts: Syne (modern luxury branding), Outfit (clean headers) & Plus Jakarta Sans (body) -->
+  <!-- Google Fonts: Outfit (Luxury Headlines & Numbers) + Plus Jakarta Sans (Clean Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-base: #08090d;
-      --bg-surface: #0f1118;
-      --bg-card: rgba(18, 21, 31, 0.75);
-      --bg-card-hover: rgba(26, 31, 46, 0.85);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(230, 175, 46, 0.35);
-      
-      --gold-primary: #e6af2e;
-      --gold-light: #fcd34d;
-      --gold-dark: #b48214;
-      --gold-gradient: linear-gradient(135deg, #fcd34d 0%, #e6af2e 50%, #b48214 100%);
-      --gold-glow: 0 0 25px rgba(230, 175, 46, 0.3);
-      
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-light: #64748b;
-      
-      --font-display: 'Syne', sans-serif;
-      --font-heading: 'Outfit', -apple-system, sans-serif;
+      --bg: #090a0f;
+      --card: #12141c;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --gold: #eab308;
+      --gold-light: #fde047;
+      --gold-dark: #ca8a04;
+      --gold-grad: linear-gradient(135deg, #fde047 0%, #eab308 50%, #ca8a04 100%);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --radius: 16px;
+      --font-head: 'Outfit', -apple-system, sans-serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
-
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
-      --radius-full: 9999px;
-      
-      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-      --shadow-elevated: 0 20px 45px -15px rgba(0, 0, 0, 0.8);
     }
 
     * {
@@ -59,518 +35,289 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background-color: var(--bg-base);
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--text);
       font-family: var(--font-body);
-      line-height: 1.6;
+      line-height: 1.5;
+      padding-bottom: calc(76px + env(safe-area-inset-bottom, 16px));
       overflow-x: hidden;
-      position: relative;
-      background-image: 
-        radial-gradient(circle at 15% 10%, rgba(230, 175, 46, 0.07) 0%, transparent 45%),
-        radial-gradient(circle at 85% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(230, 175, 46, 0.05) 0%, transparent 40%);
-      background-attachment: fixed;
-      padding-bottom: 90px;
     }
 
-    /* Ambient noise & subtle grid overlay */
+    /* Ambient glow */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-      background-size: 28px 28px;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 600px; /* Perfectly framed for mobile & phablet screens */
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 16px;
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
 
-    /* --- TOP EXCLUSIVE DEMO NOTICE BAR --- */
-    .demo-notice-bar {
-      background: linear-gradient(90deg, #181408 0%, #2b1f07 50%, #181408 100%);
-      border-bottom: 1px solid var(--border-glow);
-      padding: 10px 16px;
-      font-size: 13px;
-      color: #fef08a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      text-align: center;
-      position: relative;
-      z-index: 101;
-    }
-    .demo-tag {
-      background: var(--gold-gradient);
-      color: #090a0d;
+    /* --- SLIM TOP PREVIEW CHIP (NOT A CLUNKY BANNER) --- */
+    .preview-chip {
+      background: rgba(234, 179, 8, 0.1);
+      border-bottom: 1px solid rgba(234, 179, 8, 0.25);
+      padding: 6px 12px;
       font-size: 11px;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .preview-badge {
+      background: var(--gold-grad);
+      color: #000;
+      font-size: 9px;
       font-weight: 800;
-      padding: 2px 10px;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
       letter-spacing: 0.5px;
-      box-shadow: 0 0 12px rgba(230, 175, 46, 0.4);
-    }
-    .demo-text {
-      font-weight: 500;
-      letter-spacing: 0.2px;
-    }
-    .demo-text strong {
-      color: #fff;
     }
 
-    /* --- NAVIGATION HEADER --- */
-    header.site-header {
+    /* --- COMPACT MOBILE HEADER --- */
+    .mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 10, 15, 0.9);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(9, 10, 14, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: all 0.3s ease;
+      z-index: 50;
+      padding: 0 16px;
     }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 78px;
-    }
-    .brand-logo {
+    .brand-group {
       display: flex;
       align-items: center;
-      gap: 14px;
-      text-decoration: none;
+      gap: 10px;
     }
-    .brand-emblem {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #1c1f2e, #0e1017);
-      border: 1px solid var(--border-glow);
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1e2230, #12141c);
+      border: 1px solid rgba(234, 179, 8, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      box-shadow: var(--gold-glow);
-      position: relative;
+      font-size: 18px;
+      box-shadow: 0 0 12px rgba(234, 179, 8, 0.2);
     }
-    .brand-titles h1 {
-      font-family: var(--font-display);
-      font-size: 20px;
-      letter-spacing: -0.5px;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand-name {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #fff;
       line-height: 1.1;
     }
-    .brand-titles span {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-muted);
+    .brand-sub {
+      font-size: 10px;
+      color: var(--gold);
       font-weight: 600;
-    }
-
-    nav.nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-    @media (max-width: 860px) {
-      nav.nav-links { display: none; }
-    }
-    nav.nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.2s;
-      position: relative;
-    }
-    nav.nav-links a:hover {
-      color: var(--gold-light);
-    }
-
-    .btn-header-cta {
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 14px;
-      padding: 10px 22px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      box-shadow: var(--gold-glow);
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-header-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(230, 175, 46, 0.6);
-    }
-
-    /* --- HERO SECTION --- */
-    section.hero {
-      padding: 60px 0 50px;
-      position: relative;
-    }
-    .hero-wrapper {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 40px;
-      align-items: center;
-    }
-    @media (max-width: 920px) {
-      .hero-wrapper {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 36px;
-      }
-    }
-
-    .pill-reputation {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(230, 175, 46, 0.08);
-      border: 1px solid var(--border-glow);
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold-light);
-      margin-bottom: 20px;
-      backdrop-filter: blur(8px);
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background-color: #22c55e;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #22c55e;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-    }
-
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: 48px;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1.5px;
-      margin-bottom: 20px;
-    }
-    @media (max-width: 640px) {
-      .hero-title { font-size: 34px; }
-    }
-    .text-gold {
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(230, 175, 46, 0.2);
-    }
-
-    .hero-subtitle {
-      font-size: 17px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 32px;
-      max-width: 580px;
-    }
-    @media (max-width: 920px) {
-      .hero-subtitle { margin-left: auto; margin-right: auto; }
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 920px) {
-      .hero-actions { justify-content: center; }
-    }
-
-    .btn-primary-hero {
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 16px;
-      padding: 16px 32px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      box-shadow: var(--gold-glow);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-primary-hero:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 0 40px rgba(230, 175, 46, 0.6);
-    }
-
-    .btn-secondary-hero {
-      background: rgba(255, 255, 255, 0.04);
-      color: #fff;
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 15px;
-      padding: 15px 26px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      border: 1px solid var(--border-subtle);
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-secondary-hero:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Hero Card Display with Before/After peek and live badge */
-    .hero-visual {
-      position: relative;
-    }
-    .hero-card-main {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-elevated);
-      background: var(--bg-card);
-    }
-    .hero-image {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
-      filter: contrast(1.05) brightness(0.95);
-    }
-    .hero-overlay-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 24px;
-      background: linear-gradient(0deg, rgba(8, 9, 13, 0.95) 0%, rgba(8, 9, 13, 0.6) 70%, transparent 100%);
-      backdrop-filter: blur(10px);
-    }
-    .hero-badge-float {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(9, 10, 14, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-glow);
-      padding: 10px 16px;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: var(--shadow-card);
-    }
-    .stars-row {
-      color: #fbbf24;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
-
-    /* --- STATS COUNTER BAR --- */
-    .stats-bar {
-      margin-top: 40px;
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      box-shadow: var(--shadow-card);
-    }
-    @media (max-width: 768px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--gold-light);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* --- COMPARISON CARD: THE CORE PROBLEM / BENEFIT --- */
-    section.problem-solution {
-      padding: 70px 0;
-      position: relative;
-    }
-    .section-header {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 50px;
-    }
-    .section-eyebrow {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      color: var(--gold-primary);
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-    @media (max-width: 640px) {
-      .section-title { font-size: 28px; }
-    }
-    .section-desc {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    @media (max-width: 820px) {
-      .comparison-grid { grid-template-columns: 1fr; }
-    }
-
-    .card-comparison {
-      border-radius: var(--radius-lg);
-      padding: 36px 30px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-    .card-before {
-      background: rgba(239, 68, 68, 0.03);
-      border: 1px solid rgba(239, 68, 68, 0.2);
-    }
-    .card-after {
-      background: rgba(230, 175, 46, 0.05);
-      border: 1px solid var(--border-glow);
-      box-shadow: 0 10px 40px -15px rgba(230, 175, 46, 0.2);
-    }
-    .card-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-      font-size: 11px;
-      font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
+    }
+    .header-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* --- MOBILE HERO --- */
+    .hero {
+      padding: 20px 0 16px;
+    }
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(234, 179, 8, 0.08);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+    }
+    .rating-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+    }
+    .gold-text {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* Hero Media Card */
+    .hero-media {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      height: 220px;
       margin-bottom: 18px;
     }
-    .badge-danger {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .badge-success {
-      background: var(--gold-gradient);
-      color: #090a0d;
-      box-shadow: 0 0 15px rgba(230, 175, 46, 0.3);
+    .hero-media-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(9, 10, 15, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .badge-sub {
+      font-size: 10px;
+      color: var(--gold);
     }
 
-    .comparison-title {
-      font-family: var(--font-heading);
-      font-size: 22px;
+    /* Quick stats grid */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* --- THE CORE BENEFIT (ANTES vs AHORA) --- */
+    .benefit-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    .benefit-tag {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .benefit-title {
+      font-family: var(--font-head);
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
+      line-height: 1.25;
     }
-    .feature-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .feature-list li {
+    .compare-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.5;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 10px;
     }
-    .feature-list li strong {
-      color: var(--text-main);
+    .compare-item:last-child {
+      margin-bottom: 0;
     }
-    .icon-cross {
+    .icon-bad {
       color: #ef4444;
-      font-size: 18px;
-      line-height: 1;
-      margin-top: 2px;
+      font-weight: 800;
+      font-size: 14px;
+      margin-top: 1px;
     }
-    .icon-check {
-      color: var(--gold-light);
-      font-size: 18px;
-      line-height: 1;
-      margin-top: 2px;
+    .icon-good {
+      color: #22c55e;
+      font-weight: 800;
+      font-size: 14px;
+      margin-top: 1px;
     }
 
-    /* --- INTERACTIVE BEFORE / AFTER SLIDER --- */
-    section.transformations {
-      padding: 70px 0;
-      background: rgba(15, 17, 24, 0.6);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
+    /* --- INTERACTIVE BEFORE / AFTER (COMPACT MOBILE SLIDER) --- */
+    .slider-section {
+      margin-bottom: 24px;
     }
-    .slider-container {
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+    .slider-frame {
       position: relative;
-      border: 1px solid var(--border-glow);
-      box-shadow: var(--shadow-elevated);
+      width: 100%;
+      height: 220px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(234, 179, 8, 0.3);
       user-select: none;
-      height: 480px;
-    }
-    @media (max-width: 640px) {
-      .slider-container { height: 350px; }
+      touch-action: none;
     }
     .slider-img {
       position: absolute;
@@ -580,1239 +327,828 @@
       height: 100%;
       object-fit: cover;
     }
-    .slider-before {
-      z-index: 1;
-    }
-    .slider-after {
-      z-index: 2;
-      width: 50%;
-      overflow: hidden;
-      border-right: 2px solid var(--gold-primary);
-    }
-    .slider-after img {
+    .slider-after-box {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
-      width: 800px;
+      width: 50%;
+      overflow: hidden;
+      border-right: 2px solid var(--gold);
+    }
+    .slider-after-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       max-width: none;
+      height: 100%;
       object-fit: cover;
     }
-    @media (max-width: 800px) {
-      .slider-after img { width: 100vw; }
-    }
-    .slider-handle {
+    .slider-thumb {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 44px;
-      height: 44px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: var(--gold-gradient);
-      box-shadow: 0 0 25px rgba(230, 175, 46, 0.7);
-      z-index: 3;
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 800;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: ew-resize;
-      color: #090a0d;
-      font-weight: 800;
-      font-size: 16px;
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.6);
+      z-index: 5;
     }
     .slider-label {
       position: absolute;
-      bottom: 20px;
-      padding: 6px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      bottom: 8px;
+      font-size: 10px;
+      font-weight: 800;
       text-transform: uppercase;
-      z-index: 4;
-      backdrop-filter: blur(8px);
-    }
-    .label-before {
-      right: 20px;
+      padding: 3px 8px;
+      border-radius: 4px;
       background: rgba(0, 0, 0, 0.7);
-      color: #94a3b8;
-    }
-    .label-after {
-      left: 20px;
-      background: rgba(230, 175, 46, 0.85);
-      color: #090a0d;
+      z-index: 6;
     }
 
-    /* --- INTERACTIVE BOOKING ENGINE (THE WOW CORE) --- */
-    section.booking-section {
-      padding: 80px 0;
-      position: relative;
+    /* --- MOBILE BOOKING WIZARD --- */
+    .wizard-card {
+      background: var(--card);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
-    .booking-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-glow);
-      border-radius: var(--radius-lg);
-      padding: 40px;
-      box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.9), var(--gold-glow);
-      backdrop-filter: blur(20px);
-    }
-    @media (max-width: 640px) {
-      .booking-card { padding: 24px 18px; }
-    }
-
-    .booking-steps-nav {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 35px;
-    }
-    @media (max-width: 640px) {
-      .booking-steps-nav { grid-template-columns: repeat(2, 1fr); }
-    }
-    .step-indicator {
+    .wizard-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      font-size: 13px;
-      color: var(--text-muted);
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .wizard-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* Segmented Step Pills (Clean iOS feel) */
+    .step-segmented {
+      display: flex;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .step-pill {
+      flex: 1;
+      padding: 7px 2px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--muted);
+      border: none;
+      background: transparent;
       transition: all 0.2s;
     }
-    .step-indicator.active {
-      background: rgba(230, 175, 46, 0.12);
-      border-color: var(--gold-primary);
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-    .step-num {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .step-indicator.active .step-num {
-      background: var(--gold-gradient);
-      color: #090a0d;
+    .step-pill.active {
+      background: var(--gold-grad);
+      color: #000;
+      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.3);
     }
 
-    /* Step Content Containers */
-    .step-content {
+    /* Step Pages */
+    .step-page {
       display: none;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.2s ease;
     }
-    .step-content.active {
+    .step-page.active {
       display: block;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .grid-options {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-    @media (max-width: 680px) {
-      .grid-options { grid-template-columns: 1fr; }
-    }
-
-    .option-card {
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.02);
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
+    /* Service Choice Cards */
+    .service-item {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
     }
-    .option-card:hover {
-      border-color: rgba(230, 175, 46, 0.5);
-      background: rgba(255, 255, 255, 0.04);
-      transform: translateY(-2px);
+    .service-item:active, .service-item.selected {
+      background: rgba(234, 179, 8, 0.1);
+      border-color: var(--gold);
     }
-    .option-card.selected {
-      border-color: var(--gold-primary);
-      background: rgba(230, 175, 46, 0.08);
-      box-shadow: 0 0 20px rgba(230, 175, 46, 0.15);
+    .service-info {
+      flex: 1;
+      padding-right: 12px;
     }
-    .option-title {
-      font-family: var(--font-heading);
-      font-size: 17px;
+    .service-name {
       font-weight: 700;
+      font-size: 14px;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
-    .option-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.4;
+    .service-sub {
+      font-size: 11px;
+      color: var(--muted);
     }
-    .option-meta {
+    .service-pricing {
       text-align: right;
     }
-    .option-price {
-      font-family: var(--font-display);
-      font-size: 20px;
+    .service-price {
+      font-family: var(--font-head);
+      font-size: 16px;
       font-weight: 800;
       color: var(--gold-light);
     }
-    .option-time {
-      font-size: 12px;
-      color: var(--text-light);
+    .service-min {
+      font-size: 10px;
+      color: var(--muted);
     }
 
-    /* Barber Selector */
-    .barber-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 30px;
+    /* Barber Selection */
+    .barber-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    @media (max-width: 680px) {
-      .barber-grid { grid-template-columns: 1fr; }
-    }
-    .barber-card {
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 18px;
+    .barber-opt {
+      flex: 1;
+      padding: 12px 6px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
       text-align: center;
-      background: rgba(255, 255, 255, 0.02);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
     }
-    .barber-card:hover {
-      border-color: rgba(230, 175, 46, 0.5);
-      background: rgba(255, 255, 255, 0.04);
-    }
-    .barber-card.selected {
-      border-color: var(--gold-primary);
-      background: rgba(230, 175, 46, 0.08);
-      box-shadow: 0 0 20px rgba(230, 175, 46, 0.15);
+    .barber-opt.selected {
+      background: rgba(234, 179, 8, 0.1);
+      border-color: var(--gold);
     }
     .barber-avatar {
-      width: 70px;
-      height: 70px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      margin: 0 auto 12px;
-      object-fit: cover;
-      border: 2px solid var(--gold-primary);
-    }
-    .barber-name {
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 2px;
-    }
-    .barber-role {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Date and Time Selector */
-    .date-row {
+      margin: 0 auto 6px;
       display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid var(--gold);
     }
-    .date-chip {
-      padding: 10px 18px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 13px;
-      text-align: center;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-    .date-chip:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-    .date-chip.selected {
-      background: var(--gold-gradient);
-      color: #090a0d;
+    .barber-opt-name {
+      font-size: 12px;
       font-weight: 700;
-      border-color: transparent;
-      box-shadow: 0 0 15px rgba(230, 175, 46, 0.3);
+      color: #fff;
+    }
+    .barber-opt-role {
+      font-size: 9px;
+      color: var(--muted);
     }
 
-    .time-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      margin-bottom: 30px;
+    /* Day Chips (horizontal scroll) */
+    .day-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
     }
-    @media (max-width: 680px) {
-      .time-grid { grid-template-columns: repeat(3, 1fr); }
+    .day-chip {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .day-chip.selected {
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 800;
+      border-color: transparent;
+    }
+
+    /* Time Grid */
+    .time-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 16px;
     }
     .time-slot {
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      font-weight: 600;
-      font-size: 14px;
+      padding: 10px 4px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      font-size: 13px;
+      font-weight: 700;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
-    }
-    .time-slot:hover {
-      border-color: var(--gold-primary);
-      background: rgba(230, 175, 46, 0.08);
     }
     .time-slot.selected {
-      background: var(--gold-primary);
-      color: #090a0d;
-      font-weight: 700;
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 15px rgba(230, 175, 46, 0.4);
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
     }
 
-    /* Client Form */
-    .form-group {
-      margin-bottom: 18px;
-    }
-    .form-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .form-input {
+    /* Form Fields */
+    .input-field {
       width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px 14px;
       color: #fff;
-      font-size: 15px;
+      font-size: 14px;
+      margin-bottom: 12px;
       outline: none;
-      transition: border-color 0.2s;
       font-family: inherit;
     }
-    .form-input:focus {
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 15px rgba(230, 175, 46, 0.2);
+    .input-field:focus {
+      border-color: var(--gold);
     }
 
-    .booking-nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 30px;
-    }
-    .btn-step-prev {
-      padding: 14px 24px;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-step-prev:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-    }
-    .btn-step-next {
-      padding: 14px 32px;
-      border-radius: var(--radius-full);
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-weight: 800;
-      font-family: var(--font-heading);
-      font-size: 15px;
+    /* Next / Action Buttons */
+    .btn-action-wizard {
+      width: 100%;
+      background: var(--gold-grad);
+      color: #000;
       border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
       cursor: pointer;
-      box-shadow: var(--gold-glow);
-      transition: all 0.2s;
-      margin-left: auto;
-    }
-    .btn-step-next:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(230, 175, 46, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(234, 179, 8, 0.4);
     }
 
-    /* Success / Live Notification Modal */
-    .modal-backdrop {
+    /* --- REAL REVIEWS (COMPACT) --- */
+    .reviews-box {
+      margin-bottom: 24px;
+    }
+    .review-card-mini {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .reviewer {
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .stars {
+      color: #fbbf24;
+      font-size: 11px;
+    }
+    .review-body {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* --- LOCATION CARD --- */
+    .location-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+    .loc-row {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .loc-row:last-child {
+      margin-bottom: 0;
+    }
+    .loc-icon {
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    /* --- MOBILE FLOATING ACTION BAR (BOTTOM) --- */
+    .sticky-bottom-bar {
       position: fixed;
-      top: 0;
+      bottom: 0;
       left: 0;
       right: 0;
-      bottom: 0;
+      background: rgba(9, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(234, 179, 8, 0.3);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.8);
+    }
+    .btn-sticky-cta {
+      flex: 1;
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+    }
+    .btn-sticky-call {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    /* --- SUCCESS POPUP MODAL --- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
       background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       z-index: 200;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
     }
-    .modal-backdrop.open {
+    .modal-overlay.active {
       display: flex;
-      animation: fadeIn 0.25s ease;
     }
-    .modal-box {
-      background: #0f1118;
-      border: 1px solid var(--border-glow);
-      border-radius: var(--radius-lg);
-      max-width: 520px;
-      width: 100%;
-      padding: 36px 30px;
+    .modal-sheet {
+      background: #12141c;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 24px 20px;
       text-align: center;
-      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), var(--gold-glow);
-      position: relative;
+      max-width: 360px;
+      width: 100%;
     }
-    .modal-icon-check {
-      width: 64px;
-      height: 64px;
+    .modal-ok {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-size: 30px;
+      background: var(--gold-grad);
+      color: #000;
+      font-size: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      box-shadow: 0 0 30px rgba(230, 175, 46, 0.5);
+      margin: 0 auto 12px;
+      font-weight: 900;
     }
-    .notification-sim-card {
-      background: rgba(34, 197, 94, 0.08);
+    .sim-card {
+      background: rgba(34, 197, 94, 0.1);
       border: 1px solid rgba(34, 197, 94, 0.3);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      margin: 20px 0;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 14px 0;
       text-align: left;
-    }
-    .notification-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #4ade80;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .notification-body {
-      font-size: 13px;
-      color: #cbd5e1;
+      font-size: 12px;
       line-height: 1.5;
     }
-    .btn-close-modal {
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-weight: 700;
-      padding: 12px 28px;
-      border-radius: var(--radius-full);
+    .btn-modal-close {
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 800;
       border: none;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    /* --- REAL GOOGLE REVIEWS SECTION --- */
-    section.reviews-section {
-      padding: 70px 0;
-    }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 860px) {
-      .reviews-grid { grid-template-columns: 1fr; }
-    }
-    .review-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .review-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .review-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--gold-gradient);
-      color: #090a0d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 15px;
-    }
-    .reviewer-name {
-      font-weight: 700;
-      font-size: 15px;
-    }
-    .review-time {
-      font-size: 11px;
-      color: var(--text-light);
-    }
-    .review-text {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-style: italic;
-    }
-
-    /* --- LOCATION & CONTACT --- */
-    section.location-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .location-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-    @media (max-width: 820px) {
-      .location-grid { grid-template-columns: 1fr; }
-    }
-    .location-info-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 36px 30px;
-    }
-    .info-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-    .info-icon {
-      font-size: 22px;
-      color: var(--gold-primary);
-      margin-top: 2px;
-    }
-    .info-title {
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 2px;
-    }
-    .info-text {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    /* --- FIXED MOBILE ACTION BAR --- */
-    .mobile-sticky-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(9, 10, 14, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border-glow);
-      padding: 12px 18px;
-      z-index: 99;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
-    }
-    .btn-mobile-booking {
-      flex: 1;
-      background: var(--gold-gradient);
-      color: #090a0d;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 15px;
-      padding: 14px 20px;
-      border-radius: var(--radius-full);
-      text-align: center;
-      text-decoration: none;
-      box-shadow: var(--gold-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .btn-mobile-call {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 20px;
-      text-decoration: none;
-    }
-
-    /* Footer */
-    footer.site-footer {
-      border-top: 1px solid var(--border-subtle);
-      padding: 40px 0;
-      text-align: center;
+      padding: 10px 24px;
+      border-radius: 10px;
       font-size: 13px;
-      color: var(--text-light);
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP EXCLUSIVE DEMO NOTICE -->
-  <div class="demo-notice-bar">
-    <span class="demo-tag">PROTOTIPO EXCLUSIVO</span>
-    <span class="demo-text">
-      <strong>VISTA PREVIA PARA BARBERÍA EL GALÁN:</strong> Esta es una demo interactiva de muestra. La versión definitiva incluye personalización completa, dominio propio y agenda adaptada a vuestro equipo.
-    </span>
+  <!-- SLIM TOP PROTOTYPE CHIP -->
+  <div class="preview-chip">
+    <span class="preview-badge">DEMO EXCLUSIVA</span>
+    <span>Muestra adaptada para <strong>Barbería El Galán</strong></span>
   </div>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="brand-logo">
-        <div class="brand-emblem">💈</div>
-        <div class="brand-titles">
-          <h1>BARBERÍA EL GALÁN</h1>
-          <span>ELCHE · EST. 2018</span>
-        </div>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#ventajas">¿Por qué automatizar?</a>
-        <a href="#transformacion">Resultados</a>
-        <a href="#reservar">Reservar Cita</a>
-        <a href="#opiniones">Opiniones</a>
-        <a href="#ubicacion">Ubicación</a>
-      </nav>
-
-      <a href="#reservar" class="btn-header-cta">
-        <span>⚡ Reservar Turno</span>
-      </a>
+  <!-- COMPACT MOBILE APP HEADER -->
+  <header class="mobile-header">
+    <div class="brand-group">
+      <div class="brand-icon">💈</div>
+      <div>
+        <div class="brand-name">EL GALÁN</div>
+        <div class="brand-sub">BARBER STUDIO</div>
+      </div>
     </div>
+    <div class="header-pill">📍 Bisbe Winibal, Elche</div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="container hero-wrapper">
-      <div class="hero-content">
-        <div class="pill-reputation">
-          <span class="pulse-dot"></span>
-          <span>4.9 ★ en Google Maps (185 reseñas en Elche)</span>
-        </div>
+  <main class="container">
 
-        <h2 class="hero-title">
-          CORTES DE AUTOR, FADES PERFECTOS Y 
-          <span class="text-gold">0 INTERRUPCIONES AL TELÉFONO</span>
-        </h2>
-
-        <p class="hero-subtitle">
-          Tú te concentras en el sillón con la maquinilla y la navaja. Tus clientes eligen servicio, barbero y hora en 30 segundos desde Google Maps o Instagram, y la cita entra confirmada a tu WhatsApp.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#reservar" class="btn-primary-hero">
-            <span>💈 Reservar Cita en 30 Segundos</span>
-          </a>
-          <a href="https://maps.google.com/?q=Barberia+El+Galan+Elche" target="_blank" rel="noopener" class="btn-secondary-hero">
-            <span>📍 Cómo Llegar (C/ Bisbe Winibal)</span>
-          </a>
-        </div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="rating-pill">
+        <span class="rating-dot"></span>
+        <span>4.9 ★ · 185 Opiniones en Google Maps</span>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-card-main">
-          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80" alt="Corte de Barba y Pelo en Barbería El Galán" class="hero-image">
-          
-          <div class="hero-badge-float">
-            <span style="font-size: 20px;">🛡️</span>
-            <div>
-              <div style="font-size: 13px; font-weight: 700;">Cita 100% Garantizada</div>
-              <div class="stars-row">★★★★★</div>
-            </div>
+      <h1 class="hero-title">
+        FADES DE AUTOR & <span class="gold-text">0 INTERRUPCIONES AL TELÉFONO</span>
+      </h1>
+
+      <p class="hero-desc">
+        Tus clientes eligen corte, barbero y hora en 30 segundos desde el móvil. La cita te entra confirmada por WhatsApp y tú sigues cortando en el sillón sin descolgar.
+      </p>
+
+      <!-- Media Visual Card -->
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Corte Barbería El Galán">
+        <div class="hero-media-badge">
+          <div>
+            <div class="badge-label">Agenda Digitalizada</div>
+            <div class="badge-sub">Notificación instantánea a WhatsApp</div>
           </div>
-
-          <div class="hero-overlay-info">
-            <div style="font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 4px;">SISTEMA AUTOMATIZADO</div>
-            <div style="font-size: 15px; font-weight: 600;">Notificación inmediata por WhatsApp sin llamadas rutinarias</div>
-          </div>
+          <span style="font-size: 18px;">⚡</span>
         </div>
       </div>
-    </div>
 
-    <!-- STATS COUNTER -->
-    <div class="container">
-      <div class="stats-bar">
-        <div class="stat-item">
-          <div class="stat-number">4.9 ★</div>
-          <div class="stat-label">185 Reseñas Google Maps</div>
+      <!-- Quick Metrics Row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-val">4.9 ★</div>
+          <div class="stat-lbl">185 Reseñas</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">0 min</div>
-          <div class="stat-label">Tiempo perdido al teléfono</div>
+        <div class="stat-card">
+          <div class="stat-val">0 min</div>
+          <div class="stat-lbl">Llamadas rutinarias</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Citas notificadas por WhatsApp</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">30 seg</div>
-          <div class="stat-label">Tiempo de reserva del cliente</div>
+        <div class="stat-card">
+          <div class="stat-val">30 seg</div>
+          <div class="stat-lbl">Reserva ágil</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROBLEM / BENEFIT COMPARISON -->
-  <section class="problem-solution" id="ventajas">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">LA VENTAJA COMERCIAL</span>
-        <h3 class="section-title">Solo atiendes llamadas para casos excepcionales</h3>
-        <p class="section-desc">
-          Sabemos lo caótico que es tener a un cliente en el sillón con la máquina encendida y que el teléfono no pare de sonar. Mira la diferencia:
-        </p>
+    <!-- CORE PAIN / BENEFIT -->
+    <section class="benefit-box">
+      <div class="benefit-tag">OPERATIVA COMERCIAL</div>
+      <h2 class="benefit-title">Solo atiendes llamadas para casos excepcionales</h2>
+
+      <div class="compare-item">
+        <span class="icon-bad">✕</span>
+        <div><strong>Antes:</strong> Parar el corte a mitad con la máquina en la mano para atender <em>"¿tienes hueco hoy?"</em> y responder 20 WhatsApps al cerrar.</div>
       </div>
 
-      <div class="comparison-grid">
-        <div class="card-comparison card-before">
-          <span class="card-badge badge-danger">EL MÉTODO TRADICIONAL AGOTADOR</span>
-          <h4 class="comparison-title">Interrupciones y WhatsApps nocturnos</h4>
-          <ul class="feature-list">
-            <li>
-              <span class="icon-cross">✕</span>
-              <span><strong>Parar el corte a mitad:</strong> Dejar la maquinilla o la tijera para descolgar llamadas de <em>"¿tienes hueco hoy?"</em>.</span>
-            </li>
-            <li>
-              <span class="icon-cross">✕</span>
-              <span><strong>1 hora al cerrar respondiendo mensajes:</strong> Terminar la jornada reventado y tener que cuadrar horarios por WhatsApp uno a uno.</span>
-            </li>
-            <li>
-              <span class="icon-cross">✕</span>
-              <span><strong>Pérdida de clientes jóvenes:</strong> Quienes te buscan en Google Maps a las 23:00 y no pueden agendar en el acto se van a otra barbería.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="card-comparison card-after">
-          <span class="card-badge badge-success">CON TU WEB & AGENDA AUTOMATIZADA</span>
-          <h4 class="comparison-title">Tu sillón al 100%, tu móvil tranquilo</h4>
-          <ul class="feature-list">
-            <li>
-              <span class="icon-check">✓</span>
-              <span><strong>Cero llamadas rutinarias:</strong> El 95% de tus clientes reserva directo desde el móvil con 3 clics en su navegador.</span>
-            </li>
-            <li>
-              <span class="icon-check">✓</span>
-              <span><strong>Notificación instantánea:</strong> Te llega un mensaje limpio con nombre, servicio elegido, barbero y horario exacto.</span>
-            </li>
-            <li>
-              <span class="icon-check">✓</span>
-              <span><strong>Solo llamadas urgentes:</strong> El teléfono solo suena para situaciones excepcionales o dudas técnicas muy concretas.</span>
-            </li>
-          </ul>
-        </div>
+      <div class="compare-item">
+        <span class="icon-good">✓</span>
+        <div><strong>Con tu web:</strong> El 95% de clientes reserva solo en 3 clics. La cita te llega limpia y organizada a tu móvil.</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- INTERACTIVE BEFORE & AFTER SLIDER -->
-  <section class="transformations" id="transformacion">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">PRECISIÓN DE ALTA GAMA</span>
-        <h3 class="section-title">Arrastra para ver el nivel de acabado</h3>
-        <p class="section-desc">
-          Degradados milimétricos y perfilados de barba a navaja con toalla caliente.
-        </p>
-      </div>
-
-      <div class="slider-container" id="sliderBox">
-        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1000&q=80" alt="Antes del corte" class="slider-img slider-before">
+    <!-- BEFORE / AFTER SLIDER (TOUCH FRIENDLY) -->
+    <section class="slider-section">
+      <div style="font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px;">DESLIZA CON EL DEDO</div>
+      <div class="slider-frame" id="sliderFrame">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Antes" class="slider-img">
         
-        <div class="slider-after" id="sliderAfter">
-          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1000&q=80" alt="Acabado y Fade Barbería El Galán">
+        <div class="slider-after-box" id="sliderAfter">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Acabado Fade">
         </div>
 
-        <div class="slider-handle" id="sliderHandle">⇄</div>
-        <span class="slider-label label-before">Técnica Tradicional</span>
-        <span class="slider-label label-after">Acabado Galán VIP</span>
+        <div class="slider-thumb" id="sliderThumb">⇄</div>
+        <span class="slider-label" style="left: 8px;">Fade Galán</span>
+        <span class="slider-label" style="right: 8px; color: var(--muted);">Corte Base</span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- INTERACTIVE BOOKING ENGINE -->
-  <section class="booking-section" id="reservar">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">AGENDA INTERACTIVA EN TIEMPO REAL</span>
-        <h3 class="section-title">Prueba cómo reservarán tus clientes</h3>
-        <p class="section-desc">
-          Haz una reserva de prueba en 4 sencillos pasos para experimentar la velocidad del sistema.
-        </p>
+    <!-- INTERACTIVE BOOKING ENGINE -->
+    <section class="wizard-card" id="reservar">
+      <div class="wizard-header">
+        <h2 class="wizard-title">Reserva tu Turno en Vivo</h2>
+        <span style="font-size: 11px; color: var(--gold); font-weight: 700;">PROBAR DEMO</span>
       </div>
 
-      <div class="booking-card">
-        <!-- Steps Navigator -->
-        <div class="booking-steps-nav">
-          <div class="step-indicator active" id="stepInd1">
-            <span class="step-num">1</span>
-            <span>Servicio</span>
-          </div>
-          <div class="step-indicator" id="stepInd2">
-            <span class="step-num">2</span>
-            <span>Barbero</span>
-          </div>
-          <div class="step-indicator" id="stepInd3">
-            <span class="step-num">3</span>
-            <span>Fecha y Hora</span>
-          </div>
-          <div class="step-indicator" id="stepInd4">
-            <span class="step-num">4</span>
-            <span>Confirmación</span>
-          </div>
-        </div>
-
-        <!-- STEP 1: SERVICES -->
-        <div class="step-content active" id="stepContent1">
-          <div class="grid-options">
-            <div class="option-card selected" onclick="selectService(this, 'Corte Degradado / Skin Fade', '14.00€', '40 min')">
-              <div>
-                <div class="option-title">✂️ Corte Degradado (Skin Fade)</div>
-                <div class="option-desc">Degradado a máquina y navaja, contornos limpios, lavado y peinado.</div>
-              </div>
-              <div class="option-meta">
-                <div class="option-price">14€</div>
-                <div class="option-time">40 min</div>
-              </div>
-            </div>
-
-            <div class="option-card" onclick="selectService(this, 'Arreglo Completo de Barba & Ritual', '10.00€', '30 min')">
-              <div>
-                <div class="option-title">🧔 Arreglo de Barba & Toalla Caliente</div>
-                <div class="option-desc">Perfilado a navaja, hidratación con aceites esenciales y vapor ozono.</div>
-              </div>
-              <div class="option-meta">
-                <div class="option-price">10€</div>
-                <div class="option-time">30 min</div>
-              </div>
-            </div>
-
-            <div class="option-card" onclick="selectService(this, 'Combo Galán VIP (Corte + Barba)', '22.00€', '60 min')">
-              <div>
-                <div class="option-title">👑 Combo Galán VIP Completo</div>
-                <div class="option-desc">Corte Fade completo + Ritual de barba con toalla caliente y masaje capilar.</div>
-              </div>
-              <div class="option-meta">
-                <div class="option-price">22€</div>
-                <div class="option-time">60 min</div>
-              </div>
-            </div>
-
-            <div class="option-card" onclick="selectService(this, 'Corte Clásico a Tijera', '12.00€', '35 min')">
-              <div>
-                <div class="option-title">💈 Corte Clásico Tradicional</div>
-                <div class="option-desc">Corte 100% a tijera adaptado a tu estilo y facciones faciales.</div>
-              </div>
-              <div class="option-meta">
-                <div class="option-price">12€</div>
-                <div class="option-time">35 min</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="booking-nav-buttons">
-            <button class="btn-step-next" onclick="goToStep(2)">Continuar al Barbero ➔</button>
-          </div>
-        </div>
-
-        <!-- STEP 2: BARBER -->
-        <div class="step-content" id="stepContent2">
-          <div class="barber-grid">
-            <div class="barber-card selected" onclick="selectBarber(this, 'Cualquier Barbero Disponible')">
-              <div style="font-size: 34px; margin-bottom: 10px;">⚡</div>
-              <div class="barber-name">Primer Hueco Libre</div>
-              <div class="barber-role">Máxima disponibilidad</div>
-            </div>
-
-            <div class="barber-card" onclick="selectBarber(this, 'Carlos (Master Barber)')">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80" alt="Carlos Barbero" class="barber-avatar">
-              <div class="barber-name">Carlos</div>
-              <div class="barber-role">Especialista en Barbas & Fades</div>
-            </div>
-
-            <div class="barber-card" onclick="selectBarber(this, 'Mateo (Fade Specialist)')">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="Mateo Barbero" class="barber-avatar">
-              <div class="barber-name">Mateo</div>
-              <div class="barber-role">Cortes Urbanos & Freestyle</div>
-            </div>
-          </div>
-
-          <div class="booking-nav-buttons">
-            <button class="btn-step-prev" onclick="goToStep(1)">← Volver</button>
-            <button class="btn-step-next" onclick="goToStep(3)">Elegir Fecha y Hora ➔</button>
-          </div>
-        </div>
-
-        <!-- STEP 3: DATE & TIME -->
-        <div class="step-content" id="stepContent3">
-          <div style="font-size: 14px; font-weight: 700; color: var(--gold-light); margin-bottom: 12px;">1. Selecciona el Día:</div>
-          <div class="date-row">
-            <div class="date-chip selected" onclick="selectDate(this, 'Hoy (Miercoles)')">Hoy · Miércoles</div>
-            <div class="date-chip" onclick="selectDate(this, 'Mañana (Jueves)')">Mañana · Jueves</div>
-            <div class="date-chip" onclick="selectDate(this, 'Viernes')">Viernes · Fin de Semana</div>
-            <div class="date-chip" onclick="selectDate(this, 'Sábado')">Sábado (Mañana)</div>
-          </div>
-
-          <div style="font-size: 14px; font-weight: 700; color: var(--gold-light); margin-bottom: 12px;">2. Selecciona la Hora Disponible:</div>
-          <div class="time-grid">
-            <div class="time-slot selected" onclick="selectTime(this, '10:00')">10:00</div>
-            <div class="time-slot" onclick="selectTime(this, '10:45')">10:45</div>
-            <div class="time-slot" onclick="selectTime(this, '11:30')">11:30</div>
-            <div class="time-slot" onclick="selectTime(this, '12:15')">12:15</div>
-            <div class="time-slot" onclick="selectTime(this, '16:30')">16:30</div>
-            <div class="time-slot" onclick="selectTime(this, '17:15')">17:15</div>
-            <div class="time-slot" onclick="selectTime(this, '18:00')">18:00</div>
-            <div class="time-slot" onclick="selectTime(this, '18:45')">18:45</div>
-            <div class="time-slot" onclick="selectTime(this, '19:30')">19:30</div>
-          </div>
-
-          <div class="booking-nav-buttons">
-            <button class="btn-step-prev" onclick="goToStep(2)">← Volver</button>
-            <button class="btn-step-next" onclick="goToStep(4)">Tus Datos de Contacto ➔</button>
-          </div>
-        </div>
-
-        <!-- STEP 4: CONTACT & CONFIRM -->
-        <div class="step-content" id="stepContent4">
-          <div style="max-width: 500px; margin: 0 auto;">
-            <div style="background: rgba(230, 175, 46, 0.08); border: 1px solid var(--border-glow); padding: 18px; border-radius: var(--radius-md); margin-bottom: 24px;">
-              <div style="font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 4px;">RESUMEN DE TU RESERVA:</div>
-              <div id="bookingSummary" style="font-size: 14px; color: #fff; line-height: 1.6;">
-                • Servicio: Corte Degradado (Skin Fade) (14€)<br>
-                • Barbero: Primer Hueco Libre<br>
-                • Turno: Hoy a las 10:00
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Nombre del Cliente</label>
-              <input type="text" class="form-input" id="clientName" value="Marcos Soler" placeholder="Tu nombre">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Teléfono Móvil (para confirmación de WhatsApp)</label>
-              <input type="tel" class="form-input" id="clientPhone" value="+34 600 00 00 00" placeholder="+34 600 00 00 00">
-            </div>
-
-            <div class="booking-nav-buttons">
-              <button class="btn-step-prev" onclick="goToStep(3)">← Volver</button>
-              <button class="btn-step-next" style="width: 100%;" onclick="confirmBooking()">⚡ Confirmar Cita en 30s</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUCCESS MODAL (DEMONSTRATING AUTOMATED NOTIFICATION) -->
-  <div class="modal-backdrop" id="successModal">
-    <div class="modal-box">
-      <div class="modal-icon-check">✓</div>
-      <h3 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: 8px;">¡CITA RESERVADA CON ÉXITO!</h3>
-      <p style="font-size: 14px; color: var(--text-muted);">
-        Así de fácil es la experiencia para tus clientes desde el móvil.
-      </p>
-
-      <div class="notification-sim-card">
-        <div class="notification-header">
-          <span>📲</span> NOTIFICACIÓN AUTOMÁTICA ENVIADA A TU MÓVIL
-        </div>
-        <div class="notification-body" id="modalNotificationBody">
-          <strong>Nueva cita recibida:</strong><br>
-          • Cliente: Marcos Soler (+34 600 00 00 00)<br>
-          • Servicio: Corte Degradado (Skin Fade)<br>
-          • Horario: Hoy · 10:00<br>
-          <em>*El barbero no tuvo que atender ninguna llamada mientras estaba cortando.</em>
-        </div>
+      <!-- Segmented Navigation -->
+      <div class="step-segmented">
+        <button class="step-pill active" id="pill1" onclick="jumpStep(1)">1. Servicio</button>
+        <button class="step-pill" id="pill2" onclick="jumpStep(2)">2. Barbero</button>
+        <button class="step-pill" id="pill3" onclick="jumpStep(3)">3. Turno</button>
+        <button class="step-pill" id="pill4" onclick="jumpStep(4)">4. Confirmar</button>
       </div>
 
-      <button class="btn-close-modal" onclick="closeModal()">Entendido · Cerrar Prueba</button>
-    </div>
-  </div>
+      <!-- STEP 1: SERVICES -->
+      <div class="step-page active" id="page1">
+        <div class="service-item selected" onclick="pickService(this, 'Skin Fade / Degradado', '14€', '40m')">
+          <div class="service-info">
+            <div class="service-name">✂️ Skin Fade / Degradado</div>
+            <div class="service-sub">Máquina, navaja, lavado y fijación.</div>
+          </div>
+          <div class="service-pricing">
+            <div class="service-price">14€</div>
+            <div class="service-min">40 min</div>
+          </div>
+        </div>
 
-  <!-- REAL GOOGLE REVIEWS SECTION -->
-  <section class="reviews-section" id="opiniones">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">REPUTACIÓN REAL EN ELCHE</span>
-        <h3 class="section-title">185 clientes no se equivocan</h3>
-        <p class="section-desc">
-          Opiniones directas extraídas de vuestro perfil público en Google Maps (4.9 / 5 estrellas).
-        </p>
+        <div class="service-item" onclick="pickService(this, 'Arreglo de Barba & Ritual', '10€', '30m')">
+          <div class="service-info">
+            <div class="service-name">🧔 Arreglo de Barba & Toalla</div>
+            <div class="service-sub">Perfilado a navaja y aceites esenciales.</div>
+          </div>
+          <div class="service-pricing">
+            <div class="service-price">10€</div>
+            <div class="service-min">30 min</div>
+          </div>
+        </div>
+
+        <div class="service-item" onclick="pickService(this, 'Combo VIP (Pelo + Barba)', '22€', '60m')">
+          <div class="service-info">
+            <div class="service-name">👑 Combo VIP (Pelo + Barba)</div>
+            <div class="service-sub">Servicio completo con masaje capilar.</div>
+          </div>
+          <div class="service-pricing">
+            <div class="service-price">22€</div>
+            <div class="service-min">60 min</div>
+          </div>
+        </div>
+
+        <button class="btn-action-wizard" onclick="jumpStep(2)" style="margin-top: 10px;">
+          Siguiente: Elegir Barbero ➔
+        </button>
       </div>
 
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-header">
-            <div class="review-avatar">A</div>
-            <div>
-              <div class="reviewer-name">Alejandro R.</div>
-              <div class="review-time">Cliente habitual · Hace 3 semanas</div>
-            </div>
+      <!-- STEP 2: BARBER -->
+      <div class="step-page" id="page2">
+        <div class="barber-row">
+          <div class="barber-opt selected" onclick="pickBarber(this, 'Primer Hueco')">
+            <div class="barber-avatar">⚡</div>
+            <div class="barber-opt-name">Cualquiera</div>
+            <div class="barber-opt-role">Más rápido</div>
           </div>
-          <p class="review-text">
-            "El mejor degradado de Elche sin discusión. El trato es impecable, el local está limpísimo y el afeitado con toalla caliente es de otro nivel. 10 de 10."
-          </p>
-          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
-        </div>
 
-        <div class="review-card">
-          <div class="review-header">
-            <div class="review-avatar">D</div>
-            <div>
-              <div class="reviewer-name">David Martínez</div>
-              <div class="review-time">Reseña local · Hace 1 mes</div>
-            </div>
+          <div class="barber-opt" onclick="pickBarber(this, 'Carlos')">
+            <div class="barber-avatar">🧔</div>
+            <div class="barber-opt-name">Carlos</div>
+            <div class="barber-opt-role">Master Fade</div>
           </div>
-          <p class="review-text">
-            "Grandes profesionales. Se toman su tiempo para que el corte quede exactamente como quieres. Es genial que ahora se pueda organizar la cita con facilidad."
-          </p>
-          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
-        </div>
 
-        <div class="review-card">
-          <div class="review-header">
-            <div class="review-avatar">S</div>
-            <div>
-              <div class="reviewer-name">Sergio Pomares</div>
-              <div class="review-time">Guía local de Elche · Hace 2 meses</div>
-            </div>
-          </div>
-          <p class="review-text">
-            "Llevo viniendo a Carrer Bisbe Winibal más de 2 años. Nunca defraudan. El ambiente y la música son brutales y el arreglo de barba es perfecto."
-          </p>
-          <div class="stars-row" style="margin-top: 14px;">★★★★★</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOCATION & CONTACT -->
-  <section class="location-section" id="ubicacion">
-    <div class="container location-grid">
-      <div class="location-info-card">
-        <h3 style="font-family: var(--font-heading); font-size: 26px; margin-bottom: 24px;">Encuéntranos en Elche</h3>
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <div class="info-title">Dirección</div>
-            <div class="info-text">Carrer Bisbe Winibal, 12, 03202 Elche, Alicante</div>
+          <div class="barber-opt" onclick="pickBarber(this, 'Mateo')">
+            <div class="barber-avatar">✂️</div>
+            <div class="barber-opt-name">Mateo</div>
+            <div class="barber-opt-role">Freestyle</div>
           </div>
         </div>
 
-        <div class="info-row">
-          <div class="info-icon">⏰</div>
-          <div>
-            <div class="info-title">Horario Comercial</div>
-            <div class="info-text">
-              Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:30<br>
-              Sábados: 09:00 - 14:00 · Domingos: Cerrado
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">📞</div>
-          <div>
-            <div class="info-title">Atención Telefónica Excepcional</div>
-            <div class="info-text">+34 622 18 54 39 (Solo emergencias o consultas complejas)</div>
-          </div>
-        </div>
+        <button class="btn-action-wizard" onclick="jumpStep(3)">
+          Siguiente: Elegir Hora ➔
+        </button>
       </div>
 
-      <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-glow); height: 380px;">
-        <iframe 
-          title="Ubicación Barbería El Galán en Google Maps"
-          width="100%" 
-          height="100%" 
-          frameborder="0" 
-          style="border:0; filter: invert(90%) hue-rotate(180deg);" 
-          src="https://maps.google.com/maps?q=Barberia+El+Galan+Elche&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-          allowfullscreen>
-        </iframe>
+      <!-- STEP 3: DATE & TIME -->
+      <div class="step-page" id="page3">
+        <div class="day-scroll">
+          <div class="day-chip selected" onclick="pickDay(this, 'Hoy')">Hoy (Miércoles)</div>
+          <div class="day-chip" onclick="pickDay(this, 'Mañana')">Mañana (Jueves)</div>
+          <div class="day-chip" onclick="pickDay(this, 'Viernes')">Viernes</div>
+          <div class="day-chip" onclick="pickDay(this, 'Sábado')">Sábado</div>
+        </div>
+
+        <div class="time-matrix">
+          <div class="time-slot selected" onclick="pickTime(this, '10:00')">10:00</div>
+          <div class="time-slot" onclick="pickTime(this, '10:45')">10:45</div>
+          <div class="time-slot" onclick="pickTime(this, '11:30')">11:30</div>
+          <div class="time-slot" onclick="pickTime(this, '12:15')">12:15</div>
+          <div class="time-slot" onclick="pickTime(this, '16:30')">16:30</div>
+          <div class="time-slot" onclick="pickTime(this, '17:15')">17:15</div>
+          <div class="time-slot" onclick="pickTime(this, '18:00')">18:00</div>
+          <div class="time-slot" onclick="pickTime(this, '18:45')">18:45</div>
+        </div>
+
+        <button class="btn-action-wizard" onclick="jumpStep(4)">
+          Siguiente: Confirmar Datos ➔
+        </button>
       </div>
-    </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <p style="margin-bottom: 8px;"><strong>Barbería El Galán</strong> · Carrer Bisbe Winibal, 12, Elche</p>
-      <p style="color: var(--text-light); font-size: 12px;">
-        Esta es una propuesta y demostración técnica personalizada desarrollada por Fathi para modernizar la captación y reservas de negocios locales en Elche.
-      </p>
-    </div>
-  </footer>
+      <!-- STEP 4: CONFIRM -->
+      <div class="step-page" id="page4">
+        <div style="background: rgba(234, 179, 8, 0.08); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: 10px; padding: 12px; margin-bottom: 12px; font-size: 13px;" id="summaryText">
+          • <strong>Skin Fade</strong> (14€)<br>
+          • Barbero: Primer Hueco<br>
+          • Turno: Hoy a las 10:00
+        </div>
 
-  <!-- MOBILE STICKY ACTION BAR -->
-  <div class="mobile-sticky-bar">
-    <a href="#reservar" class="btn-mobile-booking">
-      <span>💈 Reservar Turno (30s)</span>
+        <input type="text" class="input-field" id="clientName" value="Marcos Soler" placeholder="Tu Nombre">
+        <input type="tel" class="input-field" id="clientPhone" value="+34 600 00 00 00" placeholder="Tu Teléfono Móvil">
+
+        <button class="btn-action-wizard" onclick="triggerBookingSuccess()">
+          ⚡ Confirmar Cita (Prueba Rápida)
+        </button>
+      </div>
+    </section>
+
+    <!-- REAL GOOGLE REVIEWS -->
+    <section class="reviews-box">
+      <div style="font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px;">OPINIONES REALES</div>
+      <div class="review-card-mini">
+        <div class="review-top">
+          <span class="reviewer">Alejandro R.</span>
+          <span class="stars">★★★★★</span>
+        </div>
+        <p class="review-body">"El mejor degradado de Elche. Trato impecable y el afeitado con toalla caliente es de otro nivel."</p>
+      </div>
+      <div class="review-card-mini">
+        <div class="review-top">
+          <span class="reviewer">Sergio Pomares</span>
+          <span class="stars">★★★★★</span>
+        </div>
+        <p class="review-body">"Llevo viniendo más de 2 años a Bisbe Winibal. El ambiente es brutal y el perfilado de barba perfecto."</p>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="location-box">
+      <div class="loc-row">
+        <span class="loc-icon">📍</span>
+        <div>
+          <strong>Carrer Bisbe Winibal, 12</strong><br>
+          03202 Elche, Alicante
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">⏰</span>
+        <div>
+          L-V: 09:30 - 13:30 / 16:30 - 20:30<br>
+          S: 09:00 - 14:00
+        </div>
+      </div>
+    </section>
+
+    <footer style="text-align: center; font-size: 11px; color: var(--muted); padding: 10px 0 20px;">
+      Propuesta y demo personalizada desarrollada por Fathi para Barbería El Galán · Elche
+    </footer>
+
+  </main>
+
+  <!-- STICKY MOBILE ACTION BAR (NATIVE APP FEEL) -->
+  <div class="sticky-bottom-bar">
+    <a href="#reservar" class="btn-sticky-cta" onclick="jumpStep(1)">
+      <span>💈 Reservar Cita (30 seg)</span>
     </a>
-    <a href="tel:+34622185439" class="btn-mobile-call" title="Llamada Urgente">
+    <a href="tel:+34622185439" class="btn-sticky-call" title="Llamar en Caso Excepcional">
       <span>📞</span>
     </a>
   </div>
 
+  <!-- SUCCESS SIMULATION MODAL -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-sheet">
+      <div class="modal-ok">✓</div>
+      <h3 style="font-family: var(--font-head); font-size: 20px; margin-bottom: 6px;">¡RESERVA CONFIRMADA!</h3>
+      <p style="font-size: 12px; color: var(--muted);">Así de fácil e inmediato es para el cliente.</p>
+
+      <div class="sim-card">
+        <div style="font-weight: 800; color: #4ade80; margin-bottom: 4px;">📲 Notificación recibida en tu WhatsApp:</div>
+        • Cliente: <strong>Marcos Soler</strong><br>
+        • Servicio: <strong>Skin Fade (14€)</strong><br>
+        • Turno: <strong>Hoy a las 10:00</strong><br>
+        <span style="color: var(--gold-light); font-size: 11px;">*No tuviste que descolgar el móvil ni parar de cortar.</span>
+      </div>
+
+      <button class="btn-modal-close" onclick="closeModal()">Cerrar Simulación</button>
+    </div>
+  </div>
+
   <script>
-    // --- BOOKING STATE ---
-    let bookingData = {
-      service: 'Corte Degradado (Skin Fade)',
-      price: '14.00€',
-      duration: '40 min',
-      barber: 'Cualquier Barbero Disponible',
-      date: 'Hoy (Miércoles)',
-      time: '10:00',
-      name: '',
-      phone: ''
-    };
+    let currentService = 'Skin Fade / Degradado (14€)';
+    let currentBarber = 'Primer Hueco';
+    let currentDay = 'Hoy';
+    let currentTime = '10:00';
 
     function updateSummary() {
-      const summaryEl = document.getElementById('bookingSummary');
-      if (summaryEl) {
-        summaryEl.innerHTML = `
-          • Servicio: <strong>${bookingData.service}</strong> (${bookingData.price})<br>
-          • Barbero: <strong>${bookingData.barber}</strong><br>
-          • Turno: <strong>${bookingData.date} a las ${bookingData.time}</strong>
+      const summary = document.getElementById('summaryText');
+      if (summary) {
+        summary.innerHTML = `
+          • <strong>${currentService}</strong><br>
+          • Barbero: <strong>${currentBarber}</strong><br>
+          • Turno: <strong>${currentDay} a las ${currentTime}</strong>
         `;
       }
     }
 
-    function selectService(el, name, price, duration) {
-      document.querySelectorAll('#stepContent1 .option-card').forEach(c => c.classList.remove('selected'));
+    function jumpStep(stepNum) {
+      document.querySelectorAll('.step-page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.step-pill').forEach(p => p.classList.remove('active'));
+
+      document.getElementById('page' + stepNum).classList.add('active');
+      document.getElementById('pill' + stepNum).classList.add('active');
+      updateSummary();
+
+      const el = document.getElementById('reservar');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function pickService(el, name, price, duration) {
+      document.querySelectorAll('.service-item').forEach(i => i.classList.remove('selected'));
       el.classList.add('selected');
-      bookingData.service = name;
-      bookingData.price = price;
-      bookingData.duration = duration;
+      currentService = `${name} (${price})`;
       updateSummary();
     }
 
-    function selectBarber(el, name) {
-      document.querySelectorAll('#stepContent2 .barber-card').forEach(c => c.classList.remove('selected'));
+    function pickBarber(el, name) {
+      document.querySelectorAll('.barber-opt').forEach(b => b.classList.remove('selected'));
       el.classList.add('selected');
-      bookingData.barber = name;
+      currentBarber = name;
       updateSummary();
     }
 
-    function selectDate(el, dateText) {
-      document.querySelectorAll('#stepContent3 .date-chip').forEach(c => c.classList.remove('selected'));
+    function pickDay(el, day) {
+      document.querySelectorAll('.day-chip').forEach(d => d.classList.remove('selected'));
       el.classList.add('selected');
-      bookingData.date = dateText;
+      currentDay = day;
       updateSummary();
     }
 
-    function selectTime(el, timeText) {
-      document.querySelectorAll('#stepContent3 .time-slot').forEach(c => c.classList.remove('selected'));
+    function pickTime(el, time) {
+      document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
       el.classList.add('selected');
-      bookingData.time = timeText;
+      currentTime = time;
       updateSummary();
     }
 
-    function goToStep(stepNum) {
-      // Hide all contents
-      document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.step-indicator').forEach(i => i.classList.remove('active'));
-
-      // Show requested step
-      document.getElementById('stepContent' + stepNum).classList.add('active');
-      document.getElementById('stepInd' + stepNum).classList.add('active');
-      updateSummary();
-
-      // Smooth scroll back to card top if needed
-      document.getElementById('reservar').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function confirmBooking() {
-      const name = document.getElementById('clientName').value || 'Cliente Elche';
-      const phone = document.getElementById('clientPhone').value || '+34 600 00 00 00';
-      bookingData.name = name;
-      bookingData.phone = phone;
-
-      const modalBody = document.getElementById('modalNotificationBody');
-      modalBody.innerHTML = `
-        <strong>Nueva cita recibida en tu móvil:</strong><br>
-        • Cliente: <strong>${name}</strong> (${phone})<br>
-        • Servicio: <strong>${bookingData.service}</strong><br>
-        • Barbero: <strong>${bookingData.barber}</strong><br>
-        • Horario: <strong>${bookingData.date} a las ${bookingData.time}</strong><br><br>
-        <span style="color: #4ade80;">✓ Confirmación automática enviada al WhatsApp del cliente.</span><br>
-        <span style="color: #fcd34d;">★ Tu equipo no tuvo que descolgar el teléfono ni parar el corte en el sillón.</span>
-      `;
-
-      document.getElementById('successModal').classList.add('open');
+    function triggerBookingSuccess() {
+      document.getElementById('successModal').classList.add('active');
     }
 
     function closeModal() {
-      document.getElementById('successModal').classList.remove('open');
-      goToStep(1);
+      document.getElementById('successModal').classList.remove('active');
+      jumpStep(1);
     }
 
-    // --- BEFORE / AFTER SLIDER LOGIC ---
-    const sliderBox = document.getElementById('sliderBox');
-    const sliderAfter = document.getElementById('sliderAfter');
-    const sliderHandle = document.getElementById('sliderHandle');
-    let isDragging = false;
+    // Touch Slider
+    const frame = document.getElementById('sliderFrame');
+    const after = document.getElementById('sliderAfter');
+    const thumb = document.getElementById('sliderThumb');
+    let activeDrag = false;
 
-    function updateSlider(xPos) {
-      const rect = sliderBox.getBoundingClientRect();
-      let percent = ((xPos - rect.left) / rect.width) * 100;
-      if (percent < 5) percent = 5;
-      if (percent > 95) percent = 95;
-
-      sliderAfter.style.width = percent + '%';
-      sliderHandle.style.left = percent + '%';
+    function moveSlider(x) {
+      const rect = frame.getBoundingClientRect();
+      let p = ((x - rect.left) / rect.width) * 100;
+      if (p < 5) p = 5;
+      if (p > 95) p = 95;
+      after.style.width = p + '%';
+      thumb.style.left = p + '%';
     }
 
-    if (sliderBox) {
-      sliderBox.addEventListener('mousedown', () => isDragging = true);
-      window.addEventListener('mouseup', () => isDragging = false);
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        updateSlider(e.clientX);
-      });
-
-      // Touch events for mobile
-      sliderBox.addEventListener('touchstart', () => isDragging = true);
-      window.addEventListener('touchend', () => isDragging = false);
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        updateSlider(e.touches[0].clientX);
-      });
+    if (frame) {
+      frame.addEventListener('pointerdown', (e) => { activeDrag = true; moveSlider(e.clientX); });
+      window.addEventListener('pointermove', (e) => { if (activeDrag) moveSlider(e.clientX); });
+      window.addEventListener('pointerup', () => activeDrag = false);
     }
   </script>
 </body>
