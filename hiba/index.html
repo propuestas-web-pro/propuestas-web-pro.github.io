@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Un Mensaje Especial Para Ti ✨</title>
+    <meta name="description" content="Una sorpresa interactiva hecha con mucho cariño.">
+    <!-- Favicon con forma de corazón -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Canvases de fondo y efectos dinámicos -->
+    <canvas id="bg-canvas"></canvas>
+    <canvas id="effects-canvas"></canvas>
+
+    <!-- Auroras lumínicas etéreas -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <!-- Barra de controles flotantes -->
+    <header class="top-bar">
+        <button id="music-toggle-btn" class="control-btn" title="Música de fondo">
+            <span id="music-icon">🎵</span>
+            <div id="music-waves" class="music-waves paused">
+                <span></span><span></span><span></span>
+            </div>
+            <span id="music-text">Música</span>
+        </button>
+
+        <button id="customize-btn" class="control-btn" title="Personalizar sorpresa (Solo para ti)">
+            <span>⚙️</span>
+            <span>Personalizar</span>
+        </button>
+    </header>
+
+    <!-- ======================================================= -->
+    <!-- FASE 0: EL REGALO MISTERIOSO (DOBLE CLIC PARA ABRIR)   -->
+    <!-- ======================================================= -->
+    <main id="intro-screen" class="intro-screen">
+        <div id="gift-card" class="gift-container" role="button" tabindex="0" aria-label="Abrir regalo especial">
+            <div class="gift-badge">✨ Sorpresa Exclusiva ✨</div>
+            
+            <div class="gift-image-wrapper">
+                <img src="assets/gift_box.jpg" alt="Caja de regalo mágica" loading="eager">
+                <div class="wax-seal" title="Sello de amor">💌</div>
+            </div>
+
+            <h1 class="gift-title">3ndk klam khass bzaf...</h1>
+            <p class="gift-instruction">Un cadeau spécial préparé avec tout le cœur pour Hiba ✨</p>
+
+            <button type="button" class="click-cue-btn" id="open-box-btn">
+                <span>✨ Toca 2 veces para abrir ✨</span>
+            </button>
+
+            <div style="margin-top: 12px; font-size: 0.85rem; color: #f9d371; opacity: 0.9;">
+                🔊 Tla3 l'volum d'tel bach tsm3 l'musique 🎵
+            </div>
+
+            <div id="click-feedback" class="click-hint-feedback"></div>
+        </div>
+    </main>
+
+    <!-- ======================================================= -->
+    <!-- FASE 1: EL SANTUARIO ROMÁNTICO (LA EXPERIENCIA COMPLETA) -->
+    <!-- ======================================================= -->
+    <div id="main-experience" class="main-experience">
+        
+        <!-- Encabezado / Dedicatoria -->
+        <section class="hero-header">
+            <p class="hero-tagline">✨ Bismillah Ar-Rahman Ar-Rahim • Maktub ✨</p>
+            <h2 id="display-title" class="hero-title">Pour toi, <span id="recipient-display-name">Hiba</span> 🌸</h2>
+            <p class="hero-subtitle">Makayninch sodaf fhad dnya, kolchi b lqadr w l'Maktub dyal Allah... w m3riftek a7san ni3ma.</p>
+        </section>
+
+        <!-- Sección 1: La Carta Romántica Escrita a Máquina -->
+        <section class="letter-section">
+            <article class="letter-card">
+                <div class="letter-header">
+                    <span class="letter-greeting" id="letter-greeting-text">Khti w 7bibti <span id="letter-name-field" style="color: var(--primary-gold);">Hiba</span>,</span>
+                    <span class="letter-date" id="current-date-field">Aujourd'hui</span>
+                </div>
+
+                <div class="letter-body" id="letter-body-content">
+                    <!-- Se escribirá dinámicamente con efecto máquina de escribir -->
+                </div>
+
+                <div class="letter-footer">
+                    <span class="letter-signature" id="letter-signature-field">Mn 3nd Othmane li kaybghik bzaf 🤍✨</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sección 2: 3 Secretos / Detalles Especiales (Polaroids 3D) -->
+        <section class="polaroids-section">
+            <div class="section-heading">
+                <h3 class="section-title">3 Dyal L7wayej Zwinin Fik</h3>
+                <p class="section-desc">Cliqui 3la kol teswira bach tchofi chno kayn lor ✨</p>
+            </div>
+
+            <div class="polaroids-grid">
+                <!-- Tarjeta 1: La Sonrisa -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/rose_bouquet.jpg" alt="Rosas delicadas">
+                            </div>
+                            <div class="polaroid-caption">🌹 De7ka dyalk (Tabassum)</div>
+                            <div class="polaroid-tap-cue"><span>👆 Toca para girar</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">🕊️</div>
+                            <p class="polaroid-back-text">F l'Islam, tabassom sadaqa. W dik de7ka dyalk fiha wa7d lkheir w wa7d l'farha katrd rou7 w katfere7 l9elb bzaf.</p>
+                            <span class="polaroid-back-cue">Toca para volver</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Tu Luz -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/starry_sky.jpg" alt="Cielo nocturno de estrellas">
+                            </div>
+                            <div class="polaroid-caption">🌌 Nour li f 3inik (Noor)</div>
+                            <div class="polaroid-tap-cue"><span>👆 Toca para girar</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">✨</div>
+                            <p class="polaroid-back-text">3ndk wa7d n-nour f 3inik w wa7d l-hedawa li katji ghir mn n-nas li 3ndhom rou7 nqiyya w qalb safi.</p>
+                            <span class="polaroid-back-cue">Toca para volver</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Tu Nombre y Esencia -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/gift_box.jpg" alt="Detalle especial">
+                            </div>
+                            <div class="polaroid-caption">💫 Hiba (هبة de Dios)</div>
+                            <div class="polaroid-tap-cue"><span>👆 Toca para girar</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">🌸</div>
+                            <p class="polaroid-back-text">Nti machi ghir smiya, nti bssah hiba mn 3nd Allah. Insana drayfa, m2edba w ma kaynach b7alk f had dnya. Lah ykhellik dima mnowra.</p>
+                            <span class="polaroid-back-cue">Toca para volver</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: El Cielo de Deseos Interactivo -->
+        <section class="constellation-section">
+            <div class="constellation-card">
+                <div class="section-heading">
+                    <h3 class="section-title">Sma dyalk dyal Njoum</h3>
+                    <p class="section-desc">Cliqui f ay blasa f sma bach tch3li njoum w tchofi klam zwin 3lik</p>
+                </div>
+
+                <div class="constellation-wrapper" id="constellation-area">
+                    <canvas id="constellation-canvas"></canvas>
+                    <div class="constellation-hint-overlay" id="sky-hint">✨ Cliqui hna bach tch3li nejma ✨</div>
+                </div>
+
+                <div class="constellation-actions">
+                    <button id="btn-trace-heart" class="secondary-btn">✨ Trazar Constelación de Amor</button>
+                    <button id="btn-clear-sky" class="secondary-btn">💫 Mas7 sma</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: La Pregunta Especial (Wesh katbghi Othmane?) -->
+        <section class="proposal-section">
+            <div class="proposal-box">
+                <div id="proposal-question-view">
+                    <div class="proposal-icon">💌</div>
+                    <h3 class="proposal-title" id="proposal-title-text">W daba... sou2al sghir w mohem bzaf: 😉</h3>
+                    <p class="proposal-text" id="proposal-subtext">Wesh katbghi Othmane? 🙈💖</p>
+
+                    <div class="proposal-buttons" id="proposal-buttons-container">
+                        <button id="btn-answer-yes" class="btn-yes">
+                            Ah bzaf, kanbghik! 🥰💖
+                        </button>
+                        <button id="btn-answer-no" class="btn-no">
+                            La / Mmm fkkerni 😜
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vista de Éxito al hacer clic en SÍ -->
+                <div id="proposal-success-view" class="proposal-success">
+                    <div class="success-badge">✨ ¡Alhamdulillah! ✨</div>
+                    <h3 class="success-title">7ta Othmane kaybghik bzaf a Hiba! 🥰🌸</h3>
+                    <p class="success-message" id="success-custom-message">
+                        Far7tini bzaf! InchaAllah dima fer7anin w dima kolchi ykon zwin binatna.
+                        Daba cliqui lte7t bach tgoliha l Othmane nichan f Instagram! 😉👇
+                    </p>
+                    <a id="btn-instagram-reply" href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="instagram-reply-btn">
+                        <span>💬 Goliha l Othmane f Instagram</span>
+                        <span>👉</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL SECRETO DE PERSONALIZACIÓN (PARA EL USUARIO)      -->
+    <!-- ======================================================= -->
+    <div id="custom-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-heading" class="modal-title">⚙️ Personaliza el Regalo</h3>
+                <button id="modal-close-btn" class="modal-close" aria-label="Cerrar">&times;</button>
+            </div>
+
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+                Personaliza los datos para que el enlace sea 100% único para ella. Al pulsar "Copiar Enlace para Instagram", se generará un enlace que puedes pegarle directamente en su chat de Instagram.
+            </p>
+
+            <form id="customize-form" onsubmit="return false;">
+                <div class="modal-form-group">
+                    <label class="modal-label" for="input-recipient">Nombre de ella (Para quién es):</label>
+                    <input type="text" id="input-recipient" class="modal-input" placeholder="Ej: Sofía, Laura, Mi Niña Bonita..." required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label class="modal-label" for="input-sender">Tu nombre o apodo (Firma):</label>
+                    <input type="text" id="input-sender" class="modal-input" placeholder="Ej: Fathi, Tu Admirador Secreto..." required>
+                </div>
+
+                <div class="modal-form-group">
+                    <label class="modal-label" for="input-instagram">Tu usuario de Instagram (sin @):</label>
+                    <input type="text" id="input-instagram" class="modal-input" placeholder="Ej: tu_usuario">
+                    <span style="font-size: 0.8rem; color: #a59fb6; margin-top: 4px; display: block;">
+                        Servirá para que al decir "SÍ", se le abra directamente tu chat de Instagram para responderte.
+                    </span>
+                </div>
+
+                <div class="modal-form-group">
+                    <label class="modal-label" for="input-letter">Texto de la carta romántica:</label>
+                    <textarea id="input-letter" class="modal-textarea" rows="6" placeholder="Escribe lo que sientes..."></textarea>
+                </div>
+
+                <div class="modal-form-group">
+                    <label class="modal-label" for="input-proposal">La pregunta de la cita:</label>
+                    <input type="text" id="input-proposal" class="modal-input" placeholder="Ej: ¿Me concedes una cita para invitarte a merendar? ☕✨">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="btn-save-custom" class="btn-primary">
+                        💾 Guardar y Aplicar
+                    </button>
+                    <button type="button" id="btn-copy-instagram-link" class="btn-secondary" style="background: linear-gradient(135deg, #833ab4, #fd1d1d);">
+                        📋 Copiar Enlace para Instagram
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast de Notificaciones -->
+    <div id="toast" class="toast-notice">¡Enlace copiado al portapapeles! 💖</div>
+
+    <!-- Scripts de la aplicación -->
+    <script src="audio.js"></script>
+    <script src="particles.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
