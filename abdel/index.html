@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>10 Snin D L'Khawa • Pour Mon Frère Abdel ⵣ</title>
+    <meta name="description" content="Un hommage pour 10 ans de fraternité entre Othmane et Abdel.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ⵣ</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Canvases de fondo y efectos dinámicos -->
+    <canvas id="bg-canvas"></canvas>
+    <canvas id="effects-canvas"></canvas>
+
+    <!-- Auroras lumínicas estilo Amazigh (Azul zafiro, Verde esmeralda y Oro desierto) -->
+    <div class="ambient-glow glow-amazigh-1"></div>
+    <div class="ambient-glow glow-amazigh-2"></div>
+
+    <!-- Barra de controles flotantes -->
+    <header class="top-bar">
+        <button id="music-toggle-btn" class="control-btn" title="Musique de fond">
+            <span id="music-icon">🎵</span>
+            <div id="music-waves" class="music-waves paused">
+                <span></span><span></span><span></span>
+            </div>
+            <span id="music-text">Música</span>
+        </button>
+
+        <div class="amazigh-badge-top">
+            <span>ⵣ 10 ANS D'AMITIÉ ⵣ</span>
+        </div>
+    </header>
+
+    <!-- ======================================================= -->
+    <!-- FASE 0: EL COFRE DEL HERMANO (DOBLE TOQUE PARA ABRIR)   -->
+    <!-- ======================================================= -->
+    <main id="intro-screen" class="intro-screen">
+        <div id="gift-card" class="gift-container" role="button" tabindex="0" aria-label="Abrir regalo de Abdel">
+            <div class="gift-badge">ⵣ DAM AMAZIGH • 10 SNIN D L'KHAWA ⵣ</div>
+            
+            <div class="gift-image-wrapper">
+                <img src="assets/starry_sky.jpg" alt="Nuit majestueuse" loading="eager">
+                <div class="yaz-seal" title="Symbole Amazigh Yaz">ⵣ</div>
+            </div>
+
+            <h1 class="gift-title">Khouya Abdel, 3ndk risala khassa...</h1>
+            <p class="gift-instruction">Un hommage fraternel préparé spécialement par Othmane pour 10 ans d'amitié 👑</p>
+
+            <button type="button" class="click-cue-btn" id="open-box-btn">
+                <span>✨ Toca 2 veces para abrir ✨</span>
+            </button>
+
+            <div style="margin-top: 12px; font-size: 0.85rem; color: #ffd700; opacity: 0.9;">
+                🔊 Tla3 l'volum d'tel bach tsm3 l'musique 🎵
+            </div>
+
+            <div id="click-feedback" class="click-hint-feedback"></div>
+        </div>
+    </main>
+
+    <!-- ======================================================= -->
+    <!-- FASE 1: EL HOMENAJE DE HERMANDAD (LA EXPERIENCIA)       -->
+    <!-- ======================================================= -->
+    <div id="main-experience" class="main-experience">
+        
+        <!-- Encabezado / Dedicatoria -->
+        <section class="hero-header">
+            <p class="hero-tagline">ⵣ 10 SNIN D L'KHAWA LI MAKATMOUTCH ⵣ</p>
+            <h2 id="display-title" class="hero-title">Pour mon frère <span id="recipient-display-name">Abdel</span> 👑</h2>
+            <p class="hero-subtitle">Kaynin s7ab, w kayn l'khot li ma wldathomch l'walida... W ntiya khouya li dima wa9ef f dahr.</p>
+        </section>
+
+        <!-- Sección 1: La Carta Fraterna -->
+        <section class="letter-section">
+            <article class="letter-card">
+                <div class="letter-header">
+                    <span class="letter-greeting">Khouya <span style="color: #ffd700;">Abdel ⵣ</span>,</span>
+                    <span class="letter-date" id="current-date-field">10 ans d'amitié</span>
+                </div>
+
+                <div class="letter-body" id="letter-body-content">
+                    <!-- Se escribirá dinámicamente -->
+                </div>
+
+                <div class="letter-footer">
+                    <span class="letter-signature">Mn 3nd khouk Othmane li kay3zzek bzaf 🤝👑</span>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sección 2: 3 Pilares de la Hermandad (3 Polaroids 3D) -->
+        <section class="polaroids-section">
+            <div class="section-heading">
+                <h3 class="section-title">3 Dyal L7wayej Li Kaykhlliwk Rajel</h3>
+                <p class="section-desc">Cliqui 3la kol teswira bach tchof chno kayn lor ✨</p>
+            </div>
+
+            <div class="polaroids-grid">
+                <!-- Tarjeta 1: Dam Amazigh -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/starry_sky.jpg" alt="Dam Amazigh">
+                            </div>
+                            <div class="polaroid-caption">ⵣ Dam Amazigh 7or</div>
+                            <div class="polaroid-tap-cue"><span>👆 Cliqui bach tdowwer</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">ⵣ</div>
+                            <p class="polaroid-back-text">L'asl, l'karama, r-rajla w l'kalma d r-rjal li ma katbeddelch wakha ybeddel z-zman. Berbère 7or weld n-nas.</p>
+                            <span class="polaroid-back-cue">Cliqui bach trj3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: 10 Años de Recuerdos -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/gift_box.jpg" alt="10 Snin d Dékriyat">
+                            </div>
+                            <div class="polaroid-caption">⏳ 10 Snin d L'Khawa</div>
+                            <div class="polaroid-tap-cue"><span>👆 Cliqui bach tdowwer</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">⏳</div>
+                            <p class="polaroid-back-text">10 snin w 7na khot f l7elwa w lmorra. Derna fiha bzaf d l7wayej, w f kol mar7ala l9itk dima f jnbi wa9ef b7al jbel.</p>
+                            <span class="polaroid-back-cue">Cliqui bach trj3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Un Hermano de Verdad -->
+                <div class="polaroid-card" tabindex="0">
+                    <div class="polaroid-inner">
+                        <div class="polaroid-front">
+                            <div class="polaroid-img-wrapper">
+                                <img src="assets/rose_bouquet.jpg" alt="Un Vrai Frère">
+                            </div>
+                            <div class="polaroid-caption">👑 Khouya Li Ma Wldatch Omi</div>
+                            <div class="polaroid-tap-cue"><span>👆 Cliqui bach tdowwer</span></div>
+                        </div>
+                        <div class="polaroid-back">
+                            <div class="polaroid-back-icon">🤝</div>
+                            <p class="polaroid-back-text">Sa7b li kayfra7 l fer7tk w kaywa9ef f dahrk f wa9t chedda. Hadak howa khouya Abdel. Lah ykhellina dima khot.</p>
+                            <span class="polaroid-back-cue">Cliqui bach trj3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: El Cielo de las Estrellas Amazigh -->
+        <section class="constellation-section">
+            <div class="constellation-card">
+                <div class="section-heading">
+                    <h3 class="section-title">Sma d L'Khawa (Njoum Amazigh)</h3>
+                    <p class="section-desc">Cliqui f sma bach tch3li njoum w tchofi klam d r-rjal</p>
+                </div>
+
+                <div class="constellation-wrapper" id="constellation-area">
+                    <canvas id="constellation-canvas"></canvas>
+                    <div class="constellation-hint-overlay" id="sky-hint">✨ Cliqui hna bach tch3li nejma ✨</div>
+                </div>
+
+                <div class="constellation-actions">
+                    <button id="btn-trace-yaz" class="secondary-btn">ⵣ Trazar Sello Amazigh ⵣ</button>
+                    <button id="btn-clear-sky" class="secondary-btn">💫 Mas7 sma</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: La Pregunta de la Hermandad (Mini-Juego) -->
+        <section class="proposal-section">
+            <div class="proposal-box">
+                <div id="proposal-question-view">
+                    <div class="proposal-icon">👑</div>
+                    <h3 class="proposal-title" id="proposal-title-text">Sou2al sghir l khouya Abdel: 😉</h3>
+                    <p class="proposal-text" id="proposal-subtext">Wesh ghadi nb9aw khot 7ta nchibo bjouj inchaAllah? 🤝ⵣ</p>
+
+                    <div class="proposal-buttons" id="proposal-buttons-container">
+                        <button id="btn-answer-yes" class="btn-yes">
+                            Dima khawa l'mamat inchaAllah! 👑🤝
+                        </button>
+                        <button id="btn-answer-no" class="btn-no">
+                            La, gha 10 snin baraka 😜
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Vista de Éxito al hacer clic en SÍ -->
+                <div id="proposal-success-view" class="proposal-success">
+                    <div class="success-badge">✨ 10 SNIN & POUR TOUJOURS ✨</div>
+                    <h3 class="success-title">Dima Khawa Ya Abdel! ⵣ👑</h3>
+                    <p class="success-message">
+                        Lah ykhellina dima m3a ba3diyatna ya weld l'asl. Cliqui lte7t bach tsifetha l Othmane f WhatsApp wla Instagram! 👇
+                    </p>
+                    <a id="btn-contact-reply" href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="instagram-reply-btn">
+                        <span>💬 Sifetha l Othmane f WhatsApp / Insta</span>
+                        <span>👉</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Toast de Notificaciones -->
+    <div id="toast" class="toast-notice">¡Message copié! 👑</div>
+
+    <!-- Scripts -->
+    <script src="audio.js"></script>
+    <script src="particles.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
