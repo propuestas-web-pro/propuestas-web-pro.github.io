@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Café Bar Harpo | Desayunos, Tapas Caseras & Fusión Latina en Orihuela</title>
+  <meta name="description" content="Café Bar Harpo en la Plaza de la Salud de Orihuela. Desayunos con café de especialidad, tapas caseras, empanadas criollas, provolone al horno, pelotica de Orihuela y terraza arbolada.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Café Bar Harpo | Terraza, Tapas & Desayunos en Orihuela">
+  <meta property="og:description" content="El punto de encuentro en la Plaza de la Salud. Desayunos mediterráneos, tapas con fusión hispano-latina y gran terraza familiar. 4.8★ en Google.">
+  <meta property="og:image" content="./assets/tapas_provolone.jpg">
+  <link rel="canonical" href="https://propuestas-web-pro.github.io/orihuela/cafe-bar-harpo/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0c0f15;
+      --bg-surface: #141923;
+      --bg-elevated: #1b2230;
+      --bg-card: #18202c;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(224, 159, 62, 0.4);
+      --primary: #e09f3e;
+      --primary-light: #f4be6c;
+      --primary-dark: #b87319;
+      --primary-glow: rgba(224, 159, 62, 0.25);
+      --accent: #e76f51;
+      --whatsapp: #25d366;
+      --whatsapp-dark: #128c7e;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --font-head: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding-bottom: calc(85px + env(safe-area-inset-bottom, 16px));
+      overflow-x: hidden;
+    }
+
+    /* Ambient Warm Glow */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(224, 159, 62, 0.12) 0%, rgba(231, 111, 81, 0.04) 50%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Demo Header Bar */
+    .demo-bar {
+      background: linear-gradient(90deg, #141a24 0%, #20293a 50%, #141a24 100%);
+      border-bottom: 1px solid rgba(224, 159, 62, 0.35);
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 600;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 110;
+      backdrop-filter: blur(12px);
+    }
+    .demo-pill {
+      background: var(--primary);
+      color: #0b0d11;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Top Utility Bar */
+    .topbar {
+      background: #090c10;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      padding: 7px 0;
+      color: var(--text-muted);
+    }
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 41px;
+      background: rgba(12, 15, 21, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 14px 0;
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0c0f15;
+      font-size: 22px;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .brand-text h1 {
+      font-family: var(--font-head);
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+    .brand-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: none;
+      gap: 24px;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    @media (min-width: 860px) {
+      .nav-links { display: flex; }
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary-light);
+    }
+    .btn-nav-wa {
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: #4ade80;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-nav-wa:hover {
+      background: var(--whatsapp);
+      color: #0b0d11;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 45px 0 35px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (min-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 48px;
+        padding: 20px 0;
+      }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid rgba(224, 159, 62, 0.3);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-bottom: 18px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: 2.35rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3.2rem;
+      }
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #fff 30%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-title .accent-word {
+      background: linear-gradient(135deg, var(--primary) 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 580px;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #0b0d11;
+      padding: 13px 26px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(224, 159, 62, 0.4);
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    }
+    .btn-secondary {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 13px 22px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card);
+      color: var(--primary-light);
+    }
+
+    /* Hero Media Card */
+    .hero-media {
+      position: relative;
+    }
+    .hero-img-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      background: var(--bg-surface);
+    }
+    .hero-img-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .hero-img-card:hover img {
+      transform: scale(1.03);
+    }
+    .hero-overlay-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(12, 15, 21, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+    .hero-floating-stat {
+      position: absolute;
+      bottom: -18px;
+      left: 20px;
+      right: 20px;
+      background: rgba(19, 23, 32, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(224, 159, 62, 0.35);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+    .stat-score {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Pillars / Highlights */
+    .pillars-section {
+      padding: 60px 0 30px;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    @media (min-width: 600px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .pillars-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .pillar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pillar-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(224, 159, 62, 0.12);
+      border: 1px solid rgba(224, 159, 62, 0.25);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .pillar-title {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .pillar-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Section Titles */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 38px;
+    }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    @media (min-width: 768px) {
+      .section-title { font-size: 2.6rem; }
+    }
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* Core Feature 1: Engine de Reservas */
+    .engine-section {
+      padding: 40px 0 60px;
+    }
+    .engine-wrapper {
+      background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+      border: 1px solid rgba(224, 159, 62, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      .engine-wrapper { padding: 44px 40px; }
+    }
+    .engine-header {
+      margin-bottom: 28px;
+    }
+    .engine-pill {
+      background: rgba(224, 159, 62, 0.15);
+      color: var(--primary-light);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .engine-header h3 {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .engine-header p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 640px) {
+      .form-grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-label {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .form-control {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.92rem;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+    .time-chips {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 500px) {
+      .time-chips { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 768px) {
+      .time-chips { grid-template-columns: repeat(5, 1fr); }
+    }
+    .time-chip {
+      background: #0d1117;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 8px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .time-chip:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+    .time-chip.active {
+      background: rgba(224, 159, 62, 0.18);
+      border-color: var(--primary);
+      color: var(--primary-light);
+    }
+    .btn-submit-reserva {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      border: none;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 14px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+    }
+    .btn-submit-reserva:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Core Feature 2: Carta Digital & Pedidos */
+    .menu-section {
+      padding: 50px 0 60px;
+    }
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+    .menu-tab-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .menu-tab-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+    .menu-tab-btn.active {
+      background: var(--primary);
+      color: #0b0d11;
+      border-color: var(--primary);
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .menu-item-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.25s;
+    }
+    .menu-item-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-elevated);
+      transform: translateY(-2px);
+    }
+    .item-info {
+      flex: 1;
+    }
+    .item-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .item-name {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .item-badge {
+      background: rgba(224, 159, 62, 0.15);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .item-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .item-price {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-light);
+      white-space: nowrap;
+    }
+    .btn-add-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-add-item:hover {
+      background: var(--primary);
+      color: #0b0d11;
+      border-color: var(--primary);
+    }
+
+    /* Cart Floating Drawer / Summary */
+    .order-summary-box {
+      margin-top: 36px;
+      background: var(--bg-card);
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .order-summary-box.visible {
+      display: flex;
+    }
+    .order-total-count {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .order-total-count strong {
+      color: var(--primary-light);
+    }
+    .btn-send-order {
+      background: var(--whatsapp);
+      color: #0b0d11;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-send-order:hover {
+      background: #20ba5a;
+      transform: translateY(-2px);
+    }
+
+    /* Visual Showcase: Historia & Fusión */
+    .showcase-section {
+      padding: 50px 0;
+    }
+    .showcase-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) {
+      .showcase-card { grid-template-columns: 1fr 1fr; }
+    }
+    .showcase-img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+    }
+    .showcase-content {
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .showcase-content { padding: 48px 40px; }
+    }
+    .showcase-tag {
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .showcase-title {
+      font-family: var(--font-head);
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .showcase-desc {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .showcase-quote {
+      border-left: 3px solid var(--primary);
+      padding-left: 16px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: #e2e8f0;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      padding: 60px 0;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .review-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.05rem;
+      letter-spacing: 2px;
+    }
+    .review-text {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reviewer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #0b0d11;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .reviewer-name {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .reviewer-date {
+      font-size: 0.74rem;
+      color: var(--text-dim);
+    }
+
+    /* Location & Hours */
+    .location-section {
+      padding: 40px 0 60px;
+    }
+    .location-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 860px) {
+      .location-card {
+        grid-template-columns: 1.1fr 0.9fr;
+        padding: 44px 38px;
+      }
+    }
+    .location-info h3 {
+      font-family: var(--font-head);
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+    .info-icon {
+      color: var(--primary);
+      margin-top: 3px;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .hours-table tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .hours-table td {
+      padding: 8px 0;
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      background: #080a0e;
+      border-top: 1px solid var(--border);
+      padding: 36px 0 20px;
+      text-align: center;
+      font-size: 0.83rem;
+      color: var(--text-dim);
+    }
+    .footer p { margin-bottom: 8px; }
+
+    /* Mobile Floating Bar */
+    .floating-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(12, 15, 21, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .btn-float-call {
+      flex: 1;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-float-wa {
+      flex: 2;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Header Bar -->
+  <aside class="demo-bar" aria-label="Aviso de demostración">
+    <span class="demo-pill">DEMO EN VIVO</span>
+    <span>Propuesta Digital Oficial para <strong>Café Bar Harpo</strong> &bull; Orihuela (Plaza de la Salud)</span>
+  </aside>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div class="status-live">
+        <span class="pulse-dot"></span>
+        <span>Servicio Activo en Terraza y Salón &bull; Plaza de la Salud, 5, Orihuela</span>
+      </div>
+      <div>
+        Atención Directa: <a href="https://wa.me/34681622856" style="color: var(--primary-light); font-weight:700;">WhatsApp +34 681 62 28 56</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-flex">
+      <a href="#" class="brand">
+        <div class="brand-logo">☕</div>
+        <div class="brand-text">
+          <h1>Café Bar Harpo</h1>
+          <div class="brand-sub">PLAZA DE LA SALUD &bull; ORIHUELA</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#reservas">Reservar Mesa</a>
+        <a href="#carta">Carta Digital</a>
+        <a href="#fusion">Fusión & Tradición</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#ubicacion">Contacto</a>
+      </div>
+      <a href="https://wa.me/34681622856?text=Hola%20Caf%C3%A9%20Bar%20Harpo%2C%20quer%C3%ADa%20hacer%20una%20consulta" class="btn-nav-wa" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg>
+        <span>WhatsApp Directo</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span>🌿 Plaza de la Salud &bull; Terraza, Tapas & Desayunos</span>
+        </div>
+        <h2 class="hero-title">
+          <span>El Sabor de la Plaza:</span><br>
+          <span class="accent-word">Desayunos con Alma, Tapas Caseras y Fusión Latina</span>
+        </h2>
+        <p class="hero-lead">
+          Disfruta de nuestra acogedora terraza arbolada en pleno casco de Orihuela. Desde el café recién molido con tostada de jamón al amanecer, hasta las famosas empanadas caseras, cazuelas de provolone fundido y la tradicional pelotica oriolana.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#reservas" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+            <span>Reservar Mesa en Terraza</span>
+          </a>
+          <a href="https://wa.me/34681622856?text=Hola%20Harpo%2C%20quer%C3%ADa%20consultar%20disponibilidad%20para%20hoy" class="btn-secondary" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg>
+            <span>Pedir por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-img-card">
+          <img src="./assets/terraza_plaza.jpg" alt="Terraza de Café Bar Harpo en Plaza de la Salud Orihuela" onerror="this.src='./assets/tapas_provolone.jpg'">
+          <div class="hero-overlay-tag">📍 Plaza de la Salud, 5 &bull; Orihuela</div>
+        </div>
+        <div class="hero-floating-stat">
+          <div>
+            <div class="stat-score">4.8 ★</div>
+            <div class="stat-meta">Valoración en Google Maps</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 800; color: #fff; font-size: 1.1rem;">100% Casero</div>
+            <div class="stat-meta">Tradición & Fusión</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars Section -->
+  <section class="pillars-section">
+    <div class="container pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🌳</div>
+        <h3 class="pillar-title">Terraza en Plaza Peatonal</h3>
+        <p class="pillar-desc">Plaza tranquila con sombra natural, sin tráfico y parque infantil al lado. Ideal para familias, sobremesas y cañas al sol.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🥟</div>
+        <h3 class="pillar-title">Empanadas & Provolone</h3>
+        <p class="pillar-desc">Nuestra firma hispano-latina: empanadas criollas recién horneadas y cazuelas burbujeantes de provolone fundido con especias.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🍲</div>
+        <h3 class="pillar-title">Pelotica Tradicional</h3>
+        <p class="pillar-desc">Participantes oficiales de 'La Pelotica de Orihuela'. Saborea nuestra receta tradicional a fuego lento de martes a viernes.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">☕</div>
+        <h3 class="pillar-title">Desayunos de Barrio</h3>
+        <p class="pillar-desc">Café de tueste selecto recién molido, zumo de naranja natural exprimido al momento y pan rústico con tomate de huerta y jamón.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Feature 1: Engine de Reservas -->
+  <section id="reservas" class="engine-section">
+    <div class="container">
+      <div class="engine-wrapper">
+        <div class="engine-header">
+          <span class="engine-pill">⚡ RESERVA DIRECTA EN 30 SEGUNDOS</span>
+          <h3>Asegura tu Mesa en Terraza o Salón</h3>
+          <p>Selecciona tu fecha, turno y comensales. Se conectará directamente con nuestro equipo de sala para confirmar tu mesa al instante sin esperas telefónicas.</p>
+        </div>
+
+        <form id="reservaForm">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="resDate">Fecha de la visita</label>
+              <input type="date" id="resDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="resPax">Número de Comensales</label>
+              <select id="resPax" class="form-control">
+                <option value="2 personas">2 comensales</option>
+                <option value="3-4 personas" selected>3 a 4 comensales</option>
+                <option value="5-6 personas">5 a 6 comensales</option>
+                <option value="7-8 personas">7 a 8 comensales</option>
+                <option value="Grupo grande (+8 personas)">Grupo (+8 personas / Celebración)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label">Franja y Turno</label>
+            <div class="time-chips" id="timeChips">
+              <button type="button" class="time-chip" data-time="09:00 (Desayuno)">09:00 Desayuno</button>
+              <button type="button" class="time-chip" data-time="10:30 (Desayuno / Almuerzo)">10:30 Almuerzo</button>
+              <button type="button" class="time-chip" data-time="12:30 (Aperitivo / Vermut)">12:30 Aperitivo</button>
+              <button type="button" class="time-chip active" data-time="14:00 (Comida)">14:00 Comida</button>
+              <button type="button" class="time-chip" data-time="14:45 (Comida)">14:45 Comida</button>
+              <button type="button" class="time-chip" data-time="19:30 (Tardeo / Cañas)">19:30 Tardeo</button>
+              <button type="button" class="time-chip" data-time="21:00 (Cena)">21:00 Cena</button>
+              <button type="button" class="time-chip" data-time="21:45 (Cena)">21:45 Cena</button>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="resZona">Zona Preferida</label>
+              <select id="resZona" class="form-control">
+                <option value="Terraza arbolada en Plaza de la Salud" selected>Terraza arbolada exterior (Plaza de la Salud)</option>
+                <option value="Salón interior climatizado">Salón interior climatizado</option>
+                <option value="Cualquiera disponible">Primera disponible</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="resNotas">Petición Especial (Opcional)</label>
+              <input type="text" id="resNotas" class="form-control" placeholder="Ej: Trona infantil, celebración cumpleaños, encargar arroz...">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit-reserva">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg>
+            <span>Confirmar Reserva Directa por WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Feature 2: Carta Digital Interactiva -->
+  <section id="carta" class="menu-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">🍴 CARTA DIGITAL INTERACTIVA</span>
+        <h3 class="section-title">Elige, Encarga o Prueba en Sala</h3>
+        <p class="section-desc">Toca en <strong>+</strong> para añadir tus raciones favoritas y enviar tu encargo directo por WhatsApp para tenerlo listo al llegar o recoger para llevar.</p>
+      </div>
+
+      <div class="menu-tabs">
+        <button class="menu-tab-btn active" data-category="tapas">🥟 Tapas & Fusión</button>
+        <button class="menu-tab-btn" data-category="desayunos">☕ Desayunos & Almuerzos</button>
+        <button class="menu-tab-btn" data-category="platos">🥘 Arroces & Platos Fuertes</button>
+        <button class="menu-tab-btn" data-category="bebidas">🍺 Bebidas, Vinos & Cafés</button>
+      </div>
+
+      <div class="menu-grid" id="menuItemsContainer">
+        <!-- Renderizado dinámicamente con JS -->
+      </div>
+
+      <!-- Resumen de Pedido Flotante -->
+      <div class="order-summary-box" id="orderSummaryBox">
+        <div class="order-total-count" id="orderSummaryText">
+          🛒 Tienes <span id="cartCount">0</span> artículos seleccionados &bull; Total estimativo: <strong id="cartTotal">0.00€</strong>
+        </div>
+        <button class="btn-send-order" id="btnSendOrder">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg>
+          <span>Encargar por WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase: Historia & Fusión -->
+  <section id="fusion" class="showcase-section">
+    <div class="container">
+      <div class="showcase-card">
+        <img src="./assets/tapas_provolone.jpg" alt="Provolone fundido y empanadas criollas de Café Bar Harpo" class="showcase-img">
+        <div class="showcase-content">
+          <span class="showcase-tag">TRADICIÓN & INNOVACIÓN EN ORIHUELA</span>
+          <h3 class="showcase-title">Un Rincón Único en la Plaza de la Salud</h3>
+          <p class="showcase-desc">
+            En Café Bar Harpo no creemos en las cartas congeladas ni en el servicio con prisas. Nos gusta la cocina que huele a hogar: cazuelas que salen humeantes al centro de la mesa para compartir, la corteza crujiente de nuestras empanadas criollas artesanales rellenas de carne jugosa, y las cervezas servidas con la copa fría de verdad.
+          </p>
+          <p class="showcase-desc">
+            Ya sea para el primer café de la mañana mientras despierta Orihuela, o para un tardeo distendido con amigos en la terraza, en Harpo eres de casa.
+          </p>
+          <div class="showcase-quote">
+            "El sabor de siempre en el mejor rincón peatonal del casco antiguo."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase 2: Desayunos -->
+  <section class="showcase-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="showcase-card" style="direction: rtl;">
+        <img src="./assets/desayuno.jpg" alt="Desayunos mediterráneos en Café Bar Harpo Orihuela" class="showcase-img" style="direction: ltr;">
+        <div class="showcase-content" style="direction: ltr;">
+          <span class="showcase-tag">BUENOS DÍAS ORIHUELA</span>
+          <h3 class="showcase-title">El Desayuno Mediterráneo Completo</h3>
+          <p class="showcase-desc">
+            Empezar bien el día no tiene misterio: pan de pueblo tostado al punto, tomate rallado fresco con un buen chorro de aceite de oliva virgen extra, lonchas de jamón ibérico que se deshacen en la boca y zumo de naranja natural recién exprimido.
+          </p>
+          <p class="showcase-desc">
+            Acompáñalo con tu café favorito, preparado por baristas que cuidan la molienda y la temperatura de la leche.
+          </p>
+          <div style="margin-top: 14px;">
+            <a href="#reservas" class="btn-primary" style="padding: 10px 20px; font-size: 0.88rem;">
+              <span>Ven a Desayunar a la Terraza</span> &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="opiniones" class="reviews-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">⭐ OPINIONES EN GOOGLE MAPS</span>
+        <h3 class="section-title">Lo Que Dicen Nuestros Vecinos</h3>
+        <p class="section-desc">La cercanía, el sabor casero y la tranquilidad de nuestra terraza nos convierten en parada obligatoria.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"El mejor provolone y las empanadas más ricas que he probado en Orihuela. La terraza en la Plaza de la Salud es una maravilla, muy tranquila para estar con los niños jugando mientras picas algo."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">M</div>
+            <div>
+              <div class="reviewer-name">María José Bernabé</div>
+              <div class="reviewer-date">Cliente local &bull; Google Maps</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Paramos a almorzar y nos encantó el trato tan familiar. La pelotica tradicional un acierto total y las raciones muy generosas. Precios honestos y cerveza bien fría. Repetiremos sin duda."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">P</div>
+            <div>
+              <div class="reviewer-name">Pedro Antonio Navarro</div>
+              <div class="reviewer-date">Cliente habitual &bull; Google Maps</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Desayunos de diez. Las tostadas grandes y con producto de calidad, y la atención rápida y muy amable. Da gusto encontrar bares con esta dedicación."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">C</div>
+            <div>
+              <div class="reviewer-name">Carlos Gomis</div>
+              <div class="reviewer-date">Guía Local &bull; Google Maps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Hours Section -->
+  <section id="ubicacion" class="location-section">
+    <div class="container">
+      <div class="location-card">
+        <div class="location-info">
+          <span class="engine-pill">📍 EN PLENA PLAZA DE LA SALUD</span>
+          <h3>Ven a Visitarnos en Orihuela</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.92rem;">
+            Estamos situados en un enclave privilegiado y peatonal de Orihuela, ideal para desconectar al aire libre.
+          </p>
+
+          <div class="info-list">
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <strong>Dirección Oficial:</strong><br>
+                Plaza de la Salud, 5, 03300 Orihuela, Alicante
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">📱</span>
+              <div>
+                <strong>Teléfono Móvil & WhatsApp:</strong><br>
+                <a href="tel:+34681622856" style="color: var(--primary-light); font-weight:700;">+34 681 62 28 56</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">☎️</span>
+              <div>
+                <strong>Teléfono Fijo del Bar:</strong><br>
+                <a href="tel:966743875" style="color: var(--text-muted);">966 74 38 75</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://maps.google.com/?q=Plaza+de+la+Salud+5+Orihuela" target="_blank" rel="noopener" class="btn-primary" style="padding: 11px 20px; font-size: 0.88rem;">
+              <span>Abrir en Google Maps</span> &nearr;
+            </a>
+            <a href="https://wa.me/34681622856?text=Hola%2C%20quer%C3%ADa%20haceros%20una%20pregunta%20sobre%20el%20local" target="_blank" rel="noopener" class="btn-secondary" style="padding: 11px 20px; font-size: 0.88rem;">
+              <span>Escribir por WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="background: #0d1117; padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <h4 style="font-family: var(--font-head); font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; color: var(--primary-light);">
+            🕒 Horario de Servicio
+          </h4>
+          <table class="hours-table">
+            <tbody>
+              <tr>
+                <td>Lunes</td>
+                <td>07:30 – 16:30</td>
+              </tr>
+              <tr>
+                <td>Martes (Día de Pelotica)</td>
+                <td>07:30 – 23:00</td>
+              </tr>
+              <tr>
+                <td>Miércoles (Día de Pelotica)</td>
+                <td>07:30 – 23:00</td>
+              </tr>
+              <tr>
+                <td>Jueves (Día de Pelotica)</td>
+                <td>07:30 – 23:00</td>
+              </tr>
+              <tr>
+                <td>Viernes (Día de Pelotica)</td>
+                <td>07:30 – 00:00</td>
+              </tr>
+              <tr>
+                <td>Sábado</td>
+                <td>08:00 – 00:00</td>
+              </tr>
+              <tr>
+                <td>Domingo</td>
+                <td>08:00 – 18:00</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.76rem; color: var(--text-dim); margin-top: 14px; text-align: center;">
+            * Cocina ininterrumpida para tapas frías, calientes y bocadillos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-weight: 700; color: var(--text-muted);">&copy; 2026 Café Bar Harpo &bull; Plaza de la Salud 5, Orihuela (Alicante)</p>
+      <p>Página demostrativa de alta conversión diseñada y optimizada para dispositivos móviles.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Mobile Action Bar -->
+  <nav class="floating-bar" aria-label="Acciones rápidas de contacto">
+    <a href="tel:+34681622856" class="btn-float-call">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Llamar</span>
+    </a>
+    <a href="https://wa.me/34681622856?text=Hola%20Caf%C3%A9%20Bar%20Harpo%2C%20quer%C3%ADa%20reservar%20mesa%20o%20hacer%20un%20encargo" class="btn-float-wa" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg>
+      <span>WhatsApp Directo</span>
+    </a>
+  </nav>
+
+  <!-- Interactive Logic Script -->
+  <script>
+    // 1. Establecer fecha mínima en el selector
+    const today = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('resDate');
+    if (dateInput) {
+      dateInput.min = today;
+      dateInput.value = today;
+    }
+
+    // 2. Control de Chips de Tiempo para la reserva
+    const timeChips = document.querySelectorAll('.time-chip');
+    let selectedTime = '14:00 (Comida)';
+    timeChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        timeChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        selectedTime = chip.getAttribute('data-time');
+      });
+    });
+
+    // 3. Envío de Formulario de Reserva hacia WhatsApp
+    const reservaForm = document.getElementById('reservaForm');
+    if (reservaForm) {
+      reservaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const date = document.getElementById('resDate').value;
+        const pax = document.getElementById('resPax').value;
+        const zona = document.getElementById('resZona').value;
+        const notas = document.getElementById('resNotas').value.trim();
+
+        let msg = `¡Hola Café Bar Harpo! Quería reservar una mesa desde vuestra web:\n\n`;
+        msg += `📅 Fecha: ${date}\n`;
+        msg += `👥 Comensales: ${pax}\n`;
+        msg += `⏰ Turno/Hora: ${selectedTime}\n`;
+        msg += `📍 Zona preferida: ${zona}\n`;
+        if (notas) {
+          msg += `📝 Nota especial: ${notas}\n`;
+        }
+        msg += `\n¿Me confirmáis si tenéis disponibilidad? ¡Muchas gracias!`;
+
+        const waUrl = `https://wa.me/34681622856?text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, '_blank');
+      });
+    }
+
+    // 4. Catálogo de la Carta Digital y Carrito de Pre-encargo
+    const menuData = {
+      tapas: [
+        { name: "Cazuela de Provolone al Horno", desc: "Queso provolone fundente con orégano, pimentón de la Vera y tostadas de pan rústico", price: "7.50€", badge: "⭐ Especialidad" },
+        { name: "Empanada Criolla Argentina (Unidad)", desc: "Carne picada a cuchillo, cebolla pochada, pimiento y especias tradicionales", price: "2.80€", badge: "Casera" },
+        { name: "Empanada Colombiana Crujiente (Unidad)", desc: "Masa de maíz dorada rellena de carne desmechada suave y patata criolla", price: "2.80€", badge: "Favorita" },
+        { name: "Pelotica Tradicional de Orihuela", desc: "Albóndiga tradicional de carne de cocido servida en su caldo caliente (M-X-J-V)", price: "4.50€", badge: "Tradición" },
+        { name: "Carrillera Ibérica al Vino Tinto", desc: "Estofada a fuego lento con reducción de vino y patatas panaderas caseras", price: "8.90€", badge: "Gourmet" },
+        { name: "Pastel de Carne Oriolano", desc: "Hojaldre finísimo relleno de ternera picada, huevo duro y especias", price: "3.50€", badge: "Típico" },
+        { name: "Croquetas Caseras de Jamón Ibérico (4 uds)", desc: "Bechamel cremosa y virutas de jamón curado", price: "5.50€", badge: "" },
+        { name: "Tabla Mixta de Ibéricos y Quesos de la Tierra", desc: "Jamón, lomo embuchado, queso semicurado y frutos secos", price: "12.00€", badge: "Para compartir" }
+      ],
+      desayunos: [
+        { name: "Desayuno Mediterráneo Completo", desc: "Café con leche + Media tostada con tomate de huerta, jamón ibérico y AOVE + Zumo natural", price: "4.20€", badge: "Top Mañanas" },
+        { name: "Tostada de Pan Rústico con Aguacate y Queso Fresco", desc: "Pan artesanal con semillas, aguacate en láminas, queso fresco y sésamo tostado", price: "3.80€", badge: "Saludable" },
+        { name: "Tostada Clásica Catalana", desc: "Pan crujiente con tomate natural triturado y aceite de oliva virgen extra", price: "1.90€", badge: "Clásico" },
+        { name: "Croissant de Mantequilla a la Plancha con Mermelada", desc: "Dorado al momento con mantequilla y mermelada casera", price: "2.10€", badge: "Dulce" },
+        { name: "Zumo de Naranja Natural de la Vega Baja", desc: "Naranjas recién recolectadas exprimidas al instante (Vaso grande)", price: "2.40€", badge: "100% Natural" }
+      ],
+      platos: [
+        { name: "Arroz a Banda con Alioli Casero (Ración)", desc: "Fondo marino intenso con sepia limpia y grano al punto", price: "11.50€", badge: "Por Encargo" },
+        { name: "Arroz con Costra de Orihuela (Ración)", desc: "Arroz típico horneado con capa de huevo dorado y embutidos locales", price: "12.50€", badge: "Plato Estrella" },
+        { name: "Entrecot de Ternera a la Brasa (300g)", desc: "Carne tierna a la plancha con pimientos de padrón y patatas", price: "15.00€", badge: "Brasa" },
+        { name: "Parrillada de Chorizos Criollos & Secreto Ibérico", desc: "Con chimichurri casero argentino y ensalada fresca", price: "13.50€", badge: "Fusión" }
+      ],
+      bebidas: [
+        { name: "Caña de Cerveza de Barril Bien Fría", desc: "Tirada al punto con su crema perfecta en copa helada", price: "1.80€", badge: "Grifo" },
+        { name: "Doble de Cerveza Fresca", desc: "Copa de 33cl con temperatura glacial", price: "2.50€", badge: "" },
+        { name: "Vermut Artesano de Grifo", desc: "Con hielo, rodaja de naranja y aceituna rellena", price: "2.80€", badge: "Aperitivo" },
+        { name: "Copa de Vino Tinto D.O. Alicante", desc: "Monastrell seleccionado de bodegas de la provincia", price: "2.70€", badge: "" },
+        { name: "Café de Especialidad Recién Molido", desc: "Solo, cortado o con leche con tueste natural suave", price: "1.40€", badge: "100% Arábica" }
+      ]
+    };
+
+    let cart = [];
+
+    function renderMenuItems(category) {
+      const container = document.getElementById('menuItemsContainer');
+      const items = menuData[category] || [];
+      container.innerHTML = '';
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-item-card';
+        card.innerHTML = `
+          <div class="item-info">
+            <div class="item-header">
+              <span class="item-name">${item.name}</span>
+              ${item.badge ? `<span class="item-badge">${item.badge}</span>` : ''}
+            </div>
+            <p class="item-desc">${item.desc}</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="item-price">${item.price}</span>
+            <button class="btn-add-item" title="Añadir a mi encargo" aria-label="Añadir ${item.name} al encargo" onclick="addToCart('${item.name.replace(/'/g, "\\'")}', '${item.price}')">+</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Tabs de la carta
+    const tabBtns = document.querySelectorAll('.menu-tab-btn');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.getAttribute('data-category');
+        renderMenuItems(cat);
+      });
+    });
+
+    // Añadir al Carrito
+    window.addToCart = function(name, priceStr) {
+      const numericPrice = parseFloat(priceStr.replace('€', '').replace(',', '.'));
+      cart.push({ name, price: numericPrice });
+      updateCartDisplay();
+    };
+
+    function updateCartDisplay() {
+      const summaryBox = document.getElementById('orderSummaryBox');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotal');
+
+      if (cart.length > 0) {
+        summaryBox.classList.add('visible');
+        countEl.textContent = cart.length;
+        const total = cart.reduce((acc, curr) => acc + curr.price, 0);
+        totalEl.textContent = total.toFixed(2) + '€';
+      } else {
+        summaryBox.classList.remove('visible');
+      }
+    }
+
+    // Enviar encargo por WhatsApp
+    const btnSendOrder = document.getElementById('btnSendOrder');
+    if (btnSendOrder) {
+      btnSendOrder.addEventListener('click', () => {
+        if (cart.length === 0) return;
+
+        // Agrupar items
+        const counts = {};
+        cart.forEach(item => {
+          counts[item.name] = (counts[item.name] || 0) + 1;
+        });
+
+        let msg = `¡Hola Café Bar Harpo! Quería hacer un encargo desde la carta web:\n\n`;
+        for (const [name, qty] of Object.entries(counts)) {
+          msg += `▪ ${qty}x ${name}\n`;
+        }
+        const total = cart.reduce((acc, curr) => acc + curr.price, 0);
+        msg += `\n💰 Total estimado: ${total.toFixed(2)}€\n`;
+        msg += `\n¿A qué hora podríamos pasar a recogerlo / tenerlo listo en la mesa? ¡Gracias!`;
+
+        const waUrl = `https://wa.me/34681622856?text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, '_blank');
+      });
+    }
+
+    // Inicializar carta con tapas
+    renderMenuItems('tapas');
+  </script>
+</body>
+</html>
