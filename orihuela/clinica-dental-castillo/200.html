@@ -39,14 +39,14 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--font-body);
       background-color: var(--bg-white);
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 110px;
+      padding-bottom: 120px;
       position: relative;
     }
 
@@ -169,6 +169,7 @@
       align-items: center;
       gap: 0.4rem;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .btn-nav-call:hover {
       background: var(--primary);
@@ -192,14 +193,14 @@
       box-shadow: 0 12px 24px rgba(34, 197, 94, 0.45);
     }
 
-    /* Ambient Background Glows */
+    /* Ambient Background Glows - contained */
     .ambient-glow-1 {
       position: absolute;
       top: 100px;
-      left: -150px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -208,10 +209,10 @@
     .ambient-glow-2 {
       position: absolute;
       top: 600px;
-      right: -150px;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -1139,12 +1140,38 @@
 
     @media (max-width: 768px) {
       .mobile-dock-bar { display: block; }
-      .hero h1 { font-size: 2.35rem; }
-      .section-header h2 { font-size: 1.95rem; }
+      .hero h1 { font-size: 2.15rem; }
+      .section-header h2 { font-size: 1.75rem; }
       .calc-result-banner { flex-direction: column; text-align: center; }
       .btn-calc-submit { width: 100%; justify-content: center; }
       .hero-ctas { flex-direction: column; width: 100%; }
       .btn-hero-wp, .btn-hero-call { width: 100%; justify-content: center; }
+      .btn-nav-wp { display: none; }
+      .top-live-strip { font-size: 0.73rem; padding: 0.5rem 0.5rem; }
+      .brand-title { font-size: 1.15rem; }
+      .brand-sub { font-size: 0.62rem; }
+      .navbar { padding: 0.65rem 0; }
+      .btn-nav-call { padding: 0.45rem 0.75rem; font-size: 0.82rem; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .metric-val { font-size: 1.35rem; }
+      .metric-name { font-size: 0.72rem; }
+      .hero-visual-card img { height: 320px; }
+      .hero-card-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .floating-clinic-badge { font-size: 0.75rem; padding: 0.45rem 0.85rem; }
+      .calc-card { padding: 1.5rem 1rem; }
+      .cta-banner-content h2 { font-size: 1.85rem; }
+      .cta-banner-buttons { flex-direction: column; }
+      .btn-banner-wp, .btn-banner-call { width: 100%; justify-content: center; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .ambient-glow-1, .ambient-glow-2 { display: none; }
+    }
+    @media (max-width: 420px) {
+      .btn-nav-call span { display: none; }
+      .btn-nav-call { padding: 0.5rem 0.65rem; font-size: 1.1rem; }
+      .top-live-strip { font-size: 0.67rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero p.lead { font-size: 1rem; }
+      .hero-badge { font-size: 0.78rem; }
     }
   </style>
 </head>

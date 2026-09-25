@@ -37,28 +37,28 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--font-body);
       background-color: var(--bg-white);
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 110px;
+      padding-bottom: 120px;
       position: relative;
     }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
     a { text-decoration: none; color: inherit; }
 
-    /* Ambient Glowing Orbs */
+    /* Ambient Glowing Orbs - contained to prevent overflow */
     .ambient-blue-1 {
       position: absolute;
       top: 60px;
-      right: -120px;
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(2, 132, 199, 0.09) 0%, rgba(255, 255, 255, 0) 70%);
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.07) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -67,10 +67,10 @@
     .ambient-blue-2 {
       position: absolute;
       top: 750px;
-      left: -150px;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
@@ -197,6 +197,7 @@
       align-items: center;
       gap: 0.4rem;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .btn-nav-call:hover {
       background: var(--primary);
@@ -830,6 +831,30 @@
       .diagnostic-result-bar { flex-direction: column; text-align: center; }
       .btn-send-diagnosis { width: 100%; justify-content: center; }
       .btn-nav-wp { display: none; }
+      .top-emergency-bar { font-size: 0.75rem; padding: 0.5rem 0.5rem; }
+      .brand-title { font-size: 1.2rem; }
+      .brand-sub { font-size: 0.65rem; }
+      .navbar { padding: 0.65rem 0; }
+      .btn-nav-call { padding: 0.45rem 0.75rem; font-size: 0.82rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn-hero-wp, .btn-hero-call { width: 100%; justify-content: center; text-align: center; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .metric-val { font-size: 1.35rem; }
+      .metric-name { font-size: 0.72rem; }
+      .interactive-card { padding: 1.5rem 1rem; }
+      .diagnostic-header h2 { font-size: 1.65rem; }
+      .hero-visual-card img { height: 320px; }
+      .hero-card-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .floating-live-badge { font-size: 0.75rem; padding: 0.45rem 0.85rem; }
+      .ambient-blue-1, .ambient-blue-2 { display: none; }
+    }
+    @media (max-width: 420px) {
+      .btn-nav-call span { display: none; }
+      .btn-nav-call { padding: 0.5rem 0.65rem; font-size: 1.1rem; }
+      .top-emergency-bar { font-size: 0.7rem; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero p.lead { font-size: 1rem; }
+      .hero-badge { font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -917,7 +942,7 @@
         <div class="floating-live-badge">
           <span style="color: #22c55e;">●</span> Taller Móvil Disponible en Orihuela
         </div>
-        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=800&q=80" alt="Fontanero Profesional en Orihuela">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Fontanero Profesional en Orihuela">
         <div class="hero-card-bottom">
           <div>
             <strong>Borja Fontanero Oficial</strong>
