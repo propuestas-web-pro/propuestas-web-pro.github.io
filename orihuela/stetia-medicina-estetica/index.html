@@ -3,169 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>STETIA Medicina Estética | Clínica de Armonización Facial y Corporal en Orihuela</title>
-  <meta name="description" content="Clínica médica estética en Orihuela: ácido hialurónico, bótox, inductores de colágeno y rejuvenecimiento facial con médicos colegiados. Resultados sutiles y elegantes.">
+  <title>STETIA Medicina Estética | Armonización Facial & Rejuvenecimiento en Orihuela</title>
+  <meta name="description" content="Clínica médica estética autorizada en Orihuela. Relleno de labios con ácido hialurónico natural, bótox antiarrugas e inductores de colágeno. 1ª valoración médica personalizada.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --primary: #db2777;
-      --primary-hover: #be185d;
-      --primary-light: #f472b6;
-      --gold: #d4af37;
-      --dark-bg: #090d16;
-      --dark-surface: #101626;
-      --dark-elevated: #182035;
-      --border: rgba(255, 255, 255, 0.08);
+      --rose-gold: #f472b6;
+      --ruby: #e11d48;
+      --luxury-gradient: linear-gradient(135deg, #fbcfe8 0%, #f472b6 50%, #db2777 100%);
+      --gold-accent: #fbbf24;
+      --bg-dark: #080a12;
+      --bg-surface: rgba(16, 21, 38, 0.75);
+      --bg-elevated: rgba(26, 33, 58, 0.85);
+      --border-rose: rgba(244, 114, 182, 0.22);
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --text-white: #fdf2f8;
       --text-muted: #94a3b8;
       --font-serif: 'Playfair Display', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --shadow-rose: 0 10px 30px rgba(219, 39, 119, 0.25);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --shadow-rose: 0 0 45px rgba(219, 39, 119, 0.22);
+      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-sans);
-      background-color: var(--dark-bg);
+      background-color: var(--bg-dark);
       color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 85px;
+      padding-bottom: 95px;
+      position: relative;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+    /* Ambient Shimmer Backgrounds */
+    .ambient-rose-1 {
+      position: absolute;
+      top: 50px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(219, 39, 119, 0.18) 0%, rgba(8, 10, 18, 0) 70%);
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlow 14s ease-in-out infinite alternate;
+    }
+    .ambient-rose-2 {
+      position: absolute;
+      top: 900px;
+      left: -150px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(244, 114, 182, 0.12) 0%, rgba(8, 10, 18, 0) 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlow 18s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 50px) scale(1.1); }
+    }
+
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
     a { text-decoration: none; color: inherit; }
 
-    /* Top Medical Badge */
-    .top-badge-strip {
-      background: #060910;
-      border-bottom: 1px solid var(--border);
-      padding: 0.55rem 0;
+    /* Top Strip */
+    .top-medical-strip {
+      background: rgba(11, 14, 25, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.6rem 0;
       font-size: 0.82rem;
       text-align: center;
-      color: var(--text-muted);
+      position: relative;
+      z-index: 101;
     }
-    .pulse-dot {
+    .pulse-rose {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 0 2px rgba(219, 39, 119, 0.35);
-      margin-right: 6px;
+      background: var(--rose-gold);
+      box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.4);
+      margin-right: 8px;
+      animation: pulseRose 2s infinite;
+    }
+    @keyframes pulseRose {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(244, 114, 182, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 114, 182, 0); }
     }
 
     /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(9, 13, 22, 0.94);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(8, 10, 18, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-rose);
       z-index: 100;
-      padding: 1.1rem 0;
+      padding: 1.15rem 0;
     }
     .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-    .brand-name {
+    .brand-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .brand-logo-badge {
+      width: 44px;
+      height: 44px;
+      background: var(--luxury-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 8px 20px rgba(219, 39, 119, 0.35);
+    }
+    .brand-title {
       font-family: var(--font-serif);
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 0.05em;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      line-height: 1.1;
     }
-    .brand-name span { color: var(--primary-light); }
-    .brand-sub { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: block; }
+    .brand-title span {
+      background: var(--luxury-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-gold);
+      display: block;
+      font-weight: 600;
+    }
     .nav-actions { display: flex; align-items: center; gap: 0.85rem; }
     .btn-nav-call {
-      background: var(--dark-elevated);
-      border: 1px solid var(--border);
-      color: var(--text-white);
-      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #ffffff;
+      padding: 0.55rem 1.1rem;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       transition: all 0.2s;
     }
-    .btn-nav-call:hover { border-color: var(--primary); }
+    .btn-nav-call:hover { border-color: var(--rose-gold); color: var(--rose-gold); }
     .btn-nav-wp {
-      background: #25d366;
+      background: linear-gradient(135deg, #25d366, #16a34a);
       color: #ffffff;
-      padding: 0.55rem 1.25rem;
+      padding: 0.6rem 1.35rem;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
       transition: all 0.2s;
     }
-    .btn-nav-wp:hover { background: #22c35e; transform: translateY(-1px); }
+    .btn-nav-wp:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5); }
 
     /* Hero Section */
     .hero {
       position: relative;
       padding: 4.5rem 0 3.5rem;
-      overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute;
-      top: -150px;
-      right: -100px;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(219, 39, 119, 0.15) 0%, rgba(9, 13, 22, 0) 70%);
-      pointer-events: none;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 3.5rem;
       align-items: center;
-      position: relative;
-      z-index: 1;
     }
     .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(219, 39, 119, 0.12);
-      border: 1px solid rgba(244, 114, 182, 0.3);
-      padding: 0.4rem 1rem;
+      background: rgba(219, 39, 119, 0.15);
+      border: 1px solid var(--border-rose);
+      padding: 0.45rem 1.15rem;
       border-radius: 999px;
-      font-size: 0.82rem;
-      color: var(--primary-light);
+      font-size: 0.85rem;
+      color: var(--rose-gold);
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
     .hero h1 {
       font-family: var(--font-serif);
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       line-height: 1.12;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.35rem;
     }
-    .hero h1 em {
+    .hero h1 .rose-text {
+      background: var(--luxury-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-style: italic;
-      color: var(--primary-light);
     }
     .hero p.lead {
       font-size: 1.15rem;
-      color: var(--text-muted);
+      color: #cbd5e1;
       margin-bottom: 2.25rem;
       line-height: 1.7;
     }
@@ -176,259 +229,435 @@
       margin-bottom: 2.5rem;
     }
     .btn-hero-primary {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+      background: linear-gradient(135deg, #25d366 0%, #15803d 100%);
       color: #ffffff;
-      padding: 1rem 1.85rem;
+      padding: 1.1rem 2rem;
       border-radius: var(--radius-md);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      box-shadow: 0 12px 28px -5px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 14px 30px -5px rgba(37, 211, 102, 0.45);
       transition: all 0.25s;
     }
     .btn-hero-primary:hover {
-      background: #22c35e;
       transform: translateY(-2px);
-      box-shadow: 0 16px 32px -5px rgba(37, 211, 102, 0.6);
+      box-shadow: 0 18px 36px -5px rgba(37, 211, 102, 0.6);
     }
     .btn-hero-secondary {
-      background: var(--dark-elevated);
-      border: 1px solid var(--border);
-      color: var(--text-white);
-      padding: 1rem 1.65rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-rose);
+      color: #ffffff;
+      padding: 1.1rem 1.75rem;
       border-radius: var(--radius-md);
       font-weight: 600;
       font-size: 1.05rem;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      backdrop-filter: blur(10px);
       transition: all 0.2s;
     }
-    .btn-hero-secondary:hover { border-color: var(--primary-light); }
+    .btn-hero-secondary:hover {
+      background: rgba(219, 39, 119, 0.15);
+      border-color: var(--rose-gold);
+    }
+
+    /* Trust Metric Strip */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-rose);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-card);
+    }
+    .metric-col {
+      text-align: center;
+      border-right: 1px solid var(--border-subtle);
+    }
+    .metric-col:last-child { border-right: none; }
+    .metric-num {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: var(--luxury-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .metric-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
 
     /* Hero Media Visual */
+    .hero-media-wrapper { position: relative; }
     .hero-media-card {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-rose);
+      border: 1px solid var(--border-rose);
+      box-shadow: var(--shadow-rose), var(--shadow-card);
     }
     .hero-media-card img {
       width: 100%;
-      height: 490px;
+      height: 520px;
       object-fit: cover;
       display: block;
+      transition: transform 0.6s ease;
     }
-    .hero-overlay-badge {
+    .hero-media-card:hover img { transform: scale(1.04); }
+    .floating-treatment-pill {
       position: absolute;
-      bottom: 1.25rem;
-      left: 1.25rem;
-      right: 1.25rem;
-      background: rgba(9, 13, 22, 0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
+      top: 1.5rem;
+      left: 1.5rem;
+      background: rgba(8, 10, 18, 0.9);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-rose);
+      padding: 0.6rem 1.15rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .hero-card-bottom-banner {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      background: rgba(16, 21, 38, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-rose);
       border-radius: var(--radius-md);
-      padding: 1.15rem;
+      padding: 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    /* Interactive Consultation Wizard */
-    .wizard-box {
-      background: var(--dark-surface);
-      border: 1px solid rgba(219, 39, 119, 0.3);
+    /* REAL PROBLEM SOLVER: Interactive Facial Simulator & Treatment Advisor */
+    .engine-section {
+      padding: 4rem 0 3rem;
+    }
+    .glass-engine-box {
+      background: var(--bg-surface);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-rose);
       border-radius: var(--radius-lg);
-      padding: 2.75rem 2rem;
-      margin: 1.5rem 0 4rem;
-      box-shadow: var(--shadow-rose);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-rose), var(--shadow-card);
+      position: relative;
+      overflow: hidden;
     }
-    .wizard-head { text-align: center; max-width: 650px; margin: 0 auto 2.25rem; }
-    .wizard-head h2 {
+    .glass-engine-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--luxury-gradient);
+    }
+    .engine-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.75rem;
+    }
+    .engine-header-tag {
       font-family: var(--font-serif);
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .wizard-head p { color: var(--text-muted); font-size: 0.98rem; }
-
-    .treatments-selector-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .treat-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .treat-card:hover, .treat-card.active {
-      background: rgba(219, 39, 119, 0.15);
-      border-color: var(--primary-light);
-      transform: translateY(-3px);
-    }
-    .treat-icon { font-size: 2rem; margin-bottom: 0.65rem; }
-    .treat-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
-    .treat-desc { font-size: 0.78rem; color: var(--text-muted); }
-
-    .btn-wizard-submit {
-      width: 100%;
-      max-width: 580px;
-      margin: 0 auto;
-      background: linear-gradient(135deg, #25d366, #15803d);
-      color: #ffffff;
-      padding: 1.15rem;
-      border-radius: var(--radius-md);
+      color: var(--rose-gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      box-shadow: 0 12px 28px -5px rgba(37, 211, 102, 0.45);
-      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+      display: block;
     }
-    .btn-wizard-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -5px rgba(37, 211, 102, 0.6); }
-
-    /* Treatments Section with High-End Photos */
-    .treatments-section { padding: 3rem 0 4.5rem; }
-    .section-title {
-      text-align: center;
-      max-width: 650px;
-      margin: 0 auto 3rem;
-    }
-    .section-title h2 {
+    .engine-header h2 {
       font-family: var(--font-serif);
       font-size: 2.3rem;
-      margin-bottom: 0.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
     }
-    .section-title p { color: var(--text-muted); }
+    .engine-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
 
-    .treat-grid {
+    /* 3 Step Selectors */
+    .steps-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.75rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
-    .treat-item {
-      background: var(--dark-surface);
-      border: 1px solid var(--border);
+    .step-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      overflow: hidden;
-      transition: all 0.25s;
+      padding: 1.5rem;
+      transition: all 0.3s;
     }
-    .treat-item:hover {
-      transform: translateY(-4px);
-      border-color: rgba(219, 39, 119, 0.4);
-      box-shadow: var(--shadow-rose);
+    .step-card:hover {
+      border-color: var(--border-rose);
+      background: rgba(255, 255, 255, 0.05);
     }
-    .treat-item-img {
-      height: 230px;
-      overflow: hidden;
-      position: relative;
+    .step-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--rose-gold);
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .treat-item-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
+    .option-grid {
+      display: grid;
+      gap: 0.65rem;
     }
-    .treat-item:hover .treat-item-img img { transform: scale(1.06); }
-    .treat-tag {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(9, 13, 22, 0.85);
-      backdrop-filter: blur(8px);
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--primary-light);
-      border: 1px solid var(--border);
-    }
-    .treat-item-body { padding: 1.5rem; }
-    .treat-item-body h3 {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      margin-bottom: 0.5rem;
-    }
-    .treat-item-body p {
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: #cbd5e1;
       font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.55;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
     }
-    .treat-meta {
+    .opt-btn:hover {
+      background: rgba(219, 39, 119, 0.15);
+      border-color: var(--rose-gold);
+      color: #ffffff;
+    }
+    .opt-btn.active {
+      background: linear-gradient(135deg, rgba(244, 114, 182, 0.25), rgba(219, 39, 119, 0.2));
+      border-color: var(--rose-gold);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(219, 39, 119, 0.25);
+    }
+    .opt-btn.active::after {
+      content: '✓';
+      color: var(--rose-gold);
+      font-weight: 900;
+    }
+
+    /* Live Summary & WhatsApp Button */
+    .engine-summary-bar {
+      background: rgba(8, 10, 18, 0.88);
+      border: 1px solid var(--border-rose);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
-    .btn-treat-link {
-      font-size: 0.85rem;
+    .summary-details strong {
+      display: block;
+      font-size: 1.05rem;
+      color: #ffffff;
+      margin-bottom: 0.25rem;
+    }
+    .summary-details span {
+      color: var(--rose-gold);
       font-weight: 700;
-      color: #25d366;
+      font-size: 0.95rem;
+    }
+    .btn-submit-engine {
+      background: linear-gradient(135deg, #25d366, #16a34a);
+      color: #ffffff;
+      padding: 1.1rem 2.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-submit-engine:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.55);
     }
 
-    /* Google Reviews */
+    /* Treatments Grid with Real Photos */
+    .treatments-section {
+      padding: 4.5rem 0;
+    }
+    .section-header-wrap {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+    .section-header-wrap h2 {
+      font-family: var(--font-serif);
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+    .section-header-wrap p { color: var(--text-muted); font-size: 1.05rem; }
+
+    .treatments-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .treat-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-rose);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s;
+      box-shadow: var(--shadow-card);
+    }
+    .treat-box:hover {
+      transform: translateY(-6px);
+      border-color: rgba(244, 114, 182, 0.5);
+      box-shadow: var(--shadow-rose);
+    }
+    .treat-photo-wrap {
+      height: 230px;
+      position: relative;
+      overflow: hidden;
+    }
+    .treat-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .treat-box:hover .treat-photo-wrap img { transform: scale(1.08); }
+    .badge-treat-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(8, 10, 18, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-rose);
+      color: var(--rose-gold);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+    }
+    .treat-content { padding: 1.6rem; }
+    .treat-content h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+    .treat-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.35rem;
+    }
+    .treat-features-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+    .treat-features-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .treat-features-list li::before {
+      content: '✓';
+      color: var(--rose-gold);
+      font-weight: 900;
+    }
+    .btn-treat-action {
+      display: block;
+      text-align: center;
+      background: rgba(219, 39, 119, 0.15);
+      border: 1px solid var(--border-rose);
+      color: var(--rose-gold);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn-treat-action:hover {
+      background: var(--ruby);
+      color: #ffffff;
+    }
+
+    /* Google Reviews Section */
     .reviews-section {
-      background: var(--dark-surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 4rem 0;
-      margin-bottom: 4rem;
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--border-subtle);
     }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
-    .rev-card {
-      background: var(--dark-elevated);
-      border: 1px solid var(--border);
+    .rev-card-luxury {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-rose);
       border-radius: var(--radius-md);
-      padding: 1.75rem;
+      padding: 2rem;
+      box-shadow: var(--shadow-card);
     }
-    .rev-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .rev-author strong { display: block; font-size: 0.95rem; }
-    .rev-author small { color: var(--text-muted); font-size: 0.78rem; }
-    .rev-stars { color: #f59e0b; }
-    .rev-quote { font-size: 0.92rem; color: #cbd5e1; font-style: italic; line-height: 1.6; }
+    .rev-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+    .rev-author-name strong { display: block; font-size: 1rem; }
+    .rev-author-name small { color: var(--text-muted); font-size: 0.78rem; }
+    .rev-stars { color: #f59e0b; font-size: 1.1rem; }
+    .rev-text { font-size: 0.95rem; color: #cbd5e1; line-height: 1.65; font-style: italic; }
 
-    /* Sticky Mobile Bar */
-    .mobile-bar {
+    /* Sticky Mobile Bottom Bar */
+    .mobile-floating-bar {
       display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(9, 13, 22, 0.96);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid var(--border);
+      background: rgba(8, 10, 18, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-rose);
       padding: 0.75rem 1rem;
       z-index: 999;
     }
-    .mobile-bar-grid {
+    .mobile-bar-flex {
       display: grid;
       grid-template-columns: 1fr 1.6fr;
       gap: 0.75rem;
     }
-    .btn-bar-call {
-      background: var(--dark-elevated);
-      border: 1px solid var(--border);
+    .btn-mobile-call {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
       color: #ffffff;
-      padding: 0.75rem 0.5rem;
+      padding: 0.8rem 0.5rem;
       border-radius: var(--radius-sm);
       font-weight: 700;
       font-size: 0.88rem;
@@ -437,10 +666,10 @@
       justify-content: center;
       gap: 0.4rem;
     }
-    .btn-bar-wp {
-      background: #25d366;
+    .btn-mobile-wp {
+      background: linear-gradient(135deg, #25d366, #16a34a);
       color: #ffffff;
-      padding: 0.75rem 0.5rem;
+      padding: 0.8rem 0.5rem;
       border-radius: var(--radius-sm);
       font-weight: 800;
       font-size: 0.92rem;
@@ -450,38 +679,48 @@
       gap: 0.4rem;
     }
 
+    /* Responsive */
     @media (max-width: 992px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .treatments-selector-grid { grid-template-columns: repeat(2, 1fr); }
-      .treat-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-container { grid-template-columns: 1fr; }
+      .treatments-grid { grid-template-columns: repeat(2, 1fr); }
       .reviews-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .metric-col:nth-child(2) { border-right: none; }
     }
     @media (max-width: 768px) {
-      .mobile-bar { display: block; }
-      .treat-grid { grid-template-columns: 1fr; }
+      .mobile-floating-bar { display: block; }
+      .treatments-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.15rem; }
+      .engine-summary-bar { flex-direction: column; text-align: center; }
+      .btn-submit-engine { width: 100%; justify-content: center; }
       .btn-nav-wp { display: none; }
-      .hero h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Medical Strip -->
-  <div class="top-badge-strip">
+  <!-- Ambient Glows -->
+  <div class="ambient-rose-1"></div>
+  <div class="ambient-rose-2"></div>
+
+  <!-- Top Strip -->
+  <div class="top-medical-strip">
     <div class="container">
-      <span class="pulse-dot"></span> <strong>CLÍNICA MÉDICA ESTÉTICA AUTORIZADA</strong> • 1ª Consulta de Diagnóstico Personalizada en Orihuela
+      <span class="pulse-rose"></span> <strong>CLÍNICA MÉDICA ESTÉTICA AUTORIZADA</strong> • 1ª Valoración Diagnóstica Médica en Orihuela
     </div>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-flex">
-      <div>
-        <div class="brand-name">
-          STETIA <span>•</span>
+      <div class="brand-wrap">
+        <div class="brand-logo-badge">✨</div>
+        <div>
+          <div class="brand-title">STETIA <span>•</span></div>
+          <span class="brand-subtitle">Medicina Estética • Orihuela</span>
         </div>
-        <span class="brand-sub">Medicina Estética • Orihuela</span>
       </div>
       <div class="nav-actions">
         <a href="tel:+34625629981" class="btn-nav-call">
@@ -495,207 +734,294 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="container hero-grid">
+  <section class="hero container">
+    <div class="hero-grid">
       <div>
         <div class="hero-tag">
-          ✨ Armonización Facial & Rejuvenecimiento Natural
+          💎 Armonización Facial & Rejuvenecimiento de Alta Precisión
         </div>
-        <h1>Tu Belleza Real, <em>Perfeccionada</em> con Rigor Médico.</h1>
+        <h1>Tu Belleza Real, <span class="rose-text">Perfeccionada</span> con Criterio Médico.</h1>
         <p class="lead">
-          Tratamientos estéticos avanzados realizados exclusivamente por médicos colegiados: hidratación y perfilado labial con ácido hialurónico premium, suavizado de líneas de expresión y bioestimulación de colágeno sin perder tu expresividad.
+          Descubre el equilibrio perfecto entre elegancia y naturalidad. Tratamientos con ácido hialurónico premium y neuromoduladores aplicados por médicos colegiados para realzar tus rasgos sin transformarte en otra persona.
         </p>
+
         <div class="hero-ctas">
-          <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20solicitar%20una%20cita%20de%20valoración%20en%20Orihuela." target="_blank" class="btn-hero-primary">
-            💬 Solicitar Valoración por WhatsApp
+          <a href="#simulador" class="btn-hero-primary">
+            ✨ Diseñar Mi Tratamiento en WhatsApp
           </a>
           <a href="#tratamientos" class="btn-hero-secondary">
-            🔍 Ver Tratamientos
+            🔍 Explorar Procedimientos
           </a>
+        </div>
+
+        <div class="metrics-bar">
+          <div class="metric-col">
+            <div class="metric-num">100%</div>
+            <div class="metric-desc">Médicos Colegiados</div>
+          </div>
+          <div class="metric-col">
+            <div class="metric-num">0€</div>
+            <div class="metric-desc">1ª Consulta Diagnóstico</div>
+          </div>
+          <div class="metric-col">
+            <div class="metric-num">4.9 ★</div>
+            <div class="metric-desc">Google Reviews</div>
+          </div>
+          <div class="metric-col">
+            <div class="metric-num">Marcas CE</div>
+            <div class="metric-desc">Juvéderm / Teosyal</div>
+          </div>
         </div>
       </div>
 
-      <!-- Hero Card Image -->
-      <div class="hero-media-card">
-        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Medicina estética profesional y cuidado facial">
-        <div class="hero-overlay-badge">
-          <div>
-            <strong>STETIA Medicina Estética</strong>
-            <small style="color: var(--text-muted); display: block;">Clínica en Orihuela</small>
+      <!-- Hero Media Visual Card -->
+      <div class="hero-media-wrapper">
+        <div class="hero-media-card">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85" alt="Tratamiento de medicina estética y armonización facial en STETIA Orihuela">
+          <div class="floating-treatment-pill">
+            <span class="pulse-rose"></span> Resultados 100% Naturales
           </div>
-          <div style="color: #f59e0b; font-weight: 700; font-size: 1.1rem;">★ 4.9 Google</div>
+          <div class="hero-card-bottom-banner">
+            <div>
+              <strong>STETIA Orihuela</strong>
+              <small style="color: var(--text-muted); display: block;">Entorno médico seguro y privado</small>
+            </div>
+            <div style="color: #f59e0b; font-weight: 700; font-size: 1.15rem;">★ 4.9 Google</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Treatment Simulator -->
-  <section class="container">
-    <div class="wizard-box">
-      <div class="wizard-head">
-        <span style="color: var(--primary-light); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;">Diagnóstico Rápido</span>
-        <h2>¿Qué zona deseas tratar o rejuvenecer?</h2>
-        <p>Selecciona tu tratamiento de interés y nuestro equipo médico te atenderá directamente por WhatsApp.</p>
+  <!-- REAL PROBLEM SOLVER: Interactive Facial Simulator & Treatment Advisor -->
+  <section id="simulador" class="engine-section container">
+    <div class="glass-engine-box">
+      <div class="engine-header">
+        <span class="engine-header-tag">Simulador Personalizado</span>
+        <h2>¿Qué resultado deseas conseguir?</h2>
+        <p>Selecciona tu zona de interés y el acabado buscado; nuestro equipo médico preparará tu propuesta antes de tu cita en consulta.</p>
       </div>
 
-      <div class="treatments-selector-grid">
-        <div class="treat-card active" onclick="selectTreatment(this, 'Ácido Hialurónico en Labios (Volumen & Perfilado)')">
-          <div class="treat-icon">💋</div>
-          <div class="treat-title">Labios & Sonrisa</div>
-          <div class="treat-desc">Hidratación, eversión sutil y volumen armónico</div>
+      <div class="steps-container">
+        <!-- Step 1: Zona Deseada -->
+        <div class="step-card">
+          <div class="step-label">💋 1. Zona a Tratar</div>
+          <div class="option-grid">
+            <button class="opt-btn active" onclick="setStetiaOption('zone', this, 'Relleno e Hidratación de Labios')">
+              Labios (Volumen & Perfilado)
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('zone', this, 'Arrugas de Expresión (Frente y Patas de Gallo)')">
+              Frente & Entrecejo (Bótox)
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('zone', this, 'Definición de Mandíbula y Pómulos')">
+              Mandíbula & Pómulos
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('zone', this, 'Luminosidad y Calidad de Piel')">
+              Vitaminas & Brillo Facial
+            </button>
+          </div>
         </div>
-        <div class="treat-card" onclick="selectTreatment(this, 'Líneas de Expresión y Bótox (Frente y Patas de Gallo)')">
-          <div class="treat-icon">💆</div>
-          <div class="treat-title">Arrugas de Expresión</div>
-          <div class="treat-desc">Frente, entrecejo y patas de gallo relajadas</div>
+
+        <!-- Step 2: Efecto Buscado -->
+        <div class="step-card">
+          <div class="step-label">✨ 2. Acabado Deseado</div>
+          <div class="option-grid">
+            <button class="opt-btn active" onclick="setStetiaOption('finish', this, 'Efecto Sutil y Muy Natural (Nadie lo nota)')">
+              Sutil e Imperceptible
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('finish', this, 'Volumen Notorio y Definido')">
+              Definición & Volumen
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('finish', this, 'Rejuvenecimiento Efecto Descanso')">
+              Efecto Rostro Descansado
+            </button>
+          </div>
         </div>
-        <div class="treat-card" onclick="selectTreatment(this, 'Inductor de Colágeno y Marcación Mandibular')">
-          <div class="treat-icon">🌿</div>
-          <div class="treat-title">Firmeza & Óvalo</div>
-          <div class="treat-desc">Efecto lifting sin cirugía con Radiesse</div>
-        </div>
-        <div class="treat-card" onclick="selectTreatment(this, 'Calidad de Piel y Vitaminas Faciales')">
-          <div class="treat-icon">✨</div>
-          <div class="treat-title">Luminosidad & Piel</div>
-          <div class="treat-desc">Cóctel de vitaminas, peeling y brillo</div>
+
+        <!-- Step 3: Experiencia Previa -->
+        <div class="step-card">
+          <div class="step-label">👩‍⚕️ 3. Tu Experiencia</div>
+          <div class="option-grid">
+            <button class="opt-btn active" onclick="setStetiaOption('exp', this, 'Es mi primera vez en Medicina Estética')">
+              Es mi primera vez
+            </button>
+            <button class="opt-btn" onclick="setStetiaOption('exp', this, 'Ya me he realizado tratamientos antes')">
+              Ya me he hecho retoques antes
+            </button>
+          </div>
         </div>
       </div>
 
-      <div style="text-align: center;">
-        <button class="btn-wizard-submit" onclick="submitTreatment()">
-          💬 Consultar Tratamiento con la Doctora por WhatsApp
+      <div class="engine-summary-bar">
+        <div class="summary-details">
+          <strong>Propuesta Médica Preliminar:</strong>
+          <span id="stetiaSummary">Labios (Volumen & Perfilado) • Sutil e Imperceptible • 1ª Vez</span>
+        </div>
+        <button class="btn-submit-engine" onclick="sendStetiaWhatsApp()">
+          💬 Enviar Valoración a la Doctora por WhatsApp
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Treatments Grid with Photos -->
+  <!-- High-Res Treatments Showcase -->
   <section id="tratamientos" class="treatments-section container">
-    <div class="section-title">
-      <h2>Tratamientos Médicos Destacados</h2>
-      <p>Materiales de primeras marcas mundiales (Juvéderm, Teosyal, Azzalure) con trazabilidad médica completa.</p>
+    <div class="section-header-wrap">
+      <h2>Tratamientos Médicos Estrella</h2>
+      <p>Procedimientos ambulatorios con anestesia tópica de confort para una experiencia completamente indolora.</p>
     </div>
 
-    <div class="treat-grid">
-      <!-- Treatment 1 -->
-      <div class="treat-item">
-        <div class="treat-item-img">
-          <img src="https://images.unsplash.com/photo-1512290900672-1f0230a29368?auto=format&fit=crop&w=700&q=80" alt="Relleno de labios con ácido hialurónico">
-          <span class="treat-tag">Resultado Inmediato</span>
-        </div>
-        <div class="treat-item-body">
-          <h3>Labios Velvet & Russian Lips</h3>
-          <p>Técnica personalizada para definir el arco de cupido, hidratar el tejido y aportar una jugosidad elegante sin efecto artificial.</p>
-          <div class="treat-meta">
-            <span style="font-weight: 700; color: var(--primary-light);">1ª Consulta Gratuita</span>
-            <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20información%20sobre%20relleno%20de%20labios." target="_blank" class="btn-treat-link">Pedir Cita →</a>
+    <div class="treatments-grid">
+      <!-- Treat 1: Labios -->
+      <div class="treat-box">
+        <div>
+          <div class="treat-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1512290900672-1f0230a29368?auto=format&fit=crop&w=700&q=80" alt="Relleno de labios natural en Orihuela">
+            <span class="badge-treat-tag">Top Pacientes</span>
           </div>
+          <div class="treat-content">
+            <h3>Labios Velvet & Russian Lips</h3>
+            <p>Aporte de hidratación profunda, definición del arco de cupido y corrección de asimetrías con ácido hialurónico elástico de máxima integración.</p>
+            <ul class="treat-features-list">
+              <li>Duración de 9 a 14 meses</li>
+              <li>Sin bultos ni rigidez al hablar o sonreír</li>
+              <li>Revisión médica gratuita a los 15 días</li>
+            </ul>
+          </div>
+        </div>
+        <div class="treat-content" style="padding-top: 0;">
+          <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20consultar%20sobre%20relleno%20de%20labios%20natural." target="_blank" class="btn-treat-action">Consultar Labios en WhatsApp</a>
         </div>
       </div>
 
-      <!-- Treatment 2 -->
-      <div class="treat-item">
-        <div class="treat-item-img">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Tratamiento antiarrugas facial">
-          <span class="treat-tag">Efecto Buena Cara</span>
-        </div>
-        <div class="treat-item-body">
-          <h3>Neuromoduladores Antiarrugas</h3>
-          <p>Relaja la musculatura del tercio superior del rostro para eliminar la expresión de cansancio o enfado manteniendo la naturalidad de tu mirada.</p>
-          <div class="treat-meta">
-            <span style="font-weight: 700; color: var(--primary-light);">Duración 4-6 meses</span>
-            <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20información%20sobre%20tratamiento%20de%20arrugas." target="_blank" class="btn-treat-link">Pedir Cita →</a>
+      <!-- Treat 2: Bótox -->
+      <div class="treat-box">
+        <div>
+          <div class="treat-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80" alt="Bótox frente y entrecejo">
+            <span class="badge-treat-tag">Efecto Descanso</span>
           </div>
+          <div class="treat-content">
+            <h3>Neuromodulación Antiarrugas</h3>
+            <p>Relajación selectiva de las líneas de la frente, entrecejo y patas de gallo. Elimina la cara de cansancio o enfado preservando la mímica natural.</p>
+            <ul class="treat-features-list">
+              <li>Sesión rápida en solo 20 minutos</li>
+              <li>Incorporación inmediata a tu rutina</li>
+              <li>Piel lisa, luminosa y descansada</li>
+            </ul>
+          </div>
+        </div>
+        <div class="treat-content" style="padding-top: 0;">
+          <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20información%20sobre%20tratamiento%20de%20arrugas." target="_blank" class="btn-treat-action">Consultar Bótox en WhatsApp</a>
         </div>
       </div>
 
-      <!-- Treatment 3 -->
-      <div class="treat-item">
-        <div class="treat-item-img">
-          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80" alt="Rejuvenecimiento facial con colágeno">
-          <span class="treat-tag">Regeneración Profunda</span>
-        </div>
-        <div class="treat-item-body">
-          <h3>Bioestimuladores de Colágeno</h3>
-          <p>Tratamiento inductor que activa la producción natural de colágeno y elastina de tu propia piel para recuperar la firmeza y tersura del rostro.</p>
-          <div class="treat-meta">
-            <span style="font-weight: 700; color: var(--primary-light);">Efecto Progresivo</span>
-            <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20información%20sobre%20inductores%20de%20colágeno." target="_blank" class="btn-treat-link">Pedir Cita →</a>
+      <!-- Treat 3: Colágeno -->
+      <div class="treat-box">
+        <div>
+          <div class="treat-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80" alt="Inductores de colágeno Radiesse">
+            <span class="badge-treat-tag">Lifting Sin Cirugía</span>
           </div>
+          <div class="treat-content">
+            <h3>Inductores de Colágeno (Radiesse)</h3>
+            <p>Estimula la red dérmica propia para redensificar mejillas, óvalo mandibular y cuello. Recupera la firmeza que el paso del tiempo reduce.</p>
+            <ul class="treat-features-list">
+              <li>Estimula colágeno tipo I y elastina</li>
+              <li>Resultados progresivos y duraderos (+18 meses)</li>
+              <li>Técnica con microcánula atraumática</li>
+            </ul>
+          </div>
+        </div>
+        <div class="treat-content" style="padding-top: 0;">
+          <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20quiero%20información%20sobre%20inductores%20de%20colágeno." target="_blank" class="btn-treat-action">Consultar Colágeno en WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Google Reviews -->
-  <section class="reviews-section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Experiencias Reales de Pacientes</h2>
-        <p>⭐ 4.9 de 5 estrellas en reseñas de Google. Cercanía, confianza y resultados elegantes.</p>
+  <!-- Google Reviews Section -->
+  <section class="reviews-section container">
+    <div class="section-header-wrap">
+      <h2>La Experiencia de Quienes Han Pasado por STETIA</h2>
+      <p>⭐ 4.9 sobre 5 estrellas en Google Maps. Pacientes de Orihuela, Torrevieja y Murcia.</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="rev-card-luxury">
+        <div class="rev-top">
+          <div class="rev-author-name">
+            <strong>Paloma C.</strong>
+            <small>Paciente de labios • Orihuela</small>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+        </div>
+        <p class="rev-text">«Estaba asustadísima porque temía que me quedara una boca falsa, pero la doctora me transmitió una tranquilidad absoluta. Mis labios se ven jugosos, perfilados y nadie nota que llevo ácido. Trato inmejorable.»</p>
       </div>
 
-      <div class="reviews-grid">
-        <div class="rev-card">
-          <div class="rev-top">
-            <div class="rev-author">
-              <strong>María José R.</strong>
-              <small>Orihuela</small>
-            </div>
-            <div class="rev-stars">★★★★★</div>
+      <div class="rev-card-luxury">
+        <div class="rev-top">
+          <div class="rev-author-name">
+            <strong>Raquel Navarro</strong>
+            <small>Tratamiento de frente y vitaminas</small>
           </div>
-          <p class="rev-quote">«Tenía mucho miedo de hacerme los labios por si me quedaban exagerados, pero en STETIA entendieron a la primera lo que quería. Quedaron hidratados y súper naturales. Un trato exquisito.»</p>
+          <div class="rev-stars">★★★★★</div>
         </div>
+        <p class="rev-text">«La clínica es preciosa, súper higiénica y discreta. Me hice el tratamiento de frente y el cóctel de vitaminas; el cambio de luminosidad en mi piel es asombroso. Repetiré cada 6 meses sin duda.»</p>
+      </div>
 
-        <div class="rev-card">
-          <div class="rev-top">
-            <div class="rev-author">
-              <strong>Patricia Gómez</strong>
-              <small>Tratamiento de frente y entrecejo</small>
-            </div>
-            <div class="rev-stars">★★★★★</div>
+      <div class="rev-card-luxury">
+        <div class="rev-top">
+          <div class="rev-author-name">
+            <strong>Silvia Benítez</strong>
+            <small>Marcación mandibular</small>
           </div>
-          <p class="rev-quote">«La doctora es una profesional impecable. Te explica cada paso antes de aplicar el producto. Salí encantada y sin ningún moretón. Mi clínica de confianza en la zona.»</p>
+          <div class="rev-stars">★★★★★</div>
         </div>
-
-        <div class="rev-card">
-          <div class="rev-top">
-            <div class="rev-author">
-              <strong>Sonia Gil</strong>
-              <small>Revitalización facial</small>
-            </div>
-            <div class="rev-stars">★★★★★</div>
-          </div>
-          <p class="rev-quote">«Instalaciones preciosas y muy limpias. El tratamiento de vitaminas me devolvió la luz a la piel después del verano. Recomendable 100%.»</p>
-        </div>
+        <p class="rev-text">«Profesionales médicos con una ética intachable: si algo no te va a favorecer, te lo dicen con honestidad antes de cobrarte. Esa sinceridad vale oro. 100% recomendable.»</p>
       </div>
     </div>
   </section>
 
   <!-- Sticky Mobile Bar -->
-  <div class="mobile-bar">
-    <div class="mobile-bar-grid">
-      <a href="tel:+34625629981" class="btn-bar-call">
+  <div class="mobile-floating-bar">
+    <div class="mobile-bar-flex">
+      <a href="tel:+34625629981" class="btn-mobile-call">
         📞 Llamar
       </a>
-      <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20me%20gustaría%20pedir%20cita%20de%20valoración%20médica." target="_blank" class="btn-bar-wp">
+      <a href="https://wa.me/34625629981?text=Hola%20STETIA,%20me%20gustaría%20pedir%20cita%20de%20valoración%20médica." target="_blank" class="btn-mobile-wp">
         💬 Pedir Cita WhatsApp
       </a>
     </div>
   </div>
 
   <script>
-    let currentSelectedTreatment = 'Ácido Hialurónico en Labios (Volumen & Perfilado)';
+    const stetiaState = {
+      zone: 'Relleno e Hidratación de Labios',
+      finish: 'Efecto Sutil y Muy Natural (Nadie lo nota)',
+      exp: 'Es mi primera vez en Medicina Estética'
+    };
 
-    function selectTreatment(elem, treat) {
-      document.querySelectorAll('.treat-card').forEach(c => c.classList.remove('active'));
+    function setStetiaOption(type, elem, val) {
+      const parent = elem.closest('.option-grid');
+      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
       elem.classList.add('active');
-      currentSelectedTreatment = treat;
+      stetiaState[type] = val;
+      updateStetiaSummary();
     }
 
-    function submitTreatment() {
-      const msg = `Hola STETIA, me gustaría solicitar una cita de valoración médica en Orihuela para el tratamiento de: *${currentSelectedTreatment}*. ¿Qué fechas tenéis disponibles?`;
+    function updateStetiaSummary() {
+      const summaryElem = document.getElementById('stetiaSummary');
+      summaryElem.innerText = `${stetiaState.zone.split('(')[0]} • ${stetiaState.finish.split('(')[0]} • ${stetiaState.exp.includes('primera') ? '1ª Vez' : 'Retoque'}`;
+    }
+
+    function sendStetiaWhatsApp() {
+      const msg = `Hola STETIA, me gustaría solicitar una cita de valoración médica en Orihuela:\n` +
+                  `✨ *Zona de Interés:* ${stetiaState.zone}\n` +
+                  `💎 *Acabado Buscado:* ${stetiaState.finish}\n` +
+                  `👩‍⚕️ *Historial:* ${stetiaState.exp}\n\n` +
+                  `¿Cuándo tendría disponibilidad la doctora para una consulta de diagnóstico? Muchas gracias.`;
+
       const url = `https://wa.me/34625629981?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     }
