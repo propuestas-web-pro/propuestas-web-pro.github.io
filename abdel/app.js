@@ -241,11 +241,11 @@ Bghit nqaddem lik had l'cadeau sghir bach nfakrk bli 10 snin machi sahla, w inch
         e.preventDefault();
         if (navigator.vibrate) navigator.vibrate(40);
 
-        const replyText = `Khouya Othmane 👑 Chft l'cadeau dyalk w l'lah ykhellik lya ya weld n-nas... Dima khawa inchaAllah! ⵣ🤝`;
+        const replyText = `Khouya Othmane 🤣 7sltini b had l'cadeau dyalk, d7ktini mn l9elb... Lah ykhellina dima khot w dima da7kin ya weld n-nas! 👑🤝`;
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(replyText).catch(() => {});
         }
-        showToast("¡Message copié! Envoi à Othmane... 👑");
+        showToast("¡I3tiraf copié! Envoi à Othmane... 🤣");
 
         setTimeout(() => {
             window.location.href = `https://instagram.com/direct/inbox/`;
@@ -253,11 +253,12 @@ Bghit nqaddem lik had l'cadeau sghir bach nfakrk bli 10 snin machi sahla, w inch
     });
 
     const nopePhrases = [
-        "Makaynach la m3a Othmane! 😂",
-        "10 snin mabghatch tsali! 😉",
-        "Cliqui 3la khawa l'mamat! 👑",
-        "Amazigh ma kaygoulch la! ⵣ",
-        "Hhh wa safi ghir goli Ah! 🤝"
+        "Makaynach la hna a Abdel! 🏃‍♂️💨",
+        "Gha 3taraf w hani rasek! 🤣",
+        "Had l'bouton khaser, gha goul Ah! 🙈",
+        "10 snin w nti zamel hhh! 😂",
+        "Safi 7ssliti a weld 3mi! 🤣",
+        "L'bouton kayjri 3lik! 🏃‍♂️💨"
     ];
 
     function escapeNoButton() {

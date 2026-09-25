@@ -2,856 +2,875 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fontanería Borja | Fontanero Autorizado • Averías Urgentes & Termos Eléctricos</title>
-  <meta name="description" content="Reparación urgente de tuberías, cambio de termos eléctricos en el día, desatascos de fregaderos y sustitución de sanitarios en toda Orihuela.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Fontanería Borja | Fontanero Urgente 24h en Orihuela & Vega Baja</title>
+  <meta name="description" content="Fontanero autorizado en Orihuela. Llegada en 30 min para fugas, cambio de termos en el día y desatascos. Presupuesto previo sin sorpresas. WhatsApp directo.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --primary: #0284c7;
-      --primary-light: #38bdf8;
-      --bg-dark: #f8fafc;
-      --bg-surface: #ffffff;
-      --bg-elevated: #f1f5f9;
-      --border: #e2e8f0;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --accent: #25d366;
+      --accent-hover: #22c35e;
+      --dark-bg: #070d19;
+      --dark-card: #0d172c;
+      --dark-card-border: #1e293b;
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
+      --warning: #f59e0b;
       --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --shadow-glow: 0 0 30px rgba(2, 132, 199, 0.25);
+      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-sans);
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      font-family: var(--font-body);
+      background-color: var(--dark-bg);
+      color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 75px;
+      padding-bottom: 80px;
     }
 
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
     a { text-decoration: none; color: inherit; }
 
-    /* Top Utility Bar */
-    .topbar {
-      background: #f1f5f9;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.83rem;
-      padding: 0.55rem 0;
-      color: var(--text-muted);
-    }
-    .topbar-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    /* Top Emergency Alert Bar */
+    .emergency-banner {
+      background: linear-gradient(90deg, #0369a1 0%, #0284c7 50%, #0369a1 100%);
+      color: #ffffff;
+      font-size: 0.85rem;
+      padding: 0.6rem 0;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
     .pulse-dot {
       display: inline-block;
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-      background: #10b981;
-      margin-right: 6px;
-      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+      margin-right: 8px;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
     /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(7, 13, 25, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--dark-card-border);
       z-index: 100;
-      padding: 1.1rem 0;
+      padding: 1rem 0;
     }
-    .nav-flex {
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .brand {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-    }
-    .brand-title {
-      font-size: 1.25rem;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--text-main);
+    }
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      font-size: 1.25rem;
     }
-    .brand-pill {
-      background: rgba(194, 136, 62, 0.15);
-      color: var(--primary);
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
+    .brand span { color: #38bdf8; }
+    .nav-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .btn-call-mini {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      color: #38bdf8;
+      padding: 0.55rem 1rem;
       border-radius: 999px;
       font-weight: 700;
-      letter-spacing: 0.05em;
-    }
-    .nav-links {
+      font-size: 0.88rem;
       display: flex;
-      gap: 1.75rem;
-      align-items: center;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    .nav-links a:hover { color: var(--primary); }
-    .btn-nav {
-      background: var(--primary);
-      color: #fff;
-      padding: 0.65rem 1.3rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-    }
-    .btn-nav:hover {
-      background: var(--primary-light);
-      transform: translateY(-1px);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 4.5rem 0 3.5rem;
-      position: relative;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      padding: 0.45rem 1rem;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-size: 2.85rem;
-      line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
-      color: var(--text-main);
-    }
-    .hero p.lead {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .hero-cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2.5rem;
-    }
-    .btn-primary {
-      background: #25d366;
-      color: #ffffff;
-      padding: 0.95rem 1.8rem;
-      border-radius: var(--radius-md);
-      font-weight: 700;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
-      transition: all 0.2s;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 30px -5px rgba(37, 211, 102, 0.5);
-    }
-    .btn-secondary {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 0.95rem 1.6rem;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover {
-      background: var(--bg-surface);
-      border-color: var(--primary);
-    }
-
-    .hero-card-img {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      border: 1px solid var(--border);
-    }
-    .hero-card-img img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
-    }
-    .hero-floating-badge {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .badge-stat { font-size: 1.35rem; font-weight: 800; color: var(--primary); }
-    .badge-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-
-    /* Interactive Engine */
-    .booking-engine-wrapper {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2.75rem;
-      margin: 2rem 0 4rem;
-      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
-    }
-    .engine-header { text-align: center; max-width: 650px; margin: 0 auto 2.25rem; }
-    .sub-pill {
-      display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-    .engine-header h3 { font-size: 1.95rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .engine-header p { color: var(--text-muted); font-size: 0.98rem; }
-    
-    .engine-form { max-width: 780px; margin: 0 auto; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-    .form-group { margin-bottom: 1.5rem; }
-    .form-group label {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text-main);
-    }
-    .form-control {
-      width: 100%;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 0.9rem 1.1rem;
-      font-family: inherit;
-      font-size: 0.95rem;
-      color: var(--text-main);
-      outline: none;
-      transition: border 0.2s;
-    }
-    .form-control:focus { border-color: var(--primary); }
-
-    .shift-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 0.65rem;
-    }
-    .shift-pill {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      padding: 0.65rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-align: center;
       transition: all 0.2s;
     }
-    .shift-pill.active, .shift-pill:hover {
-      background: var(--primary);
+    .btn-call-mini:hover {
+      background: rgba(2, 132, 199, 0.3);
       color: #ffffff;
-      border-color: var(--primary);
     }
-
-    .btn-engine {
-      width: 100%;
+    .btn-wp-header {
       background: #25d366;
       color: #ffffff;
-      border: none;
-      padding: 1.1rem;
-      border-radius: var(--radius-md);
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.88rem;
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 0.6rem;
-      box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
+      gap: 0.5rem;
       transition: all 0.2s;
     }
-    .btn-engine:hover {
+    .btn-wp-header:hover {
       background: #22c35e;
       transform: translateY(-1px);
     }
 
-    /* Google Reviews Section */
-    .reviews-section {
-      padding: 4.5rem 0;
-      border-top: 1px solid var(--border);
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 3.5rem 0 3rem;
+      overflow: hidden;
     }
+    .hero-bg-glow {
+      position: absolute;
+      top: -150px;
+      right: -100px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.2) 0%, rgba(7, 13, 25, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .badge-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+    .btn-main-wp {
+      background: linear-gradient(135deg, #25d366, #16a34a);
+      color: #ffffff;
+      padding: 1rem 1.85rem;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      box-shadow: 0 12px 28px -5px rgba(37, 211, 102, 0.45);
+      transition: all 0.25s;
+    }
+    .btn-main-wp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -5px rgba(37, 211, 102, 0.6);
+    }
+    .btn-main-call {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-card-border);
+      color: #ffffff;
+      padding: 1rem 1.65rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+    }
+    .btn-main-call:hover {
+      border-color: #38bdf8;
+      background: rgba(2, 132, 199, 0.1);
+    }
+
+    /* Trust indicators */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-card-border);
+      border-radius: var(--radius-md);
+    }
+    .trust-item {
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-val {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .trust-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+
+    /* Hero Media Card */
+    .hero-media {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--dark-card-border);
+      box-shadow: var(--shadow-glow);
+    }
+    .hero-media img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.95);
+    }
+    .hero-badge-overlay {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      background: rgba(7, 13, 25, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge-text strong { display: block; font-size: 0.95rem; }
+    .badge-text small { color: var(--text-muted); font-size: 0.78rem; }
+    .badge-star {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #f59e0b;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    /* Interactive Calculator / WhatsApp Wizard */
+    .wizard-section {
+      padding: 3.5rem 0;
+    }
+    .wizard-card {
+      background: linear-gradient(180deg, #0d172c 0%, #070d19 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2rem;
+      box-shadow: var(--shadow-glow);
+    }
+    .wizard-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+    .wizard-tag {
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .wizard-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.15rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+    }
+    .wizard-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .service-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .select-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--dark-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .select-card:hover, .select-card.active {
+      background: rgba(2, 132, 199, 0.15);
+      border-color: #38bdf8;
+      transform: translateY(-3px);
+    }
+    .select-icon { font-size: 2rem; margin-bottom: 0.65rem; }
+    .select-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .select-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+    .wizard-actions {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .urgency-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    .urgency-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--dark-card-border);
+      color: var(--text-muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .urgency-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .btn-send-budget {
+      width: 100%;
+      background: linear-gradient(135deg, #25d366, #15803d);
+      color: #ffffff;
+      padding: 1.15rem;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      box-shadow: 0 12px 30px -5px rgba(37, 211, 102, 0.5);
+      transition: all 0.2s;
+    }
+    .btn-send-budget:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -5px rgba(37, 211, 102, 0.65);
+    }
+
+    /* Services Grid with Photos */
     .section-title-wrap {
       text-align: center;
-      margin-bottom: 3rem;
+      max-width: 650px;
+      margin: 0 auto 3rem;
     }
     .section-title-wrap h2 {
+      font-family: var(--font-heading);
       font-size: 2.2rem;
       font-weight: 800;
       margin-bottom: 0.75rem;
     }
-    .google-badge-hero {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      padding: 0.65rem 1.5rem;
+    .section-title-wrap p { color: var(--text-muted); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+    .service-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-card-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: var(--shadow-glow);
+    }
+    .service-card-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover .service-card-img img {
+      transform: scale(1.06);
+    }
+    .service-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(7, 13, 25, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.75rem;
       border-radius: 999px;
+      font-size: 0.78rem;
       font-weight: 700;
-      font-size: 0.95rem;
+      color: #38bdf8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .service-body { padding: 1.5rem; }
+    .service-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+    .service-body p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
       margin-bottom: 1.25rem;
+    }
+    .service-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      font-size: 0.86rem;
+      color: #cbd5e1;
+    }
+    .service-features li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .service-features li::before {
+      content: '✓';
+      color: #22c55e;
+      font-weight: 800;
+    }
+    .btn-card-action {
+      display: block;
+      text-align: center;
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      color: #38bdf8;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: all 0.2s;
+    }
+    .btn-card-action:hover {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* Real Reviews Section */
+    .reviews-section {
+      background: #091021;
+      padding: 4rem 0;
+      border-top: 1px solid var(--dark-card-border);
+      border-bottom: 1px solid var(--dark-card-border);
+      margin-bottom: 4rem;
     }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
+      gap: 1.5rem;
     }
     .review-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+      background: var(--dark-card);
+      border: 1px solid var(--dark-card-border);
       border-radius: var(--radius-md);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      padding: 1.75rem;
     }
-    .review-header {
+    .review-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.25rem;
-    }
-    .reviewer-meta {
-      display: flex;
       align-items: center;
-      gap: 0.75rem;
+      margin-bottom: 1rem;
     }
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-    .reviewer-name { font-weight: 700; font-size: 0.95rem; }
-    .reviewer-tag { font-size: 0.78rem; color: var(--text-muted); }
-    .stars { color: #f59e0b; font-size: 0.95rem; letter-spacing: 2px; }
-    .review-text {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-    .review-verified {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #10b981;
-    }
+    .reviewer-info strong { display: block; font-size: 0.95rem; }
+    .reviewer-info small { color: var(--text-muted); font-size: 0.78rem; }
+    .stars { color: #f59e0b; font-size: 0.95rem; }
+    .review-text { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
 
-    /* Contact & Map Section */
-    .contact-section {
-      padding: 4.5rem 0;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-    .contact-info h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
-    .contact-info p { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
-    .contact-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-      align-items: flex-start;
-    }
-    .contact-icon {
-      color: var(--primary);
-      margin-top: 0.2rem;
-    }
-    .contact-label { font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-    .contact-value { font-weight: 600; font-size: 1rem; }
-    .map-frame {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      height: 380px;
-    }
-
-    /* Sticky Mobile Bar */
-    .mobile-bar {
+    /* Sticky Mobile Bottom Bar */
+    .mobile-bottom-bar {
       display: none;
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      padding: 0.85rem 1.25rem;
+      background: rgba(7, 13, 25, 0.96);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--dark-card-border);
+      padding: 0.75rem 1rem;
       z-index: 999;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 -10px 25px rgba(0,0,0,0.4);
     }
-    .mobile-bar .btn-primary {
-      width: 100%;
-      justify-content: center;
-      box-shadow: none;
+    .bottom-flex {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 0.75rem;
     }
-
-    /* Official Corporate Footer */
-    footer {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 3.5rem 0 2rem;
-      border-top: 1px solid var(--border);
+    .btn-bot-call {
+      background: var(--dark-card);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
       font-size: 0.88rem;
-    }
-    .footer-flex {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 1.5rem;
+      justify-content: center;
+      gap: 0.4rem;
     }
-    .footer-brand { font-size: 1.2rem; font-weight: 800; color: #f8fafc; }
-    .footer-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: 0.85rem; }
-    .footer-links a:hover { color: #f8fafc; }
-    .footer-bottom {
+    .btn-bot-wp {
+      background: #25d366;
+      color: #ffffff;
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      font-size: 0.92rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
+      justify-content: center;
+      gap: 0.4rem;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-selector-grid { grid-template-columns: repeat(2, 1fr); }
       .reviews-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      .mobile-bar { display: block; }
-      .hero h1 { font-size: 2.2rem; }
-      .form-row { grid-template-columns: 1fr; gap: 1rem; }
-      .booking-engine-wrapper { padding: 1.75rem 1.25rem; }
+      .hero h1 { font-size: 2.3rem; }
+    }
+    @media (max-width: 768px) {
+      .mobile-bottom-bar { display: block; }
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-strip { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .trust-item:nth-child(2) { border-right: none; }
+      .hero h1 { font-size: 2rem; }
+      .btn-wp-header { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container topbar-content">
-      <div>
-        <span class="pulse-dot"></span>
-        <strong>Servicio Activo Hoy</strong> &bull; Orihuela y Orihuela Costa, Alicante
-      </div>
-      <div>
-        Atención Directa: <a href="https://wa.me/34661252447" style="color: var(--primary); font-weight:700;">WhatsApp +34 661 252 447</a>
-      </div>
+  <!-- Top Emergency Alert -->
+  <div class="emergency-banner">
+    <div class="container">
+      <span class="pulse-dot"></span> <strong>GUARDIA 24 HORAS ACTIVA EN ORIHUELA</strong> • Llegada en 30 minutos a domicilios y locales
     </div>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="container nav-flex">
-      <a href="#" class="brand-title">
-        <span>Fontanería Borja</span>
-        <span class="brand-pill">ORIHUELA</span>
-      </a>
-      <div class="nav-links">
-        <a href="#reservas">Reservas & Servicios</a>
-        <a href="#opiniones">Opiniones Google</a>
-        <a href="#contacto">Ubicación</a>
-        <a href="https://wa.me/34661252447" class="btn-nav">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Contacto Inmediato
+    <div class="container nav-wrap">
+      <div class="brand">
+        <div class="brand-icon">🔧</div>
+        <div>Fontanería <span>Borja</span></div>
+      </div>
+      <div class="nav-actions">
+        <a href="tel:+34661252447" class="btn-call-mini">
+          📞 <span>661 252 447</span>
+        </a>
+        <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20asistencia%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-wp-header">
+          💬 WhatsApp Urgente
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero">
+    <div class="hero-bg-glow"></div>
     <div class="container hero-grid">
       <div>
-        <div class="hero-tag">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Orihuela y Pedanías • Servicio Rápido de Averías y Fugas
+        <div class="badge-hero">
+          ⚡ Fontanero Autorizado en Orihuela & Vega Baja
         </div>
-        <h1>Solución Inmediata a Fugas, Atascos e Instalaciones de Agua</h1>
-        <p class="lead">Reparación urgente de tuberías, cambio de termos eléctricos en el día, desatascos de fregaderos y sustitución de sanitarios en toda Orihuela.</p>
-        <div class="hero-cta-group">
-          <a href="#reservas" class="btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg> Reservar / Cita Online
+        <h1>Reparaciones Rápidas. <span>Cero Sorpresas</span> en la Factura.</h1>
+        <p class="lead">
+          Solución inmediata en fugas de agua, cambio urgente de termos eléctricos en el día, desatascos limpios y sustitución de grifería. Te damos presupuesto previo transparente sin compromiso.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20urgencia%20de%20fontanería%20en%20Orihuela.%20¿Puedes%20darme%20presupuesto?" target="_blank" class="btn-main-wp">
+            💬 Contactar por WhatsApp Inmediato
           </a>
-          <a href="https://wa.me/34661252447?text=Hola%2C%20quer%C3%ADa%20consultar%20disponibilidad" class="btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Hablar por WhatsApp
+          <a href="tel:+34661252447" class="btn-main-call">
+            📞 Llamar al 661 252 447
           </a>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-item">
+            <div class="trust-val">30 Min</div>
+            <div class="trust-label">Llegada urgente</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-val">0€</div>
+            <div class="trust-label">Presupuesto previo</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-val">4.9 ★</div>
+            <div class="trust-label">Valoración Google</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-val">100%</div>
+            <div class="trust-label">Garantía por escrito</div>
+          </div>
         </div>
       </div>
-      <div class="hero-card-img">
-        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1200&q=80" alt="Fontanería Borja" loading="lazy">
-        <div class="hero-floating-badge">
-          <div>
-            <div class="badge-stat">4.9 ★</div>
-            <div class="badge-label">210+ reseñas en Google</div>
+
+      <!-- Hero Card Image -->
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=800&q=80" alt="Fontanero trabajando en tuberías y termo en Orihuela">
+        <div class="hero-badge-overlay">
+          <div class="badge-text">
+            <strong>Borja • Fontanería Orihuela</strong>
+            <small>Atención directa sin intermediarios</small>
           </div>
-          <div style="text-align: right;">
-            <div class="badge-stat">100%</div>
-            <div class="badge-label">Atención y Garantía</div>
-          </div>
+          <div class="badge-star">★ 4.9 Google</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Sector Interactive Engine -->
-  <section class="container">
-    
-      <div class="booking-engine-wrapper" id="presupuesto">
-        <div class="engine-header">
-          <span class="sub-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> TRABAJOS GARANTIZADOS</span>
-          <h3>Calculadora de Presupuesto Rápido</h3>
-          <p>Detalla el tipo de trabajo que necesitas y te enviamos estimación de costes sin compromiso.</p>
+  <!-- Interactive Budget Tool / Wizard -->
+  <section class="wizard-section">
+    <div class="container">
+      <div class="wizard-card">
+        <div class="wizard-header">
+          <span class="wizard-tag">Calculador Rápido de Averías</span>
+          <h2>¿Qué necesitas reparar hoy en Orihuela?</h2>
+          <p>Selecciona tu avería y te enviamos presupuesto directo a WhatsApp en menos de 5 minutos.</p>
         </div>
-        <form class="engine-form" id="contractorForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Tipo de Intervención</label>
-              <select class="form-control" id="conServicio">
-                <option value="Reforma Integral de Vivienda / Local">Reforma Integral de Vivienda / Local</option>
-                <option value="Reforma de Cocina o Baño">Reforma de Cocina o Baño</option>
-                <option value="Pintura Integral / Alisado de Gotelé">Pintura Integral / Alisado de Gotelé</option>
-                <option value="Apertura Urgente de Puerta / Cerradura">Apertura Urgente de Puerta (24h)</option>
-                <option value="Avería Fontanería / Fuga / Termo">Avería de Fontanería / Termo Eléctrico</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Metros Aprox o Urgencia</label>
-              <select class="form-control" id="conUrgency">
-                <option value="Urgencia Inmediata (Hoy mismo)">Urgencia Inmediata (Hoy mismo)</option>
-                <option value="Piso/Vivienda hasta 70m2">Piso / Vivienda hasta 70m2</option>
-                <option value="Vivienda 70m2 a 120m2">Vivienda 70m2 a 120m2</option>
-                <option value="Chalet o Local grande (+120m2)">Chalet o Local (+120m2)</option>
-              </select>
-            </div>
+
+        <div class="service-selector-grid">
+          <div class="select-card active" onclick="selectService(this, 'Fuga de agua en tubería')">
+            <div class="select-icon">💧</div>
+            <div class="select-title">Fuga de Agua</div>
+            <div class="select-desc">Humedades, goteras, tubería rota</div>
           </div>
-          <button type="submit" class="btn-engine">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Pedir Presupuesto y Plazos por WhatsApp
+          <div class="select-card" onclick="selectService(this, 'Cambio o avería de Termo Eléctrico')">
+            <div class="select-icon">⚡</div>
+            <div class="select-title">Termo Eléctrico</div>
+            <div class="select-desc">No calienta, salta el diferencial, gotea</div>
+          </div>
+          <div class="select-card" onclick="selectService(this, 'Desatasco urgente de tubería o WC')">
+            <div class="select-icon">🚿</div>
+            <div class="select-title">Desatascos</div>
+            <div class="select-desc">Fregaderos, ducha o WC embozado</div>
+          </div>
+          <div class="select-card" onclick="selectService(this, 'Grifería o sustitución sanitaria')">
+            <div class="select-icon">🔧</div>
+            <div class="select-title">Grifería & Baño</div>
+            <div class="select-desc">Cambio de grifos, cisternas, platos</div>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <div class="urgency-toggle">
+            <button class="urgency-btn active" onclick="setUrgency(this, 'URGENTE (Hoy mismo)')">🚨 Urgente (Hoy)</button>
+            <button class="urgency-btn" onclick="setUrgency(this, 'Sin prisa (Esta semana)')">📅 Sin Prisa (Esta semana)</button>
+          </div>
+          <button id="btnSendBudget" class="btn-send-budget" onclick="submitWhatsApp()">
+            💬 Pedir Presupuesto por WhatsApp Ahora
           </button>
-        </form>
+        </div>
       </div>
-    
+    </div>
   </section>
 
-  <!-- Reviews -->
-  <section id="opiniones" class="reviews-section">
+  <!-- Services Grid with Real Photos -->
+  <section class="container">
+    <div class="section-title-wrap">
+      <h2>Servicios Principales en Orihuela y Pedanías</h2>
+      <p>Materiales de primera calidad (multicapa, cobre, Junkers, Ariston) con factura oficial.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1: Termos -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" alt="Instalación de termo eléctrico">
+          <span class="service-badge">En el día</span>
+        </div>
+        <div class="service-body">
+          <h3>Termos Eléctricos</h3>
+          <p>Instalación y sustitución de termos de 50L, 80L y 100L en menos de 3 horas. Retiramos el antiguo sin coste.</p>
+          <ul class="service-features">
+            <li>Marcas Ariston, Junkers, Cointra</li>
+            <li>Válvulas de seguridad homologadas</li>
+            <li>Garantía de 2 a 5 años</li>
+          </ul>
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20quiero%20consultar%20precio%20para%20un%20termo%20eléctrico." target="_blank" class="btn-card-action">Consultar Termos</a>
+        </div>
+      </div>
+
+      <!-- Service 2: Fugas -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=700&q=80" alt="Localización de fugas">
+          <span class="service-badge">Llegada 30 min</span>
+        </div>
+        <div class="service-body">
+          <h3>Fugas de Agua y Goteras</h3>
+          <p>Localizamos y sellamos roturas en tuberías vistas y empotradas para evitar daños en techos y paredes.</p>
+          <ul class="service-features">
+            <li>Detección limpia sin roturas innecesarias</li>
+            <li>Reparación de bajantes y acometidas</li>
+            <li>Informe para tu seguro del hogar</li>
+          </ul>
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20fuga%20de%20agua%20urgente%20en%20casa." target="_blank" class="btn-card-action">Avisar de Fuga</a>
+        </div>
+      </div>
+
+      <!-- Service 3: Desatascos -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=700&q=80" alt="Desatascos y grifería">
+          <span class="service-badge">Maquinaria propia</span>
+        </div>
+        <div class="service-body">
+          <h3>Desatascos & Grifería</h3>
+          <p>Desembozado rápido de fregaderos, inodoros y arquetas con maquinaria mecánica y presión de agua.</p>
+          <ul class="service-features">
+            <li>Eliminación de malos olores y atascos</li>
+            <li>Cambio de grifos monomando y llaves</li>
+            <li>Mecanismos de cisterna silenciosos</li>
+          </ul>
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20un%20desatasco%20en%20Orihuela." target="_blank" class="btn-card-action">Pedir Desatasco</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Reviews -->
+  <section class="reviews-section">
     <div class="container">
       <div class="section-title-wrap">
-        <div class="google-badge-hero">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg>
-          <span>Valoración Excelente de <strong>4.9 / 5.0</strong> en Google Maps</span>
-        </div>
-        <h2>Lo Que Opinan Quienes Ya Nos Conocen</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Transparencia y satisfacción real de clientes en Orihuela.</p>
+        <h2>Opiniones Reales en Orihuela</h2>
+        <p>⭐ 4.9 de 5 estrellas en reseñas de Google. Atención directa de Borja.</p>
       </div>
       <div class="reviews-grid">
-        
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-meta">
-          <div class="avatar">R</div>
-          <div>
-            <div class="reviewer-name">Ramón Terrés</div>
-            <div class="reviewer-tag">Cliente urgente</div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer-info">
+              <strong>Manuel García</strong>
+              <small>Orihuela Centro</small>
+            </div>
+            <div class="stars">★★★★★</div>
           </div>
+          <p class="review-text">«Se me rompió el termo un viernes por la tarde y en 2 horas ya lo tenía cambiado y funcionando con agua caliente. Muy formal, limpio y precio muy justo. Totalmente recomendado.»</p>
         </div>
-        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
-      </div>
-      <p class="review-text">"Se nos rompió el termo eléctrico inundando la cocina. Vino en menos de una hora y nos instaló uno nuevo. Rápido, limpio y precio justo."</p>
-      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
-    </div>
-  
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-meta">
-          <div class="avatar">C</div>
-          <div>
-            <div class="reviewer-name">Concepción Mora</div>
-            <div class="reviewer-tag">Local Guide • 19 reseñas</div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer-info">
+              <strong>Carmen Navarro</strong>
+              <small>Duque de Tamames</small>
+            </div>
+            <div class="stars">★★★★★</div>
           </div>
+          <p class="review-text">«Teníamos una fuga que salía al piso de abajo. Vino rápido, detectó el tramo exacto y lo reparó sin romper medio baño. Da gusto tratar con profesionales así.»</p>
         </div>
-        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
-      </div>
-      <p class="review-text">"Fontanero muy honrado y formal. Desatascó el desagüe del fregadero sin romper nada. Recomendable al 100%."</p>
-      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
-    </div>
-  
-    <div class="review-card">
-      <div class="review-header">
-        <div class="reviewer-meta">
-          <div class="avatar">J</div>
-          <div>
-            <div class="reviewer-name">José Antonio Grau</div>
-            <div class="reviewer-tag">Cliente verificado</div>
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer-info">
+              <strong>Antonio Bernabé</strong>
+              <small>La Murada, Orihuela</small>
+            </div>
+            <div class="stars">★★★★★</div>
           </div>
+          <p class="review-text">«Muy puntual y profesional. Me cambió la grifería de la cocina y el mecanismo del inodoro. Presupuesto claro antes de tocar nada. Ya tengo fontanero de cabecera.»</p>
         </div>
-        <div class="google-badge-pill"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17Z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15Z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"/></svg> <span class="stars">★★★★★</span></div>
-      </div>
-      <p class="review-text">"Excelente profesional en Orihuela. Da gusto encontrar gente tan seria y eficaz."</p>
-      <div class="review-verified"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Opinión verificada de Google Maps</div>
-    </div>
-  
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact & Map -->
-  <section id="contacto" class="contact-section">
-    <div class="container contact-grid">
-      <div class="contact-info">
-        <span class="sub-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg> LOCALIZACIÓN & HORARIOS</span>
-        <h3>Ven a Visitarnos en Orihuela</h3>
-        <p>Estamos a tu completa disposición para resolver cualquier duda o atenderte presencialmente en nuestras instalaciones.</p>
-        
-        <div class="contact-item">
-          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
-          <div>
-            <div class="contact-label">Dirección</div>
-            <div class="contact-value">Orihuela y Orihuela Costa, Alicante</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
-          <div>
-            <div class="contact-label">Teléfono & WhatsApp</div>
-            <div class="contact-value"><a href="https://wa.me/34661252447">+34 661 252 447</a></div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-          <div>
-            <div class="contact-label">Horario de Atención</div>
-            <div class="contact-value">Lunes a Sábado: 09:30 a 22:30 (Horario continuo)</div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 2rem;">
-          <a href="https://wa.me/34661252447" class="btn-primary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Abrir Chat Directo en WhatsApp
-          </a>
-        </div>
-      </div>
-      
-      <div class="map-frame">
-        <iframe 
-          src="https://www.google.com/maps?q=Fontaner%C3%ADa%20Borja%20Orihuela%20y%20Orihuela%20Costa%2C%20Alicante&output=embed" 
-          width="100%" 
-          height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
       </div>
     </div>
   </section>
 
   <!-- Sticky Mobile Bar -->
-  <div class="mobile-bar">
-    <a href="https://wa.me/34661252447?text=Hola%2C%20quer%C3%ADa%20solicitar%20informaci%C3%B3n" class="btn-primary">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.545 1.802.836 2.796.837 3.183 0 5.769-2.587 5.77-5.767 0-3.182-2.586-5.767-5.77-5.767zm7.502 5.767c-.002 4.137-3.366 7.501-7.503 7.501-1.309 0-2.434-.343-3.465-.929l-4.565 1.197 1.219-4.449c-.663-1.096-1.045-2.316-1.045-3.32 0-4.138 3.366-7.502 7.504-7.502 4.138 0 7.504 3.365 7.505 7.502z"/></svg> Contactar por WhatsApp (+34 661 252 447)
-    </a>
+  <div class="mobile-bottom-bar">
+    <div class="bottom-flex">
+      <a href="tel:+34661252447" class="btn-bot-call">
+        📞 Llamar
+      </a>
+      <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20urgencia%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-bot-wp">
+        💬 WhatsApp 24h
+      </a>
+    </div>
   </div>
 
-  <!-- Official Corporate Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-flex">
-        <div>
-          <div class="footer-brand">Fontanería Borja</div>
-          <p style="margin-top: 0.3rem;">Fontanería urgente, instalaciones y calefacción en Orihuela, Alicante.</p>
-        </div>
-        <div class="footer-links">
-          <a href="#">Aviso Legal</a>
-          <a href="#">Política de Privacidad</a>
-          <a href="#">Política de Cookies</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 Fontanería Borja. Todos los derechos reservados.</div>
-        <div>Orihuela y Orihuela Costa, Alicante</div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    // Shift pill active toggle
-    const shiftPills = document.querySelectorAll('.shift-pill');
-    shiftPills.forEach(pill => {
-      pill.addEventListener('click', (e) => {
-        const parent = pill.parentElement;
-        parent.querySelectorAll('.shift-pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-      });
-    });
+    let currentService = 'Fuga de agua en tubería';
+    let currentUrgency = 'URGENTE (Hoy mismo)';
 
-    // Handle Restaurant Booking
-    const bookingForm = document.getElementById('bookingForm');
-    if (bookingForm) {
-      bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const date = document.getElementById('bookDate').value;
-        const pax = document.getElementById('bookPax').value;
-        const activeShift = bookingForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || '14:00';
-        const specialty = document.getElementById('bookSpecialty').value;
-        const zone = document.getElementById('bookZone').value;
-
-        const msg = 'Hola, me gustaría reservar mesa en ' + 'Fontanería Borja' + ':\n' +
-                    '- Fecha: ' + date + '\n' +
-                    '- Hora: ' + activeShift + '\n' +
-                    '- Comensales: ' + pax + '\n' +
-                    '- Plato/Arroz: ' + specialty + '\n' +
-                    '- Zona: ' + zone;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
+    function selectService(elem, service) {
+      document.querySelectorAll('.select-card').forEach(c => c.classList.remove('active'));
+      elem.classList.add('active');
+      currentService = service;
     }
 
-    // Handle Takeaway Order
-    const takeawayForm = document.getElementById('takeawayForm');
-    if (takeawayForm) {
-      takeawayForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const dish = document.getElementById('takeDish').value;
-        const rac = document.getElementById('takeRaciones').value;
-        const time = takeawayForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || '13:30h';
-        const msg = 'Hola, quería hacer un encargo para recoger:\n- Plato: ' + dish + '\n- Raciones: ' + rac + '\n- Hora de recogida: ' + time;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
+    function setUrgency(elem, urgency) {
+      document.querySelectorAll('.urgency-btn').forEach(b => b.classList.remove('active'));
+      elem.classList.add('active');
+      currentUrgency = urgency;
     }
 
-    // Handle Clinical / Dental Appointment
-    const clinicalForm = document.getElementById('clinicalForm');
-    if (clinicalForm) {
-      clinicalForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const motivo = document.getElementById('clinMotivo').value;
-        const horario = document.getElementById('clinHorario').value;
-        const date = document.getElementById('clinDate').value;
-        const msg = 'Hola, quería solicitar cita previa:\n- Motivo: ' + motivo + '\n- Día preferente: ' + date + '\n- Horario: ' + horario;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
-    }
-
-    // Handle Physio Appointment
-    const physioForm = document.getElementById('physioForm');
-    if (physioForm) {
-      physioForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const zona = document.getElementById('physioZona').value;
-        const tiempo = document.getElementById('physioTiempo').value;
-        const horario = physioForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || 'Tardes';
-        const msg = 'Hola, me gustaría consultar disponibilidad para fisioterapia:\n- Zona/Lesión: ' + zona + '\n- Evolución: ' + tiempo + '\n- Preferencia horaria: ' + horario;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
-    }
-
-    // Handle Workshop Quote
-    const workshopForm = document.getElementById('workshopForm');
-    if (workshopForm) {
-      workshopForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const serv = document.getElementById('workService').value;
-        const veh = document.getElementById('workVehicle').value;
-        const msg = 'Hola, quería pedir presupuesto de taller:\n- Vehículo: ' + veh + '\n- Intervención: ' + serv;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
-    }
-
-    // Handle Salon Booking
-    const salonForm = document.getElementById('salonForm');
-    if (salonForm) {
-      salonForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const serv = document.getElementById('salServicio').value;
-        const date = document.getElementById('salDate').value;
-        const shift = salonForm.querySelector('.shift-pill.active')?.getAttribute('data-time') || 'Tarde';
-        const msg = 'Hola, quería reservar cita en el salón:\n- Servicio: ' + serv + '\n- Día: ' + date + '\n- Franja: ' + shift;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
-    }
-
-    // Handle Contractor Quote
-    const contractorForm = document.getElementById('contractorForm');
-    if (contractorForm) {
-      contractorForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const serv = document.getElementById('conServicio').value;
-        const urg = document.getElementById('conUrgency').value;
-        const msg = 'Hola, quería solicitar presupuesto para un trabajo:\n- Tipo: ' + serv + '\n- Detalle/Urgencia: ' + urg;
-        window.open('https://wa.me/34661252447?text=' + encodeURIComponent(msg), '_blank');
-      });
+    function submitWhatsApp() {
+      const msg = `Hola Borja, te contacto desde tu web. Tengo una avería de: *${currentService}*, con urgencia: *${currentUrgency}* en Orihuela. ¿Podrías darme presupuesto o disponibilidad para pasar?`;
+      const url = `https://wa.me/34661252447?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
