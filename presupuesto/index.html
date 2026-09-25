@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Configura Tu Presupuesto Web — Soluciones Digitales para Negocios Locales</title>
+  <meta name="description" content="Genera tu presupuesto personalizado en 60 segundos. Elige las funcionalidades que necesita tu negocio y obtén un precio transparente al instante.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #eef2ff;
+      --primary-glow: rgba(99, 102, 241, 0.15);
+      --accent: #06b6d4;
+      --accent-dark: #0891b2;
+      --success: #10b981;
+      --success-dark: #059669;
+      --warning: #f59e0b;
+      --whatsapp: #22c55e;
+      --whatsapp-dark: #16a34a;
+      --bg-main: #0f0f1a;
+      --bg-card: #1a1a2e;
+      --bg-card-hover: #1e1e35;
+      --bg-elevated: #252542;
+      --border: rgba(99, 102, 241, 0.12);
+      --border-active: rgba(99, 102, 241, 0.5);
+      --text-white: #ffffff;
+      --text-body: #c4c4d4;
+      --text-muted: #8888a4;
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.15);
+      --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.2);
+      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+      --font: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-main);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Background ambient effects */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 25s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatOrb { 0% { transform: translate(0,0); } 100% { transform: translate(40px, 30px); } }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
+
+    /* Header */
+    .page-header {
+      padding: 2.5rem 0 1.5rem;
+      text-align: center;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary-glow);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+    }
+    .header-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #fff 0%, #c4c4d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-header h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Steps indicator */
+    .steps-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 2rem 0 1.5rem;
+    }
+    .step-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.3s;
+    }
+    .step-pill.active {
+      background: var(--primary-glow);
+      border-color: var(--border-active);
+      color: var(--primary);
+    }
+    .step-pill .num {
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-elevated);
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .step-pill.active .num {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Section title */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+    .section-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Module cards */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .module-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+    .module-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .module-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .module-card:hover::before { opacity: 1; }
+    .module-card.selected {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.06);
+      box-shadow: var(--shadow-glow);
+    }
+    .module-card.included {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.04);
+    }
+    .module-card.included .module-price { color: var(--success); }
+
+    .module-checkbox {
+      width: 28px; height: 28px;
+      min-width: 28px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+      color: transparent;
+      position: relative;
+      z-index: 1;
+    }
+    .module-card.selected .module-checkbox,
+    .module-card.included .module-checkbox {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .module-card.included .module-checkbox {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .module-info { flex: 1; position: relative; z-index: 1; }
+    .module-name {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .module-name .icon { font-size: 1.15rem; }
+    .module-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .module-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 0.35rem;
+    }
+    .tag-popular {
+      background: rgba(245, 158, 11, 0.12);
+      color: #f59e0b;
+    }
+    .tag-included {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10b981;
+    }
+    .tag-premium {
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--primary);
+    }
+
+    .module-price-col {
+      text-align: right;
+      min-width: 80px;
+      position: relative;
+      z-index: 1;
+    }
+    .module-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+    .module-price-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 2rem 0;
+    }
+
+    /* Live summary bar */
+    .summary-bar {
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-active);
+      padding: 1rem 0;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+    }
+    .summary-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .summary-left { flex: 1; min-width: 200px; }
+    .summary-count {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+    .summary-count strong { color: var(--primary); }
+    .summary-total-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .summary-total {
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s;
+    }
+    .summary-monthly {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .summary-saved {
+      font-size: 0.72rem;
+      color: var(--success);
+      font-weight: 700;
+      margin-top: 0.15rem;
+    }
+
+    .btn-send-quote {
+      background: linear-gradient(135deg, var(--whatsapp), var(--whatsapp-dark));
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 800;
+      font-family: var(--font);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .btn-send-quote:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(34, 197, 94, 0.45);
+    }
+    .btn-send-quote:active { transform: scale(0.98); }
+
+    /* Trust badges */
+    .trust-section {
+      padding: 2rem 0 3rem;
+      text-align: center;
+    }
+    .trust-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .trust-item .icon { font-size: 1.1rem; }
+
+    /* Payment toggle */
+    .payment-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: calc(var(--radius-md) - 4px);
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .toggle-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+    }
+    .toggle-btn .save-badge {
+      position: absolute;
+      top: -8px;
+      right: -4px;
+      background: var(--warning);
+      color: #000;
+      font-size: 0.6rem;
+      font-weight: 800;
+      padding: 0.15rem 0.4rem;
+      border-radius: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-header h1 { font-size: 1.6rem; }
+      .module-card { padding: 1rem 1.1rem; gap: 0.75rem; }
+      .module-name { font-size: 0.92rem; }
+      .module-price { font-size: 1rem; }
+      .summary-inner { flex-direction: column; text-align: center; }
+      .btn-send-quote { width: 100%; justify-content: center; }
+      .steps-bar { flex-wrap: wrap; }
+      .trust-grid { gap: 1rem; }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeIn 0.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .module-card { animation: fadeIn 0.4s ease forwards; }
+    .module-card:nth-child(2) { animation-delay: 0.05s; }
+    .module-card:nth-child(3) { animation-delay: 0.1s; }
+    .module-card:nth-child(4) { animation-delay: 0.15s; }
+    .module-card:nth-child(5) { animation-delay: 0.2s; }
+    .module-card:nth-child(6) { animation-delay: 0.25s; }
+    .module-card:nth-child(7) { animation-delay: 0.3s; }
+    .module-card:nth-child(8) { animation-delay: 0.35s; }
+
+    .price-bump {
+      animation: bumpPrice 0.35s ease;
+    }
+    @keyframes bumpPrice {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="page-header container fade-in">
+    <div class="header-badge">
+      <span class="dot"></span>
+      Presupuesto Interactivo en Tiempo Real
+    </div>
+    <h1>Configura Tu Solución Digital <em>a Medida</em></h1>
+    <p>Selecciona las funcionalidades que necesita tu negocio y obtén un presupuesto transparente al instante. Sin letra pequeña.</p>
+  </header>
+
+  <!-- Steps -->
+  <div class="container">
+    <div class="steps-bar fade-in">
+      <div class="step-pill active">
+        <span class="num">1</span> Elige funcionalidades
+      </div>
+      <div class="step-pill">
+        <span class="num">2</span> Revisa tu presupuesto
+      </div>
+      <div class="step-pill">
+        <span class="num">3</span> Solicita sin compromiso
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment mode toggle -->
+  <div class="container">
+    <div class="payment-toggle fade-in">
+      <button class="toggle-btn active" onclick="setPaymentMode('unico', this)">💳 Pago Único</button>
+      <button class="toggle-btn" onclick="setPaymentMode('mensual', this)">
+        📅 Suscripción Mensual
+        <span class="save-badge">-40%</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- BASE: Always included -->
+    <div class="fade-in">
+      <div class="section-label">✅ BASE INCLUIDA</div>
+      <div class="section-title">Fundamentos de Tu Web Profesional</div>
+      <div class="section-desc">Estas funcionalidades son la base de cualquier proyecto web profesional y están incluidas de serie.</div>
+    </div>
+
+    <div class="modules-grid" id="baseModules">
+      <div class="module-card included" data-included="true">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">🌐</span> Página Web Profesional Premium</div>
+          <div class="module-desc">Diseño exclusivo adaptado a la identidad visual de tu negocio. No usamos plantillas genéricas.</div>
+          <span class="module-tag tag-included">INCLUIDO EN LA BASE</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" style="color: var(--success);">Incluido</div>
+        </div>
+      </div>
+
+      <div class="module-card included" data-included="true">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📱</span> 100% Adaptado a Móvil, Tablet y PC</div>
+          <div class="module-desc">Diseño responsive que se adapta perfecto a cualquier pantalla. El 85% de tus clientes te buscan desde el móvil.</div>
+          <span class="module-tag tag-included">INCLUIDO EN LA BASE</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" style="color: var(--success);">Incluido</div>
+        </div>
+      </div>
+
+      <div class="module-card included" data-included="true">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">⚡</span> Velocidad Ultrarrápida (< 1 segundo)</div>
+          <div class="module-desc">Tu web cargará al instante. Los negocios con web lenta pierden el 53% de las visitas móviles.</div>
+          <span class="module-tag tag-included">INCLUIDO EN LA BASE</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" style="color: var(--success);">Incluido</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- EXTRAS SELECCIONABLES -->
+    <div class="fade-in">
+      <div class="section-label">🧩 PERSONALIZA TU PROYECTO</div>
+      <div class="section-title">Funcionalidades Adicionales</div>
+      <div class="section-desc">Selecciona las que encajen con tu negocio. Cuantas más añadas, más completa será tu solución digital.</div>
+    </div>
+
+    <div class="modules-grid" id="extraModules">
+
+      <div class="module-card" data-id="reservas" data-price-unico="190" data-price-mensual="19" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📅</span> Sistema de Reservas / Citas por WhatsApp</div>
+          <div class="module-desc">Tus clientes eligen día, hora y servicio, y tú recibes la reserva directa en tu WhatsApp. Sin comisiones de por medio.</div>
+          <span class="module-tag tag-popular">⭐ MÁS POPULAR</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="190" data-mensual="19">190 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="catalogo" data-price-unico="150" data-price-mensual="15" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📋</span> Carta / Catálogo Digital Interactivo</div>
+          <div class="module-desc">Menú o catálogo visual con fotos, precios y botón directo de compra o pedido. Actualizable al instante.</div>
+          <span class="module-tag tag-popular">⭐ MUY SOLICITADO</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="150" data-mensual="15">150 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="dominio" data-price-unico="60" data-price-mensual="0" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">🔒</span> Dominio Propio + Certificado SSL</div>
+          <div class="module-desc">Tu dirección web personalizada (tunegocio.es) con candado de seguridad HTTPS incluido durante el primer año.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="60" data-mensual="0">60 €</div>
+          <div class="module-price-sub">primer año</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="google" data-price-unico="120" data-price-mensual="12" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📍</span> Optimización Google Maps & SEO Local</div>
+          <div class="module-desc">Tu web enlazada a tu ficha de Google Maps para que cuando te busquen en la zona, aparezcas tú primero con enlace directo.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="120" data-mensual="12">120 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="qr" data-price-unico="40" data-price-mensual="0" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📲</span> Código QR Profesional Imprimible</div>
+          <div class="module-desc">QR de alta resolución para imprimir en mesas, barra, tarjetas o escaparate. Tus clientes escanean y entran a tu web al instante.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="40" data-mensual="0">40 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="galeria" data-price-unico="90" data-price-mensual="9" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📸</span> Galería de Fotos Profesional</div>
+          <div class="module-desc">Sección visual con tus mejores fotos de producto, local o trabajos realizados. Con efecto lightbox y carga rápida.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="90" data-mensual="9">90 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="resenas" data-price-unico="80" data-price-mensual="8" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">⭐</span> Sección de Reseñas y Testimonios</div>
+          <div class="module-desc">Muestra las mejores opiniones de tus clientes de Google Maps en tu web. Genera confianza inmediata al nuevo visitante.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="80" data-mensual="8">80 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="mantenimiento" data-price-unico="180" data-price-mensual="0" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">🔄</span> Mantenimiento y Actualizaciones (12 meses)</div>
+          <div class="module-desc">Cambia precios, platos, fotos o textos cuando quieras durante un año completo. Sin coste adicional por cada cambio.</div>
+          <span class="module-tag tag-premium">💎 RECOMENDADO</span>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="180" data-mensual="0">180 €</div>
+          <div class="module-price-sub">12 meses</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="multiidioma" data-price-unico="120" data-price-mensual="10" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">🌍</span> Web Multiidioma (Español + Inglés)</div>
+          <div class="module-desc">Traducción profesional de toda la web al inglés para captar turistas y clientes extranjeros de la zona.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="120" data-mensual="10">120 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="module-card" data-id="formulario" data-price-unico="90" data-price-mensual="9" onclick="toggleModule(this)">
+        <div class="module-checkbox">✓</div>
+        <div class="module-info">
+          <div class="module-name"><span class="icon">📝</span> Formulario de Contacto / Presupuesto</div>
+          <div class="module-desc">Los clientes rellenan un breve formulario con lo que necesitan y tú recibes la solicitud al momento por WhatsApp o email.</div>
+        </div>
+        <div class="module-price-col">
+          <div class="module-price" data-unico="90" data-mensual="9">90 €</div>
+          <div class="module-price-sub">pago único</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust -->
+    <div class="trust-section fade-in">
+      <div class="trust-grid">
+        <div class="trust-item"><span class="icon">🔒</span> Pago seguro</div>
+        <div class="trust-item"><span class="icon">⚡</span> Entrega en 48-72h</div>
+        <div class="trust-item"><span class="icon">💬</span> Soporte directo por WhatsApp</div>
+        <div class="trust-item"><span class="icon">🔄</span> Cambios ilimitados</div>
+        <div class="trust-item"><span class="icon">❌</span> Sin permanencia</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Sticky Summary Bar -->
+  <div class="summary-bar" id="summaryBar">
+    <div class="summary-inner">
+      <div class="summary-left">
+        <div class="summary-count"><strong id="selectedCount">0</strong> funcionalidades seleccionadas</div>
+        <div class="summary-total-row">
+          <div class="summary-total" id="totalPrice">0 €</div>
+          <div class="summary-monthly" id="monthlyLabel"></div>
+        </div>
+        <div class="summary-saved" id="savedLabel"></div>
+      </div>
+      <button class="btn-send-quote" onclick="sendQuoteWhatsApp()" id="btnSendQuote" disabled>
+        💬 Solicitar Presupuesto
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let paymentMode = 'unico'; // 'unico' | 'mensual'
+    const BASE_PRICE_UNICO = 290;
+    const BASE_PRICE_MENSUAL = 29;
+
+    function setPaymentMode(mode, btn) {
+      paymentMode = mode;
+      document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Update all price labels
+      document.querySelectorAll('#extraModules .module-card').forEach(card => {
+        const priceEl = card.querySelector('.module-price');
+        const subEl = card.querySelector('.module-price-sub');
+        const unico = priceEl.getAttribute('data-unico');
+        const mensual = priceEl.getAttribute('data-mensual');
+
+        if (mode === 'unico') {
+          priceEl.textContent = unico + ' €';
+          subEl.textContent = 'pago único';
+        } else {
+          if (parseInt(mensual) === 0) {
+            priceEl.textContent = 'Incluido';
+            priceEl.style.color = 'var(--success)';
+            subEl.textContent = 'en la cuota';
+          } else {
+            priceEl.textContent = mensual + ' €/mes';
+            priceEl.style.color = '';
+            subEl.textContent = 'mensual';
+          }
+        }
+      });
+
+      recalculate();
+    }
+
+    function toggleModule(card) {
+      if (card.dataset.included) return;
+      card.classList.toggle('selected');
+
+      // Animation feedback
+      const priceEl = document.getElementById('totalPrice');
+      priceEl.classList.remove('price-bump');
+      void priceEl.offsetWidth;
+      priceEl.classList.add('price-bump');
+
+      recalculate();
+    }
+
+    function recalculate() {
+      const selectedCards = document.querySelectorAll('#extraModules .module-card.selected');
+      let total = 0;
+      let totalMensual = 0;
+      let count = 0;
+
+      if (paymentMode === 'unico') {
+        total = BASE_PRICE_UNICO;
+        selectedCards.forEach(card => {
+          const price = parseInt(card.querySelector('.module-price').getAttribute('data-unico'));
+          total += price;
+          count++;
+        });
+        document.getElementById('totalPrice').textContent = total.toLocaleString('es-ES') + ' €';
+        document.getElementById('monthlyLabel').textContent = '';
+
+        // Show what monthly equivalent would be
+        const monthlyEquiv = Math.round(total / 12);
+        document.getElementById('savedLabel').textContent = count > 0
+          ? `≈ ${monthlyEquiv} €/mes · Pago único sin cuotas`
+          : '';
+      } else {
+        totalMensual = BASE_PRICE_MENSUAL;
+        selectedCards.forEach(card => {
+          const price = parseInt(card.querySelector('.module-price').getAttribute('data-mensual'));
+          totalMensual += price;
+          count++;
+        });
+        document.getElementById('totalPrice').textContent = totalMensual.toLocaleString('es-ES') + ' €';
+        document.getElementById('monthlyLabel').textContent = '/mes';
+
+        // Show yearly savings vs unico
+        let unicoTotal = BASE_PRICE_UNICO;
+        selectedCards.forEach(card => {
+          unicoTotal += parseInt(card.querySelector('.module-price').getAttribute('data-unico'));
+        });
+        const yearlyMensual = totalMensual * 12;
+        const saved = unicoTotal - yearlyMensual;
+        document.getElementById('savedLabel').textContent = count > 0
+          ? `Sin entrada · Sin permanencia · Cancela cuando quieras`
+          : '0 € de entrada · Sin compromiso';
+      }
+
+      document.getElementById('selectedCount').textContent = count;
+
+      const btn = document.getElementById('btnSendQuote');
+      btn.disabled = count === 0;
+      btn.textContent = count === 0
+        ? '☝️ Selecciona al menos una funcionalidad'
+        : '💬 Solicitar Presupuesto por WhatsApp';
+    }
+
+    function sendQuoteWhatsApp() {
+      const selectedCards = document.querySelectorAll('#extraModules .module-card.selected');
+      if (selectedCards.length === 0) return;
+
+      let items = [];
+      let total = 0;
+
+      if (paymentMode === 'unico') {
+        total = BASE_PRICE_UNICO;
+        items.push(`✅ Base: Web Profesional Premium — ${BASE_PRICE_UNICO} €`);
+      } else {
+        total = BASE_PRICE_MENSUAL;
+        items.push(`✅ Base: Web Profesional Premium — ${BASE_PRICE_MENSUAL} €/mes`);
+      }
+
+      selectedCards.forEach(card => {
+        const name = card.querySelector('.module-name').textContent.trim();
+        if (paymentMode === 'unico') {
+          const price = parseInt(card.querySelector('.module-price').getAttribute('data-unico'));
+          items.push(`✅ ${name} — ${price} €`);
+          total += price;
+        } else {
+          const price = parseInt(card.querySelector('.module-price').getAttribute('data-mensual'));
+          if (price === 0) {
+            items.push(`✅ ${name} — Incluido`);
+          } else {
+            items.push(`✅ ${name} — ${price} €/mes`);
+            total += price;
+          }
+        }
+      });
+
+      const suffix = paymentMode === 'unico' ? '' : '/mes';
+      const modeLabel = paymentMode === 'unico' ? 'Pago Único' : 'Suscripción Mensual';
+
+      const msg = `¡Hola! He configurado mi presupuesto web desde vuestra herramienta interactiva.\n\n` +
+        `📋 *MI SELECCIÓN (${modeLabel}):*\n\n` +
+        items.join('\n') +
+        `\n\n💰 *TOTAL: ${total.toLocaleString('es-ES')} €${suffix}*\n\n` +
+        `¿Podríamos hablar para cerrar los detalles? ¡Gracias!`;
+
+      const url = `https://wa.me/34631896179?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    // Init
+    recalculate();
+  </script>
+
+</body>
+</html>
