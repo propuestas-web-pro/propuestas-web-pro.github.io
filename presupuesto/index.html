@@ -851,19 +851,7 @@
     </div>
   </div>
 
-  <!-- Toggle -->
-  <div class="wrap">
-    <div class="toggle-wrap reveal">
-      <div class="mode-toggle" id="modeToggle">
-        <div class="slider"></div>
-        <button class="mode-btn on" data-m="unico" onclick="setMode('unico')">💳 Pago Único</button>
-        <button class="mode-btn" data-m="mensual" onclick="setMode('mensual')">
-          📅 Mensual
-          <span class="save-pill">-40%</span>
-        </button>
-      </div>
-    </div>
-  </div>
+
 
   <main class="wrap">
 
@@ -1128,12 +1116,9 @@
   </div>
 
   <script>
-    const BASE_U = 390;
-    const BASE_M = 39;
+    const BASE = 390;
     const WA = '34631896179';
-    let mode = 'unico';
 
-    // Packs: define which module IDs each pack selects
     const PACKS = {
       esencial: ['catalogo', 'resenas'],
       profesional: ['catalogo', 'resenas', 'reservas', 'seo'],
@@ -1146,122 +1131,63 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
     document.querySelectorAll('.reveal, .card').forEach(el => obs.observe(el));
 
-    // Show sticky after delay
     setTimeout(() => document.getElementById('sticky').classList.add('show'), 600);
 
-    // ═══ MODE ═══
-    function setMode(m) {
-      mode = m;
-      const tog = document.getElementById('modeToggle');
-      tog.classList.toggle('monthly', m === 'mensual');
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('on', b.dataset.m === m));
-
-      document.querySelectorAll('#modCards .card').forEach(c => {
-        const pe = c.querySelector('.card-price');
-        const le = c.querySelector('.card-price-sub');
-        if (m === 'unico') {
-          pe.textContent = c.dataset.u + ' €';
-          pe.classList.remove('green');
-          le.textContent = 'pago único';
-        } else {
-          const mp = parseInt(c.dataset.m);
-          if (mp === 0) {
-            pe.textContent = 'Incluido';
-            pe.classList.add('green');
-            le.textContent = 'en tu cuota';
-          } else {
-            pe.textContent = mp + ' €/mes';
-            pe.classList.remove('green');
-            le.textContent = 'mensual';
-          }
-        }
-      });
-
-      updatePacks();
-      calc();
-    }
-
     function updatePacks() {
-      const p1 = calcPack('esencial');
-      const p2 = calcPack('profesional');
-      const p3 = calcPack('premium');
-      const sfx = mode === 'mensual' ? '/mes' : '';
-      document.getElementById('packPrice1').textContent = p1.toLocaleString('es-ES') + ' €' + sfx;
-      document.getElementById('packPrice2').textContent = p2.toLocaleString('es-ES') + ' €' + sfx;
-      document.getElementById('packPrice3').textContent = p3.toLocaleString('es-ES') + ' €' + sfx;
+      document.getElementById('packPrice1').textContent = calcPack('esencial').toLocaleString('es-ES') + ' €';
+      document.getElementById('packPrice2').textContent = calcPack('profesional').toLocaleString('es-ES') + ' €';
+      document.getElementById('packPrice3').textContent = calcPack('premium').toLocaleString('es-ES') + ' €';
     }
 
     function calcPack(name) {
-      const ids = PACKS[name];
-      let t = mode === 'unico' ? BASE_U : BASE_M;
-      ids.forEach(id => {
+      let t = BASE;
+      PACKS[name].forEach(id => {
         const c = document.querySelector(`[data-id="${id}"]`);
-        t += parseInt(mode === 'unico' ? c.dataset.u : c.dataset.m);
+        t += parseInt(c.dataset.u);
       });
       return t;
     }
 
-    // ═══ TAP / SELECT ═══
     function tap(card) {
       card.classList.toggle('on');
       popPrice();
       calc();
-      clearPackActive();
+      document.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
     }
 
     function selectPack(name) {
-      // Clear all
       document.querySelectorAll('#modCards .card').forEach(c => c.classList.remove('on'));
-      // Select pack items
       PACKS[name].forEach(id => {
         const c = document.querySelector(`[data-id="${id}"]`);
         if (c) c.classList.add('on');
       });
-      // Highlight pack btn
       document.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
       event.currentTarget.classList.add('active');
       popPrice();
       calc();
     }
 
-    function clearPackActive() {
-      document.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
-    }
-
-    // ═══ CALC ═══
     function calc() {
       const sel = document.querySelectorAll('#modCards .card.on');
       const cnt = sel.length;
-      let total = mode === 'unico' ? BASE_U : BASE_M;
-      sel.forEach(c => { total += parseInt(mode === 'unico' ? c.dataset.u : c.dataset.m); });
+      let total = BASE;
+      sel.forEach(c => { total += parseInt(c.dataset.u); });
 
       document.getElementById('cntEl').textContent = cnt;
-
-      // Animated price
-      const el = document.getElementById('bigEl');
-      animNum(el, total);
-
-      document.getElementById('sfxEl').textContent = mode === 'mensual' ? '/mes' : '';
+      animNum(document.getElementById('bigEl'), total);
+      document.getElementById('sfxEl').textContent = '';
 
       const note = document.getElementById('noteEl');
       if (cnt === 0) {
         note.textContent = 'Base incluida · Selecciona extras arriba';
-      } else if (mode === 'unico') {
+      } else {
         const half = Math.round(total / 2);
         note.textContent = 'Señal: ' + half + ' € → Entrega → ' + half + ' € restante';
-      } else {
-        note.textContent = 'Sin entrada · Sin permanencia · Cancela cuando quieras';
       }
 
-      // Update 50/50 payment section
-      if (mode === 'unico') {
-        const h = Math.round(total / 2);
-        document.getElementById('pay50a').textContent = h + ' €';
-        document.getElementById('pay50b').textContent = h + ' €';
-      } else {
-        document.getElementById('pay50a').textContent = 'Primera cuota';
-        document.getElementById('pay50b').textContent = 'Tras aprobación';
-      }
+      const h = Math.round(total / 2);
+      document.getElementById('pay50a').textContent = h + ' €';
+      document.getElementById('pay50b').textContent = h + ' €';
 
       const btn = document.getElementById('ctaEl');
       const txt = document.getElementById('ctaTxt');
@@ -1292,36 +1218,28 @@
 
     function fmt(n) { return n.toLocaleString('es-ES') + ' €'; }
 
-    // ═══ SEND ═══
     function send() {
       const sel = document.querySelectorAll('#modCards .card.on');
       if (!sel.length) return;
-      const ml = mode === 'unico' ? 'Pago Único' : 'Suscripción Mensual';
       const items = [];
-      let total = mode === 'unico' ? BASE_U : BASE_M;
+      let total = BASE;
 
-      items.push('✅ Base Profesional (Web + Dominio .es + QR + SSL + Responsive) — ' +
-        (mode === 'unico' ? BASE_U + ' €' : BASE_M + ' €/mes'));
+      items.push('✅ Base Profesional (Web + Dominio .es + QR + SSL + Responsive) — ' + BASE + ' €');
 
       sel.forEach(c => {
         const name = c.querySelector('.card-name').textContent.trim();
-        if (mode === 'unico') {
-          const p = parseInt(c.dataset.u);
-          items.push('✅ ' + name + ' — ' + p + ' €');
-          total += p;
-        } else {
-          const p = parseInt(c.dataset.m);
-          items.push('✅ ' + name + (p ? ' — ' + p + ' €/mes' : ' — Incluido'));
-          total += p;
-        }
+        const p = parseInt(c.dataset.u);
+        items.push('✅ ' + name + ' — ' + p + ' €');
+        total += p;
       });
 
-      const sfx = mode === 'unico' ? '' : '/mes';
+      const half = Math.round(total / 2);
       const msg =
         '¡Hola! He configurado mi presupuesto web.\n\n' +
-        '📋 *SELECCIÓN (' + ml + '):*\n\n' +
+        '📋 *MI SELECCIÓN:*\n\n' +
         items.join('\n') +
-        '\n\n💰 *TOTAL: ' + total.toLocaleString('es-ES') + ' €' + sfx + '*\n\n' +
+        '\n\n💰 *TOTAL: ' + total.toLocaleString('es-ES') + ' €*' +
+        '\n💳 *Señal: ' + half + ' € | Resto a la entrega: ' + half + ' €*\n\n' +
         '¿Podríamos hablar para cerrar los detalles? ¡Gracias!';
 
       window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
