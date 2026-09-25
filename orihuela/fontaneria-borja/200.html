@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Fontanería Borja | Asistencia Rápida y Urgencias 24h en Orihuela & Vega Baja</title>
-  <meta name="description" content="Fontanero de guardia en Orihuela. Llegada en 25 min para fugas de agua, cambio urgente de termos en el día y desatascos. Diagnóstico transparente previo por WhatsApp.">
+  <title>Fontanería Borja | Fontanero Urgencias 24h Orihuela & Vega Baja</title>
+  <meta name="description" content="Fontanero de urgencias en Orihuela. Llegada en 25 minutos. Fugas, termos eléctricos y desatascos sin obras. Presupuesto sin sorpresas por WhatsApp.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,122 +12,160 @@
   
   <style>
     :root {
-      --primary: #0070f3;
-      --cyan: #00dfd8;
-      --blue-gradient: linear-gradient(135deg, #00dfd8 0%, #0070f3 50%, #0047ab 100%);
-      --emerald: #10b981;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --blue-accent: #2563eb;
+      --whatsapp: #22c55e;
+      --whatsapp-dark: #16a34a;
+      --bg-white: #ffffff;
+      --bg-slate: #f8fafc;
+      --bg-blue-soft: #f0f9ff;
+      --card-border: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
       --amber: #f59e0b;
-      --bg-dark: #060913;
-      --bg-surface: rgba(13, 20, 36, 0.75);
-      --bg-elevated: rgba(20, 31, 56, 0.85);
-      --border-cyan: rgba(0, 223, 216, 0.22);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
       --radius-sm: 10px;
       --radius-md: 18px;
-      --radius-lg: 28px;
-      --shadow-glow: 0 0 45px rgba(0, 112, 243, 0.25);
-      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      --radius-lg: 26px;
+      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 12px 30px -6px rgba(2, 132, 199, 0.12);
+      --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.12);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 95px;
+      padding-bottom: 110px;
       position: relative;
     }
 
-    /* Ambient Background Glows */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Ambient Glowing Orbs */
     .ambient-blue-1 {
       position: absolute;
-      top: 50px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(0, 112, 243, 0.2) 0%, rgba(6, 9, 19, 0) 70%);
+      top: 60px;
+      right: -120px;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.09) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
-      filter: blur(70px);
       pointer-events: none;
       z-index: 0;
-      animation: floatGlow 14s ease-in-out infinite alternate;
+      animation: floatOrb 14s ease-in-out infinite alternate;
     }
     .ambient-blue-2 {
       position: absolute;
-      top: 850px;
+      top: 750px;
       left: -150px;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(0, 223, 216, 0.15) 0%, rgba(6, 9, 19, 0) 70%);
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
-      filter: blur(80px);
       pointer-events: none;
       z-index: 0;
-      animation: floatGlow 18s ease-in-out infinite alternate-reverse;
+      animation: floatOrb 18s ease-in-out infinite alternate-reverse;
     }
-    @keyframes floatGlow {
+    @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, 40px) scale(1.1); }
+      100% { transform: translate(45px, 40px) scale(1.1); }
     }
 
-    .container { max-width: 1220px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
-    a { text-decoration: none; color: inherit; }
-
-    /* Top Emergency Alert Bar */
-    .top-emergency-strip {
-      background: linear-gradient(90deg, #024b9e 0%, #0070f3 50%, #024b9e 100%);
-      border-bottom: 1px solid rgba(0, 223, 216, 0.3);
-      padding: 0.65rem 0;
+    /* Top Animated Emergency Strip */
+    .top-emergency-bar {
+      background: linear-gradient(90deg, #0369a1, #0284c7, #2563eb, #0284c7);
+      background-size: 300% 100%;
+      animation: gradientMove 8s ease infinite;
+      color: #ffffff;
+      padding: 0.65rem 0.75rem;
       font-size: 0.84rem;
+      font-weight: 700;
       text-align: center;
       position: relative;
       z-index: 101;
     }
-    .radar-dot {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
-      margin-right: 8px;
-      animation: pulseRadar 1.8s infinite;
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    @keyframes pulseRadar {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    .radar-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .radar-center {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+    }
+    .radar-wave {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #22c55e;
+      opacity: 0;
+      animation: ripple 1.8s infinite cubic-bezier(0, 0.2, 0.8, 1);
+    }
+    @keyframes ripple {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
     }
 
     /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(6, 9, 19, 0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-cyan);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
       z-index: 100;
-      padding: 1.15rem 0;
+      padding: 0.9rem 0;
+      transition: all 0.3s;
     }
-    .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-    .brand-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .brand-logo-badge {
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-icon {
       width: 44px;
       height: 44px;
-      background: var(--blue-gradient);
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 8px 20px rgba(0, 112, 243, 0.35);
+      font-size: 1.35rem;
+      box-shadow: 0 8px 18px rgba(2, 132, 199, 0.28);
+      animation: gentleBounce 3.2s ease-in-out infinite alternate;
+    }
+    @keyframes gentleBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
     }
     .brand-title {
       font-family: var(--font-heading);
@@ -135,54 +173,59 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.1;
+      color: var(--text-dark);
     }
-    .brand-title span {
-      background: var(--blue-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-subtitle {
+    .brand-title span { color: var(--primary); }
+    .brand-sub {
       font-size: 0.72rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--cyan);
-      display: block;
+      color: var(--text-muted);
       font-weight: 700;
+      display: block;
     }
-    .nav-actions { display: flex; align-items: center; gap: 0.85rem; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
     .btn-nav-call {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: #ffffff;
+      background: var(--bg-blue-soft);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      color: var(--primary-dark);
       padding: 0.55rem 1.1rem;
       border-radius: 999px;
       font-size: 0.88rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.2s;
     }
-    .btn-nav-call:hover { border-color: var(--cyan); color: var(--cyan); }
+    .btn-nav-call:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
     .btn-nav-wp {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
       padding: 0.6rem 1.35rem;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-      transition: all 0.2s;
+      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.3);
+      transition: all 0.25s;
     }
-    .btn-nav-wp:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5); }
+    .btn-nav-wp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(34, 197, 94, 0.45);
+    }
 
     /* Hero Section */
     .hero {
+      padding: 3.5rem 0 3rem;
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
       position: relative;
-      padding: 4.5rem 0 3.5rem;
+      overflow: hidden;
     }
     .hero-grid {
       display: grid;
@@ -190,35 +233,42 @@
       gap: 3.5rem;
       align-items: center;
     }
-    .hero-tag {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(0, 112, 243, 0.15);
-      border: 1px solid var(--border-cyan);
+      background: #ffffff;
+      border: 1px solid rgba(2, 132, 199, 0.25);
       padding: 0.45rem 1.15rem;
       border-radius: 999px;
       font-size: 0.85rem;
-      color: var(--cyan);
-      font-weight: 700;
-      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      animation: floatBadge 3.6s ease-in-out infinite alternate;
+    }
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
     }
     .hero h1 {
       font-family: var(--font-heading);
-      font-size: 3.4rem;
+      font-size: 3.35rem;
       line-height: 1.12;
       font-weight: 900;
       letter-spacing: -0.03em;
-      margin-bottom: 1.35rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-dark);
     }
-    .hero h1 .gradient-text {
-      background: var(--blue-gradient);
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero p.lead {
       font-size: 1.15rem;
-      color: #cbd5e1;
+      color: var(--text-body);
       margin-bottom: 2.25rem;
       line-height: 1.7;
     }
@@ -228,8 +278,10 @@
       gap: 1rem;
       margin-bottom: 2.5rem;
     }
-    .btn-hero-primary {
-      background: linear-gradient(135deg, #25d366 0%, #15803d 100%);
+    .btn-hero-wp {
+      background: linear-gradient(90deg, #22c55e, #16a34a, #22c55e);
+      background-size: 200% 100%;
+      animation: shimmerBtn 3.5s infinite;
       color: #ffffff;
       padding: 1.1rem 2rem;
       border-radius: var(--radius-md);
@@ -238,244 +290,288 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      box-shadow: 0 14px 30px -5px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 12px 28px -5px rgba(34, 197, 94, 0.45);
       transition: all 0.25s;
     }
-    .btn-hero-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px -5px rgba(37, 211, 102, 0.6);
+    @keyframes shimmerBtn {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-cyan);
-      color: #ffffff;
-      padding: 1.1rem 1.75rem;
+    .btn-hero-wp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px -5px rgba(34, 197, 94, 0.6);
+    }
+    .btn-hero-call {
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 1.05rem 1.75rem;
       border-radius: var(--radius-md);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      backdrop-filter: blur(10px);
       transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
     }
-    .btn-hero-secondary:hover {
-      background: rgba(0, 112, 243, 0.15);
-      border-color: var(--cyan);
+    .btn-hero-call:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
-    /* Trust Metric Strip */
-    .metrics-bar {
+    /* Trust Metrics Grid */
+    .metrics-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      background: var(--bg-surface);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-cyan);
+      background: #ffffff;
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-md);
       padding: 1.25rem;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-md);
     }
-    .metric-col {
+    .metric-box {
       text-align: center;
-      border-right: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--card-border);
+      padding: 0 0.5rem;
     }
-    .metric-col:last-child { border-right: none; }
-    .metric-num {
+    .metric-box:last-child { border-right: none; }
+    .metric-val {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--cyan);
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.35rem;
     }
-    .metric-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+    .metric-name {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      line-height: 1.2;
+    }
 
-    /* Hero Media Visual with ETA Card */
-    .hero-media-wrapper { position: relative; }
-    .hero-media-card {
+    /* Hero Visual Card */
+    .hero-visual-card {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--border-cyan);
-      box-shadow: var(--shadow-glow), var(--shadow-card);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-lg);
+      background: #ffffff;
     }
-    .hero-media-card img {
+    .hero-visual-card img {
       width: 100%;
-      height: 520px;
+      height: 480px;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s ease;
+      transition: transform 0.5s ease;
     }
-    .hero-media-card:hover img { transform: scale(1.04); }
-    .floating-radar-pill {
+    .hero-visual-card:hover img { transform: scale(1.03); }
+    .floating-live-badge {
       position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      background: rgba(6, 9, 19, 0.9);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border-cyan);
+      top: 1.25rem;
+      left: 1.25rem;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(2, 132, 199, 0.3);
       padding: 0.6rem 1.15rem;
       border-radius: 999px;
       display: flex;
       align-items: center;
       gap: 0.6rem;
       font-size: 0.85rem;
-      font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      font-weight: 800;
+      color: var(--text-dark);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: floatBadge 3.4s ease-in-out infinite alternate;
     }
-    .hero-card-bottom-banner {
+    .hero-card-bottom {
       position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      background: rgba(13, 20, 36, 0.92);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-cyan);
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-md);
-      padding: 1.25rem;
+      padding: 1.15rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .hero-card-bottom strong { display: block; font-size: 0.95rem; color: var(--text-dark); }
+    .hero-card-bottom small { color: var(--text-muted); font-size: 0.78rem; font-weight: 600; }
+    .star-rating-box {
+      background: #fef3c7;
+      color: #b45309;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
-    /* REAL PROBLEM SOLVER: Live Emergency Diagnostic & ETA Engine */
-    .engine-section {
-      padding: 4rem 0 3rem;
-    }
-    .glass-engine-box {
-      background: var(--bg-surface);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      box-shadow: var(--shadow-glow), var(--shadow-card);
-      position: relative;
+    /* Continuous Animated Marquee Ticker */
+    .marquee-container {
+      background: #ffffff;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
       overflow: hidden;
+      white-space: nowrap;
+      padding: 0.9rem 0;
+      position: relative;
     }
-    .glass-engine-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--blue-gradient);
+    .marquee-content {
+      display: inline-flex;
+      gap: 3rem;
+      animation: marqueeScroll 24s linear infinite;
     }
-    .engine-header {
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-body);
+    }
+    .marquee-item span.icon { font-size: 1.15rem; }
+    .marquee-item strong { color: var(--primary-dark); }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Diagnostic Calculator */
+    .diagnostic-section {
+      padding: 5rem 0 4rem;
+      background: var(--bg-slate);
+    }
+    .interactive-card {
+      background: #ffffff;
+      border: 2px solid #bae6fd;
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.25rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .diagnostic-header {
       text-align: center;
       max-width: 720px;
-      margin: 0 auto 2.75rem;
+      margin: 0 auto 2.5rem;
     }
-    .engine-header-tag {
-      font-family: var(--font-heading);
-      color: var(--cyan);
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    .badge-sub {
+      color: var(--primary);
+      font-size: 0.82rem;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
-      display: block;
+      display: inline-block;
     }
-    .engine-header h2 {
+    .diagnostic-header h2 {
       font-family: var(--font-heading);
       font-size: 2.3rem;
       font-weight: 800;
+      color: var(--text-dark);
       margin-bottom: 0.75rem;
     }
-    .engine-header p {
-      color: var(--text-muted);
+    .diagnostic-header p {
+      color: var(--text-body);
       font-size: 1.05rem;
     }
 
-    /* Zone & Breakdown Selectors */
-    .steps-container {
+    .wizard-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.75rem;
       margin-bottom: 2.5rem;
     }
-    .step-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
+    .wizard-col {
+      background: var(--bg-slate);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-md);
       padding: 1.5rem;
       transition: all 0.3s;
     }
-    .step-card:hover {
-      border-color: var(--border-cyan);
-      background: rgba(255, 255, 255, 0.05);
+    .wizard-col:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
     }
-    .step-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cyan);
+    .wizard-title {
+      font-size: 0.85rem;
       font-weight: 800;
-      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .option-grid {
-      display: grid;
-      gap: 0.65rem;
-    }
-    .opt-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
+    .choice-list { display: grid; gap: 0.65rem; }
+    .choice-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
       border-radius: var(--radius-sm);
-      padding: 0.75rem 1rem;
-      color: #cbd5e1;
-      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      font-size: 0.92rem;
       font-weight: 600;
+      color: var(--text-dark);
       cursor: pointer;
       text-align: left;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .opt-btn:hover {
-      background: rgba(0, 112, 243, 0.15);
-      border-color: var(--cyan);
+    .choice-btn:hover {
+      border-color: var(--primary);
+      background: var(--bg-blue-soft);
+      transform: translateX(4px);
+    }
+    .choice-btn.active {
+      background: #0284c7;
       color: #ffffff;
+      border-color: #0284c7;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+      transform: translateX(4px);
     }
-    .opt-btn.active {
-      background: linear-gradient(135deg, rgba(0, 223, 216, 0.25), rgba(0, 112, 243, 0.2));
-      border-color: var(--cyan);
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(0, 223, 216, 0.2);
-    }
-    .opt-btn.active::after {
+    .choice-btn.active::after {
       content: '✓';
-      color: var(--cyan);
       font-weight: 900;
     }
 
-    /* Live ETA & WhatsApp Submit Bar */
-    .engine-summary-bar {
-      background: rgba(6, 9, 19, 0.88);
-      border: 1px solid var(--border-cyan);
+    .diagnostic-result-bar {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1.5px solid #7dd3fc;
       border-radius: var(--radius-md);
-      padding: 1.5rem 2rem;
+      padding: 1.75rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 1.5rem;
     }
-    .summary-details strong {
+    .result-summary strong {
       display: block;
-      font-size: 1.05rem;
-      color: #ffffff;
-      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
     }
-    .summary-details span {
-      color: var(--cyan);
-      font-weight: 700;
-      font-size: 0.95rem;
+    .result-summary span {
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.98rem;
     }
-    .btn-submit-engine {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+    .btn-send-diagnosis {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
       padding: 1.1rem 2.25rem;
       border-radius: var(--radius-md);
@@ -486,543 +582,637 @@
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      transition: all 0.2s;
+      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.4);
+      transition: all 0.25s;
     }
-    .btn-submit-engine:hover {
+    .btn-send-diagnosis:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.55);
+      box-shadow: 0 15px 32px rgba(34, 197, 94, 0.55);
     }
 
-    /* Services Grid with Real Photos */
+    /* Services Grid with Photos */
     .services-section {
-      padding: 4.5rem 0;
+      padding: 5rem 0;
+      background: #ffffff;
     }
-    .section-header-wrap {
+    .services-header {
       text-align: center;
       max-width: 680px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 3.5rem;
     }
-    .section-header-wrap h2 {
+    .services-header h2 {
       font-family: var(--font-heading);
       font-size: 2.3rem;
       font-weight: 800;
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
     }
-    .section-header-wrap p { color: var(--text-muted); font-size: 1.05rem; }
+    .services-header p { color: var(--text-muted); font-size: 1.05rem; }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
-    .service-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-md);
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.3s;
-      box-shadow: var(--shadow-card);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-sm);
     }
-    .service-box:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 223, 216, 0.5);
-      box-shadow: var(--shadow-glow);
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
     }
-    .service-photo-wrap {
-      height: 230px;
+    .service-img-wrap {
+      height: 220px;
       position: relative;
       overflow: hidden;
     }
-    .service-photo-wrap img {
+    .service-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
     }
-    .service-box:hover .service-photo-wrap img { transform: scale(1.08); }
-    .badge-service-eta {
+    .service-card:hover .service-img-wrap img { transform: scale(1.08); }
+    .badge-eta-tag {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: rgba(6, 9, 19, 0.85);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(8px);
-      border: 1px solid var(--border-cyan);
-      color: var(--cyan);
-      font-size: 0.75rem;
+      border: 1px solid var(--card-border);
+      color: var(--primary-dark);
+      font-size: 0.78rem;
       font-weight: 800;
       padding: 0.35rem 0.85rem;
       border-radius: 999px;
+      box-shadow: var(--shadow-sm);
     }
-    .service-content { padding: 1.6rem; }
-    .service-content h3 {
+    .service-card-body { padding: 1.6rem; }
+    .service-card-body h3 {
       font-family: var(--font-heading);
       font-size: 1.35rem;
       font-weight: 800;
+      color: var(--text-dark);
       margin-bottom: 0.5rem;
-      color: #ffffff;
     }
-    .service-content p {
+    .service-card-body p {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--text-body);
+      margin-bottom: 1.25rem;
       line-height: 1.6;
-      margin-bottom: 1.35rem;
     }
-    .service-features-list {
+    .service-bullet-list {
       list-style: none;
       margin-bottom: 1.5rem;
       font-size: 0.88rem;
-      color: #cbd5e1;
+      color: var(--text-body);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
-    .service-features-list li {
-      margin-bottom: 0.4rem;
+    .service-bullet-list li {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .service-features-list li::before {
+    .service-bullet-list li::before {
       content: '✓';
-      color: var(--cyan);
+      color: var(--whatsapp);
       font-weight: 900;
     }
-    .btn-service-action {
+    .btn-card-whatsapp {
       display: block;
       text-align: center;
-      background: rgba(0, 112, 243, 0.15);
-      border: 1px solid var(--border-cyan);
-      color: var(--cyan);
-      padding: 0.75rem;
+      background: var(--bg-blue-soft);
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      color: var(--primary-dark);
+      padding: 0.85rem;
       border-radius: var(--radius-sm);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.9rem;
       transition: all 0.2s;
     }
-    .btn-service-action:hover {
+    .service-card:hover .btn-card-whatsapp {
       background: var(--primary);
       color: #ffffff;
+      border-color: var(--primary);
     }
 
     /* Google Reviews Section */
     .reviews-section {
-      padding: 4.5rem 0;
-      border-top: 1px solid var(--border-subtle);
+      padding: 5rem 0;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--card-border);
     }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.75rem;
     }
-    .rev-card-luxury {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-card);
+    .review-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
     }
-    .rev-top {
+    .review-box:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(2, 132, 199, 0.35);
+    }
+    .review-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
-    .rev-author-name strong { display: block; font-size: 1rem; }
-    .rev-author-name small { color: var(--text-muted); font-size: 0.78rem; }
-    .rev-stars { color: #f59e0b; font-size: 1.1rem; }
-    .rev-text { font-size: 0.95rem; color: #cbd5e1; line-height: 1.65; }
+    .client-name strong { display: block; font-size: 0.98rem; color: var(--text-dark); }
+    .client-name small { color: var(--text-muted); font-size: 0.78rem; }
+    .stars-amber { color: #f59e0b; font-size: 1.15rem; letter-spacing: 2px; }
+    .review-quote {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      font-style: italic;
+    }
 
-    /* Sticky Mobile Bottom Bar */
-    .mobile-floating-bar {
-      display: none;
+    /* Scroll Reveal Animation Utility */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sticky Mobile Bar */
+    .mobile-dock-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(6, 9, 19, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border-cyan);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--card-border);
       padding: 0.75rem 1rem;
+      display: none;
       z-index: 999;
+      box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
     }
-    .mobile-bar-flex {
+    .dock-grid {
       display: grid;
       grid-template-columns: 1fr 1.6fr;
       gap: 0.75rem;
+      max-width: 500px;
+      margin: 0 auto;
     }
-    .btn-mobile-call {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: #ffffff;
-      padding: 0.8rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
+    .btn-dock-call {
+      background: var(--bg-blue-soft);
+      border: 1.5px solid rgba(2, 132, 199, 0.3);
+      color: var(--primary-dark);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
       font-size: 0.88rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
     }
-    .btn-mobile-wp {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+    .btn-dock-wp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
-      padding: 0.8rem 0.5rem;
-      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-md);
       font-weight: 800;
       font-size: 0.92rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35);
+      animation: pulseGlow 2.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
     /* Responsive */
     @media (max-width: 992px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .steps-container { grid-template-columns: 1fr; }
+      .wizard-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .reviews-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.5rem; }
-      .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-      .metric-col:nth-child(2) { border-right: none; }
+      .hero h1 { font-size: 2.6rem; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .metric-box:nth-child(2) { border-right: none; }
     }
     @media (max-width: 768px) {
-      .mobile-floating-bar { display: block; }
+      .mobile-dock-bar { display: block; }
       .services-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.15rem; }
-      .engine-summary-bar { flex-direction: column; text-align: center; }
-      .btn-submit-engine { width: 100%; justify-content: center; }
+      .diagnostic-result-bar { flex-direction: column; text-align: center; }
+      .btn-send-diagnosis { width: 100%; justify-content: center; }
       .btn-nav-wp { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Glows -->
+  <!-- Ambient Light Orbs -->
   <div class="ambient-blue-1"></div>
   <div class="ambient-blue-2"></div>
 
-  <!-- Top Emergency Strip -->
-  <div class="top-emergency-strip">
+  <!-- Top Animated Emergency Strip -->
+  <div class="top-emergency-bar">
     <div class="container">
-      <span class="radar-dot"></span> <strong>GUARDIA TÉCNICA 24H ACTIVA</strong> • Llegada media en 25 minutos a Orihuela y Pedanías
+      <span class="radar-wrapper">
+        <span class="radar-center"></span>
+        <span class="radar-wave"></span>
+      </span>
+      <strong>GUARDIA 24 HORAS EN ORIHUELA</strong> • Llegada en 25 minutos con furgoneta taller equipada
     </div>
   </div>
 
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="container nav-flex">
-      <div class="brand-wrap">
-        <div class="brand-logo-badge">🔧</div>
+    <div class="container nav-wrap">
+      <div class="brand">
+        <div class="brand-icon">🔧</div>
         <div>
           <div class="brand-title">Fontanería <span>Borja</span></div>
-          <span class="brand-subtitle">Servicio de Urgencias • Orihuela</span>
+          <span class="brand-sub">Urgencias & Reparaciones • Orihuela</span>
         </div>
       </div>
       <div class="nav-actions">
         <a href="tel:+34661252447" class="btn-nav-call">
           📞 <span>661 252 447</span>
         </a>
-        <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20asistencia%20urgente%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-nav-wp">
-          💬 WhatsApp 24h
+        <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20avería%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-nav-wp">
+          💬 WhatsApp Urgente
         </a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-tag">
-          ⚡ Fontanero Profesional Autorizado • Llegada en 25 Min
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="reveal-item">
+        <div class="hero-badge">
+          ⚡ Fontanero Autorizado en Orihuela & Vega Baja
         </div>
-        <h1>Averías Resueltas al Instante. <span class="gradient-text">Cero Sorpresas</span> en la Factura.</h1>
+        <h1>Tu Avería Resuelta Hoy. <span class="highlight">Cero Sorpresas</span> en la Factura.</h1>
         <p class="lead">
-          ¿Tienes una fuga que amenaza con inundar tu casa o te has quedado sin agua caliente? Borja acude en minutos a cualquier punto de Orihuela con unidad móvil equipada para solucionar tu avería en una sola visita. Presupuesto claro antes de empezar.
+          ¿Termo roto que no calienta, fuga de agua que sale al vecino o atasco urgente? Borja acude en 25 minutos con recambios originales. Te damos el precio exacto por escrito antes de tocar una sola tuerca.
         </p>
 
         <div class="hero-ctas">
-          <a href="#diagnostico" class="btn-hero-primary">
-            🚨 Pedir Asistencia por WhatsApp
+          <a href="#calculador" class="btn-hero-wp">
+            🚨 Pedir Presupuesto por WhatsApp
           </a>
-          <a href="tel:+34661252447" class="btn-hero-secondary">
-            📞 Llamada Directa 24 Horas
+          <a href="tel:+34661252447" class="btn-hero-call">
+            📞 Llamar al 661 252 447
           </a>
         </div>
 
-        <div class="metrics-bar">
-          <div class="metric-col">
-            <div class="metric-num">25 Min</div>
-            <div class="metric-desc">Llegada urgente</div>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-val" data-target="25">25 Min</div>
+            <div class="metric-name">Llegada urgente</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">0€</div>
-            <div class="metric-desc">Presupuesto previo</div>
+          <div class="metric-box">
+            <div class="metric-val">0€</div>
+            <div class="metric-name">Presupuesto previo</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">4.9 ★</div>
-            <div class="metric-desc">Google Reviews</div>
+          <div class="metric-box">
+            <div class="metric-val">4.9 ★</div>
+            <div class="metric-name">Google Reviews</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">12 Meses</div>
-            <div class="metric-desc">Garantía oficial</div>
+          <div class="metric-box">
+            <div class="metric-val">100%</div>
+            <div class="metric-name">Garantía por escrito</div>
           </div>
         </div>
       </div>
 
-      <!-- Hero Media Visual Card with Live ETA -->
-      <div class="hero-media-wrapper">
-        <div class="hero-media-card">
-          <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=900&q=85" alt="Fontanero profesional reparando termo y tuberías en Orihuela">
-          <div class="floating-radar-pill">
-            <span class="radar-dot"></span> Unidad Móvil en Servicio Orihuela
+      <!-- Hero Visual Card -->
+      <div class="hero-visual-card reveal-item">
+        <div class="floating-live-badge">
+          <span style="color: #22c55e;">●</span> Taller Móvil Disponible en Orihuela
+        </div>
+        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=800&q=80" alt="Fontanero Profesional en Orihuela">
+        <div class="hero-card-bottom">
+          <div>
+            <strong>Borja Fontanero Oficial</strong>
+            <small>Autónomo local · Más de 12 años en Vega Baja</small>
           </div>
-          <div class="hero-card-bottom-banner">
-            <div>
-              <strong>Fontanería Borja • Trato Directo</strong>
-              <small style="color: var(--text-muted); display: block;">Sin intermediarios ni empresas abusivas</small>
+          <div class="star-rating-box">
+            ★ 4.9 (140+ reseñas)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continuous Animated Marquee Ticker -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <div class="marquee-item"><span class="icon">⏱️</span> <strong>Llegada en 25 Minutos a tu domicilio</strong></div>
+      <div class="marquee-item"><span class="icon">💧</span> <strong>Detección de Fugas sin picar pared</strong></div>
+      <div class="marquee-item"><span class="icon">⚡</span> <strong>Instalación y Sustitución de Termos en el día</strong></div>
+      <div class="marquee-item"><span class="icon">🛡️</span> <strong>Factura oficial válida para seguros del hogar</strong></div>
+      <div class="marquee-item"><span class="icon">🌀</span> <strong>Desatascos con maquinaria de presión</strong></div>
+      <div class="marquee-item"><span class="icon">📍</span> <strong>Orihuela Ciudad, Pedanías y Vega Baja</strong></div>
+      <!-- Duplicate for loop -->
+      <div class="marquee-item"><span class="icon">⏱️</span> <strong>Llegada en 25 Minutos a tu domicilio</strong></div>
+      <div class="marquee-item"><span class="icon">💧</span> <strong>Detección de Fugas sin picar pared</strong></div>
+      <div class="marquee-item"><span class="icon">⚡</span> <strong>Instalación y Sustitución de Termos en el día</strong></div>
+      <div class="marquee-item"><span class="icon">🛡️</span> <strong>Factura oficial válida para seguros del hogar</strong></div>
+      <div class="marquee-item"><span class="icon">🌀</span> <strong>Desatascos con maquinaria de presión</strong></div>
+      <div class="marquee-item"><span class="icon">📍</span> <strong>Orihuela Ciudad, Pedanías y Vega Baja</strong></div>
+    </div>
+  </div>
+
+  <!-- Interactive Diagnostic & ETA Calculator -->
+  <section id="calculador" class="diagnostic-section">
+    <div class="container">
+      <div class="interactive-card reveal-item">
+        <div class="diagnostic-header">
+          <span class="badge-sub">DIAGNÓSTICO EN TIEMPO REAL</span>
+          <h2>Calcula tu Urgencia y Tiempo de Llegada</h2>
+          <p>Selecciona tu avería y zona de Orihuela para enviarle la ficha completa a Borja por WhatsApp con 1 solo clic.</p>
+        </div>
+
+        <div class="wizard-grid">
+          <!-- Step 1 -->
+          <div class="wizard-col">
+            <div class="wizard-title">
+              <span>1</span> ¿Qué avería tienes?
             </div>
-            <div style="color: #f59e0b; font-weight: 800; font-size: 1.15rem;">★ 4.9 Google</div>
+            <div class="choice-list">
+              <button class="choice-btn active" onclick="setChoice('issue', this, 'Fuga de Agua o Tubería Rota')">
+                Fuga o Tubería Rota
+              </button>
+              <button class="choice-btn" onclick="setChoice('issue', this, 'Termo Eléctrico no calienta o gotea')">
+                Termo Eléctrico Averiado
+              </button>
+              <button class="choice-btn" onclick="setChoice('issue', this, 'Desatasco Urgente (Batería/Inodoro/Tubería)')">
+                Desatasco de Urgencia
+              </button>
+              <button class="choice-btn" onclick="setChoice('issue', this, 'Cambio de Grifería o Cisterna')">
+                Cisterna o Grifo que gotea
+              </button>
+            </div>
           </div>
+
+          <!-- Step 2 -->
+          <div class="wizard-col">
+            <div class="wizard-title">
+              <span>2</span> ¿Dónde te encuentras?
+            </div>
+            <div class="choice-list">
+              <button class="choice-btn active" onclick="setChoice('zone', this, 'Orihuela Centro (Llegada: 20 min)')">
+                Orihuela Centro / Palmeral
+              </button>
+              <button class="choice-btn" onclick="setChoice('zone', this, 'Orihuela Costa (Llegada: 30 min)')">
+                Orihuela Costa (Zenia/Playa)
+              </button>
+              <button class="choice-btn" onclick="setChoice('zone', this, 'Pedanías (La Murada, Beniel, Redován)')">
+                Pedanías / Vega Baja
+              </button>
+              <button class="choice-btn" onclick="setChoice('zone', this, 'Urbanización o Campo cercano')">
+                Urbanización o Campo
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="wizard-col">
+            <div class="wizard-title">
+              <span>3</span> ¿Con qué urgencia?
+            </div>
+            <div class="choice-list">
+              <button class="choice-btn active" onclick="setChoice('urgency', this, 'URGENTE (Hoy Mismo)')">
+                🚨 Muy Urgente (Inmediato)
+              </button>
+              <button class="choice-btn" onclick="setChoice('urgency', this, 'Hoy a lo largo del día')">
+                📅 Hoy a lo largo del día
+              </button>
+              <button class="choice-btn" onclick="setChoice('urgency', this, 'Para esta semana con cita')">
+                🗓️ Programar para esta semana
+              </button>
+              <button class="choice-btn" onclick="setChoice('urgency', this, 'Solo consultar presupuesto')">
+                💬 Solo consultar precio
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Output -->
+        <div class="diagnostic-result-bar">
+          <div class="result-summary">
+            <strong>Resumen de tu aviso:</strong>
+            <span id="diagnosticText">Fuga de Agua o Tubería Rota • Orihuela Centro • URGENTE (Hoy Mismo)</span>
+          </div>
+          <button onclick="sendDiagnosticWhatsApp()" class="btn-send-diagnosis">
+            💬 Enviar Avería por WhatsApp a Borja
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REAL PROBLEM SOLVER: Live Emergency Diagnostic & ETA Engine -->
-  <section id="diagnostico" class="engine-section container">
-    <div class="glass-engine-box">
-      <div class="engine-header">
-        <span class="engine-header-tag">Diagnóstico y Presupuesto Rápido</span>
-        <h2>¿Qué problema necesitas solucionar ahora mismo?</h2>
-        <p>Selecciona tu avería y zona; calculamos el tiempo de llegada y te enviamos la valoración directa a tu WhatsApp en menos de 2 minutos.</p>
-      </div>
-
-      <div class="steps-container">
-        <!-- Step 1: Tipo de Avería -->
-        <div class="step-card">
-          <div class="step-label">💧 1. Tipo de Problema</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setPlumberOption('issue', this, 'Fuga de Agua o Tubería Rota')">
-              Fuga de Agua o Tubería
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('issue', this, 'Termo Eléctrico (No calienta / Gotea)')">
-              Termo Eléctrico Averiado
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('issue', this, 'Desatasco Urgente (WC / Fregadero)')">
-              Desatasco de Fregadero o WC
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('issue', this, 'Cambio de Grifería o Cisterna')">
-              Grifería, Sanitarios o Llaves
-            </button>
-          </div>
-        </div>
-
-        <!-- Step 2: Tu Zona en Orihuela -->
-        <div class="step-card">
-          <div class="step-label">📍 2. Tu Ubicación</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setPlumberOption('zone', this, 'Orihuela Centro (Llegada en 20-25 min)')">
-              Orihuela Centro (20 min)
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('zone', this, 'Orihuela Costa (Llegada en 25-30 min)')">
-              Orihuela Costa (25 min)
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('zone', this, 'Pedanías: La Murada / Desamparados / Hurchillo')">
-              Pedanías (La Murada, etc.)
-            </button>
-          </div>
-        </div>
-
-        <!-- Step 3: Nivel de Urgencia -->
-        <div class="step-card">
-          <div class="step-label">🚨 3. Urgencia</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setPlumberOption('urgency', this, 'URGENCIA INMEDIATA (Hoy Mismo)')">
-              🚨 Muy Urgente (Hoy mismo)
-            </button>
-            <button class="opt-btn" onclick="setPlumberOption('urgency', this, 'Cita Programada (Esta semana)')">
-              📅 Con Cita (Esta semana)
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="engine-summary-bar">
-        <div class="summary-details">
-          <strong>Resumen de Asistencia:</strong>
-          <span id="plumberSummary">Fuga de Agua • Orihuela Centro • URGENCIA INMEDIATA</span>
-        </div>
-        <button class="btn-submit-engine" onclick="sendPlumberWhatsApp()">
-          💬 Enviar Aviso a Borja por WhatsApp
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- High-Res Services Showcase -->
+  <!-- Services Grid -->
   <section class="services-section container">
-    <div class="section-header-wrap">
-      <h2>Soluciones Profesionales con Garantía</h2>
-      <p>Materiales homologados multicapa de alta presión y termos de primeras marcas instalados en el día.</p>
+    <div class="services-header reveal-item">
+      <h2>Servicios de Fontanería con Garantía</h2>
+      <p>Materiales de primeras marcas, herramientas de alta precisión y factura oficial para tu compañía aseguradora.</p>
     </div>
 
     <div class="services-grid">
-      <!-- Service 1: Termos -->
-      <div class="service-box">
+      <!-- Service 1 -->
+      <div class="service-card reveal-item">
         <div>
-          <div class="service-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80" alt="Instalación urgente de termo eléctrico">
-            <span class="badge-service-eta">En el día</span>
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=700&q=80" alt="Instalación y reparación de termos eléctricos">
+            <span class="badge-eta-tag">Stock en Furgoneta</span>
           </div>
-          <div class="service-content">
-            <h3>Sustitución de Termos Eléctricos</h3>
-            <p>Retiramos tu termo averiado e instalamos uno nuevo de 50L, 80L o 100L en menos de 3 horas para que no te quedes sin agua caliente.</p>
-            <ul class="service-features-list">
-              <li>Marcas líderes: Ariston, Junkers, Fleck</li>
-              <li>Válvula de sobrepresión nueva incluida</li>
-              <li>Retirada y reciclaje del termo viejo gratis</li>
+          <div class="service-card-body">
+            <h3>Termos Eléctricos</h3>
+            <p>Reparación de resistencias, termostatos y sustitución de termos de 50L, 80L y 100L en el mismo día. Marcas Junkers, Ariston y Fleck.</p>
+            <ul class="service-bullet-list">
+              <li>Instalación y retirada del termo viejo</li>
+              <li>Válvulas de seguridad y latiguillos nuevos</li>
+              <li>Garantía de 2 años en el equipo</li>
             </ul>
           </div>
         </div>
-        <div class="service-content" style="padding-top: 0;">
-          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20quiero%20consultar%20precio%20para%20un%20termo%20eléctrico." target="_blank" class="btn-service-action">Consultar Presupuesto Termo</a>
+        <div class="service-card-body" style="padding-top: 0;">
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20cambiar%20o%20reparar%20un%20termo%20eléctrico." target="_blank" class="btn-card-whatsapp">Consultar Termo por WhatsApp</a>
         </div>
       </div>
 
-      <!-- Service 2: Fugas -->
-      <div class="service-box">
+      <!-- Service 2 -->
+      <div class="service-card reveal-item">
         <div>
-          <div class="service-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=700&q=80" alt="Localización y reparación de fugas de agua">
-            <span class="badge-service-eta">Llegada 25 min</span>
+          <div class="service-img-wrap">
+            <img src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&w=700&q=80" alt="Reparación urgente de fugas de agua">
+            <span class="badge-eta-tag">Llegada en 25 min</span>
           </div>
-          <div class="service-content">
-            <h3>Fugas, Goteras & Bajantes</h3>
-            <p>Localización acústica de roturas empotradas para reparar sin picar paredes enteras. Emitimos informe para tu seguro del hogar.</p>
-            <ul class="service-features-list">
-              <li>Detección precisa sin obras innecesarias</li>
-              <li>Sellado de bajantes y arquetas</li>
-              <li>Factura oficial válida para seguros</li>
+          <div class="service-card-body">
+            <h3>Reparación de Fugas</h3>
+            <p>Localización milimétrica de humedades y fugas visibles o empotradas. Evitamos romper azulejos innecesarios gracias a detectores acústicos.</p>
+            <ul class="service-bullet-list">
+              <li>Corte de agua seguro y sellado inmediato</li>
+              <li>Informe técnico para tu seguro del hogar</li>
+              <li>Reparación en cobre, multicapa o PVC</li>
             </ul>
           </div>
         </div>
-        <div class="service-content" style="padding-top: 0;">
-          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20fuga%20de%20agua%20urgente%20en%20casa." target="_blank" class="btn-service-action">Avisar de Fuga Urgente</a>
+        <div class="service-card-body" style="padding-top: 0;">
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20fuga%20urgente%20en%20casa." target="_blank" class="btn-card-whatsapp">Avisar de Fuga Urgente</a>
         </div>
       </div>
 
-      <!-- Service 3: Desatascos -->
-      <div class="service-box">
+      <!-- Service 3 -->
+      <div class="service-card reveal-item">
         <div>
-          <div class="service-photo-wrap">
+          <div class="service-img-wrap">
             <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=700&q=80" alt="Desatascos y grifería en Orihuela">
-            <span class="badge-service-eta">Sin Daños</span>
+            <span class="badge-eta-tag">Maquinaria Propia</span>
           </div>
-          <div class="service-content">
-            <h3>Desatascos & Grifería Express</h3>
-            <p>Desembozado rápido de tuberías de cocina, duchas y WC con maquinaria rotativa a presión. Cambio de llaves de paso y grifos.</p>
-            <ul class="service-features-list">
-              <li>Limpieza profunda sin dañar el PVC</li>
-              <li>Eliminación radical de malos olores</li>
-              <li>Grifos y mecanismos de bajo consumo</li>
+          <div class="service-card-body">
+            <h3>Desatascos & Grifería</h3>
+            <p>Desembozado rápido de fregaderos, inodoros y platos de ducha con espiral mecánica y agua a presión. Cambio de grifos.</p>
+            <ul class="service-bullet-list">
+              <li>Eliminación total de atascos y malos olores</li>
+              <li>Mecanismos de cisterna silenciosos</li>
+              <li>Repuestos en furgoneta para resolver al momento</li>
             </ul>
           </div>
         </div>
-        <div class="service-content" style="padding-top: 0;">
-          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20un%20desatasco%20en%20Orihuela." target="_blank" class="btn-service-action">Pedir Desatasco Rápido</a>
+        <div class="service-card-body" style="padding-top: 0;">
+          <a href="https://wa.me/34661252447?text=Hola%20Borja,%20necesito%20un%20desatasco%20en%20Orihuela." target="_blank" class="btn-card-whatsapp">Pedir Desatasco</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Google Reviews Section -->
-  <section class="reviews-section container">
-    <div class="section-header-wrap">
-      <h2>Opiniones de Vecinos de Orihuela</h2>
-      <p>⭐ 4.9 sobre 5 estrellas en Google Maps. Trato directo, puntualidad y precios honestos.</p>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Francisco Murcia</strong>
-            <small>Calle Mayor • Orihuela</small>
-          </div>
-          <div class="rev-stars">★★★★★</div>
-        </div>
-        <p class="rev-text">«Un domingo por la mañana se nos reventó el latiguillo del termo y caía agua a chorros. Llamé a Borja y en 25 minutos estaba en casa con la furgoneta. Nos cambió la pieza y nos revisó las llaves. Profesional como la copa de un pino.»</p>
+  <section class="reviews-section">
+    <div class="container">
+      <div class="services-header reveal-item">
+        <h2>Opiniones de Vecinos de Orihuela</h2>
+        <p>⭐ 4.9 de 5 estrellas en Google Maps. Trato directo, rapidez y seriedad.</p>
       </div>
 
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Beatriz Sánchez</strong>
-            <small>Orihuela Costa</small>
+      <div class="reviews-grid">
+        <div class="review-box reveal-item">
+          <div class="review-header">
+            <div class="client-name">
+              <strong>Francisco Murcia</strong>
+              <small>Orihuela Centro</small>
+            </div>
+            <div class="stars-amber">★★★★★</div>
           </div>
-          <div class="rev-stars">★★★★★</div>
+          <p class="review-quote">«Se nos rompió el termo un domingo y en 25 minutos Borja estaba en casa con la furgoneta. Nos cambió la pieza y revisó las llaves. Muy formal y precio justo. Totalmente recomendado.»</p>
         </div>
-        <p class="rev-text">«Teníamos un atasco enorme en la cocina que no salía con ningún desatascador comercial. Borja vino con su máquina, lo dejó limpio en media hora y nos cobró exactamente lo que dijo de antemano. Da gusto dar con gente seria.»</p>
-      </div>
 
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Andrés Alarcón</strong>
-            <small>La Aparecida</small>
+        <div class="review-box reveal-item">
+          <div class="review-header">
+            <div class="client-name">
+              <strong>Beatriz Sánchez</strong>
+              <small>Orihuela Costa</small>
+            </div>
+            <div class="stars-amber">★★★★★</div>
           </div>
-          <div class="rev-stars">★★★★★</div>
+          <p class="review-quote">«Teníamos una fuga que salía a la pared del vecino. Vino súper rápido, detectó el punto exacto y reparó sin destrozar el baño. Nos hizo la factura para el seguro al instante.»</p>
         </div>
-        <p class="rev-text">«Instalación de termo de 80 litros perfecta. Nos quitó el viejo y nos dejó la pared limpia y sellada. Además nos facilitó la factura para el seguro sin ningún problema. 100% recomendable.»</p>
+
+        <div class="review-box reveal-item">
+          <div class="review-header">
+            <div class="client-name">
+              <strong>Andrés Alarcón</strong>
+              <small>La Murada</small>
+            </div>
+            <div class="stars-amber">★★★★★</div>
+          </div>
+          <p class="review-quote">«Instalación de termo de 80 litros perfecta. Nos quitó el viejo y nos dejó la pared limpia y sellada. Ya no llamo a otro fontanero, trato inmejorable.»</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Sticky Mobile Bar -->
-  <div class="mobile-floating-bar">
-    <div class="mobile-bar-flex">
-      <a href="tel:+34661252447" class="btn-mobile-call">
+  <div class="mobile-dock-bar">
+    <div class="dock-grid">
+      <a href="tel:+34661252447" class="btn-dock-call">
         📞 Llamar
       </a>
-      <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20avería%20urgente%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-mobile-wp">
+      <a href="https://wa.me/34661252447?text=Hola%20Borja,%20tengo%20una%20avería%20de%20fontanería%20en%20Orihuela." target="_blank" class="btn-dock-wp">
         💬 WhatsApp 24h
       </a>
     </div>
   </div>
 
   <script>
-    const plumberState = {
+    const plumberChoices = {
       issue: 'Fuga de Agua o Tubería Rota',
-      zone: 'Orihuela Centro (Llegada en 20-25 min)',
-      urgency: 'URGENCIA INMEDIATA (Hoy Mismo)'
+      zone: 'Orihuela Centro (Llegada: 20 min)',
+      urgency: 'URGENTE (Hoy Mismo)'
     };
 
-    function setPlumberOption(type, elem, val) {
-      const parent = elem.closest('.option-grid');
-      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-      elem.classList.add('active');
-      plumberState[type] = val;
-      updatePlumberSummary();
+    function setChoice(type, btn, val) {
+      const parent = btn.closest('.choice-list');
+      parent.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      plumberChoices[type] = val;
+      updateDiagnostic();
     }
 
-    function updatePlumberSummary() {
-      const summaryElem = document.getElementById('plumberSummary');
-      summaryElem.innerText = `${plumberState.issue} • ${plumberState.zone.split('(')[0]} • ${plumberState.urgency.split('(')[0]}`;
+    function updateDiagnostic() {
+      const el = document.getElementById('diagnosticText');
+      el.innerText = `${plumberChoices.issue} • ${plumberChoices.zone.split('(')[0]} • ${plumberChoices.urgency.split('(')[0]}`;
     }
 
-    function sendPlumberWhatsApp() {
+    function sendDiagnosticWhatsApp() {
       const msg = `Hola Borja, te contacto desde la web por una avería:\n` +
-                  `🔧 *Problema:* ${plumberState.issue}\n` +
-                  `📍 *Zona:* ${plumberState.zone}\n` +
-                  `🚨 *Urgencia:* ${plumberState.urgency}\n\n` +
-                  `¿Podrías darme disponibilidad para pasar o presupuesto estimado? Gracias!`;
+                  `🔧 *Avería:* ${plumberChoices.issue}\n` +
+                  `📍 *Zona:* ${plumberChoices.zone}\n` +
+                  `🚨 *Urgencia:* ${plumberChoices.urgency}\n\n` +
+                  `¿Podrías decirme disponibilidad para pasar o presupuesto estimado? Muchas gracias.`;
 
       const url = `https://wa.me/34661252447?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
     }
+
+    // Scroll Reveal Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

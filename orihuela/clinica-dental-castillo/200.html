@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Clínica Dental Castillo | Odontología Avanzada & Implantes Digitales en Orihuela</title>
-  <meta name="description" content="Clínica dental de referencia en Orihuela. Implantes de carga inmediata sin dolor, ortodoncia invisible y estética dental. 1ª visita y radiografía 3D gratuita.">
+  <title>Clínica Dental Castillo | Odontología Avanzada & Implantes en Orihuela</title>
+  <meta name="description" content="Clínica dental de referencia en Orihuela Centro. Implantes de carga inmediata sin dolor, ortodoncia invisible y estética dental. 1ª visita y radiografía 3D GRATIS.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,222 +13,279 @@
   <style>
     :root {
       --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
       --cyan: #06b6d4;
+      --cyan-light: #ecfeff;
       --emerald: #10b981;
-      --dental-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
-      --bg-dark: #060c18;
-      --bg-surface: rgba(14, 23, 42, 0.75);
-      --bg-elevated: rgba(22, 36, 66, 0.85);
-      --border-cyan: rgba(56, 189, 248, 0.22);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --text-white: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --emerald-light: #ecfdf5;
+      --whatsapp: #22c55e;
+      --whatsapp-dark: #16a34a;
+      --bg-white: #ffffff;
+      --bg-slate: #f8fafc;
+      --bg-soft: #f0f9ff;
+      --card-border: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
       --radius-sm: 10px;
       --radius-md: 18px;
-      --radius-lg: 28px;
-      --shadow-cyan: 0 0 45px rgba(2, 132, 199, 0.22);
-      --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      --radius-lg: 26px;
+      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 12px 30px -6px rgba(2, 132, 199, 0.12);
+      --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.12);
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-dark);
-      color: var(--text-white);
+      background-color: var(--bg-white);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 95px;
+      padding-bottom: 110px;
       position: relative;
     }
 
-    /* Ambient Background Glows */
-    .ambient-cyan-1 {
-      position: absolute;
-      top: 50px;
-      right: -100px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(2, 132, 199, 0.2) 0%, rgba(6, 12, 24, 0) 70%);
-      border-radius: 50%;
-      filter: blur(75px);
-      pointer-events: none;
-      z-index: 0;
-      animation: floatGlow 14s ease-in-out infinite alternate;
-    }
-    .ambient-cyan-2 {
-      position: absolute;
-      top: 900px;
-      left: -150px;
-      width: 550px;
-      height: 550px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(6, 12, 24, 0) 70%);
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 0;
-      animation: floatGlow 18s ease-in-out infinite alternate-reverse;
-    }
-    @keyframes floatGlow {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(45px, 50px) scale(1.1); }
-    }
-
-    .container { max-width: 1220px; margin: 0 auto; padding: 0 1.25rem; position: relative; z-index: 1; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
     a { text-decoration: none; color: inherit; }
 
-    /* Top Strip */
-    .top-strip {
-      background: rgba(8, 14, 28, 0.95);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.6rem 0;
-      font-size: 0.82rem;
+    /* Top Animated Announcement Bar */
+    .top-live-strip {
+      background: linear-gradient(90deg, #0369a1, #0284c7, #06b6d4, #0284c7);
+      background-size: 300% 100%;
+      animation: gradientMove 8s ease infinite;
+      color: #ffffff;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.84rem;
+      font-weight: 700;
       text-align: center;
       position: relative;
       z-index: 101;
     }
-    .pulse-cyan {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
-      margin-right: 8px;
-      animation: pulseCyan 2s infinite;
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    @keyframes pulseCyan {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    .radar-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .radar-center {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+    }
+    .radar-wave {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #22c55e;
+      opacity: 0;
+      animation: ripple 1.8s infinite cubic-bezier(0, 0.2, 0.8, 1);
+    }
+    @keyframes ripple {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
     }
 
     /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
-      background: rgba(6, 12, 24, 0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-cyan);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
       z-index: 100;
-      padding: 1.15rem 0;
+      padding: 0.9rem 0;
+      transition: all 0.3s;
     }
-    .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-    .brand-wrap { display: flex; align-items: center; gap: 0.75rem; }
-    .brand-logo-badge {
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-icon {
       width: 44px;
       height: 44px;
-      background: var(--dental-gradient);
+      background: linear-gradient(135deg, #0284c7, #06b6d4);
+      color: #ffffff;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+      font-size: 1.35rem;
+      box-shadow: 0 8px 18px rgba(2, 132, 199, 0.28);
+      animation: gentleBounce 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes gentleBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
     }
     .brand-title {
       font-family: var(--font-heading);
-      font-size: 1.45rem;
+      font-size: 1.38rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.1;
+      color: var(--text-dark);
     }
-    .brand-title span {
-      background: var(--dental-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-subtitle {
+    .brand-title span { color: var(--primary); }
+    .brand-sub {
       font-size: 0.72rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #38bdf8;
-      display: block;
+      color: var(--text-muted);
       font-weight: 700;
+      display: block;
     }
-    .nav-actions { display: flex; align-items: center; gap: 0.85rem; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
     .btn-nav-call {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: #ffffff;
+      background: var(--bg-soft);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      color: var(--primary-dark);
       padding: 0.55rem 1.1rem;
       border-radius: 999px;
       font-size: 0.88rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       transition: all 0.2s;
     }
-    .btn-nav-call:hover { border-color: #38bdf8; color: #38bdf8; }
+    .btn-nav-call:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
     .btn-nav-wp {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
       padding: 0.6rem 1.35rem;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-      transition: all 0.2s;
+      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.3);
+      transition: all 0.25s;
     }
-    .btn-nav-wp:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5); }
+    .btn-nav-wp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(34, 197, 94, 0.45);
+    }
+
+    /* Ambient Background Glows */
+    .ambient-glow-1 {
+      position: absolute;
+      top: 100px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+    .ambient-glow-2 {
+      position: absolute;
+      top: 600px;
+      right: -150px;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 15s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 35px) scale(1.1); }
+    }
 
     /* Hero Section */
     .hero {
+      padding: 3.5rem 0 3rem;
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
       position: relative;
-      padding: 4.5rem 0 3.5rem;
+      overflow: hidden;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 3.5rem;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
-    .hero-tag {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(2, 132, 199, 0.15);
-      border: 1px solid var(--border-cyan);
+      background: #ffffff;
+      border: 1px solid rgba(2, 132, 199, 0.25);
       padding: 0.45rem 1.15rem;
       border-radius: 999px;
       font-size: 0.85rem;
-      color: #38bdf8;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      animation: floatBadge 3.8s ease-in-out infinite alternate;
+    }
+    @keyframes floatBadge {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
     }
     .hero h1 {
       font-family: var(--font-heading);
-      font-size: 3.4rem;
+      font-size: 3.3rem;
       line-height: 1.12;
       font-weight: 900;
       letter-spacing: -0.03em;
-      margin-bottom: 1.35rem;
+      margin-bottom: 1.25rem;
+      color: var(--text-dark);
     }
-    .hero h1 .gradient-text {
-      background: var(--dental-gradient);
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero p.lead {
       font-size: 1.15rem;
-      color: #cbd5e1;
-      margin-bottom: 2.25rem;
+      color: var(--text-body);
+      margin-bottom: 2rem;
       line-height: 1.7;
     }
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2.25rem;
     }
-    .btn-hero-primary {
-      background: linear-gradient(135deg, #25d366 0%, #15803d 100%);
+    .btn-hero-wp {
+      background: linear-gradient(90deg, #22c55e, #16a34a, #22c55e);
+      background-size: 200% 100%;
+      animation: shimmerBtn 3.5s infinite;
       color: #ffffff;
       padding: 1.1rem 2rem;
       border-radius: var(--radius-md);
@@ -237,791 +294,1456 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      box-shadow: 0 14px 30px -5px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 12px 28px -5px rgba(34, 197, 94, 0.45);
       transition: all 0.25s;
     }
-    .btn-hero-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px -5px rgba(37, 211, 102, 0.6);
+    @keyframes shimmerBtn {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-cyan);
-      color: #ffffff;
-      padding: 1.1rem 1.75rem;
+    .btn-hero-wp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px -5px rgba(34, 197, 94, 0.6);
+    }
+    .btn-hero-call {
+      background: #ffffff;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 1.05rem 1.75rem;
       border-radius: var(--radius-md);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      backdrop-filter: blur(10px);
       transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
     }
-    .btn-hero-secondary:hover {
-      background: rgba(2, 132, 199, 0.15);
-      border-color: #38bdf8;
+    .btn-hero-call:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: translateY(-2px);
     }
 
-    /* Trust Metric Strip */
-    .metrics-bar {
+    /* Hero Trust Metrics Grid */
+    .metrics-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      background: var(--bg-surface);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-cyan);
+      background: #ffffff;
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-md);
       padding: 1.25rem;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-md);
     }
-    .metric-col {
+    .metric-box {
       text-align: center;
-      border-right: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--card-border);
+      padding: 0 0.5rem;
     }
-    .metric-col:last-child { border-right: none; }
-    .metric-num {
+    .metric-box:last-child { border-right: none; }
+    .metric-val {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #38bdf8;
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      line-height: 1;
+      margin-bottom: 0.35rem;
     }
-    .metric-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+    .metric-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      line-height: 1.2;
+    }
 
-    /* Hero Media Visual */
-    .hero-media-wrapper { position: relative; }
-    .hero-media-card {
-      position: relative;
+    /* Hero Card / Visual Element */
+    .hero-visual-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-cyan);
-      box-shadow: var(--shadow-cyan), var(--shadow-card);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
     }
-    .hero-media-card img {
+    .hero-card-img-wrap {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      height: 310px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-card-img-wrap img {
       width: 100%;
-      height: 520px;
+      height: 100%;
       object-fit: cover;
-      display: block;
       transition: transform 0.6s ease;
     }
-    .hero-media-card:hover img { transform: scale(1.04); }
-    .floating-dental-pill {
+    .hero-visual-card:hover .hero-card-img-wrap img {
+      transform: scale(1.04);
+    }
+    .floating-pill-badge {
       position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      background: rgba(6, 12, 24, 0.9);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--border-cyan);
-      padding: 0.6rem 1.15rem;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 0.9rem;
       border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-sm);
+      animation: floatBadge 3.2s ease-in-out infinite alternate;
+    }
+    .floating-bottom-badge {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      color: #ffffff;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .floating-bottom-badge span.accent {
+      color: #38bdf8;
+      font-weight: 800;
+    }
+
+    /* Continuous Animated Marquee Ticker */
+    .marquee-container {
+      background: #ffffff;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.9rem 0;
+      position: relative;
+    }
+    .marquee-content {
+      display: inline-flex;
+      gap: 3rem;
+      animation: marqueeScroll 25s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-body);
+    }
+    .marquee-item span.icon { font-size: 1.15rem; }
+    .marquee-item strong { color: var(--primary-dark); }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Section Utilities */
+    .section {
+      padding: 5rem 0;
+      position: relative;
+    }
+    .section-slate { background-color: var(--bg-slate); }
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 3.5rem;
+    }
+    .badge-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-soft);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      color: var(--primary-dark);
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Interactive 3-Step Smile & Financing Engine */
+    .calculator-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .calc-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .step-box {
+      background: var(--bg-slate);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.25rem;
+      transition: all 0.25s;
+    }
+    .step-header {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      font-size: 0.85rem;
-      font-weight: 700;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      margin-bottom: 1.15rem;
     }
-    .hero-card-bottom-banner {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      right: 1.5rem;
-      background: rgba(14, 23, 42, 0.92);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* REAL PROBLEM SOLVER: Interactive Smile & Financing Assessment Engine */
-    .engine-section {
-      padding: 4rem 0 3rem;
-    }
-    .glass-engine-box {
-      background: var(--bg-surface);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      box-shadow: var(--shadow-cyan), var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-    }
-    .glass-engine-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--dental-gradient);
-    }
-    .engine-header {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 2.75rem;
-    }
-    .engine-header-tag {
-      font-family: var(--font-heading);
-      color: #38bdf8;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .engine-header h2 {
-      font-family: var(--font-heading);
-      font-size: 2.3rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-    .engine-header p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    /* 3 Step Selectors */
-    .steps-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .step-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      transition: all 0.3s;
-    }
-    .step-card:hover {
-      border-color: var(--border-cyan);
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .step-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #38bdf8;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
+    .step-number {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
     }
-    .option-grid {
-      display: grid;
-      gap: 0.65rem;
+    .step-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text-dark);
     }
-    .opt-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
+    .option-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .option-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--card-border);
+      padding: 0.8rem 0.95rem;
       border-radius: var(--radius-sm);
-      padding: 0.75rem 1rem;
-      color: #cbd5e1;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-dark);
       cursor: pointer;
-      text-align: left;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: left;
+      width: 100%;
+    }
+    .option-btn:hover {
+      border-color: var(--primary);
+      transform: translateX(4px);
+    }
+    .option-btn.active {
+      background: var(--bg-soft);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+      transform: translateX(4px);
+    }
+    .option-btn .check-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.2s;
     }
-    .opt-btn:hover {
-      background: rgba(2, 132, 199, 0.15);
-      border-color: #38bdf8;
-      color: #ffffff;
+    .option-btn.active .check-dot {
+      border-color: var(--primary);
+      background: var(--primary);
     }
-    .opt-btn.active {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(2, 132, 199, 0.2));
-      border-color: #38bdf8;
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
-    }
-    .opt-btn.active::after {
+    .option-btn.active .check-dot::after {
       content: '✓';
-      color: #38bdf8;
+      color: #ffffff;
+      font-size: 10px;
       font-weight: 900;
     }
 
-    /* Live Summary & WhatsApp Button */
-    .engine-summary-bar {
-      background: rgba(6, 12, 24, 0.88);
-      border: 1px solid var(--border-cyan);
+    /* Calculator Result Output Banner */
+    .calc-result-banner {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1.5px solid rgba(2, 132, 199, 0.3);
       border-radius: var(--radius-md);
-      padding: 1.5rem 2rem;
+      padding: 1.75rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      justify-content: space-between;
       gap: 1.5rem;
+      box-shadow: var(--shadow-sm);
     }
-    .summary-details strong {
-      display: block;
-      font-size: 1.05rem;
+    .calc-result-info h4 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.35rem;
+    }
+    .calc-result-info p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+    .calc-result-info .price-tag {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+    }
+    .btn-calc-submit {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
-      margin-bottom: 0.25rem;
-    }
-    .summary-details span {
-      color: #38bdf8;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-    .btn-submit-engine {
-      background: linear-gradient(135deg, #25d366, #16a34a);
-      color: #ffffff;
-      padding: 1.1rem 2.25rem;
+      padding: 1.05rem 1.85rem;
       border-radius: var(--radius-md);
       font-weight: 800;
-      font-size: 1.05rem;
-      border: none;
-      cursor: pointer;
+      font-size: 0.98rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      transition: all 0.2s;
+      gap: 0.6rem;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(34, 197, 94, 0.35);
+      transition: all 0.25s;
     }
-    .btn-submit-engine:hover {
+    .btn-calc-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.55);
+      box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
     }
 
-    /* Specialties Grid with High-Res Photos */
-    .specialties-section {
-      padding: 4.5rem 0;
-    }
-    .section-header-wrap {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 3rem;
-    }
-    .section-header-wrap h2 {
-      font-family: var(--font-heading);
-      font-size: 2.3rem;
-      font-weight: 800;
-      margin-bottom: 0.65rem;
-    }
-    .section-header-wrap p { color: var(--text-muted); font-size: 1.05rem; }
-
-    .spec-grid {
+    /* Services / Treatments Grid */
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
-    .spec-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-md);
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s;
-      box-shadow: var(--shadow-card);
     }
-    .spec-box:hover {
-      transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: var(--shadow-cyan);
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(2, 132, 199, 0.4);
     }
-    .spec-photo-wrap {
-      height: 230px;
-      position: relative;
+    .service-img-box {
+      height: 220px;
       overflow: hidden;
+      position: relative;
     }
-    .spec-photo-wrap img {
+    .service-img-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
-    .spec-box:hover .spec-photo-wrap img { transform: scale(1.08); }
-    .badge-spec-tag {
+    .service-card:hover .service-img-box img {
+      transform: scale(1.08);
+    }
+    .service-badge-pill {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(6, 12, 24, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border-cyan);
-      color: #38bdf8;
+      top: 12px;
+      left: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 800;
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-sm);
     }
-    .spec-content { padding: 1.6rem; }
-    .spec-content h3 {
+    .service-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .service-body h3 {
       font-family: var(--font-heading);
       font-size: 1.35rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
-      color: #ffffff;
+      color: var(--text-dark);
+      margin-bottom: 0.65rem;
     }
-    .spec-content p {
+    .service-body p {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--text-body);
       line-height: 1.6;
-      margin-bottom: 1.35rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
     }
-    .spec-features-list {
+    .service-features-list {
       list-style: none;
       margin-bottom: 1.5rem;
-      font-size: 0.88rem;
-      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .spec-features-list li {
-      margin-bottom: 0.4rem;
+    .service-features-list li {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .spec-features-list li::before {
-      content: '✓';
-      color: #38bdf8;
+    .service-features-list li span.check {
+      color: var(--primary);
       font-weight: 900;
     }
-    .btn-spec-action {
-      display: block;
-      text-align: center;
-      background: rgba(2, 132, 199, 0.15);
-      border: 1px solid var(--border-cyan);
-      color: #38bdf8;
-      padding: 0.75rem;
+    .btn-service-action {
+      background: var(--bg-soft);
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      color: var(--primary-dark);
+      padding: 0.75rem 1.25rem;
       border-radius: var(--radius-sm);
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 800;
+      font-size: 0.88rem;
+      text-align: center;
       transition: all 0.2s;
     }
-    .btn-spec-action:hover {
+    .service-card:hover .btn-service-action {
       background: var(--primary);
       color: #ffffff;
     }
 
-    /* Google Reviews Section */
-    .reviews-section {
-      padding: 4.5rem 0;
-      border-top: 1px solid var(--border-subtle);
+    /* Before & After Cases Showcase */
+    .case-showcase-box {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-md);
+      max-width: 1000px;
+      margin: 0 auto;
     }
+    .case-nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--bg-slate);
+      border: 1px solid var(--card-border);
+      padding: 0.65rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.28);
+    }
+    .case-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .case-image-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .case-img-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      height: 220px;
+      box-shadow: var(--shadow-sm);
+    }
+    .case-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .case-tag-pill {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+    .case-details h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+    }
+    .case-details p {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .case-perks-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .case-perks-list li {
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Testimonials / Social Proof */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.75rem;
     }
-    .rev-card-luxury {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-cyan);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      box-shadow: var(--shadow-card);
+    .review-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
     }
-    .rev-top {
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(2, 132, 199, 0.35);
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 1.15rem;
+      margin-bottom: 0.85rem;
+      letter-spacing: 2px;
+    }
+    .review-text {
+      font-size: 0.95rem;
+      color: var(--text-body);
+      line-height: 1.65;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1rem;
+    }
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      color: var(--primary-dark);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .reviewer-name {
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+    }
+    .reviewer-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+    }
+    .faq-item:hover { border-color: rgba(2, 132, 199, 0.3); }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      user-select: none;
+    }
+    .faq-arrow {
+      font-size: 1.25rem;
+      color: var(--primary);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      background: var(--bg-slate);
+      color: var(--text-body);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 250px;
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Big Conversion CTA Banner */
+    .cta-banner-section {
+      padding: 4.5rem 0;
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #06b6d4 100%);
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner-content {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-banner-content h2 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
       margin-bottom: 1.25rem;
     }
-    .rev-author-name strong { display: block; font-size: 1rem; }
-    .rev-author-name small { color: var(--text-muted); font-size: 0.78rem; }
-    .rev-stars { color: #f59e0b; font-size: 1.1rem; }
-    .rev-text { font-size: 0.95rem; color: #cbd5e1; line-height: 1.65; }
+    .cta-banner-content p {
+      font-size: 1.15rem;
+      opacity: 0.92;
+      margin-bottom: 2.25rem;
+      line-height: 1.6;
+    }
+    .cta-banner-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .btn-banner-wp {
+      background: #22c55e;
+      color: #ffffff;
+      padding: 1.15rem 2.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s;
+    }
+    .btn-banner-wp:hover {
+      transform: translateY(-2px);
+      background: #16a34a;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+    .btn-banner-call {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      padding: 1.15rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s;
+    }
+    .btn-banner-call:hover {
+      background: #ffffff;
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
 
-    /* Sticky Mobile Bottom Bar */
-    .mobile-floating-bar {
-      display: none;
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 3.5rem 0 2rem;
+      font-size: 0.88rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand h4 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+    }
+    .footer-col h5 {
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Fixed Mobile Dock Bar */
+    .mobile-dock-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(6, 12, 24, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border-cyan);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--card-border);
       padding: 0.75rem 1rem;
+      display: none;
       z-index: 999;
+      box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
     }
-    .mobile-bar-flex {
+    .dock-grid {
       display: grid;
       grid-template-columns: 1fr 1.6fr;
       gap: 0.75rem;
+      max-width: 500px;
+      margin: 0 auto;
     }
-    .btn-mobile-call {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      color: #ffffff;
-      padding: 0.8rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-weight: 700;
+    .btn-dock-call {
+      background: var(--bg-soft);
+      border: 1.5px solid rgba(2, 132, 199, 0.3);
+      color: var(--primary-dark);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
       font-size: 0.88rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.4rem;
     }
-    .btn-mobile-wp {
-      background: linear-gradient(135deg, #25d366, #16a34a);
+    .btn-dock-wp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
       color: #ffffff;
-      padding: 0.8rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-weight: 800;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
       font-size: 0.92rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
+      box-shadow: 0 6px 18px rgba(34, 197, 94, 0.4);
+      animation: pulseGlow 2.5s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
 
-    /* Responsive */
+    /* Scroll Reveal Animations */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Breakpoints */
     @media (max-width: 992px) {
       .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .steps-container { grid-template-columns: 1fr; }
-      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+      .calc-steps-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
       .reviews-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.5rem; }
-      .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
-      .metric-col:nth-child(2) { border-right: none; }
+      .case-content-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .metric-box:nth-child(2) { border-right: none; }
     }
+
     @media (max-width: 768px) {
-      .mobile-floating-bar { display: block; }
-      .spec-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.15rem; }
-      .engine-summary-bar { flex-direction: column; text-align: center; }
-      .btn-submit-engine { width: 100%; justify-content: center; }
-      .btn-nav-wp { display: none; }
+      .mobile-dock-bar { display: block; }
+      .hero h1 { font-size: 2.35rem; }
+      .section-header h2 { font-size: 1.95rem; }
+      .calc-result-banner { flex-direction: column; text-align: center; }
+      .btn-calc-submit { width: 100%; justify-content: center; }
+      .hero-ctas { flex-direction: column; width: 100%; }
+      .btn-hero-wp, .btn-hero-call { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Glows -->
-  <div class="ambient-cyan-1"></div>
-  <div class="ambient-cyan-2"></div>
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
 
-  <!-- Top Strip -->
-  <div class="top-strip">
+  <!-- Top Announcement Bar -->
+  <div class="top-live-strip">
     <div class="container">
-      <span class="pulse-cyan"></span> <strong>CLÍNICA DENTAL DIGITAL EN ORIHUELA</strong> • 1ª Consulta, TAC 3D y Diagnóstico Completo Sin Coste
+      <span class="radar-wrapper"><span class="radar-center"></span><span class="radar-wave"></span></span>
+      <span>📍 <strong>Orihuela Centro</strong> • Agenda Abierta Hoy • <strong>1ª Visita + Radiografía 3D GRATIS</strong> (Ahorro de 80€)</span>
     </div>
   </div>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container nav-flex">
-      <div class="brand-wrap">
-        <div class="brand-logo-badge">🦷</div>
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a href="#" class="brand">
+        <div class="brand-icon">🦷</div>
         <div>
           <div class="brand-title">Dental <span>Castillo</span></div>
-          <span class="brand-subtitle">Odontología Digital • Orihuela</span>
+          <span class="brand-sub">Orihuela · Especialistas</span>
         </div>
-      </div>
+      </a>
       <div class="nav-actions">
         <a href="tel:+34680120971" class="btn-nav-call">
-          📞 <span>680 120 971</span>
+          📞 <span class="hide-mobile">680 120 971</span>
         </a>
-        <a href="https://wa.me/34680120971?text=Hola%20Clínica%20Castillo,%20quiero%20pedir%20cita%20de%20revisión%20dental." target="_blank" class="btn-nav-wp">
-          💬 Pedir Cita WhatsApp
+        <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20quisiera%20pedir%20cita%20para%20la%201%C2%AA%20visita%20gratuita%20con%20esc%C3%A1ner%203D" target="_blank" class="btn-nav-wp">
+          💬 Pedir Cita
         </a>
       </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="hero container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-tag">
-          🦷 Implantes Inmediatos & Ortodoncia Sin Dolor
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text-col reveal-item">
+        <div class="hero-badge">
+          ✨ Nº1 en Implantes & Ortodoncia Invisible en Orihuela
         </div>
-        <h1>Vuelve a Sonreír sin Miedo con <span class="gradient-text">Odontología Guiada en 3D</span>.</h1>
+        <h1>Tu Sonrisa Perfecta en Orihuela. <span class="highlight">Sin Dolor y Sin Esperas.</span></h1>
         <p class="lead">
-          Despídete de los tratamientos traumáticos. En Clínica Dental Castillo empleamos cirugía guiada por ordenador para colocar implantes en minutos sin puntos molestos y alineadores invisibles que transforman tu sonrisa sin que nadie lo note.
+          Especialistas en <strong>implantes de carga inmediata en 24h</strong> y <strong>ortodoncia invisible</strong>. Tecnología de escáner digital 3D sin moldes molestos y <strong>financiación 0% hasta 36 meses</strong>.
         </p>
 
         <div class="hero-ctas">
-          <a href="#asistente" class="btn-hero-primary">
-            🦷 Diagnóstico Gratuito por WhatsApp
+          <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20deseo%20solicitar%20mi%201%C2%AA%20visita%20de%20diagn%C3%B3stico%203D%20gratuita" target="_blank" class="btn-hero-wp">
+            💬 Reservar Cita Gratuita WhatsApp
           </a>
-          <a href="#especialidades" class="btn-hero-secondary">
-            🔍 Ver Especialidades Dentales
+          <a href="tel:+34680120971" class="btn-hero-call">
+            📞 Llamar 680 120 971
           </a>
         </div>
 
-        <div class="metrics-bar">
-          <div class="metric-col">
-            <div class="metric-num">0€</div>
-            <div class="metric-desc">1ª Visita + TAC 3D</div>
+        <!-- Trust Stats Counters -->
+        <div class="metrics-row">
+          <div class="metric-box">
+            <div class="metric-val" data-target="15">+15</div>
+            <div class="metric-lbl">Años Cuidando Orihuela</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">Sin Dolor</div>
-            <div class="metric-desc">Anestesia digital</div>
+          <div class="metric-box">
+            <div class="metric-val" data-target="4800">+4.800</div>
+            <div class="metric-lbl">Sonrisas Renovadas</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">4.9 ★</div>
-            <div class="metric-desc">Google Reviews</div>
+          <div class="metric-box">
+            <div class="metric-val">4.9 ★</div>
+            <div class="metric-lbl">Google Reviews (+180)</div>
           </div>
-          <div class="metric-col">
-            <div class="metric-num">24 Meses</div>
-            <div class="metric-desc">Financiación 0%</div>
+          <div class="metric-box">
+            <div class="metric-val">0€</div>
+            <div class="metric-lbl">1ª Visita & TAC 3D</div>
           </div>
         </div>
       </div>
 
-      <!-- Hero Media Visual Card -->
-      <div class="hero-media-wrapper">
-        <div class="hero-media-card">
-          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=85" alt="Gabinete odontológico digital Clínica Dental Castillo Orihuela">
-          <div class="floating-dental-pill">
-            <span class="pulse-cyan"></span> Dientes Fijos en 24 Horas
+      <!-- Hero Visual Showcase -->
+      <div class="hero-visual-card reveal-item">
+        <div class="hero-card-img-wrap">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Clínica Dental Castillo Gabinete Odontológico Orihuela">
+          <div class="floating-pill-badge">
+            ⭐ 4.9/5 Pacientes Felices
           </div>
-          <div class="hero-card-bottom-banner">
+          <div class="floating-bottom-badge">
             <div>
-              <strong>Clínica Dental Castillo</strong>
-              <small style="color: var(--text-muted); display: block;">Centro de Orihuela • Fácil aparcamiento</small>
+              <strong>Diagnóstico Digital 3D</strong><br>
+              <small>Sin moldes de pasta · Precisión milimétrica</small>
             </div>
-            <div style="color: #f59e0b; font-weight: 800; font-size: 1.15rem;">★ 4.9 Google</div>
+            <span class="accent">100% Sin Coste</span>
           </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-body); text-align: center;">
+          🏥 <strong>Clínica Dental Castillo:</strong> Gabinetes esterilizados de última generación y equipo de doctores colegiados en Orihuela.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continuous Animated Marquee Ticker -->
+  <div class="marquee-container">
+    <div class="marquee-content">
+      <div class="marquee-item"><span class="icon">🦷</span> <strong>1ª Consulta y TAC 3D Gratuito</strong></div>
+      <div class="marquee-item"><span class="icon">💳</span> <strong>Financiación 0% hasta 36 meses</strong></div>
+      <div class="marquee-item"><span class="icon">🔬</span> <strong>Escáner Intraoral iTero sin molestias</strong></div>
+      <div class="marquee-item"><span class="icon">✨</span> <strong>Ortodoncia Invisible Certificada</strong></div>
+      <div class="marquee-item"><span class="icon">⚡</span> <strong>Implantes en 24h con Carga Inmediata</strong></div>
+      <div class="marquee-item"><span class="icon">📍</span> <strong>Orihuela Centro · Atención Urgente</strong></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><span class="icon">🦷</span> <strong>1ª Consulta y TAC 3D Gratuito</strong></div>
+      <div class="marquee-item"><span class="icon">💳</span> <strong>Financiación 0% hasta 36 meses</strong></div>
+      <div class="marquee-item"><span class="icon">🔬</span> <strong>Escáner Intraoral iTero sin molestias</strong></div>
+      <div class="marquee-item"><span class="icon">✨</span> <strong>Ortodoncia Invisible Certificada</strong></div>
+      <div class="marquee-item"><span class="icon">⚡</span> <strong>Implantes en 24h con Carga Inmediata</strong></div>
+      <div class="marquee-item"><span class="icon">📍</span> <strong>Orihuela Centro · Atención Urgente</strong></div>
+    </div>
+  </div>
+
+  <!-- Interactive 3-Step Smile & Financing Engine -->
+  <section class="section section-slate" id="calculadora">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <span class="badge-sub">Simulador Digital Interactivo</span>
+        <h2>Calcula Tu Tratamiento & Cuota en 3 Clics</h2>
+        <p>Configura lo que necesitas y recibe la orientación de cuota al instante directamente en tu WhatsApp.</p>
+      </div>
+
+      <div class="calculator-card reveal-item">
+        <div class="calc-steps-grid">
+          <!-- Step 1 -->
+          <div class="step-box">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <span class="step-title">Tratamiento</span>
+            </div>
+            <div class="option-list">
+              <button class="option-btn active" onclick="selectOption('treatment', 'Implantes Dentales 24h', 45, this)">
+                <span>🦷 Implantes en 24h</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('treatment', 'Ortodoncia Invisible', 39, this)">
+                <span>✨ Ortodoncia Invisible</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('treatment', 'Carillas & Estética', 29, this)">
+                <span>💎 Carillas & Estética</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('treatment', 'Limpieza & Revisión Completa', 0, this)">
+                <span>🛡️ Revisión & Limpieza</span>
+                <span class="check-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-box">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <span class="step-title">Financiación 0%</span>
+            </div>
+            <div class="option-list">
+              <button class="option-btn active" onclick="selectOption('finance', '36 meses sin intereses', null, this)">
+                <span>💳 36 meses sin intereses</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('finance', '24 meses sin intereses', null, this)">
+                <span>💳 24 meses sin intereses</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('finance', '12 meses sin intereses', null, this)">
+                <span>💳 12 meses sin intereses</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('finance', 'Pago directo en clínica', null, this)">
+                <span>💶 Pago directo en clínica</span>
+                <span class="check-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-box">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <span class="step-title">Horario Cita</span>
+            </div>
+            <div class="option-list">
+              <button class="option-btn active" onclick="selectOption('time', 'Mañanas (9:30 - 13:30)', null, this)">
+                <span>☀️ Mañanas (9:30 - 13:30)</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('time', 'Tardes (16:30 - 20:30)', null, this)">
+                <span>🌇 Tardes (16:30 - 20:30)</span>
+                <span class="check-dot"></span>
+              </button>
+              <button class="option-btn" onclick="selectOption('time', 'Urgencia dolor dental hoy', null, this)">
+                <span>🚨 Urgencia dental hoy</span>
+                <span class="check-dot"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Output Banner -->
+        <div class="calc-result-banner">
+          <div class="calc-result-info">
+            <h4>Tratamiento: <span id="display-treatment" style="color: var(--primary);">Implantes Dentales 24h</span></h4>
+            <p>
+              Cuota estimada: <span class="price-tag" id="display-fee">desde 45€/mes</span> · <span id="display-finance">36 meses sin intereses (0% TAE)</span>.<br>
+              <strong>🎁 Bono Activo:</strong> 1ª Consulta médica + Escáner digital 3D iTero GRATIS (Valor 80€).
+            </p>
+          </div>
+          <a href="#" id="btn-calc-whatsapp" target="_blank" class="btn-calc-submit">
+            💬 Solicitar Cita con Esta Cuota 👉
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REAL PROBLEM SOLVER: Interactive Smile & Financing Assessment Engine -->
-  <section id="asistente" class="engine-section container">
-    <div class="glass-engine-box">
-      <div class="engine-header">
-        <span class="engine-header-tag">Asistente Dental Digital</span>
-        <h2>¿Qué tratamiento deseas valorar para tu sonrisa?</h2>
-        <p>Configura tu consulta previa en 3 clics y recibe presupuesto orientativo con opciones de financiación directa a tu WhatsApp.</p>
+  <!-- Treatments & Specialities Grid -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <span class="badge-sub">Especialidades Médicas</span>
+        <h2>Tratamientos Dentales Avanzados en Orihuela</h2>
+        <p>Diagnóstico digital exacto, anestesia indolora y materiales con marcado de garantía de la Unión Europea.</p>
       </div>
 
-      <div class="steps-container">
-        <!-- Step 1: Tratamiento Deseado -->
-        <div class="step-card">
-          <div class="step-label">🦷 1. Tratamiento</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setDentalOption('treat', this, 'Implantes Dentales & Dientes Fijos')">
-              Implantes & Dientes Fijos
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('treat', this, 'Ortodoncia Invisible (Alineadores)')">
-              Ortodoncia Invisible
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('treat', this, 'Carillas de Porcelana & Estética')">
-              Estética & Blanqueamiento
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('treat', this, 'Urgencia por Dolor Dental Agudo')">
-              Urgencia Dolor Dental
-            </button>
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card reveal-item">
+          <div class="service-img-box">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80" alt="Implantes Dentales Carga Inmediata Orihuela">
+            <span class="service-badge-pill">Dientes Fijos en 24h</span>
           </div>
-        </div>
-
-        <!-- Step 2: Tu Mayor Prioridad -->
-        <div class="step-card">
-          <div class="step-label">🛡️ 2. Tu Prioridad</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setDentalOption('prio', this, 'Que no duela absolutamente nada (Sin Miedo)')">
-              Tratamiento 100% Sin Dolor
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('prio', this, 'Dientes Fijos lo más rápido posible')">
-              Rapidez (Dientes en 24h)
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('prio', this, 'Pagar en cuotas cómodas sin intereses')">
-              Financiación 0% Intereses
-            </button>
-          </div>
-        </div>
-
-        <!-- Step 3: Turno Preferido -->
-        <div class="step-card">
-          <div class="step-label">⏰ 3. Tu Horario</div>
-          <div class="option-grid">
-            <button class="opt-btn active" onclick="setDentalOption('time', this, 'Mañanas (10:00h - 14:00h)')">
-              Mañanas (10:00h - 14:00h)
-            </button>
-            <button class="opt-btn" onclick="setDentalOption('time', this, 'Tardes (16:30h - 20:30h)')">
-              Tardes (16:30h - 20:30h)
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="engine-summary-bar">
-        <div class="summary-details">
-          <strong>Plan de Cita Solicitado:</strong>
-          <span id="dentalSummary">Implantes & Dientes Fijos • 100% Sin Dolor • Mañanas</span>
-        </div>
-        <button class="btn-submit-engine" onclick="sendDentalWhatsApp()">
-          💬 Agendar 1ª Visita Gratuita por WhatsApp
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- High-Res Specialties Showcase -->
-  <section id="especialidades" class="specialties-section container">
-    <div class="section-header-wrap">
-      <h2>Especialidades Odontológicas en Orihuela</h2>
-      <p>Equipamiento tecnológico de última generación: TAC 3D volumétrico, escáner intraoral y sedación consciente.</p>
-    </div>
-
-    <div class="spec-grid">
-      <!-- Spec 1 -->
-      <div class="spec-box">
-        <div>
-          <div class="spec-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80" alt="Implantes dentales en Orihuela">
-            <span class="badge-spec-tag">Cirugía Guiada 3D</span>
-          </div>
-          <div class="spec-content">
+          <div class="service-body">
             <h3>Implantes de Carga Inmediata</h3>
-            <p>Recupera la capacidad de masticar y sonreír con seguridad en un solo día. Titanio biocompatible de máxima calidad sin puntos molestos.</p>
-            <ul class="spec-features-list">
-              <li>Planificación digital por TAC 3D previo</li>
-              <li>Cirugía mínimamente invasiva sin hinchazón</li>
-              <li>Garantía de por vida en implantes de titanio</li>
+            <p>Recupera la función masticatoria completa y la estética en solo 1 día mediante cirugía mínimamente invasiva guiada por ordenador.</p>
+            <ul class="service-features-list">
+              <li><span class="check">✓</span> Cirugía guiada 3D sin puntos dolorosos</li>
+              <li><span class="check">✓</span> Titanio biocompatible de grado médico suizo</li>
+              <li><span class="check">✓</span> Garantía clínica por escrito</li>
             </ul>
+            <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20deseo%20informaci%C3%B3n%20sobre%20los%20Implantes%20de%20Carga%20Inmediata" target="_blank" class="btn-service-action">
+              Consultar Implantes por WhatsApp
+            </a>
           </div>
         </div>
-        <div class="spec-content" style="padding-top: 0;">
-          <a href="https://wa.me/34680120971?text=Hola%20Clínica%20Castillo,%20quiero%20consultar%20sobre%20implantes%20dentales." target="_blank" class="btn-spec-action">Consultar Implantes en WhatsApp</a>
-        </div>
-      </div>
 
-      <!-- Spec 2 -->
-      <div class="spec-box">
-        <div>
-          <div class="spec-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80" alt="Ortodoncia invisible digital">
-            <span class="badge-spec-tag">Discreción Total</span>
+        <!-- Service 2 -->
+        <div class="service-card reveal-item">
+          <div class="service-img-box">
+            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80" alt="Ortodoncia Invisible Invisalign Orihuela">
+            <span class="service-badge-pill">100% Estética y Confort</span>
           </div>
-          <div class="spec-content">
-            <h3>Ortodoncia Invisible (Alineadores)</h3>
-            <p>Endereza tus dientes con férulas transparentes y extraíbles diseñadas por ordenador. Come lo que quieras y cepíllate con total normalidad.</p>
-            <ul class="spec-features-list">
-              <li>Escáner digital 3D (adiós pastas molestas)</li>
-              <li>Simulación del resultado final antes de empezar</li>
-              <li>Revisiones rápidas cada 4-6 semanas</li>
+          <div class="service-body">
+            <h3>Ortodoncia Invisible</h3>
+            <p>Alineadores transparentes y removibles que corrigen tu sonrisa de forma imperceptible, sin alambres ni llagas en la boca.</p>
+            <ul class="service-features-list">
+              <li><span class="check">✓</span> Escáner iTero con simulación 3D inmediata</li>
+              <li><span class="check">✓</span> Come lo que quieras quitándote la férula</li>
+              <li><span class="check">✓</span> Revisiones cómodas cada 6-8 semanas</li>
             </ul>
+            <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20deseo%20saber%20m%C3%A1s%20sobre%20la%20Ortodoncia%20Invisible" target="_blank" class="btn-service-action">
+              Consultar Ortodoncia por WhatsApp
+            </a>
           </div>
         </div>
-        <div class="spec-content" style="padding-top: 0;">
-          <a href="https://wa.me/34680120971?text=Hola%20Clínica%20Castillo,%20quiero%20información%20sobre%20ortodoncia%20invisible." target="_blank" class="btn-spec-action">Consultar Ortodoncia en WhatsApp</a>
-        </div>
-      </div>
 
-      <!-- Spec 3 -->
-      <div class="spec-box">
-        <div>
-          <div class="spec-photo-wrap">
-            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80" alt="Blanqueamiento y carillas estéticas">
-            <span class="badge-spec-tag">Sonrisa Luminosa</span>
+        <!-- Service 3 -->
+        <div class="service-card reveal-item">
+          <div class="service-img-box">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80" alt="Estética Dental Carillas Blanqueamiento Orihuela">
+            <span class="service-badge-pill">Diseño Digital</span>
           </div>
-          <div class="spec-content">
-            <h3>Diseño de Sonrisa & Carillas</h3>
-            <p>Microcarillas de porcelana ultradelgadas para corregir forma, tamaño y color de tus dientes sin desgastar tu esmalte original.</p>
-            <ul class="spec-features-list">
-              <li>Blanqueamiento dental LED en 1 sesión</li>
-              <li>Diseño armónico adaptado a tus facciones</li>
-              <li>Brillo y color inalterable en el tiempo</li>
+          <div class="service-body">
+            <h3>Estética & Carillas de Cerámica</h3>
+            <p>Diseñamos tu sonrisa ideal teniendo en cuenta tus rasgos faciales con carillas ultradelgadas y blanqueamiento LED en consulta.</p>
+            <ul class="service-features-list">
+              <li><span class="check">✓</span> Carillas E-Max sin tallado agresivo</li>
+              <li><span class="check">✓</span> Blanqueamiento clínico en 1 sesión</li>
+              <li><span class="check">✓</span> Tono blanco natural y radiante</li>
             </ul>
+            <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20deseo%20consultar%20sobre%20Est%C3%A9tica%20Dental%20y%20Carillas" target="_blank" class="btn-service-action">
+              Consultar Estética por WhatsApp
+            </a>
           </div>
-        </div>
-        <div class="spec-content" style="padding-top: 0;">
-          <a href="https://wa.me/34680120971?text=Hola%20Clínica%20Castillo,%20quiero%20información%20sobre%20blanqueamiento%20y%20carillas." target="_blank" class="btn-spec-action">Consultar Estética en WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Google Reviews Section -->
-  <section class="reviews-section container">
-    <div class="section-header-wrap">
-      <h2>Historias de Pacientes que Han Vuelto a Sonreír</h2>
-      <p>⭐ 4.9 sobre 5 estrellas en Google Maps. Pacientes de Orihuela y comarca de la Vega Baja.</p>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Tomás Valero</strong>
-            <small>Paciente de implantes • Orihuela</small>
-          </div>
-          <div class="rev-stars">★★★★★</div>
-        </div>
-        <p class="rev-text">«Llevaba años posponiendo ponerme los implantes por pánico al dolor. En Clínica Castillo no me enteré de nada, la intervención fue súper rápida y me fui a casa con dientes provisionales el mismo día. Equipo humano insuperable.»</p>
+  <!-- Before & After Interactive Showcase -->
+  <section class="section section-slate" id="casos">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <span class="badge-sub">Resultados Comprobados</span>
+        <h2>Antes y Después: Sonrisas Reales en Orihuela</h2>
+        <p>Conoce algunos de los casos tratados por nuestro equipo médico con resultados funcionales y estéticos definitivos.</p>
       </div>
 
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Inmaculada Gil</strong>
-            <small>Tratamiento de alineadores</small>
-          </div>
-          <div class="rev-stars">★★★★★</div>
+      <div class="case-showcase-box reveal-item">
+        <div class="case-nav-tabs">
+          <button class="tab-btn active" onclick="switchCase('implantes', this)">Implantes Completos</button>
+          <button class="tab-btn" onclick="switchCase('ortodoncia', this)">Ortodoncia Invisible</button>
+          <button class="tab-btn" onclick="switchCase('carillas', this)">Carillas & Estética</button>
         </div>
-        <p class="rev-text">«Mi experiencia con los alineadores invisibles ha sido de 10. Nadie en el trabajo notaba que los llevaba puestos y en 9 meses tenía los dientes perfectamente rectos. Además las facilidades de pago mes a mes se agradecen muchísimo.»</p>
-      </div>
 
-      <div class="rev-card-luxury">
-        <div class="rev-top">
-          <div class="rev-author-name">
-            <strong>Rubén Martínez</strong>
-            <small>Urgencia dental</small>
+        <div class="case-content-grid" id="case-display">
+          <div class="case-image-pair">
+            <div class="case-img-card">
+              <img id="case-img-before" src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80" alt="Antes tratamiento dental">
+              <span class="case-tag-pill">Antes</span>
+            </div>
+            <div class="case-img-card">
+              <img id="case-img-after" src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=400&q=80" alt="Después tratamiento dental">
+              <span class="case-tag-pill" style="background: #0284c7;">Después</span>
+            </div>
           </div>
-          <div class="rev-stars">★★★★★</div>
+          <div class="case-details">
+            <h3 id="case-title">Rehabilitación Completa Fija en 24h</h3>
+            <p id="case-desc">Paciente de 54 años con pérdida severa de piezas dentales superiores y dificultad para comer. Se colocaron 6 implantes de carga inmediata con prótesis provisional fija colocada el mismo día.</p>
+            <ul class="case-perks-list">
+              <li><span style="color: #22c55e;">✔</span> Recuperación de mordida y estética en 24 horas</li>
+              <li><span style="color: #22c55e;">✔</span> Procedimiento guiado sin dolor ni hinchazón severa</li>
+              <li><span style="color: #22c55e;">✔</span> Financiado cómodamente en 36 cuotas al 0%</li>
+            </ul>
+            <a href="https://wa.me/34680120971?text=Hola,%20he%20visto%20el%20caso%20de%20implantes%20en%20vuestra%20web%20y%20quisiera%20una%20valoraci%C3%B3n%20similar%20gratuita" target="_blank" class="btn-hero-wp" style="padding: 0.85rem 1.4rem; font-size: 0.92rem;">
+              💬 Quiero un Estudio Similar Gratuito
+            </a>
+          </div>
         </div>
-        <p class="rev-text">«Me rompí una muela comiendo y me dieron hueco en el mismo día por WhatsApp. Me reconstruyeron la pieza con una precisión increíble. Instalaciones impecables y doctores de primer nivel.»</p>
       </div>
     </div>
   </section>
 
-  <!-- Sticky Mobile Bar -->
-  <div class="mobile-floating-bar">
-    <div class="mobile-bar-flex">
-      <a href="tel:+34680120971" class="btn-mobile-call">
+  <!-- Patient Reviews / Testimonials -->
+  <section class="section" id="opiniones">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <span class="badge-sub">Confianza Local</span>
+        <h2>Lo Que Opinan Nuestros Pacientes en Google</h2>
+        <p>Puntuación media de 4.9 estrellas con más de 180 testimonios de familias de Orihuela y Vega Baja.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card reveal-item">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Tenía pánico al dentista desde niña. En Dental Castillo me hicieron la cirugía de implantes con una tranquilidad y suavidad asombrosa. No sentí absolutamente nada y al día siguiente ya estaba sonriendo sin complejos."</p>
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">MR</div>
+            <div>
+              <div class="reviewer-name">María Rosario G.</div>
+              <div class="reviewer-sub">Orihuela Centro · Reseña Verificada</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card reveal-item">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"El escáner 3D es una maravilla, se acabaron las pastas desagradables en la boca. En 8 meses con los alineadores invisibles mi boca ha cambiado radicalmente. Además la facilidad de pago mensual al 0% ayuda muchísimo."</p>
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">AP</div>
+            <div>
+              <div class="reviewer-name">Alejandro P.</div>
+              <div class="reviewer-sub">La Aparecida (Orihuela) · Reseña Verificada</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card reveal-item">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"La atención de todo el equipo médico es de 10. Claros desde el primer minuto con los presupuestos sin sorpresas raras al final. Sin duda mi clínica de referencia y la de toda mi familia."</p>
+          <div class="reviewer-info">
+            <div class="reviewer-avatar">CB</div>
+            <div>
+              <div class="reviewer-name">Carmen B.</div>
+              <div class="reviewer-sub">Desamparados · Reseña Verificada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="section section-slate" id="faq">
+    <div class="container">
+      <div class="section-header reveal-item">
+        <span class="badge-sub">Preguntas Frecuentes</span>
+        <h2>Resolvemos Tus Dudas</h2>
+        <p>Todo lo que necesitas saber antes de tu primera visita en nuestra clínica.</p>
+      </div>
+
+      <div class="faq-list reveal-item">
+        <div class="faq-item active">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>¿Qué incluye exactamente la 1ª consulta gratuita?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Incluye la exploración clínica con odontólogo colegiado, radiografía panorámica digital completa (ortopantomografía) o escáner 3D intraoral iTero, diagnóstico personalizado y propuesta de tratamiento con presupuesto cerrado por escrito, todo 100% sin compromiso ni coste.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>¿Duelen los implantes dentales?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            En absoluto. Empleamos anestesia local de última generación y microcirugía guiada mínimamente invasiva. El postoperatorio es muy suave y con pauta analgésica estándar la inmensa mayoría de pacientes retoma su vida normal en menos de 24 horas.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>¿Cómo funciona la financiación sin intereses?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Ofrecemos convenios con las principales entidades financieras para fraccionar tus tratamientos hasta en 36 meses sin intereses (0% TAE). Solo necesitamos DNI y justificante de ingresos, y la aprobación suele gestionarse en el mismo día en recepción.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <span>¿Atendéis urgencias dentales en el mismo día?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Sí. Disponemos de huecos de urgencia diarios reservados para dolores agudos, fracturas dentales o caídas de prótesis. Escríbenos por WhatsApp o llámanos directamente al 680 120 971 para priorizar tu entrada.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Conversion CTA Banner -->
+  <section class="cta-banner-section">
+    <div class="container cta-banner-content reveal-item">
+      <h2>Vuelve a Sonreír con Plena Confianza</h2>
+      <p>Aprovecha la promoción activa: 1ª Visita de diagnóstico con escáner 3D digital GRATUITA (ahorro de 80€). Plazas semanales limitadas en nuestra agenda de Orihuela Centro.</p>
+      <div class="cta-banner-buttons">
+        <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20quiero%20aprovechar%20la%201%C2%AA%20visita%20gratuita%20con%20esc%C3%A1ner%203D" target="_blank" class="btn-banner-wp">
+          💬 Reservar por WhatsApp Ahora
+        </a>
+        <a href="tel:+34680120971" class="btn-banner-call">
+          📞 Llamar al 680 120 971
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h4>Clínica Dental Castillo</h4>
+        <p>Especialistas en implantes, ortodoncia invisible y estética bucodental en Orihuela. Compromiso médico, tecnología digital y trato familiar.</p>
+        <p style="margin-top: 1rem; color: #ffffff;">📍 Orihuela Centro, 03300 Alicante<br>📞 +34 680 120 971</p>
+      </div>
+      <div class="footer-col">
+        <h5>Tratamientos</h5>
+        <ul class="footer-links">
+          <li><a href="#servicios">Implantes de Carga Inmediata</a></li>
+          <li><a href="#servicios">Ortodoncia Invisible</a></li>
+          <li><a href="#servicios">Carillas & Estética Dental</a></li>
+          <li><a href="#servicios">Periodoncia & Limpieza</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Horario de Consulta</h5>
+        <ul class="footer-links">
+          <li>Lunes a Viernes: 9:30 - 13:30 / 16:30 - 20:30</li>
+          <li>Sábados: Con cita previa</li>
+          <li>Urgencias Telefónicas Disponibles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 Clínica Dental Castillo Orihuela · Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Fixed Mobile Dock Bar -->
+  <div class="mobile-dock-bar">
+    <div class="dock-grid">
+      <a href="tel:+34680120971" class="btn-dock-call">
         📞 Llamar
       </a>
-      <a href="https://wa.me/34680120971?text=Hola%20Clínica%20Castillo,%20quiero%20pedir%20cita%20dental." target="_blank" class="btn-mobile-wp">
-        💬 Pedir Cita WhatsApp
+      <a href="https://wa.me/34680120971?text=Hola%20Cl%C3%ADnica%20Dental%20Castillo,%20quisiera%20pedir%20cita%20gratuita%20desde%20el%20m%C3%B3vil" target="_blank" class="btn-dock-wp">
+        💬 Cita WhatsApp
       </a>
     </div>
   </div>
 
+  <!-- Interactive JavaScript Engine -->
   <script>
-    const dentalState = {
-      treat: 'Implantes Dentales & Dientes Fijos',
-      prio: 'Que no duela absolutamente nada (Sin Miedo)',
-      time: 'Mañanas (10:00h - 14:00h)'
+    // State of Interactive Calculator
+    const calcState = {
+      treatment: 'Implantes Dentales 24h',
+      fee: 'desde 45€/mes',
+      finance: '36 meses sin intereses',
+      time: 'Mañanas (9:30 - 13:30)'
     };
 
-    function setDentalOption(type, elem, val) {
-      const parent = elem.closest('.option-grid');
-      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
-      elem.classList.add('active');
-      dentalState[type] = val;
-      updateDentalSummary();
+    function selectOption(category, value, feeAmount, element) {
+      // Set active button style
+      const parent = element.closest('.option-list');
+      parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
+      if (category === 'treatment') {
+        calcState.treatment = value;
+        calcState.fee = feeAmount > 0 ? `desde ${feeAmount}€/mes` : '0€ (1ª Visita Gratis)';
+        document.getElementById('display-treatment').textContent = value;
+        document.getElementById('display-fee').textContent = calcState.fee;
+      } else if (category === 'finance') {
+        calcState.finance = value;
+        document.getElementById('display-finance').textContent = value;
+      } else if (category === 'time') {
+        calcState.time = value;
+      }
+
+      updateCalculatorWhatsApp();
     }
 
-    function updateDentalSummary() {
-      const summaryElem = document.getElementById('dentalSummary');
-      summaryElem.innerText = `${dentalState.treat.split('(')[0]} • ${dentalState.prio.split('(')[0]} • ${dentalState.time.split('(')[0]}`;
+    function updateCalculatorWhatsApp() {
+      const msg = encodeURIComponent(`Hola Clínica Dental Castillo. He calculado mi cita en vuestra web:\n- Tratamiento: ${calcState.treatment}\n- Financiación: ${calcState.finance} (${calcState.fee})\n- Horario preferente: ${calcState.time}\n\nQuisiera reservar mi 1ª visita con escáner 3D gratuito.`);
+      document.getElementById('btn-calc-whatsapp').href = `https://wa.me/34680120971?text=${msg}`;
     }
 
-    function sendDentalWhatsApp() {
-      const msg = `Hola Clínica Dental Castillo, me gustaría agendar una cita previa de diagnóstico en Orihuela:\n` +
-                  `🦷 *Tratamiento:* ${dentalState.treat}\n` +
-                  `🛡️ *Prioridad:* ${dentalState.prio}\n` +
-                  `⏰ *Horario Preferido:* ${dentalState.time}\n\n` +
-                  `¿Cuándo tendríais disponibilidad para realizar la 1ª revisión y TAC 3D gratuito? Muchas gracias.`;
+    // Initialize calculator link
+    updateCalculatorWhatsApp();
 
-      const url = `https://wa.me/34680120971?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
+    // Before/After Showcase Switcher
+    const caseData = {
+      implantes: {
+        title: 'Rehabilitación Completa Fija en 24h',
+        desc: 'Paciente de 54 años con pérdida severa de piezas dentales superiores y dificultad para comer. Se colocaron 6 implantes de carga inmediata con prótesis provisional fija colocada el mismo día.',
+        before: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&q=80',
+        after: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=400&q=80'
+      },
+      ortodoncia: {
+        title: 'Alineación Completa con Ortodoncia Invisible',
+        desc: 'Paciente joven de 28 años con apiñamiento severo en arcada inferior y diastema superior. Corrección lograda en solo 10 meses con alineadores transparentes sin brackets.',
+        before: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=400&q=80',
+        after: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=400&q=80'
+      },
+      carillas: {
+        title: 'Diseño de Sonrisa con Carillas E-Max',
+        desc: 'Transformación de esmalte desgastado y tono irregular mediante 8 microcarillas cerámicas de alta resistencia con acabado blanco translúcido natural.',
+        before: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=400&q=80',
+        after: 'https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=400&q=80'
+      }
+    };
+
+    function switchCase(caseKey, button) {
+      document.querySelectorAll('.case-nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const data = caseData[caseKey];
+      if (data) {
+        document.getElementById('case-title').textContent = data.title;
+        document.getElementById('case-desc').textContent = data.desc;
+        document.getElementById('case-img-before').src = data.before;
+        document.getElementById('case-img-after').src = data.after;
+      }
     }
+
+    // FAQ Accordion
+    function toggleFaq(elem) {
+      const parent = elem.closest('.faq-item');
+      const wasActive = parent.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+      if (!wasActive) {
+        parent.classList.add('active');
+      }
+    }
+
+    // Scroll Reveal Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
