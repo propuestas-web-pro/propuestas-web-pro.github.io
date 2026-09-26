@@ -16,7 +16,19 @@
   <title>Mi Web Local — Presupuesto Web a Medida para Negocios</title>
   <meta name="description" content="Configura tu presupuesto web profesional en 60 segundos. Precio transparente al instante.">
   <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231E40AF'/%3E%3Cstop offset='50%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%23059669'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23bg)'/%3E%3Cpath d='M15 46V22L25 36L32 27L39 36L49 22V46' stroke='%23FFFFFF' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='16' r='4' fill='%2334D399'/%3E%3C/svg%3E">
+  <link rel="alternate icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- old fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231E40AF'/%3E%3Cstop offset='50%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%23059669'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23bg)'/%3E%3Cpath d='M15 46V22L25 36L32 27L39 36L49 22V46' stroke='%23FFFFFF' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='16' r='4' fill='%2334D399'/%3E%3C/svg%3E">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- old fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -60,16 +72,26 @@
       --wa-green: #25d366;
       --wa-dark: #128c7e;
 
-      --bg: #030712;
-      --bg-card: rgba(15, 23, 42, 0.6);
-      --bg-card-solid: #0f172a;
-      --bg-elevated: #1e293b;
+      /* Psychological High-Conversion Palette */
+      --bg: #070b14;
+      --bg-gradient: radial-gradient(circle at 50% 0%, #111a33 0%, #070b14 60%, #04070d 100%);
+      --bg-card: rgba(13, 20, 38, 0.7);
+      --bg-card-hover: rgba(18, 28, 54, 0.85);
+      --bg-card-solid: #0d1426;
+      --bg-elevated: #15203d;
 
-      --border: rgba(148, 163, 184, 0.08);
-      --border-hover: rgba(129, 140, 248, 0.2);
-      --border-active: rgba(129, 140, 248, 0.5);
+      --primary-blue: #2563eb;
+      --electric-blue: #3b82f6;
+      --trust-cyan: #06b6d4;
+      --money-green: #10b981;
+      --luxury-gold: #f59e0b;
 
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(59, 130, 246, 0.4);
+      --border-active: #3b82f6;
+      --glow-active: 0 0 24px rgba(59, 130, 246, 0.25);
+
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -81,7 +103,7 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font);
-      background: var(--bg);
+      background: var(--bg); background-image: var(--bg-gradient); background-attachment: fixed;
       color: var(--white);
       line-height: 1.6;
       overflow-x: hidden;
@@ -102,16 +124,24 @@
       filter: blur(100px);
     }
     .bg-ambient .orb-1 {
-      width: min(500px, 70vw); height: min(500px, 70vw);
-      top: -10%; right: -10%;
-      background: rgba(99, 102, 241, 0.12);
-      animation: drift1 20s ease-in-out infinite alternate;
+      width: min(550px, 80vw); height: min(550px, 80vw);
+      top: -10%; right: -15%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, rgba(37, 99, 235, 0) 70%);
+      animation: drift1 18s ease-in-out infinite alternate;
     }
     .bg-ambient .orb-2 {
-      width: min(400px, 60vw); height: min(400px, 60vw);
-      bottom: 10%; left: -10%;
-      background: rgba(6, 182, 212, 0.08);
-      animation: drift2 25s ease-in-out infinite alternate;
+      width: min(500px, 70vw); height: min(500px, 70vw);
+      bottom: 15%; left: -15%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0) 70%);
+      animation: drift2 22s ease-in-out infinite alternate;
+    }
+    .bg-ambient .orb-3 {
+      position: absolute;
+      width: 400px; height: 400px;
+      top: 40%; left: 30%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 70%);
+      border-radius: 50%; filter: blur(90px);
+      pointer-events: none;
     }
     @keyframes drift1 { to { transform: translate(-40px, 60px); } }
     @keyframes drift2 { to { transform: translate(50px, -40px); } }
@@ -175,7 +205,7 @@
       margin-bottom: 12px;
     }
     .hero h1 .hi {
-      background: linear-gradient(135deg, var(--indigo-400), var(--cyan-400));
+      background: linear-gradient(135deg, #ffffff 20%, #60a5fa 70%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -817,7 +847,7 @@
        SCROLLBAR
     ═══════════════════════════════════════════ */
     ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-track { background: var(--bg); background-image: var(--bg-gradient); background-attachment: fixed; }
     ::-webkit-scrollbar-thumb { background: var(--gray-800); border-radius: 10px; }
   </style>
 </head>
@@ -827,6 +857,7 @@
   <div class="bg-ambient" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
   </div>
 
   <!-- ═════ HERO ═════ -->
