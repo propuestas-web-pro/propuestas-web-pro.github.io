@@ -1,186 +1,1263 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Acceso | Mi Web Local</title>
-  <meta name="robots" content="noindex, nofollow">
-
-  <!-- Smart Auto-Redirect to prevent broken links -->
+  <!-- Smart Auto-Redirect for subpaths -->
   <script>
     (function() {
       var path = window.location.pathname;
-      // Si el usuario escribió la URL de un negocio sin barra final (ej. /elche/barberia-el-galan), redirigir al instante
       if (path.length > 1 && !path.endsWith('/') && !path.endsWith('.html')) {
         window.location.replace(path + '/' + window.location.search + window.location.hash);
       }
     })();
   </script>
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Mi Web Local — Presupuesto Web a Medida para Negocios</title>
+  <meta name="description" content="Configura tu presupuesto web profesional en 60 segundos. Precio transparente al instante.">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
     :root {
-      --bg: #090a0f;
-      --card: #12141c;
-      --card-border: rgba(255, 255, 255, 0.08);
-      --gold: #eab308;
-      --gold-light: #fde047;
-      --gold-grad: linear-gradient(135deg, #fde047 0%, #eab308 50%, #ca8a04 100%);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --font-head: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --gray-950: #020617;
+
+      --indigo-50: #eef2ff;
+      --indigo-100: #e0e7ff;
+      --indigo-200: #c7d2fe;
+      --indigo-400: #818cf8;
+      --indigo-500: #6366f1;
+      --indigo-600: #4f46e5;
+      --indigo-700: #4338ca;
+
+      --emerald-400: #34d399;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+
+      --amber-400: #fbbf24;
+      --amber-500: #f59e0b;
+
+      --cyan-400: #22d3ee;
+      --cyan-500: #06b6d4;
+
+      --rose-400: #fb7185;
+
+      --wa-green: #25d366;
+      --wa-dark: #128c7e;
+
+      --bg: #030712;
+      --bg-card: rgba(15, 23, 42, 0.6);
+      --bg-card-solid: #0f172a;
+      --bg-elevated: #1e293b;
+
+      --border: rgba(148, 163, 184, 0.08);
+      --border-hover: rgba(129, 140, 248, 0.2);
+      --border-active: rgba(129, 140, 248, 0.5);
+
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ═══════════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
+      font-family: var(--font);
       background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      position: relative;
+      color: var(--white);
+      line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: "";
+    /* ═══════════════════════════════════════════
+       AMBIENT
+    ═══════════════════════════════════════════ */
+    .bg-ambient {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .bg-ambient .orb {
       position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(234, 179, 8, 0.08) 0%, transparent 70%);
-      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+    .bg-ambient .orb-1 {
+      width: min(500px, 70vw); height: min(500px, 70vw);
+      top: -10%; right: -10%;
+      background: rgba(99, 102, 241, 0.12);
+      animation: drift1 20s ease-in-out infinite alternate;
+    }
+    .bg-ambient .orb-2 {
+      width: min(400px, 60vw); height: min(400px, 60vw);
+      bottom: 10%; left: -10%;
+      background: rgba(6, 182, 212, 0.08);
+      animation: drift2 25s ease-in-out infinite alternate;
+    }
+    @keyframes drift1 { to { transform: translate(-40px, 60px); } }
+    @keyframes drift2 { to { transform: translate(50px, -40px); } }
+
+    /* Dot grid */
+    .bg-ambient::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
-    .private-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      max-width: 480px;
-      width: 100%;
-      padding: 40px 28px;
-      text-align: center;
-      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(234, 179, 8, 0.1);
+    /* ═══════════════════════════════════════════
+       CONTAINER
+    ═══════════════════════════════════════════ */
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
       position: relative;
       z-index: 1;
     }
 
-    .lock-emblem {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      background: rgba(234, 179, 8, 0.1);
-      border: 1px solid rgba(234, 179, 8, 0.35);
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero { padding: 48px 0 20px; text-align: center; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--indigo-400);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .badge .live-dot {
+      width: 7px; height: 7px;
+      background: var(--emerald-400);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+      animation: livePulse 2s infinite;
+    }
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(52,211,153,0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 6vw, 40px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .hero h1 .hi {
+      background: linear-gradient(135deg, var(--indigo-400), var(--cyan-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-p {
+      font-size: clamp(14px, 3vw, 16px);
+      color: var(--gray-400);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════════
+       STATS ROW
+    ═══════════════════════════════════════════ */
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: clamp(16px, 4vw, 32px);
+      margin: 28px 0 24px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--gray-500);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ═══════════════════════════════════════════
+       TOGGLE
+    ═══════════════════════════════════════════ */
+    .toggle-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 32px;
+    }
+    .mode-toggle {
+      display: flex;
+      background: var(--bg-card-solid);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 3px;
+      position: relative;
+    }
+    .mode-toggle .slider {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: calc(50% - 3px);
+      height: calc(100% - 6px);
+      background: linear-gradient(135deg, var(--indigo-600), var(--indigo-500));
+      border-radius: 11px;
+      transition: transform 0.4s var(--ease);
+      box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+    }
+    .mode-toggle.monthly .slider {
+      transform: translateX(100%);
+    }
+    .mode-btn {
+      position: relative; z-index: 1;
+      padding: 10px clamp(16px, 4vw, 24px);
+      border: none;
+      background: none;
+      color: var(--gray-400);
+      font-family: var(--font);
+      font-size: clamp(13px, 3vw, 14px);
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.3s;
+      border-radius: 11px;
+      white-space: nowrap;
+    }
+    .mode-btn.on { color: var(--white); }
+    .save-pill {
+      position: absolute;
+      top: -9px; right: -6px;
+      background: linear-gradient(135deg, var(--amber-400), var(--amber-500));
+      color: #000;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS
+    ═══════════════════════════════════════════ */
+    .sec-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--indigo-400);
+      margin-bottom: 6px;
+    }
+    .sec-label::before {
+      content: '';
+      width: 16px; height: 2px;
+      background: var(--indigo-500);
+      border-radius: 2px;
+    }
+    .sec-title {
+      font-size: clamp(18px, 4vw, 22px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .sec-desc {
+      font-size: clamp(13px, 3vw, 14px);
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS — THE CORE
+    ═══════════════════════════════════════════ */
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 3vw, 16px);
+      padding: clamp(14px, 3vw, 18px) clamp(14px, 3vw, 20px);
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      position: relative;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.05), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    /* Hover */
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+    .card:hover::after { opacity: 1; }
+
+    /* Active tap */
+    .card:active { transform: scale(0.99); }
+
+    /* Selected */
+    .card.on {
+      border-color: var(--border-active);
+      background: rgba(99,102,241,0.05);
+      box-shadow:
+        0 0 0 1px rgba(99,102,241,0.2),
+        0 8px 32px rgba(99,102,241,0.08);
+    }
+    .card.on::after { opacity: 1; }
+
+    /* Locked (base) */
+    .card.base {
+      cursor: default;
+      border-color: rgba(52,211,153,0.12);
+      background: rgba(52,211,153,0.02);
+    }
+    .card.base:hover { transform: none; }
+
+    /* Check */
+    .chk {
+      width: 24px; height: 24px;
+      min-width: 24px;
+      border: 2px solid var(--gray-700);
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      margin: 0 auto 20px;
-      box-shadow: 0 0 20px rgba(234, 179, 8, 0.2);
+      transition: all 0.25s var(--ease-bounce);
+      flex-shrink: 0;
+    }
+    .chk svg {
+      width: 13px; height: 13px;
+      stroke: transparent;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
+    }
+    .card.on .chk {
+      background: var(--indigo-500);
+      border-color: var(--indigo-400);
+      transform: scale(1.08);
+      box-shadow: 0 0 16px rgba(99,102,241,0.25);
+    }
+    .card.on .chk svg { stroke: #fff; }
+    .card.base .chk {
+      background: var(--emerald-600);
+      border-color: var(--emerald-400);
+    }
+    .card.base .chk svg { stroke: #fff; }
+
+    /* Info */
+    .card-info { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: clamp(14px, 3.2vw, 15px);
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .card-name .ic { flex-shrink: 0; }
+    .card-sub {
+      font-size: clamp(12px, 2.6vw, 13px);
+      color: var(--gray-500);
+      margin-top: 2px;
+      line-height: 1.45;
     }
 
-    .portal-tag {
-      font-size: 11px;
+    /* Tags */
+    .tag {
+      display: inline-block;
+      font-size: 9px;
       font-weight: 800;
-      letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
-      display: block;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-top: 5px;
     }
+    .tag-inc { background: rgba(52,211,153,0.1); color: var(--emerald-400); }
+    .tag-fire { background: rgba(251,191,36,0.1); color: var(--amber-400); }
+    .tag-gem { background: rgba(129,140,248,0.1); color: var(--indigo-400); }
+    .tag-new { background: rgba(34,211,238,0.1); color: var(--cyan-400); }
 
-    .portal-title {
-      font-family: var(--font-head);
-      font-size: 24px;
+    /* Price */
+    .card-price-wrap {
+      text-align: right;
+      flex-shrink: 0;
+      min-width: 62px;
+    }
+    .card-price {
+      font-size: clamp(15px, 3.5vw, 17px);
       font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
+      color: var(--white);
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    .card-price.green { color: var(--emerald-400); font-size: clamp(13px, 3vw, 14px); }
+    .card-price-sub {
+      font-size: 10px;
+      color: var(--gray-600);
+      font-weight: 600;
     }
 
-    .portal-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 24px;
+    /* ═══════════════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════════════ */
+    .sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 32px 0;
     }
 
-    .notice-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
+    /* ═══════════════════════════════════════════
+       PACKS RAPIDOS
+    ═══════════════════════════════════════════ */
+    .packs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .pack-btn {
+      padding: 14px 16px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
       border-radius: 12px;
-      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
       text-align: left;
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.5;
-      margin-bottom: 24px;
+      font-family: var(--font);
     }
-    .notice-box strong {
-      color: #fff;
+    .pack-btn:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .pack-btn.active {
+      border-color: var(--border-active);
+      background: rgba(99,102,241,0.06);
+    }
+    .pack-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .pack-desc {
+      font-size: 11px;
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+    .pack-price {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--indigo-400);
+      margin-top: 6px;
     }
 
-    .btn-wa-direct {
-      background: var(--gold-grad);
-      color: #000;
-      font-family: var(--font-head);
+    /* ═══════════════════════════════════════════
+       PAYMENT TERMS
+    ═══════════════════════════════════════════ */
+    .payment-section {
+      margin-top: 32px;
+      padding: 28px clamp(16px, 4vw, 24px);
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .payment-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(52,211,153,0.03), transparent 60%);
+      pointer-events: none;
+    }
+    .payment-title {
+      font-size: clamp(15px, 3.5vw, 17px);
       font-weight: 800;
-      font-size: 14px;
-      padding: 14px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      display: inline-flex;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .payment-sub {
+      font-size: clamp(12px, 2.8vw, 13px);
+      color: var(--gray-500);
+      margin-bottom: 20px;
+    }
+    .pay-steps {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+    .pay-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      padding: 0 8px;
+    }
+    .pay-step::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background: var(--gray-800);
+    }
+    .pay-step:last-child::before { display: none; }
+    .pay-dot {
+      width: 36px; height: 36px;
+      background: var(--bg-elevated);
+      border: 2px solid var(--gray-700);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      width: 100%;
-      box-shadow: 0 4px 16px rgba(234, 179, 8, 0.3);
-      transition: transform 0.2s;
+      margin: 0 auto 8px;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
     }
-    .btn-wa-direct:hover {
-      transform: translateY(-2px);
+    .pay-step:first-child .pay-dot {
+      border-color: var(--emerald-400);
+      box-shadow: 0 0 12px rgba(52,211,153,0.2);
+    }
+    .pay-step:nth-child(2) .pay-dot {
+      border-color: var(--indigo-400);
+      box-shadow: 0 0 12px rgba(129,140,248,0.15);
+    }
+    .pay-step:last-child .pay-dot {
+      border-color: var(--emerald-400);
+      box-shadow: 0 0 12px rgba(52,211,153,0.2);
+    }
+    .pay-label {
+      font-size: clamp(11px, 2.5vw, 13px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .pay-desc {
+      font-size: clamp(10px, 2.2vw, 11px);
+      color: var(--gray-500);
+      line-height: 1.4;
+    }
+    .pay-highlight {
+      display: inline-block;
+      background: rgba(52,211,153,0.1);
+      color: var(--emerald-400);
+      font-weight: 800;
+      padding: 1px 8px;
+      border-radius: 6px;
+      font-size: clamp(12px, 2.8vw, 14px);
+      margin-top: 4px;
     }
 
-    .footer-note {
-      font-size: 11px;
-      color: #64748b;
-      margin-top: 20px;
+    @media (max-width: 420px) {
+      .pay-steps { flex-direction: column; gap: 16px; }
+      .pay-step { text-align: left; display: flex; align-items: center; gap: 12px; padding: 0; }
+      .pay-step::before { display: none; }
+      .pay-dot { margin: 0; min-width: 36px; }
+      .pay-text { text-align: left; }
     }
+
+    /* ═══════════════════════════════════════════
+       TRUST
+    ═══════════════════════════════════════════ */
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(8px, 2vw, 16px);
+      padding: 24px 0;
+      margin-bottom: 100px;
+    }
+    .trust-i {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: clamp(11px, 2.5vw, 12px);
+      color: var(--gray-500);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ═══════════════════════════════════════════
+       STICKY BAR
+    ═══════════════════════════════════════════ */
+    .sticky {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: rgba(3, 7, 18, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border-active);
+      transform: translateY(100%);
+      transition: transform 0.5s var(--ease);
+    }
+    .sticky.show { transform: translateY(0); }
+
+    /* Top glow line */
+    .sticky .glow-line {
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--indigo-500) 20%,
+        var(--cyan-400) 50%,
+        var(--indigo-500) 80%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .sticky-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .sticky-left { flex: 1; min-width: 0; }
+    .sticky-meta {
+      font-size: 12px;
+      color: var(--gray-400);
+      font-weight: 600;
+    }
+    .sticky-meta b { color: var(--indigo-400); }
+    .sticky-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .sticky-big {
+      font-size: clamp(24px, 6vw, 32px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      transition: all 0.3s;
+    }
+    .sticky-sfx {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-400);
+    }
+    .sticky-note {
+      font-size: 11px;
+      color: var(--emerald-400);
+      font-weight: 700;
+    }
+
+    /* CTA */
+    .cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: clamp(12px, 3vw, 14px) clamp(18px, 4vw, 28px);
+      background: linear-gradient(135deg, var(--wa-green), var(--wa-dark));
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-family: var(--font);
+      font-size: clamp(13px, 3vw, 15px);
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s var(--ease);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.2);
+      flex-shrink: 0;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(37,211,102,0.35);
+    }
+    .cta:active { transform: scale(0.97); }
+    .cta:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+    .cta svg {
+      width: 18px; height: 18px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    }
+    .reveal.vis { opacity: 1; transform: none; }
+
+    .card {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s var(--ease), transform 0.35s var(--ease),
+                  border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+    .card.vis { opacity: 1; transform: none; }
+
+    @keyframes pricePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+    .pop { animation: pricePop 0.3s var(--ease-bounce); }
+
+    /* ═══════════════════════════════════════════
+       MOBILE SPECIFIC
+    ═══════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero { padding: 36px 0 12px; }
+      .stats-row { gap: 20px; margin: 20px 0 20px; }
+      .sticky-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px 16px 14px;
+        gap: 8px;
+      }
+      .sticky-price-row { justify-content: center; }
+      .cta { width: 100%; justify-content: center; }
+      .packs { grid-template-columns: 1fr 1fr; }
+      .trust { margin-bottom: 120px; }
+    }
+
+    @media (max-width: 380px) {
+      .wrap { padding: 0 14px; }
+      .card { padding: 12px; gap: 8px; }
+      .card-name { font-size: 13px; }
+      .card-sub { font-size: 11px; }
+      .chk { width: 22px; height: 22px; min-width: 22px; }
+      .packs { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 601px) and (max-width: 900px) {
+      .wrap { max-width: 640px; }
+    }
+
+    @media (min-width: 901px) {
+      .card:hover { transform: translateY(-2px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gray-800); border-radius: 10px; }
   </style>
 </head>
 <body>
 
-  <div class="private-card">
-    <div class="lock-emblem">🔒</div>
-    <span class="portal-tag">ENTORNO PRIVADO Y CONFIDENCIAL</span>
-    <h1 class="portal-title">Acceso Restringido a Propuestas</h1>
-    
-    <p class="portal-desc">
-      Las demostraciones web y proyectos de automatización técnica son confidenciales y de uso exclusivo para cada negocio titular auditado.
-    </p>
+  <!-- Ambient -->
+  <div class="bg-ambient" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-    <div class="notice-box">
-      <strong>¿Es usted titular de un negocio?</strong><br>
-      Utilice el <strong>enlace directo personalizado</strong> que le hemos enviado a su WhatsApp para ver su demostración. Por motivos de privacidad comercial, los catálogos abiertos están deshabilitados.
+  <!-- ═════ HERO ═════ -->
+  <section class="hero wrap reveal">
+    <div class="badge">
+      <span class="live-dot"></span>
+      Mi Web Local · Presupuesto Interactivo
     </div>
+    <h1>Configura Tu Web<br><span class="hi">a Tu Medida</span></h1>
+    <p class="hero-p">Selecciona lo que necesitas. El precio se calcula al instante. Sin compromiso, sin letra pequeña.</p>
+  </section>
 
-    <a href="https://wa.me/34631896179?text=Hola,%20soy%20titular%20de%20un%20negocio%20y%20me%20gustar%C3%ADa%20solicitar%20mi%20enlace%20o%20presupuesto" class="btn-wa-direct">
-      <span>💬 Contactar por WhatsApp</span>
-    </a>
-
-    <div class="footer-note">
-      Mi Web Local · Soluciones Digitales para Negocios
+  <!-- Stats -->
+  <div class="wrap">
+    <div class="stats-row reveal">
+      <div class="stat">
+        <div class="stat-num">2-7</div>
+        <div class="stat-label">Días de entrega</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Webs creadas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Valoración</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0%</div>
+        <div class="stat-label">Comisiones</div>
+      </div>
     </div>
   </div>
 
+
+
+  <main class="wrap">
+
+    <!-- ═════ BASE ═════ -->
+    <div class="reveal">
+      <div class="sec-label">Tu Base Incluida</div>
+      <div class="sec-title">Siempre incluido en tu proyecto</div>
+      <div class="sec-desc">La base profesional que todo negocio necesita. Sin coste adicional.</div>
+    </div>
+
+    <div class="card-list" id="baseCards">
+      <div class="card base">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">🎨</span> Diseño Web Premium Exclusivo</div>
+          <div class="card-sub">Diseño a medida adaptado a tu negocio. Sin plantillas.</div>
+          <span class="tag tag-inc">✅ INCLUIDO</span>
+        </div>
+        <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
+      </div>
+      <div class="card base">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📱</span> Adaptado a Todos los Dispositivos</div>
+          <div class="card-sub">Se ve perfecto en móvil, tablet y ordenador.</div>
+          <span class="tag tag-inc">✅ INCLUIDO</span>
+        </div>
+        <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
+      </div>
+      <div class="card base">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">⚡</span> Velocidad Ultrarrápida</div>
+          <div class="card-sub">Carga en menos de 1 segundo. Google lo premia.</div>
+          <span class="tag tag-inc">✅ INCLUIDO</span>
+        </div>
+        <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
+      </div>
+      <div class="card base">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">🔒</span> Dominio .es Propio + SSL</div>
+          <div class="card-sub">Tu dirección web (tunegocio.es) con seguridad HTTPS.</div>
+          <span class="tag tag-inc">✅ INCLUIDO</span>
+        </div>
+        <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
+      </div>
+      <div class="card base">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📲</span> Código QR Profesional</div>
+          <div class="card-sub">QR imprimible para mesas, tarjetas o escaparate.</div>
+          <span class="tag tag-inc">✅ INCLUIDO</span>
+        </div>
+        <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- ═════ PACKS RÁPIDOS ═════ -->
+    <div class="reveal">
+      <div class="sec-label">Packs Rápidos</div>
+      <div class="sec-title">¿Con prisa? Elige un pack predefinido</div>
+      <div class="sec-desc">O baja para personalizar funcionalidad a funcionalidad.</div>
+    </div>
+
+    <div class="packs reveal">
+      <button class="pack-btn" onclick="selectPack('esencial')">
+        <div class="pack-name">🟢 Esencial</div>
+        <div class="pack-desc">Carta digital + Reseñas</div>
+        <div class="pack-price" id="packPrice1">670 €</div>
+      </button>
+      <button class="pack-btn" onclick="selectPack('profesional')">
+        <div class="pack-name">🔵 Profesional</div>
+        <div class="pack-desc">Esencial + Reservas + SEO</div>
+        <div class="pack-price" id="packPrice2">1.060 €</div>
+      </button>
+      <button class="pack-btn" onclick="selectPack('premium')">
+        <div class="pack-name">💎 Premium</div>
+        <div class="pack-desc">Todo incluido sin límites</div>
+        <div class="pack-price" id="packPrice3">1.610 €</div>
+      </button>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- ═════ EXTRAS ═════ -->
+    <div class="reveal">
+      <div class="sec-label">Personaliza</div>
+      <div class="sec-title">Funcionalidades adicionales</div>
+      <div class="sec-desc">Cuantas más añadas, más potente será tu presencia digital.</div>
+    </div>
+
+    <div class="card-list" id="modCards">
+
+      <div class="card" data-id="reservas" data-u="220" data-m="22" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📅</span> Reservas / Citas por WhatsApp</div>
+          <div class="card-sub">Tus clientes reservan día y hora. Tú recibes el aviso directo en WhatsApp. Sin comisiones.</div>
+          <span class="tag tag-fire">🔥 EL MÁS ELEGIDO</span>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">220 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="catalogo" data-u="180" data-m="18" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📋</span> Carta / Catálogo Digital</div>
+          <div class="card-sub">Menú o catálogo visual interactivo con fotos, precios y botón de pedido directo.</div>
+          <span class="tag tag-fire">⭐ MUY SOLICITADO</span>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">180 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="seo" data-u="150" data-m="15" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📍</span> SEO Local + Google Maps</div>
+          <div class="card-sub">Que cuando busquen tu tipo de negocio en la zona, aparezcas tú primero. Enlace directo a tu ficha.</div>
+          <span class="tag tag-gem">💎 RECOMENDADO</span>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">150 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="galeria" data-u="120" data-m="12" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📸</span> Galería de Fotos Profesional</div>
+          <div class="card-sub">Sección visual con tus mejores fotos. Se abren a pantalla completa al pulsarlas.</div>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">120 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="resenas" data-u="100" data-m="10" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">⭐</span> Reseñas de Google en Tu Web</div>
+          <div class="card-sub">Muestra las mejores opiniones de tu negocio directamente en tu web. Genera confianza inmediata.</div>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">100 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="mant" data-u="240" data-m="0" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">🔄</span> Mantenimiento 12 Meses</div>
+          <div class="card-sub">Cambia precios, platos, fotos o textos cuando quieras durante un año. Sin coste por cambio.</div>
+          <span class="tag tag-gem">💎 RECOMENDADO</span>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">240 €</div>
+          <div class="card-price-sub">12 meses</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="idioma" data-u="150" data-m="12" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">🌍</span> Multiidioma (ES + EN)</div>
+          <div class="card-sub">Web traducida al inglés para captar turistas y clientes extranjeros de tu zona.</div>
+          <span class="tag tag-new">🆕 NUEVO</span>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">150 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card" data-id="form" data-u="120" data-m="10" onclick="tap(this)">
+        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-info">
+          <div class="card-name"><span class="ic">📝</span> Formulario de Contacto</div>
+          <div class="card-sub">Los clientes te escriben lo que necesitan. Recibes la solicitud al momento por WhatsApp.</div>
+        </div>
+        <div class="card-price-wrap">
+          <div class="card-price">120 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust -->
+    <!-- ═════ PAGO ═════ -->
+    <div class="sep"></div>
+
+    <div class="payment-section reveal">
+      <div class="payment-title">💳 Forma de Pago</div>
+      <div class="payment-sub">Proceso claro y transparente en 3 pasos</div>
+      <div class="pay-steps">
+        <div class="pay-step">
+          <div class="pay-dot">1️⃣</div>
+          <div class="pay-text">
+            <div class="pay-label">Señal del 50%</div>
+            <div class="pay-desc">Confirmas tu proyecto y se inicia el desarrollo</div>
+            <span class="pay-highlight" id="pay50a">—</span>
+          </div>
+        </div>
+        <div class="pay-step">
+          <div class="pay-dot">⚡</div>
+          <div class="pay-text">
+            <div class="pay-label">Desarrollo 2-7 días</div>
+            <div class="pay-desc">Te entregamos tu web lista y funcionando</div>
+          </div>
+        </div>
+        <div class="pay-step">
+          <div class="pay-dot">2️⃣</div>
+          <div class="pay-text">
+            <div class="pay-label">50% Restante</div>
+            <div class="pay-desc">Cuando valides y apruebes el resultado final</div>
+            <span class="pay-highlight" id="pay50b">—</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust reveal">
+      <span class="trust-i">🔒 Pago seguro</span>
+      <span class="trust-i">⚡ Entrega en 2-7 días</span>
+      <span class="trust-i">💬 Soporte WhatsApp</span>
+      <span class="trust-i">❌ Sin permanencia</span>
+      <span class="trust-i">🔄 Cambios incluidos</span>
+      <span class="trust-i">💳 50% + 50%</span>
+    </div>
+
+  </main>
+
+  <!-- ═════ STICKY ═════ -->
+  <div class="sticky" id="sticky">
+    <div class="glow-line"></div>
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <div class="sticky-meta"><b id="cntEl">0</b> extras seleccionados</div>
+        <div class="sticky-price-row">
+          <span class="sticky-big" id="bigEl">390 €</span>
+          <span class="sticky-sfx" id="sfxEl"></span>
+        </div>
+        <div class="sticky-note" id="noteEl">Base incluida</div>
+      </div>
+      <button class="cta" id="ctaEl" disabled onclick="send()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.306-.182-2.867.852.852-2.867-.182-.306A8 8 0 1112 20z"/></svg>
+        <span id="ctaTxt">Selecciona extras</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const BASE = 390;
+    const WA = '34631896179';
+
+    const PACKS = {
+      esencial: ['catalogo', 'resenas'],
+      profesional: ['catalogo', 'resenas', 'reservas', 'seo'],
+      premium: ['reservas', 'catalogo', 'seo', 'galeria', 'resenas', 'mant', 'idioma', 'form']
+    };
+
+    // ═══ SCROLL REVEAL ═══
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.reveal, .card').forEach(el => obs.observe(el));
+
+    setTimeout(() => document.getElementById('sticky').classList.add('show'), 600);
+
+    function updatePacks() {
+      document.getElementById('packPrice1').textContent = calcPack('esencial').toLocaleString('es-ES') + ' €';
+      document.getElementById('packPrice2').textContent = calcPack('profesional').toLocaleString('es-ES') + ' €';
+      document.getElementById('packPrice3').textContent = calcPack('premium').toLocaleString('es-ES') + ' €';
+    }
+
+    function calcPack(name) {
+      let t = BASE;
+      PACKS[name].forEach(id => {
+        const c = document.querySelector(`[data-id="${id}"]`);
+        t += parseInt(c.dataset.u);
+      });
+      return t;
+    }
+
+    function tap(card) {
+      card.classList.toggle('on');
+      popPrice();
+      calc();
+      document.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
+    }
+
+    function selectPack(name) {
+      document.querySelectorAll('#modCards .card').forEach(c => c.classList.remove('on'));
+      PACKS[name].forEach(id => {
+        const c = document.querySelector(`[data-id="${id}"]`);
+        if (c) c.classList.add('on');
+      });
+      document.querySelectorAll('.pack-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      popPrice();
+      calc();
+    }
+
+    function calc() {
+      const sel = document.querySelectorAll('#modCards .card.on');
+      const cnt = sel.length;
+      let total = BASE;
+      sel.forEach(c => { total += parseInt(c.dataset.u); });
+
+      document.getElementById('cntEl').textContent = cnt;
+      animNum(document.getElementById('bigEl'), total);
+      document.getElementById('sfxEl').textContent = '';
+
+      const note = document.getElementById('noteEl');
+      if (cnt === 0) {
+        note.textContent = 'Base incluida · Selecciona extras arriba';
+      } else {
+        const half = Math.round(total / 2);
+        note.textContent = 'Señal: ' + half + ' € → Entrega → ' + half + ' € restante';
+      }
+
+      const h = Math.round(total / 2);
+      document.getElementById('pay50a').textContent = h + ' €';
+      document.getElementById('pay50b').textContent = h + ' €';
+
+      const btn = document.getElementById('ctaEl');
+      const txt = document.getElementById('ctaTxt');
+      btn.disabled = cnt === 0;
+      txt.textContent = cnt === 0 ? 'Selecciona extras' : 'Solicitar Presupuesto';
+    }
+
+    function popPrice() {
+      const el = document.getElementById('bigEl');
+      el.classList.remove('pop');
+      void el.offsetWidth;
+      el.classList.add('pop');
+    }
+
+    function animNum(el, target) {
+      const cur = parseInt(el.textContent.replace(/\D/g, '')) || 0;
+      if (cur === target) return void (el.textContent = fmt(target));
+      const diff = target - cur;
+      const frames = 18;
+      let f = 0;
+      (function go() {
+        f++;
+        if (f >= frames) return void (el.textContent = fmt(target));
+        el.textContent = fmt(Math.round(cur + diff * (f / frames)));
+        requestAnimationFrame(go);
+      })();
+    }
+
+    function fmt(n) { return n.toLocaleString('es-ES') + ' €'; }
+
+    function send() {
+      const sel = document.querySelectorAll('#modCards .card.on');
+      if (!sel.length) return;
+      const items = [];
+      let total = BASE;
+
+      items.push('✅ Base Profesional (Web + Dominio Propio (.com/.es) + QR + SSL + Responsive) — ' + BASE + ' €');
+
+      sel.forEach(c => {
+        const name = c.querySelector('.card-name').textContent.trim();
+        const p = parseInt(c.dataset.u);
+        items.push('✅ ' + name + ' — ' + p + ' €');
+        total += p;
+      });
+
+      const half = Math.round(total / 2);
+      const msg =
+        '¡Hola! He configurado mi presupuesto web.\n\n' +
+        '📋 *MI SELECCIÓN:*\n\n' +
+        items.join('\n') +
+        '\n\n💰 *TOTAL: ' + total.toLocaleString('es-ES') + ' €*' +
+        '\n💳 *Señal: ' + half + ' € | Resto a la entrega: ' + half + ' €*\n\n' +
+        '¿Podríamos hablar para cerrar los detalles? ¡Gracias!';
+
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    // Init
+    updatePacks();
+    calc();
+  </script>
 </body>
 </html>

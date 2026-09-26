@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Smart Auto-Redirect for subpaths -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      if (path.length > 1 && !path.endsWith('/') && !path.endsWith('.html')) {
+        window.location.replace(path + '/' + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Tu Presupuesto Web a Medida — Soluciones Digitales Pro</title>
+  <title>Mi Web Local — Presupuesto Web a Medida para Negocios</title>
   <meta name="description" content="Configura tu presupuesto web profesional en 60 segundos. Precio transparente al instante.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -823,7 +833,7 @@
   <section class="hero wrap reveal">
     <div class="badge">
       <span class="live-dot"></span>
-      Presupuesto Interactivo
+      Mi Web Local · Presupuesto Interactivo
     </div>
     <h1>Configura Tu Web<br><span class="hi">a Tu Medida</span></h1>
     <p class="hero-p">Selecciona lo que necesitas. El precio se calcula al instante. Sin compromiso, sin letra pequeña.</p>
@@ -1224,7 +1234,7 @@
       const items = [];
       let total = BASE;
 
-      items.push('✅ Base Profesional (Web + Dominio .es + QR + SSL + Responsive) — ' + BASE + ' €');
+      items.push('✅ Base Profesional (Web + Dominio Propio (.com/.es) + QR + SSL + Responsive) — ' + BASE + ' €');
 
       sel.forEach(c => {
         const name = c.querySelector('.card-name').textContent.trim();
