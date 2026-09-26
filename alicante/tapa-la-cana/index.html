@@ -2,589 +2,476 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Tapa La Caña Café & Bar | Arroces y Tapas en Alicante</title>
-  <meta name="description" content="Restaurante tradicional, arroces alicantinos al punto de socarrat y tapeo de mercado en Alicante. Consulta nuestra carta y reserva mesa online.">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Tapa La Caña Café & Bar | Alicante">
-  <meta property="og:description" content="Arroces alicantinos, raciones caseras y terraza en Alicante. 4.9★ en Google Maps.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_ES">
-
-  <!-- Google Fonts: Outfit + Playfair Display -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tapa La Caña · Café & Bar — Tapas Españolas y Arepas Venezolanas en Alicante</title>
+  <meta name="description" content="Tapa La Caña: fusión de tapas españolas y sabores venezolanos en el corazón de Alicante. Arepas, bravas, croquetas y más. Reserva tu mesa o haz tu pedido por WhatsApp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Schema.org Restaurant -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Tapa La Caña Café & Bar",
-    "image": "https://tapalacana-alicante.surge.sh/assets/paella.jpg",
-    "telephone": "+34722686334",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Calle Sacerdote Isidro Albert, 4, bajo C",
-      "addressLocality": "Alicante",
-      "postalCode": "03010",
-      "addressCountry": "ES"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 38.3615,
-      "longitude": -0.4872
-    },
-    "servesCuisine": ["Mediterránea", "Española", "Arroces Alicantinos"],
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "11:30",
-        "closes": "23:30"
-      }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "105"
-    },
-    "priceRange": "€€"
-  }
-  </script>
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="top-strip">
-    <div class="container top-flex">
-      <div class="top-status">
-        <span class="dot-orange"></span>
-        <span>Abierto hoy • Comidas y Cenas • Terraza & Comedor en Alicante</span>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">🍺</span>
+        <span class="logo-text">Tapa La Caña</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#carta">Carta</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a href="https://wa.me/34722686334?text=Hola%20César%2C%20quiero%20reservar%20mesa%20en%20Tapa%20La%20Caña" class="nav-cta" id="navCta">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar Mesa
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="inicio">
+    <div class="hero-bg">
+      <img src="img/hero.jpg" alt="Interior de Tapa La Caña Café & Bar" loading="eager">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <span class="hero-badge">📍 C/ Sacerdote Isidro Albert, 4 · Alicante</span>
+      <h1 class="hero-title">Donde España<br>se encuentra con <span class="highlight">Venezuela</span></h1>
+      <p class="hero-subtitle">Tapas auténticas y las mejores arepas de Alicante, con cerveza artesanal y un ambiente que enamora.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/34722686334?text=Hola%2C%20quiero%20reservar%20mesa" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a href="#carta" class="btn btn-outline">Ver la Carta</a>
       </div>
-      <div class="top-actions">
-        <a href="tel:+34722686334" class="top-phone">📞 722 68 63 34</a>
-        <a href="#reservar-mesa" class="top-book-btn">Reservar Mesa</a>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">4.6</span>
+          <span class="stat-label">★ Google</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">+200</span>
+          <span class="stat-label">Reseñas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">2020</span>
+          <span class="stat-label">Desde</span>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Header / Navigation -->
-  <header class="header" id="header">
-    <div class="container nav-wrap">
-      <a href="#" class="brand">
-        <div class="brand-badge">🥘</div>
-        <div class="brand-text">
-          <span class="brand-name">TAPA LA CAÑA</span>
-          <span class="brand-tag">CAFÉ & BAR • ALICANTE</span>
-        </div>
-      </a>
-
-      <nav class="nav-menu">
-        <a href="#carta" class="nav-item">Carta & Arroces</a>
-        <a href="#reservar-mesa" class="nav-item">Reservar Mesa</a>
-        <a href="#especialidades" class="nav-item">Nuestra Cocina</a>
-        <a href="#opiniones" class="nav-item">Opiniones (4.9★)</a>
-        <a href="#contacto" class="nav-item">Dónde Estamos</a>
-      </nav>
-
-      <div class="nav-right">
-        <a href="#reservar-mesa" class="btn btn-terracotta">Reservar Mesa</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir navegación">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+    <div class="hero-scroll">
+      <span>Descubre más</span>
+      <div class="scroll-arrow"></div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Navigation -->
-  <div class="drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <span class="drawer-title">Tapa La Caña</span>
-      <button class="drawer-close" id="drawerClose">✕</button>
-    </div>
-    <div class="drawer-nav">
-      <a href="#carta" class="d-item">📖 Carta Gastronómica</a>
-      <a href="#reservar-mesa" class="d-item">🥘 Reserva y Encargo de Arroz</a>
-      <a href="#especialidades" class="d-item">⭐ Especialidades Alicantinas</a>
-      <a href="#opiniones" class="d-item">💬 Opiniones de Clientes (105)</a>
-      <a href="#contacto" class="d-item">📍 Cómo llegar (C/ Sacerdote Isidro Albert)</a>
-    </div>
-    <div class="drawer-footer">
-      <a href="tel:+34722686334" class="btn btn-block btn-outline">📞 Llamar: 722 68 63 34</a>
-      <a href="https://wa.me/34722686334" class="btn btn-block btn-terracotta">WhatsApp Directo</a>
-    </div>
-  </div>
-
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="hero-chip">
-            <span class="chip-star">★ 4.9</span> 105 opiniones en Google Maps • Alicante
-          </div>
-          <h1 class="hero-title">El auténtico sabor del arroz alicantino y el tapeo casero.</h1>
-          <p class="hero-desc">
-            Arroces cocinados con caldo de morralla a fuego lento, socarrat crujiente y raciones de mercado en un ambiente cercano y acogedor. Reserva tu mesa y encarga tu arroz online para tenerlo listo al sentarte.
-          </p>
-
-          <div class="hero-pills">
-            <div class="hp-item"><span>✓</span> Arroces recién hechos por encargo</div>
-            <div class="hp-item"><span>✓</span> Terraza exterior y salón climatizado</div>
-            <div class="hp-item"><span>✓</span> Tapeo tradicional de Alicante</div>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#reservar-mesa" class="btn btn-terracotta btn-lg">Reservar Mesa y Arroz</a>
-            <a href="#carta" class="btn btn-outline btn-lg">Consultar Carta y Precios</a>
-          </div>
+  <!-- HIGHLIGHTS -->
+  <section class="highlights">
+    <div class="container">
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">🇻🇪</div>
+          <h3>Arepas Auténticas</h3>
+          <p>Reina Pepiada, Carne Mechada, Dominó… hechas al momento con masa de maíz artesanal.</p>
         </div>
-
-        <div class="hero-card-side">
-          <div class="gastro-card">
-            <div class="gc-badge">TRADICIÓN ALICANTINA</div>
-            <h3 class="gc-title">El Secreto de Nuestro Arroz</h3>
-            <p class="gc-desc">Fondo marinero casero elaborado a diario con pescado de roca, salmorreta de ñoras de Guardamar y arroz bomba en capa fina con su punto perfecto de socarrat.</p>
-
-            <div class="gc-metrics">
-              <div class="metric">
-                <span class="m-val">4.9 ★</span>
-                <span class="m-lbl">Google Maps</span>
-              </div>
-              <div class="metric">
-                <span class="m-val">100%</span>
-                <span class="m-lbl">Casero & Local</span>
-              </div>
-              <div class="metric">
-                <span class="m-val">45 min</span>
-                <span class="m-lbl">Cocción al fuego</span>
-              </div>
-            </div>
-
-            <div class="gc-footer">
-              <span>📍 Calle Sacerdote Isidro Albert, 4, bajo C (Alicante)</span>
-            </div>
-          </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🇪🇸</div>
+          <h3>Tapas Clásicas</h3>
+          <p>Bravas, pimientos del padrón, croquetas, jamón ibérico… lo mejor de la tradición española.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Interactive Table & Rice Pre-Order Booking Engine (SOLUCIÓN AL PROBLEMA REAL) -->
-    <section class="section booking-section" id="reservar-mesa">
-      <div class="container">
-        <div class="section-head text-center">
-          <span class="section-kicker">RESERVAS SIN LLAMADAS</span>
-          <h2 class="section-title">Reserva tu Mesa y Encarga tu Arroz Alicantino</h2>
-          <p class="section-subtitle">
-            Asegura tu sitio en terraza o comedor y encarga tu arroz con antelación para disfrutarlo en su punto sin esperas en cocina:
-          </p>
+        <div class="highlight-card">
+          <div class="highlight-icon">🍺</div>
+          <h3>Cañas y Cócteles</h3>
+          <p>Cerveza bien tirada, sangría casera, mojitos y combinados a precios que enamoran.</p>
         </div>
-
-        <div class="booking-wrapper">
-          <!-- Stepper indicators -->
-          <div class="stepper-bar">
-            <div class="step-pill active" id="sPill1">
-              <span class="step-dot">1</span>
-              <span>Mesa y Comensales</span>
-            </div>
-            <div class="step-separator"></div>
-            <div class="step-pill" id="sPill2">
-              <span class="step-dot">2</span>
-              <span>Encargar Arroz (Opcional)</span>
-            </div>
-            <div class="step-separator"></div>
-            <div class="step-pill" id="sPill3">
-              <span class="step-dot">3</span>
-              <span>Día, Hora y Contacto</span>
-            </div>
-          </div>
-
-          <!-- Wizard Card -->
-          <div class="wizard-panel">
-            
-            <!-- Step 1: Zone & Diners -->
-            <div class="wizard-step active" id="wizardStep1">
-              <h3 class="w-heading">1. ¿Cuántos comensales sois y dónde preferís sentaros?</h3>
-              <p class="w-sub">Selecciona el ambiente que más te guste:</p>
-
-              <div class="zone-picker-grid">
-                <label class="zone-option">
-                  <input type="radio" name="table_zone" value="Terraza Exterior" checked>
-                  <div class="zone-content">
-                    <div class="z-icon">☀️</div>
-                    <div class="z-title">Terraza Exterior</div>
-                    <div class="z-desc">Ambiente distendido al aire libre, ideal para tapeo de mediodía y cenas de verano.</div>
-                  </div>
-                </label>
-
-                <label class="zone-option">
-                  <input type="radio" name="table_zone" value="Salón Comedor Climatizado">
-                  <div class="zone-content">
-                    <div class="z-icon">🍷</div>
-                    <div class="z-title">Salón Comedor</div>
-                    <div class="z-desc">Espacio climatizado, tranquilo y confortable para comidas familiares y de grupo.</div>
-                  </div>
-                </label>
-
-                <label class="zone-option">
-                  <input type="radio" name="table_zone" value="Barra / Tapeo Rápido">
-                  <div class="zone-content">
-                    <div class="z-icon">🍻</div>
-                    <div class="z-title">Zona Tapeo / Barra</div>
-                    <div class="z-desc">Mesas altas ideales para caña bien tirada, montaditos y raciones rápidas.</div>
-                  </div>
-                </label>
-              </div>
-
-              <div class="form-group mt-3">
-                <label for="numGuests">Número de comensales:</label>
-                <select id="numGuests" class="form-control-warm">
-                  <option value="2 personas" selected>2 personas</option>
-                  <option value="3 personas">3 personas</option>
-                  <option value="4 personas">4 personas</option>
-                  <option value="5 personas">5 personas</option>
-                  <option value="6 personas">6 personas</option>
-                  <option value="7-8 personas">7 u 8 personas (Grupo)</option>
-                  <option value="+9 personas">+9 personas (Celebración / Evento)</option>
-                </select>
-              </div>
-
-              <div class="wizard-action-bar">
-                <div></div>
-                <button type="button" class="btn btn-terracotta" id="btnNextToStep2">Siguiente: Elegir Arroz o Tapeo →</button>
-              </div>
-            </div>
-
-            <!-- Step 2: Rice Pre-order (KEY ADVANTAGE) -->
-            <div class="wizard-step" id="wizardStep2">
-              <h3 class="w-heading">2. ¿Queréis encargar el arroz por adelantado?</h3>
-              <p class="w-sub">Si encargáis el arroz ahora, lo pondremos al fuego para que esté listo a vuestra llegada:</p>
-
-              <div class="rice-selector-list">
-                <label class="rice-option">
-                  <input type="radio" name="rice_order" value="Arroz del Senyoret con Marisco Pelado (14€/ración)" checked>
-                  <div class="rice-box">
-                    <div class="rb-top">
-                      <span class="rb-tag">ESPECIALIDAD DE LA CASA</span>
-                      <span class="rb-price">14€ / ración</span>
-                    </div>
-                    <div class="rb-title">Arroz del Senyoret</div>
-                    <div class="rb-desc">Todo el marisco pelado (gambas, calamar, sepia y rape) con intenso caldo de pescado y socarrat crujiente.</div>
-                  </div>
-                </label>
-
-                <label class="rice-option">
-                  <input type="radio" name="rice_order" value="Arroz a Banda Tradicional con Alioli (13€/ración)">
-                  <div class="rice-box">
-                    <div class="rb-top">
-                      <span class="rb-price">13€ / ración</span>
-                    </div>
-                    <div class="rb-title">Arroz a Banda Tradicional</div>
-                    <div class="rb-desc">El clásico alicantino con fondo de morralla y sepia fresca, servido con alioli casero emulsionado a mano.</div>
-                  </div>
-                </label>
-
-                <label class="rice-option">
-                  <input type="radio" name="rice_order" value="Arroz de Magro, Costillejas y Verduras de la Huerta (13€/ración)">
-                  <div class="rice-box">
-                    <div class="rb-top">
-                      <span class="rb-price">13€ / ración</span>
-                    </div>
-                    <div class="rb-title">Arroz de Magro y Verduras</div>
-                    <div class="rb-desc">Magro de cerdo ibérico, costillejas, alcachofas, pimientos y judías verdes de la huerta valenciana.</div>
-                  </div>
-                </label>
-
-                <label class="rice-option">
-                  <input type="radio" name="rice_order" value="Solo Tapeo y Raciones (Decidiremos en la mesa)">
-                  <div class="rice-box">
-                    <div class="rb-top">
-                      <span class="rb-price">Carta libre</span>
-                    </div>
-                    <div class="rb-title">Sin Arroz / Tapeo a la Carta</div>
-                    <div class="rb-desc">Venimos a comer de tapas, tostas y raciones variadas. Elegiremos los platos directamente en el local.</div>
-                  </div>
-                </label>
-              </div>
-
-              <div class="form-group mt-2">
-                <label for="dietaryNotes">Alergias o comentarios para cocina (Opcional):</label>
-                <input type="text" id="dietaryNotes" class="form-control-warm" placeholder="Ej: Un comensal celíaco (sin gluten) / preferimos arroz poco hecho...">
-              </div>
-
-              <div class="wizard-action-bar">
-                <button type="button" class="btn btn-outline" id="btnBackToStep1">← Volver</button>
-                <button type="button" class="btn btn-terracotta" id="btnNextToStep3">Siguiente: Fecha y Reserva →</button>
-              </div>
-            </div>
-
-            <!-- Step 3: Date, Turn & Contact -->
-            <div class="wizard-step" id="wizardStep3">
-              <h3 class="w-heading">3. Día, Turno y Datos de la Reserva</h3>
-              <p class="w-sub">Te confirmaremos la reserva de mesa por WhatsApp de inmediato:</p>
-
-              <div class="form-grid-2">
-                <div class="form-group">
-                  <label for="resDate">Fecha deseada (Martes a Domingo) *</label>
-                  <input type="date" id="resDate" class="form-control-warm" required>
-                </div>
-                <div class="form-group">
-                  <label for="resShift">Turno de Comida o Cena *</label>
-                  <select id="resShift" class="form-control-warm" required>
-                    <option value="Comida: 13:30h">Comida: 13:30h (Primer turno)</option>
-                    <option value="Comida: 14:15h">Comida: 14:15h (Turno punta)</option>
-                    <option value="Comida: 15:00h">Comida: 15:00h (Turno tarde)</option>
-                    <option value="Cena: 20:30h">Cena: 20:30h (Primera hora)</option>
-                    <option value="Cena: 21:30h">Cena: 21:30h (Turno cena)</option>
-                    <option value="Cena: 22:15h">Cena: 22:15h (Último turno)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="resName">Nombre del Titular de la Mesa *</label>
-                  <input type="text" id="resName" class="form-control-warm" placeholder="Ej: Fernando García" required>
-                </div>
-                <div class="form-group">
-                  <label for="resPhone">Teléfono Móvil de Contacto *</label>
-                  <input type="tel" id="resPhone" class="form-control-warm" placeholder="Ej: 622 33 44 55" required>
-                </div>
-              </div>
-
-              <!-- Summary Card -->
-              <div class="table-ticket-box" id="tableTicketBox">
-                <div class="tt-header">
-                  <span class="tt-badge">DETALLES DE LA RESERVA</span>
-                  <span class="tt-loc">Tapa La Caña • Alicante</span>
-                </div>
-                <div class="tt-body" id="tableTicketBody">
-                  <!-- Dynamic JS -->
-                </div>
-              </div>
-
-              <div class="wizard-action-bar">
-                <button type="button" class="btn btn-outline" id="btnBackToStep2">← Volver</button>
-                <button type="button" class="btn btn-terracotta btn-lg" id="btnSubmitReservation">
-                  ⚡ Confirmar y Enviar Reserva por WhatsApp (+34 722 68 63 34)
-                </button>
-              </div>
-            </div>
-
-          </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">☀️</div>
+          <h3>Terraza y Buen Rollo</h3>
+          <p>Disfruta del sol de Alicante en nuestra terraza con música y ambiente inmejorable.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- Interactive Menu Section -->
-    <section class="section bg-warm" id="carta">
-      <div class="container">
-        <div class="section-head text-center">
-          <span class="section-kicker">NUESTRA PROPUESTA</span>
-          <h2 class="section-title">Carta Gastronómica de Mercado</h2>
-          <p class="section-subtitle">Producto fresco de la bahía, raciones caseras y los mejores arroces de Alicante a precios honestos:</p>
-        </div>
-
-        <div class="menu-tab-nav">
-          <button class="menu-tab active" data-cat="arroces">Arroces Alicantinos</button>
-          <button class="menu-tab" data-cat="tapas">Tapas y Raciones</button>
-          <button class="menu-tab" data-cat="carnes">Carnes y Pescados</button>
-          <button class="menu-tab" data-cat="postres">Postres Caseros</button>
-        </div>
-
-        <div class="menu-dishes-grid" id="menuDishesGrid">
-          <!-- Dynamically populated via app.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Real Reviews Section (105 reseñas Google Maps) -->
-    <section class="section" id="opiniones">
-      <div class="container">
-        <div class="section-head text-center">
-          <div class="stars-badge-warm">
-            <span class="stars-gold">★★★★★</span>
-            <span class="score-warm">4.9 / 5</span>
-            <span class="count-warm">(105 opiniones verificadas en Google Maps)</span>
-          </div>
-          <h2 class="section-title">Lo que Opinan Nuestros Comensales</h2>
-          <p class="section-subtitle">Reseñas auténticas de vecinos y visitantes de Alicante en nuestra ficha pública de Google Maps:</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="gastro-review-card">
-            <div class="gr-stars">★★★★★</div>
-            <p class="gr-text">
-              "El mejor arroz del senyoret de la zona, punto de cocción impecable y socarrat perfecto. Las tapas son caseras y abundantes. Calidad-precio insuperable."
-            </p>
-            <div class="gr-author">
-              <div class="author-circle">FG</div>
-              <div>
-                <div class="author-name">Fernando G.</div>
-                <div class="author-time">Reseña verificada en Google Maps • Hace 3 semanas</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gastro-review-card">
-            <div class="gr-stars">★★★★★</div>
-            <p class="gr-text">
-              "Un descubrimiento total en Carolinas. Las tostas, los calamares y el solomillo al Pedro Ximénez espectaculares. El trato de los camareros es de 10, te hacen sentir en casa."
-            </p>
-            <div class="gr-author">
-              <div class="author-circle">BM</div>
-              <div>
-                <div class="author-name">Beatriz M.</div>
-                <div class="author-time">Reseña verificada en Google Maps • Hace 1 mes</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gastro-review-card">
-            <div class="gr-stars">★★★★★</div>
-            <p class="gr-text">
-              "Recomiendo reservar mesa con antelación porque se llena siempre, especialmente los fines de semana. Trato familiar, cerveza fresquísima y producto de primera."
-            </p>
-            <div class="gr-author">
-              <div class="author-circle">JS</div>
-              <div>
-                <div class="author-name">Jorge Soler</div>
-                <div class="author-time">Reseña verificada en Google Maps • Hace 2 meses</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Location & Contact -->
-    <section class="section bg-warm" id="contacto">
-      <div class="container">
-        <div class="contact-card-dual">
-          <div class="contact-details-side">
-            <span class="section-kicker">CÓMO ENCONTRARNOS</span>
-            <h2 class="section-title">En el Barrio de Carolinas, Alicante</h2>
-            <p class="contact-intro">
-              Fácil acceso y ambiente de barrio acogedor. Terraza soleada para el aperitivo y comedor climatizado para tus comidas familiares.
-            </p>
-
-            <div class="contact-items-list">
-              <div class="ci-entry">
-                <span class="ci-icon">📍</span>
-                <div>
-                  <strong>Dirección:</strong>
-                  <div>Calle Sacerdote Isidro Albert, 4, bajo C, 03010 Alicante</div>
-                </div>
-              </div>
-
-              <div class="ci-entry">
-                <span class="ci-icon">📞</span>
-                <div>
-                  <strong>Teléfono y Reservas WhatsApp:</strong>
-                  <div><a href="tel:+34722686334" class="terracotta-link">722 68 63 34</a></div>
-                </div>
-              </div>
-
-              <div class="ci-entry">
-                <span class="ci-icon">🕒</span>
-                <div>
-                  <strong>Horario de Apertura:</strong>
-                  <div>Martes a Domingo: 11:30 - 16:30 / 19:30 - 23:30</div>
-                  <div class="text-dim">Lunes: Cerrado por descanso</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ci-btn-row">
-              <a href="https://maps.google.com/?q=Calle+Sacerdote+Isidro+Albert+4+Alicante" target="_blank" rel="noopener" class="btn btn-outline">
-                🗺️ Abrir en Google Maps
-              </a>
-              <a href="https://wa.me/34722686334?text=Hola%20Tapa%20La%20Caña,%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="btn btn-terracotta">
-                💬 Escribir por WhatsApp
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-map-side">
-            <div class="map-feature-card">
-              <div class="mfc-top">
-                <div class="orange-dot-beacon"></div>
-                <div>
-                  <div class="font-bold text-white">Tapa La Caña Café & Bar</div>
-                  <div class="text-xs text-muted">C/ Sacerdote Isidro Albert 4 • Alicante</div>
-                </div>
-              </div>
-              <div class="mfc-body">
-                <p><strong>Aparcamiento y puntos de referencia:</strong></p>
-                <ul>
-                  <li>A 4 minutos del bulevar de Carolinas</li>
-                  <li>Fácil estacionamiento en calles adyacentes</li>
-                  <li>Paradas de autobús cercanas a 2 minutos</li>
-                </ul>
-                <div class="mt-4">
-                  <a href="https://www.google.com/maps/dir/?api=1&destination=Calle+Sacerdote+Isidro+Albert+4+Alicante" target="_blank" rel="noopener" class="btn btn-terracotta btn-block">
-                    Cómo llegar con Navegador GPS
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Modal Confirmation -->
-  <div class="modal-backdrop" id="resModal">
-    <div class="modal-card-warm">
-      <div class="modal-food-icon">🥘</div>
-      <h3 class="modal-title-warm">¡Mesa Lista para Confirmar!</h3>
-      <p class="modal-desc-warm">Hemos preparado tu solicitud de reserva y encargo de arroz para <strong>Tapa La Caña</strong>:</p>
-
-      <div class="modal-preview-box" id="resPreviewBox">
-        <!-- Live WhatsApp preview -->
-      </div>
-
-      <p class="modal-help-text">
-        Al hacer clic en el botón inferior se abrirá tu WhatsApp con la reserva ya redactada y estructurada para que el restaurante te confirme mesa en segundos.
-      </p>
-
-      <div class="modal-actions-warm">
-        <a href="#" id="btnOpenWhatsAppWarm" target="_blank" rel="noopener" class="btn btn-terracotta btn-block btn-lg">
-          💬 Abrir WhatsApp y Confirmar Reserva (+34 722 68 63 34)
-        </a>
-        <button type="button" class="btn btn-outline btn-block mt-2" id="btnCloseResModal">
-          Cerrar
-        </button>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Mobile Sticky Bar -->
-  <div class="mobile-sticky-footer">
-    <a href="tel:+34722686334" class="msf-btn msf-call">📞 722 68 63 34</a>
-    <a href="#reservar-mesa" class="msf-btn msf-book">🥘 Reservar Mesa</a>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="f-brand">TAPA LA CAÑA CAFÉ & BAR</div>
-        <p class="f-desc">Arroces tradicionales alicantinos, tapeo de mercado y raciones caseras en Alicante. Terraza y salón comedor.</p>
-        <p class="f-addr">📍 Calle Sacerdote Isidro Albert, 4, bajo C, 03010 Alicante • Tel: 722 68 63 34</p>
+  <!-- CARTA / MENU -->
+  <section class="menu-section" id="carta">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nuestra Carta</span>
+        <h2 class="section-title">Sabores que enamoran</h2>
+        <p class="section-desc">Una fusión irresistible entre la cocina española y los sabores venezolanos. Todo hecho con cariño y productos frescos del día.</p>
       </div>
-      <div class="f-copy">
-        <p>© <span id="currentYear"></span> Tapa La Caña Café & Bar. Todos los derechos reservados.</p>
-        <p class="f-demo">Propuesta tecnológica diseñada exclusivamente para optimizar la gestión de reservas de Tapa La Caña.</p>
+
+      <div class="menu-tabs">
+        <button class="menu-tab active" data-tab="arepas">🇻🇪 Arepas</button>
+        <button class="menu-tab" data-tab="tapas">🇪🇸 Tapas</button>
+        <button class="menu-tab" data-tab="bebidas">🍺 Bebidas</button>
+      </div>
+
+      <div class="menu-content">
+        <!-- AREPAS TAB -->
+        <div class="menu-panel active" id="tab-arepas">
+          <div class="menu-grid">
+            <div class="menu-card featured">
+              <div class="menu-card-img">
+                <img src="img/arepas.jpg" alt="Arepas venezolanas" loading="lazy">
+                <span class="menu-badge">⭐ Estrella</span>
+              </div>
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Reina Pepiada</h3>
+                  <span class="price">6.50€</span>
+                </div>
+                <p>Pollo desmenuzado con aguacate, mayonesa y cilantro fresco. Nuestra joya de la corona.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Carne Mechada</h3>
+                  <span class="price">6.50€</span>
+                </div>
+                <p>Ternera deshilachada guisada lentamente con sofrito criollo.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Dominó</h3>
+                  <span class="price">5.50€</span>
+                </div>
+                <p>Caraotas negras (frijoles) con queso blanco rallado. Simple y adictiva.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>La Pelúa</h3>
+                  <span class="price">7.00€</span>
+                </div>
+                <p>Carne mechada con queso amarillo fundido. Puro sabor venezolano.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Empanadas (x2)</h3>
+                  <span class="price">5.00€</span>
+                </div>
+                <p>Masa de maíz frita rellena de queso, carne o pollo. Crujientes y doradas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAPAS TAB -->
+        <div class="menu-panel" id="tab-tapas">
+          <div class="menu-grid">
+            <div class="menu-card featured">
+              <div class="menu-card-img">
+                <img src="img/tapas.jpg" alt="Tapas españolas" loading="lazy">
+                <span class="menu-badge">🔥 Popular</span>
+              </div>
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Patatas Bravas</h3>
+                  <span class="price">5.00€</span>
+                </div>
+                <p>Patatas crujientes con salsa brava casera y alioli artesanal.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Pimientos del Padrón</h3>
+                  <span class="price">4.50€</span>
+                </div>
+                <p>Salteados con sal gorda Maldon. Unos pican y otros no…</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Croquetas Caseras</h3>
+                  <span class="price">6.00€</span>
+                </div>
+                <p>De jamón ibérico, cremosas por dentro y crujientes por fuera.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Nachos con Guacamole</h3>
+                  <span class="price">7.50€</span>
+                </div>
+                <p>Totopos crujientes con guacamole fresco, pico de gallo y queso fundido.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Gambas al Ajillo</h3>
+                  <span class="price">8.00€</span>
+                </div>
+                <p>Gambas frescas con ajo, guindilla y aceite de oliva virgen. Un clásico.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Tabla de Jamón Ibérico</h3>
+                  <span class="price">12.00€</span>
+                </div>
+                <p>Lonchas finas de jamón ibérico de bellota con regañás y tomate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEBIDAS TAB -->
+        <div class="menu-panel" id="tab-bebidas">
+          <div class="menu-grid">
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Caña de Cerveza</h3>
+                  <span class="price">1.80€</span>
+                </div>
+                <p>Cerveza de grifo bien fría. La mejor compañera de nuestras tapas.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Tinto de Verano</h3>
+                  <span class="price">2.50€</span>
+                </div>
+                <p>Vino tinto con gaseosa de limón y hielo. Refrescante y mediterráneo.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Sangría (Jarra)</h3>
+                  <span class="price">10.00€</span>
+                </div>
+                <p>Receta casera con vino tinto, frutas frescas y un toque de canela.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Mojito</h3>
+                  <span class="price">6.00€</span>
+                </div>
+                <p>Ron, hierbabuena, lima, azúcar de caña y soda. Estilo cubano.</p>
+              </div>
+            </div>
+            <div class="menu-card">
+              <div class="menu-card-info">
+                <div class="menu-card-head">
+                  <h3>Café Especialidad</h3>
+                  <span class="price">2.00€</span>
+                </div>
+                <p>Café de origen tostado artesanalmente. Solo, cortado o con leche.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cta">
+        <p>¿No encuentras lo que buscas? Tenemos mucho más en la carta completa.</p>
+        <a href="https://wa.me/34722686334?text=Hola%2C%20¿me%20podéis%20enviar%20la%20carta%20completa?" class="btn btn-primary">Pedir Carta Completa por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="about-section" id="nosotros">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <span class="section-tag">Nuestra Historia</span>
+          <h2 class="section-title">Dos culturas,<br>un mismo sabor</h2>
+          <p>En <strong>Tapa La Caña</strong> creemos que la mejor comida nace de la unión de culturas. Por eso fusionamos lo mejor de la cocina española de toda la vida — las bravas, las croquetas, el jamón — con los sabores auténticos de Venezuela: arepas rellenas al momento, empanadas crujientes y ese cariño latino que se nota en cada plato.</p>
+          <p>Abrimos nuestras puertas en la <strong>Calle Sacerdote Isidro Albert</strong>, en el corazón de Alicante, y desde entonces nos hemos convertido en el rincón favorito de vecinos, familias y amigos que buscan comer bien, sin pretensiones y a buen precio.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="feature-icon">👨‍🍳</span>
+              <span>Cocina artesanal</span>
+            </div>
+            <div class="about-feature">
+              <span class="feature-icon">🫕</span>
+              <span>Productos frescos</span>
+            </div>
+            <div class="about-feature">
+              <span class="feature-icon">💰</span>
+              <span>Precios honestos</span>
+            </div>
+            <div class="about-feature">
+              <span class="feature-icon">❤️</span>
+              <span>Ambiente familiar</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="img/arepas.jpg" alt="Arepas artesanales en Tapa La Caña" loading="lazy">
+          <div class="about-image-badge">
+            <span class="badge-number">+4</span>
+            <span class="badge-text">años haciendo<br>felices a Alicante</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Opiniones</span>
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Las arepas están increíbles, sobre todo la Reina Pepiada. Un trocito de Venezuela en Alicante. El trato es genial y los precios muy bien."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <strong>María L.</strong>
+              <span>Google</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Fuimos por las tapas y nos quedamos por el ambiente. Las bravas están de muerte y la sangría casera es la mejor que he probado en la zona."</p>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div>
+              <strong>Juan Carlos R.</strong>
+              <span>Google</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Sitio acogedor, comida casera y raciones generosas. César siempre pendiente de que estés a gusto. Repetimos cada semana sin falta."</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div>
+              <strong>Ana G.</strong>
+              <span>Google</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO & UBICACIÓN -->
+  <section class="info-section" id="horario">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card schedule-card">
+          <h3>🕐 Horario</h3>
+          <ul class="schedule-list">
+            <li><span>Lunes</span><span>12:00 – 23:00</span></li>
+            <li><span>Martes</span><span class="closed">Cerrado</span></li>
+            <li><span>Miércoles</span><span>12:00 – 23:00</span></li>
+            <li><span>Jueves</span><span>12:00 – 23:00</span></li>
+            <li><span>Viernes</span><span>12:00 – 00:00</span></li>
+            <li><span>Sábado</span><span>12:00 – 00:00</span></li>
+            <li><span>Domingo</span><span>12:00 – 23:00</span></li>
+          </ul>
+          <p class="schedule-note">* Cocina abierta hasta 30 min antes del cierre</p>
+        </div>
+        <div class="info-card location-card">
+          <h3>📍 Cómo Llegar</h3>
+          <div class="map-embed">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3128.5!2d-0.4975!3d38.345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDIwJzQyLjAiTiAwwrAyOSc1MS4wIlc!5e0!3m2!1ses!2ses!4v1690000000000" 
+              width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen loading="lazy">
+            </iframe>
+          </div>
+          <div class="location-info">
+            <p><strong>C/ Sacerdote Isidro Albert, 4, bajo C</strong></p>
+            <p>03010 Alicante, España</p>
+            <a href="https://maps.google.com/?q=Tapa+La+Caña+Alicante" target="_blank" class="btn btn-outline btn-sm">Abrir en Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta" id="contacto">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Te apetece una arepa<br>o unas bravas?</h2>
+        <p>Reserva tu mesa en un toque o escríbenos por WhatsApp. César y el equipo te esperan con la caña bien fría.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/34722686334?text=Hola%2C%20quiero%20reservar%20mesa%20para%20hoy" class="btn btn-whatsapp btn-lg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Reservar Mesa por WhatsApp
+          </a>
+          <a href="tel:+34722686334" class="btn btn-outline btn-lg">📞 Llamar Ahora</a>
+        </div>
+        <p class="cta-phone">+34 722 68 63 34</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-icon">🍺</span>
+          <span class="logo-text">Tapa La Caña</span>
+          <p>Café & Bar · Fusión Española-Venezolana</p>
+          <p class="footer-address">C/ Sacerdote Isidro Albert, 4<br>03010 Alicante</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <a href="#inicio">Inicio</a>
+          <a href="#carta">Carta</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#horario">Horario</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <a href="tel:+34722686334">📞 +34 722 68 63 34</a>
+          <a href="https://wa.me/34722686334">💬 WhatsApp</a>
+          <a href="https://maps.google.com/?q=Tapa+La+Caña+Alicante" target="_blank">📍 Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Tapa La Caña Café & Bar · Alicante. Todos los derechos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- WHATSAPP FLOATING -->
+  <a href="https://wa.me/34722686334?text=Hola%2C%20quiero%20información%20o%20reservar" class="whatsapp-float" id="whatsappFloat" aria-label="Contactar por WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="float-label">¿Reservas?</span>
+  </a>
+
+  <script src="script.js"></script>
 </body>
 </html>
