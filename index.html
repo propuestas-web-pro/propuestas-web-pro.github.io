@@ -934,8 +934,8 @@
       <div class="card base">
         <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="card-info">
-          <div class="card-name"><span class="ic">🔒</span> Dominio .es Propio + SSL</div>
-          <div class="card-sub">Tu dirección web (tunegocio.es) con seguridad HTTPS.</div>
+          <div class="card-name"><span class="ic">🔒</span> Dominio Propio (.com / .es) + SSL</div>
+          <div class="card-sub">Tu dirección web (.com o .es) con certificado de seguridad SSL.</div>
           <span class="tag tag-inc">✅ INCLUIDO</span>
         </div>
         <div class="card-price-wrap"><div class="card-price green">Incluido</div></div>
@@ -1232,8 +1232,8 @@
 
       const btn = document.getElementById('ctaEl');
       const txt = document.getElementById('ctaTxt');
-      btn.disabled = cnt === 0;
-      txt.textContent = cnt === 0 ? 'Selecciona extras' : 'Solicitar Presupuesto';
+      btn.disabled = false;
+      txt.textContent = cnt === 0 ? 'Pedir Web Base (390 €)' : 'Pedir Presupuesto (' + total.toLocaleString('es-ES') + ' €)';
     }
 
     function popPrice() {
@@ -1261,7 +1261,17 @@
 
     function send() {
       const sel = document.querySelectorAll('#modCards .card.on');
-      if (!sel.length) return;
+      if (!sel.length) {
+        const half = Math.round(BASE / 2);
+        const msg =
+          '¡Hola! Me interesa la *Web Base Profesional* para mi negocio.\n\n' +
+          '✅ Web a medida + Dominio Propio (.com/.es) + SSL + QR + Adaptado a móviles\n' +
+          '💰 *Precio cerrado: ' + BASE + ' €*\n' +
+          '💳 *Señal: ' + half + ' € | Entrega (2-7 días): ' + half + ' €*\n\n' +
+          '¿Podríamos hablar para ver los detalles? ¡Gracias!';
+        window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
+        return;
+      }
       const items = [];
       let total = BASE;
 
