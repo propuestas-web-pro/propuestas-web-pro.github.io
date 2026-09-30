@@ -1,16 +1,16 @@
 /**
- * El Galán Barbershop - Logic & Interactive Engine
- * Designed for frictionless UX, smooth animations and direct conversion.
+ * El Galán Barbershop - Mobile-Native Logic & Interactive Engine
+ * Designed for frictionless mobile UX, touch responsiveness and direct conversion.
  */
 
 const app = {
   state: {
     service: {
-      name: 'Skin Fade / Degradado de Alta Precisión',
+      name: 'Skin Fade / Degradado de Precisión',
       price: 20,
       duration: 45
     },
-    barber: 'Cualquiera disponible (Más rápido)',
+    barber: 'Primer hueco libre (Más rápido)',
     date: null,
     time: '17:30',
     client: {
@@ -28,32 +28,25 @@ const app = {
     this.updateSummary();
   },
 
-  // 1. Navigation handling
+  // 1. Navigation handling & Mobile Drawer
   setupNavigation() {
     const header = document.getElementById('header');
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navMenu = document.getElementById('nav-menu');
 
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
+      if (window.scrollY > 30) {
+        header?.classList.add('scrolled');
       } else {
-        header.classList.remove('scrolled');
+        header?.classList.remove('scrolled');
       }
-    });
+    }, { passive: true });
+  },
 
-    if (mobileToggle) {
-      mobileToggle.addEventListener('click', () => {
-        document.body.classList.toggle('mobile-nav-active');
-      });
-    }
+  openDrawer() {
+    document.body.classList.add('drawer-open');
+  },
 
-    // Close mobile nav on click
-    navMenu?.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.body.classList.remove('mobile-nav-active');
-      });
-    });
+  closeDrawer() {
+    document.body.classList.remove('drawer-open');
   },
 
   // 2. Services Filter Tabs
@@ -76,7 +69,6 @@ const app = {
         if (filter === 'all' || card.dataset.category === filter) {
           card.style.display = 'flex';
           card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
         } else {
           card.style.display = 'none';
         }
@@ -87,7 +79,7 @@ const app = {
   // 3. Quick Select from Menu Catalog
   selectServiceAndGo(name, price, duration) {
     this.state.service = { name, price, duration };
-    this.showToast(`Has seleccionado: ${name}`);
+    this.showToast(`Elegido: ${name}`);
 
     // Update Step 1 active card
     const list = document.getElementById('booking-services-selection');
@@ -156,7 +148,7 @@ const app = {
       el.parentElement.querySelectorAll('.selectable-card').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
     }
-    this.showToast(`Profesional: ${name}`);
+    this.showToast(`Barbero: ${name}`);
     this.updateSummary();
   },
 
@@ -227,7 +219,7 @@ const app = {
     if (dayOfWeek === 6) {
       // Saturday
       slots = ['09:00', '09:45', '10:30', '11:15', '12:00', '12:45', '13:30'];
-      if (label) label.textContent = 'Horario de Sábado (09:00 - 14:00)';
+      if (label) label.textContent = 'Sábado (09:00 - 14:00)';
     } else {
       // Weekdays
       slots = [
@@ -251,7 +243,7 @@ const app = {
         slotsContainer.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         this.state.time = time;
-        this.showToast(`Hora elegida: ${time}`);
+        this.showToast(`Hora: ${time}`);
         this.updateSummary();
       });
 
@@ -280,13 +272,13 @@ const app = {
     const notes = document.getElementById('client-notes')?.value.trim();
 
     if (!name || !phone) {
-      alert('Por favor, indica tu nombre y teléfono de contacto.');
+      alert('Por favor, indica tu nombre y teléfono.');
       return;
     }
 
     this.state.client = { name, phone, notes };
 
-    // Format WhatsApp message to owner (658 74 36 09)
+    // Format WhatsApp message to owner (+34 658 74 36 09)
     const msg = 
 `💈 *NUEVA CITA - BARBERÍA EL GALÁN* 💈
 ----------------------------------
@@ -300,7 +292,7 @@ const app = {
 📞 *Teléfono:* ${phone}
 ${notes ? `📝 *Nota:* ${notes}` : ''}
 ----------------------------------
-_Mensaje generado desde la web oficial de El Galán Barbershop_`;
+_Mensaje enviado desde la web oficial de El Galán Barbershop_`;
 
     const encodedMsg = encodeURIComponent(msg);
     const waUrl = `https://wa.me/34658743609?text=${encodedMsg}`;
@@ -311,9 +303,9 @@ _Mensaje generado desde la web oficial de El Galán Barbershop_`;
 
     if (modalText) {
       modalText.innerHTML = `
-        <strong>${name}</strong>, tu turno para <strong>${this.state.service.name}</strong> 
-        el día <strong>${this.state.date} a las ${this.state.time}</strong> está listo.<br><br>
-        Haz clic en el botón inferior para abrir WhatsApp y enviar los detalles directamente a la barbería.
+        <strong>${name}</strong>, tu cita para <strong>${this.state.service.name}</strong> 
+        el día <strong>${this.state.date} a las ${this.state.time}</strong> está preparada.<br><br>
+        Toca el botón para enviar los detalles directamente a la barbería por WhatsApp.
       `;
     }
 
@@ -365,7 +357,7 @@ _Mensaje generado desde la web oficial de El Galán Barbershop_`;
     clearTimeout(this._toastTimeout);
     this._toastTimeout = setTimeout(() => {
       toast.classList.remove('show');
-    }, 2800);
+    }, 2400);
   }
 };
 
