@@ -1,12 +1,12 @@
 /**
- * El Galán Barbershop - Mobile-Native Logic & Interactive Engine
- * Designed for frictionless mobile UX, touch responsiveness and direct conversion.
+ * El Galán Barbershop - Awwwards Motion & Interaction Architecture
+ * Powered by GSAP, ScrollTrigger, Touch Slider & Haptic Operative Engine.
  */
 
 const app = {
   state: {
     service: {
-      name: 'Skin Fade / Degradado de Precisión',
+      name: 'Skin Fade / Degradado',
       price: 20,
       duration: 45
     },
@@ -22,142 +22,234 @@ const app = {
   },
 
   init() {
-    this.setupNavigation();
+    this.setupGSAP();
+    this.setupBeforeAfterSlider();
     this.setupServicesFilter();
     this.generateCalendarDays();
-    this.updateSummary();
+    this.updateSummaryCard();
   },
 
-  // 1. Navigation handling & Mobile Drawer
-  setupNavigation() {
-    const header = document.getElementById('header');
+  // 1. GSAP Motion Choreography
+  setupGSAP() {
+    if (typeof gsap === 'undefined') return;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
+    // Register ScrollTrigger
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // Hero Entry Animation (Staggered Heavy Fade-Up)
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    
+    tl.fromTo('.eyebrow-tag', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 0.8, delay: 0.2 }
+    )
+    .fromTo('.hero-h1', 
+      { opacity: 0, y: 40, scale: 0.98 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 1 }, 
+      '-=0.5'
+    )
+    .fromTo('.hero-subtitle', 
+      { opacity: 0, y: 30 }, 
+      { opacity: 1, y: 0, duration: 0.8 }, 
+      '-=0.6'
+    )
+    .fromTo('.hero-actions', 
+      { opacity: 0, y: 25 }, 
+      { opacity: 1, y: 0, duration: 0.8 }, 
+      '-=0.6'
+    )
+    .fromTo('.hero-credentials-bar', 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 0.8 }, 
+      '-=0.5'
+    );
+
+    // Parallax background on scroll
+    const heroBg = document.getElementById('hero-bg-img');
+    if (heroBg && typeof ScrollTrigger !== 'undefined') {
+      gsap.to(heroBg, {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+
+    // Staggered Scroll Reveal for Bezel Shells
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.utils.toArray('.bezel-shell').forEach((el) => {
+        gsap.fromTo(el, 
+          { opacity: 0, y: 45 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+    }
+  },
+
+  // 2. Interactive Before & After Transformation Slider
+  setupBeforeAfterSlider() {
+    const frame = document.getElementById('before-after-frame');
+    const beforeLayer = document.getElementById('before-layer');
+    const handle = document.getElementById('slider-handle');
+    if (!frame || !beforeLayer || !handle) return;
+
+    let isDragging = false;
+
+    const setPosition = (clientX) => {
+      const rect = frame.getBoundingClientRect();
+      let percent = ((clientX - rect.left) / rect.width) * 100;
+      if (percent < 5) percent = 5;
+      if (percent > 95) percent = 95;
+
+      beforeLayer.style.width = `${percent}%`;
+      handle.style.left = `${percent}%`;
+    };
+
+    // Pointer events for desktop mouse and mobile touch
+    frame.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      frame.setPointerCapture(e.pointerId);
+      setPosition(e.clientX);
+    });
+
+    frame.addEventListener('pointermove', (e) => {
+      if (isDragging) {
+        setPosition(e.clientX);
       }
-    }, { passive: true });
+    });
+
+    frame.addEventListener('pointerup', (e) => {
+      isDragging = false;
+      try { frame.releasePointerCapture(e.pointerId); } catch (_) {}
+    });
+
+    frame.addEventListener('pointercancel', () => {
+      isDragging = false;
+    });
   },
 
-  openDrawer() {
-    document.body.classList.add('drawer-open');
+  // 3. Mobile Takeover Menu Toggle
+  toggleMenu() {
+    document.body.classList.toggle('menu-active');
   },
 
-  closeDrawer() {
-    document.body.classList.remove('drawer-open');
-  },
-
-  // 2. Services Filter Tabs
+  // 4. Services Filter Tabs
   setupServicesFilter() {
-    const filterContainer = document.getElementById('services-filter');
-    const grid = document.getElementById('services-grid');
-    if (!filterContainer || !grid) return;
+    const tabsContainer = document.getElementById('services-tabs');
+    const catalog = document.getElementById('services-catalog');
+    if (!tabsContainer || !catalog) return;
 
-    filterContainer.addEventListener('click', (e) => {
-      const btn = e.target.closest('.tab-btn');
+    tabsContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('.tab-pill');
       if (!btn) return;
 
-      filterContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      tabsContainer.querySelectorAll('.tab-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.dataset.filter;
-      const cards = grid.querySelectorAll('.service-card');
+      const cat = btn.dataset.cat;
+      const items = catalog.querySelectorAll('.service-item-shell');
 
-      cards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
-          card.style.display = 'flex';
-          card.style.opacity = '1';
+      items.forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+          item.style.display = 'block';
+          gsap.fromTo(item, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
         } else {
-          card.style.display = 'none';
+          item.style.display = 'none';
         }
       });
     });
   },
 
-  // 3. Quick Select from Menu Catalog
-  selectServiceAndGo(name, price, duration) {
+  // 5. Select Service from Catalog and Jump
+  selectAndJump(name, price, duration) {
     this.state.service = { name, price, duration };
     this.showToast(`Elegido: ${name}`);
 
     // Update Step 1 active card
-    const list = document.getElementById('booking-services-selection');
-    if (list) {
-      list.querySelectorAll('.selectable-card').forEach(card => {
-        const title = card.querySelector('h4')?.textContent;
-        if (title && (title.includes(name) || name.includes(title))) {
-          card.classList.add('selected');
-        } else {
-          card.classList.remove('selected');
-        }
-      });
-    }
+    document.querySelectorAll('.service-options-list .bezel-selectable').forEach(card => {
+      const title = card.querySelector('strong')?.textContent;
+      if (title && (title.includes(name) || name.includes(title))) {
+        card.classList.add('selected');
+      } else {
+        card.classList.remove('selected');
+      }
+    });
 
-    this.updateSummary();
-    this.goToStep(2);
+    this.updateSummaryCard();
+    this.setStep(2);
 
-    // Smooth scroll to booking
-    const bookingSec = document.getElementById('reservas');
-    if (bookingSec) {
-      bookingSec.scrollIntoView({ behavior: 'smooth' });
+    const bookingEl = document.getElementById('reservas');
+    if (bookingEl) {
+      bookingEl.scrollIntoView({ behavior: 'smooth' });
     }
   },
 
-  // 4. Booking Step Navigation
-  goToStep(stepNumber) {
-    this.state.currentStep = stepNumber;
+  // 6. 4-Step Interactive Engine
+  setStep(stepNum) {
+    this.state.currentStep = stepNum;
 
-    // Update progress indicator
     for (let i = 1; i <= 4; i++) {
-      const indicator = document.getElementById(`step-indicator-${i}`);
-      const content = document.getElementById(`step-${i}`);
+      const indicator = document.getElementById(`indicator-${i}`);
+      const pane = document.getElementById(`pane-${i}`);
 
-      if (indicator && content) {
-        if (i === stepNumber) {
-          indicator.className = 'step-item active';
-          content.classList.add('active');
-        } else if (i < stepNumber) {
-          indicator.className = 'step-item completed';
-          content.classList.remove('active');
+      if (indicator && pane) {
+        if (i === stepNum) {
+          indicator.className = 'indicator-step active';
+          pane.classList.add('active');
+        } else if (i < stepNum) {
+          indicator.className = 'indicator-step completed';
+          pane.classList.remove('active');
         } else {
-          indicator.className = 'step-item';
-          content.classList.remove('active');
+          indicator.className = 'indicator-step';
+          pane.classList.remove('active');
         }
       }
     }
 
-    this.updateSummary();
+    this.updateSummaryCard();
   },
 
-  // Step 1: Set service
-  setBookingService(name, price, duration, el) {
+  pickService(name, price, duration, el) {
     this.state.service = { name, price, duration };
     if (el && el.parentElement) {
-      el.parentElement.querySelectorAll('.selectable-card').forEach(c => c.classList.remove('selected'));
+      el.parentElement.querySelectorAll('.bezel-selectable').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
     }
-    this.showToast(`Servicio: ${name} (${price}€)`);
-    this.updateSummary();
+    this.showToast(`${name} (${price}€)`);
+    this.updateSummaryCard();
   },
 
-  // Step 2: Set barber
-  setBarber(name, el) {
+  pickBarber(name, el) {
     this.state.barber = name;
     if (el && el.parentElement) {
-      el.parentElement.querySelectorAll('.selectable-card').forEach(c => c.classList.remove('selected'));
+      el.parentElement.querySelectorAll('.bezel-selectable').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
     }
     this.showToast(`Barbero: ${name}`);
-    this.updateSummary();
+    this.updateSummaryCard();
   },
 
-  // Step 3: Calendar Days and Time Slots
   generateCalendarDays() {
-    const daysContainer = document.getElementById('days-container');
-    if (!daysContainer) return;
+    const strip = document.getElementById('days-strip');
+    if (!strip) return;
 
-    daysContainer.innerHTML = '';
+    strip.innerHTML = '';
     const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
     const monthNames = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -170,8 +262,8 @@ const app = {
       d.setDate(today.getDate() + offset);
       offset++;
 
-      const dayOfWeek = d.getDay(); // 0 is Sunday
-      if (dayOfWeek === 0) continue; // Closed on Sundays
+      const dayOfWeek = d.getDay();
+      if (dayOfWeek === 0) continue; // Sunday closed
 
       const dayName = dayNames[dayOfWeek];
       const dayNum = d.getDate();
@@ -180,11 +272,11 @@ const app = {
 
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `day-btn ${daysAdded === 0 ? 'selected' : ''}`;
+      btn.className = `day-chip-btn ${daysAdded === 0 ? 'selected' : ''}`;
       btn.innerHTML = `
-        <span class="day-name">${dayName}</span>
-        <span class="day-number">${dayNum}</span>
-        <span style="font-size: 0.65rem; color: inherit; opacity: 0.8;">${monthName}</span>
+        <span style="font-size: 0.7rem; text-transform: uppercase;">${dayName}</span>
+        <span style="font-size: 1.25rem; font-weight: 800; margin: 2px 0;">${dayNum}</span>
+        <span style="font-size: 0.65rem; opacity: 0.8;">${monthName}</span>
       `;
 
       if (daysAdded === 0) {
@@ -193,28 +285,25 @@ const app = {
       }
 
       btn.addEventListener('click', () => {
-        daysContainer.querySelectorAll('.day-btn').forEach(b => b.classList.remove('selected'));
+        strip.querySelectorAll('.day-chip-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         this.state.date = dateString;
         this.renderTimeSlots(dayOfWeek);
-        this.updateSummary();
+        this.updateSummaryCard();
       });
 
-      daysContainer.appendChild(btn);
+      strip.appendChild(btn);
       daysAdded++;
     }
   },
 
   renderTimeSlots(dayOfWeek) {
-    const slotsContainer = document.getElementById('time-slots-container');
-    const label = document.getElementById('selected-day-label');
-    if (!slotsContainer) return;
+    const container = document.getElementById('slots-flow');
+    const label = document.getElementById('label-turnos');
+    if (!container) return;
 
-    slotsContainer.innerHTML = '';
+    container.innerHTML = '';
 
-    // Schedule:
-    // Mon-Fri: 09:30-13:30 and 16:00-20:30
-    // Sat: 09:00-14:00
     let slots = [];
     if (dayOfWeek === 6) {
       // Saturday
@@ -232,7 +321,7 @@ const app = {
     slots.forEach((time, idx) => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `time-slot-btn ${idx === 3 || (slots.length > 5 && time === '17:30') ? 'selected' : ''}`;
+      btn.className = `time-pill-btn ${idx === 3 || (slots.length > 5 && time === '17:30') ? 'selected' : ''}`;
       btn.textContent = time;
 
       if (btn.classList.contains('selected')) {
@@ -240,23 +329,22 @@ const app = {
       }
 
       btn.addEventListener('click', () => {
-        slotsContainer.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+        container.querySelectorAll('.time-pill-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         this.state.time = time;
         this.showToast(`Hora: ${time}`);
-        this.updateSummary();
+        this.updateSummaryCard();
       });
 
-      slotsContainer.appendChild(btn);
+      container.appendChild(btn);
     });
   },
 
-  // 5. Update summary fields
-  updateSummary() {
-    const sService = document.getElementById('summary-service');
-    const sBarber = document.getElementById('summary-barber');
-    const sDatetime = document.getElementById('summary-datetime');
-    const sPrice = document.getElementById('summary-price');
+  updateSummaryCard() {
+    const sService = document.getElementById('card-service');
+    const sBarber = document.getElementById('card-barber');
+    const sDatetime = document.getElementById('card-datetime');
+    const sPrice = document.getElementById('card-price');
 
     if (sService) sService.textContent = `${this.state.service.name} (${this.state.service.duration} min)`;
     if (sBarber) sBarber.textContent = this.state.barber;
@@ -264,8 +352,7 @@ const app = {
     if (sPrice) sPrice.textContent = `${this.state.service.price},00 €`;
   },
 
-  // 6. Submit Booking & Open WhatsApp
-  submitBooking(e) {
+  handleBookingSubmit(e) {
     e.preventDefault();
     const name = document.getElementById('client-name')?.value.trim();
     const phone = document.getElementById('client-phone')?.value.trim();
@@ -278,90 +365,81 @@ const app = {
 
     this.state.client = { name, phone, notes };
 
-    // Format WhatsApp message to owner (+34 658 74 36 09)
+    // Format WhatsApp message for owner (+34 658 74 36 09)
     const msg = 
 `💈 *NUEVA CITA - BARBERÍA EL GALÁN* 💈
 ----------------------------------
 ✂️ *Servicio:* ${this.state.service.name} (${this.state.service.price}€)
 ⏱️ *Duración:* ${this.state.service.duration} min
 💈 *Especialista:* ${this.state.barber}
-📅 *Fecha y Hora:* ${this.state.date} a las ${this.state.time}
+📅 *Fecha:* ${this.state.date} a las ${this.state.time}
 📍 *Lugar:* Carrer Bisbe Winibal, 12, Elche
 
 👤 *Cliente:* ${name}
 📞 *Teléfono:* ${phone}
 ${notes ? `📝 *Nota:* ${notes}` : ''}
 ----------------------------------
-_Mensaje enviado desde la web oficial de El Galán Barbershop_`;
+_Mensaje generado desde la web oficial de El Galán Barbershop_`;
 
-    const encodedMsg = encodeURIComponent(msg);
-    const waUrl = `https://wa.me/34658743609?text=${encodedMsg}`;
+    const encoded = encodeURIComponent(msg);
+    const waUrl = `https://wa.me/34658743609?text=${encoded}`;
 
-    // Update modal
-    const modalText = document.getElementById('modal-details-text');
-    const modalLink = document.getElementById('modal-whatsapp-link');
+    const desc = document.getElementById('modal-desc');
+    const btn = document.getElementById('modal-wa-button');
 
-    if (modalText) {
-      modalText.innerHTML = `
+    if (desc) {
+      desc.innerHTML = `
         <strong>${name}</strong>, tu cita para <strong>${this.state.service.name}</strong> 
-        el día <strong>${this.state.date} a las ${this.state.time}</strong> está preparada.<br><br>
-        Toca el botón para enviar los detalles directamente a la barbería por WhatsApp.
+        el día <strong>${this.state.date} a las ${this.state.time}</strong> está configurada.<br><br>
+        Toca el botón para enviar los datos directamente a la barbería por WhatsApp.
       `;
     }
 
-    if (modalLink) {
-      modalLink.href = waUrl;
-    }
+    if (btn) btn.href = waUrl;
 
-    this.openModal();
-  },
-
-  openModal() {
-    const modal = document.getElementById('confirm-modal');
+    const modal = document.getElementById('booking-modal');
     if (modal) modal.classList.add('open');
   },
 
   closeModal() {
-    const modal = document.getElementById('confirm-modal');
+    const modal = document.getElementById('booking-modal');
     if (modal) modal.classList.remove('open');
   },
 
-  // 7. FAQ Accordion Toggle
+  // 7. FAQ Accordion
   toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const answer = item.querySelector('.faq-answer');
+    const item = btn.closest('.faq-card-item');
+    const drawer = item.querySelector('.faq-content-drawer');
     const isOpen = item.classList.contains('active');
 
-    // Close all
-    document.querySelectorAll('.faq-item').forEach(i => {
+    document.querySelectorAll('.faq-card-item').forEach(i => {
       i.classList.remove('active');
-      const a = i.querySelector('.faq-answer');
-      if (a) a.style.maxHeight = null;
+      const d = i.querySelector('.faq-content-drawer');
+      if (d) d.style.maxHeight = null;
     });
 
     if (!isOpen) {
       item.classList.add('active');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
+      drawer.style.maxHeight = drawer.scrollHeight + 'px';
     }
   },
 
-  // 8. Toast Helper
-  showToast(message) {
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toast-message');
-    if (!toast || !toastMsg) return;
+  // 8. Toast
+  showToast(text) {
+    const toast = document.getElementById('toast-pill');
+    const tText = document.getElementById('toast-text');
+    if (!toast || !tText) return;
 
-    toastMsg.textContent = message;
-    toast.classList.add('show');
+    tText.textContent = text;
+    toast.classList.add('active');
 
-    clearTimeout(this._toastTimeout);
-    this._toastTimeout = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2400);
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      toast.classList.remove('active');
+    }, 2200);
   }
 };
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   app.init();
 });
