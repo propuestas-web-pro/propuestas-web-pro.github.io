@@ -2,898 +2,1674 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#050608">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#090a0f">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090a0f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Barbería El Galán | Elche · Alta Barbería & Cuidado de Autor</title>
-  <meta name="description" content="Barbería El Galán en Elche (Carrer Bisbe Winibal 12). Cortes clásicos, degradados de precisión, ritual de toalla caliente y navaja. Reserva online.">
-  <link rel="stylesheet" href="styles.css">
+
+  <title>Barbería El Galán | Elche · Cita Online en 30s & Alta Barbería</title>
+  <meta name="description" content="Barbería El Galán en Carrer Bisbe Winibal 12, Elche. Reserva tu cita online en 30 segundos sin llamadas. Skin fades, degradados y ritual de barba.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Barbería El Galán | Elche · Cita Online en 30s">
+  <meta property="og:description" content="Skin fades, degradados al milímetro y cuidado de barba en Elche. Reserva tu cita en 30 segundos desde el móvil.">
+  <meta property="og:image" content="assets/img/hero-bg.jpg">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>">
-  <!-- GSAP & ScrollTrigger for Agency-tier Motion Choreography -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Google Fonts: Outfit (Titulares y Cifras de Lujo) + Plus Jakarta Sans (Texto Ultranítido) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       MOBILE-FIRST DESIGN SYSTEM (EL GALÁN · ALTA BARBERÍA)
+       ========================================================================== */
+    :root {
+      --bg: #090a0f;
+      --card: #12141c;
+      --card-hover: #181b26;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-gold: rgba(234, 179, 8, 0.35);
+      --gold: #eab308;
+      --gold-light: #fde047;
+      --gold-dark: #ca8a04;
+      --gold-grad: linear-gradient(135deg, #fde047 0%, #eab308 50%, #ca8a04 100%);
+      --gold-glow: rgba(234, 179, 8, 0.25);
+      --text: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --muted: #94a3b8;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-head: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Universal Reset & Mobile Native Baseline */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      padding-bottom: calc(76px + env(safe-area-inset-bottom, 16px));
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Atmosphere Glow */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      max-width: 100vw;
+      height: 450px;
+      background: radial-gradient(circle, rgba(234, 179, 8, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Control & Tappable Touch Ergonomics */
+    button, a, [role="button"], input, select, textarea {
+      touch-action: manipulation;
+    }
+
+    button, a, [role="button"] {
+      user-select: none;
+      -webkit-user-select: none;
+      transition: transform 120ms var(--ease-out), background 120ms ease, border-color 120ms ease;
+    }
+
+    button:active, a:active, [role="button"]:active {
+      transform: scale(0.97);
+    }
+
+    /* Input zoom prevention on iOS (16px floor) */
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+
+    /* Hover gated strictly for desktop pointer devices */
+    @media (hover: hover) and (pointer: fine) {
+      .btn-hero-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(234, 179, 8, 0.5);
+      }
+      .btn-hero-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .service-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(234, 179, 8, 0.3);
+      }
+      .barber-opt:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(234, 179, 8, 0.3);
+      }
+      .time-slot:hover {
+        border-color: var(--gold);
+        color: var(--gold-light);
+      }
+      .desktop-nav a:hover {
+        color: var(--gold-light);
+      }
+    }
+
+    /* Responsive Main Container */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 28px;
+      }
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    /* --- TOP SLIM PREVIEW CHIP --- */
+    .preview-chip {
+      background: rgba(234, 179, 8, 0.1);
+      border-bottom: 1px solid rgba(234, 179, 8, 0.25);
+      padding: 6px 12px;
+      font-size: 11px;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .preview-badge {
+      background: var(--gold-grad);
+      color: #000;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* --- STICKY APP HEADER --- */
+    .site-header {
+      height: 64px;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 10, 15, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand-crest {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1e2230, #12141c);
+      border: 1px solid var(--card-border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--gold);
+      box-shadow: 0 0 14px var(--gold-glow);
+    }
+    .brand-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .brand-sub {
+      font-size: 10px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+    }
+    .desktop-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-header-call {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+
+    .btn-header-cta {
+      display: none;
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 9px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(234, 179, 8, 0.3);
+    }
+
+    @media (min-width: 900px) {
+      .desktop-nav { display: flex; }
+      .btn-header-cta { display: block; }
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      padding: 20px 0 24px;
+    }
+    @media (min-width: 900px) {
+      .hero { padding: 48px 0 36px; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px;
+        align-items: center;
+      }
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234, 179, 8, 0.08);
+      border: 1px solid rgba(234, 179, 8, 0.28);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .rating-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.6px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 44px;
+        letter-spacing: -1px;
+      }
+    }
+    .gold-text {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 768px) {
+      .hero-desc { font-size: 16px; margin-bottom: 24px; }
+    }
+
+    /* Hero Action Buttons */
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 500px) {
+      .hero-actions {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .btn-hero-primary {
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      padding: 13px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(234, 179, 8, 0.4);
+      text-align: center;
+    }
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    /* Stats Grid */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 6px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* Hero Media Visual Card */
+    .hero-media-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border-gold);
+      height: 220px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    }
+    @media (min-width: 900px) {
+      .hero-media-wrapper { height: 360px; }
+    }
+    .hero-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-media-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: rgba(9, 10, 15, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .badge-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .badge-sub {
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    /* --- SECTION COMMONS --- */
+    .section-wrap {
+      padding: 22px 0;
+    }
+    .section-header-row {
+      margin-bottom: 12px;
+    }
+    .section-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .section-heading {
+      font-family: var(--font-head);
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+    }
+    @media (min-width: 768px) {
+      .section-heading { font-size: 26px; }
+    }
+
+    /* --- BENEFIT SECTION (ANTES vs AHORA) --- */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 800px) {
+      .benefit-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .benefit-card.pro {
+      border-color: var(--card-border-gold);
+      background: linear-gradient(180deg, rgba(234, 179, 8, 0.06) 0%, var(--card) 100%);
+      box-shadow: 0 8px 25px -8px rgba(234, 179, 8, 0.2);
+    }
+    .benefit-tag {
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+    }
+    .benefit-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .compare-item:last-child { margin-bottom: 0; }
+    .icon-bad {
+      color: var(--danger);
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .icon-good {
+      color: var(--success);
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    /* --- BEFORE / AFTER SLIDER (TOUCH NATIVE & PRECISE) --- */
+    .slider-frame {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border-gold);
+      user-select: none;
+      -webkit-user-select: none;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      cursor: ew-resize;
+    }
+    @media (min-width: 900px) {
+      .slider-frame { height: 380px; }
+    }
+    .slider-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .slider-after-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      overflow: hidden;
+      border-right: 2px solid var(--gold);
+      pointer-events: none;
+    }
+    .slider-after-box img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .slider-thumb {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 900;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(234, 179, 8, 0.7);
+      z-index: 5;
+      touch-action: none;
+    }
+    .slider-label {
+      position: absolute;
+      bottom: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 6;
+      backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+
+    /* --- 4-STEP INTERACTIVE BOOKING ENGINE --- */
+    .wizard-card {
+      background: var(--card);
+      border: 1px solid var(--card-border-gold);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+    @media (min-width: 768px) {
+      .wizard-card { padding: 28px; }
+    }
+    .wizard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .wizard-title {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .wizard-tag {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      background: rgba(234, 179, 8, 0.12);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    /* Step Segmented Navigation */
+    .step-segmented {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .step-pill {
+      flex: 1;
+      padding: 8px 2px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .step-pill.active {
+      background: var(--gold-grad);
+      color: #000;
+      box-shadow: 0 2px 8px rgba(234, 179, 8, 0.3);
+    }
+
+    .step-page {
+      display: none;
+    }
+    .step-page.active {
+      display: block;
+      animation: stepFade 0.15s ease-out;
+    }
+    @keyframes stepFade {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Service Choice Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 768px) {
+      .service-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    }
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      min-height: 54px;
+    }
+    .service-item.selected {
+      background: rgba(234, 179, 8, 0.1);
+      border-color: var(--gold);
+    }
+    .service-info {
+      flex: 1;
+      padding-right: 10px;
+    }
+    .service-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .service-sub {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .service-pricing {
+      text-align: right;
+    }
+    .service-price {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+    .service-min {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* Barber Choice Row */
+    .barber-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .barber-opt {
+      flex: 1;
+      padding: 12px 6px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      text-align: center;
+      cursor: pointer;
+    }
+    .barber-opt.selected {
+      background: rgba(234, 179, 8, 0.1);
+      border-color: var(--gold);
+    }
+    .barber-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid var(--gold);
+    }
+    .barber-opt-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .barber-opt-role {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* Date and Times */
+    .day-scroll {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+    .day-scroll::-webkit-scrollbar { display: none; }
+    .day-chip {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .day-chip.selected {
+      background: var(--gold-grad);
+      color: #000;
+      font-weight: 800;
+      border-color: transparent;
+    }
+
+    .time-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 768px) {
+      .time-matrix { grid-template-columns: repeat(8, 1fr); }
+    }
+    .time-slot {
+      padding: 10px 4px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+    }
+    .time-slot.selected {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    /* Inputs in step 4 */
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 600px) {
+      .input-row { grid-template-columns: 1fr 1fr; }
+    }
+    .input-field {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+    }
+    .input-field:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-action-wizard {
+      width: 100%;
+      background: var(--gold-grad);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(234, 179, 8, 0.4);
+    }
+
+    /* --- REVIEWS SECTION --- */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 800px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    }
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .reviewer {
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .stars {
+      color: #fbbf24;
+      font-size: 11px;
+    }
+    .review-body {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    /* --- LOCATION SECTION --- */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 800px) {
+      .location-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: center;
+      }
+    }
+    .location-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .loc-row {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .loc-row:last-child { margin-bottom: 0; }
+    .loc-icon {
+      color: var(--gold);
+      font-size: 16px;
+    }
+    .map-frame {
+      width: 100%;
+      height: 200px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+    @media (min-width: 800px) {
+      .map-frame { height: 260px; }
+    }
+
+    /* --- FOOTER --- */
+    .site-footer {
+      border-top: 1px solid var(--card-border);
+      padding: 24px 0 20px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* --- MOBILE FLOATING STICKY ACTION BAR --- */
+    .sticky-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(9, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--card-border-gold);
+      padding: 8px 14px calc(8px + env(safe-area-inset-bottom, 0px));
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.8);
+    }
+    @media (min-width: 900px) {
+      .sticky-bottom-bar { display: none; }
+    }
+    .btn-sticky-cta {
+      flex: 1;
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
+    }
+    .btn-sticky-action {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    /* --- SUCCESS CONFIRMATION MODAL --- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-sheet {
+      background: #12141c;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(234, 179, 8, 0.2);
+    }
+    .modal-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gold-grad);
+      color: #000;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-weight: 900;
+    }
+    .sim-card {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 14px 0;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .btn-modal-close {
+      background: var(--gold-grad);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 800;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Floating Island Navbar (Apple/Linear Architecture) -->
-  <header class="header-wrapper">
-    <nav class="floating-navbar" id="floating-nav">
-      <a href="#" class="nav-brand">
-        <div class="nav-crest">EG</div>
+  <!-- Top Slim Demo Chip -->
+  <div class="preview-chip">
+    <span class="preview-badge">DEMO EXCLUSIVA</span>
+    <span>Adaptada para <strong>Barbería El Galán</strong> · Elche</span>
+  </div>
+
+  <!-- Sticky Native Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-group">
+        <div class="brand-crest">EG</div>
         <div>
-          <span class="nav-brand-title">El Galán</span>
-          <span class="nav-brand-city">Elche</span>
+          <div class="brand-title">EL GALÁN</div>
+          <div class="brand-sub">BARBER STUDIO · ELCHE</div>
         </div>
       </a>
 
-      <ul class="nav-links-pill">
-        <li><a href="#transformacion">Transformación</a></li>
-        <li><a href="#experiencia">El Ritual</a></li>
-        <li><a href="#servicios">Tarifas</a></li>
-        <li><a href="#reservas">Cita Online</a></li>
-        <li><a href="#contacto">Ubicación</a></li>
-      </ul>
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav">
+        <a href="#ventajas">¿Por qué automatizar?</a>
+        <a href="#transformacion">Antes y Después</a>
+        <a href="#reservar">Reservar Cita</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
 
-      <a href="#reservas" class="btn-nested btn-nested-gold">
-        <span>Pedir Cita</span>
-        <span class="btn-icon-bubble">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-
-      <button class="mobile-menu-trigger" onclick="app.toggleMenu()" aria-label="Abrir Menú">
-        <span>☰</span>
-      </button>
-    </nav>
+      <div class="header-right">
+        <a href="tel:658743609" class="btn-header-call" title="Llamar">
+          <span>📞</span>
+          <span>658 74 36 09</span>
+        </a>
+        <a href="#reservar" class="btn-header-cta" onclick="jumpStep(1)">💈 Reservar Cita</a>
+      </div>
+    </div>
   </header>
 
-  <!-- Fullscreen Mobile Takeover Menu -->
-  <div class="full-mobile-takeover" id="mobile-takeover">
-    <div class="takeover-top">
-      <div class="nav-brand">
-        <div class="nav-crest">EG</div>
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-info">
+          <div class="rating-pill">
+            <span class="rating-dot"></span>
+            <span>4.9 ★ · 185 Reseñas en Google Maps</span>
+          </div>
+
+          <h1 class="hero-title">
+            FADES DE AUTOR & <span class="gold-text">CUIDADO DE BARBA</span> EN ELCHE
+          </h1>
+
+          <p class="hero-desc">
+            Tus clientes eligen corte, barbero y hora en 30 segundos desde el móvil. La cita entra confirmada directamente a tu WhatsApp y tú sigues cortando sin tener que soltar la máquina para atender llamadas.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#reservar" class="btn-hero-primary" onclick="jumpStep(1)">
+              <span>💈 Reservar Cita Online (30s)</span>
+            </a>
+            <a href="https://wa.me/34658743609?text=Hola,%20quisiera%20pedir%20cita%20en%20Barber%C3%ADa%20El%20Gal%C3%A1n" target="_blank" rel="noopener" class="btn-hero-secondary">
+              <span>💬 Contactar por WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Quick Metrics -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-val">4.9 ★</div>
+              <div class="stat-lbl">185 Reseñas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">0 min</div>
+              <div class="stat-lbl">Sin llamadas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">30 seg</div>
+              <div class="stat-lbl">Cita ágil</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Photography Card -->
+        <div class="hero-media-wrapper">
+          <img src="assets/img/hero-bg.jpg" alt="Atmósfera artesanal de Barbería El Galán en Bisbe Winibal, Elche" class="hero-media-img">
+          <div class="hero-media-badge">
+            <div>
+              <div class="badge-title">Barbería El Galán · Bisbe Winibal 12</div>
+              <div class="badge-sub">Cita directa sin esperas telefónicas</div>
+            </div>
+            <span style="font-size: 18px;">⚡</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANTES vs CON TU WEB PROPIA -->
+    <section class="section-wrap" id="ventajas">
+      <div class="section-header-row">
+        <span class="section-kicker">RENTABILIDAD Y TIEMPO</span>
+        <h2 class="section-heading">¿Por qué cambiar el método de citas?</h2>
+      </div>
+
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-tag" style="color: var(--danger);">MÉTODO TRADICIONAL</div>
+          <h3 class="benefit-title">Llamadas continuas e interrupciones en cabina</h3>
+          <div class="compare-item">
+            <span class="icon-bad">✕</span>
+            <div><strong>Parar el corte a mitad:</strong> Soltar la máquina o navaja para descolgar <em>"¿tienes hueco para hoy?"</em>.</div>
+          </div>
+          <div class="compare-item">
+            <span class="icon-bad">✕</span>
+            <div><strong>Tiempo perdido al cerrar:</strong> Salir de la barbería y dedicar 1 hora diaria a cuadrar mensajes de WhatsApp pendientes.</div>
+          </div>
+        </div>
+
+        <div class="benefit-card pro">
+          <div class="benefit-tag" style="color: var(--gold);">CON TU WEB PROPIA (EL GALÁN)</div>
+          <h3 class="benefit-title">Tus clientes se autogestionan desde el móvil</h3>
+          <div class="compare-item">
+            <span class="icon-good">✓</span>
+            <div><strong>El 90% reserva solo:</strong> Eligen corte, barbero y turno en 3 clics desde Google Maps o Instagram.</div>
+          </div>
+          <div class="compare-item">
+            <span class="icon-good">✓</span>
+            <div><strong>Notificación ordenada en WhatsApp:</strong> Todo llega confirmado con nombre y hora. Tú solo atiendes el sillón.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER INTERACTIVE SLIDER -->
+    <section class="section-wrap" id="transformacion">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
         <div>
-          <span class="nav-brand-title">El Galán</span>
-          <span class="nav-brand-city">Elche</span>
+          <span class="section-kicker">PRECISIÓN DE ALTO NIVEL</span>
+          <h2 class="section-heading">El Arte del Degradado</h2>
         </div>
-      </div>
-      <button class="mobile-menu-trigger" style="display: flex;" onclick="app.toggleMenu()" aria-label="Cerrar">✕</button>
-    </div>
-
-    <ul class="takeover-nav-list">
-      <li><a href="#transformacion" onclick="app.toggleMenu()">Transformación <span>01</span></a></li>
-      <li><a href="#experiencia" onclick="app.toggleMenu()">El Ritual <span>02</span></a></li>
-      <li><a href="#servicios" onclick="app.toggleMenu()">Carta & Precios <span>03</span></a></li>
-      <li><a href="#reservas" onclick="app.toggleMenu()">Reservar Cita <span>04</span></a></li>
-      <li><a href="#contacto" onclick="app.toggleMenu()">Ubicación Elche <span>05</span></a></li>
-    </ul>
-
-    <div style="display: flex; flex-direction: column; gap: 10px;">
-      <a href="tel:658743609" class="btn-nested btn-nested-secondary" style="justify-content: center;">
-        <span>Llamar: 658 74 36 09</span>
-      </a>
-      <a href="https://wa.me/34658743609?text=Hola,%20quisiera%20pedir%20cita%20en%20Barber%C3%ADa%20El%20Gal%C3%A1n" target="_blank" class="btn-nested btn-whatsapp-bubble" style="justify-content: center; padding: 14px 20px;">
-        <span>WhatsApp Directo</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Ambient Light Spotlights -->
-  <div class="ambient-glow" style="top: -100px; left: 50%; transform: translateX(-50%);"></div>
-
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-layer">
-      <img src="assets/img/hero-bg.jpg" alt="Atmósfera artesanal de Barbería El Galán en Elche" id="hero-bg-img">
-    </div>
-    <div class="hero-radial-wash"></div>
-
-    <div class="container hero-inner">
-      <div class="eyebrow-tag">
-        <span class="live-dot"></span>
-        <span>Tradición & Maestría • Carrer Bisbe Winibal 12, Elche</span>
+        <span style="font-size: 11px; color: var(--muted); font-weight: 600;">Desliza ⇄</span>
       </div>
 
-      <h1 class="hero-h1">
-        El Arte del Corte <span class="inline-media-pill" style="background-image: url('assets/img/craft-haircut.jpg');"></span> & La Barba de Autor
-      </h1>
-
-      <p class="hero-subtitle">
-        En El Galán Barbershop fusionamos la navaja clásica, toallas calientes y los degradados de máxima precisión milimétrica en pleno corazón de Elche.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#reservas" class="btn-nested btn-nested-gold" style="padding: 8px 8px 8px 24px; font-size: 0.95rem;">
-          <span>Reservar Cita Online</span>
-          <span class="btn-icon-bubble" style="width: 40px; height: 40px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-        <a href="#servicios" class="btn-nested btn-nested-secondary">
-          <span>Ver Carta de Servicios</span>
-        </a>
+      <div class="slider-frame" id="sliderFrame">
+        <img src="assets/img/hero-bg.jpg" alt="Antes / Estilo clásico" class="slider-img">
+        <div class="slider-after-box" id="sliderAfter">
+          <img src="assets/img/craft-haircut.jpg" alt="Acabado Skin Fade Galán">
+        </div>
+        <div class="slider-thumb" id="sliderThumb">⇄</div>
+        <span class="slider-label" style="left: 10px; color: var(--gold-light);">Skin Fade</span>
+        <span class="slider-label" style="right: 10px; color: var(--muted);">Estudio</span>
       </div>
+    </section>
 
-      <div class="hero-credentials-bar">
-        <div class="credential-item">
-          <span class="credential-star">★★★★★</span>
-          <span><strong>4.9 / 5</strong> en Google Maps (150+ reseñas)</span>
-        </div>
-        <div class="credential-item">
-          <span>📍 <strong>Elche 03201</strong> • Atención con cita previa</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Infinite Editorial Ticker Marquee -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <div class="marquee-item"><span>Cortes Clásicos</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Skin Fade de Precisión</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Ritual Toalla Caliente</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Afeitado a Navaja</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Carrer Bisbe Winibal 12</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Cosmética Masculina</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Elche • Alicante</span> <span class="symbol">◆</span></div>
-      <!-- Duplicate for infinite continuous flow -->
-      <div class="marquee-item"><span>Cortes Clásicos</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Skin Fade de Precisión</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Ritual Toalla Caliente</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Afeitado a Navaja</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Carrer Bisbe Winibal 12</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Cosmética Masculina</span> <span class="symbol">◆</span></div>
-      <div class="marquee-item"><span>Elche • Alicante</span> <span class="symbol">◆</span></div>
-    </div>
-  </div>
-
-  <!-- Interactive Before & After Transformation Slider -->
-  <section class="transformation-section" id="transformacion">
-    <div class="container">
-      <div style="text-align: center; max-width: 680px; margin: 0 auto 48px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">El Estándar Galán</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 14px;">
-          La Transformación: Arrastra y Compara
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem;">
-          Desliza el cursor o tu dedo sobre la imagen para observar el nivel de pulido en la navaja y el degradado.
-        </p>
-      </div>
-
-      <div class="split-slider-container">
-        <div class="slider-wrapper" id="before-after-frame">
-          <!-- Background image (After / Precision) -->
-          <img src="assets/img/craft-haircut.jpg" class="slider-image" alt="Degradado pulido y afeitado final en Barbería El Galán">
-          <span class="slider-tag right">Resultado Impecable</span>
-
-          <!-- Foreground layer (Before / Atmosphere) -->
-          <div class="slider-before-layer" id="before-layer">
-            <img src="assets/img/beard-ritual.jpg" class="slider-image" alt="Ritual tradicional con navaja y espuma">
-            <span class="slider-tag left">Ritual en Proceso</span>
+    <!-- 4-STEP INTERACTIVE BOOKING ENGINE -->
+    <section class="section-wrap" id="reservar">
+      <div class="wizard-card">
+        <div class="wizard-header">
+          <div>
+            <span class="section-kicker" style="margin-bottom: 2px;">SISTEMA EN TIEMPO REAL</span>
+            <h2 class="wizard-title">Reserva tu Turno en 30 Segundos</h2>
           </div>
-
-          <!-- Draggable Handle -->
-          <div class="slider-handle" id="slider-handle">
-            <span>⇄</span>
-          </div>
+          <span class="wizard-tag">DEMO ACTIVA</span>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Gapless Bento Grid with Double-Bezel Architecture -->
-  <section class="bento-section" id="experiencia">
-    <div class="container">
-      <div style="text-align: center; max-width: 700px; margin: 0 auto 56px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">Artesanía & Experiencia</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; margin-bottom: 16px;">
-          Mucho más que cortarse el pelo
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 0.98rem; line-height: 1.7;">
-          Un espacio donde el tiempo se detiene. Estudiamos tus facciones, escuchamos tu estilo y ejecutamos una experiencia multisensorial.
-        </p>
-      </div>
+        <!-- Segmented Steps -->
+        <div class="step-segmented">
+          <button class="step-pill active" id="pill1" onclick="jumpStep(1)">1. Servicio</button>
+          <button class="step-pill" id="pill2" onclick="jumpStep(2)">2. Barbero</button>
+          <button class="step-pill" id="pill3" onclick="jumpStep(3)">3. Turno</button>
+          <button class="step-pill" id="pill4" onclick="jumpStep(4)">4. Confirmar</button>
+        </div>
 
-      <div class="bento-gapless">
-        <!-- Bento Card 1 (Span 8) -->
-        <div class="bezel-shell bento-span-8">
-          <div class="bezel-core">
-            <span class="eyebrow-tag" style="margin-bottom: 16px;">Filosofía de Barbería</span>
-            <h3 style="font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 14px; line-height: 1.2;">
-              Sin prisas. Atención individualizada para cada caballero.
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; max-width: 680px;">
-              Rechazamos los cortes en cadena de 10 minutos. En El Galán cada cita cuenta con el tiempo necesario para lavado con champú refrescante, diagnóstico capilar, toallas calientes y acabado a navaja.
-            </p>
+        <!-- STEP 1: SERVICES -->
+        <div class="step-page active" id="page1">
+          <div class="service-grid">
+            <div class="service-item selected" onclick="pickService(this, 'Skin Fade / Degradado', '14€', '40m')">
+              <div class="service-info">
+                <div class="service-name">✂️ Skin Fade / Degradado</div>
+                <div class="service-sub">Máquina, navaja, lavado y fijación profesional.</div>
+              </div>
+              <div class="service-pricing">
+                <div class="service-price">14€</div>
+                <div class="service-min">40 min</div>
+              </div>
+            </div>
 
-            <div class="feature-pill-grid">
-              <div class="feature-pill-item">
-                <h5>Toalla Caliente & Vapor</h5>
-                <p>Apertura de poros con esencias de cedro y eucalipto para evitar cualquier irritación en el afeitado.</p>
+            <div class="service-item" onclick="pickService(this, 'Arreglo de Barba & Ritual', '10€', '30m')">
+              <div class="service-info">
+                <div class="service-name">🧔 Arreglo de Barba & Toalla</div>
+                <div class="service-sub">Perfilado a navaja, hidratación con aceites y toalla caliente.</div>
               </div>
-              <div class="feature-pill-item">
-                <h5>Skin Fade Milimétrico</h5>
-                <p>Degradados limpios pulidos desde shaver y esculpidos con tijera en coronilla para un look duradero.</p>
+              <div class="service-pricing">
+                <div class="service-price">10€</div>
+                <div class="service-min">30 min</div>
               </div>
-              <div class="feature-pill-item">
-                <h5>Cosmética Seleccionada</h5>
-                <p>Pomadas al agua, tónicos capilares de romero y aceites nutritivos para barba de acabado mate o brillo.</p>
+            </div>
+
+            <div class="service-item" onclick="pickService(this, 'Combo VIP (Pelo + Barba)', '22€', '60m')">
+              <div class="service-info">
+                <div class="service-name">👑 Combo VIP (Pelo + Barba)</div>
+                <div class="service-sub">Servicio completo premium con masaje capilar y toalla.</div>
               </div>
-              <div class="feature-pill-item">
-                <h5>Espresso de Cortesía</h5>
-                <p>Música seleccionada, sillones de cuero ergonómicos y café recién hecho mientras te acomodas.</p>
+              <div class="service-pricing">
+                <div class="service-price">22€</div>
+                <div class="service-min">60 min</div>
+              </div>
+            </div>
+
+            <div class="service-item" onclick="pickService(this, 'Corte Clásico a Tijera', '12€', '35m')">
+              <div class="service-info">
+                <div class="service-name">💈 Corte Clásico Tradicional</div>
+                <div class="service-sub">Corte artesanal personalizado según facciones del rostro.</div>
+              </div>
+              <div class="service-pricing">
+                <div class="service-price">12€</div>
+                <div class="service-min">35 min</div>
               </div>
             </div>
           </div>
+
+          <button class="btn-action-wizard" onclick="jumpStep(2)">
+            Siguiente: Elegir Barbero ➔
+          </button>
         </div>
 
-        <!-- Bento Card 2 (Span 4) -->
-        <div class="bezel-shell bento-span-4 bento-shell">
-          <div class="bezel-core bento-card-media">
-            <img src="assets/img/hero-bg.jpg" alt="Interior clásico de El Galán Barbershop">
-            <div class="bento-overlay-content">
-              <span class="eyebrow-tag" style="width: fit-content; margin-bottom: 8px;">El Salón</span>
-              <h4 style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--text-primary);">Un templo del cuidado masculino</h4>
-              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px;">Ubicado en Carrer Bisbe Winibal 12, Elche.</p>
+        <!-- STEP 2: BARBER -->
+        <div class="step-page" id="page2">
+          <div class="barber-row">
+            <div class="barber-opt selected" onclick="pickBarber(this, 'Primer Hueco Disponible')">
+              <div class="barber-avatar">⚡</div>
+              <div class="barber-opt-name">Cualquiera</div>
+              <div class="barber-opt-role">Más rápido</div>
+            </div>
+
+            <div class="barber-opt" onclick="pickBarber(this, 'Carlos (Master Barber)')">
+              <div class="barber-avatar">🧔</div>
+              <div class="barber-opt-name">Carlos</div>
+              <div class="barber-opt-role">Master Fade</div>
+            </div>
+
+            <div class="barber-opt" onclick="pickBarber(this, 'Mateo (Freestyle)')">
+              <div class="barber-avatar">✂️</div>
+              <div class="barber-opt-name">Mateo</div>
+              <div class="barber-opt-role">Freestyle</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Services & Pricing Menu with Double-Bezel Cards -->
-  <section class="services-section" id="servicios">
-    <div class="container">
-      <div style="text-align: center; max-width: 680px; margin: 0 auto 40px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">Tarifas Transparentes</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 14px;">
-          Carta de Servicios
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem;">
-          Precios claros sin sorpresas. Elige tu tratamiento preferido o resérvalo directamente online.
-        </p>
-      </div>
-
-      <div class="tabs-segmented" id="services-tabs">
-        <button class="tab-pill active" data-cat="all">Todos</button>
-        <button class="tab-pill" data-cat="corte">Cortes</button>
-        <button class="tab-pill" data-cat="barba">Barba</button>
-        <button class="tab-pill" data-cat="combo">Combos</button>
-      </div>
-
-      <div class="services-catalog" id="services-catalog">
-        <!-- Item 1 -->
-        <div class="bezel-shell service-item-shell" data-cat="corte">
-          <div class="bezel-core service-item-card">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Corte de Cabello Clásico</h3>
-                <span class="service-cost">18,00 €</span>
-              </div>
-              <div class="service-time">⏱ 35 minutos • Incluye lavado & peinado</div>
-              <p class="service-text">
-                Asesoramiento según tus facciones, corte a tijera o máquina tradicional, lavado refrescante y fijación con pomada mate.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Cada 3-4 semanas</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Corte Clásico Caballero', 18, 35)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
-          </div>
+          <button class="btn-action-wizard" onclick="jumpStep(3)">
+            Siguiente: Elegir Fecha y Hora ➔
+          </button>
         </div>
 
-        <!-- Item 2 -->
-        <div class="bezel-shell service-item-shell" data-cat="corte" style="border-color: var(--border-gold);">
-          <div class="bezel-core service-item-card">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Skin Fade / Degradado</h3>
-                <span class="service-cost">20,00 €</span>
-              </div>
-              <div class="service-time">⏱ 45 minutos • Shaver + Tijera superior</div>
-              <p class="service-text">
-                Degradado ultra limpio desde cero (Low, Mid, High o Taper Fade), contornos definidos con precisión quirúrgica.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span class="eyebrow-tag" style="margin: 0; padding: 2px 10px; font-size: 0.7rem;">Top Ventas</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Skin Fade / Degradado', 20, 45)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
+        <!-- STEP 3: DATE & TIME -->
+        <div class="step-page" id="page3">
+          <div style="font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px;">1. Día disponible:</div>
+          <div class="day-scroll">
+            <div class="day-chip selected" onclick="pickDay(this, 'Hoy')">Hoy</div>
+            <div class="day-chip" onclick="pickDay(this, 'Mañana')">Mañana</div>
+            <div class="day-chip" onclick="pickDay(this, 'Viernes')">Viernes</div>
+            <div class="day-chip" onclick="pickDay(this, 'Sábado')">Sábado (09h - 14h)</div>
           </div>
+
+          <div style="font-size: 12px; font-weight: 700; color: var(--gold); margin-bottom: 6px;">2. Horario disponible:</div>
+          <div class="time-matrix">
+            <div class="time-slot selected" onclick="pickTime(this, '10:00')">10:00</div>
+            <div class="time-slot" onclick="pickTime(this, '10:45')">10:45</div>
+            <div class="time-slot" onclick="pickTime(this, '11:30')">11:30</div>
+            <div class="time-slot" onclick="pickTime(this, '12:15')">12:15</div>
+            <div class="time-slot" onclick="pickTime(this, '16:30')">16:30</div>
+            <div class="time-slot" onclick="pickTime(this, '17:15')">17:15</div>
+            <div class="time-slot" onclick="pickTime(this, '18:00')">18:00</div>
+            <div class="time-slot" onclick="pickTime(this, '18:45')">18:45</div>
+          </div>
+
+          <button class="btn-action-wizard" onclick="jumpStep(4)">
+            Siguiente: Tus Datos ➔
+          </button>
         </div>
 
-        <!-- Item 3 -->
-        <div class="bezel-shell service-item-shell" data-cat="barba">
-          <div class="bezel-core service-item-card">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Ritual Completo de Barba</h3>
-                <span class="service-cost">16,00 €</span>
-              </div>
-              <div class="service-time">⏱ 30 minutos • Doble toalla caliente & navaja</div>
-              <p class="service-text">
-                Recorte y simetría, toalla caliente perfumada para abrir poros, afeitado de contornos a navaja clásica y bálsamo calmante.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Tratamiento sensorial</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Ritual Completo de Barba', 16, 30)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
+        <!-- STEP 4: CONFIRM -->
+        <div class="step-page" id="page4">
+          <div style="background: rgba(234, 179, 8, 0.08); border: 1px solid rgba(234, 179, 8, 0.3); border-radius: 12px; padding: 12px; margin-bottom: 14px; font-size: 13px;" id="summaryText">
+            • <strong>Skin Fade / Degradado</strong> (14€)<br>
+            • Barbero: Primer Hueco Disponible<br>
+            • Turno: Hoy a las 10:00
           </div>
-        </div>
 
-        <!-- Item 4 -->
-        <div class="bezel-shell service-item-shell" data-cat="barba">
-          <div class="bezel-core service-item-card">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Perfilado & Arreglo Express</h3>
-                <span class="service-cost">11,00 €</span>
-              </div>
-              <div class="service-time">⏱ 20 minutos • Máquina y líneas limpias</div>
-              <p class="service-text">
-                Perfecto para mantener la forma y longitud entre visitas completas. Rápido, nítido y eficaz.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Mantenimiento</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Perfilado & Arreglo Express', 11, 20)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
+          <div class="input-row">
+            <input type="text" class="input-field" id="clientName" placeholder="Tu Nombre completo">
+            <input type="tel" class="input-field" id="clientPhone" placeholder="Tu Teléfono Móvil" inputmode="tel">
           </div>
-        </div>
 
-        <!-- Item 5 -->
-        <div class="bezel-shell service-item-shell" data-cat="combo" style="border-color: var(--border-gold-active);">
-          <div class="bezel-core service-item-card" style="background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(212, 154, 106, 0.1) 100%);">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Combo Imperial (Corte + Barba)</h3>
-                <span class="service-cost">32,00 €</span>
-              </div>
-              <div class="service-time">⏱ 65 minutos • Experiencia total</div>
-              <p class="service-text">
-                La experiencia insignia de El Galán. Corte o degradado a medida, más el ritual de barba con toalla caliente y masaje facial.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span class="eyebrow-tag" style="margin: 0; padding: 3px 12px; font-size: 0.72rem; background: var(--gold-primary); color: #08090b;">Recomendado</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Combo Imperial (Corte + Barba)', 32, 65)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 6 -->
-        <div class="bezel-shell service-item-shell" data-cat="corte">
-          <div class="bezel-core service-item-card">
-            <div>
-              <div class="service-top-row">
-                <h3 class="service-name">Corte Junior / Juvenil</h3>
-                <span class="service-cost">15,00 €</span>
-              </div>
-              <div class="service-time">⏱ 30 minutos • Tendencias y confort</div>
-              <p class="service-text">
-                Para los más jóvenes que quieren lucir los estilos y degradados actuales con la máxima dedicación profesional.
-              </p>
-            </div>
-            <div class="service-card-bottom">
-              <span style="font-size: 0.8rem; color: var(--text-secondary);">Hasta 14 años</span>
-              <button class="btn-nested btn-nested-gold" style="padding: 6px 6px 6px 16px; font-size: 0.78rem;" onclick="app.selectAndJump('Corte Junior', 15, 30)">
-                <span>Elegir</span>
-                <span class="btn-icon-bubble" style="width: 28px; height: 28px;">→</span>
-              </button>
-            </div>
-          </div>
+          <button class="btn-action-wizard" onclick="submitBooking()">
+            ⚡ Confirmar Cita Directa
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Interactive 4-Step Booking Engine (Operate System) -->
-  <section class="booking-section" id="reservas">
-    <div class="container">
-      <div style="text-align: center; max-width: 680px; margin: 0 auto 40px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">Reserva Online</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; margin-bottom: 14px;">
-          Configura Tu Turno en 4 Pasos
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem;">
-          Sin llamadas ni esperas. Tu confirmación llega directamente al WhatsApp de la barbería.
-        </p>
-      </div>
-
-      <div class="bezel-shell" style="max-width: 860px; margin: 0 auto;">
-        <div class="bezel-core">
-          <!-- Progress Indicator -->
-          <div class="step-indicator-bar">
-            <div class="indicator-step active" id="indicator-1" onclick="app.setStep(1)">
-              <div class="step-circle">1</div>
-              <span class="step-title-text">Servicio</span>
-            </div>
-            <div class="indicator-step" id="indicator-2" onclick="app.setStep(2)">
-              <div class="step-circle">2</div>
-              <span class="step-title-text">Barbero</span>
-            </div>
-            <div class="indicator-step" id="indicator-3" onclick="app.setStep(3)">
-              <div class="step-circle">3</div>
-              <span class="step-title-text">Fecha & Hora</span>
-            </div>
-            <div class="indicator-step" id="indicator-4" onclick="app.setStep(4)">
-              <div class="step-circle">4</div>
-              <span class="step-title-text">Confirmar</span>
-            </div>
-          </div>
-
-          <!-- STEP 1: Select Service -->
-          <div class="booking-view-pane active" id="pane-1">
-            <h4 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 6px;">Paso 1: ¿Qué servicio deseas hoy?</h4>
-            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 22px;">Selecciona el tratamiento principal para tu cita:</p>
-
-            <div class="service-options-list">
-              <div class="bezel-shell bezel-selectable selected" onclick="app.pickService('Skin Fade / Degradado', 20, 45, this)">
-                <div class="bezel-core" style="padding: 16px;">
-                  <strong style="display: block; font-size: 0.98rem;">Skin Fade / Degradado</strong>
-                  <span style="font-size: 0.78rem; color: var(--text-secondary);">45 min • Máxima precisión</span>
-                  <div style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-light); margin-top: 10px; font-weight: 800;">20,00 €</div>
-                </div>
-              </div>
-
-              <div class="bezel-shell bezel-selectable" onclick="app.pickService('Corte Clásico Caballero', 18, 35, this)">
-                <div class="bezel-core" style="padding: 16px;">
-                  <strong style="display: block; font-size: 0.98rem;">Corte Clásico Caballero</strong>
-                  <span style="font-size: 0.78rem; color: var(--text-secondary);">35 min • Tijera & Peinado</span>
-                  <div style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-light); margin-top: 10px; font-weight: 800;">18,00 €</div>
-                </div>
-              </div>
-
-              <div class="bezel-shell bezel-selectable" onclick="app.pickService('Ritual Completo de Barba', 16, 30, this)">
-                <div class="bezel-core" style="padding: 16px;">
-                  <strong style="display: block; font-size: 0.98rem;">Ritual Completo de Barba</strong>
-                  <span style="font-size: 0.78rem; color: var(--text-secondary);">30 min • Toalla caliente & Navaja</span>
-                  <div style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-light); margin-top: 10px; font-weight: 800;">16,00 €</div>
-                </div>
-              </div>
-
-              <div class="bezel-shell bezel-selectable" onclick="app.pickService('Combo Imperial (Corte + Barba)', 32, 65, this)">
-                <div class="bezel-core" style="padding: 16px;">
-                  <strong style="display: block; font-size: 0.98rem;">Combo Imperial (Corte + Barba)</strong>
-                  <span style="font-size: 0.78rem; color: var(--text-secondary);">65 min • Experiencia total</span>
-                  <div style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--gold-light); margin-top: 10px; font-weight: 800;">32,00 €</div>
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: flex-end;">
-              <button class="btn-nested btn-nested-gold" onclick="app.setStep(2)">
-                <span>Siguiente: Barbero</span>
-                <span class="btn-icon-bubble">→</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 2: Select Barber -->
-          <div class="booking-view-pane" id="pane-2">
-            <h4 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 6px;">Paso 2: ¿Con qué especialista prefieres?</h4>
-            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 22px;">Elige a tu profesional o el primer hueco disponible:</p>
-
-            <div class="barber-cards-grid">
-              <div class="bezel-shell bezel-selectable selected" onclick="app.pickBarber('Primer hueco libre (Más rápido)', this)">
-                <div class="bezel-core" style="padding: 22px; text-align: center;">
-                  <div class="barber-avatar-ring" style="display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold-primary);">⚡</div>
-                  <strong style="font-family: var(--font-display); font-size: 1rem;">Primer Hueco Libre</strong>
-                  <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px;">Mayor flexibilidad horaria</p>
-                </div>
-              </div>
-
-              <div class="bezel-shell bezel-selectable" onclick="app.pickBarber('Maestro Galán (Master Barber)', this)">
-                <div class="bezel-core" style="padding: 22px; text-align: center;">
-                  <div class="barber-avatar-ring">
-                    <img src="assets/img/craft-haircut.jpg" alt="Maestro Galán">
-                  </div>
-                  <strong style="font-family: var(--font-display); font-size: 1rem;">Maestro Galán</strong>
-                  <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px;">Especialista en Fades y Navaja</p>
-                </div>
-              </div>
-
-              <div class="bezel-shell bezel-selectable" onclick="app.pickBarber('Alejandro (Barbero Senior)', this)">
-                <div class="bezel-core" style="padding: 22px; text-align: center;">
-                  <div class="barber-avatar-ring">
-                    <img src="assets/img/beard-ritual.jpg" alt="Alejandro Barbero">
-                  </div>
-                  <strong style="font-family: var(--font-display); font-size: 1rem;">Alejandro</strong>
-                  <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 4px;">Especialista en Barba Clásica</p>
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; gap: 10px;">
-              <button class="btn-nested btn-nested-secondary" onclick="app.setStep(1)">← Atrás</button>
-              <button class="btn-nested btn-nested-gold" onclick="app.setStep(3)">
-                <span>Siguiente: Fecha</span>
-                <span class="btn-icon-bubble">→</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 3: Select Date & Time -->
-          <div class="booking-view-pane" id="pane-3">
-            <h4 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 6px;">Paso 3: Elige día y turno</h4>
-            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 22px;">Horario real de Carrer Bisbe Winibal 12:</p>
-
-            <div class="datetime-layout">
-              <div class="date-box-module">
-                <div class="box-title-label">
-                  <span>📅</span>
-                  <span>Desliza para elegir día</span>
-                </div>
-                <div class="days-horizontal-strip" id="days-strip">
-                  <!-- Populated by JS -->
-                </div>
-              </div>
-
-              <div class="time-box-module">
-                <div class="box-title-label">
-                  <span>⏱</span>
-                  <span id="label-turnos">Turnos disponibles</span>
-                </div>
-                <div class="time-slots-flow" id="slots-flow">
-                  <!-- Populated by JS -->
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; gap: 10px;">
-              <button class="btn-nested btn-nested-secondary" onclick="app.setStep(2)">← Atrás</button>
-              <button class="btn-nested btn-nested-gold" onclick="app.setStep(4)">
-                <span>Siguiente: Datos</span>
-                <span class="btn-icon-bubble">→</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 4: Confirm -->
-          <div class="booking-view-pane" id="pane-4">
-            <h4 style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 6px;">Paso 4: Confirma los detalles</h4>
-            <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 22px;">Completa tus datos para enviarte la confirmación directa:</p>
-
-            <div class="booking-summary-card">
-              <div class="breakdown-row">
-                <span style="color: var(--text-secondary);">Servicio:</span>
-                <strong id="card-service">Skin Fade / Degradado</strong>
-              </div>
-              <div class="breakdown-row">
-                <span style="color: var(--text-secondary);">Especialista:</span>
-                <strong id="card-barber">Primer Hueco Libre</strong>
-              </div>
-              <div class="breakdown-row">
-                <span style="color: var(--text-secondary);">Fecha & Turno:</span>
-                <strong id="card-datetime">Hoy a las 17:30</strong>
-              </div>
-              <div class="breakdown-row">
-                <span style="color: var(--text-secondary);">Ubicación:</span>
-                <span>Carrer Bisbe Winibal 12, Elche</span>
-              </div>
-              <div class="breakdown-row">
-                <span style="color: var(--text-secondary);">Importe total en salón:</span>
-                <span id="card-price">20,00 €</span>
-              </div>
-            </div>
-
-            <form onsubmit="app.handleBookingSubmit(event)">
-              <div class="form-fields-grid">
-                <div class="form-field-group">
-                  <label class="field-label" for="client-name">Nombre y Apellidos *</label>
-                  <input type="text" class="field-input" id="client-name" required placeholder="Ej: Carlos Gómez" autocomplete="name">
-                </div>
-                <div class="form-field-group">
-                  <label class="field-label" for="client-phone">Teléfono / WhatsApp *</label>
-                  <input type="tel" class="field-input" id="client-phone" required placeholder="Ej: 658 000 000" autocomplete="tel" inputmode="tel">
-                </div>
-                <div class="form-field-group full">
-                  <label class="field-label" for="client-notes">Comentarios adicionales (opcional)</label>
-                  <input type="text" class="field-input" id="client-notes" placeholder="Ej: Primera visita, piel sensible...">
-                </div>
-              </div>
-
-              <div style="display: flex; justify-content: space-between; gap: 10px;">
-                <button type="button" class="btn-nested btn-nested-secondary" onclick="app.setStep(3)">← Modificar</button>
-                <button type="submit" class="btn-nested btn-nested-gold" style="padding: 8px 8px 8px 24px;">
-                  <span>Confirmar & Enviar WhatsApp</span>
-                  <span class="btn-icon-bubble" style="width: 38px; height: 38px;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Google Verified Reviews -->
-  <section class="reviews-section" id="opiniones">
-    <div class="container">
-      <div style="text-align: center; max-width: 680px; margin: 0 auto 48px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">Testimonios Verificados</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 14px;">
-          4.9 Estrellas en Google Maps
-        </h2>
-        <p style="color: var(--text-secondary); font-size: 0.95rem;">
-          Más de 150 clientes avalan el trato, la puntualidad y el resultado de nuestro salón en Elche.
-        </p>
+    <!-- REAL GOOGLE REVIEWS SECTION -->
+    <section class="section-wrap" id="opiniones">
+      <div class="section-header-row">
+        <span class="section-kicker">4.9 ★ EN GOOGLE MAPS</span>
+        <h2 class="section-heading">Clientes que confían en El Galán</h2>
       </div>
 
       <div class="reviews-grid">
-        <div class="bezel-shell">
-          <div class="bezel-core" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
-            <div>
-              <div style="color: #ffb800; font-size: 1.05rem; margin-bottom: 12px;">★★★★★</div>
-              <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; font-style: italic;">
-                "Llevo dos años viniendo a El Galán y no cambio por nada. El trato es impecable, el degradado aguanta semanas perfecto y el ritual de barba con toalla caliente te deja renovado."
-              </p>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
-              <div class="nav-crest" style="width: 36px; height: 36px; font-size: 0.85rem;">MG</div>
-              <div>
-                <strong style="font-size: 0.9rem; display: block;">Marcos García</strong>
-                <span style="font-size: 0.75rem; color: var(--text-secondary);">Reseña Verificada de Google</span>
-              </div>
-            </div>
+        <div class="review-card">
+          <div class="review-top">
+            <span class="reviewer">Alejandro R.</span>
+            <span class="stars">★★★★★</span>
           </div>
+          <p class="review-body">"El mejor degradado de Elche. Trato impecable y el afeitado con toalla caliente es de otro nivel. 10 de 10."</p>
         </div>
 
-        <div class="bezel-shell">
-          <div class="bezel-core" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
-            <div>
-              <div style="color: #ffb800; font-size: 1.05rem; margin-bottom: 12px;">★★★★★</div>
-              <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; font-style: italic;">
-                "Puntualidad británica, sillones cómodos y ambiente vintage de diez. Me aconsejaron un corte acorde a la forma de mi cara y acertaron de lleno. 100% recomendable en Elche."
-              </p>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
-              <div class="nav-crest" style="width: 36px; height: 36px; font-size: 0.85rem;">DP</div>
-              <div>
-                <strong style="font-size: 0.9rem; display: block;">David Pastor</strong>
-                <span style="font-size: 0.75rem; color: var(--text-secondary);">Cliente Habitual</span>
-              </div>
-            </div>
+        <div class="review-card">
+          <div class="review-top">
+            <span class="reviewer">Sergio Pomares</span>
+            <span class="stars">★★★★★</span>
           </div>
+          <p class="review-body">"Llevo viniendo más de 2 años a Bisbe Winibal. El ambiente es brutal y el perfilado de barba perfecto."</p>
         </div>
 
-        <div class="bezel-shell">
-          <div class="bezel-core" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;">
-            <div>
-              <div style="color: #ffb800; font-size: 1.05rem; margin-bottom: 12px;">★★★★★</div>
-              <p style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6; font-style: italic;">
-                "Fui antes de mi boda para el Combo Imperial y fue una experiencia de lujo. Salí relajado y el peinado aguantó intacto todo el reportaje de fotos y la ceremonia."
-              </p>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
-              <div class="nav-crest" style="width: 36px; height: 36px; font-size: 0.85rem;">JR</div>
-              <div>
-                <strong style="font-size: 0.9rem; display: block;">Javier Riquelme</strong>
-                <span style="font-size: 0.75rem; color: var(--text-secondary);">Novio Satisfecho • Elche</span>
-              </div>
-            </div>
+        <div class="review-card">
+          <div class="review-top">
+            <span class="reviewer">David Martínez</span>
+            <span class="stars">★★★★★</span>
           </div>
+          <p class="review-body">"Puntuales, limpios y muy detallistas. Da gusto tener un sitio donde te cortan el pelo sin prisas ni chapuzas."</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Location & Hours Section -->
-  <section class="location-section" id="contacto">
-    <div class="container">
-      <div class="location-layout">
-        <div class="bezel-shell">
-          <div class="bezel-core" style="padding: 32px;">
-            <span class="eyebrow-tag" style="margin-bottom: 14px;">Ven a Conocernos</span>
-            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 16px;">
-              Ubicación en el Corazón de Elche
-            </h3>
+    <!-- LOCATION & HOURS -->
+    <section class="section-wrap" id="ubicacion">
+      <div class="section-header-row">
+        <span class="section-kicker">ENCUÉNTRANOS EN ELCHE</span>
+        <h2 class="section-heading">Horarios y Ubicación</h2>
+      </div>
 
-            <div style="margin-bottom: 24px;">
-              <strong style="display: block; font-size: 0.95rem; margin-bottom: 4px;">📍 Dirección</strong>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">Carrer Bisbe Winibal, 12, 03201 Elche, Alicante</p>
+      <div class="location-grid">
+        <div class="location-box">
+          <div class="loc-row">
+            <span class="loc-icon">📍</span>
+            <div>
+              <strong>Carrer Bisbe Winibal, 12</strong><br>
+              03202 Elche, Alicante
             </div>
-
-            <div style="margin-bottom: 24px;">
-              <strong style="display: block; font-size: 0.95rem; margin-bottom: 4px;">📞 Teléfono Directo</strong>
-              <p><a href="tel:658743609" style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem;">+34 658 74 36 09</a></p>
-              <span style="font-size: 0.78rem; color: var(--text-tertiary);">Atención por teléfono y WhatsApp</span>
+          </div>
+          <div class="loc-row">
+            <span class="loc-icon">⏰</span>
+            <div>
+              <strong>Horario Comercial:</strong><br>
+              Lunes a Viernes: 09:30 - 13:30 / 16:00 - 20:30<br>
+              Sábados: 09:00 - 14:00 · Domingos cerrado
             </div>
-
-            <div style="margin-bottom: 30px;">
-              <strong style="display: block; font-size: 0.95rem; margin-bottom: 8px;">🕐 Horarios</strong>
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem;">
-                <tr style="border-bottom: 1px solid var(--border-subtle);">
-                  <td style="padding: 6px 0; color: var(--text-secondary);">Lunes a Viernes</td>
-                  <td style="padding: 6px 0; text-align: right; font-weight: 700;">09:30–13:30 | 16:00–20:30</td>
-                </tr>
-                <tr style="border-bottom: 1px solid var(--border-subtle);">
-                  <td style="padding: 6px 0; color: var(--text-secondary);">Sábados</td>
-                  <td style="padding: 6px 0; text-align: right; font-weight: 700;">09:00–14:00</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: var(--text-secondary);">Domingos</td>
-                  <td style="padding: 6px 0; text-align: right; color: #e57373;">Cerrado</td>
-                </tr>
-              </table>
-            </div>
-
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-              <a href="https://maps.google.com/?q=Carrer+Bisbe+Winibal+12+Elche" target="_blank" class="btn-nested btn-nested-secondary" style="flex: 1; justify-content: center;">
-                <span>Abrir Google Maps</span>
-              </a>
-              <a href="https://wa.me/34658743609" target="_blank" class="btn-nested btn-whatsapp-bubble" style="flex: 1; justify-content: center; padding: 12px 18px;">
-                <span>WhatsApp</span>
-              </a>
+          </div>
+          <div class="loc-row">
+            <span class="loc-icon">📞</span>
+            <div>
+              <strong>Atención Directa:</strong><br>
+              +34 658 74 36 09
             </div>
           </div>
         </div>
 
-        <div class="map-enclosure">
+        <div class="map-frame">
           <iframe 
-            src="https://maps.google.com/maps?q=Carrer%20Bisbe%20Winibal,%2012,%2003201%20Elx,%20Alicante&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-            title="Mapa de ubicación Barbería El Galán Elche"
+            title="Ubicación Barbería El Galán Elche"
+            width="100%" 
+            height="100%" 
+            style="border:0; filter: invert(90%) hue-rotate(180deg);" 
+            src="https://maps.google.com/maps?q=Barberia+El+Galan+Bisbe+Winibal+12+Elche&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            allowfullscreen 
             loading="lazy">
           </iframe>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ Accordion -->
-  <section class="section" style="background: var(--bg-deep);">
-    <div class="container">
-      <div style="text-align: center; max-width: 680px; margin: 0 auto 40px auto;">
-        <span class="eyebrow-tag" style="margin-bottom: 12px;">Preguntas Frecuentes</span>
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;">
-          ¿Tienes Dudas?
-        </h2>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p style="margin-bottom: 4px;"><strong>Barbería El Galán</strong> · Carrer Bisbe Winibal 12, Elche</p>
+      <p style="color: var(--muted); font-size: 10px;">
+        Propuesta y demostración tecnológica desarrollada por Fathi para la digitalización de Barbería El Galán en Elche.
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- MOBILE FIXED STICKY ACTION BAR -->
+  <div class="sticky-bottom-bar">
+    <a href="#reservar" class="btn-sticky-cta" onclick="jumpStep(1)">
+      <span>💈 Reservar Cita (30s)</span>
+    </a>
+    <a href="https://wa.me/34658743609?text=Hola,%20quisiera%20pedir%20cita%20en%20Barber%C3%ADa%20El%20Gal%C3%A1n" target="_blank" rel="noopener" class="btn-sticky-action" title="WhatsApp">
+      <span>💬</span>
+    </a>
+    <a href="tel:658743609" class="btn-sticky-action" title="Llamar">
+      <span>📞</span>
+    </a>
+  </div>
+
+  <!-- SUCCESS SIMULATION MODAL -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-sheet">
+      <div class="modal-icon">✓</div>
+      <h3 style="font-family: var(--font-head); font-size: 20px; margin-bottom: 4px; color: #fff;">¡CITA SOLICITADA!</h3>
+      <p style="font-size: 12px; color: var(--muted);">Así de rápido y cómodo es para tus clientes.</p>
+
+      <div class="sim-card">
+        <div style="font-weight: 800; color: #4ade80; margin-bottom: 4px;">📲 Mensaje recibido en tu WhatsApp:</div>
+        <div id="modalSummary">
+          • Cliente: <strong>Marcos Soler</strong><br>
+          • Servicio: <strong>Skin Fade (14€)</strong><br>
+          • Turno: <strong>Hoy a las 10:00</strong>
+        </div>
+        <div style="color: var(--gold-light); font-size: 10px; margin-top: 6px;">*El cliente no tuvo que llamar y tú no tuviste que interrumpir tu corte.</div>
       </div>
 
-      <div class="faq-accordion-list">
-        <div class="faq-card-item active">
-          <button class="faq-trigger" onclick="app.toggleFaq(this)">
-            <span>¿Es necesario reservar cita previa?</span>
-            <span class="faq-icon-rotator">+</span>
-          </button>
-          <div class="faq-content-drawer" style="max-height: 180px;">
-            <div class="faq-content-inner">
-              Recomendamos reservar con antelación a través de nuestra web para garantizar tu turno sin demoras. Si pasas por Carrer Bisbe Winibal y tenemos disponibilidad te atenderemos, pero las reservas online tienen preferencia absoluta.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-card-item">
-          <button class="faq-trigger" onclick="app.toggleFaq(this)">
-            <span>¿Qué incluye el Ritual de Barba?</span>
-            <span class="faq-icon-rotator">+</span>
-          </button>
-          <div class="faq-content-drawer">
-            <div class="faq-content-inner">
-              Recorte y diseño de simetría con máquina, toalla caliente con aceites aromáticos, afeitado a navaja tradicional de pómulos y cuello, toalla fría para tonificar y bálsamo nutritivo con suave masaje.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-card-item">
-          <button class="faq-trigger" onclick="app.toggleFaq(this)">
-            <span>¿Dónde se puede aparcar cerca del local?</span>
-            <span class="faq-icon-rotator">+</span>
-          </button>
-          <div class="faq-content-drawer">
-            <div class="faq-content-inner">
-              En las calles colindantes a Bisbe Winibal hay aparcamiento en superficie y a escasos minutos a pie cuentas con parkings públicos del centro de Elche.
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-card-item">
-          <button class="faq-trigger" onclick="app.toggleFaq(this)">
-            <span>¿Qué métodos de pago aceptáis?</span>
-            <span class="faq-icon-rotator">+</span>
-          </button>
-          <div class="faq-content-drawer">
-            <div class="faq-content-inner">
-              Aceptamos pagos en efectivo, tarjeta de débito/crédito y Bizum en el propio salón una vez finalizado tu servicio.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer style="background: var(--bg-void); border-top: 1px solid var(--border-subtle); padding: 70px 0 30px 0;">
-    <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; padding-bottom: 40px; border-bottom: 1px solid var(--border-subtle);">
-        <div class="nav-brand">
-          <div class="nav-crest">EG</div>
-          <div>
-            <span class="nav-brand-title" style="font-size: 1.15rem;">El Galán Barbershop</span>
-            <span class="nav-brand-city" style="display: block;">C/ Bisbe Winibal 12, Elche</span>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 20px; font-size: 0.88rem; color: var(--text-secondary);">
-          <a href="#transformacion">Transformación</a>
-          <a href="#experiencia">El Ritual</a>
-          <a href="#servicios">Carta</a>
-          <a href="#reservas">Cita Online</a>
-        </div>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; font-size: 0.8rem; color: var(--text-tertiary);">
-        <div>© 2026 Barbería El Galán Elche. Todos los derechos reservados.</div>
-        <div>miweblocal.com</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Mobile Sticky Bottom Dock (Native App Feel) -->
-  <div class="mobile-bottom-dock">
-    <div class="mobile-dock-grid">
-      <a href="tel:658743609" class="mobile-dock-btn phone">
-        <span style="font-size: 1.1rem;">📞</span>
-        <span>Llamar</span>
-      </a>
-      <a href="#reservas" class="mobile-dock-btn reserve">
-        <span style="font-size: 1.1rem;">✂️</span>
-        <span>Pedir Cita</span>
-      </a>
-      <a href="https://wa.me/34658743609?text=Hola,%20quisiera%20pedir%20cita%20en%20Barber%C3%ADa%20El%20Gal%C3%A1n" target="_blank" class="mobile-dock-btn chat">
-        <span style="font-size: 1.1rem;">💬</span>
-        <span>WhatsApp</span>
-      </a>
+      <button class="btn-modal-close" onclick="closeModal()">Entendido</button>
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div class="toast-pill" id="toast-pill">
-    <span style="color: var(--gold-primary);">✂️</span>
-    <span id="toast-text">Servicio seleccionado</span>
-  </div>
-
-  <!-- Booking Confirmation Modal -->
-  <div class="modal-backdrop" id="booking-modal">
-    <div class="bezel-shell" style="max-width: 440px; width: 100%;">
-      <div class="bezel-core" style="text-align: center; padding: 32px 20px;">
-        <div style="width: 58px; height: 58px; border-radius: 50%; background: rgba(37, 211, 102, 0.15); border: 2px solid #25d366; color: #25d366; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; margin: 0 auto 16px auto;">✓</div>
-        <h3 style="font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 10px;">¡Cita Preparada!</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;" id="modal-desc">
-          Tu confirmación está lista para enviarse al WhatsApp oficial de Barbería El Galán.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <a href="#" id="modal-wa-button" target="_blank" class="btn-nested btn-whatsapp-bubble" style="justify-content: center; padding: 14px 20px;">
-            <span>Abrir WhatsApp y Confirmar</span>
-          </a>
-          <button class="btn-nested btn-nested-secondary" onclick="app.closeModal()" style="justify-content: center;">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-  <!-- Owner Activation Banner -->
+  <!-- Client Preview Banner System for miweblocal.com -->
   <script src="/owner-banner.js" defer></script>
+
+  <script>
+    // State management
+    let selectedService = 'Skin Fade / Degradado (14€)';
+    let selectedBarber = 'Primer Hueco Disponible';
+    let selectedDay = 'Hoy';
+    let selectedTime = '10:00';
+
+    function updateSummary() {
+      const summary = document.getElementById('summaryText');
+      if (summary) {
+        summary.innerHTML = `
+          • Servicio: <strong>${selectedService}</strong><br>
+          • Barbero: <strong>${selectedBarber}</strong><br>
+          • Turno: <strong>${selectedDay} a las ${selectedTime}</strong>
+        `;
+      }
+    }
+
+    function jumpStep(stepNum) {
+      document.querySelectorAll('.step-page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.step-pill').forEach(p => p.classList.remove('active'));
+
+      const targetPage = document.getElementById('page' + stepNum);
+      const targetPill = document.getElementById('pill' + stepNum);
+      if (targetPage) targetPage.classList.add('active');
+      if (targetPill) targetPill.classList.add('active');
+
+      updateSummary();
+
+      const el = document.getElementById('reservar');
+      if (el) {
+        const topOffset = el.getBoundingClientRect().top + window.pageYOffset - 70;
+        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      }
+    }
+
+    function pickService(el, name, price, duration) {
+      document.querySelectorAll('.service-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedService = `${name} (${price})`;
+      updateSummary();
+    }
+
+    function pickBarber(el, name) {
+      document.querySelectorAll('.barber-opt').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedBarber = name;
+      updateSummary();
+    }
+
+    function pickDay(el, day) {
+      document.querySelectorAll('.day-chip').forEach(d => d.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedDay = day;
+      updateSummary();
+    }
+
+    function pickTime(el, time) {
+      document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedTime = time;
+      updateSummary();
+    }
+
+    function submitBooking() {
+      const nameInput = document.getElementById('clientName');
+      const phoneInput = document.getElementById('clientPhone');
+      const name = (nameInput && nameInput.value.trim()) || 'Cliente';
+      const phone = (phoneInput && phoneInput.value.trim()) || 'No indicado';
+
+      const modalSummary = document.getElementById('modalSummary');
+      if (modalSummary) {
+        modalSummary.innerHTML = `
+          • Cliente: <strong>${name}</strong> (${phone})<br>
+          • Servicio: <strong>${selectedService}</strong><br>
+          • Turno: <strong>${selectedDay} a las ${selectedTime}</strong>
+        `;
+      }
+
+      document.getElementById('successModal').classList.add('active');
+
+      // WhatsApp direct payload URL
+      const textMsg = encodeURIComponent(
+        `¡Hola Barbería El Galán! Quiero confirmar mi cita:\n` +
+        `✂️ Servicio: ${selectedService}\n` +
+        `🧔 Barbero: ${selectedBarber}\n` +
+        `⏰ Turno: ${selectedDay} a las ${selectedTime}\n` +
+        `👤 Nombre: ${name}\n` +
+        `📞 Tel: ${phone}`
+      );
+      const waUrl = `https://wa.me/34658743609?text=${textMsg}`;
+      
+      // Open WhatsApp in new tab after brief delay for natural user feel
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 700);
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('active');
+      jumpStep(1);
+    }
+
+    // Touch-Native & Drag-Friendly Before/After Slider
+    (function initSlider() {
+      const frame = document.getElementById('sliderFrame');
+      const after = document.getElementById('sliderAfter');
+      const thumb = document.getElementById('sliderThumb');
+      if (!frame || !after || !thumb) return;
+
+      let isDragging = false;
+
+      function updatePosition(clientX) {
+        const rect = frame.getBoundingClientRect();
+        let pct = ((clientX - rect.left) / rect.width) * 100;
+        if (pct < 5) pct = 5;
+        if (pct > 95) pct = 95;
+        after.style.width = pct + '%';
+        thumb.style.left = pct + '%';
+      }
+
+      frame.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        updatePosition(e.clientX);
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        updatePosition(e.clientX);
+      });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isDragging = false;
+      });
+    })();
+  </script>
 </body>
 </html>
