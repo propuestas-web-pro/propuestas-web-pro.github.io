@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Barbería Berlín Elche | Web Oficial & Citas Online</title>
   <meta name="description" content="La barbería de referencia en Elche. Especialistas en taper fades, degradados a piel, arreglo de barba a navaja y diseño de imagen. Reserva en 10 segundos por WhatsApp.">
   <meta name="robots" content="index, follow">
@@ -64,10 +64,10 @@
       --text-muted: #475569;
       --text-light: #64748B;
       --border-light: #E2E8F0;
-      --border-ocean: rgba(2, 132, 199, 0.25);
+      --border-ocean: rgba(2, 132, 199, 0.22);
       --gold-star: #F59E0B;
-      --card-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
-      --card-shadow-hover: 0 20px 40px -10px rgba(2, 132, 199, 0.16), 0 8px 16px rgba(15, 23, 42, 0.06);
+      --card-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.08), 0 3px 10px rgba(15, 23, 42, 0.03);
+      --card-shadow-hover: 0 16px 36px -6px rgba(2, 132, 199, 0.16), 0 6px 14px rgba(15, 23, 42, 0.05);
       --font-heading: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
@@ -89,20 +89,20 @@
       font-family: var(--font-body);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-bottom: 90px;
+      padding-bottom: 110px; /* Margen para que la barra inferior nunca tape nada */
     }
 
-    /* Contenedor perfectamente centrado con margen simétrico */
+    /* Contenedor centrado universal */
     .container {
       width: 100%;
       max-width: 1160px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: 24px;
-      padding-right: 24px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
-    /* Top Agency Proposal Bar (Elegante y centrada) */
+    /* Top Proposal Bar */
     .agency-topbar {
       background: linear-gradient(90deg, #0C4A6E, #0284C7, #0C4A6E);
       color: #FFFFFF;
@@ -145,7 +145,7 @@
       transform: translateY(-1px);
     }
 
-    /* Header Límpido y centrado */
+    /* Header */
     header.main-header {
       position: sticky;
       top: 0;
@@ -233,17 +233,22 @@
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     }
 
-    /* Hero Section Fresca & Equilibrada */
+    /* Hero Section */
     .hero-section {
-      padding: 60px 0 50px;
+      padding: 50px 0 40px;
       background: linear-gradient(180deg, #F0F7FF 0%, #FFFFFF 100%);
       position: relative;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
+      gap: 40px;
       align-items: center;
+    }
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
     .hero-pill {
       display: inline-flex;
@@ -256,10 +261,10 @@
       font-size: 12px;
       font-weight: 700;
       color: var(--ocean-dark);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.08);
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
     }
     .dot-live {
       width: 8px;
@@ -275,14 +280,13 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
-    /* Tipografía corregida y proporcionada */
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(34px, 4.4vw, 54px);
+      font-size: clamp(32px, 4.2vw, 50px);
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.18;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       letter-spacing: -0.5px;
     }
     .ocean-gradient-text {
@@ -292,10 +296,10 @@
       display: inline-block;
     }
     .hero-desc {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--text-muted);
       line-height: 1.65;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
       max-width: 520px;
     }
 
@@ -304,25 +308,25 @@
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
     .btn-hero-primary {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: var(--whatsapp-gradient);
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 800;
-      padding: 15px 28px;
+      padding: 14px 26px;
       border-radius: 12px;
       text-decoration: none;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.3);
       transition: all 0.25s ease;
     }
     .btn-hero-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 10px 24px rgba(16, 185, 129, 0.45);
     }
     .btn-hero-secondary {
       display: inline-flex;
@@ -333,10 +337,10 @@
       color: var(--text-main);
       font-size: 15px;
       font-weight: 700;
-      padding: 15px 24px;
+      padding: 14px 22px;
       border-radius: 12px;
       text-decoration: none;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
       transition: all 0.2s;
     }
     .btn-hero-secondary:hover {
@@ -349,15 +353,15 @@
     .hero-badges-row {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
       flex-wrap: wrap;
-      padding-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid var(--border-light);
     }
     .hero-badge-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-size: 13px;
       font-weight: 600;
       color: var(--text-muted);
@@ -368,6 +372,7 @@
       position: relative;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
     .hero-media-card {
       position: relative;
@@ -376,12 +381,12 @@
       border-radius: 20px;
       overflow: hidden;
       border: 2px solid var(--ocean-light);
-      box-shadow: 0 20px 45px rgba(2, 132, 199, 0.12), 0 6px 18px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 16px 40px rgba(2, 132, 199, 0.12), 0 4px 14px rgba(15, 23, 42, 0.05);
       background: #F8FAFC;
     }
     .hero-img {
       width: 100%;
-      height: 440px;
+      height: 400px;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
@@ -392,46 +397,40 @@
     .hero-media-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(15, 23, 42, 0.55) 100%);
+      background: linear-gradient(180deg, transparent 60%, rgba(15, 23, 42, 0.45) 100%);
     }
 
-    /* Floating Metric Badges */
+    /* Floating Metric Badges (Desktop) */
     .float-badge {
       position: absolute;
       background: #FFFFFF;
       border: 1px solid var(--border-ocean);
       border-radius: 14px;
-      padding: 10px 16px;
-      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.14), 0 4px 10px rgba(15, 23, 42, 0.05);
+      padding: 10px 14px;
+      box-shadow: 0 10px 24px rgba(2, 132, 199, 0.12), 0 3px 8px rgba(15, 23, 42, 0.04);
       display: flex;
       align-items: center;
       gap: 10px;
       z-index: 2;
     }
     .float-badge-top {
-      top: 20px;
-      right: -10px;
-      animation: floatSlow 4s ease-in-out infinite alternate;
+      top: 16px;
+      right: -8px;
     }
     .float-badge-bottom {
-      bottom: 20px;
-      left: -10px;
-      animation: floatSlow 4s ease-in-out infinite alternate 2s;
-    }
-    @keyframes floatSlow {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-6px); }
+      bottom: 16px;
+      left: -8px;
     }
     .float-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       background: var(--ocean-gradient);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
     }
     .float-title {
@@ -448,7 +447,7 @@
 
     /* Key Numbers Strip - Centrada */
     .stats-section {
-      padding: 34px 0;
+      padding: 30px 0;
       background: var(--bg-soft);
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
@@ -459,12 +458,19 @@
       gap: 20px;
       text-align: center;
     }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
     .stat-number {
       font-family: var(--font-heading);
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--ocean-dark);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .stat-label {
       font-size: 12px;
@@ -477,8 +483,8 @@
     /* Section Headers - Perfectamente centradas */
     .section-head {
       text-align: center;
-      margin-bottom: 42px;
-      max-width: 720px;
+      margin-bottom: 38px;
+      max-width: 680px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -488,12 +494,12 @@
       color: var(--ocean-primary);
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       display: block;
     }
     .section-title {
       font-family: var(--font-heading);
-      font-size: clamp(28px, 3.8vw, 38px);
+      font-size: clamp(26px, 3.6vw, 36px);
       font-weight: 800;
       color: var(--text-main);
       line-height: 1.25;
@@ -501,31 +507,32 @@
       letter-spacing: -0.3px;
     }
     .section-subtitle {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
     /* Interactive Booking Simulator - Centrado */
     .booking-interactive-section {
-      padding: 64px 0;
+      padding: 56px 0;
       background: linear-gradient(180deg, #FFFFFF 0%, #F0F7FF 100%);
     }
     .booking-box {
       background: #FFFFFF;
       border: 2px solid var(--ocean-light);
       border-radius: 20px;
-      padding: 34px;
-      box-shadow: 0 16px 36px rgba(2, 132, 199, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
-      max-width: 860px;
+      padding: 30px;
+      box-shadow: 0 14px 34px rgba(2, 132, 199, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+      max-width: 820px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
     .booking-steps-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
-      margin-bottom: 26px;
+      gap: 24px;
+      margin-bottom: 24px;
     }
     .booking-step h3 {
       font-family: var(--font-heading);
@@ -537,7 +544,9 @@
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      text-align: center;
     }
     .step-number {
       width: 24px;
@@ -591,13 +600,13 @@
     .time-slot-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .time-btn {
       background: #F8FAFC;
       border: 1px solid var(--border-light);
       color: var(--text-muted);
-      padding: 12px 8px;
+      padding: 12px 6px;
       border-radius: 12px;
       font-size: 13px;
       font-weight: 700;
@@ -622,12 +631,13 @@
       background: #F0F7FF;
       border: 1px solid var(--border-ocean);
       border-radius: 14px;
-      padding: 18px 22px;
+      padding: 18px 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
     }
     .confirm-summary-title {
       font-size: 12px;
@@ -651,34 +661,40 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
       transition: all 0.2s;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
     }
     .btn-trigger-wa:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
     }
 
-    /* Menu de Precios - Tarjetas limpias y alineadas */
+    /* Menu de Precios - Tarjetas 100% Centradas */
     .services-section {
-      padding: 64px 0;
+      padding: 60px 0;
       background: #FFFFFF;
     }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
+      gap: 24px;
     }
     .service-card {
       background: #FFFFFF;
       border: 1px solid var(--border-light);
-      border-radius: 18px;
-      padding: 26px;
+      border-radius: 20px;
+      padding: 28px 22px;
       position: relative;
       transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
+      align-items: center; /* Centrado en el medio */
+      text-align: center; /* Centrado en el medio */
       justify-content: space-between;
       box-shadow: var(--card-shadow);
     }
@@ -687,32 +703,37 @@
       border-color: var(--ocean-primary);
       box-shadow: var(--card-shadow-hover);
     }
+    .service-card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
     .card-badge-popular {
-      position: absolute;
-      top: 16px;
-      right: 16px;
       background: var(--ocean-gradient);
       color: #FFFFFF;
       font-size: 11px;
       font-weight: 800;
-      padding: 3px 10px;
+      padding: 3px 12px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+      margin-bottom: 12px;
+      display: inline-block;
     }
     .service-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
       background: var(--ocean-light);
       color: var(--ocean-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 800;
-      margin-bottom: 18px;
+      margin: 0 auto 16px; /* Icono centrado en el medio */
     }
     .service-card-title {
       font-family: var(--font-heading);
@@ -720,19 +741,23 @@
       font-weight: 800;
       color: var(--text-main);
       margin-bottom: 8px;
+      text-align: center;
     }
     .service-card-desc {
       font-size: 14px;
       color: var(--text-muted);
       margin-bottom: 18px;
       line-height: 1.5;
+      text-align: center;
     }
     .service-features {
       list-style: none;
-      margin-bottom: 22px;
-      display: flex;
+      margin: 0 auto 22px;
+      display: inline-flex;
       flex-direction: column;
+      align-items: flex-start;
       gap: 8px;
+      text-align: left;
     }
     .service-features li {
       font-size: 13px;
@@ -746,18 +771,23 @@
       font-weight: 800;
     }
     .service-footer {
+      width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding-top: 16px;
       border-top: 1px solid var(--border-light);
       margin-top: auto;
+      gap: 12px;
+      text-align: center;
     }
     .service-price {
       font-family: var(--font-heading);
       font-size: 24px;
       font-weight: 800;
       color: var(--ocean-dark);
+      text-align: center;
     }
     .service-price small {
       font-size: 12px;
@@ -765,14 +795,17 @@
       color: var(--text-light);
     }
     .btn-card-reserve {
+      width: 100%;
       background: var(--ocean-light);
       border: 1px solid var(--border-ocean);
       color: var(--ocean-dark);
       font-size: 13px;
       font-weight: 700;
-      padding: 8px 16px;
+      padding: 10px 18px;
       border-radius: 10px;
       text-decoration: none;
+      text-align: center;
+      display: block;
       transition: all 0.2s;
     }
     .service-card:hover .btn-card-reserve {
@@ -784,21 +817,21 @@
 
     /* Lookbook Gallery */
     .lookbook-section {
-      padding: 64px 0;
+      padding: 60px 0;
       background: var(--bg-soft);
     }
     .lookbook-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 18px;
     }
     .lookbook-card {
       position: relative;
       border-radius: 16px;
       overflow: hidden;
-      height: 310px;
+      height: 300px;
       border: 1px solid var(--border-light);
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
       background: #FFFFFF;
     }
     .lookbook-card img {
@@ -818,6 +851,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      align-items: center;
+      text-align: center;
       padding: 18px;
     }
     .lookbook-title {
@@ -832,15 +867,15 @@
       font-weight: 600;
     }
 
-    /* Testimonials Google */
+    /* Testimonials Google - Centradas */
     .reviews-section {
-      padding: 64px 0;
+      padding: 60px 0;
       background: #FFFFFF;
     }
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 22px;
     }
     .review-card {
       background: #FFFFFF;
@@ -849,6 +884,10 @@
       padding: 24px;
       box-shadow: var(--card-shadow);
       transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .review-card:hover {
       transform: translateY(-4px);
@@ -859,6 +898,7 @@
       font-size: 15px;
       letter-spacing: 2px;
       margin-bottom: 12px;
+      text-align: center;
     }
     .review-text {
       font-size: 14px;
@@ -866,15 +906,19 @@
       line-height: 1.6;
       margin-bottom: 18px;
       font-style: italic;
+      text-align: center;
     }
     .review-author {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
+      text-align: center;
+      gap: 8px;
+      margin-top: auto;
     }
     .author-avatar {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: var(--ocean-gradient);
       color: #FFFFFF;
@@ -895,50 +939,58 @@
       color: var(--text-light);
     }
 
-    /* Location & Hours Section */
+    /* Location & Hours Section - Centrada */
     .location-section {
-      padding: 64px 0;
+      padding: 60px 0;
       background: #F8FAFC;
       border-top: 1px solid var(--border-light);
     }
     .location-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 36px;
+      gap: 32px;
       align-items: center;
     }
     .location-card {
       background: #FFFFFF;
       border: 1px solid var(--border-ocean);
       border-radius: 20px;
-      padding: 32px;
+      padding: 30px;
       box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .location-title {
       font-family: var(--font-heading);
       font-size: 24px;
       font-weight: 800;
       color: var(--text-main);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      text-align: center;
     }
     .location-address {
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+      text-align: center;
     }
     .hours-table {
       width: 100%;
+      max-width: 380px;
       border-collapse: collapse;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .hours-table tr {
       border-bottom: 1px solid var(--border-light);
     }
     .hours-table td {
-      padding: 10px 0;
+      padding: 9px 4px;
       font-size: 14px;
     }
     .hours-table td:last-child {
@@ -947,16 +999,24 @@
       color: var(--ocean-dark);
     }
 
+    .location-card-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
     .btn-maps {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: #FFFFFF;
       border: 1px solid var(--border-light);
       color: var(--text-main);
       font-size: 14px;
       font-weight: 700;
-      padding: 12px 18px;
+      padding: 11px 18px;
       border-radius: 12px;
       text-decoration: none;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
@@ -973,8 +1033,8 @@
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--border-light);
-      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
-      height: 380px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      height: 360px;
     }
     .map-frame-box iframe {
       width: 100%;
@@ -984,45 +1044,47 @@
 
     /* Final CTA Banner Centrada */
     .final-cta-section {
-      padding: 70px 0;
+      padding: 64px 0;
       text-align: center;
       background: #FFFFFF;
     }
     .final-cta-box {
       background: linear-gradient(135deg, #0C4A6E 0%, #0284C7 100%);
       color: #FFFFFF;
-      border-radius: 24px;
-      padding: 50px 24px;
-      box-shadow: 0 20px 50px rgba(2, 132, 199, 0.2);
-      max-width: 900px;
+      border-radius: 22px;
+      padding: 46px 20px;
+      box-shadow: 0 18px 45px rgba(2, 132, 199, 0.18);
+      max-width: 860px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
     .final-cta-box h2 {
       font-family: var(--font-heading);
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(26px, 3.8vw, 38px);
       font-weight: 800;
       color: #FFFFFF;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .final-cta-box p {
-      font-size: 16px;
+      font-size: 15px;
       color: rgba(255, 255, 255, 0.9);
-      max-width: 520px;
-      margin: 0 auto 28px;
+      max-width: 500px;
+      margin: 0 auto 24px;
     }
     .btn-final-wa {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       background: #FFFFFF;
       color: #0284C7;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
-      padding: 15px 30px;
+      padding: 14px 28px;
       border-radius: 12px;
       text-decoration: none;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
       transition: all 0.2s;
     }
     .btn-final-wa:hover {
@@ -1035,7 +1097,7 @@
     footer.main-footer {
       background: #F8FAFC;
       border-top: 1px solid var(--border-light);
-      padding: 36px 0 20px;
+      padding: 32px 0 20px;
       text-align: center;
       font-size: 13px;
       color: var(--text-light);
@@ -1057,11 +1119,11 @@
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid var(--border-ocean);
-      padding: 10px 16px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
       box-shadow: 0 -6px 20px rgba(15, 23, 42, 0.08);
     }
     .mobile-bar-content {
@@ -1073,11 +1135,12 @@
     }
     .btn-mobile-call {
       flex: 1;
+      min-height: 48px;
       background: #F1F5F9;
       border: 1px solid var(--border-light);
       color: var(--text-main);
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
@@ -1088,10 +1151,11 @@
     }
     .btn-mobile-wa {
       flex: 2;
+      min-height: 48px;
       background: var(--whatsapp-gradient);
       color: #FFFFFF;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 800;
       text-decoration: none;
@@ -1102,11 +1166,15 @@
       box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
     }
 
-    /* Responsive PC vs Móvil */
+    /* Responsive PC vs Móvil - Centro Absoluto */
     @media (max-width: 992px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 36px;
+        gap: 32px;
+        text-align: center;
+      }
+      .hero-copy {
+        align-items: center;
         text-align: center;
       }
       .hero-desc {
@@ -1133,7 +1201,7 @@
       }
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 20px;
       }
       .float-badge-top {
         right: 0px;
@@ -1144,11 +1212,52 @@
     }
 
     @media (max-width: 768px) {
+      .header-content {
+        justify-content: center; /* Logo centrado en el medio */
+      }
       .nav-links {
         display: none;
       }
+      .btn-header-cta {
+        display: none; /* Barra inferior se encarga para evitar saturar */
+      }
       .hero-section {
-        padding: 30px 0;
+        padding: 24px 0 30px;
+      }
+      .hero-pill {
+        margin: 0 auto 14px;
+      }
+      .hero-title {
+        font-size: 30px;
+        text-align: center;
+      }
+      .hero-desc {
+        font-size: 15px;
+        text-align: center;
+      }
+      .hero-cta-group {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-badges-row {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+      }
+      .float-badge {
+        display: none; /* Ocultar badges flotantes en móvil para no tapar la foto */
+      }
+      .hero-media-card {
+        max-width: 100%;
+      }
+      .hero-img {
+        height: 320px;
       }
       .services-grid {
         grid-template-columns: 1fr;
@@ -1157,25 +1266,10 @@
         grid-template-columns: 1fr;
       }
       .booking-box {
-        padding: 22px 18px;
-      }
-      .booking-confirm-panel {
-        flex-direction: column;
-        text-align: center;
-        justify-content: center;
-      }
-      .btn-trigger-wa {
-        width: 100%;
-        justify-content: center;
+        padding: 20px 16px;
       }
       .mobile-floating-bar {
         display: block;
-      }
-      .hero-media-card {
-        max-width: 100%;
-      }
-      .hero-img {
-        height: 340px;
       }
     }
   </style>
@@ -1191,7 +1285,7 @@
     </a>
   </div>
 
-  <!-- Header -->
+  <!-- Header Centrado -->
   <header class="main-header">
     <div class="container header-content">
       <a href="#" class="brand-logo">
@@ -1264,7 +1358,7 @@
           <div class="hero-media-overlay"></div>
         </div>
 
-        <!-- Float Badge 1 -->
+        <!-- Float Badge 1 (Desktop) -->
         <div class="float-badge float-badge-top">
           <div class="float-icon">✂</div>
           <div>
@@ -1273,7 +1367,7 @@
           </div>
         </div>
 
-        <!-- Float Badge 2 -->
+        <!-- Float Badge 2 (Desktop) -->
         <div class="float-badge float-badge-bottom">
           <div class="float-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">★</div>
           <div>
@@ -1285,7 +1379,7 @@
     </div>
   </section>
 
-  <!-- Numbers Stats Section -->
+  <!-- Numbers Stats Section - Centrada -->
   <section class="stats-section">
     <div class="container stats-grid">
       <div class="stat-card">
@@ -1307,7 +1401,7 @@
     </div>
   </section>
 
-  <!-- Interactive Quick Booking Assistant -->
+  <!-- Interactive Quick Booking Assistant - Centrado -->
   <section class="booking-interactive-section" id="reservas">
     <div class="container">
       <div class="section-head">
@@ -1374,14 +1468,14 @@
               </div>
             </div>
 
-            <div style="margin-top: 24px; padding: 16px; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--border-light);">
+            <div style="margin-top: 20px; padding: 14px; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--border-light); text-align: center;">
               <div style="font-size: 13px; color: var(--ocean-dark); font-weight: 700; margin-bottom: 4px;">⚡ Confirmación Inmediata:</div>
               <div style="font-size: 12px; color: var(--text-muted);">Al hacer clic abajo, se abrirá WhatsApp con el mensaje ya redactado para que el barbero te confirme el hueco exacto al instante.</div>
             </div>
           </div>
         </div>
 
-        <!-- Step 3: Confirmation Bar -->
+        <!-- Step 3: Confirmation Bar Centrada -->
         <div class="booking-confirm-panel">
           <div>
             <div class="confirm-summary-title">Tu selección:</div>
@@ -1395,7 +1489,7 @@
     </div>
   </section>
 
-  <!-- Carta de Servicios & Precios -->
+  <!-- Carta de Servicios & Precios (100% Centrados con Iconos en el Medio) -->
   <section class="services-section" id="servicios">
     <div class="container">
       <div class="section-head">
@@ -1407,8 +1501,8 @@
       <div class="services-grid">
         <!-- Servicio 1 -->
         <div class="service-card">
-          <span class="card-badge-popular">El Más Pedido</span>
-          <div>
+          <div class="service-card-inner">
+            <span class="card-badge-popular">El Más Pedido</span>
             <div class="service-icon-box">✂</div>
             <h3 class="service-card-title">Corte Degradado / Fade</h3>
             <p class="service-card-desc">Degradado milimétrico a piel (Low, Mid o High Fade), taper fade limpio y peinado con cera o polvo fijador de alta gama.</p>
@@ -1420,13 +1514,13 @@
           </div>
           <div class="service-footer">
             <div class="service-price">14€ <small>/ 35 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Degradado%20Fade" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Degradado%20Fade" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
 
         <!-- Servicio 2 -->
         <div class="service-card">
-          <div>
+          <div class="service-card-inner">
             <div class="service-icon-box">💈</div>
             <h3 class="service-card-title">Corte Clásico Caballero</h3>
             <p class="service-card-desc">Corte formal a tijera y peine, adaptado a tu morfología facial y estilo personal. Incluye lavado y peinado.</p>
@@ -1438,13 +1532,13 @@
           </div>
           <div class="service-footer">
             <div class="service-price">12€ <small>/ 30 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Cl%C3%A1sico" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Cl%C3%A1sico" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
 
         <!-- Servicio 3 -->
         <div class="service-card">
-          <div>
+          <div class="service-card-inner">
             <div class="service-icon-box">🪒</div>
             <h3 class="service-card-title">Arreglo de Barba Tradicional</h3>
             <p class="service-card-desc">Recorte, simetría y perfilado con navaja de barbero. Tratamiento con toalla caliente y aceites hidratantes esenciales.</p>
@@ -1456,14 +1550,14 @@
           </div>
           <div class="service-footer">
             <div class="service-price">10€ <small>/ 25 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Arreglo%20de%20Barba" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Arreglo%20de%20Barba" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
 
         <!-- Servicio 4 -->
         <div class="service-card" style="border-color: var(--ocean-primary);">
-          <span class="card-badge-popular">Experiencia VIP</span>
-          <div>
+          <div class="service-card-inner">
+            <span class="card-badge-popular">Experiencia VIP</span>
             <div class="service-icon-box" style="background: var(--ocean-gradient); color: #fff;">👑</div>
             <h3 class="service-card-title">Pack Completo Berlina VIP</h3>
             <p class="service-card-desc">La experiencia definitiva: Corte degradado completo + arreglo integral de barba a navaja + toalla aromática y peinado.</p>
@@ -1475,13 +1569,13 @@
           </div>
           <div class="service-footer">
             <div class="service-price">22€ <small>/ 55 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20el%20Pack%20VIP%20Completo" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20el%20Pack%20VIP%20Completo" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
 
         <!-- Servicio 5 -->
         <div class="service-card">
-          <div>
+          <div class="service-card-inner">
             <div class="service-icon-box">⚡</div>
             <h3 class="service-card-title">Corte Joven / Estudiante</h3>
             <p class="service-card-desc">Cortes con las últimas tendencias urbanas (Crop, Mullet moderno, Taper Fade con textura) a precio especial para jóvenes.</p>
@@ -1493,15 +1587,15 @@
           </div>
           <div class="service-footer">
             <div class="service-price">12€ <small>/ 30 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Joven" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20reservar%20Corte%20Joven" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
 
         <!-- Servicio 6 -->
         <div class="service-card">
-          <div>
+          <div class="service-card-inner">
             <div class="service-icon-box">✨</div>
-            <h3 class="service-card-title">Black Mask & Limpieza Facial</h3>
+            <h3 class="service-card-title">Black Mask & Facial</h3>
             <p class="service-card-desc">Tratamiento desincrustante de puntos negros, exfoliación facial suave e hidratación para una piel limpia y renovada.</p>
             <ul class="service-features">
               <li><span>✓</span> Mascarilla carbón activo</li>
@@ -1511,14 +1605,14 @@
           </div>
           <div class="service-footer">
             <div class="service-price">8€ <small>/ 15 min</small></div>
-            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20a%C3%B1adir%20Black%20Mask" class="btn-card-reserve" target="_blank" rel="noopener">Reservar</a>
+            <a href="https://wa.me/34641324707?text=Hola%20Barber%C3%ADa%20Berl%C3%ADn,%20quiero%20a%C3%B1adir%20Black%20Mask" class="btn-card-reserve" target="_blank" rel="noopener">Reservar Cita</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Lookbook Gallery Section -->
+  <!-- Lookbook Gallery - Centrada -->
   <section class="lookbook-section" id="lookbook">
     <div class="container">
       <div class="section-head">
@@ -1563,7 +1657,7 @@
     </div>
   </section>
 
-  <!-- Google Reviews Section -->
+  <!-- Google Reviews Section - Centradas -->
   <section class="reviews-section" id="opiniones">
     <div class="container">
       <div class="section-head">
@@ -1612,7 +1706,7 @@
     </div>
   </section>
 
-  <!-- Location & Hours Section -->
+  <!-- Location & Hours Section - Centrada -->
   <section class="location-section" id="ubicacion">
     <div class="container location-grid">
       <div class="location-card">
@@ -1641,7 +1735,7 @@
           </tr>
         </table>
 
-        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <div class="location-card-buttons">
           <a href="https://maps.google.com/?q=Avinguda+de+Novelda+98+Elche" target="_blank" rel="noopener" class="btn-maps">
             <span>🗺️ Cómo llegar en Google Maps</span>
           </a>
@@ -1675,11 +1769,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer Centrado -->
   <footer class="main-footer">
     <div class="container">
       <div class="footer-brand">✂ BERLÍN BARBERSHOP</div>
-      <p style="margin-bottom: 8px;">Avinguda de Novelda, 98, 03206 Elche, Alicante · Tel: +34 641 32 47 07</p>
+      <p style="margin-bottom: 6px;">Avinguda de Novelda, 98, 03206 Elche, Alicante · Tel: +34 641 32 47 07</p>
       <p style="font-size: 11px; opacity: 0.7;">© 2026 Barbería Berlín Elche. Propuesta oficial de presencia digital y captación automatizada de clientes.</p>
     </div>
   </footer>
