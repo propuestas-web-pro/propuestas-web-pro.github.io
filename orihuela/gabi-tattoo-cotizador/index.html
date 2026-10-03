@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gabi Tattoo Studio | Cotizador Visual de Tatuajes en Orihuela</title>
+  <meta name="description" content="Calcula y pide presupuesto para tu tatuaje en Orihuela en 3 simples pasos. Elige estilo, zona y medidas sin tener que esperar días por mensaje.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080b;
+      --card: #0f1118;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --red: #e11d48;
+      --red-glow: rgba(225, 29, 72, 0.3);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding-bottom: 90px;
+      line-height: 1.5;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+    
+    /* Header */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fb7185;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .pulse { width: 8px; height: 8px; background: #e11d48; border-radius: 50%; box-shadow: 0 0 10px #e11d48; }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    h1 span { color: var(--red); }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.75rem; }
+    
+    /* Interactive Quoter Box */
+    .step-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+    }
+    .step-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; }
+    
+    /* Options Grid */
+    .opt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .opt-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+    .opt-btn:hover { background: rgba(255,255,255,0.06); }
+    .opt-btn.active {
+      background: rgba(225, 29, 72, 0.15);
+      border-color: var(--red);
+      box-shadow: 0 0 15px var(--red-glow);
+    }
+    .opt-btn .title { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+    .opt-btn .desc { font-size: 0.75rem; color: var(--muted); }
+    
+    /* Size Slider */
+    .slider-wrap { margin-top: 10px; }
+    .slider {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--red);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--red);
+    }
+    .size-display {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    
+    /* Result Card */
+    .summary-card {
+      background: linear-gradient(145deg, #161922, #0d0e14);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .summary-title { font-size: 0.85rem; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+    .summary-text { font-size: 1rem; color: #fff; font-weight: 600; margin-bottom: 12px; }
+    .summary-note { font-size: 0.8rem; color: #94a3b8; line-height: 1.4; }
+
+    /* Sticky Action Bar */
+    .action-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(7, 8, 11, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 20px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+    }
+    .cta-btn {
+      max-width: 600px;
+      width: 100%;
+      background: linear-gradient(135deg, #f43f5e, #be123c);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 25px var(--red-glow);
+      text-decoration: none;
+    }
+    .cta-btn:active { transform: scale(0.98); }
+    
+    .location-info {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge"><span class="pulse"></span> Gabi Tattoo Studio · Orihuela</div>
+    <h1>Presupuesto rápido en <span>30 segundos</span></h1>
+    <p class="subtitle">Calcula el tiempo y los detalles de tu próximo tatuaje en Calle Aragón, 2 (Orihuela). Sin esperas por mensaje.</p>
+    
+    <!-- PASO 1 -->
+    <div class="step-box">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Elige el Estilo</div>
+      </div>
+      <div class="opt-grid" id="styleGrid">
+        <button class="opt-btn active" data-style="Black & Grey / Sombras">
+          <div class="title">Black & Grey</div>
+          <div class="desc">Sombras suaves, realismo y contrastes profundos.</div>
+        </button>
+        <button class="opt-btn" data-style="Línea Fina / Minimal">
+          <div class="title">Línea Fina</div>
+          <div class="desc">Trazos limpios, detalles milimétricos y elegancia.</div>
+        </button>
+        <button class="opt-btn" data-style="Micro-Realismo">
+          <div class="title">Micro-Realismo</div>
+          <div class="desc">Retratos, animales y texturas de alta precisión.</div>
+        </button>
+        <button class="opt-btn" data-style="Lettering / Tradicional">
+          <div class="title">Lettering & Trad</div>
+          <div class="desc">Tipografía de autor y clásicos en tinta sólida.</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="step-box">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Zona del Cuerpo</div>
+      </div>
+      <div class="opt-grid" id="zoneGrid">
+        <button class="opt-btn active" data-zone="Antebrazo / Brazo">
+          <div class="title">Antebrazo / Brazo</div>
+          <div class="desc">Zona clásica y cómoda.</div>
+        </button>
+        <button class="opt-btn" data-zone="Muñeca / Tobillo">
+          <div class="title">Muñeca / Tobillo</div>
+          <div class="desc">Detalle discreto o pulsera.</div>
+        </button>
+        <button class="opt-btn" data-zone="Pierna / Muslo">
+          <div class="title">Pierna / Gemelo</div>
+          <div class="desc">Espacio amplio para piezas.</div>
+        </button>
+        <button class="opt-btn" data-zone="Espalda / Costillas">
+          <div class="title">Espalda / Costado</div>
+          <div class="desc">Piezas de gran formato.</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="step-box">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Tamaño Aproximado</div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" min="4" max="30" value="10" class="slider" id="sizeSlider">
+        <div class="size-display">
+          <span id="sizeText">Aprox. 10 cm</span>
+          <span id="timeEstimate">Sesión estimada: 1.5 - 2 h</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMEN EN VIVO -->
+    <div class="summary-card">
+      <div class="summary-title">Resumen de tu solicitud</div>
+      <div class="summary-text" id="summaryPreview">
+        Tatuaje Black & Grey en Antebrazo / Brazo (~10 cm)
+      </div>
+      <div class="summary-note">
+        ⚡ Al pulsar el botón se abrirá WhatsApp con todos estos datos pre-rellenados. Solo tendrás que adjuntar la foto o idea de referencia para que Gabi te dé precio exacto sin perder tiempo en preguntas repetitivas.
+      </div>
+    </div>
+
+    <div class="location-info">
+      📍 <strong>Gabi Tattoo Studio</strong> · Calle Aragón, 2, 03300 Orihuela (Alicante)<br>
+      Apertura 2026 · Garantía higiénico-sanitaria oficial
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <a href="#" class="cta-btn" id="whatsappCta">
+      <span>Pedir Presupuesto por WhatsApp</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <script src="/owner-banner.js" defer></script>
+  <script>
+    let selectedStyle = 'Black & Grey / Sombras';
+    let selectedZone = 'Antebrazo / Brazo';
+    let selectedSize = 10;
+
+    const styleBtns = document.querySelectorAll('#styleGrid .opt-btn');
+    const zoneBtns = document.querySelectorAll('#zoneGrid .opt-btn');
+    const slider = document.getElementById('sizeSlider');
+    const sizeText = document.getElementById('sizeText');
+    const timeEstimate = document.getElementById('timeEstimate');
+    const summaryPreview = document.getElementById('summaryPreview');
+    const whatsappCta = document.getElementById('whatsappCta');
+
+    function updateSummary() {
+      sizeText.textContent = `Aprox. ${selectedSize} cm`;
+      let time = selectedSize <= 6 ? '1 hora' : selectedSize <= 12 ? '1.5 - 2 horas' : selectedSize <= 20 ? '3 - 4 horas' : 'Sesión completa (+5 h)';
+      timeEstimate.textContent = `Sesión estimada: ${time}`;
+      summaryPreview.textContent = `Tatuaje ${selectedStyle} en ${selectedZone} (~${selectedSize} cm)`;
+
+      const msg = `¡Hola Gabi! He preparado mi solicitud en la web:
+• Estilo: ${selectedStyle}
+• Zona: ${selectedZone}
+• Tamaño aproximado: ${selectedSize} cm
+
+Os adjunto la foto / idea de referencia para que me digáis precio cerrado y fecha de cita.`;
+
+      whatsappCta.href = `https://wa.me/34685056102?text=${encodeURIComponent(msg)}`;
+    }
+
+    styleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        styleBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedStyle = btn.getAttribute('data-style');
+        updateSummary();
+      });
+    });
+
+    zoneBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        zoneBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedZone = btn.getAttribute('data-zone');
+        updateSummary();
+      });
+    });
+
+    slider.addEventListener('input', (e) => {
+      selectedSize = e.target.value;
+      updateSummary();
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>

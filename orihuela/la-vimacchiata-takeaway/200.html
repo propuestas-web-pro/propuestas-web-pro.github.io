@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La Vimacchiata Express | Pide y Recoge en Obispo Rocamora</title>
+  <meta name="description" content="Pide tu café y desayuno en La Vimacchiata y recógelo sin colas en 5 minutos. Pensado para trabajadores y estudiantes en el centro de Orihuela.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111827;
+      --card: #1f2937;
+      --border: rgba(255,255,255,0.08);
+      --amber: #f59e0b;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding-bottom: 95px;
+      line-height: 1.5;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+    
+    .speed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    h1 span { color: var(--amber); }
+    .subtitle { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.75rem; }
+    
+    /* Order Selector Box */
+    .pack-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 1.5rem; }
+    .pack-card {
+      background: var(--card);
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .pack-card.selected {
+      border-color: var(--amber);
+      background: #283344;
+    }
+    .pack-info .name { font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: 2px; }
+    .pack-info .desc { font-size: 0.8rem; color: var(--muted); }
+    .pack-price { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--amber); }
+
+    /* Pickup Time */
+    .time-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-bottom: 1.5rem;
+    }
+    .time-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: #fff; }
+    .time-chips { display: flex; gap: 8px; }
+    .time-chip {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .time-chip.active { background: var(--amber); color: #000; border-color: var(--amber); }
+
+    /* Action bar */
+    .action-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+    }
+    .checkout-btn {
+      max-width: 600px;
+      width: 100%;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="speed-badge">⚡ Servicio Express · Sin Esperas</div>
+    <h1>Pide ahora y <span>recoge en 5 min</span></h1>
+    <p class="subtitle">¿Vas con prisa a trabajar o a clase? Pide tu desayuno desde el móvil y te lo tenemos empaquetado y caliente al llegar a barra en Calle Obispo Rocamora, 15.</p>
+
+    <div class="pack-grid">
+      <div class="pack-card selected" data-pack="Pack Café Especialidad + Croissant Francés (3,50€)">
+        <div class="pack-info">
+          <div class="name">Pack Despertar Express</div>
+          <div class="desc">Café con leche / Flat White + Croissant de mantequilla recién horneado.</div>
+        </div>
+        <div class="pack-price">3,50€</div>
+      </div>
+
+      <div class="pack-card" data-pack="Pack Tosta Ibérica + Zumo Naranja + Café (5,80€)">
+        <div class="pack-info">
+          <div class="name">Pack Desayuno Ibérico</div>
+          <div class="desc">Tosta de jamón ibérico con tomate rallado + Zumo natural + Café.</div>
+        </div>
+        <div class="pack-price">5,80€</div>
+      </div>
+
+      <div class="pack-card" data-pack="Pack Fit Aguacate & Pavo + Té Matcha (6,20€)">
+        <div class="pack-info">
+          <div class="name">Pack Healthy Morning</div>
+          <div class="desc">Tosta aguacate y pavo braseado + Matcha Latte o Café Orgánico.</div>
+        </div>
+        <div class="pack-price">6,20€</div>
+      </div>
+    </div>
+
+    <div class="time-card">
+      <div class="time-title">¿A qué hora pasas a recogerlo?</div>
+      <div class="time-chips">
+        <button class="time-chip active" data-time="En 5-10 minutos">En 5-10 min</button>
+        <button class="time-chip" data-time="En 15 minutos">En 15 min</button>
+        <button class="time-chip" data-time="En 30 minutos">En 30 min</button>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 1.5rem;">
+      📍 <strong>La Vimacchiata</strong> · Calle Obispo Rocamora, 15, Orihuela
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <a href="#" class="checkout-btn" id="takeawayBtn">
+      Confirmar Pedido Express por WhatsApp
+    </a>
+  </div>
+
+  <script src="/owner-banner.js" defer></script>
+  <script>
+    let selectedPack = 'Pack Café Especialidad + Croissant Francés (3,50€)';
+    let selectedTime = 'En 5-10 minutos';
+
+    const packCards = document.querySelectorAll('.pack-card');
+    const timeChips = document.querySelectorAll('.time-chip');
+    const btn = document.getElementById('takeawayBtn');
+
+    function updateBtn() {
+      const msg = `¡Hola La Vimacchiata! Quiero pedir para recoger en barra:
+• Pedido: ${selectedPack}
+• Tiempo de recogida: ${selectedTime}
+
+Por favor, preparádmelo para llevar. ¡Llego enseguida!`;
+
+      btn.href = `https://wa.me/34688794604?text=${encodeURIComponent(msg)}`;
+    }
+
+    packCards.forEach(c => {
+      c.addEventListener('click', () => {
+        packCards.forEach(x => x.classList.remove('selected'));
+        c.classList.add('selected');
+        selectedPack = c.getAttribute('data-pack');
+        updateBtn();
+      });
+    });
+
+    timeChips.forEach(t => {
+      t.addEventListener('click', () => {
+        timeChips.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        selectedTime = t.getAttribute('data-time');
+        updateBtn();
+      });
+    });
+
+    updateBtn();
+  </script>
+</body>
+</html>

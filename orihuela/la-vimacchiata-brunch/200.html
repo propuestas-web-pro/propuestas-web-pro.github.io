@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La Vimacchiata | Cafetería Especialidad & Brunch en Orihuela</title>
+  <meta name="description" content="Carta visual de desayunos, café de especialidad y brunch en Calle Obispo Rocamora, Orihuela. Reserva tu mesa en terraza por WhatsApp en 10 segundos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --border: #e8e2d9;
+      --primary: #92400e;
+      --primary-light: #b45309;
+      --accent: #d97706;
+      --text: #292524;
+      --muted: #78716c;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding-bottom: 90px;
+      line-height: 1.5;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #1c1917;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.75rem; }
+
+    /* Category Nav Tabs */
+    .tabs-wrap {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Menu Items */
+    .menu-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+    .item-title { font-weight: 700; font-size: 1.05rem; color: #1c1917; }
+    .item-price { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+    .item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.4; margin-bottom: 8px; }
+    .tag-list { display: flex; gap: 6px; }
+    .tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+    .tag-veg { background: #dcfce7; color: #166534; }
+    .tag-gf { background: #e0f2fe; color: #075985; }
+    .tag-star { background: #fef3c7; color: #92400e; }
+
+    /* Reservation Widget */
+    .res-box {
+      background: #f5efe6;
+      border: 1px solid #e6ded2;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .res-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .res-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .res-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .res-input {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    /* Fixed Bottom CTA */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+    }
+    .cta-btn {
+      max-width: 600px;
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(146, 64, 14, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">☕ La Vimacchiata · Obispo Rocamora, 15 (Orihuela)</div>
+    <h1>Desayunos, Specialty Coffee & <em>Brunch</em></h1>
+    <p class="subtitle">Carta visual completa. Consulta ingredientes, alérgenos y reserva tu mesa en terraza sin tener que esperar a que cojan el teléfono.</p>
+
+    <!-- TABS -->
+    <div class="tabs-wrap">
+      <button class="tab-btn active">Todos</button>
+      <button class="tab-btn">Brunch & Tostas</button>
+      <button class="tab-btn">Café Especialidad</button>
+      <button class="tab-btn">Bowls & Dulces</button>
+    </div>
+
+    <!-- ITEMS -->
+    <div class="menu-card">
+      <div class="menu-header">
+        <div class="item-title">Brunch Completo Vimacchiata</div>
+        <div class="item-price">12,50€</div>
+      </div>
+      <p class="item-desc">Tosta de aguacate con huevo poché en pan de masa madre, zumo de naranja natural exprimido al momento, bowl de yogur griego con granola artesana y café de especialidad.</p>
+      <div class="tag-list">
+        <span class="tag tag-star">⭐ Estrella</span>
+        <span class="tag tag-veg">Vegetariano</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-header">
+        <div class="item-title">Tosta Salmón Noruego & Crema Tartufata</div>
+        <div class="item-price">6,80€</div>
+      </div>
+      <p class="item-desc">Salmón ahumado prémium, queso crema a las finas hierbas con toque de trufa, rúcula fresca y semillas de sésamo tostado.</p>
+      <div class="tag-list">
+        <span class="tag tag-gf">Opción Sin Gluten</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-header">
+        <div class="item-title">Flat White Doble Shot (Origen Etiopía)</div>
+        <div class="item-price">2,40€</div>
+      </div>
+      <p class="item-desc">Extracción doble de café de especialidad tostado localmente, con microespuma sedosa de leche fresca o vegetal (avena barista / almendra).</p>
+      <div class="tag-list">
+        <span class="tag tag-veg">100% Arábica</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-header">
+        <div class="item-title">Açai Bowl Tropical con Fruta Fresca</div>
+        <div class="item-price">5,90€</div>
+      </div>
+      <p class="item-desc">Base de açai orgánico batido con plátano y frutos rojos, coronado con kiwi, fresas frescas, semillas de chía y crema de cacahuete natural.</p>
+      <div class="tag-list">
+        <span class="tag tag-veg">Vegano</span>
+        <span class="tag tag-gf">Sin Gluten</span>
+      </div>
+    </div>
+
+    <!-- RESERVA WIDGET -->
+    <div class="res-box">
+      <div class="res-title">Reserva tu Mesa en Terraza</div>
+      <p class="res-desc">Evita esperar de pie los fines de semana. Dinos cuántos sois y te guardamos sitio.</p>
+      <div class="res-inputs">
+        <input type="text" class="res-input" id="resName" placeholder="Tu nombre">
+        <select class="res-input" id="resPersons">
+          <option value="2 personas">2 personas</option>
+          <option value="3-4 personas">3-4 personas</option>
+          <option value="5-6 personas">5-6 personas</option>
+          <option value="Grupo grande">Grupo (+6)</option>
+        </select>
+      </div>
+      <div class="res-inputs">
+        <input type="time" class="res-input" id="resTime" value="10:30">
+        <select class="res-input" id="resZone">
+          <option value="Terraza">Terraza exterior</option>
+          <option value="Interior salón">Interior climatizado</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <a href="#" class="cta-btn" id="resBtn">
+      Reservar Mesa por WhatsApp
+    </a>
+  </div>
+
+  <script src="/owner-banner.js" defer></script>
+  <script>
+    const resBtn = document.getElementById('resBtn');
+    function updateRes() {
+      const name = document.getElementById('resName').value || 'Cliente';
+      const persons = document.getElementById('resPersons').value;
+      const time = document.getElementById('resTime').value;
+      const zone = document.getElementById('resZone').value;
+
+      const msg = `¡Hola La Vimacchiata! Me gustaría reservar mesa:
+• A nombre de: ${name}
+• Personas: ${persons}
+• Hora estimada: ${time}
+• Zona: ${zone}
+
+¿Tenéis hueco disponible? ¡Muchas gracias!`;
+
+      resBtn.href = `https://wa.me/34688794604?text=${encodeURIComponent(msg)}`;
+    }
+
+    document.querySelectorAll('.res-input').forEach(el => el.addEventListener('input', updateRes));
+    updateRes();
+  </script>
+</body>
+</html>
