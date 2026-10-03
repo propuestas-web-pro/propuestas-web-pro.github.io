@@ -3,308 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Gabi Tattoo Studio | Flash Designs & Huecos Disponibles en Orihuela</title>
-  <meta name="description" content="Diseños Flash exclusivos a precio cerrado en Orihuela. Solo se tatúan una vez. Consulta huecos libres y reserva directo por WhatsApp.">
+  <title>Gabi Tattoo | Flash Days & Diseños Disponibles en Orihuela</title>
+  <meta name="description" content="Diseños únicos de autor a precio cerrado sin esperas. Reclama tu flash favorito y tatúate esta semana en Orihuela.">
   <link rel="canonical" href="https://miweblocal.com/orihuela/gabi-tattoo-flash/">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --bg: #090a0f;
-      --card: #131722;
+      --card: #121622;
       --border: rgba(255, 255, 255, 0.08);
-      --amber: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.25);
-      --green: #22c55e;
+      --crimson: #e11d48;
+      --crimson-glow: rgba(225, 29, 72, 0.35);
       --text: #f8fafc;
       --muted: #94a3b8;
-      --radius: 16px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 95px;
-      line-height: 1.5;
+      padding-bottom: 110px;
+      overflow-x: hidden;
     }
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
     a { text-decoration: none; color: inherit; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-    /* Top Banner */
-    .top-bar {
-      background: #11141f;
+    .top-status {
+      background: #111420;
       border-bottom: 1px solid var(--border);
-      padding: 10px 0;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
       text-align: center;
-      font-size: 0.85rem;
-      color: #cbd5e1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .live-dot {
-      display: inline-block; width: 8px; height: 8px; background: var(--green);
-      border-radius: 50%; box-shadow: 0 0 10px var(--green); margin-right: 6px;
-    }
+    .c-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
 
-    /* Hero */
-    .hero {
-      padding: 4rem 0 3rem;
-      text-align: center;
-    }
-    .tag {
+    .hero { padding: 3.5rem 0 2.5rem; text-align: center; }
+    .hero-badge {
       display: inline-block;
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: var(--amber);
-      padding: 6px 16px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.35);
+      color: #fb7185;
+      padding: 6px 18px;
       border-radius: 999px;
+      font-size: 0.78rem;
       font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       margin-bottom: 1rem;
     }
     .hero h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-size: clamp(2.3rem, 5.5vw, 3.8rem);
       font-weight: 900;
       line-height: 1.15;
       margin-bottom: 1rem;
+      text-wrap: balance;
     }
-    .hero h1 span { color: var(--amber); }
-    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
+    .hero h1 span { color: var(--crimson); }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto 2.5rem; text-wrap: balance; }
 
-    /* Agenda Grid */
-    .agenda-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 3.5rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    .agenda-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; text-align: center; }
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 12px;
-    }
-    .day-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-    }
-    .day-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .day-status { font-weight: 800; font-size: 0.95rem; }
-    .day-box.available .day-status { color: var(--green); }
-    .day-box.full .day-status { color: #f43f5e; text-decoration: line-through; }
-
-    /* Flash Cards Grid */
+    /* Flash Drop Grid */
     .flash-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-bottom: 4rem;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 4.5rem;
     }
-    .flash-item {
+    @media (min-width: 640px) {
+      .flash-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .flash-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .flash-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 20px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: transform 0.25s;
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .flash-item:hover { transform: translateY(-4px); }
-    .flash-img-wrap {
-      position: relative;
+    .flash-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(225, 29, 72, 0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .flash-img {
       width: 100%;
-      height: 260px;
-      background: #1e2433;
+      height: 200px;
+      object-fit: cover;
+      background: #090a0f;
     }
-    .flash-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .flash-badge {
-      position: absolute;
-      top: 14px; right: 14px;
-      background: rgba(9, 10, 15, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      color: var(--amber);
-      font-weight: 800;
-      font-size: 0.8rem;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-    .flash-content {
-      padding: 1.5rem;
+    .flash-body {
+      padding: 18px 16px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-    }
-    .f-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
-    .f-title { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; color: #fff; }
-    .f-price { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--amber); }
-    .f-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
-    .f-btn {
-      background: linear-gradient(135deg, var(--amber), #d97706);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.9rem;
-      padding: 12px;
-      border-radius: 10px;
       text-align: center;
-      box-shadow: 0 4px 15px var(--amber-glow);
+    }
+    .flash-num { font-size: 0.72rem; color: #fb7185; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+    .flash-title { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .flash-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .flash-price { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .btn-claim {
+      background: linear-gradient(135deg, var(--crimson), #be123c);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px var(--crimson-glow);
     }
 
-    /* Fixed Bottom CTA */
-    .fixed-bar {
+    /* Mobile bar */
+    .mobile-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(9, 10, 15, 0.95);
-      backdrop-filter: blur(16px);
+      z-index: 999;
+      background: rgba(16, 20, 31, 0.95);
+      backdrop-filter: blur(20px);
       border-top: 1px solid var(--border);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: center;
-      z-index: 1000;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      display: flex; justify-content: center; gap: 10px;
     }
-    .f-cta-btn {
-      max-width: 500px;
-      width: 100%;
-      background: linear-gradient(135deg, var(--amber), #d97706);
-      color: #000;
-      padding: 14px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      text-align: center;
-      box-shadow: 0 4px 20px var(--amber-glow);
+    .m-btn { flex: 1; max-width: 240px; padding: 12px; border-radius: 999px; text-align: center; font-weight: 800; font-size: 0.88rem; }
+    .m-btn-call { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid var(--border); }
+    .m-btn-wa { background: var(--crimson); color: #fff; box-shadow: 0 4px 15px var(--crimson-glow); }
+
+    @media (min-width: 1024px) {
+      .mobile-bar { display: none !important; }
+      body { padding-bottom: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="container">
-      <span class="live-dot"></span> <strong>Colección Activa</strong> · Diseños de pieza única · Calle Aragón, 2, Orihuela
-    </div>
+  <div class="top-status">
+    <div><span class="c-dot"></span> <strong>Flash Day Orihuela</strong> · 3 turnos disponibles para este viernes</div>
+    <span style="opacity: 0.3;">|</span>
+    <div>Diseños únicos no repetibles</div>
   </div>
 
-  <header class="hero">
-    <div class="container">
-      <div class="tag">Flash Drop · Edición Limitada</div>
-      <h1>Diseños Exclusivos a <span>Precio Cerrado</span></h1>
-      <p>Cada flash se tatúa una única vez. Cuando alguien lo reserva, desaparece de la galería. Reclama el tuyo antes de que vuele.</p>
-    </div>
-  </header>
-
-  <section class="container">
-    <div class="agenda-card">
-      <div class="agenda-title">📅 Huecos Disponibles en Estudio esta Semana</div>
-      <div class="days-grid">
-        <div class="day-box full">
-          <div class="day-name">Lunes</div>
-          <div class="day-status">COMPLETO</div>
-        </div>
-        <div class="day-box available">
-          <div class="day-name">Martes</div>
-          <div class="day-status">2 HUECOS</div>
-        </div>
-        <div class="day-box available">
-          <div class="day-name">Miércoles</div>
-          <div class="day-status">1 HUECO</div>
-        </div>
-        <div class="day-box available">
-          <div class="day-name">Jueves</div>
-          <div class="day-status">3 HUECOS</div>
-        </div>
-        <div class="day-box full">
-          <div class="day-name">Viernes</div>
-          <div class="day-status">COMPLETO</div>
-        </div>
-        <div class="day-box available">
-          <div class="day-name">Sábado</div>
-          <div class="day-status">1 HUECO</div>
-        </div>
-      </div>
-    </div>
+  <section class="hero container">
+    <div class="hero-badge">Flash Agenda · Disponibilidad Inmediata</div>
+    <h1>Diseños de Autor a <span>Precio Cerrado</span></h1>
+    <p>Elige tu flash favorito. Sin coste adicional de diseño previo y con cita asignada directamente para tatuar esta misma semana.</p>
   </section>
 
   <section class="container">
     <div class="flash-grid">
-      <div class="flash-item">
-        <div class="flash-img-wrap">
-          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=700&q=80" alt="Flash dardo">
-          <div class="flash-badge">DISPONIBLE · 1/1</div>
-        </div>
-        <div class="flash-content">
-          <div>
-            <div class="f-header">
-              <div class="f-title">Daga & Serpiente Neo-Trad</div>
-              <div class="f-price">120€</div>
-            </div>
-            <p class="f-desc">Tamaño: 14 cm · Tinta negra de alta saturación y contrastes definidos · Ideal para antebrazo o gemelo.</p>
-          </div>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Daga%20y%20Serpiente%20(120%E2%82%AC)%20de%20la%20web%20para%20esta%20semana." class="f-btn">
-            Reclamar este Flash
-          </a>
+      <!-- Flash 1 -->
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=700&q=80" alt="Flash Peony Blackwork" class="flash-img">
+        <div class="flash-body">
+          <div class="flash-num">Flash #01 · 1 Pieza Única</div>
+          <div class="flash-title">Peonía Blackwork</div>
+          <div class="flash-meta">📏 14 cm · Brazo o Gemelo</div>
+          <div class="flash-price">110€</div>
+          <a href="https://wa.me/34632768152?text=%C2%A1Hola%20Gabi!%20Quiero%20reclamar%20el%20Flash%20%2301%20(Peon%C3%ADa%20Blackwork%20110%E2%82%AC)%20para%20este%20viernes." target="_blank" rel="noopener" class="btn-claim">Reclamar Flash</a>
         </div>
       </div>
 
-      <div class="flash-item">
-        <div class="flash-img-wrap">
-          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=700&q=80" alt="Flash polilla">
-          <div class="flash-badge">DISPONIBLE · 1/1</div>
-        </div>
-        <div class="flash-content">
-          <div>
-            <div class="f-header">
-              <div class="f-title">Polilla Lunar Micro-Fine</div>
-              <div class="f-price">85€</div>
-            </div>
-            <p class="f-desc">Tamaño: 8 cm · Detalle en línea fina milimétrica con sombreado de punteado · Para muñeca, bíceps o clavícula.</p>
-          </div>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Polilla%20Lunar%20(85%E2%82%AC)%20de%20la%20web." class="f-btn">
-            Reclamar este Flash
-          </a>
+      <!-- Flash 2 -->
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=700&q=80" alt="Flash Daga Linea Fina" class="flash-img">
+        <div class="flash-body">
+          <div class="flash-num">Flash #02 · 1 Pieza Única</div>
+          <div class="flash-title">Daga & Rosa Fina</div>
+          <div class="flash-meta">📏 10 cm · Antebrazo</div>
+          <div class="flash-price">85€</div>
+          <a href="https://wa.me/34632768152?text=%C2%A1Hola%20Gabi!%20Quiero%20reclamar%20el%20Flash%20%2302%20(Daga%20y%20Rosa%2085%E2%82%AC)%20para%20este%20viernes." target="_blank" rel="noopener" class="btn-claim">Reclamar Flash</a>
         </div>
       </div>
 
-      <div class="flash-item">
-        <div class="flash-img-wrap">
-          <img src="https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=700&q=80" alt="Flash lobo">
-          <div class="flash-badge">DISPONIBLE · 1/1</div>
-        </div>
-        <div class="flash-content">
-          <div>
-            <div class="f-header">
-              <div class="f-title">Lobo en Penumbra</div>
-              <div class="f-price">140€</div>
-            </div>
-            <p class="f-desc">Tamaño: 16 cm · Degradado suave realista con fondo bosque · Zona antebrazo, hombro o muslo.</p>
-          </div>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Lobo%20en%20Penumbra%20(140%E2%82%AC)%20de%20la%20web." class="f-btn">
-            Reclamar este Flash
-          </a>
+      <!-- Flash 3 -->
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?auto=format&fit=crop&w=700&q=80" alt="Flash Dragon Oriental" class="flash-img">
+        <div class="flash-body">
+          <div class="flash-num">Flash #03 · 1 Pieza Única</div>
+          <div class="flash-title">Dragón Oriental</div>
+          <div class="flash-meta">📏 18 cm · Espalda o Muslo</div>
+          <div class="flash-price">150€</div>
+          <a href="https://wa.me/34632768152?text=%C2%A1Hola%20Gabi!%20Quiero%20reclamar%20el%20Flash%20%2303%20(Drag%C3%B3n%20Oriental%20150%E2%82%AC)%20para%20este%20viernes." target="_blank" rel="noopener" class="btn-claim">Reclamar Flash</a>
         </div>
       </div>
-    </div>
 
-    <div style="text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem;">
-      📍 <strong>Gabi Tattoo Studio</strong> · Calle Aragón, 2, Orihuela (Alicante) · Cita previa
+      <!-- Flash 4 -->
+      <div class="flash-card">
+        <img src="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?auto=format&fit=crop&w=700&q=80" alt="Flash Mariposa Micro Realismo" class="flash-img">
+        <div class="flash-body">
+          <div class="flash-num">Flash #04 · 1 Pieza Única</div>
+          <div class="flash-title">Polilla Micro-Dot</div>
+          <div class="flash-meta">📏 8 cm · Clavícula o Muñeca</div>
+          <div class="flash-price">75€</div>
+          <a href="https://wa.me/34632768152?text=%C2%A1Hola%20Gabi!%20Quiero%20reclamar%20el%20Flash%20%2304%20(Polilla%20Micro-Dot%2075%E2%82%AC)%20para%20este%20viernes." target="_blank" rel="noopener" class="btn-claim">Reclamar Flash</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="fixed-bar">
-    <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20consultar%20los%20flashes%20disponibles%20o%20pedir%20un%20hueco%20para%20esta%20semana." class="f-cta-btn">
-      Consultar Huecos Libres por WhatsApp
-    </a>
+  <div class="mobile-bar">
+    <a href="tel:+34966740000" class="m-btn m-btn-call">Llamar</a>
+    <a href="https://wa.me/34632768152?text=%C2%A1Hola%20Gabi!%20Quiero%20preguntar%20por%20los%20flashes%20disponibles." target="_blank" class="m-btn m-btn-wa">Preguntar WhatsApp</a>
   </div>
 
-  <script src="/owner-banner.js" defer></script>
+  <script src="/owner-banner.js"></script>
 </body>
 </html>

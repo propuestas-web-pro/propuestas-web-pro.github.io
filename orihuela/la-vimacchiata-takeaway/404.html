@@ -3,263 +3,242 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>La Vimacchiata Express | Pide y Recoge en Obispo Rocamora</title>
-  <meta name="description" content="Pide tu café y desayuno online y recógelo caliente sin hacer cola en La Vimacchiata Orihuela.">
+  <title>La Vimacchiata Express | Pide y Recoge en 5 min sin Colas</title>
+  <meta name="description" content="Encarga tu desayuno o café de especialidad y recógelo listo sin colas en Obispo Rocamora, 15, Orihuela.">
   <link rel="canonical" href="https://miweblocal.com/orihuela/la-vimacchiata-takeaway/">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --border: rgba(255,255,255,0.08);
+      --bg: #111418;
+      --card: #181d24;
+      --border: rgba(255, 255, 255, 0.08);
       --amber: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.25);
+      --amber-glow: rgba(245, 158, 11, 0.3);
       --text: #f8fafc;
       --muted: #94a3b8;
-      --radius: 18px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 95px;
-      line-height: 1.5;
+      padding-bottom: 110px;
+      overflow-x: hidden;
     }
-    .container { max-width: 780px; margin: 0 auto; padding: 0 20px; }
     a { text-decoration: none; color: inherit; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-    .header-bar {
-      padding: 1.5rem 0;
+    .top-status {
+      background: #181d24;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand-title { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; color: #fff; }
-    .speed-tag {
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: var(--amber);
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-    }
-
-    .hero-box {
-      padding: 3rem 0 2rem;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
       text-align: center;
-    }
-    .hero-box h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-    }
-    .hero-box h1 span { color: var(--amber); }
-    .hero-box p { color: var(--muted); font-size: 1rem; max-width: 580px; margin: 0 auto; }
-
-    /* Steps */
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 2rem 0 3rem;
-      text-align: center;
-    }
-    .step-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .step-num { color: var(--amber); font-weight: 900; font-size: 1.1rem; margin-bottom: 4px; }
-    .step-text { font-size: 0.8rem; color: var(--muted); }
-
-    /* Packs Selector */
-    .section-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
-    .packs-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 2rem; }
-    .pack-card {
-      background: var(--card);
-      border: 2px solid transparent;
-      border-radius: var(--radius);
-      padding: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .pack-card.selected {
-      border-color: var(--amber);
-      background: #273549;
-    }
-    .pack-name { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .pack-desc { font-size: 0.82rem; color: var(--muted); }
-    .pack-price { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--amber); }
-
-    /* Time picker */
-    .time-wrap {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 3rem;
-    }
-    .time-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 10px; }
-    .time-chips { display: flex; gap: 10px; flex-wrap: wrap; }
-    .t-chip {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-    .t-chip.active { background: var(--amber); color: #000; border-color: var(--amber); }
-
-    /* Sticky Bottom Checkout */
-    .checkout-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
-      padding: 12px 20px;
       display: flex;
       justify-content: center;
-      z-index: 1000;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .c-btn {
-      max-width: 500px;
-      width: 100%;
-      background: linear-gradient(135deg, var(--amber), #d97706);
-      color: #000;
-      padding: 14px;
+    .c-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; }
+
+    .hero { padding: 3.5rem 0 2.5rem; text-align: center; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--amber);
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      text-wrap: balance;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto 2.5rem; text-wrap: balance; }
+
+    /* Interactive Pack Builder */
+    .builder-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.2rem 1.8rem;
+      max-width: 800px;
+      margin: 0 auto 4.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .builder-step { margin-bottom: 2rem; }
+    .step-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 640px) {
+      .options-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .opt-btn {
+      background: #111418;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .opt-btn.active {
+      border-color: var(--amber);
+      background: rgba(245, 158, 11, 0.12);
+      box-shadow: 0 0 15px var(--amber-glow);
+    }
+
+    .summary-card {
+      background: #0d0f13;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .sum-price { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 900; color: var(--amber); margin-bottom: 4px; }
+    .sum-text { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    .btn-island {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      padding: 16px 28px;
       border-radius: 999px;
       font-weight: 800;
       font-size: 1rem;
-      text-align: center;
-      box-shadow: 0 4px 20px var(--amber-glow);
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+    }
+
+    /* Mobile bar */
+    .mobile-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(24, 29, 36, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      display: flex; justify-content: center; gap: 10px;
+    }
+    .m-btn { flex: 1; max-width: 240px; padding: 12px; border-radius: 999px; text-align: center; font-weight: 800; font-size: 0.88rem; }
+    .m-btn-call { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid var(--border); }
+    .m-btn-wa { background: var(--amber); color: #000; font-weight: 900; }
+
+    @media (min-width: 1024px) {
+      .mobile-bar { display: none !important; }
+      body { padding-bottom: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header-bar">
-      <div class="brand-title">LA VIMACCHIATA EXPRESS</div>
-      <div class="speed-tag">⚡ 0 Esperas en Barra</div>
-    </div>
-
-    <div class="hero-box">
-      <h1>Pide ahora y <span>recógelo listo</span></h1>
-      <p>Diseñado para los trabajadores y estudiantes del centro de Orihuela. Sin colas en Obispo Rocamora, 15.</p>
-
-      <div class="steps-row">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-text">Elige tu Pack</div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-text">Indica tus Minutos</div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-text">Recoge en Barra</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-title">Selecciona tu Pack de Desayuno</div>
-    <div class="packs-grid">
-      <div class="pack-card selected" data-pack="Pack Despertar Express (Café Especialidad + Croissant de Mantequilla - 3,50€)">
-        <div>
-          <div class="pack-name">Pack Despertar Express</div>
-          <div class="pack-desc">Flat White / Café con leche doble shot + Croissant recién horneado.</div>
-        </div>
-        <div class="pack-price">3,50€</div>
-      </div>
-
-      <div class="pack-card" data-pack="Pack Ibérico Clásico (Tosta Jamón Ibérico + Zumo Natural + Café - 5,80€)">
-        <div>
-          <div class="pack-name">Pack Ibérico Clásico</div>
-          <div class="pack-desc">Hogaza masa madre con tomate rallado y jamón ibérico + Zumo natural + Café.</div>
-        </div>
-        <div class="pack-price">5,80€</div>
-      </div>
-
-      <div class="pack-card" data-pack="Pack Healthy Morning (Tosta Aguacate & Pavo + Té Matcha Orgánico - 6,20€)">
-        <div>
-          <div class="pack-name">Pack Healthy Morning</div>
-          <div class="pack-desc">Tosta de aguacate con pechuga de pavo braseada + Matcha Latte o Açai pequeño.</div>
-        </div>
-        <div class="pack-price">6,20€</div>
-      </div>
-    </div>
-
-    <div class="time-wrap">
-      <div class="time-title">¿Cuándo pasas a recogerlo?</div>
-      <div class="time-chips">
-        <button class="t-chip active" data-time="En 5 a 10 minutos">En 5-10 min</button>
-        <button class="t-chip" data-time="En 15 minutos">En 15 min</button>
-        <button class="t-chip" data-time="En 30 minutos">En 30 min</button>
-      </div>
-    </div>
+  <div class="top-status">
+    <div><span class="c-dot"></span> <strong>Pide y Recoge en 5 min</strong> · Calle Obispo Rocamora, 15 (Orihuela)</div>
   </div>
 
-  <div class="checkout-bar">
-    <a href="#" class="c-btn" id="takeawaySubmit">
-      Enviar Pedido por WhatsApp
-    </a>
+  <section class="hero container">
+    <div class="hero-badge">Servicio Takeaway Express</div>
+    <h1>Tu Desayuno Listo <span>Sin Esperas</span></h1>
+    <p>Ideal para las mañanas de trabajo. Configura tu pack de café + tosta en 3 clicks y recógelo recién hecho.</p>
+  </section>
+
+  <section class="container">
+    <div class="builder-box">
+      <!-- Step 1: Cafe -->
+      <div class="builder-step">
+        <h3 class="step-title">1. Elige tu Café de Especialidad</h3>
+        <div class="options-grid" id="coffeeOpts">
+          <button class="opt-btn active" data-name="Latte Especialidad" data-price="2.00" onclick="chooseCoffee(this)">Latte (2,00€)</button>
+          <button class="opt-btn" data-name="Flat White Doble" data-price="2.20" onclick="chooseCoffee(this)">Flat White (2,20€)</button>
+          <button class="opt-btn" data-name="Cappuccino Suave" data-price="2.00" onclick="chooseCoffee(this)">Cappuccino (2,00€)</button>
+          <button class="opt-btn" data-name="Americano Intenso" data-price="1.80" onclick="chooseCoffee(this)">Americano (1,80€)</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Tosta -->
+      <div class="builder-step">
+        <h3 class="step-title">2. Elige tu Tosta o Bollería</h3>
+        <div class="options-grid" id="foodOpts">
+          <button class="opt-btn active" data-name="Tosta Ibérica & Tomate" data-price="3.50" onclick="chooseFood(this)">Tosta Ibérica (3,50€)</button>
+          <button class="opt-btn" data-name="Tosta Aguacate & Semillas" data-price="3.80" onclick="chooseFood(this)">Tosta Aguacate (3,80€)</button>
+          <button class="opt-btn" data-name="Croissant Almendras" data-price="2.50" onclick="chooseFood(this)">Croissant (2,50€)</button>
+          <button class="opt-btn" data-name="Tosta Pavo & Queso Fresco" data-price="3.20" onclick="chooseFood(this)">Pavo & Queso (3,20€)</button>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary-card">
+        <div class="sum-price" id="totalDisplay">5,50€</div>
+        <p class="sum-text" id="orderSummary">Latte Especialidad + Tosta Ibérica & Tomate</p>
+        <a id="btnTakeaway" href="#" target="_blank" rel="noopener" class="btn-island">
+          <span>Enviar Pedido por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mobile-bar">
+    <a href="tel:+34966740000" class="m-btn m-btn-call">Llamar</a>
+    <a href="#" id="mBtnTakeaway" class="m-btn m-btn-wa">Pedir en WhatsApp</a>
   </div>
 
-  <script src="/owner-banner.js" defer></script>
   <script>
-    let pSelected = "Pack Despertar Express (Café Especialidad + Croissant de Mantequilla - 3,50€)";
-    let tSelected = "En 5 a 10 minutos";
+    let coffee = { name: "Latte Especialidad", price: 2.00 };
+    let food = { name: "Tosta Ibérica & Tomate", price: 3.50 };
+    const phone = '34632768152';
 
-    const pCards = document.querySelectorAll('.pack-card');
-    const tChips = document.querySelectorAll('.t-chip');
-    const submitBtn = document.getElementById('takeawaySubmit');
-
-    function sync() {
-      const msg = `¡Hola La Vimacchiata! Quiero pedir para recoger en barra:
-• Pedido: ${pSelected}
-• Tiempo de llegada: ${tSelected}
-
-Por favor, preparádmelo para llevar a Calle Obispo Rocamora, 15. ¡Paso enseguida!`;
-
-      submitBtn.href = `https://wa.me/34688794604?text=${encodeURIComponent(msg)}`;
+    function chooseCoffee(el) {
+      document.querySelectorAll('#coffeeOpts .opt-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      coffee = { name: el.getAttribute('data-name'), price: parseFloat(el.getAttribute('data-price')) };
+      calcTotal();
     }
 
-    pCards.forEach(c => {
-      c.addEventListener('click', () => {
-        pCards.forEach(x => x.classList.remove('selected'));
-        c.classList.add('selected');
-        pSelected = c.getAttribute('data-pack');
-        sync();
-      });
-    });
+    function chooseFood(el) {
+      document.querySelectorAll('#foodOpts .opt-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      food = { name: el.getAttribute('data-name'), price: parseFloat(el.getAttribute('data-price')) };
+      calcTotal();
+    }
 
-    tChips.forEach(c => {
-      c.addEventListener('click', () => {
-        tChips.forEach(x => x.classList.remove('active'));
-        c.classList.add('active');
-        tSelected = c.getAttribute('data-time');
-        sync();
-      });
-    });
+    function calcTotal() {
+      const total = (coffee.price + food.price).toFixed(2).replace('.', ',');
+      document.getElementById('totalDisplay').innerText = total + '€';
+      const sumText = coffee.name + ' + ' + food.name;
+      document.getElementById('orderSummary').innerText = sumText;
 
-    sync();
+      const msg = encodeURIComponent('¡Hola La Vimacchiata! Quiero pedir un Pack Express para recoger en 5 minutos: ' + sumText + ' (Total: ' + total + '€). ¿Lo podéis tener listo?');
+      const url = 'https://wa.me/' + phone + '?text=' + msg;
+      document.getElementById('btnTakeaway').href = url;
+      document.getElementById('mBtnTakeaway').href = url;
+    }
+
+    calcTotal();
   </script>
+  <script src="/owner-banner.js"></script>
 </body>
 </html>
