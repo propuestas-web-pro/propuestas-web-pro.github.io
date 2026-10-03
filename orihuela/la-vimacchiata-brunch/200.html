@@ -3,263 +3,574 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>La Vimacchiata | Cafetería Especialidad & Brunch en Orihuela</title>
-  <meta name="description" content="Carta visual de desayunos, café de especialidad y brunch en Calle Obispo Rocamora, Orihuela. Reserva tu mesa en terraza por WhatsApp en 10 segundos.">
+  <title>La Vimacchiata | Cafetería de Especialidad, Brunch & Terraza en Orihuela</title>
+  <meta name="description" content="La Vimacchiata en Calle Obispo Rocamora, 15 (Orihuela). Desayunos con pan de masa madre, specialty coffee de tostador local, brunch completo y terraza exterior.">
+  <link rel="canonical" href="https://miweblocal.com/orihuela/la-vimacchiata-brunch/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #faf8f5;
-      --card: #ffffff;
-      --border: #e8e2d9;
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --surface-elevated: #f4eee5;
+      --border: #e6ded4;
       --primary: #92400e;
-      --primary-light: #b45309;
-      --accent: #d97706;
+      --primary-hover: #78350f;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
       --text: #292524;
-      --muted: #78716c;
-      --radius: 16px;
+      --text-muted: #78716c;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-head: 'Outfit', sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background-color: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 90px;
-      line-height: 1.5;
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-bottom: 95px;
+      overflow-x: hidden;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    
-    .badge {
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+    /* Top Live Bar */
+    .top-status {
+      background: #292524;
+      color: #f5f5f4;
+      padding: 9px 16px;
+      font-size: 0.82rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    .status-dot {
+      width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e; display: inline-block;
+    }
+
+    /* Floating Nav */
+    .nav-wrapper {
+      position: sticky;
+      top: 14px;
+      z-index: 900;
+      padding: 0 16px;
+      margin-bottom: 2rem;
+    }
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.04);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1c1917;
+    }
+    .brand-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--amber-light); color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 900;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary);
+      color: white;
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--primary-hover); }
+
+    /* Hero */
+    .hero {
+      padding: 3rem 0 4rem;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      color: #92400e;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      background: var(--amber-light);
+      border: 1px solid #fde68a;
+      color: var(--primary);
+      font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.3rem;
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.15;
       color: #1c1917;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
     }
-    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.75rem; }
-
-    /* Category Nav Tabs */
-    .tabs-wrap {
+    .hero h1 em { font-style: italic; color: var(--primary); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .hero-actions {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 1.5rem;
-      -webkit-overflow-scrolling: touch;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
-    .tab-btn {
-      background: var(--card);
+    .btn-main {
+      background: var(--primary);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(146, 64, 14, 0.25);
+    }
+    .btn-outline {
+      background: white;
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 16px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .hero-img-stack {
+      position: relative;
+    }
+    .hero-img-main {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+    .hero-float-card {
+      position: absolute;
+      bottom: -20px; left: -20px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .float-icon { font-size: 2rem; }
+
+    /* Interactive Menu Section */
+    .menu-section {
+      padding: 4rem 0;
+    }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .section-tag { font-family: var(--font-head); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--amber); letter-spacing: 0.1em; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: #1c1917; margin-top: 4px; }
+    
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .m-tab {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 22px;
       border-radius: 999px;
       font-weight: 600;
-      font-size: 0.85rem;
-      white-space: nowrap;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
-    .tab-btn.active {
+    .m-tab.active {
       background: var(--primary);
       color: white;
       border-color: var(--primary);
     }
 
-    /* Menu Items */
-    .menu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 4rem;
     }
-    .menu-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-    .item-title { font-weight: 700; font-size: 1.05rem; color: #1c1917; }
-    .item-price { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
-    .item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.4; margin-bottom: 8px; }
-    .tag-list { display: flex; gap: 6px; }
-    .tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
-    .tag-veg { background: #dcfce7; color: #166534; }
-    .tag-gf { background: #e0f2fe; color: #075985; }
-    .tag-star { background: #fef3c7; color: #92400e; }
-
-    /* Reservation Widget */
-    .res-box {
-      background: #f5efe6;
-      border: 1px solid #e6ded2;
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-    .res-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
-    .res-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
-    .res-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-    .res-input {
+    .dish-card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      transition: transform 0.25s;
+    }
+    .dish-card:hover { transform: translateY(-4px); }
+    .dish-img { width: 100%; height: 210px; object-fit: cover; }
+    .dish-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .dish-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .dish-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #1c1917; }
+    .dish-price { font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+    .dish-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem; }
+    .dish-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .d-tag { font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+    .tag-fav { background: #fef3c7; color: #92400e; }
+    .tag-veg { background: #dcfce7; color: #166534; }
+    .tag-gf { background: #e0f2fe; color: #0369a1; }
+
+    /* Reservation Box (Double Bezel) */
+    .reserve-outer {
+      background: linear-gradient(135deg, #f4eee5 0%, #e6ded4 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       padding: 10px;
+      margin-bottom: 5rem;
+    }
+    .reserve-inner {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius-lg) - 8px);
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+    .res-form {
+      max-width: 600px;
+      margin: 2rem auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      text-align: left;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.82rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .form-input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--text);
       outline: none;
     }
+    .form-btn {
+      grid-column: span 2;
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(146, 64, 14, 0.25);
+    }
 
-    /* Fixed Bottom CTA */
-    .bottom-bar {
+    /* Fixed Mobile Action Bar */
+    .mobile-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(250, 248, 245, 0.95);
-      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       padding: 12px 20px;
       display: flex;
+      gap: 12px;
+      z-index: 1000;
       justify-content: center;
-      z-index: 100;
     }
-    .cta-btn {
-      max-width: 600px;
-      width: 100%;
-      background: var(--primary);
-      color: white;
-      padding: 14px 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-align: center;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(146, 64, 14, 0.25);
+    .m-btn {
+      flex: 1; max-width: 280px; padding: 12px 18px; border-radius: 999px;
+      font-size: 0.9rem; font-weight: 700; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .m-btn-primary { background: var(--primary); color: #fff; }
+    .m-btn-secondary { background: var(--surface-elevated); color: var(--text); border: 1px solid var(--border); }
+
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .res-form { grid-template-columns: 1fr; }
+      .form-btn { grid-column: span 1; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="badge">☕ La Vimacchiata · Obispo Rocamora, 15 (Orihuela)</div>
-    <h1>Desayunos, Specialty Coffee & <em>Brunch</em></h1>
-    <p class="subtitle">Carta visual completa. Consulta ingredientes, alérgenos y reserva tu mesa en terraza sin tener que esperar a que cojan el teléfono.</p>
 
-    <!-- TABS -->
-    <div class="tabs-wrap">
-      <button class="tab-btn active">Todos</button>
-      <button class="tab-btn">Brunch & Tostas</button>
-      <button class="tab-btn">Café Especialidad</button>
-      <button class="tab-btn">Bowls & Dulces</button>
-    </div>
-
-    <!-- ITEMS -->
-    <div class="menu-card">
-      <div class="menu-header">
-        <div class="item-title">Brunch Completo Vimacchiata</div>
-        <div class="item-price">12,50€</div>
-      </div>
-      <p class="item-desc">Tosta de aguacate con huevo poché en pan de masa madre, zumo de naranja natural exprimido al momento, bowl de yogur griego con granola artesana y café de especialidad.</p>
-      <div class="tag-list">
-        <span class="tag tag-star">⭐ Estrella</span>
-        <span class="tag tag-veg">Vegetariano</span>
-      </div>
-    </div>
-
-    <div class="menu-card">
-      <div class="menu-header">
-        <div class="item-title">Tosta Salmón Noruego & Crema Tartufata</div>
-        <div class="item-price">6,80€</div>
-      </div>
-      <p class="item-desc">Salmón ahumado prémium, queso crema a las finas hierbas con toque de trufa, rúcula fresca y semillas de sésamo tostado.</p>
-      <div class="tag-list">
-        <span class="tag tag-gf">Opción Sin Gluten</span>
-      </div>
-    </div>
-
-    <div class="menu-card">
-      <div class="menu-header">
-        <div class="item-title">Flat White Doble Shot (Origen Etiopía)</div>
-        <div class="item-price">2,40€</div>
-      </div>
-      <p class="item-desc">Extracción doble de café de especialidad tostado localmente, con microespuma sedosa de leche fresca o vegetal (avena barista / almendra).</p>
-      <div class="tag-list">
-        <span class="tag tag-veg">100% Arábica</span>
-      </div>
-    </div>
-
-    <div class="menu-card">
-      <div class="menu-header">
-        <div class="item-title">Açai Bowl Tropical con Fruta Fresca</div>
-        <div class="item-price">5,90€</div>
-      </div>
-      <p class="item-desc">Base de açai orgánico batido con plátano y frutos rojos, coronado con kiwi, fresas frescas, semillas de chía y crema de cacahuete natural.</p>
-      <div class="tag-list">
-        <span class="tag tag-veg">Vegano</span>
-        <span class="tag tag-gf">Sin Gluten</span>
-      </div>
-    </div>
-
-    <!-- RESERVA WIDGET -->
-    <div class="res-box">
-      <div class="res-title">Reserva tu Mesa en Terraza</div>
-      <p class="res-desc">Evita esperar de pie los fines de semana. Dinos cuántos sois y te guardamos sitio.</p>
-      <div class="res-inputs">
-        <input type="text" class="res-input" id="resName" placeholder="Tu nombre">
-        <select class="res-input" id="resPersons">
-          <option value="2 personas">2 personas</option>
-          <option value="3-4 personas">3-4 personas</option>
-          <option value="5-6 personas">5-6 personas</option>
-          <option value="Grupo grande">Grupo (+6)</option>
-        </select>
-      </div>
-      <div class="res-inputs">
-        <input type="time" class="res-input" id="resTime" value="10:30">
-        <select class="res-input" id="resZone">
-          <option value="Terraza">Terraza exterior</option>
-          <option value="Interior salón">Interior climatizado</option>
-        </select>
-      </div>
-    </div>
+  <!-- Top Status -->
+  <div class="top-status">
+    <span><span class="status-dot"></span> <strong>Abierto hoy</strong> en Calle Obispo Rocamora, 15 (Orihuela)</span>
+    <span style="opacity: 0.4;">|</span>
+    <span>Terraza disponible · Brunch & Desayunos</span>
   </div>
 
-  <div class="bottom-bar">
-    <a href="#" class="cta-btn" id="resBtn">
-      Reservar Mesa por WhatsApp
+  <!-- Nav -->
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-icon">☕</div>
+        <span>La Vimacchiata</span>
+      </div>
+      <div class="nav-links">
+        <a href="#carta">Nuestra Carta</a>
+        <a href="#reserva">Reservar Mesa</a>
+        <a href="#cafe">Café de Origen</a>
+        <a href="#ubicacion">Cómo Llegar</a>
+      </div>
+      <a href="#reserva" class="nav-cta">
+        <span>Reservar Mesa</span>
+        <span>→</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <header class="container hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">Apertura 2026 · Orihuela Centro</div>
+        <h1>El arte de desayunar con <em>tiempo y sabor</em></h1>
+        <p>Café de especialidad tostado con esmero, tostas en hogaza de masa madre y un brunch pensado para saborear cada minuto en nuestra terraza de Obispo Rocamora.</p>
+        
+        <div class="hero-actions">
+          <a href="#reserva" class="btn-main">Reservar Mesa en Terraza</a>
+          <a href="#carta" class="btn-outline">Ver Carta Completa</a>
+        </div>
+      </div>
+      <div class="hero-img-stack">
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=900&q=80" alt="Brunch Vimacchiata" class="hero-img-main">
+        <div class="hero-float-card">
+          <div class="float-icon">🥑</div>
+          <div>
+            <div style="font-weight: 800; font-size: 0.95rem;">Brunch Estrella 2026</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Pan masa madre + Huevo poché</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carta -->
+  <section class="container menu-section" id="carta">
+    <div class="section-head">
+      <div class="section-tag">Ingredientes de Proximidad</div>
+      <h2 class="section-title">Nuestra Carta de Especialidad</h2>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="m-tab active">Todos</button>
+      <button class="m-tab">Tostas de Masa Madre</button>
+      <button class="m-tab">Specialty Coffee</button>
+      <button class="m-tab">Bowls & Bakery</button>
+    </div>
+
+    <div class="dishes-grid">
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&q=80" alt="Brunch completo" class="dish-img">
+        <div class="dish-body">
+          <div>
+            <div class="dish-top">
+              <div class="dish-name">Brunch Clásico Vimacchiata</div>
+              <div class="dish-price">12,50€</div>
+            </div>
+            <p class="dish-desc">Tosta de aguacate laminado con huevo poché y semillas, zumo de naranja natural exprimido, bowl de yogur griego con frutos del bosque y café a elegir.</p>
+          </div>
+          <div class="dish-tags">
+            <span class="d-tag tag-fav">⭐ Más Pedido</span>
+            <span class="d-tag tag-veg">Vegetariano</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Flat white" class="dish-img">
+        <div class="dish-body">
+          <div>
+            <div class="dish-top">
+              <div class="dish-name">Flat White Doble Origen</div>
+              <div class="dish-price">2,40€</div>
+            </div>
+            <p class="dish-desc">Extracción doble de café arábica de especialidad con microespuma sedosa. Disponible con leche fresca de granja o bebidas vegetales barista (avena / almendra).</p>
+          </div>
+          <div class="dish-tags">
+            <span class="d-tag tag-fav">Specialty Roast</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=600&q=80" alt="Acai bowl" class="dish-img">
+        <div class="dish-body">
+          <div>
+            <div class="dish-top">
+              <div class="dish-name">Açai Bowl & Granola Crunch</div>
+              <div class="dish-price">5,90€</div>
+            </div>
+            <p class="dish-desc">Pulpa de açai orgánico batida en frío, rodajas de plátano, fresas de temporada, arándanos silvestres, granola crujiente horneada y crema de cacahuete 100%.</p>
+          </div>
+          <div class="dish-tags">
+            <span class="d-tag tag-veg">Vegano</span>
+            <span class="d-tag tag-gf">Sin Gluten</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" alt="Croissants" class="dish-img">
+        <div class="dish-body">
+          <div>
+            <div class="dish-top">
+              <div class="dish-name">Croissant Francés de Mantequilla</div>
+              <div class="dish-price">2,20€</div>
+            </div>
+            <p class="dish-desc">Hojaldrado artesanal fermentado lentamente con mantequilla pura. Opción relleno de crema de pistacho tostado o chocolate belga.</p>
+          </div>
+          <div class="dish-tags">
+            <span class="d-tag tag-fav">Horneado Diario</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation -->
+  <section class="container" id="reserva">
+    <div class="reserve-outer">
+      <div class="reserve-inner">
+        <div class="section-tag">Sin esperas en puerta</div>
+        <h2 class="section-title">Reserva tu Mesa en Terraza o Salón</h2>
+        <p style="color: var(--text-muted); max-width: 500px; margin: 8px auto 0;">
+          Los sábados y domingos por la mañana las mesas vuelan. Asegura tu sitio en 10 segundos.
+        </p>
+
+        <div class="res-form">
+          <div class="form-group">
+            <label>Nombre de la reserva</label>
+            <input type="text" class="form-input" id="rName" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Comensales</label>
+            <select class="form-input" id="rPersons">
+              <option value="2 personas">2 personas</option>
+              <option value="3-4 personas">3-4 personas</option>
+              <option value="5-6 personas">5-6 personas</option>
+              <option value="Grupo grande (+6)">Grupo (+6 personas)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Hora estimada</label>
+            <input type="time" class="form-input" id="rTime" value="10:30">
+          </div>
+          <div class="form-group">
+            <label>Preferencia de Zona</label>
+            <select class="form-input" id="rZone">
+              <option value="Terraza exterior">Terraza exterior</option>
+              <option value="Interior salón">Interior climatizado</option>
+            </select>
+          </div>
+          <a href="#" class="form-btn" id="rSubmit">
+            Confirmar Reserva por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <footer class="container" id="ubicacion" style="text-align: center; padding-bottom: 2rem;">
+    <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 8px;">La Vimacchiata</h3>
+    <p style="color: var(--text-muted); margin-bottom: 12px;">📍 Calle Obispo Rocamora, 15, 03300 Orihuela (Alicante)</p>
+    <p style="font-size: 0.85rem; color: var(--text-muted);">Horario: Lunes a Sábado de 7:30 a 20:30 · Domingos de 8:30 a 14:00</p>
+  </footer>
+
+  <!-- Mobile Fixed Bar -->
+  <div class="mobile-bar">
+    <a href="tel:+34688794604" class="m-btn m-btn-secondary">
+      <span>📞 Llamar</span>
+    </a>
+    <a href="#reserva" class="m-btn m-btn-primary">
+      <span>📅 Reservar Mesa</span>
     </a>
   </div>
 
   <script src="/owner-banner.js" defer></script>
   <script>
-    const resBtn = document.getElementById('resBtn');
-    function updateRes() {
-      const name = document.getElementById('resName').value || 'Cliente';
-      const persons = document.getElementById('resPersons').value;
-      const time = document.getElementById('resTime').value;
-      const zone = document.getElementById('resZone').value;
+    const rName = document.getElementById('rName');
+    const rPersons = document.getElementById('rPersons');
+    const rTime = document.getElementById('rTime');
+    const rZone = document.getElementById('rZone');
+    const rSubmit = document.getElementById('rSubmit');
+
+    function syncReservation() {
+      const name = rName.value || 'Cliente';
+      const p = rPersons.value;
+      const t = rTime.value;
+      const z = rZone.value;
 
       const msg = `¡Hola La Vimacchiata! Me gustaría reservar mesa:
 • A nombre de: ${name}
-• Personas: ${persons}
-• Hora estimada: ${time}
-• Zona: ${zone}
+• Comensales: ${p}
+• Hora prevista: ${t}
+• Preferencia: ${z}
 
-¿Tenéis hueco disponible? ¡Muchas gracias!`;
+¿Tenéis mesa libre disponible? ¡Gracias!`;
 
-      resBtn.href = `https://wa.me/34688794604?text=${encodeURIComponent(msg)}`;
+      rSubmit.href = `https://wa.me/34688794604?text=${encodeURIComponent(msg)}`;
     }
 
-    document.querySelectorAll('.res-input').forEach(el => el.addEventListener('input', updateRes));
-    updateRes();
+    [rName, rPersons, rTime, rZone].forEach(el => el.addEventListener('input', syncReservation));
+    syncReservation();
   </script>
 </body>
 </html>

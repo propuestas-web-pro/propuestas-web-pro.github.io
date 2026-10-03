@@ -3,177 +3,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Barbería Jamal | Lookbook de Degradados & Street Cuts en Cox</title>
-  <meta name="description" content="Especialistas en Skin Fade, Taper, Burst Fade y diseño de barba en Cox (Alicante). Mira el lookbook y pide tu corte en 1 clic.">
+  <title>Barbería Jamal | Lookbook de Degradados & Fade Masters en Cox</title>
+  <meta name="description" content="Especialistas en Skin Fade, Taper y diseño de barba en Cox (Alicante). Mira el catálogo de cortes y reserva tu cita en 30 segundos.">
+  <link rel="canonical" href="https://miweblocal.com/cox/barberia-jamal-street/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #090a0f;
-      --card: #131722;
+      --bg: #090b10;
+      --surface: #121622;
+      --card: #181d2c;
       --border: rgba(255,255,255,0.08);
-      --blue: #38bdf8;
-      --blue-glow: rgba(56, 189, 248, 0.3);
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.3);
       --text: #f8fafc;
       --muted: #94a3b8;
-      --radius: 16px;
+      --radius: 18px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 90px;
+      padding-bottom: 95px;
       line-height: 1.5;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    
-    .street-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
+
+    .top-status {
+      background: #0f131d;
+      border-bottom: 1px solid var(--border);
+      padding: 9px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .c-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #22c55e; margin-right: 6px; }
+
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
       background: rgba(56, 189, 248, 0.12);
       border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #38bdf8;
-      padding: 6px 14px;
+      color: var(--cyan);
+      padding: 6px 16px;
       border-radius: 999px;
-      font-size: 0.78rem;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      font-size: 0.8rem;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
       margin-bottom: 1rem;
     }
-    h1 {
+    .hero h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 2.3rem;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
       font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
     }
-    h1 span { color: var(--blue); }
-    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
+    .hero h1 span { color: var(--cyan); }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto 2.5rem; }
 
-    /* Cuts Grid */
-    .cuts-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    .cut-card {
+    /* Cuts Lookbook Grid */
+    .section-title { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; text-align: center; }
+    .cuts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 4rem;
+    }
+    .cut-item {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem;
+      overflow: hidden;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      transition: transform 0.25s;
     }
-    .cut-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .cut-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
-    .cut-price { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--blue); margin-bottom: 6px; text-align: right; }
-    .cut-action-btn {
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid var(--blue);
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 0.8rem;
-      padding: 6px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      white-space: nowrap;
-      display: inline-block;
+    .cut-item:hover { transform: translateY(-4px); }
+    .cut-img { width: 100%; height: 260px; object-fit: cover; }
+    .cut-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .c-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .c-name { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; }
+    .c-price { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--cyan); }
+    .c-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
+    .c-btn {
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      display: block;
+      box-shadow: 0 4px 15px var(--cyan-glow);
     }
-    
-    .club-banner {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(0,0,0,0));
+
+    /* VIP Club */
+    .vip-box {
+      background: linear-gradient(135deg, #172235 0%, var(--surface) 100%);
       border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-top: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
+      margin-bottom: 4rem;
     }
-    .club-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
-    .club-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .vip-box h3 { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .vip-box p { color: var(--muted); max-width: 550px; margin: 0 auto 1.5rem; }
 
-    .bottom-bar {
+    /* Fixed Bar */
+    .fixed-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(9, 10, 15, 0.95);
-      backdrop-filter: blur(14px);
+      background: rgba(9, 11, 16, 0.95);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       padding: 12px 20px;
       display: flex;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
     }
-    .blue-btn {
-      max-width: 600px;
+    .b-cta {
+      max-width: 500px;
       width: 100%;
-      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
       color: #000;
-      padding: 14px 20px;
+      padding: 14px;
       border-radius: 999px;
       font-weight: 800;
       font-size: 0.95rem;
       text-align: center;
-      text-decoration: none;
-      box-shadow: 0 4px 20px var(--blue-glow);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="street-tag">✂️ Jamal Barber Studio · Cox</div>
-    <h1>Degradados al Milímetro & <span>Estilo Urbano</span></h1>
-    <p class="subtitle">Especialistas en cortes modernos, degradados a cero pulidos y perfilado de barba al láser visual en Cox (Alicante).</p>
+  <div class="top-status">
+    <div class="container">
+      <span class="c-dot"></span> <strong>Abierto hoy en Cox</strong> · Degradados al milímetro · Reserva tu turno directo
+    </div>
+  </div>
 
+  <header class="hero">
+    <div class="container">
+      <div class="badge">Fade Masters · Cox (Alicante)</div>
+      <h1>Cortes con Carácter & <span>Degradados a Cero</span></h1>
+      <p>Olvídate de esperar turno de pie. Mira nuestro lookbook, elige el corte que va con tu estilo y resérvalo con Jamal en 30 segundos.</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="section-title">Lookbook de Estilos</div>
     <div class="cuts-grid">
-      <div class="cut-card">
-        <div style="flex: 1; padding-right: 12px;">
-          <div class="cut-title">Skin Fade / Low Fade</div>
-          <p class="cut-desc">Degradado limpio a navaja desde cero con transición suave y peinado superior texturizado.</p>
-        </div>
-        <div style="text-align: right;">
-          <div class="cut-price">12€</div>
-          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20un%20Skin%20Fade%20esta%20semana." class="cut-action-btn">Elegir corte</a>
-        </div>
-      </div>
-
-      <div class="cut-card">
-        <div style="flex: 1; padding-right: 12px;">
-          <div class="cut-title">Taper Fade + Arreglo de Barba</div>
-          <p class="cut-desc">Desvanecido en patillas y nuca manteniendo volumen lateral, más perfilado de barba a navaja con toalla.</p>
-        </div>
-        <div style="text-align: right;">
-          <div class="cut-price">17€</div>
-          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20Taper%20Fade%20con%20Barba." class="cut-action-btn">Elegir corte</a>
+      <div class="cut-item">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=700&q=80" alt="Skin fade" class="cut-img">
+        <div class="cut-body">
+          <div>
+            <div class="c-top">
+              <div class="c-name">Skin Fade / Low Fade</div>
+              <div class="c-price">12€</div>
+            </div>
+            <p class="c-desc">Degradado limpio a navaja o shaver desde cero absoluto. Transición impecable en nuca y laterales con peinado superior a tijera.</p>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20un%20Skin%20Fade%20esta%20semana." class="c-btn">Pedir este Corte</a>
         </div>
       </div>
 
-      <div class="cut-card">
-        <div style="flex: 1; padding-right: 12px;">
-          <div class="cut-title">Corte Crop Texturizado + Color / Mechas</div>
-          <p class="cut-desc">Estilo contemporáneo con flequillo corto y textura desfilada, diseño de líneas y peinado con cera mate.</p>
+      <div class="cut-item">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=700&q=80" alt="Taper fade con barba" class="cut-img">
+        <div class="cut-body">
+          <div>
+            <div class="c-top">
+              <div class="c-name">Taper Fade + Barba Esculpida</div>
+              <div class="c-price">17€</div>
+            </div>
+            <p class="c-desc">Desvanecido en patillas y cuello manteniendo densidad lateral. Perfilado de barba a navaja con toalla previa y aceite hidratante.</p>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20Taper%20Fade%20con%20Barba." class="c-btn">Pedir este Corte</a>
         </div>
-        <div style="text-align: right;">
-          <div class="cut-price">15€</div>
-          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20un%20Corte%20Crop%20Texturizado." class="cut-action-btn">Elegir corte</a>
+      </div>
+
+      <div class="cut-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=80" alt="Crop texturizado" class="cut-img">
+        <div class="cut-body">
+          <div>
+            <div class="c-top">
+              <div class="c-name">French Crop Texturizado</div>
+              <div class="c-price">14€</div>
+            </div>
+            <p class="c-desc">Flequillo recto o desfilado, textura superior con polvo voluminizador y contornos marcados a cuchilla para máxima durabilidad.</p>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20un%20Crop%20Texturizado." class="c-btn">Pedir este Corte</a>
         </div>
       </div>
     </div>
 
-    <div class="club-banner">
-      <div class="club-title">¿Vienes cada 2 o 3 semanas?</div>
-      <p class="club-desc">Guarda tu turno fijo con Jamal para no quedarte nunca sin hueco los viernes o sábados.</p>
-      <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20preguntarte%20por%20turnos%20habituales%20para%20cortarme%20cada%20dos%20semanas." class="cut-action-btn" style="padding: 10px 20px; font-size: 0.9rem;">
+    <div class="vip-box">
+      <h3>¿Te cortas cada 2 semanas?</h3>
+      <p>Únete a los habituales de Jamal en Cox. Asegura tu día y hora fija de la semana para no quedarte nunca sin sitio los viernes o sábados.</p>
+      <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20preguntarte%20por%20un%20turno%20fijo%20cada%20dos%20semanas." class="c-btn" style="display: inline-block; padding: 14px 28px;">
         Hablar con Jamal por WhatsApp
       </a>
     </div>
 
-    <div style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 2rem;">
+    <div style="text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem;">
       📍 <strong>Barbería Jamal</strong> · Cox (Alicante)
     </div>
-  </div>
+  </section>
 
-  <div class="bottom-bar">
-    <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20reservar%20cita%20para%20cortarme%20el%20pelo%20en%20Cox." class="blue-btn">
+  <div class="fixed-bar">
+    <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20reservar%20cita%20para%20cortarme%20el%20pelo%20en%20Cox." class="b-cta">
       Reservar Cita Rápida por WhatsApp
     </a>
   </div>

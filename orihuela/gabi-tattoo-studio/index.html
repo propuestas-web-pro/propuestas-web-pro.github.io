@@ -3,175 +3,286 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Gabi Tattoo Studio | Estudio de Autor en Orihuela</title>
-  <meta name="description" content="Estudio de tatuaje de autor en Calle Aragón, Orihuela. Calidad higiénico-sanitaria certificada, consulta de diseño personalizada y cuidados tras el tattoo.">
+  <title>Gabi Tattoo Studio | Atelier de Tatuajes de Autor en Orihuela</title>
+  <meta name="description" content="Atelier de tatuajes en Calle Aragón, Orihuela. Piezas exclusivas diseñadas a medida anatómica, esterilización clínica y asesoramiento artístico.">
+  <link rel="canonical" href="https://miweblocal.com/orihuela/gabi-tattoo-studio/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #090a0f;
-      --surface: #12141c;
-      --border: rgba(255,255,255,0.08);
+      --bg: #090a0d;
+      --surface: #101218;
+      --surface-card: #151922;
+      --border: rgba(255, 255, 255, 0.08);
       --gold: #d4af37;
       --gold-light: #f3e5ab;
+      --gold-glow: rgba(212, 175, 55, 0.25);
       --text: #f8fafc;
       --muted: #a1a1aa;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --radius: 20px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 85px;
+      font-family: var(--font-sans);
       line-height: 1.6;
+      padding-bottom: 90px;
     }
-    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem; }
-    
-    .editorial-badge {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      padding-bottom: 4px;
-      display: inline-block;
-      margin-bottom: 1.5rem;
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+    /* Nav */
+    .top-nav {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
     }
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-    .lead { font-size: 1.05rem; color: var(--muted); font-weight: 300; margin-bottom: 2.5rem; }
-    
-    /* Pillars Grid */
-    .pillar-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-bottom: 3rem;
-    }
-    .pillar-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-    }
-    .pillar-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      color: var(--gold-light);
-      margin-bottom: 0.5rem;
+    .nav-inner {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
     }
-    .pillar-card p { font-size: 0.9rem; color: var(--muted); }
-    
-    /* Aftercare Accordion */
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      margin-bottom: 1.25rem;
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      letter-spacing: 0.15em;
+      color: #fff;
+    }
+    .brand-sub { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; }
+    .gold-cta {
+      background: linear-gradient(135deg, var(--gold), #997b15);
+      color: #000;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.85rem;
       letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px var(--gold-glow);
     }
-    .faq-item {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 10px;
-      padding: 14px 18px;
-    }
-    .faq-q { font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 6px; }
-    .faq-a { font-size: 0.85rem; color: var(--muted); }
-    
-    /* Address Box */
-    .address-card {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(0,0,0,0));
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-top: 2.5rem;
+
+    /* Editorial Hero */
+    .hero {
+      padding: 6rem 0 5rem;
       text-align: center;
     }
-    .address-card h4 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 6px; }
-    .address-card p { font-size: 0.9rem; color: var(--muted); }
+    .hero-eyebrow {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #fff 0%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
 
-    /* Sticky Bottom Nav */
+    /* Editorial Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 6rem;
+    }
+    .gallery-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      filter: contrast(110%);
+    }
+    .gallery-caption {
+      padding: 1.5rem;
+    }
+    .cap-title { font-family: var(--font-serif); font-size: 1.1rem; color: #fff; margin-bottom: 4px; }
+    .cap-desc { font-size: 0.85rem; color: var(--muted); }
+
+    /* Philosophy Split */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+    }
+    .split-content h2 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .split-content p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.8; }
+    .split-img {
+      border-radius: 16px;
+      overflow: hidden;
+      height: 380px;
+    }
+    .split-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Aftercare Guide Accordion */
+    .aftercare-box {
+      max-width: 800px;
+      margin: 0 auto 6rem;
+    }
+    .ac-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      padding: 18px 24px;
+    }
+    .ac-title { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold-light); margin-bottom: 6px; }
+    .ac-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* Bottom Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(9, 10, 15, 0.95);
-      backdrop-filter: blur(15px);
+      background: rgba(9, 10, 13, 0.95);
+      backdrop-filter: blur(20px);
       border-top: 1px solid var(--border);
       padding: 14px 20px;
       display: flex;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
     }
-    .gold-btn {
+    .b-cta {
+      max-width: 500px;
       width: 100%;
-      max-width: 600px;
-      background: linear-gradient(135deg, #d4af37, #997b15);
+      background: linear-gradient(135deg, var(--gold), #a17f16);
       color: #000;
       font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 15px 25px;
+      padding: 14px;
       border-radius: 999px;
       text-align: center;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 4px 20px var(--gold-glow);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .split-section { grid-template-columns: 1fr; padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="editorial-badge">Estudio de Autor · Orihuela 2026</div>
-    <h1>Arte en Piel con <span>Firma de Autor</span></h1>
-    <p class="lead">Gabi Tattoo Studio combina la precisión anatómica con los estándares higiénico-sanitarios más estrictos de la Vega Baja. Cada pieza se diseña exclusivamente para cada cuerpo.</p>
-    
-    <div class="pillar-grid">
-      <div class="pillar-card">
-        <h3>🛡️ Grado Clínico & Esterilización</h3>
-        <p>Material desechable de un solo uso, tintas homologadas según normativa europea REACH y cabina higienizada tras cada sesión.</p>
+  <div class="top-nav">
+    <div class="container nav-inner">
+      <div>
+        <div class="brand-title">GABI TATTOO STUDIO</div>
+        <div class="brand-sub">Atelier de Autor · Orihuela</div>
       </div>
-      <div class="pillar-card">
-        <h3>📐 Asesoramiento Anatómico Previo</h3>
-        <p>No pegamos plantillas a ciegas: adaptamos la caída muscular y el movimiento de tu brazo o espalda para que la pieza no se deforme con el paso de los años.</p>
-      </div>
-      <div class="pillar-card">
-        <h3>💬 Reserva de Cita Sin Fricción</h3>
-        <p>Sin llamadas a deshoras ni pérdidas de tiempo. Cuéntanos tu concepto y te asignamos turno directo con el boceto preparado.</p>
-      </div>
-    </div>
-
-    <h2 class="section-title">Guía de Cuidados (Aftercare)</h2>
-    <div class="faq-item">
-      <div class="faq-q">¿Cómo cuido mi tatuaje las primeras 48 horas?</div>
-      <div class="faq-a">Retira el film dérmico con agua tibia y jabón neutro. Seca a toques con papel secante sin frotar y aplica una capa finísima de crema cicatrizante específica.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Puedo hacer deporte o piscina tras tatuarme?</div>
-      <div class="faq-a">Evita inmersión en piscina, playa o sauna durante 15 días. Se recomienda reposo de sudoración intensa durante las primeras 72 horas para asegurar la saturación del pigmento.</div>
-    </div>
-
-    <div class="address-card">
-      <h4>Visítanos en el Estudio</h4>
-      <p>📍 Calle Aragón, 2, 03300 Orihuela (Alicante)<br>
-      Atención con cita previa personalizada</p>
+      <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quisiera%20solicitar%20una%20consulta%20de%20dise%C3%B1o%20de%20autor%20en%20el%20estudio." class="gold-cta">Cita Asesoramiento</a>
     </div>
   </div>
 
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Precisión Anatómica & Excelencia Higiénica</div>
+      <h1>Cada pieza es una obra <em>irrepetible</em></h1>
+      <p>En Calle Aragón, 2 diseñamos tatuajes integrados armónicamente con la fisonomía de tu cuerpo. Un diálogo directo entre tatuador y coleccionista.</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=800&q=80" alt="Sculpture tattoo">
+        <div class="gallery-caption">
+          <div class="cap-title">Escultura Clásica</div>
+          <div class="cap-desc">Saturación suave de grises sin cortes bruscos.</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800&q=80" alt="Floral fine line tattoo">
+        <div class="gallery-caption">
+          <div class="cap-title">Trazo Botánico Milimétrico</div>
+          <div class="cap-desc">Línea continua sin vibración y cicatrización perfecta.</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?w=800&q=80" alt="Tattoo artist workspace">
+        <div class="gallery-caption">
+          <div class="cap-title">Micro-Retrato</div>
+          <div class="cap-desc">Precisión fotográfica en formato reducido.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="split-section">
+      <div class="split-content">
+        <h2>El Compromiso del Atelier</h2>
+        <p>No trabajamos con plantillas de catálogo masivas. Antes de encender la máquina realizamos una sesión de análisis anatómico: estudiamos la tensión dérmica, el envejecimiento del pigmento con el sol del Mediterráneo y la caída muscular para que tu pieza luzca perfecta hoy y dentro de 20 años.</p>
+        <p>Todos los pigmentos cumplen la directiva europea REACH 2026, garantizando inocuidad dérmica y máxima retención del negro carbón puro.</p>
+      </div>
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1590246814883-578336336336?w=800&q=80" alt="Clean studio interior">
+      </div>
+    </div>
+  </section>
+
+  <section class="container aftercare-box">
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <div class="hero-eyebrow">Protocolo Post-Tatuaje</div>
+      <h2 style="font-family: var(--font-serif); font-size: 2rem;">Guía de Cuidados (Aftercare)</h2>
+    </div>
+
+    <div class="ac-item">
+      <div class="ac-title">Primeras 48 Horas · Cicatrización Primaria</div>
+      <div class="ac-text">Retira el film dérmico con agua tibia y jabón neutro bactericida. Seca a toques suaves con papel secante de un solo uso sin frotar. Deja respirar la piel 15 minutos antes de hidratar.</div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-title">Días 3 al 15 · Retención del Pigmento</div>
+      <div class="ac-text">Aplica una capa finísima de bálsamo regenerador 3 veces al día. No arranques costras ni pieles. Evita la exposición solar directa, baños en piscina, playa y saunas durante 14 días.</div>
+    </div>
+    <div class="ac-item">
+      <div class="ac-title">Cuidado a Largo Plazo</div>
+      <div class="ac-text">Para mantener la nitidez y el contraste del negro puro a lo largo de los años, aplica protector solar SPF 50+ en todas las exposiciones prolongadas.</div>
+    </div>
+  </section>
+
   <div class="bottom-bar">
-    <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20buenas.%20He%20visto%20vuestro%20estudio%20en%20la%20web%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20de%20dise%C3%B1o%20y%20presupuesto%20para%20un%20tattoo." class="gold-btn">
-      Solicitar Consulta de Diseño por WhatsApp
+    <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20buenas.%20Quiero%20solicitar%20una%20consulta%20para%20dise%C3%B1ar%20un%20tatuaje%20personalizado." class="b-cta">
+      Solicitar Cita de Asesoramiento por WhatsApp
     </a>
   </div>
 

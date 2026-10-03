@@ -3,157 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Barbería Jamal | Barbería Tradicional & Ritual de Afeitado en Cox</title>
-  <meta name="description" content="El arte clásico del afeitado tradicional a navaja, toalla caliente y cuidado del caballero en Cox. Reserva tu ritual completo sin prisas.">
+  <title>Barbería Jamal | Ritual Tradicional de Afeitado a Navaja en Cox</title>
+  <meta name="description" content="El arte clásico del afeitado tradicional a navaja con toalla caliente infusionada y cuidado del caballero en Cox.">
+  <link rel="canonical" href="https://miweblocal.com/cox/barberia-jamal-gentleman/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #14120e;
-      --card: #1e1b15;
+      --bg: #151310;
+      --card: #1f1c17;
       --border: rgba(255,255,255,0.08);
       --copper: #c2884a;
       --copper-light: #dfa86c;
       --text: #f5f2eb;
       --muted: #a69e90;
-      --radius: 16px;
+      --radius: 18px;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 90px;
-      line-height: 1.5;
+      font-family: var(--font-sans);
+      padding-bottom: 95px;
+      line-height: 1.6;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    
-    .heritage-badge {
-      display: inline-block;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--copper-light);
-      border-bottom: 1px solid var(--copper);
-      padding-bottom: 2px;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.3rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    h1 span { color: var(--copper); }
-    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
 
-    .ritual-card {
+    .top-bar {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title { font-family: var(--font-serif); font-size: 1.4rem; color: #fff; font-weight: 700; }
+    .badge {
+      border: 1px solid var(--copper);
+      color: var(--copper-light);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .hero {
+      padding: 5rem 0 3.5rem;
+      text-align: center;
+    }
+    .hero-tag { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--copper); margin-bottom: 1rem; }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.3rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { color: var(--copper-light); font-style: italic; }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto 2.5rem; }
+
+    /* Rituals Grid */
+    .rituals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 4rem;
+    }
+    .r-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .ritual-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .ritual-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; }
-    .ritual-price { font-weight: 800; color: var(--copper); font-size: 1.2rem; }
-    .ritual-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
-    .ritual-steps {
+      overflow: hidden;
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      flex-direction: column;
     }
+    .r-img { width: 100%; height: 240px; object-fit: cover; }
+    .r-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .r-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .r-name { font-family: var(--font-serif); font-size: 1.3rem; color: #fff; font-weight: 700; }
+    .r-price { font-weight: 800; color: var(--copper-light); font-size: 1.35rem; }
+    .r-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; }
+    .r-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
     .step-pill {
       background: rgba(194, 136, 74, 0.12);
       border: 1px solid rgba(194, 136, 74, 0.25);
       color: var(--copper-light);
       font-size: 0.75rem;
-      font-weight: 600;
       padding: 3px 10px;
       border-radius: 999px;
     }
+    .r-btn {
+      background: linear-gradient(135deg, var(--copper), #8a5923);
+      color: #000;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-align: center;
+    }
 
-    .bottom-bar {
+    /* Fixed Bottom */
+    .fixed-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(20, 18, 14, 0.95);
-      backdrop-filter: blur(14px);
+      background: rgba(21, 19, 16, 0.95);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       padding: 12px 20px;
       display: flex;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
     }
-    .copper-btn {
-      max-width: 600px;
+    .f-btn {
+      max-width: 500px;
       width: 100%;
-      background: linear-gradient(135deg, #c2884a, #8e581e);
+      background: linear-gradient(135deg, var(--copper), #8a5923);
       color: #000;
-      padding: 14px 20px;
+      padding: 14px;
       border-radius: 999px;
       font-weight: 800;
       font-size: 0.95rem;
       text-align: center;
-      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="heritage-badge">El Arte Clásico · Cox</div>
-    <h1>El Ritual de la <span>Barbería Tradicional</span></h1>
-    <p class="subtitle">Tómate un respiro de 45 minutos. Afeitado tradicional con toalla caliente infusionada con eucalipto, corte de precisión y cuidado masculino de máxima calidad.</p>
-
-    <div class="ritual-card">
-      <div class="ritual-top">
-        <div class="ritual-title">Ritual Clásico Jamal (Completo)</div>
-        <div class="ritual-price">22€</div>
-      </div>
-      <p class="ritual-desc">Corte de autor a tijera o máquina + afeitado o perfilado de barba con toalla caliente previa, masaje facial revitalizante y bálsamo hidratante.</p>
-      <div class="ritual-steps">
-        <span class="step-pill">Toalla Caliente</span>
-        <span class="step-pill">Navaja Tradicional</span>
-        <span class="step-pill">Masaje Facial</span>
-        <span class="step-pill">45 min</span>
-      </div>
-    </div>
-
-    <div class="ritual-card">
-      <div class="ritual-top">
-        <div class="ritual-title">Afeitado Maestro a Navaja</div>
-        <div class="ritual-price">12€</div>
-      </div>
-      <p class="ritual-desc">Espumado con brocha de cerdas naturales, doble pasada de navaja de hoja partida y bálsamo calmante de sándalo.</p>
-      <div class="ritual-steps">
-        <span class="step-pill">Espumado a Brocha</span>
-        <span class="step-pill">Loción Calmante</span>
-        <span class="step-pill">25 min</span>
-      </div>
-    </div>
-
-    <div class="ritual-card">
-      <div class="ritual-top">
-        <div class="ritual-title">Corte de Caballero & Peinado Clásico</div>
-        <div class="ritual-price">12€</div>
-      </div>
-      <p class="ritual-desc">Lavado con champú purificante, corte estructurado según fisonomía craneal y acabado con pomada base agua de fijación duradera.</p>
-      <div class="ritual-steps">
-        <span class="step-pill">Lavado Incluido</span>
-        <span class="step-pill">Pomada Premium</span>
-      </div>
-    </div>
-
-    <div style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 2rem;">
-      📍 <strong>Barbería Jamal</strong> · Cox (Alicante)
+  <div class="top-bar">
+    <div class="container">
+      <div class="brand-title">BARBERÍA JAMAL · TRADICIÓN</div>
+      <div class="badge">Cox (Alicante)</div>
     </div>
   </div>
 
-  <div class="bottom-bar">
-    <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20reservar%20el%20Ritual%20Cl%C3%A1sico%20de%20Afeitado%20y%20Corte." class="copper-btn">
-      Reservar Ritual por WhatsApp
+  <header class="hero">
+    <div class="container">
+      <div class="hero-tag">El Arte del Cuidado Masculino</div>
+      <h1>El Ritual del Afeitado <em>a Navaja</em></h1>
+      <p>45 minutos de calma y distinción. Toalla caliente infusionada con esencias de eucalipto, corte clásico a tijera y masaje facial regenerador.</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="rituals-grid">
+      <div class="r-card">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=700&q=80" alt="Hot towel shave" class="r-img">
+        <div class="r-body">
+          <div>
+            <div class="r-top">
+              <div class="r-name">Ritual Completo Jamal</div>
+              <div class="r-price">22€</div>
+            </div>
+            <p class="r-desc">Corte estructurado a máquina y tijera + afeitado a navaja tradicional con doble toalla caliente previa, masaje facial y bálsamo de sándalo.</p>
+            <div class="r-steps">
+              <span class="step-pill">Toalla Caliente</span>
+              <span class="step-pill">Navaja Japonesa</span>
+              <span class="step-pill">Masaje Facial</span>
+              <span class="step-pill">45 min</span>
+            </div>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20reservar%20el%20Ritual%20Completo%20(22%E2%82%AC)%20para%20esta%20semana." class="r-btn">Reservar Ritual Completo</a>
+        </div>
+      </div>
+
+      <div class="r-card">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=700&q=80" alt="Afeitado clasico" class="r-img">
+        <div class="r-body">
+          <div>
+            <div class="r-top">
+              <div class="r-name">Afeitado Tradicional Barba</div>
+              <div class="r-price">12€</div>
+            </div>
+            <p class="r-desc">Espumado en cuenco con brocha de tejón, perfilado minucioso de contornos a navaja y loción refrescante mentolada anti-irritación.</p>
+            <div class="r-steps">
+              <span class="step-pill">Espumado Clásico</span>
+              <span class="step-pill">Contornos Navaja</span>
+              <span class="step-pill">25 min</span>
+            </div>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20un%20Afeitado%20Tradicional%20a%20Navaja." class="r-btn">Reservar Afeitado</a>
+        </div>
+      </div>
+
+      <div class="r-card">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=80" alt="Corte clasico" class="r-img">
+        <div class="r-body">
+          <div>
+            <div class="r-top">
+              <div class="r-name">Corte de Caballero & Lavado</div>
+              <div class="r-price">12€</div>
+            </div>
+            <p class="r-desc">Lavado con champú de menta purificante, corte de pelo a tijera según morfología y peinado con pomada artesanal base agua.</p>
+            <div class="r-steps">
+              <span class="step-pill">Lavado Incluido</span>
+              <span class="step-pill">Pomada Premium</span>
+            </div>
+          </div>
+          <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20cita%20para%20Corte%20de%20Caballero%20y%20Lavado." class="r-btn">Reservar Corte</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem;">
+      📍 <strong>Barbería Jamal</strong> · Cox (Alicante)
+    </div>
+  </section>
+
+  <div class="fixed-bar">
+    <a href="https://wa.me/34688342512?text=Hola%20Jamal%2C%20quiero%20reservar%20cita%20para%20un%20servicio%20de%20barber%C3%ADa%20tradicional." class="f-btn">
+      Reservar Turno por WhatsApp
     </a>
   </div>
 

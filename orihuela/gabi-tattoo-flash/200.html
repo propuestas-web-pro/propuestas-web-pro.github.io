@@ -4,193 +4,305 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Gabi Tattoo Studio | Flash Designs & Huecos Disponibles en Orihuela</title>
-  <meta name="description" content="Diseños Flash exclusivos y huecos libres para tatuarse esta semana en Orihuela. Reclama tu diseño antes de que vuele.">
+  <meta name="description" content="Diseños Flash exclusivos a precio cerrado en Orihuela. Solo se tatúan una vez. Consulta huecos libres y reserva directo por WhatsApp.">
+  <link rel="canonical" href="https://miweblocal.com/orihuela/gabi-tattoo-flash/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #0b0c10;
-      --card: #151821;
-      --border: rgba(255,255,255,0.08);
+      --bg: #090a0f;
+      --card: #131722;
+      --border: rgba(255, 255, 255, 0.08);
       --amber: #f59e0b;
-      --amber-glow: rgba(245, 158, 11, 0.3);
-      --green: #10b981;
+      --amber-glow: rgba(245, 158, 11, 0.25);
+      --green: #22c55e;
       --text: #f8fafc;
       --muted: #94a3b8;
+      --radius: 16px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 85px;
+      padding-bottom: 95px;
       line-height: 1.5;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #34d399;
-      margin-bottom: 1rem;
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Top Banner */
+    .top-bar {
+      background: #11141f;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #cbd5e1;
     }
-    .green-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
-    
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
+    .live-dot {
+      display: inline-block; width: 8px; height: 8px; background: var(--green);
+      border-radius: 50%; box-shadow: 0 0 10px var(--green); margin-right: 6px;
     }
-    h1 span { color: var(--amber); }
-    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
-    
-    /* Week Availability Bar */
-    .slots-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.25rem;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-around;
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem;
       text-align: center;
     }
-    .slot-item .day { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
-    .slot-item .status { font-size: 0.85rem; font-weight: 800; }
-    .slot-item.free .status { color: #34d399; }
-    .slot-item.booked .status { color: #f43f5e; text-decoration: line-through; }
-    
-    /* Flash Cards Grid */
-    .flash-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-    .flash-card {
+    .tag {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--amber); }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.5rem; }
+
+    /* Agenda Grid */
+    .agenda-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .agenda-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; text-align: center; }
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+    .day-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    .day-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .day-status { font-weight: 800; font-size: 0.95rem; }
+    .day-box.available .day-status { color: var(--green); }
+    .day-box.full .day-status { color: #f43f5e; text-decoration: line-through; }
+
+    /* Flash Cards Grid */
+    .flash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 4rem;
+    }
+    .flash-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform 0.25s;
     }
-    .flash-img {
+    .flash-item:hover { transform: translateY(-4px); }
+    .flash-img-wrap {
+      position: relative;
       width: 100%;
-      height: 220px;
-      background: #1e2330;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
+      height: 260px;
+      background: #1e2433;
+    }
+    .flash-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .flash-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: rgba(9, 10, 15, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
       color: var(--amber);
-      border-bottom: 1px solid var(--border);
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
     }
-    .flash-body { padding: 1.25rem; }
-    .flash-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-    .flash-name { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; }
-    .flash-price { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--amber); }
-    .flash-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
-    
-    .claim-btn {
-      width: 100%;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
+    .flash-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .f-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .f-title { font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; color: #fff; }
+    .f-price { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--amber); }
+    .f-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
+    .f-btn {
+      background: linear-gradient(135deg, var(--amber), #d97706);
       color: #000;
       font-weight: 800;
       font-size: 0.9rem;
       padding: 12px;
       border-radius: 10px;
       text-align: center;
-      text-decoration: none;
-      display: block;
+      box-shadow: 0 4px 15px var(--amber-glow);
     }
-    
-    .address-note {
+
+    /* Fixed Bottom CTA */
+    .fixed-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(9, 10, 15, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .f-cta-btn {
+      max-width: 500px;
+      width: 100%;
+      background: linear-gradient(135deg, var(--amber), #d97706);
+      color: #000;
+      padding: 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
       text-align: center;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 2rem;
+      box-shadow: 0 4px 20px var(--amber-glow);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="status-badge"><span class="green-dot"></span> Agenda Abierta · Orihuela</div>
-    <h1>Flash Drops & <span>Piezas Disponibles</span></h1>
-    <p class="subtitle">Diseños originales listos para tatuar a precio cerrado. Se tatúan una sola vez. Cuando se reserva uno, se retira de la colección.</p>
+  <div class="top-bar">
+    <div class="container">
+      <span class="live-dot"></span> <strong>Colección Activa</strong> · Diseños de pieza única · Calle Aragón, 2, Orihuela
+    </div>
+  </div>
 
-    <!-- HUECOS SEMANA -->
-    <div class="slots-card">
-      <div class="slot-item booked">
-        <div class="day">Martes</div>
-        <div class="status">COMPLETO</div>
-      </div>
-      <div class="slot-item free">
-        <div class="day">Miércoles</div>
-        <div class="status">2 HUECOS</div>
-      </div>
-      <div class="slot-item free">
-        <div class="day">Jueves</div>
-        <div class="status">1 HUECO</div>
-      </div>
-      <div class="slot-item free">
-        <div class="day">Viernes</div>
-        <div class="status">3 HUECOS</div>
+  <header class="hero">
+    <div class="container">
+      <div class="tag">Flash Drop · Edición Limitada</div>
+      <h1>Diseños Exclusivos a <span>Precio Cerrado</span></h1>
+      <p>Cada flash se tatúa una única vez. Cuando alguien lo reserva, desaparece de la galería. Reclama el tuyo antes de que vuele.</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="agenda-card">
+      <div class="agenda-title">📅 Huecos Disponibles en Estudio esta Semana</div>
+      <div class="days-grid">
+        <div class="day-box full">
+          <div class="day-name">Lunes</div>
+          <div class="day-status">COMPLETO</div>
+        </div>
+        <div class="day-box available">
+          <div class="day-name">Martes</div>
+          <div class="day-status">2 HUECOS</div>
+        </div>
+        <div class="day-box available">
+          <div class="day-name">Miércoles</div>
+          <div class="day-status">1 HUECO</div>
+        </div>
+        <div class="day-box available">
+          <div class="day-name">Jueves</div>
+          <div class="day-status">3 HUECOS</div>
+        </div>
+        <div class="day-box full">
+          <div class="day-name">Viernes</div>
+          <div class="day-status">COMPLETO</div>
+        </div>
+        <div class="day-box available">
+          <div class="day-name">Sábado</div>
+          <div class="day-status">1 HUECO</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- FLASH DESIGNS -->
+  <section class="container">
     <div class="flash-grid">
-      <div class="flash-card">
-        <div class="flash-img">🗡️ 🐍</div>
-        <div class="flash-body">
-          <div class="flash-header">
-            <div class="flash-name">Daga & Serpiente Neo-Trad</div>
-            <div class="flash-price">120€</div>
+      <div class="flash-item">
+        <div class="flash-img-wrap">
+          <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?w=700&q=80" alt="Flash dardo">
+          <div class="flash-badge">DISPONIBLE · 1/1</div>
+        </div>
+        <div class="flash-content">
+          <div>
+            <div class="f-header">
+              <div class="f-title">Daga & Serpiente Neo-Trad</div>
+              <div class="f-price">120€</div>
+            </div>
+            <p class="f-desc">Tamaño: 14 cm · Tinta negra de alta saturación y contrastes definidos · Ideal para antebrazo o gemelo.</p>
           </div>
-          <p class="flash-desc">Tamaño: 14 cm · Recomendado para antebrazo o gemelo · Blackwork con contrastes fuertes.</p>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Daga%20y%20Serpiente%20(120%E2%82%AC)%20de%20la%20web%20para%20esta%20semana." class="claim-btn">
-            Reclamar este Flash por WhatsApp
+          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Daga%20y%20Serpiente%20(120%E2%82%AC)%20de%20la%20web%20para%20esta%20semana." class="f-btn">
+            Reclamar este Flash
           </a>
         </div>
       </div>
 
-      <div class="flash-card">
-        <div class="flash-img">🦋 ✨</div>
-        <div class="flash-body">
-          <div class="flash-header">
-            <div class="flash-name">Polilla Micro-Realista</div>
-            <div class="flash-price">85€</div>
+      <div class="flash-item">
+        <div class="flash-img-wrap">
+          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=700&q=80" alt="Flash polilla">
+          <div class="flash-badge">DISPONIBLE · 1/1</div>
+        </div>
+        <div class="flash-content">
+          <div>
+            <div class="f-header">
+              <div class="f-title">Polilla Lunar Micro-Fine</div>
+              <div class="f-price">85€</div>
+            </div>
+            <p class="f-desc">Tamaño: 8 cm · Detalle en línea fina milimétrica con sombreado de punteado · Para muñeca, bíceps o clavícula.</p>
           </div>
-          <p class="flash-desc">Tamaño: 8 cm · Detalle en línea milimétrica y punteado fino · Ideal para muñeca o brazo.</p>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Polilla%20Micro-Realista%20(85%E2%82%AC)%20de%20la%20web." class="claim-btn">
-            Reclamar este Flash por WhatsApp
+          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Polilla%20Lunar%20(85%E2%82%AC)%20de%20la%20web." class="f-btn">
+            Reclamar este Flash
           </a>
         </div>
       </div>
 
-      <div class="flash-card">
-        <div class="flash-img">🐺 🌲</div>
-        <div class="flash-body">
-          <div class="flash-header">
-            <div class="flash-name">Lobo & Luna Sombras</div>
-            <div class="flash-price">140€</div>
+      <div class="flash-item">
+        <div class="flash-img-wrap">
+          <img src="https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=700&q=80" alt="Flash lobo">
+          <div class="flash-badge">DISPONIBLE · 1/1</div>
+        </div>
+        <div class="flash-content">
+          <div>
+            <div class="f-header">
+              <div class="f-title">Lobo en Penumbra</div>
+              <div class="f-price">140€</div>
+            </div>
+            <p class="f-desc">Tamaño: 16 cm · Degradado suave realista con fondo bosque · Zona antebrazo, hombro o muslo.</p>
           </div>
-          <p class="flash-desc">Tamaño: 16 cm · Degradado suave en sombras de escala de grises · Zona antebrazo / muslo.</p>
-          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Lobo%20y%20Luna%20(140%E2%82%AC)%20de%20la%20web." class="claim-btn">
-            Reclamar este Flash por WhatsApp
+          <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20reclamar%20el%20Flash%20Lobo%20en%20Penumbra%20(140%E2%82%AC)%20de%20la%20web." class="f-btn">
+            Reclamar este Flash
           </a>
         </div>
       </div>
     </div>
 
-    <div class="address-note">
-      📍 <strong>Gabi Tattoo Studio</strong> · Calle Aragón, 2, 03300 Orihuela (Alicante)
+    <div style="text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 3rem;">
+      📍 <strong>Gabi Tattoo Studio</strong> · Calle Aragón, 2, Orihuela (Alicante) · Cita previa
     </div>
+  </section>
+
+  <div class="fixed-bar">
+    <a href="https://wa.me/34685056102?text=Hola%20Gabi%2C%20quiero%20consultar%20los%20flashes%20disponibles%20o%20pedir%20un%20hueco%20para%20esta%20semana." class="f-cta-btn">
+      Consultar Huecos Libres por WhatsApp
+    </a>
   </div>
 
   <script src="/owner-banner.js" defer></script>

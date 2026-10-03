@@ -3,146 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>La Vimacchiata | Tardeo, Meriendas & Cócteles en Orihuela</title>
-  <meta name="description" content="El mejor tardeo de Orihuela en Calle Obispo Rocamora. Meriendas dulces, café de autor, frappés especiales y copas de tarde.">
+  <title>La Vimacchiata | Meriendas de Autor, Tardeo & Cocktails en Orihuela</title>
+  <meta name="description" content="El punto de encuentro del tardeo en Calle Obispo Rocamora, Orihuela. Tartas fluidas caseras, frappés de especialidad y cócteles de autor.">
+  <link rel="canonical" href="https://miweblocal.com/orihuela/la-vimacchiata-tardeo/">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #181512;
-      --card: #221e1a;
+      --bg: #15120e;
+      --card: #1f1b15;
       --border: rgba(255,255,255,0.08);
-      --gold: #e5a93c;
-      --gold-light: #fcd34d;
+      --amber: #e5a93c;
+      --amber-light: #fcd34d;
       --text: #f5f5f4;
       --muted: #a8a29e;
-      --radius: 16px;
+      --radius: 18px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      padding-bottom: 85px;
-      line-height: 1.5;
+      padding-bottom: 95px;
+      line-height: 1.6;
     }
-    .container { max-width: 680px; margin: 0 auto; padding: 1.5rem 1.25rem; }
-    
-    .gold-badge {
-      display: inline-block;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 2px;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.3rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    h1 span { color: var(--gold); }
-    .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
 
-    .tardeo-card {
+    .top-bar {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; font-weight: 700; }
+    .gold-badge {
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .hero {
+      padding: 5rem 0 3.5rem;
+      text-align: center;
+    }
+    .hero-tag { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--amber); margin-bottom: 1rem; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { color: var(--amber); font-style: italic; }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto 2.5rem; }
+
+    /* Bento Grid Tardeo */
+    .tardeo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 4rem;
+    }
+    .t-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem;
-      margin-bottom: 14px;
+      overflow: hidden;
     }
-    .card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-    .card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; }
-    .card-price { font-weight: 800; color: var(--gold); font-size: 1.1rem; }
-    .card-desc { font-size: 0.85rem; color: var(--muted); }
+    .t-img { width: 100%; height: 240px; object-fit: cover; }
+    .t-body { padding: 1.5rem; }
+    .t-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .t-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; font-weight: 700; }
+    .t-price { font-weight: 800; color: var(--amber); font-size: 1.2rem; }
+    .t-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
 
-    .group-banner {
-      background: linear-gradient(135deg, rgba(229, 169, 60, 0.15), rgba(0,0,0,0));
-      border: 1px solid rgba(229, 169, 60, 0.3);
+    /* Group Reservation Box */
+    .group-box {
+      background: linear-gradient(135deg, #241f17 0%, var(--card) 100%);
+      border: 1px solid rgba(229, 169, 60, 0.25);
       border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-top: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
+      margin-bottom: 4rem;
     }
-    .group-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold-light); margin-bottom: 6px; }
-    .group-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .group-box h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin-bottom: 10px; }
+    .group-box p { color: var(--muted); max-width: 550px; margin: 0 auto 1.5rem; }
+    .group-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--amber), #b45309);
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
 
+    /* Fixed Bottom CTA */
     .bottom-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      background: rgba(24, 21, 18, 0.95);
-      backdrop-filter: blur(14px);
+      background: rgba(21, 18, 14, 0.95);
+      backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
       padding: 12px 20px;
       display: flex;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
     }
-    .gold-btn {
-      max-width: 600px;
+    .bar-btn {
+      max-width: 500px;
       width: 100%;
-      background: linear-gradient(135deg, #e5a93c, #b45309);
+      background: linear-gradient(135deg, var(--amber), #b45309);
       color: #000;
-      padding: 14px 20px;
+      padding: 14px;
       border-radius: 999px;
       font-weight: 800;
       font-size: 0.95rem;
       text-align: center;
-      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .tardeo-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="gold-badge">Tardeo & Meriendas · Orihuela</div>
-    <h1>El Punto de Encuentro del <span>Tardeo</span></h1>
-    <p class="subtitle">De 16:30 a cierre. Meriendas artesanales, frappés de café de especialidad y copas en la mejor terraza de Obispo Rocamora.</p>
-
-    <div class="tardeo-card">
-      <div class="card-top">
-        <div class="card-title">Tarta de Queso Fluida al Horno</div>
-        <div class="card-price">5,20€</div>
-      </div>
-      <p class="card-desc">Receta artesanal horneada cada mañana con interior cremoso y base crujiente de galleta tostada.</p>
+    <div class="top-bar">
+      <div class="brand-title">La Vimacchiata · Tardeo & Lounge</div>
+      <div class="gold-badge">Obispo Rocamora, 15</div>
     </div>
 
-    <div class="tardeo-card">
-      <div class="card-top">
-        <div class="card-title">Espresso Martini de Autor</div>
-        <div class="card-price">7,50€</div>
+    <header class="hero">
+      <div class="hero-tag">De 16:30 a Cierre · Orihuela</div>
+      <h1>El punto de encuentro del <em>tardeo con sabor</em></h1>
+      <p>Tartas fluidas recién horneadas, frappés helados de especialidad y copas en la terraza más acogedora de Obispo Rocamora.</p>
+    </header>
+
+    <div class="tardeo-grid">
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=700&q=80" alt="Cheesecake" class="t-img">
+        <div class="t-body">
+          <div class="t-header">
+            <div class="t-title">Tarta de Queso Fluida al Horno</div>
+            <div class="t-price">5,20€</div>
+          </div>
+          <p class="t-desc">Interior fundido, tostado suave y base de galleta artesanal. Servida tibia con helado de vainilla bourbon.</p>
+        </div>
       </div>
-      <p class="card-desc">Vodka prémium, licor de café artesano y extracción fresca de café arábica con crema densa.</p>
+
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=700&q=80" alt="Espresso martini" class="t-img">
+        <div class="t-body">
+          <div class="t-header">
+            <div class="t-title">Espresso Martini de Autor</div>
+            <div class="t-price">7,50€</div>
+          </div>
+          <p class="t-desc">Café de especialidad recién extraído, vodka prémium y licor de café con densa crema tostada.</p>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&q=80" alt="Terrace tardeo" class="t-img">
+        <div class="t-body">
+          <div class="t-header">
+            <div class="t-title">Tabla Tardeo Ibéricos & Queso</div>
+            <div class="t-price">14,00€</div>
+          </div>
+          <p class="t-desc">Jamón ibérico, queso curado de oveja, tostas crujientes y frutos secos para acompañar con vino o cerveza artesanal.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="tardeo-card">
-      <div class="card-top">
-        <div class="card-title">Tabla de Ibéricos & Tostas para Compartir</div>
-        <div class="card-price">14,00€</div>
-      </div>
-      <p class="card-desc">Jamón de cebo de campo, queso curado de oveja, tostas de hogaza con aceite virgen extra y frutos secos.</p>
-    </div>
-
-    <div class="group-banner">
-      <div class="group-title">¿Vienes con amigos de Tardeo?</div>
-      <p class="group-desc">Los sábados por la tarde las mesas vuelan. Reserva espacio para tu grupo con antelación.</p>
-      <a href="https://wa.me/34688794604?text=Hola%20La%20Vimacchiata%2C%20queremos%20reservar%20mesa%20para%20un%20grupo%20de%20tardeo%20este%20s%C3%A1bado." class="gold-btn">
+    <div class="group-box">
+      <h2>¿Vienes con tu grupo de tardeo?</h2>
+      <p>Los sábados por la tarde las mesas de terraza vuelan. Reserva sitio para tu grupo con antelación.</p>
+      <a href="https://wa.me/34688794604?text=Hola%20La%20Vimacchiata%2C%20queremos%20reservar%20mesa%20para%20un%20grupo%20de%20tardeo%20este%20s%C3%A1bado." class="group-btn">
         Reservar Mesa de Grupo por WhatsApp
       </a>
-    </div>
-
-    <div style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 2rem;">
-      📍 <strong>La Vimacchiata</strong> · Calle Obispo Rocamora, 15, Orihuela
     </div>
   </div>
 
   <div class="bottom-bar">
-    <a href="https://wa.me/34688794604?text=Hola%20La%20Vimacchiata%2C%20quiero%20consultar%20la%20carta%20de%20meriendas%20y%20tardeo%20para%20hoy." class="gold-btn">
+    <a href="https://wa.me/34688794604?text=Hola%20La%20Vimacchiata%2C%20quiero%20consultar%20la%20carta%20de%20meriendas%20y%20tardeo%20para%20hoy." class="bar-btn">
       Consultar Carta de Tardeo por WhatsApp
     </a>
   </div>
