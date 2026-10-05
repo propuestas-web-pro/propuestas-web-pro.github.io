@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Mayor 5 Café Bar | Desayunos, Brunch & Tapas en Calle Mayor de Orihuela</title>
+  <meta name="description" content="Mayor 5 Café Bar en Calle Mayor de Ramón y Cajal, 5 (Orihuela). Desayunos con café de especialidad, tostadas de masa madre, tapeo tradicional y raciones.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #d97706;
+      --primary-dark: #b45309;
+      --primary-glow: rgba(217, 119, 6, 0.4);
+      --accent: #f59e0b;
+      --bg-body: #0c0a09;
+      --bg-surface: #1c1917;
+      --bg-card: rgba(28, 25, 23, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(217, 119, 6, 0.5);
+      --text: #ffffff;
+      --text-muted: #a8a29e;
+      --font-title: 'Playfair Display', serif;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body.theme-bistro {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-glow: rgba(2, 132, 199, 0.4);
+      --accent: #38bdf8;
+      --bg-body: #090e17;
+      --bg-surface: #111a28;
+      --bg-card: rgba(17, 26, 40, 0.95);
+      --border-focus: rgba(2, 132, 199, 0.5);
+    }
+
+    body.theme-vip {
+      --primary: #e11d48;
+      --primary-dark: #be123c;
+      --primary-glow: rgba(225, 29, 72, 0.4);
+      --accent: #fb7185;
+      --bg-body: #0a0608;
+      --bg-surface: #170d12;
+      --bg-card: rgba(23, 13, 18, 0.95);
+      --border-focus: rgba(225, 29, 72, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 95px;
+    }
+
+    /* TOP SELECTOR FOR 3 DESIGNS */
+    .style-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(12, 10, 9, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .style-bar span { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .style-pills { display: flex; gap: 5px; }
+    .style-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+    .style-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 16px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, rgba(255,255,255,0.1) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: white;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .brand-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+    }
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-open {
+      font-size: 0.68rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-open::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #34d399;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+    }
+    .hero img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12, 10, 9, 0.95) 0%, rgba(12, 10, 9, 0.35) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .hero-tag {
+      align-self: flex-start;
+      background: var(--primary);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .hero-desc {
+      font-size: 0.82rem;
+      color: #e7e5e4;
+      line-height: 1.4;
+    }
+
+    /* TRUST STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .stat-lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* SECTION TITLES */
+    .section-head {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .section-subtitle {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* MENU DISHES CARDS */
+    .services-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      align-items: center;
+    }
+    .service-img {
+      width: 82px;
+      height: 82px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .service-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .service-info h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .service-info p {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .service-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(217, 119, 6, 0.14);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* INTERACTIVE ORDER / RESERVATION WIDGET */
+    .booking-box {
+      margin-top: 24px;
+      background: linear-gradient(145deg, rgba(217, 119, 6, 0.15) 0%, rgba(28, 25, 23, 0.95) 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: 18px;
+      padding: 18px;
+      position: relative;
+    }
+    .booking-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .booking-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      color: #e7e5e4;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .pill-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill-option {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .pill-option.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      font-weight: 700;
+    }
+    .booking-cta {
+      margin-top: 14px;
+      width: 100%;
+      background: #25d366;
+      color: #052e16;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+      text-decoration: none;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-card {
+      margin-top: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .reviews-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .rating-big {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .single-review {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .single-review p {
+      font-size: 0.78rem;
+      color: #e7e5e4;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .single-review-author {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* LOCATION & CONTACT */
+    .location-box {
+      margin-top: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .loc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .loc-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .loc-text strong {
+      display: block;
+      color: white;
+      font-weight: 700;
+    }
+    .loc-text span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* FIXED BOTTOM ACTION BAR */
+    .fixed-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(12, 10, 9, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .bar-inner {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      gap: 10px;
+    }
+    .bar-btn-wa {
+      flex: 2;
+      background: #25d366;
+      color: #052e16;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    }
+    .bar-btn-call {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: white;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border-radius: 12px;
+      padding: 12px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body id="page-body" class="theme-vip">
+
+  <!-- TOP SELECTOR FOR 3 DESIGNS -->
+  <div class="style-bar">
+    <span>☕ 3 Diseños para móvil:</span>
+    <div class="style-pills">
+      <a href="index.html" class="style-pill" id="tab-1">Café Rústico</a>
+      <a href="diseno-2.html" class="style-pill" id="tab-2">Bistro Moderno</a>
+      <a href="diseno-3.html" class="style-pill active" id="tab-3">VIP Gourmet</a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-group">
+        <div class="brand-icon">☕</div>
+        <div class="brand-info">
+          <h1>Mayor 5 Café Bar</h1>
+          <p>📍 C/ Mayor de Ramón y Cajal, 5 • Orihuela</p>
+        </div>
+      </div>
+      <div class="badge-open">Abierto hoy</div>
+    </header>
+
+    <!-- HERO WITH REAL PHOTOS -->
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Mayor 5 Café Bar Orihuela Desayunos" loading="eager">
+      <div class="hero-overlay">
+        <span class="hero-tag">Calle Mayor • Orihuela Centro</span>
+        <h2 class="hero-title">El mejor café y desayunos en el corazón de Orihuela</h2>
+        <p class="hero-desc">Tostadas de masa madre con tomate y jamón ibérico, café de especialidad y tapas tradicionales.</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val">100%</div>
+        <div class="stat-lbl">Masa Madre</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">Café Pro</div>
+        <div class="stat-lbl">De Especialidad</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">4.8 ★</div>
+        <div class="stat-lbl">En Google</div>
+      </div>
+    </div>
+
+    <!-- SERVICES / MENU SPECIALS -->
+    <div class="section-head">
+      <h2 class="section-title">Especialidades</h2>
+      <span class="section-subtitle">Carta Diaria</span>
+    </div>
+
+    <div class="services-stack">
+      <!-- Dish 1 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80" alt="Tostadas Artesanas y Desayunos">
+        <div class="service-info">
+          <h3>Tostadas Gourmet & Jamón</h3>
+          <p>Pan rústico tostado al momento, tomate rallado natural, AOVE virgen extra y jamón ibérico de cebo.</p>
+          <span class="service-tag">⭐ Desayuno Estrella</span>
+        </div>
+      </div>
+
+      <!-- Dish 2 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=300&q=80" alt="Cafetería y Dulces">
+        <div class="service-info">
+          <h3>Café Cremoso & Repostería</h3>
+          <p>Cappuccinos con leche vaporizada, café solo con cuerpo y croissants recién horneados.</p>
+          <span class="service-tag">Desayunos & Meriendas</span>
+        </div>
+      </div>
+
+      <!-- Dish 3 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=300&q=80" alt="Tapas Tradicionales">
+        <div class="service-info">
+          <h3>Tapeo & Raciones Caseras</h3>
+          <p>Tortilla de patatas casera, montaditos variados, tablas de quesos y embutidos de la comarca.</p>
+          <span class="service-tag">Aperitivo & Mediodía</span>
+        </div>
+      </div>
+
+      <!-- Dish 4 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=300&q=80" alt="Cervezas y Vinos de la Casa">
+        <div class="service-info">
+          <h3>Cañas Bien Tiradas & Vinos</h3>
+          <p>Cerveza fría de barril con copa helada y selección de vinos tintos y blancos D.O. Alicante.</p>
+          <span class="service-tag">Tardeo & Amigos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE RESERVATION WIDGET -->
+    <div class="booking-box">
+      <h3>📋 Consulta Carta o Reserva Mesa</h3>
+      <p>Indícanos qué buscas y te respondemos al momento por WhatsApp:</p>
+
+      <div class="form-group">
+        <label>1. ¿Qué momento del día vienes?</label>
+        <div class="pill-selector" id="meal-selector">
+          <div class="pill-option active" data-val="Desayuno / Brunch">Desayuno / Brunch</div>
+          <div class="pill-option" data-val="Aperitivo y Cañas">Aperitivo y Cañas</div>
+          <div class="pill-option" data-val="Tardeo & Café">Tardeo & Café</div>
+          <div class="pill-option" data-val="Reserva para grupo">Mesa para Grupo</div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 12px;">
+        <label>2. Número aproximado de personas</label>
+        <div class="pill-selector" id="pax-selector">
+          <div class="pill-option active" data-val="1 - 2 personas">1 - 2 pax</div>
+          <div class="pill-option" data-val="3 - 4 personas">3 - 4 pax</div>
+          <div class="pill-option" data-val="5 o más personas">+5 personas</div>
+        </div>
+      </div>
+
+      <a id="wa-dynamic-btn" href="https://wa.me/34684321988?text=Hola%20Mayor%205%20Caf%C3%A9%20Bar,%20he%20visto%20vuestra%20web%20y%20quer%C3%ADa%20consultar%20para:%20Desayuno%20/%20Brunch%20(1%20-%202%20personas)." target="_blank" class="booking-cta">
+        💬 Preguntar o Reservar por WhatsApp
+      </a>
+    </div>
+
+    <!-- OPINIONES REALES -->
+    <div class="reviews-card">
+      <div class="reviews-head">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;">Opiniones de Clientes</h3>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">En Calle Mayor de Orihuela</span>
+        </div>
+        <div class="rating-big">4.8 ★</div>
+      </div>
+      <div class="single-review">
+        <p>"Un sitio con encanto en plena Calle Mayor. El café riquísimo y la tostada de tomate con jamón espectacular."</p>
+        <div class="single-review-author">Pablo R. • Cliente habitual</div>
+      </div>
+      <div class="single-review">
+        <p>"Excelente atención del personal, rápido y ambiente genial tanto para desayunar como para el vermú."</p>
+        <div class="single-review-author">Laura V. • Orihuela</div>
+      </div>
+    </div>
+
+    <!-- UBICACIÓN & CONTACTO DIRECTO -->
+    <div class="location-box">
+      <div class="loc-row">
+        <span class="loc-icon">📍</span>
+        <div class="loc-text">
+          <strong>Dirección en Orihuela</strong>
+          <span>Calle Mayor de Ramón y Cajal, 5, 03300 Orihuela</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">🕒</span>
+        <div class="loc-text">
+          <strong>Horario de Apertura</strong>
+          <span>De Lunes a Sábado desde primera hora de la mañana</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">📞</span>
+        <div class="loc-text">
+          <strong>Contacto Directo</strong>
+          <span>+34 684 32 19 88</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 24px; text-align: center; color: var(--text-muted); font-size: 0.72rem; padding-bottom: 20px;">
+      <p>© 2026 Mayor 5 Café Bar • Orihuela Centro</p>
+      <p style="margin-top: 4px; opacity: 0.6;">Propuesta de presencia web optimizada para móvil</p>
+    </footer>
+
+  </div>
+
+  <!-- FIXED BOTTOM MOBILE APP BAR -->
+  <div class="fixed-bar">
+    <div class="bar-inner">
+      <a href="https://wa.me/34684321988?text=Hola%20Mayor%205%20Caf%C3%A9%20Bar,%20he%20visto%20vuestra%20web%20y%20me%20gustar%C3%ADa%20haceros%20una%20consulta" target="_blank" class="bar-btn-wa">
+        💬 Escribir por WhatsApp
+      </a>
+      <a href="tel:+34684321988" class="bar-btn-call">
+        📞 Llamar
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let selectedMeal = 'Desayuno / Brunch';
+    let selectedPax = '1 - 2 personas';
+
+    function updateWaLink() {
+      const msg = 'Hola Mayor 5 Café Bar, he visto vuestra web y quería consultar para: ' + selectedMeal + ' (' + selectedPax + ').';
+      const url = 'https://wa.me/34684321988?text=' + encodeURIComponent(msg);
+      document.getElementById('wa-dynamic-btn').href = url;
+    }
+
+    document.querySelectorAll('#meal-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#meal-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedMeal = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+
+    document.querySelectorAll('#pax-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#pax-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedPax = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+  </script>
+</body>
+</html>
