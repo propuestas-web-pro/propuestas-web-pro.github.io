@@ -27,9 +27,9 @@
       .replace(/^(Web de|Propuesta para|Ejemplo de)\s+/i, '')
       .trim();
 
-    const contactPhone = '34632768152'; // Teléfono oficial de WhatsApp de Álvaro
-    const waActivateText = encodeURIComponent(`¡Hola Álvaro! He estado viendo la propuesta web que me preparaste para ${businessName} y quiero activarla con mi dominio.`);
-    const waQuestionsText = encodeURIComponent(`Hola Álvaro, tengo una duda sobre la propuesta web para ${businessName}.`);
+    const contactPhone = '34632768152'; // Teléfono oficial de WhatsApp de Fathi
+    const waActivateText = encodeURIComponent(`¡Hola Fathi! He estado viendo la propuesta personalizada que preparasteis para ${businessName} y quiero activarla con mi dominio.`);
+    const waQuestionsText = encodeURIComponent(`Hola Fathi, tengo una duda sobre la propuesta para ${businessName}.`);
 
     const waActivateUrl = `https://wa.me/${contactPhone}?text=${waActivateText}`;
     const waQuestionsUrl = `https://wa.me/${contactPhone}?text=${waQuestionsText}`;
