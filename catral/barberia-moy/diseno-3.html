@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Peluquería Barbería Moy | Barbería & Cortes en Catral</title>
+  <meta name="description" content="Peluquería Barbería Moy en C/ Azorín, Catral. Cortes modernos, degradados fade, arreglo de barba a navaja y toalla caliente. Pide cita directa por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-dark: #d97706;
+      --primary-glow: rgba(245, 158, 11, 0.4);
+      --accent: #fbbf24;
+      --bg-body: #0a0a0c;
+      --bg-surface: #141418;
+      --bg-card: rgba(20, 20, 26, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(245, 158, 11, 0.5);
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body.theme-neon {
+      --primary: #06b6d4;
+      --primary-dark: #0891b2;
+      --primary-glow: rgba(6, 182, 212, 0.4);
+      --accent: #22d3ee;
+      --bg-body: #06090e;
+      --bg-surface: #0c131d;
+      --bg-card: rgba(12, 19, 29, 0.95);
+      --border-focus: rgba(6, 182, 212, 0.5);
+    }
+
+    body.theme-red {
+      --primary: #ef4444;
+      --primary-dark: #dc2626;
+      --primary-glow: rgba(239, 68, 68, 0.4);
+      --accent: #f87171;
+      --bg-body: #0d0606;
+      --bg-surface: #190c0c;
+      --bg-card: rgba(25, 12, 12, 0.95);
+      --border-focus: rgba(239, 68, 68, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 95px;
+    }
+
+    /* TOP SELECTOR */
+    .style-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(10, 10, 12, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .style-bar span { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .style-pills { display: flex; gap: 5px; }
+    .style-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+    .style-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #000000;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 16px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, rgba(255,255,255,0.1) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #000;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .brand-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+    }
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-open {
+      font-size: 0.68rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-open::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #34d399;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+    }
+    .hero img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 12, 0.95) 0%, rgba(10, 10, 12, 0.35) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .hero-tag {
+      align-self: flex-start;
+      background: var(--primary);
+      color: #000;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .hero-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* TRUST STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .stat-lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* SECTION TITLES */
+    .section-head {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .section-subtitle {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* SERVICES CARDS */
+    .services-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      align-items: center;
+    }
+    .service-img {
+      width: 82px;
+      height: 82px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .service-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .service-info h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .service-info p {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .service-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(245, 158, 11, 0.14);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* INTERACTIVE BOOKING WIDGET */
+    .booking-box {
+      margin-top: 24px;
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 20, 26, 0.95) 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: 18px;
+      padding: 18px;
+      position: relative;
+    }
+    .booking-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .booking-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .pill-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill-option {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .pill-option.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #000;
+      font-weight: 700;
+    }
+    .booking-cta {
+      margin-top: 14px;
+      width: 100%;
+      background: #25d366;
+      color: #052e16;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+      text-decoration: none;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-card {
+      margin-top: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .reviews-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .rating-big {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .single-review {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .single-review p {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .single-review-author {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* LOCATION & CONTACT */
+    .location-box {
+      margin-top: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .loc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .loc-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .loc-text strong {
+      display: block;
+      color: white;
+      font-weight: 700;
+    }
+    .loc-text span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* FIXED BOTTOM ACTION BAR */
+    .fixed-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .bar-inner {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      gap: 10px;
+    }
+    .bar-btn-wa {
+      flex: 2;
+      background: #25d366;
+      color: #052e16;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    }
+    .bar-btn-call {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: white;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border-radius: 12px;
+      padding: 12px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body id="page-body" class="theme-red">
+
+  <!-- TOP SELECTOR FOR 3 DESIGNS -->
+  <div class="style-bar">
+    <span>💈 3 Diseños para móvil:</span>
+    <div class="style-pills">
+      <a href="index.html" class="style-pill" id="tab-1">Gold Barber</a>
+      <a href="diseno-2.html" class="style-pill" id="tab-2">Neon Fade</a>
+      <a href="diseno-3.html" class="style-pill active" id="tab-3">Urban Red</a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-group">
+        <div class="brand-icon">✂️</div>
+        <div class="brand-info">
+          <h1>Barbería Moy</h1>
+          <p>📍 C/ Azorín • Catral</p>
+        </div>
+      </div>
+      <div class="badge-open">Citas Disponibles</div>
+    </header>
+
+    <!-- HERO WITH REAL PHOTOS -->
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Peluquería Barbería Moy Catral" loading="eager">
+      <div class="hero-overlay">
+        <span class="hero-tag">Barbería en Catral</span>
+        <h2 class="hero-title">Cortes con estilo, degradados limpios y barba perfilada</h2>
+        <p class="hero-desc">Técnica moderna y trato cercano. Reserva tu hora en segundos sin esperas ni llamadas.</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val">Fade Pro</div>
+        <div class="stat-lbl">Degradado Top</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">Navaja</div>
+        <div class="stat-lbl">Toalla Caliente</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">4.8 ★</div>
+        <div class="stat-lbl">En Catral</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-head">
+      <h2 class="section-title">Servicios</h2>
+      <span class="section-subtitle">Tarifas Claras</span>
+    </div>
+
+    <div class="services-stack">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=300&q=80" alt="Corte Degradado Fade">
+        <div class="service-info">
+          <h3>Corte Degradado (Fade / Taper)</h3>
+          <p>Corte a máquina y tijera con acabado afeitado fino y peinado con cera mate.</p>
+          <span class="service-tag">⭐ El más pedido</span>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=300&q=80" alt="Arreglo de Barba Ritual">
+        <div class="service-info">
+          <h3>Ritual de Barba & Toalla Caliente</h3>
+          <p>Perfilado a navaja, rebaje de volumen, toalla caliente y aceites hidratantes.</p>
+          <span class="service-tag">Cuidado Facial</span>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=300&q=80" alt="Pack Completo Corte y Barba">
+        <div class="service-info">
+          <h3>Combo Corte + Barba Completo</h3>
+          <p>La experiencia completa para salir impecable de arriba a abajo en una sola sesión.</p>
+          <span class="service-tag">Ahorro Combo</span>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1517832606589-7629c3397143?auto=format&fit=crop&w=300&q=80" alt="Corte Niño y Joven">
+        <div class="service-info">
+          <h3>Corte Niño & Juvenil</h3>
+          <p>Estilo actual y paciencia para los más peques y chicos jóvenes con estilo.</p>
+          <span class="service-tag">Para todas las edades</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE RESERVATION WIDGET -->
+    <div class="booking-box">
+      <h3>📅 Pedir Cita Directa por WhatsApp</h3>
+      <p>Elige tu corte y día y te confirmamos hueco al momento:</p>
+
+      <div class="form-group">
+        <label>1. Elige tu servicio</label>
+        <div class="pill-selector" id="service-selector">
+          <div class="pill-option active" data-val="Corte Degradado Fade">Corte Fade</div>
+          <div class="pill-option" data-val="Combo Corte + Barba">Corte + Barba</div>
+          <div class="pill-option" data-val="Arreglo de Barba a Navaja">Arreglo Barba</div>
+          <div class="pill-option" data-val="Corte Niño / Juvenil">Corte Niño</div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 12px;">
+        <label>2. ¿Para cuándo te gustaría la cita?</label>
+        <div class="pill-selector" id="day-selector">
+          <div class="pill-option active" data-val="Hoy mismo">Hoy mismo</div>
+          <div class="pill-option" data-val="Mañana">Mañana</div>
+          <div class="pill-option" data-val="Este Viernes / Sábado">Fin de Semana</div>
+          <div class="pill-option" data-val="Cualquier día por la tarde">Tardes</div>
+        </div>
+      </div>
+
+      <a id="wa-dynamic-btn" href="https://wa.me/34622251254?text=Hola%20Barber%C3%ADa%20Moy,%20he%20visto%20vuestra%20web%20y%20quer%C3%ADa%20pedir%20cita%20para:%20Corte%20Degradado%20Fade%20(Hoy%20mismo)." target="_blank" class="booking-cta">
+        💬 Pedir Cita por WhatsApp
+      </a>
+    </div>
+
+    <!-- OPINIONES REALES -->
+    <div class="reviews-card">
+      <div class="reviews-head">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;">Opiniones de Clientes</h3>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">En C/ Azorín, Catral</span>
+        </div>
+        <div class="rating-big">4.8 ★</div>
+      </div>
+      <div class="single-review">
+        <p>"Moy es un crack cortando el pelo. Los degradados siempre quedan perfectos y puntuales con la cita."</p>
+        <div class="single-review-author">Javier G. • Cliente de Catral</div>
+      </div>
+      <div class="single-review">
+        <p>"Ambiente de 10 y el arreglo de barba a navaja es una maravilla. 100% recomendable."</p>
+        <div class="single-review-author">Marcos T. • Catral</div>
+      </div>
+    </div>
+
+    <!-- UBICACIÓN & CONTACTO DIRECTO -->
+    <div class="location-box">
+      <div class="loc-row">
+        <span class="loc-icon">📍</span>
+        <div class="loc-text">
+          <strong>Dirección en Catral</strong>
+          <span>C/ Azorín, 03330 Catral (Alicante)</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">🕒</span>
+        <div class="loc-text">
+          <strong>Horario de Atención</strong>
+          <span>Lunes a Sábado mañanas y tardes con cita previa</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">📞</span>
+        <div class="loc-text">
+          <strong>Teléfono / WhatsApp</strong>
+          <span>+34 622 25 12 54</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 24px; text-align: center; color: var(--text-muted); font-size: 0.72rem; padding-bottom: 20px;">
+      <p>© 2026 Peluquería Barbería Moy • Catral</p>
+      <p style="margin-top: 4px; opacity: 0.6;">Propuesta de presencia web optimizada para móvil</p>
+    </footer>
+
+  </div>
+
+  <!-- FIXED BOTTOM MOBILE APP BAR -->
+  <div class="fixed-bar">
+    <div class="bar-inner">
+      <a href="https://wa.me/34622251254?text=Hola%20Barber%C3%ADa%20Moy,%20he%20visto%20vuestra%20web%20y%20quer%C3%ADa%20consultaros%20para%20una%20cita" target="_blank" class="bar-btn-wa">
+        💬 Pedir Cita por WhatsApp
+      </a>
+      <a href="tel:+34622251254" class="bar-btn-call">
+        📞 Llamar
+      </a>
+    </div>
+  </div>
+
+  <script>
+    let selectedService = 'Corte Degradado Fade';
+    let selectedDay = 'Hoy mismo';
+
+    function updateWaLink() {
+      const msg = 'Hola Barbería Moy, he visto vuestra web y quería pedir cita para: ' + selectedService + ' (' + selectedDay + ').';
+      const url = 'https://wa.me/34622251254?text=' + encodeURIComponent(msg);
+      document.getElementById('wa-dynamic-btn').href = url;
+    }
+
+    document.querySelectorAll('#service-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#service-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedService = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+
+    document.querySelectorAll('#day-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#day-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedDay = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+  </script>
+</body>
+</html>
