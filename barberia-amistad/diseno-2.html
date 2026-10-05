@@ -2,936 +2,553 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Barbería Amistad | Barbería & Peluquería Masculina en Catral • Cita por WhatsApp</title>
-  <meta name="description" content="Barbería Amistad en Catral (C/ San Juan). Degradados fade, cortes clásicos, arreglo y perfilado de barba a navaja tradicional con toalla caliente. Cita previa directa por WhatsApp.">
-  <meta property="og:title" content="Barbería Amistad · Catral">
-  <meta property="og:description" content="Propuesta web interactiva y reserva directa para Barbería Amistad en Catral.">
-  <meta property="og:type" content="website">
-
-  <!-- Google Fonts -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Barbería Amistad | Barbería & Peluquería Masculina en Catral</title>
+  <meta name="description" content="Barbería Amistad en Catral (C/ San Juan). Degradados fade, cortes clásicos, ritual de barba a navaja y toalla caliente. Reserva tu turno por WhatsApp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #d97706;
-      --primary-hover: #b45309;
+      --primary-dark: #b45309;
       --primary-glow: rgba(217, 119, 6, 0.4);
       --accent: #fbbf24;
-      --bg-main: #0c0e12;
-      --bg-surface: #141820;
-      --bg-card: rgba(20, 24, 32, 0.9);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(217, 119, 6, 0.45);
-      --text-main: #f9fafb;
+      --bg-body: #0b0c10;
+      --bg-surface: #13151b;
+      --bg-card: rgba(19, 21, 27, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(217, 119, 6, 0.5);
+      --text: #ffffff;
       --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --font-heading: 'Oswald', sans-serif;
+      --font-title: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 22px;
-      --shadow-card: 0 12px 35px -10px rgba(0, 0, 0, 0.7);
     }
 
-    /* THEME 2: URBAN STREETWEAR (NEON CYAN & VIOLET) */
-    body.theme-urban {
+    body.theme-neon {
       --primary: #06b6d4;
-      --primary-hover: #0891b2;
+      --primary-dark: #0891b2;
       --primary-glow: rgba(6, 182, 212, 0.4);
       --accent: #a855f7;
-      --bg-main: #09090e;
-      --bg-surface: #12131d;
-      --bg-card: rgba(18, 19, 29, 0.92);
-      --border-color: rgba(6, 182, 212, 0.15);
+      --bg-body: #0a0b12;
+      --bg-surface: #121321;
+      --bg-card: rgba(18, 19, 33, 0.95);
       --border-focus: rgba(6, 182, 212, 0.5);
     }
 
-    /* THEME 3: MINIMAL VIP SALON (MONOCHROME & WHITE) */
     body.theme-minimal {
       --primary: #ffffff;
-      --primary-hover: #e2e8f0;
-      --primary-glow: rgba(255, 255, 255, 0.3);
+      --primary-dark: #cbd5e1;
+      --primary-glow: rgba(255, 255, 255, 0.25);
       --accent: #94a3b8;
-      --bg-main: #000000;
-      --bg-surface: #111111;
-      --bg-card: rgba(17, 17, 17, 0.95);
-      --border-color: rgba(255, 255, 255, 0.12);
+      --bg-body: #050507;
+      --bg-surface: #101014;
+      --bg-card: rgba(16, 16, 20, 0.95);
       --border-focus: rgba(255, 255, 255, 0.4);
-      --font-heading: 'Cinzel', serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-body);
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-      padding-top: 48px;
+      background-color: var(--bg-body);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 90px;
     }
 
-    /* BARRA SELECTOR DE DISEÑOS 3-EN-1 */
-    .design-switcher-bar {
+    .style-bar {
       position: sticky;
       top: 0;
-      z-index: 99999;
-      background: rgba(12, 14, 18, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 8px 16px;
+      z-index: 10000;
+      background: rgba(11, 12, 16, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
-    .switcher-label {
-      font-size: 0.76rem;
-      font-weight: 700;
+    .style-bar span { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+    .style-pills { display: flex; gap: 5px; }
+    .style-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
       color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .switcher-label strong { color: #fff; }
-    .switcher-tabs {
-      display: flex;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .switcher-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font-body);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 7px;
+      padding: 5px 10px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s;
     }
-    .switcher-btn.active {
+    .style-pill.active {
       background: var(--primary);
       color: #000;
+      border-color: var(--primary);
       box-shadow: 0 2px 10px var(--primary-glow);
     }
-    body.theme-minimal .switcher-btn.active { color: #000; }
-    body:not(.theme-minimal) .switcher-btn.active { color: #fff; }
+    body.theme-neon .style-pill.active { color: #fff; }
 
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    .app-container { max-width: 520px; margin: 0 auto; padding: 0 16px; }
 
-    /* NAVBAR */
-    .site-header {
-      background: rgba(20, 24, 32, 0.75);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 45px;
-      z-index: 1000;
-      padding: 14px 0;
-    }
-    .nav-flex {
+    .profile-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-    }
-    .brand-logo {
-      display: flex;
-      align-items: center;
+      padding: 16px 0 12px;
       gap: 12px;
-      text-decoration: none;
     }
-    .logo-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    .profile-left { display: flex; align-items: center; gap: 12px; }
+    .profile-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: #fff;
-      box-shadow: 0 4px 14px var(--primary-glow);
+      box-shadow: 0 4px 15px var(--primary-glow);
+      flex-shrink: 0;
     }
-    .brand-title {
-      font-family: var(--font-heading);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.05em;
-      line-height: 1.1;
-      text-transform: uppercase;
-    }
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    .profile-name { font-family: var(--font-title); font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
+    .profile-loc { font-size: 0.78rem; color: var(--text-muted); }
+    .open-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
       display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+    .hero-banner {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border);
+    }
+    .hero-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11, 12, 16, 0.1) 0%, rgba(11, 12, 16, 0.95) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .rating-pill {
+      align-self: flex-start;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fbbf24;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      display: inline-flex;
       align-items: center;
       gap: 5px;
     }
-    .brand-sub .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      display: inline-block;
-    }
+    .rating-pill span { color: #fff; font-weight: 600; }
+    .hero-title { font-family: var(--font-title); font-size: 1.45rem; font-weight: 900; line-height: 1.2; margin-bottom: 4px; }
+    .hero-sub { font-size: 0.82rem; color: #cbd5e1; }
 
-    .btn-header-wa {
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+    .btn-action-primary {
+      grid-column: span 2;
       background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
       text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 700;
-      padding: 9px 16px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-    }
-    .btn-header-wa:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      padding: 55px 0 45px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 650px;
-      height: 450px;
-      background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-      opacity: 0.35;
-      pointer-events: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(217, 119, 6, 0.12);
-      border: 1px solid var(--border-focus);
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .hero h1 {
-      font-family: var(--font-heading);
-      font-size: 3rem;
-      line-height: 1.1;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    .hero h1 span {
-      color: var(--accent);
-      text-shadow: 0 0 20px var(--primary-glow);
-    }
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-    .hero-ctas {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 34px;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #fff;
+      font-size: 0.95rem;
       font-weight: 800;
-      font-size: 0.95rem;
-      padding: 14px 28px;
-      border-radius: 12px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 6px 24px var(--primary-glow);
-      transition: all 0.2s;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px var(--primary-glow);
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 14px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* SELECTOR INTERACTIVO DE CITAS / SERVICIOS */
-    .booking-section {
-      padding: 30px 0 60px;
-    }
-    .booking-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-focus);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      box-shadow: var(--shadow-card);
-      backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
-    }
-    .booking-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
-    }
-    .booking-header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-    .booking-header h2 {
-      font-family: var(--font-heading);
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .booking-header p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .services-picker-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .service-check-card {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.15s;
-    }
-    .service-check-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .service-check-card.checked {
-      background: rgba(217, 119, 6, 0.14);
-      border-color: var(--primary);
-    }
-    .service-check-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .service-check-box {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      border: 2px solid var(--border-color);
+      padding: 14px 18px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      color: transparent;
-      transition: all 0.15s;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
     }
-    .service-check-card.checked .service-check-box {
-      background: var(--primary);
-      border-color: var(--primary);
+    .btn-action-secondary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       color: #fff;
-      font-weight: 900;
-    }
-    .service-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: #fff;
-    }
-    .service-desc {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-    }
-    .service-price {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .time-picker-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-    .time-slot-btn {
-      flex: 1;
-      min-width: 140px;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-family: var(--font-body);
+      text-decoration: none;
       font-size: 0.82rem;
       font-weight: 700;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.15s;
-    }
-    .time-slot-btn.selected {
-      background: rgba(217, 119, 6, 0.15);
-      border-color: var(--primary);
-      color: #fff;
-    }
-
-    .booking-summary-bar {
-      background: rgba(217, 119, 6, 0.08);
-      border: 1px solid rgba(217, 119, 6, 0.3);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .summary-left .label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--accent);
-      font-weight: 800;
-    }
-    .summary-left .total-price {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    .summary-left .selection-text {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .btn-reserve-wa {
-      background: #10b981;
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.95rem;
-      padding: 13px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
-      transition: all 0.2s;
-    }
-    .btn-reserve-wa:hover {
-      background: #059669;
-      transform: translateY(-2px);
-    }
-
-    /* ESTILOS Y CORTES */
-    .cuts-section {
-      padding: 40px 0 70px;
-    }
-    .section-title-wrap {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .section-tag {
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 6px;
-    }
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 2.3rem;
-      text-transform: uppercase;
-      color: #fff;
-      letter-spacing: 0.03em;
-    }
-    .cuts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .cut-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 22px;
-      transition: all 0.2s;
-    }
-    .cut-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-focus);
-      box-shadow: var(--shadow-card);
-    }
-    .cut-emoji {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-      display: block;
-    }
-    .cut-card h3 {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .cut-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-    .cut-price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid var(--border-color);
-      padding-top: 12px;
-    }
-    .cut-tag {
-      font-size: 0.74rem;
-      color: var(--text-dim);
-    }
-    .cut-amount {
-      font-family: var(--font-heading);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    /* UBICACIÓN */
-    .location-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 34px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      align-items: center;
-      margin-bottom: 60px;
-    }
-    .loc-info h2 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-    .loc-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .loc-row strong { display: block; color: #fff; font-size: 0.88rem; }
-    .loc-row span { color: var(--text-muted); font-size: 0.84rem; }
-
-    /* BOTÓN FLOTANTE WHATSAPP */
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9999;
-      background: #25d366;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+      padding: 11px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
-      text-decoration: none;
-      transition: transform 0.2s;
+      gap: 6px;
     }
-    .floating-wa-btn:hover { transform: scale(1.08); }
-    .floating-wa-btn svg { width: 32px; height: 32px; fill: #fff; }
 
-    footer {
-      background: #060709;
-      border-top: 1px solid var(--border-color);
-      padding: 30px 0;
+    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .section-head h2 { font-family: var(--font-title); font-size: 1.1rem; font-weight: 800; }
+    .section-head span { font-size: 0.75rem; color: var(--accent); font-weight: 700; }
+
+    /* BOOKING WIDGET */
+    .booking-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-focus);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 26px;
+    }
+    .b-title { font-size: 0.85rem; font-weight: 800; margin-bottom: 12px; color: #fff; }
+    .b-services { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .b-row {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .b-row.selected { background: rgba(217, 119, 6, 0.15); border-color: var(--primary); font-weight: 700; }
+    
+    .b-slots { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
+    .slot-pill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 8px;
+      border-radius: 8px;
       text-align: center;
-      color: var(--text-dim);
+      cursor: pointer;
+    }
+    .slot-pill.selected { background: rgba(217, 119, 6, 0.2); border-color: var(--primary); color: #fff; }
+
+    .b-result {
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px dashed var(--primary);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .b-total { font-family: var(--font-title); font-size: 1.3rem; font-weight: 900; color: var(--accent); }
+    .b-btn-wa {
+      background: #10b981;
+      color: #fff;
+      text-decoration: none;
       font-size: 0.8rem;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 8px;
     }
 
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .booking-card { padding: 20px; }
-      .location-box { padding: 20px; }
+    /* CARDS CON FOTOS REALES */
+    .cuts-stack { display: flex; flex-direction: column; gap: 14px; margin-bottom: 26px; }
+    .cut-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      align-items: center;
+    }
+    .cut-thumb { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+    .cut-info { flex: 1; min-width: 0; }
+    .cut-name { font-weight: 800; font-size: 0.92rem; color: #fff; margin-bottom: 3px; }
+    .cut-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.35; margin-bottom: 6px; }
+    .cut-meta { display: flex; align-items: center; justify-content: space-between; }
+    .cut-price { font-family: var(--font-title); font-weight: 800; color: var(--accent); font-size: 0.9rem; }
+    .btn-quick-wa {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 0.82rem;
+    }
+    .info-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+    .info-row strong { color: #fff; display: block; font-size: 0.84rem; }
+    .info-row span { color: var(--text-muted); }
+
+    .mobile-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(11, 12, 16, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      gap: 10px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .bar-wa-btn {
+      flex: 1;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 800;
+      padding: 12px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .bar-call-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
-<body id="page-body" class="theme-urban">
+<body id="page-body" class="theme-corporate theme-neon theme-boutique">
 
-  <!-- SELECTOR DE DISEÑOS INTERACTIVO -->
-  <div class="design-switcher-bar">
-    <div class="switcher-label">
-      <span>💈 <strong>Barbería Amistad</strong> · Cambiar estilo de diseño:</span>
-    </div>
-    <div class="switcher-tabs">
-      <button class="switcher-btn" id="tab-1" onclick="switchTheme('vintage')">
-        🥃 1. Vintage Barber
-      </button>
-      <button class="switcher-btn active" id="tab-2" onclick="switchTheme('urban')">
-        ⚡ 2. Urban Neon
-      </button>
-      <button class="switcher-btn" id="tab-3" onclick="switchTheme('minimal')">
-        ✂️ 3. Minimal VIP
-      </button>
+  <div class="style-bar">
+    <span>💈 Estilo Barbería:</span>
+    <div class="style-pills">
+      <button class="style-pill" id="tab-1" onclick="switchTheme('vintage')">1. Vintage</button>
+      <button class="style-pill active" id="tab-2" onclick="switchTheme('neon')">2. Neon Urban</button>
+      <button class="style-pill" id="tab-3" onclick="switchTheme('minimal')">3. Minimal</button>
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="site-header">
-    <div class="container nav-flex">
-      <a href="#" class="brand-logo">
-        <div class="logo-badge">💈</div>
+  <div class="app-container">
+
+    <div class="profile-card">
+      <div class="profile-left">
+        <div class="profile-avatar">💈</div>
         <div>
-          <div class="brand-title">Barbería Amistad</div>
-          <div class="brand-sub"><span class="dot"></span> C/ San Juan, Catral</div>
+          <div class="profile-name">Barbería Amistad</div>
+          <div class="profile-loc">📍 C/ San Juan · Catral</div>
         </div>
-      </a>
-      <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20pedir%20cita%20para%20cortarme%20el%20pelo" class="btn-header-wa">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="open-badge">
+        <span class="pulse-dot"></span> Abierto
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80" alt="Barbería Amistad Catral" class="hero-img">
+      <div class="hero-overlay">
+        <div class="rating-pill">
+          ★★★★★ <span>4.8 (15 opiniones)</span>
+        </div>
+        <h1 class="hero-title">El Arte del Buen Corte en Catral</h1>
+        <p class="hero-sub">Degradados milimétricos y ritual de barba a navaja.</p>
+      </div>
+    </div>
+
+    <div class="action-grid">
+      <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20pedir%20cita" class="btn-action-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>Pedir Cita WhatsApp</span>
       </a>
+      <a href="tel:+34602022146" class="btn-action-secondary">
+        <span>📞 Llamar</span>
+      </a>
+      <a href="https://maps.google.com/?q=Calle+San+Juan,+03330+Catral" target="_blank" class="btn-action-secondary">
+        <span>📍 Ubicación</span>
+      </a>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="badge-pill">
-        <span>⭐ 4.8 en Google</span>
-        <span>·</span>
-        <span>Catral (C/ San Juan)</span>
-        <span>·</span>
-        <span>Barbería & Estilo</span>
+    <!-- SELECTOR DE CITAS RÁPIDO -->
+    <div class="booking-box">
+      <div class="b-title">✂️ Reserva tu Cita Rápida</div>
+      <div class="b-services">
+        <div class="b-row selected" onclick="pickCut('Degradado Fade', 12, this)">
+          <span>✂️ Corte & Degradado Fade</span>
+          <strong>12 €</strong>
+        </div>
+        <div class="b-row" onclick="pickCut('Ritual Barba Navaja', 8, this)">
+          <span>🪒 Ritual de Barba a Navaja</span>
+          <strong>8 €</strong>
+        </div>
+        <div class="b-row" onclick="pickCut('Combo Corte + Barba', 18, this)">
+          <span>⭐ Combo Corte + Barba</span>
+          <strong>18 €</strong>
+        </div>
       </div>
-      <h1>El Mejor Degradado y <span>Ritual de Barba</span> en Catral</h1>
-      <p>Tradición barbera, cortes modernos y perfilado a navaja con toalla caliente. Siéntate, desconecta y sal impecable. Reserva tu turno directo por WhatsApp sin colas.</p>
-      <div class="hero-ctas">
-        <a href="#reservar" class="btn-primary">
-          <span>✂️ Reservar Turno en 1 Clic</span>
-        </a>
-        <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20ten%C3%A9is%20sitio%20hoy%3F" class="btn-secondary">
-          <span>💬 ¿Tenéis sitio hoy?</span>
-        </a>
+
+      <div class="b-slots">
+        <div class="slot-pill selected" onclick="pickSlot('Hoy tarde', this)">Hoy por la tarde</div>
+        <div class="slot-pill" onclick="pickSlot('Mañana mañana', this)">Mañana mañana</div>
+        <div class="slot-pill" onclick="pickSlot('Mañana tarde', this)">Mañana tarde</div>
+        <div class="slot-pill" onclick="pickSlot('Sábado', this)">Sábado</div>
+      </div>
+
+      <div class="b-result">
+        <div>
+          <div style="font-size:0.7rem; color:var(--text-muted);">Total:</div>
+          <div class="b-total" id="b-total-num">12 €</div>
+        </div>
+        <a href="#" id="b-wa-btn" target="_blank" class="b-btn-wa">Reservar →</a>
       </div>
     </div>
-  </section>
 
-  <!-- SELECTOR INTERACTIVO DE RESERVA -->
-  <section class="booking-section" id="reservar">
-    <div class="container">
-      <div class="booking-card">
-        <div class="booking-header">
-          <div class="section-tag">RESERVA FÁCIL & SIN ESPERAS</div>
-          <h2>Elige tus Servicios y Hora</h2>
-          <p>Marca lo que necesitas y pulsa en enviar WhatsApp para confirmar tu hueco en segundos.</p>
-        </div>
+    <!-- SERVICIOS CON FOTOS REALES -->
+    <div class="section-head">
+      <h2>Catálogo de Estilos</h2>
+      <span>Precios Claros</span>
+    </div>
 
-        <div class="services-picker-grid">
-          <div class="service-check-card checked" onclick="toggleService('Corte & Fade Degradado', 12, this)">
-            <div class="service-check-left">
-              <div class="service-check-box">✓</div>
-              <div>
-                <div class="service-name">Corte & Degradado Fade</div>
-                <div class="service-desc">Skin Fade, Taper, Clásico + Peinado</div>
-              </div>
-            </div>
-            <div class="service-price">12 €</div>
-          </div>
-
-          <div class="service-check-card" onclick="toggleService('Arreglo de Barba Ritual', 8, this)">
-            <div class="service-check-left">
-              <div class="service-check-box">✓</div>
-              <div>
-                <div class="service-name">Ritual de Barba a Navaja</div>
-                <div class="service-desc">Perfilado a navaja + toalla caliente & aceite</div>
-              </div>
-            </div>
-            <div class="service-price">8 €</div>
-          </div>
-
-          <div class="service-check-card" onclick="toggleService('Combo Corte + Barba', 18, this)">
-            <div class="service-check-left">
-              <div class="service-check-box">✓</div>
-              <div>
-                <div class="service-name">Combo Corte + Barba</div>
-                <div class="service-desc">Servicio estrella: Corte completo y ritual barba</div>
-              </div>
-            </div>
-            <div class="service-price">18 €</div>
-          </div>
-
-          <div class="service-check-card" onclick="toggleService('Corte Infantil / Niño', 10, this)">
-            <div class="service-check-left">
-              <div class="service-check-box">✓</div>
-              <div>
-                <div class="service-name">Corte Infantil / Chico</div>
-                <div class="service-desc">Para los más jóvenes con estilo y paciencia</div>
-              </div>
-            </div>
-            <div class="service-price">10 €</div>
+    <div class="cuts-stack">
+      <div class="cut-item-card">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=300&q=80" alt="Fade" class="cut-thumb">
+        <div class="cut-info">
+          <div class="cut-name">Skin Fade & Taper</div>
+          <div class="cut-desc">Degradado limpio desde cero. Transición impecable y navaja.</div>
+          <div class="cut-meta">
+            <span class="cut-price">12 €</span>
+            <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20cita%20para%20un%20fade" class="btn-quick-wa">Pedir</a>
           </div>
         </div>
+      </div>
 
-        <!-- SELECTOR DE HORARIO ORIENTATIVO -->
-        <div style="font-size:0.8rem; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:10px;">
-          Preferencias de Turno:
-        </div>
-        <div class="time-picker-row">
-          <button type="button" class="time-slot-btn selected" onclick="selectSlot('Hoy por la tarde', this)">Hoy por la tarde</button>
-          <button type="button" class="time-slot-btn" onclick="selectSlot('Mañana por la mañana', this)">Mañana por la mañana</button>
-          <button type="button" class="time-slot-btn" onclick="selectSlot('Mañana por la tarde', this)">Mañana por la tarde</button>
-          <button type="button" class="time-slot-btn" onclick="selectSlot('Sábado', this)">Sábado</button>
-        </div>
-
-        <!-- RESUMEN Y BOTÓN DIRECTO -->
-        <div class="booking-summary-bar">
-          <div class="summary-left">
-            <div class="label">Total Estimado:</div>
-            <div class="total-price" id="booking-total">12 €</div>
-            <div class="selection-text" id="booking-selection">Corte & Degradado Fade · Turno: Hoy por la tarde</div>
+      <div class="cut-item-card">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=300&q=80" alt="Barba" class="cut-thumb">
+        <div class="cut-info">
+          <div class="cut-name">Ritual de Barba</div>
+          <div class="cut-desc">Toalla caliente al vapor, aceites naturales y perfilado a navaja.</div>
+          <div class="cut-meta">
+            <span class="cut-price">8 €</span>
+            <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20cita%20para%20barba" class="btn-quick-wa">Pedir</a>
           </div>
-          <div>
-            <a href="#" id="btn-booking-wa" target="_blank" class="btn-reserve-wa">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              <span>Pedir Cita en Barbería Amistad</span>
-            </a>
+        </div>
+      </div>
+
+      <div class="cut-item-card">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=300&q=80" alt="Combo" class="cut-thumb">
+        <div class="cut-info">
+          <div class="cut-name">Combo Amistad VIP</div>
+          <div class="cut-desc">Corte completo + arreglo de barba + peinado con cera mate.</div>
+          <div class="cut-meta">
+            <span class="cut-price">18 €</span>
+            <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20cita%20para%20combo%20corte%20y%20barba" class="btn-quick-wa">Pedir</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- CORTES Y ESTILOS -->
-  <section class="cuts-section">
-    <div class="container">
-      <div class="section-title-wrap">
-        <div class="section-tag">NUESTRA ESPECIALIDAD</div>
-        <h2 class="section-title">Estilos & Técnicas</h2>
+    <!-- DATOS -->
+    <div class="info-card">
+      <div class="info-row">
+        <span>📍</span>
+        <div>
+          <strong>Dirección:</strong>
+          <span>C/ San Juan, 03330 Catral</span>
+        </div>
       </div>
-
-      <div class="cuts-grid">
-        <div class="cut-card">
-          <span class="cut-emoji">💈</span>
-          <h3>Skin Fade & Taper</h3>
-          <p>Degradado milimétrico desde cero hasta arriba. Líneas definidas, nuca limpia y transición perfecta.</p>
-          <div class="cut-price-row">
-            <span class="cut-tag">Tijera y máquina</span>
-            <span class="cut-amount">12 €</span>
-          </div>
+      <div class="info-row">
+        <span>📞</span>
+        <div>
+          <strong>WhatsApp de Citas:</strong>
+          <span>+34 602 02 21 46</span>
         </div>
-
-        <div class="cut-card">
-          <span class="cut-emoji">🪒</span>
-          <h3>Ritual de Barba a Navaja</h3>
-          <p>Recorte de volumen, toalla caliente al vapor, perfilado a navaja tradicional y aceites hidratantes.</p>
-          <div class="cut-price-row">
-            <span class="cut-tag">Relax total</span>
-            <span class="cut-amount">8 €</span>
-          </div>
-        </div>
-
-        <div class="cut-card">
-          <span class="cut-emoji">⭐</span>
-          <h3>Combo Amistad VIP</h3>
-          <p>El pack preferido: Corte de pelo completo, arreglo integral de barba, lavado relajante y fijación mate.</p>
-          <div class="cut-price-row">
-            <span class="cut-tag">Servicio completo</span>
-            <span class="cut-amount">18 €</span>
-          </div>
-        </div>
-
-        <div class="cut-card">
-          <span class="cut-emoji">✂️</span>
-          <h3>Corte Clásico a Tijera</h3>
-          <p>Para quienes buscan un estilo tradicional y elegante, adaptado a la forma de tu cabeza y facciones.</p>
-          <div class="cut-price-row">
-            <span class="cut-tag">Elegancia atemporal</span>
-            <span class="cut-amount">10 €</span>
-          </div>
+      </div>
+      <div class="info-row">
+        <span>🕒</span>
+        <div>
+          <strong>Horario:</strong>
+          <span>Lunes a Sábado: 9:30 - 13:30 / 16:30 - 20:30</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- UBICACIÓN -->
-  <section class="container">
-    <div class="location-box">
-      <div class="loc-info">
-        <h2>Pásate por Catral</h2>
-        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom: 20px;">Estamos situados en el corazón de Catral. Ambiente cercano, buena música y el trato que te mereces.</p>
-        
-        <div class="loc-row">
-          <div style="font-size:1.3rem;">📍</div>
-          <div>
-            <strong>Dirección:</strong>
-            <span>C/ San Juan, 03330 Catral (Alicante)</span>
-          </div>
-        </div>
+  </div>
 
-        <div class="loc-row">
-          <div style="font-size:1.3rem;">📞</div>
-          <div>
-            <strong>Teléfono & WhatsApp de Citas:</strong>
-            <span>+34 602 02 21 46</span>
-          </div>
-        </div>
-
-        <div class="loc-row">
-          <div style="font-size:1.3rem;">🕒</div>
-          <div>
-            <strong>Horario:</strong>
-            <span>Lunes a Sábado: 09:30 - 13:30 / 16:30 - 20:30</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align:center;">
-        <a href="https://maps.google.com/?q=Calle+San+Juan,+03330+Catral,+Alicante" target="_blank" style="text-decoration:none;">
-          <div style="background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius:14px; padding: 24px;">
-            <div style="font-size: 2.2rem; margin-bottom: 8px;">💈🗺️</div>
-            <div style="color: #fff; font-weight: 800; font-size: 1.1rem; margin-bottom: 4px;">Abrir Ubicación en Google Maps</div>
-            <div style="color: var(--text-muted); font-size: 0.84rem; margin-bottom: 12px;">C/ San Juan, Catral</div>
-            <span class="btn-secondary" style="font-size: 0.85rem; padding: 8px 18px;">Cómo Llegar →</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20pedir%20cita%20por%20favor" class="floating-wa-btn" title="Pedir Cita WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
-  <footer>
-    <div class="container">
-      <p>© 2026 Barbería Amistad · C/ San Juan, Catral · Tel: +34 602 02 21 46</p>
-      <p style="margin-top: 6px; font-size: 0.72rem; color: #475569;">Propuesta web interactiva y sistema de captación directa para Barbería Amistad.</p>
-    </div>
-  </footer>
+  <div class="mobile-bottom-bar">
+    <a href="https://wa.me/34602022146?text=Hola%20Barber%C3%ADa%20Amistad%2C%20quiero%20cita" class="bar-wa-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>Pedir Cita WhatsApp</span>
+    </a>
+    <a href="tel:+34602022146" class="bar-call-btn"><span>📞</span></a>
+  </div>
 
   <script src="/owner-banner.js"></script>
 
   <script>
-    let selectedServices = [
-      { name: 'Corte & Fade Degradado', price: 12 }
-    ];
-    let selectedSlot = 'Hoy por la tarde';
+    let cutName = 'Degradado Fade';
+    let cutP = 12;
+    let cutSlot = 'Hoy tarde';
 
-    function toggleService(name, price, card) {
-      const idx = selectedServices.findIndex(s => s.name === name);
-      if (idx !== -1) {
-        if (selectedServices.length > 1) {
-          selectedServices.splice(idx, 1);
-          card.classList.remove('checked');
-        }
-      } else {
-        selectedServices.push({ name, price });
-        card.classList.add('checked');
-      }
-      updateBooking();
+    function pickCut(name, price, el) {
+      cutName = name;
+      cutP = price;
+      document.querySelectorAll('.b-services .b-row').forEach(r => r.classList.remove('selected'));
+      el.classList.add('selected');
+      updateB();
     }
 
-    function selectSlot(slot, btn) {
-      selectedSlot = slot;
-      document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      updateBooking();
+    function pickSlot(slot, el) {
+      cutSlot = slot;
+      document.querySelectorAll('.b-slots .slot-pill').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+      updateB();
     }
 
-    function updateBooking() {
-      const total = selectedServices.reduce((acc, s) => acc + s.price, 0);
-      const names = selectedServices.map(s => s.name).join(' + ');
-
-      document.getElementById('booking-total').textContent = total + ' €';
-      document.getElementById('booking-selection').textContent = names + ' · Turno: ' + selectedSlot;
-
-      const waMsg = encodeURIComponent('¡Hola Barbería Amistad! Quiero pedir cita para ' + names + ' (' + total + '€) para el turno de ' + selectedSlot + '. ¿Tenéis libre?');
-      document.getElementById('btn-booking-wa').href = 'https://wa.me/34602022146?text=' + waMsg;
+    function updateB() {
+      document.getElementById('b-total-num').textContent = cutP + ' €';
+      const msg = encodeURIComponent('¡Hola Barbería Amistad! Quiero pedir cita para ' + cutName + ' (' + cutP + '€) para el turno de ' + cutSlot + '. ¿Tenéis sitio?');
+      document.getElementById('b-wa-btn').href = 'https://wa.me/34602022146?text=' + msg;
     }
-
-    updateBooking();
+    updateB();
 
     function switchTheme(theme) {
-      const body = document.getElementById('page-body');
-      document.querySelectorAll('.switcher-btn').forEach(b => b.classList.remove('active'));
-
-      if (theme === 'urban') {
-        body.className = 'theme-urban';
+      const b = document.getElementById('page-body');
+      document.querySelectorAll('.style-pill').forEach(p => p.classList.remove('active'));
+      if (theme === 'neon') {
+        b.className = 'theme-neon';
         document.getElementById('tab-2').classList.add('active');
       } else if (theme === 'minimal') {
-        body.className = 'theme-minimal';
+        b.className = 'theme-minimal';
         document.getElementById('tab-3').classList.add('active');
       } else {
-        body.className = '';
+        b.className = '';
         document.getElementById('tab-1').classList.add('active');
       }
     }
