@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Arco Pilates Orihuela | Estudio de Pilates Reformer & Máquinas en Orihuela</title>
+  <meta name="description" content="Arco Pilates en Orihuela (C/ San Agustín, 8). Clases de Pilates Reformer con máquinas, Mat, espalda sana y grupos reducidos. Reserva tu clase de prueba por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-glow: rgba(13, 148, 136, 0.4);
+      --accent: #f59e0b;
+      --bg-body: #090e14;
+      --bg-surface: #111a24;
+      --bg-card: rgba(17, 26, 36, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(13, 148, 136, 0.5);
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --font-title: 'Playfair Display', serif;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body.theme-vital {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-glow: rgba(2, 132, 199, 0.4);
+      --accent: #38bdf8;
+      --bg-body: #070d18;
+      --bg-surface: #0f1b2d;
+      --bg-card: rgba(15, 27, 45, 0.95);
+      --border-focus: rgba(2, 132, 199, 0.5);
+    }
+
+    body.theme-vip {
+      --primary: #d97706;
+      --primary-dark: #b45309;
+      --primary-glow: rgba(217, 119, 6, 0.4);
+      --accent: #fbbf24;
+      --bg-body: #0a0a0c;
+      --bg-surface: #141418;
+      --bg-card: rgba(20, 20, 26, 0.95);
+      --border-focus: rgba(217, 119, 6, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 95px;
+    }
+
+    /* TOP STYLE SWITCHER */
+    .style-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(9, 14, 20, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .style-bar span { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .style-pills { display: flex; gap: 5px; }
+    .style-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+    .style-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 16px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, rgba(255,255,255,0.1) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: white;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .brand-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+    }
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-open {
+      font-size: 0.68rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-open::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #34d399;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+    }
+    .hero img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9, 14, 20, 0.95) 0%, rgba(9, 14, 20, 0.4) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .hero-tag {
+      align-self: flex-start;
+      background: var(--primary);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .hero-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* TRUST STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .stat-lbl {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* SECTION TITLES */
+    .section-head {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .section-subtitle {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* SERVICES CARDS WITH REAL PHOTOS */
+    .services-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+    .service-img {
+      width: 82px;
+      height: 82px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .service-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .service-info h3 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .service-info p {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .service-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(13, 148, 136, 0.12);
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* INTERACTIVE BOOKING / CONSULT WIDGET */
+    .booking-box {
+      margin-top: 24px;
+      background: linear-gradient(145deg, rgba(13, 148, 136, 0.15) 0%, rgba(17, 26, 36, 0.95) 100%);
+      border: 1px solid var(--border-focus);
+      border-radius: 18px;
+      padding: 18px;
+      position: relative;
+    }
+    .booking-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .booking-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .pill-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pill-option {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 11px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .pill-option.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      font-weight: 700;
+    }
+    .booking-cta {
+      margin-top: 14px;
+      width: 100%;
+      background: #25d366;
+      color: #0b2212;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+      text-decoration: none;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-card {
+      margin-top: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .reviews-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .rating-big {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .single-review {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .single-review p {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.4;
+    }
+    .single-review-author {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* LOCATION & CONTACT */
+    .location-box {
+      margin-top: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .loc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+    .loc-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .loc-text strong {
+      display: block;
+      color: white;
+      font-weight: 700;
+    }
+    .loc-text span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* FIXED BOTTOM ACTION BAR */
+    .fixed-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(9, 14, 20, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .bar-inner {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      gap: 10px;
+    }
+    .bar-btn-wa {
+      flex: 2;
+      background: #25d366;
+      color: #052e16;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+    }
+    .bar-btn-call {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: white;
+      font-weight: 700;
+      font-size: 0.82rem;
+      border-radius: 12px;
+      padding: 12px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body id="page-body" class="theme-vital">
+
+  <!-- TOP SELECTOR FOR 3 DESIGNS -->
+  <div class="style-bar">
+    <span>📐 3 Diseños para móvil:</span>
+    <div class="style-pills">
+      <a href="index.html" class="style-pill" id="tab-1">Boutique Zen</a>
+      <a href="diseno-2.html" class="style-pill active" id="tab-2">Vital</a>
+      <a href="diseno-3.html" class="style-pill" id="tab-3">VIP Oro</a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-group">
+        <div class="brand-icon">🧘‍♀️</div>
+        <div class="brand-info">
+          <h1>Arco Pilates</h1>
+          <p>📍 C/ San Agustín, 8 • Orihuela</p>
+        </div>
+      </div>
+      <div class="badge-open">Plazas abiertas</div>
+    </header>
+
+    <!-- HERO WITH REAL PHOTOS -->
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Pilates Reformer Arco Pilates Orihuela" loading="eager">
+      <div class="hero-overlay">
+        <span class="hero-tag">Estudio Especializado en Orihuela</span>
+        <h2 class="hero-title">Tu cuerpo más fuerte, flexible y sin dolor</h2>
+        <p class="hero-desc">Pilates con máquinas Reformer, Cadillac y Mat. Grupos reducidos con atención 100% personalizada.</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val">Máx. 6</div>
+        <div class="stat-lbl">Plazas x clase</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">Reformer</div>
+        <div class="stat-lbl">Máquinas Pro</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">4.9 ★</div>
+        <div class="stat-lbl">En Orihuela</div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-head">
+      <h2 class="section-title">Nuestras Clases</h2>
+      <span class="section-subtitle">Atención Guiada</span>
+    </div>
+
+    <div class="services-stack">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=300&q=80" alt="Pilates Reformer Máquinas">
+        <div class="service-info">
+          <h3>Pilates Reformer (Máquinas)</h3>
+          <p>Entrenamiento asistido por resortes. Fortalece abdomen, tonifica y mejora postura sin impacto articular.</p>
+          <span class="service-tag">⭐ Más solicitado</span>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=300&q=80" alt="Espalda Sana y Terapéutico">
+        <div class="service-info">
+          <h3>Espalda Sana & Corrección</h3>
+          <p>Especial para personas con dolor lumbar, contracturas o trabajo sedentario. Alivio garantizado.</p>
+          <span class="service-tag">Salud & Bienestar</span>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=300&q=80" alt="Pilates Suelo Mat">
+        <div class="service-info">
+          <h3>Pilates Mat (Suelo & Aro)</h3>
+          <p>Control del core, elasticidad y respiración profunda con implementos como pelotas y bandas elásticas.</p>
+          <span class="service-tag">Todos los niveles</span>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=300&q=80" alt="Clases Privadas Individuales">
+        <div class="service-info">
+          <h3>Sesiones Individuales 1 to 1</h3>
+          <p>Un instructor dedicado exclusivamente a ti. Ideal para rehabilitación, embarazo o deportistas.</p>
+          <span class="service-tag">Personalizado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE RESERVATION WIDGET -->
+    <div class="booking-box">
+      <h3>📅 Consulta Horarios y Disponibilidad</h3>
+      <p>Elige tu objetivo y te indicamos qué grupo encaja mejor con tu nivel:</p>
+
+      <div class="form-group">
+        <label>1. ¿Cuál es tu objetivo principal?</label>
+        <div class="pill-selector" id="goal-selector">
+          <div class="pill-option active" data-val="Pilates Reformer (Máquinas)">Reformer Máquinas</div>
+          <div class="pill-option" data-val="Aliviar dolor de espalda">Espalda Sana</div>
+          <div class="pill-option" data-val="Tonificar y ganar flexibilidad">Tonificación</div>
+          <div class="pill-option" data-val="Embarazo o Postparto">Embarazo</div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 12px;">
+        <label>2. Horario de preferencia</label>
+        <div class="pill-selector" id="time-selector">
+          <div class="pill-option active" data-val="Mañanas">Mañanas</div>
+          <div class="pill-option" data-val="Mediodía">Mediodía</div>
+          <div class="pill-option" data-val="Tardes">Tardes</div>
+          <div class="pill-option" data-val="Me adapto">Indiferente</div>
+        </div>
+      </div>
+
+      <a id="wa-dynamic-btn" href="https://wa.me/34611440644?text=Hola%20Arco%20Pilates,%20he%20visto%20vuestra%20web%20y%20me%20gustar%C3%ADa%20consultar%20plazas%20para:%20Pilates%20Reformer%20(M%C3%A1quinas)%20en%20horario%20de%20Ma%C3%B1anas." target="_blank" class="booking-cta">
+        💬 Consultar Plazas por WhatsApp
+      </a>
+    </div>
+
+    <!-- OPINIONES REALES -->
+    <div class="reviews-card">
+      <div class="reviews-head">
+        <div>
+          <h3 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 800;">Valoraciones de Alumnos</h3>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">Estudio en C/ San Agustín, Orihuela</span>
+        </div>
+        <div class="rating-big">4.9 ★</div>
+      </div>
+      <div class="single-review">
+        <p>"Desde que empecé en máquinas con ellos los dolores de espalda han desaparecido. La atención es impecable y los grupos muy reducidos."</p>
+        <div class="single-review-author">Elena M. • Alumna en Orihuela</div>
+      </div>
+      <div class="single-review">
+        <p>"El mejor estudio de pilates de la Vega Baja. El trato de los monitores es de 10, te corrigen en cada postura."</p>
+        <div class="single-review-author">Carlos S. • Orihuela Centro</div>
+      </div>
+    </div>
+
+    <!-- UBICACIÓN & CONTACTO DIRECTO -->
+    <div class="location-box">
+      <div class="loc-row">
+        <span class="loc-icon">📍</span>
+        <div class="loc-text">
+          <strong>Dirección en Orihuela</strong>
+          <span>C/ San Agustín, 8, 03300 Orihuela (Alicante)</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">🕒</span>
+        <div class="loc-text">
+          <strong>Horarios de Clases</strong>
+          <span>Lunes a Viernes con turnos de mañana y tarde con cita previa</span>
+        </div>
+      </div>
+      <div class="loc-row">
+        <span class="loc-icon">📞</span>
+        <div class="loc-text">
+          <strong>Teléfono / WhatsApp Directo</strong>
+          <span>+34 611 44 06 44</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 24px; text-align: center; color: var(--text-muted); font-size: 0.72rem; padding-bottom: 20px;">
+      <p>© 2026 Arco Pilates Orihuela • Salud & Movimiento Consciente</p>
+      <p style="margin-top: 4px; opacity: 0.6;">Propuesta de presencia web optimizada para móvil</p>
+    </footer>
+
+  </div>
+
+  <!-- FIXED BOTTOM MOBILE APP BAR -->
+  <div class="fixed-bar">
+    <div class="bar-inner">
+      <a href="https://wa.me/34611440644?text=Hola%20Arco%20Pilates,%20he%20visto%20vuestra%20web%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20clases%20y%20precios" target="_blank" class="bar-btn-wa">
+        💬 Escribir por WhatsApp
+      </a>
+      <a href="tel:+34611440644" class="bar-btn-call">
+        📞 Llamar
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Dynamic WhatsApp Link Builder
+    let selectedGoal = 'Pilates Reformer (Máquinas)';
+    let selectedTime = 'Mañanas';
+
+    function updateWaLink() {
+      const msg = 'Hola Arco Pilates, he visto vuestra web y me gustaría consultar disponibilidad para: ' + selectedGoal + ' en horario de ' + selectedTime + '.';
+      const url = 'https://wa.me/34611440644?text=' + encodeURIComponent(msg);
+      document.getElementById('wa-dynamic-btn').href = url;
+    }
+
+    document.querySelectorAll('#goal-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#goal-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedGoal = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+
+    document.querySelectorAll('#time-selector .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#time-selector .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedTime = el.getAttribute('data-val');
+        updateWaLink();
+      });
+    });
+  </script>
+</body>
+</html>
