@@ -3,32 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>{{BUSINESS_NAME}} | {{CATEGORY}} en {{CITY}}</title>
-  <meta name="description" content="{{BUSINESS_NAME}} en {{ADDRESS}} ({{CITY}}). {{CATEGORY}} profesional con atención directa por WhatsApp y teléfono. Presupuesto sin compromiso.">
-  <meta property="og:title" content="{{BUSINESS_NAME}} · {{CITY}}">
-  <meta property="og:description" content="{{CATEGORY}} de máxima confianza en {{CITY}}. Contacto directo en 1 clic.">
+  <title>Cerrajeros Urgencias Orihuela 24h | Aperturas de Precisión y Seguridad Acorazada</title>
+  <meta name="description" content="Cerrajería urgente de élite 24h en Orihuela. Asistencia en menos de 20 min. Apertura sin rotura, cambio de cerraduras, bombines antibumping y persianas. Tel: 625 18 94 69.">
+  <meta property="og:title" content="Cerrajeros Urgencias Orihuela 24h">
+  <meta property="og:description" content="Servicio de cerrajería urgente 24h con instrumental de precisión. Llegada garantizada en 15-20 min sin dañar su puerta.">
   
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & HIGH-END TOKENS (AWWWARDS / LINEAR TIER)
+       ========================================================================== */
     :root {
-      --primary: #2563eb;
-      --primary-light: #60a5fa;
-      --primary-glow: rgba(37, 99, 235, 0.35);
-      --accent: #f59e0b;
-      --bg-dark: #070c18;
-      --bg-card: rgba(13, 22, 40, 0.85);
-      --bg-card-border: rgba(96, 165, 250, 0.18);
-      --text-main: #f8fafc;
+      --bg-void: #030712;
+      --bg-surface: #080f1e;
+      --bg-card: rgba(13, 23, 42, 0.72);
+      --bg-card-hover: rgba(18, 32, 59, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(96, 165, 250, 0.35);
+      
+      --sapphire-base: #1d4ed8;
+      --sapphire-bright: #3b82f6;
+      --sapphire-neon: #60a5fa;
+      --sapphire-glow: rgba(59, 130, 246, 0.45);
+      
+      --amber-safety: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.45);
+      --red-urgent: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.45);
+      --green-live: #10b981;
+      
+      --text-white: #ffffff;
+      --text-soft: #f1f5f9;
       --text-muted: #94a3b8;
-      --font-title: 'Outfit', sans-serif;
+      --text-dark: #64748b;
+      
+      --font-display: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --font-tech: 'Space Grotesk', monospace;
+      --font-mono: 'Space Grotesk', monospace;
+      
+      --ease-elastic: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    /* ZERO-WOBBLE HORIZONTAL LOCK */
+    /* ABSOLUTE ZERO HORIZONTAL WOBBLE */
     html, body {
       width: 100%;
       max-width: 100%;
@@ -37,277 +62,509 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      background: var(--bg-dark);
-      color: var(--text-main);
+      background: var(--bg-void);
+      color: var(--text-soft);
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
     }
 
-    /* TOP ANNOUNCEMENT BAR */
-    .top-status-bar {
-      background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);
+    /* ==========================================================================
+       CINEMATIC VIDEO-LIKE AMBIENT CANVAS & LIGHT BEAMS
+       ========================================================================== */
+    #ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    .ambient-aurora-glow {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.22) 0%, rgba(245, 158, 11, 0.08) 45%, transparent 75%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      animation: auroraBreathe 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes auroraBreathe {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0.6; }
+      50% { transform: translateX(-48%) scale(1.1); opacity: 0.9; }
+      100% { transform: translateX(-52%) scale(1.0); opacity: 0.7; }
+    }
+
+    .app-viewport {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px 140px 20px;
+    }
+
+    /* ==========================================================================
+       TOP EMERGENCY STATUS BAR (BREATHING SIGNAL)
+       ========================================================================== */
+    .emergency-ticker {
+      background: linear-gradient(90deg, rgba(185, 28, 28, 0.95) 0%, rgba(220, 38, 38, 0.95) 50%, rgba(234, 88, 12, 0.95) 100%);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       color: #ffffff;
-      padding: 8px 16px;
+      padding: 10px 16px;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      text-align: center;
+      gap: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+      position: relative;
+      z-index: 999;
     }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: #4ade80;
+
+    .beacon-pulse {
+      width: 10px;
+      height: 10px;
+      background: #ffffff;
       border-radius: 50%;
-      box-shadow: 0 0 10px #4ade80;
-      animation: pulseAnim 1.6s infinite;
+      box-shadow: 0 0 12px #ffffff;
+      animation: beaconFlash 1.2s infinite ease-in-out;
       flex-shrink: 0;
     }
-    @keyframes pulseAnim {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.5); opacity: 0.5; }
+
+    @keyframes beaconFlash {
+      0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 8px #ffffff); }
+      50% { transform: scale(1.6); opacity: 0.4; filter: drop-shadow(0 0 14px #ffffff); }
     }
 
-    /* RESPONSIVE SITE CONTAINER */
-    .site-wrapper {
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 18px 130px 18px;
-      position: relative;
+    /* ==========================================================================
+       DOUBLE-BEZEL FLOATING NAVIGATION
+       ========================================================================== */
+    .nav-bezel-outer {
+      margin-top: 20px;
+      padding: 4px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
-    /* HEADER */
-    .site-header {
+    .nav-bezel-inner {
+      border-radius: 22px;
+      background: rgba(8, 15, 30, 0.88);
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      margin-bottom: 24px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
     }
-    .brand-box {
+
+    .brand-identity {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .brand-icon {
+
+    .brand-shield-emblem {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #1d4ed8, #2563eb);
-      border: 1px solid rgba(96, 165, 250, 0.4);
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      box-shadow: 0 4px 14px var(--primary-glow);
+      box-shadow: 0 4px 18px var(--sapphire-glow);
     }
-    .brand-title {
-      font-family: var(--font-title);
+
+    .brand-names h2 {
+      font-family: var(--font-display);
       font-size: 18px;
       font-weight: 800;
+      color: #ffffff;
       margin: 0;
-      color: #ffffff;
-      line-height: 1.2;
+      letter-spacing: -0.3px;
     }
-    .brand-subtitle {
+
+    .brand-names p {
       font-size: 11px;
-      color: var(--primary-light);
-      font-weight: 600;
+      color: var(--sapphire-neon);
       margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .header-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(37, 99, 235, 0.15);
-      border: 1px solid rgba(96, 165, 250, 0.35);
-      color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 13px;
       font-weight: 700;
-      transition: all 0.2s;
-    }
-    .header-cta-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 16px 0 32px 0;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(37, 99, 235, 0.14);
-      border: 1px solid rgba(96, 165, 250, 0.3);
-      color: var(--primary-light);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 5px 14px;
-      border-radius: 999px;
-      margin-bottom: 16px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    h1 {
-      font-family: var(--font-title);
-      font-size: clamp(30px, 5vw, 50px);
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -0.8px;
-      margin: 0 0 14px 0;
-      color: #ffffff;
-    }
-    h1 span.gradient-text {
-      background: linear-gradient(135deg, #ffffff 30%, var(--primary-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-desc {
-      font-size: clamp(14px, 2vw, 17px);
-      color: var(--text-muted);
-      max-width: 620px;
-      margin: 0 auto 24px;
-      line-height: 1.5;
+      letter-spacing: 0.6px;
     }
 
-    /* 4 TRUST METRICS */
-    .metrics-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      margin-bottom: 35px;
-    }
-    .metric-card {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: 16px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-align: left;
-    }
-    .metric-icon {
-      font-size: 22px;
-    }
-    .metric-label {
-      font-size: 13px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.2;
-    }
-    .metric-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* INTERACTIVE SELECTOR */
-    .card-box {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: 22px;
-      padding: 22px;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-    .box-title {
-      font-family: var(--font-title);
-      font-size: 20px;
-      font-weight: 800;
-      margin: 0 0 6px 0;
-      color: #ffffff;
-      display: flex;
+    .nav-call-pill {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-    .box-desc {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      color: #ffffff;
       font-size: 13px;
-      color: var(--text-muted);
-      margin: 0 0 16px 0;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--red-glow);
+      transition: all 0.3s var(--ease-elastic);
     }
 
-    .service-selector-grid {
+    .nav-call-pill:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 25px var(--red-glow);
+    }
+
+    /* ==========================================================================
+       HERO CINEMATICS & EDITORIAL TYPOGRAPHY
+       ========================================================================== */
+    .hero-stage {
+      text-align: center;
+      padding: 45px 0 35px 0;
+      position: relative;
+    }
+
+    .hero-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid var(--border-highlight);
+      color: var(--sapphire-neon);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+    }
+
+    h1.hero-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5.5vw, 62px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      margin: 0 0 20px 0;
+      color: #ffffff;
+    }
+
+    .shimmer-gradient-text {
+      background: linear-gradient(90deg, #60a5fa 0%, #ffffff 50%, #93c5fd 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerFlow 6s linear infinite;
+    }
+
+    @keyframes shimmerFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-narrative {
+      font-size: clamp(15px, 2.2vw, 19px);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 35px auto;
+      line-height: 1.55;
+    }
+
+    /* DUAL ACTION BUTTONS IN HERO */
+    .hero-actions-cluster {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 45px;
+    }
+
+    .btn-magnetic {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-elastic);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-urgent-call {
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 30px rgba(239, 68, 68, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-urgent-call:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(239, 68, 68, 0.65);
+    }
+
+    .btn-wa-live {
+      background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 30px rgba(34, 197, 94, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-wa-live:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(34, 197, 94, 0.55);
+    }
+
+    /* 4 REAL-TIME TRUST BADGES (DOUBLE-BEZEL TILES) */
+    .metrics-quad-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 50px;
+    }
+
+    .metric-bezel-tile {
+      padding: 3px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      transition: transform 0.3s var(--ease-elastic), border-color 0.3s;
+    }
+    .metric-bezel-tile:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-highlight);
+    }
+
+    .metric-tile-core {
+      background: var(--bg-card);
+      border-radius: 17px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .metric-symbol {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.15);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .metric-texts h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .metric-texts p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 2px 0 0 0;
+    }
+
+    /* ==========================================================================
+       INTERACTIVE RADAR: LIVE GPS DISPATCH SELECTOR
+       ========================================================================== */
+    .radar-console-box {
+      border-radius: 28px;
+      padding: 4px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      margin-bottom: 50px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .radar-console-core {
+      background: linear-gradient(145deg, #091224 0%, #060b17 100%);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .radar-console-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .radar-title h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
       gap: 10px;
     }
-    .sel-btn {
+
+    .radar-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .radar-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .zones-selector-cluster {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .zone-toggle-btn {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      padding: 12px;
-      color: #ffffff;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .sel-btn.active {
-      background: rgba(37, 99, 235, 0.2);
-      border-color: var(--primary-light);
-      box-shadow: 0 0 15px var(--primary-glow);
-    }
-    .sel-icon { font-size: 20px; }
-    .sel-title { font-size: 13px; font-weight: 700; }
-    .sel-tag { font-size: 11px; color: var(--primary-light); }
-
-    .sel-detail-display {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(0, 0, 0, 0.3);
-      border-left: 3px solid var(--primary-light);
-      font-size: 13px;
+      padding: 12px 14px;
       color: #cbd5e1;
-      line-height: 1.45;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-smooth);
+      text-align: center;
     }
 
-    /* BEFORE / AFTER SLIDER */
-    .compare-container {
+    .zone-toggle-btn.active {
+      background: linear-gradient(135deg, var(--sapphire-base) 0%, var(--sapphire-bright) 100%);
+      border-color: var(--sapphire-neon);
+      color: #ffffff;
+      box-shadow: 0 4px 20px var(--sapphire-glow);
+    }
+
+    .radar-eta-display {
+      background: rgba(3, 7, 18, 0.7);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      border-radius: 18px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      align-items: center;
+    }
+
+    .eta-param-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .eta-param-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--sapphire-neon);
+      margin-top: 4px;
+    }
+
+    .eta-param-val.gold {
+      color: #fbbf24;
+      text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+    }
+
+    /* ==========================================================================
+       BEFORE / AFTER HIGH-PRECISION SLIDER
+       ========================================================================== */
+    .compare-showcase-card {
+      border-radius: 28px;
+      padding: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 50px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+    }
+
+    .compare-showcase-inner {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 26px;
+    }
+
+    .compare-viewport {
       position: relative;
       width: 100%;
-      height: 260px;
-      border-radius: 16px;
+      height: 320px;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
       user-select: none;
       touch-action: none;
     }
-    .compare-img {
+
+    .compare-layer-img {
       position: absolute;
       inset: 0;
       background-size: cover;
       background-position: center;
     }
-    .compare-before {
-      background-image: url('{{BEFORE_IMAGE_URL}}');
-      filter: saturate(0.6);
+
+    .compare-layer-vulnerable {
+      background-image: url('https://images.unsplash.com/photo-1558036117-15d82a90b9b1?auto=format&fit=crop&w=1200&q=80');
+      filter: saturate(0.5) contrast(1.15);
     }
-    .compare-after {
-      background-image: url('{{AFTER_IMAGE_URL}}');
+
+    .compare-layer-secure {
+      background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=1200&q=80');
       clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
     }
-    .compare-divider {
+
+    .compare-splitter-bar {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -316,386 +573,662 @@
       background: #ffffff;
       transform: translateX(-50%);
       cursor: ew-resize;
-      box-shadow: 0 0 12px rgba(0,0,0,0.8);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
     }
-    .compare-handle {
+
+    .compare-handle-knob {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 38px;
-      height: 38px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #ffffff;
-      border: 3px solid var(--primary);
+      border: 3px solid var(--sapphire-base);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0f172a;
-      font-size: 13px;
+      color: #030712;
       font-weight: 900;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      font-size: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     }
-    .compare-badge {
+
+    .compare-status-tag {
       position: absolute;
-      bottom: 12px;
-      padding: 4px 10px;
-      border-radius: 6px;
+      bottom: 14px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .tag-secure {
+      left: 14px;
+      background: rgba(37, 99, 235, 0.9);
+      color: #ffffff;
+      box-shadow: 0 4px 15px var(--sapphire-glow);
+    }
+
+    .tag-vulnerable {
+      right: 14px;
+      background: rgba(220, 38, 38, 0.9);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       GAPLESS BENTO GRID: EMERGENCY SERVICES
+       ========================================================================== */
+    .bento-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 900;
+      text-align: center;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+    }
+
+    .bento-section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 35px auto;
+    }
+
+    .bento-mosaic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    .bento-card-bezel {
+      padding: 3px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.35s var(--ease-elastic);
+    }
+
+    .bento-card-bezel:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-highlight);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .bento-card-core {
+      background: var(--bg-card);
+      border-radius: 21px;
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .bento-badge-tag {
+      display: inline-block;
       font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.16);
+      color: var(--sapphire-neon);
+      margin-bottom: 14px;
     }
-    .badge-after { left: 12px; background: rgba(37, 99, 235, 0.88); color: #ffffff; }
-    .badge-before { right: 12px; background: rgba(220, 38, 38, 0.88); color: #ffffff; }
 
-    /* BENTO SERVICES */
-    .bento-grid {
+    .bento-h3 {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 8px 0;
+    }
+
+    .bento-p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0 0 18px 0;
+    }
+
+    .bento-action-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--sapphire-neon);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .bento-action-cta:hover {
+      gap: 10px;
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       VERIFIED REVIEWS STRIP
+       ========================================================================== */
+    .reviews-quad-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 45px;
     }
-    .bento-item {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: 18px;
-      padding: 20px;
-      transition: transform 0.2s;
-    }
-    .bento-item:hover { transform: translateY(-3px); }
-    .bento-icon { font-size: 26px; margin-bottom: 8px; }
-    .bento-title { font-family: var(--font-title); font-size: 17px; font-weight: 800; color: #ffffff; margin: 0 0 6px 0; }
-    .bento-text { font-size: 13px; color: var(--text-muted); line-height: 1.4; margin: 0; }
 
-    /* REVIEWS */
-    .review-bubble {
-      background: rgba(255, 255, 255, 0.03);
-      border-left: 3px solid #fbbf24;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 10px;
+    .review-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 20px;
     }
-    .review-top {
+
+    .review-top-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 13px;
-      font-weight: 700;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .reviewer-title {
+      font-size: 14px;
+      font-weight: 800;
       color: #ffffff;
-      margin-bottom: 4px;
     }
-    .review-stars { color: #fbbf24; }
-    .review-p { font-size: 12px; color: #cbd5e1; margin: 0; line-height: 1.4; }
 
-    /* LOCATION CARD */
-    .location-box {
-      background: linear-gradient(135deg, #0e192f, #091222);
-      border: 1px solid rgba(96, 165, 250, 0.25);
-      border-radius: 20px;
-      padding: 24px;
+    .reviewer-sub {
+      font-size: 11px;
+      color: var(--sapphire-neon);
+    }
+
+    .review-stars {
+      color: #fbbf24;
+      font-size: 13px;
+    }
+
+    .review-body-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       LOCAL BASE & LOCATION
+       ========================================================================== */
+    .location-banner-bezel {
+      border-radius: 26px;
+      padding: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 30px;
       text-align: center;
-      margin-bottom: 20px;
     }
-    .location-title { font-family: var(--font-title); font-size: 19px; font-weight: 800; color: #ffffff; margin: 0 0 6px 0; }
-    .location-address { font-size: 14px; color: #cbd5e1; margin: 0 0 16px 0; }
 
-    /* FLOATING BOTTOM DOCK */
-    .fixed-dock {
+    .location-banner-core {
+      background: linear-gradient(135deg, #0d1a33 0%, #070d1a 100%);
+      border-radius: 23px;
+      padding: 32px 20px;
+    }
+
+    .location-banner-core h4 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 6px 0;
+    }
+
+    .location-banner-core p {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin: 0 0 20px 0;
+    }
+
+    /* ==========================================================================
+       FLOATING ACTION DOCK (ALWAYS ACTIVE & CONVERTING ON MOBILE)
+       ========================================================================== */
+    .fixed-floating-dock {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       z-index: 99999;
-      background: rgba(7, 12, 24, 0.95);
+      background: rgba(3, 7, 18, 0.94);
       border-top: 1px solid rgba(96, 165, 250, 0.25);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 10px 16px env(safe-area-inset-bottom, 10px);
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 12px 18px env(safe-area-inset-bottom, 12px);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
     }
-    .dock-container {
-      max-width: 500px;
+
+    .dock-action-wrapper {
+      max-width: 600px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 12px;
     }
-    .dock-btn {
+
+    .dock-pill-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 13px 8px;
-      border-radius: 12px;
+      gap: 8px;
+      padding: 15px 10px;
+      border-radius: 16px;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 14px;
       text-decoration: none;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s var(--ease-smooth);
       text-align: center;
     }
-    .btn-call {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
+
+    .btn-dock-phone {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
       color: #ffffff;
-      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.5);
     }
-    .btn-wa {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
+
+    .btn-dock-whatsapp {
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #ffffff;
-      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.45);
+    }
+
+    @media (max-width: 500px) {
+      .nav-call-pill { display: none; }
+      .dock-pill-btn { font-size: 13px; padding: 13px 6px; }
+      h1.hero-main-title { font-size: 33px; }
+      .radar-console-core { padding: 18px 14px; }
+      .compare-showcase-inner { padding: 16px 12px; }
+      .compare-viewport { height: 260px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <aside class="top-status-bar">
-    <div class="pulse-dot"></div>
-    <span>DISPONIBLE AHORA EN {{CITY}} · ATENCIÓN DIRECTA Y SIN COMPROMISO</span>
+  <!-- BACKGROUND AMBIENT CANVAS (MOVING VIDEO REEL EFFECT) -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="ambient-aurora-glow"></div>
+
+  <!-- TOP EMERGENCY STATUS BAR -->
+  <aside class="emergency-ticker">
+    <div class="beacon-pulse"></div>
+    <span>UNIDAD MÓVIL EN RUTA EN ORIHUELA · ASISTENCIA 24H EN 15-20 MINUTOS</span>
   </aside>
 
-  <div class="site-wrapper">
-    <!-- HEADER -->
-    <header class="site-header">
-      <div class="brand-box">
-        <div class="brand-icon">{{BRAND_ICON}}</div>
-        <div>
-          <h2 class="brand-title">{{BUSINESS_NAME}}</h2>
-          <p class="brand-subtitle">{{CATEGORY}}</p>
+  <div class="app-viewport">
+    <!-- DOUBLE-BEZEL FLOATING NAV -->
+    <header class="nav-bezel-outer">
+      <div class="nav-bezel-inner">
+        <div class="brand-identity">
+          <div class="brand-shield-emblem">🔑</div>
+          <div class="brand-names">
+            <h2>Cerrajeros Urgencias Orihuela 24h</h2>
+            <p>Técnicos Certificados · Apertura Sin Daños</p>
+          </div>
         </div>
+        <a href="tel:+34625189469" class="nav-call-pill">
+          📞 625 18 94 69
+        </a>
       </div>
-      <a href="tel:{{PHONE_CLEAN}}" class="header-cta-btn">
-        📞 Llamar
-      </a>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-badge">{{HERO_BADGE}}</div>
-      <h1>
-        {{HERO_TITLE_PART1}}<br>
-        <span class="gradient-text">{{HERO_TITLE_PART2}}</span>
+    <!-- HERO SECTION -->
+    <section class="hero-stage">
+      <div class="hero-eyebrow-pill">
+        <span>🛡️ Presupuesto Cerrado por Teléfono</span>
+      </div>
+      <h1 class="hero-main-title">
+        Apertura de Puertas 24h en Orihuela.<br>
+        <span class="shimmer-gradient-text">Sin Romper Puerta Ni Cerradura.</span>
       </h1>
-      <p class="hero-desc">{{HERO_SUBTITLE}}</p>
+      <p class="hero-narrative">
+        ¿Llaves puestas por dentro? ¿Cerradura averiada? Llegamos a tu ubicación en 15-20 minutos con instrumental alemán de precisión. Sin sorpresas de precio en la factura.
+      </p>
 
-      <!-- 4 TRUST METRICS -->
-      <div class="metrics-row">
-        <div class="metric-card">
-          <div class="metric-icon">⭐</div>
-          <div>
-            <div class="metric-label">4.9 / 5 Estrellas</div>
-            <div class="metric-sub">Opiniones verificadas</div>
+      <div class="hero-actions-cluster">
+        <a href="tel:+34625189469" class="btn-magnetic btn-urgent-call">
+          <span>📞 LLAMADA DE EMERGENCIA</span>
+        </a>
+        <a id="hero-wa-btn" href="https://wa.me/34625189469?text=%C2%A1Hola!%20Necesito%20un%20cerrajero%20urgente%20en%20Orihuela." target="_blank" rel="noopener" class="btn-magnetic btn-wa-live">
+          <span>💬 CONSULTA POR WHATSAPP</span>
+        </a>
+      </div>
+
+      <!-- 4 METRICS QUAD-GRID -->
+      <div class="metrics-quad-grid">
+        <div class="metric-bezel-tile">
+          <div class="metric-tile-core">
+            <div class="metric-symbol">⏱️</div>
+            <div class="metric-texts">
+              <h4>15 - 20 Minutos</h4>
+              <p>Tiempo medio de llegada</p>
+            </div>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-icon">⚡</div>
-          <div>
-            <div class="metric-label">Respuesta Rápida</div>
-            <div class="metric-sub">En {{CITY}} y alrededores</div>
+        <div class="metric-bezel-tile">
+          <div class="metric-tile-core">
+            <div class="metric-symbol">🚪</div>
+            <div class="metric-texts">
+              <h4>Apertura Limpia</h4>
+              <p>Sin daños en tu puerta</p>
+            </div>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-icon">💰</div>
-          <div>
-            <div class="metric-label">Presupuesto Cerrado</div>
-            <div class="metric-sub">Sin sorpresas ni extras</div>
+        <div class="metric-bezel-tile">
+          <div class="metric-tile-core">
+            <div class="metric-symbol">💰</div>
+            <div class="metric-texts">
+              <h4>Precio Cerrado</h4>
+              <p>Sin suplementos ocultos</p>
+            </div>
           </div>
         </div>
-        <div class="metric-card">
-          <div class="metric-icon">🛡️</div>
-          <div>
-            <div class="metric-label">Garantía Total</div>
-            <div class="metric-sub">Profesionales de confianza</div>
+        <div class="metric-bezel-tile">
+          <div class="metric-tile-core">
+            <div class="metric-symbol">⭐</div>
+            <div class="metric-texts">
+              <h4>4.9 / 5 Estrellas</h4>
+              <p>62 reseñas en Orihuela</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BEFORE / AFTER COMPARATOR -->
-    <section class="card-box">
-      <div class="box-title">
-        <span>✨ Resultados Comprobados</span>
-      </div>
-      <p class="box-desc">Desliza el separador táctil para comprobar la calidad y el acabado de nuestros trabajos:</p>
-
-      <div class="compare-container" id="compare-slider">
-        <div class="compare-img compare-before"></div>
-        <div class="compare-img compare-after" id="compare-after-layer"></div>
-        <div class="compare-divider" id="compare-divider">
-          <div class="compare-handle">↔</div>
+    <!-- INTERACTIVE ASSISTANCE RADAR -->
+    <section class="radar-console-box">
+      <div class="radar-console-core">
+        <div class="radar-console-top">
+          <div class="radar-title">
+            <h3><span>📍</span> Radar de Asistencia en Tiempo Real</h3>
+            <p>Selecciona tu zona en Orihuela para calcular el tiempo exacto de intervención:</p>
+          </div>
+          <div class="radar-live-badge">
+            <span>●</span> GUARDIA ACTIVA
+          </div>
         </div>
-        <span class="compare-badge badge-after">NUESTRO TRABAJO</span>
-        <span class="compare-badge badge-before">ESTADO ANTERIOR</span>
+
+        <div class="zones-selector-cluster">
+          <button class="zone-toggle-btn active" onclick="selectZone(0)">Orihuela Centro</button>
+          <button class="zone-toggle-btn" onclick="selectZone(1)">El Palmeral / Alpe</button>
+          <button class="zone-toggle-btn" onclick="selectZone(2)">Ociopía / Estación</button>
+          <button class="zone-toggle-btn" onclick="selectZone(3)">Molins / Bigastro</button>
+          <button class="zone-toggle-btn" onclick="selectZone(4)">La Murada / Pedanías</button>
+          <button class="zone-toggle-btn" onclick="selectZone(5)">Orihuela Costa</button>
+        </div>
+
+        <div class="radar-eta-display">
+          <div>
+            <div class="eta-param-label">Tiempo Estimado de Llegada</div>
+            <div class="eta-param-val gold" id="eta-timer">10 - 15 minutos</div>
+          </div>
+          <div>
+            <div class="eta-param-label">Unidad Móvil Asignada</div>
+            <div class="eta-param-val" id="eta-unit">Taller Móvil #1 Centro</div>
+          </div>
+          <div>
+            <div class="eta-param-label">Equipamiento en Furgón</div>
+            <div class="eta-param-val" id="eta-tools">Ganzuado & Bombines Oficiales</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE SERVICE SELECTOR -->
-    <section class="card-box">
-      <div class="box-title">
-        <span>🛠️ Consulta Directa por WhatsApp</span>
-      </div>
-      <p class="box-desc">Selecciona qué servicio necesitas para preparar tu consulta en 1 clic:</p>
+    <!-- BEFORE / AFTER INTERACTIVE COMPARATOR -->
+    <section class="compare-showcase-card">
+      <div class="compare-showcase-inner">
+        <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 800; color: #ffffff; margin: 0 0 6px 0;">
+          🛡️ Seguridad Acorazada vs Bombín Convencional
+        </h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 20px 0; line-height: 1.5;">
+          El 80% de los accesos indebidos ocurren en cerraduras estándar mediante técnicas silenciosas (Bumping e Impresioning). Desliza para comparar un cilindro vulnerable frente a nuestra instalación acorazada con tarjeta de propiedad:
+        </p>
 
-      <div class="service-selector-grid">
-        <button class="sel-btn active" onclick="selectServiceItem(0)">
-          <span class="sel-icon">{{SERVICE_1_ICON}}</span>
-          <span class="sel-title">{{SERVICE_1_NAME}}</span>
-          <span class="sel-tag">{{SERVICE_1_TAG}}</span>
-        </button>
-        <button class="sel-btn" onclick="selectServiceItem(1)">
-          <span class="sel-icon">{{SERVICE_2_ICON}}</span>
-          <span class="sel-title">{{SERVICE_2_NAME}}</span>
-          <span class="sel-tag">{{SERVICE_2_TAG}}</span>
-        </button>
-        <button class="sel-btn" onclick="selectServiceItem(2)">
-          <span class="sel-icon">{{SERVICE_3_ICON}}</span>
-          <span class="sel-title">{{SERVICE_3_NAME}}</span>
-          <span class="sel-tag">{{SERVICE_3_TAG}}</span>
-        </button>
-        <button class="sel-btn" onclick="selectServiceItem(3)">
-          <span class="sel-icon">{{SERVICE_4_ICON}}</span>
-          <span class="sel-title">{{SERVICE_4_NAME}}</span>
-          <span class="sel-tag">{{SERVICE_4_TAG}}</span>
-        </button>
-      </div>
-
-      <div class="sel-detail-display" id="sel-detail-text">
-        <strong>{{SERVICE_1_NAME}}:</strong> {{SERVICE_1_DESC}}
+        <div class="compare-viewport" id="compare-slider">
+          <div class="compare-layer-img compare-layer-vulnerable"></div>
+          <div class="compare-layer-img compare-layer-secure" id="compare-secure-layer"></div>
+          <div class="compare-splitter-bar" id="compare-splitter">
+            <div class="compare-handle-knob">↔</div>
+          </div>
+          <span class="compare-status-tag tag-secure">BOMBÍN ANTIBUMPING</span>
+          <span class="compare-status-tag tag-vulnerable">BOMBÍN VULNERABLE</span>
+        </div>
       </div>
     </section>
 
-    <!-- BENTO GRID SERVICES -->
-    <div class="bento-grid">
-      <div class="bento-item">
-        <div class="bento-icon">{{SERVICE_1_ICON}}</div>
-        <h3 class="bento-title">{{SERVICE_1_NAME}}</h3>
-        <p class="bento-text">{{SERVICE_1_DESC}}</p>
+    <!-- GAPLESS BENTO GRID -->
+    <h3 class="bento-section-title">Especialidades de Cerrajería 24H</h3>
+    <p class="bento-section-subtitle">Intervención rápida para particulares, comunidades de vecinos y comercios en Orihuela.</p>
+
+    <div class="bento-mosaic">
+      <div class="bento-card-bezel">
+        <div class="bento-card-core">
+          <div>
+            <span class="bento-badge-tag">Urgencia 24H</span>
+            <h3 class="bento-h3">Apertura Limpia Sin Daños</h3>
+            <p class="bento-p">
+              Apertura no destructiva de puertas blindadas y acorazadas mediante técnicas de resbalón, ganzuado de alta precisión y lectura técnica. Tu puerta queda intacta.
+            </p>
+          </div>
+          <a href="tel:+34625189469" class="bento-action-cta">Pedir Apertura Inmediata ➔</a>
+        </div>
       </div>
-      <div class="bento-item">
-        <div class="bento-icon">{{SERVICE_2_ICON}}</div>
-        <h3 class="bento-title">{{SERVICE_2_NAME}}</h3>
-        <p class="bento-text">{{SERVICE_2_DESC}}</p>
+
+      <div class="bento-card-bezel">
+        <div class="bento-card-core">
+          <div>
+            <span class="bento-badge-tag">Máxima Seguridad</span>
+            <h3 class="bento-h3">Cambio de Bombines Acorazados</h3>
+            <p class="bento-p">
+              Instalación de cilindros de alta gama antibumping, antitaladro, antiganzúa y antirotura con 5 llaves patentadas incopiables y tarjeta de seguridad (Tesa, Kaba, Mauer).
+            </p>
+          </div>
+          <a href="tel:+34625189469" class="bento-action-cta">Ver Marcas y Precios ➔</a>
+        </div>
       </div>
-      <div class="bento-item">
-        <div class="bento-icon">{{SERVICE_3_ICON}}</div>
-        <h3 class="bento-title">{{SERVICE_3_NAME}}</h3>
-        <p class="bento-text">{{SERVICE_3_DESC}}</p>
-      </div>
-      <div class="bento-item">
-        <div class="bento-icon">{{SERVICE_4_ICON}}</div>
-        <h3 class="bento-title">{{SERVICE_4_NAME}}</h3>
-        <p class="bento-text">{{SERVICE_4_DESC}}</p>
+
+      <div class="bento-card-bezel">
+        <div class="bento-card-core">
+          <div>
+            <span class="bento-badge-tag">Comercios Locales</span>
+            <h3 class="bento-h3">Persianas Metálicas y Cierres</h3>
+            <p class="bento-p">
+              Reparación y apertura urgente de persianas comerciales enrollables, motores atascados, cerraduras de suelo y candados de alta seguridad en locales de Orihuela.
+            </p>
+          </div>
+          <a href="tel:+34625189469" class="bento-action-cta">Asistencia a Locales ➔</a>
+        </div>
       </div>
     </div>
 
-    <!-- REVIEWS -->
-    <section class="card-box">
-      <div class="box-title">
-        <span>⭐ Opiniones en {{CITY}}</span>
-      </div>
-      <div class="review-bubble">
-        <div class="review-top">
-          <span>{{REVIEW_1_AUTHOR}} ({{CITY}})</span>
-          <span class="review-stars">★★★★★</span>
-        </div>
-        <p class="review-p">"{{REVIEW_1_TEXT}}"</p>
-      </div>
-      <div class="review-bubble">
-        <div class="review-top">
-          <span>{{REVIEW_2_AUTHOR}} ({{CITY}})</span>
-          <span class="review-stars">★★★★★</span>
-        </div>
-        <p class="review-p">"{{REVIEW_2_TEXT}}"</p>
-      </div>
-    </section>
+    <!-- REVIEWS STRIP -->
+    <h3 class="bento-section-title">Opiniones Reales en Orihuela</h3>
+    <p class="bento-section-subtitle">62 clientes valoran nuestra rapidez, formalidad y precio transparente.</p>
 
-    <!-- LOCATION -->
-    <section class="location-box">
-      <h3 class="location-title">📍 Dónde Estamos</h3>
-      <p class="location-address">
-        <strong>{{ADDRESS}}</strong><br>
-        {{CITY}} (Alicante)
-      </p>
-      <a href="https://maps.google.com/?q={{MAPS_QUERY}}" target="_blank" rel="noopener" class="header-cta-btn" style="display: inline-block;">
-        Ver en Google Maps ↗
-      </a>
-    </section>
+    <div class="reviews-quad-grid">
+      <div class="review-tile">
+        <div class="review-top-meta">
+          <div>
+            <div class="reviewer-title">Francisco Gómez</div>
+            <div class="reviewer-sub">Calle Mayor, Orihuela</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-body-text">
+          "Me quedé fuera de casa con las llaves puestas un sábado a las 23:30. En 18 minutos llegó el técnico y en 2 minutos abrió la puerta limpia sin tocar la cerradura. Precio exacto al que me dijo por teléfono."
+        </p>
+      </div>
+
+      <div class="review-tile">
+        <div class="review-top-meta">
+          <div>
+            <div class="reviewer-title">Beatriz Morales</div>
+            <div class="reviewer-sub">Zona El Palmeral</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-body-text">
+          "Cambiamos los dos bombines del piso por unos antibumping acorazados. Muy educado, limpio y nos enseñó los sellos originales y la tarjeta de propiedad de las llaves. Trato impecable."
+        </p>
+      </div>
+    </div>
+
+    <!-- BASE LOCAL -->
+    <div class="location-banner-bezel">
+      <div class="location-banner-core">
+        <h4>📍 Base de Operaciones en Orihuela</h4>
+        <p>
+          <strong>Calle Calderón de la Barca, 15, 03300 Orihuela (Alicante)</strong><br>
+          <span style="font-size: 13px; color: var(--text-muted);">Cobertura: Casco Antiguo, Palmeral, Ociopía, Molins, San Bartolomé, La Murada, Bigastro y Vega Baja.</span>
+        </p>
+        <a href="tel:+34625189469" class="nav-call-pill" style="display: inline-flex;">
+          📞 625 18 94 69 (Atención Directa 24H)
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- FIXED CONVERTING DOCK -->
-  <nav class="fixed-dock">
-    <div class="dock-container">
-      <a href="tel:{{PHONE_CLEAN}}" class="dock-btn btn-call">
-        <span>📞 LLAMAR</span>
+  <!-- FLOATING ERGONOMIC DOCK (CONVERTS ON MOBILE) -->
+  <nav class="fixed-floating-dock">
+    <div class="dock-action-wrapper">
+      <a href="tel:+34625189469" class="dock-pill-btn btn-dock-phone">
+        <span>📞 LLAMAR 24H</span>
       </a>
-      <a id="cta-wa-btn" href="https://wa.me/{{WA_PHONE}}?text={{WA_DEFAULT_MSG}}" target="_blank" rel="noopener" class="dock-btn btn-wa">
-        <span>💬 WHATSAPP</span>
+      <a id="dock-wa-btn" href="https://wa.me/34625189469?text=%C2%A1Hola!%20Necesito%20un%20cerrajero%20urgente%20en%20Orihuela." target="_blank" rel="noopener" class="dock-pill-btn btn-dock-whatsapp">
+        <span>💬 WHATSAPP CON FOTO</span>
       </a>
     </div>
   </nav>
 
   <script src="../owner-banner.js"></script>
 
+  <!-- ==========================================================================
+       CINEMATIC SCRIPTING & INTERACTIVE PHYSICS
+       ========================================================================== -->
   <script>
-    // DATA DICTIONARY FOR SERVICES
-    const serviceItems = [
-      {
-        title: "{{SERVICE_1_NAME}}",
-        desc: "{{SERVICE_1_DESC}}",
-        msg: "¡Hola {{BUSINESS_NAME}}! Quiero consultar presupuesto sobre {{SERVICE_1_NAME}}."
-      },
-      {
-        title: "{{SERVICE_2_NAME}}",
-        desc: "{{SERVICE_2_DESC}}",
-        msg: "¡Hola {{BUSINESS_NAME}}! Me interesa consultar sobre {{SERVICE_2_NAME}}."
-      },
-      {
-        title: "{{SERVICE_3_NAME}}",
-        desc: "{{SERVICE_3_DESC}}",
-        msg: "¡Hola {{BUSINESS_NAME}}! Necesito información sobre {{SERVICE_3_NAME}}."
-      },
-      {
-        title: "{{SERVICE_4_NAME}}",
-        desc: "{{SERVICE_4_DESC}}",
-        msg: "¡Hola {{BUSINESS_NAME}}! Quisiera pedir cita o presupuesto para {{SERVICE_4_NAME}}."
+    // 1. HTML5 AMBIENT CANVAS (DRIFTING LIGHT PARTICLES & FLUID MESH)
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function setupCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', setupCanvas);
+    setupCanvas();
+
+    class AmbientOrb {
+      constructor() {
+        this.reset();
       }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 2.5 + 1;
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.alpha = Math.random() * 0.6 + 0.15;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(96, 165, 250, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 40; i++) {
+      particles.push(new AmbientOrb());
+    }
+
+    function renderAmbientFlow() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(renderAmbientFlow);
+    }
+    renderAmbientFlow();
+
+    // 2. RADAR ZONE SELECTOR
+    const zonesData = [
+      { name: "Orihuela Centro", eta: "10 - 15 min", unit: "Taller Móvil #1 Centro", tools: "Ganzuado & Bombines Oficiales" },
+      { name: "El Palmeral / Alpe", eta: "12 - 18 min", unit: "Taller Móvil #2 Norte", tools: "Apertura Limpia & Escudos" },
+      { name: "Ociopía / Estación", eta: "12 - 15 min", unit: "Taller Móvil #1 Centro", tools: "Intervención Rápida" },
+      { name: "Molins / Bigastro", eta: "18 - 22 min", unit: "Unidad Vega Baja #3", tools: "Sustitución Integral Bombines" },
+      { name: "La Murada / Pedanías", eta: "20 - 25 min", unit: "Unidad Pedanías #4", tools: "Taller Móvil Completo" },
+      { name: "Orihuela Costa", eta: "25 - 30 min", unit: "Unidad Litoral Express #5", tools: "Cerraduras de Seguridad" }
     ];
 
-    function selectServiceItem(idx) {
-      document.querySelectorAll('.sel-btn').forEach((b, i) => {
-        b.classList.toggle('active', i === idx);
+    function selectZone(idx) {
+      document.querySelectorAll('.zone-toggle-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
       });
-      const item = serviceItems[idx];
-      document.getElementById('sel-detail-text').innerHTML = `<strong>${item.title}:</strong> ${item.desc}`;
-      const waBtn = document.getElementById('cta-wa-btn');
-      waBtn.href = `https://wa.me/{{WA_PHONE}}?text=${encodeURIComponent(item.msg)}`;
+      const z = zonesData[idx];
+      document.getElementById('eta-timer').innerText = z.eta;
+      document.getElementById('eta-unit').innerText = z.unit;
+      document.getElementById('eta-tools').innerText = z.tools;
+
+      const waMsg = encodeURIComponent(`¡Hola! Necesito un cerrajero urgente en zona ${z.name}. ¿Podéis confirmarme la llegada?`);
+      document.getElementById('dock-wa-btn').href = `https://wa.me/34625189469?text=${waMsg}`;
+      document.getElementById('hero-wa-btn').href = `https://wa.me/34625189469?text=${waMsg}`;
     }
 
-    // BEFORE / AFTER SLIDER
-    const slider = document.getElementById('compare-slider');
-    const afterLayer = document.getElementById('compare-after-layer');
-    const divider = document.getElementById('compare-divider');
-    let isDragging = false;
+    // 3. TOUCH-LOCKED BEFORE / AFTER SLIDER
+    const sliderBox = document.getElementById('compare-slider');
+    const secureLayer = document.getElementById('compare-secure-layer');
+    const splitter = document.getElementById('compare-splitter');
+    let isSliding = false;
 
-    function updateSlider(x) {
-      const rect = slider.getBoundingClientRect();
-      let pos = (x - rect.left) / rect.width;
-      pos = Math.max(0.05, Math.min(0.95, pos));
-      const pct = (pos * 100).toFixed(1);
-      afterLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-      divider.style.left = `${pct}%`;
+    function applySliderPosition(clientX) {
+      const bounds = sliderBox.getBoundingClientRect();
+      let ratio = (clientX - bounds.left) / bounds.width;
+      ratio = Math.max(0.05, Math.min(0.95, ratio));
+      const percentage = (ratio * 100).toFixed(1);
+      secureLayer.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+      splitter.style.left = `${percentage}%`;
     }
 
-    slider.addEventListener('pointerdown', (e) => {
-      isDragging = true;
-      updateSlider(e.clientX);
+    sliderBox.addEventListener('pointerdown', (e) => {
+      isSliding = true;
+      applySliderPosition(e.clientX);
     });
     window.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      updateSlider(e.clientX);
+      if (!isSliding) return;
+      applySliderPosition(e.clientX);
     });
-    window.addEventListener('pointerup', () => { isDragging = false; });
-    window.addEventListener('pointercancel', () => { isDragging = false; });
+    window.addEventListener('pointerup', () => { isSliding = false; });
+    window.addEventListener('pointercancel', () => { isSliding = false; });
+
+    // 4. GSAP ENTRANCE ANIMATION (SCROLL REVEALS)
+    if (window.gsap) {
+      gsap.from('.hero-main-title', { opacity: 0, y: 25, duration: 1, ease: 'power3.out', delay: 0.2 });
+      gsap.from('.hero-narrative', { opacity: 0, y: 20, duration: 0.9, ease: 'power3.out', delay: 0.4 });
+      gsap.from('.hero-actions-cluster', { opacity: 0, scale: 0.95, duration: 0.8, ease: 'back.out(1.5)', delay: 0.6 });
+      gsap.from('.metric-bezel-tile', { opacity: 0, y: 20, stagger: 0.1, duration: 0.8, ease: 'power2.out', delay: 0.7 });
+    }
   </script>
 </body>
 </html>
