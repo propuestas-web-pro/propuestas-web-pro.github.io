@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Cerrajeros Urgencias Orihuela 24h | Apertura Sin Rotura y Llegada en 20 Minutos</title>
+  <meta name="description" content="Cerrajero urgente 24 horas en Orihuela. Apertura de puertas sin daños, cambio de cerraduras, bombines antibumping y persianas. Llegada en 15-20 min. Tel: 625 18 94 69.">
+  <meta property="og:title" content="Cerrajeros Urgencias Orihuela 24h">
+  <meta property="og:description" content="Servicio de cerrajería de urgencia 24 horas en Orihuela y Vega Baja. Aperturas sin rotura y presupuesto cerrado.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #f59e0b;
+      --primary-light: #fbbf24;
+      --primary-glow: rgba(245, 158, 11, 0.35);
+      --accent: #ef4444;
+      --bg-dark: #0a0d14;
+      --bg-card: rgba(16, 24, 38, 0.88);
+      --bg-card-border: rgba(245, 158, 11, 0.22);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-tech: 'Space Grotesk', monospace;
+    }
+
+    body.theme-blue {
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --primary-glow: rgba(59, 130, 246, 0.35);
+      --accent: #f59e0b;
+      --bg-dark: #070e1b;
+      --bg-card: rgba(13, 25, 45, 0.88);
+      --bg-card-border: rgba(59, 130, 246, 0.25);
+    }
+
+    body.theme-dark {
+      --primary: #10b981;
+      --primary-light: #34d399;
+      --primary-glow: rgba(16, 185, 129, 0.35);
+      --accent: #f59e0b;
+      --bg-dark: #080a0f;
+      --bg-card: rgba(18, 22, 30, 0.88);
+      --bg-card-border: rgba(16, 185, 129, 0.25);
+    }
+
+    /* ZERO HORIZONTAL SCROLL LOCK */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    #canvas-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .app-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 60px 16px 130px 16px;
+    }
+
+    /* THEME SWITCHER */
+    .theme-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+    }
+    .theme-bar-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .theme-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .theme-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .theme-dot.active {
+      transform: scale(1.15);
+      border-color: #ffffff;
+    }
+    .theme-dot.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .theme-dot.blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .theme-dot.green { background: linear-gradient(135deg, #10b981, #059669); }
+
+    /* EMERGENCY LIVE BANNER */
+    .urgent-banner {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(245, 158, 11, 0.18));
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+    }
+    .urgent-pulse {
+      width: 10px;
+      height: 10px;
+      background: #ef4444;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #ef4444;
+      animation: pulseAlert 1.2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulseAlert {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+    }
+    .urgent-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fecaca;
+      line-height: 1.3;
+    }
+    .urgent-text span {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 6px 0 20px;
+    }
+    h1 {
+      font-family: var(--font-title);
+      font-size: 31px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin: 0 0 10px 0;
+      background: linear-gradient(180deg, #ffffff 40%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin: 0 auto 16px;
+      max-width: 380px;
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 20px;
+    }
+    .rating-pill span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CARD SYSTEM */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+    }
+    .card-title {
+      font-family: var(--font-title);
+      font-size: 19px;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+
+    /* INTERACTIVE EMERGENCY TYPE SELECTOR */
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .emergency-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--text-main);
+    }
+    .emergency-btn.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .emergency-icon {
+      font-size: 22px;
+    }
+    .emergency-name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .emergency-tag {
+      font-size: 11px;
+      color: var(--primary-light);
+      font-family: var(--font-tech);
+    }
+
+    .emergency-detail-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 3px solid var(--primary);
+      font-size: 13px;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+
+    /* BEFORE / AFTER COMPARATOR */
+    .compare-container {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      user-select: none;
+      touch-action: none;
+    }
+    .compare-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .compare-before {
+      background-image: url('https://images.unsplash.com/photo-1558036117-15d82a90b9b1?auto=format&fit=crop&w=800&q=80');
+      filter: saturate(0.5) contrast(1.2);
+    }
+    .compare-after {
+      background-image: url('https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=80');
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    .compare-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: #ffffff;
+      transform: translateX(-50%);
+      cursor: ew-resize;
+      box-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .compare-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .compare-tag {
+      position: absolute;
+      bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .tag-before {
+      right: 12px;
+      background: rgba(239, 68, 68, 0.85);
+      color: #ffffff;
+    }
+    .tag-after {
+      left: 12px;
+      background: rgba(245, 158, 11, 0.85);
+      color: #000000;
+    }
+
+    /* GUARANTEES GRID */
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .guarantee-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .guarantee-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-light);
+      margin-bottom: 4px;
+    }
+    .guarantee-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* REVIEWS SECTION */
+    .review-bubble {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid #fbbf24;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .review-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .review-stars {
+      color: #fbbf24;
+    }
+    .review-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    /* FLOATING ACTION DOCK (DUAL BUTTON FOR LOCKSMITHS) */
+    .bottom-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(8, 12, 19, 0.96);
+      border-top: 1px solid var(--primary-glow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 10px 14px env(safe-area-inset-bottom, 10px);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+    }
+    .dock-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .dock-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px 8px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .btn-call-urgent {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.45);
+    }
+    .btn-wa-urgent {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas-particles"></canvas>
+
+  <div class="app-wrapper">
+    <!-- THEME SELECTOR -->
+    <div class="theme-bar">
+      <span class="theme-bar-label">Color de Interfaz:</span>
+      <div class="theme-dots">
+        <button class="theme-dot amber active" title="Ámbar Seguridad" onclick="setTheme('')"></button>
+        <button class="theme-dot blue" title="Azul Técnico" onclick="setTheme('theme-blue')"></button>
+        <button class="theme-dot green" title="Verde Guardia" onclick="setTheme('theme-dark')"></button>
+      </div>
+    </div>
+
+    <!-- LIVE URGENT STATUS -->
+    <div class="urgent-banner">
+      <div class="urgent-pulse"></div>
+      <div class="urgent-text">
+        <strong>TÉCNICO DE GUARDIA EN ORIHUELA:</strong> Tiempo estimado de llegada en <strong>15 - 20 min</strong>.
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <h1>Cerrajeros Urgencias Orihuela 24h</h1>
+      <p class="hero-sub">Apertura urgente de puertas sin rotura, cambio de cerraduras y bombines antibumping en Orihuela y Vega Baja.</p>
+      
+      <div class="rating-pill">
+        ⭐ 4.9 <span>(62 valoraciones verificadas)</span>
+      </div>
+    </header>
+
+    <!-- INTERACTIVE EMERGENCY SELECTOR -->
+    <div class="card">
+      <div class="card-title">
+        <span>🔑 ¿Qué problema tienes?</span>
+      </div>
+      <p class="card-desc">Toca tu situación para indicárselo al cerrajero y recibir asistencia inmediata:</p>
+
+      <div class="emergency-grid">
+        <button class="emergency-btn active" onclick="selectEmergency(0)">
+          <span class="emergency-icon">🚪</span>
+          <span class="emergency-name">Llaves Dentro</span>
+          <span class="emergency-tag">100% Sin Rotura</span>
+        </button>
+        <button class="emergency-btn" onclick="selectEmergency(1)">
+          <span class="emergency-icon">🔒</span>
+          <span class="emergency-name">Cerradura Rota</span>
+          <span class="emergency-tag">O Llave Partida</span>
+        </button>
+        <button class="emergency-btn" onclick="selectEmergency(2)">
+          <span class="emergency-icon">🛡️</span>
+          <span class="emergency-name">Bombín Seguro</span>
+          <span class="emergency-tag">Anti-Bumping</span>
+        </button>
+        <button class="emergency-btn" onclick="selectEmergency(3)">
+          <span class="emergency-icon">🏪</span>
+          <span class="emergency-name">Persiana Local</span>
+          <span class="emergency-tag">Comercios / Motor</span>
+        </button>
+      </div>
+
+      <div class="emergency-detail-box" id="emergency-detail-text">
+        <strong>Apertura Limpia Sin Daños:</strong> Abrimos tu puerta en cuestión de minutos usando técnicas no destructivas (resbalón / ganzuado de precisión). Tu puerta y marco quedan intactos.
+      </div>
+    </div>
+
+    <!-- BEFORE / AFTER COMPARATOR (BOMBÍN VULNERABLE VS ANTIBUMPING) -->
+    <div class="card">
+      <div class="card-title">
+        <span>🛡️ Seguridad para tu Vivienda</span>
+      </div>
+      <p class="card-desc">El 80% de las cerraduras convencionales se abren en 30 segundos con bumping. Compara la protección de un cilindro reforzado:</p>
+
+      <div class="compare-container" id="compare-slider">
+        <div class="compare-img compare-before"></div>
+        <div class="compare-img compare-after" id="compare-after-layer"></div>
+        <div class="compare-handle" id="compare-handle">
+          <div class="compare-circle">↔</div>
+        </div>
+        <span class="compare-tag tag-after">ALTA SEGURIDAD</span>
+        <span class="compare-tag tag-before">BOMBÍN BÁSICO</span>
+      </div>
+    </div>
+
+    <!-- 4 SPEED & QUALITY GUARANTEES -->
+    <div class="card">
+      <div class="card-title">
+        <span>⚡ Por qué llamarnos</span>
+      </div>
+      <div class="guarantees-grid">
+        <div class="guarantee-box">
+          <div class="guarantee-title">⏱️ 20 Minutos</div>
+          <div class="guarantee-desc">Llegada rápida a cualquier punto de Orihuela ciudad y pedanías.</div>
+        </div>
+        <div class="guarantee-box">
+          <div class="guarantee-title">💰 Sin Sorpresas</div>
+          <div class="guarantee-desc">Presupuesto claro antes de empezar, sin costes ocultos.</div>
+        </div>
+        <div class="guarantee-box">
+          <div class="guarantee-title">🛡️ Sin Rotura</div>
+          <div class="guarantee-desc">Herramientas profesionales para conservar tu puerta intacta.</div>
+        </div>
+        <div class="guarantee-box">
+          <div class="guarantee-title">🌙 24H / 365D</div>
+          <div class="guarantee-desc">Disponibilidad total de madrugada, fines de semana y festivos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCAL VERIFIED REVIEWS -->
+    <div class="card">
+      <div class="card-title">
+        <span>⭐ Opiniones en Orihuela</span>
+      </div>
+      <div class="review-bubble">
+        <div class="review-author">
+          <span>Manolo R. (Calle Mayor)</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">"Me dejé las llaves por dentro un domingo a las 11 de la noche. Llegaron en 15 minutos y me abrieron la puerta en dos minutos sin romper nada. Trato de diez."</p>
+      </div>
+
+      <div class="review-bubble">
+        <div class="review-author">
+          <span>Beatriz S. (Palmeral Orihuela)</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">"Cambiamos los dos bombines del piso por unos antibumping de alta seguridad. Rápidos, limpios y me explicaron todo al detalle. Muy recomendables."</p>
+      </div>
+    </div>
+
+    <!-- LOCAL LOCATION -->
+    <div class="card" style="text-align: center;">
+      <div class="card-title" style="justify-content: center;">
+        <span>📍 Base en Orihuela</span>
+      </div>
+      <p style="font-size: 14px; margin: 8px 0 14px; color: #cbd5e1;">
+        <strong>Calle Calderón de la Barca, 15</strong><br>
+        03300 Orihuela (Alicante)<br>
+        <small style="color: var(--text-muted); font-size: 12px;">Cobertura: Orihuela Centro, Palmeral, Ociopía, Molins, San Bartolomé y comarca.</small>
+      </p>
+      <a href="tel:+34625189469" style="display: inline-block; padding: 10px 18px; border-radius: 10px; background: rgba(245,158,11,0.15); color: var(--primary-light); text-decoration: none; font-size: 13px; font-weight: 700; border: 1px solid var(--primary-glow);">
+        📞 625 18 94 69 (Atención Directa)
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOATING DUAL ACTION DOCK -->
+  <div class="bottom-dock">
+    <div class="dock-inner">
+      <a href="tel:+34625189469" class="dock-btn btn-call-urgent">
+        <span>📞 LLAMAR 24H</span>
+      </a>
+      <a id="cta-whatsapp-link" href="https://wa.me/34625189469?text=%C2%A1Hola!%20Necesito%20un%20cerrajero%20urgente%20en%20Orihuela.%20Me%20he%20dejado%20las%20llaves%20puestas." target="_blank" rel="noopener" class="dock-btn btn-wa-urgent">
+        <span>💬 WHATSAPP</span>
+      </a>
+    </div>
+  </div>
+
+  <script src="../owner-banner.js"></script>
+
+  <script>
+    // THEME SELECTOR
+    function setTheme(themeClass) {
+      document.body.className = themeClass;
+      document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+      if (!themeClass) document.querySelector('.theme-dot.amber').classList.add('active');
+      else if (themeClass === 'theme-blue') document.querySelector('.theme-dot.blue').classList.add('active');
+      else if (themeClass === 'theme-dark') document.querySelector('.theme-dot.green').classList.add('active');
+    }
+
+    // EMERGENCY SELECTOR
+    const emergencies = [
+      {
+        title: "Apertura Limpia Sin Daños",
+        desc: "Abrimos tu puerta en cuestión de minutos usando técnicas no destructivas (resbalón / ganzuado de precisión). Tu puerta y cerradura quedan completamente intactas.",
+        waMsg: "¡Hola! Necesito un cerrajero urgente en Orihuela. Me he dejado las llaves puestas por dentro."
+      },
+      {
+        title: "Cerradura Rota o Llave Partida",
+        desc: "Extracción limpia de fragmentos de llave rota en el bombín y sustitución inmediata del mecanismo averiado con repuestos oficiales en el vehículo.",
+        waMsg: "¡Hola! Se me ha roto la llave dentro de la cerradura / no gira la llave. ¿Podéis venir a Orihuela?"
+      },
+      {
+        title: "Bombín Antibumping de Alta Seguridad",
+        desc: "Instalación de cilindros de máxima seguridad con pines antitaladro, escudo acorazado y tarjeta de seguridad para copia de llaves protegida.",
+        waMsg: "¡Hola! Quiero pedir presupuesto para cambiar el bombín de mi casa por uno antibumping de alta seguridad en Orihuela."
+      },
+      {
+        title: "Persianas Comerciales y Motores",
+        desc: "Apertura y reparación urgente de persianas metálicas, candados de suelo y motores atascados en locales y negocios de Orihuela.",
+        waMsg: "¡Hola! Tengo la persiana de mi local atascada en Orihuela y necesito apertura y reparación urgente."
+      }
+    ];
+
+    function selectEmergency(index) {
+      document.querySelectorAll('.emergency-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === index);
+      });
+      const em = emergencies[index];
+      document.getElementById('emergency-detail-text').innerHTML = `<strong>${em.title}:</strong> ${em.desc}`;
+      const link = document.getElementById('cta-whatsapp-link');
+      link.href = `https://wa.me/34625189469?text=${encodeURIComponent(em.waMsg)}`;
+    }
+
+    // BEFORE / AFTER SLIDER LOGIC WITH TOUCH-LOCK
+    const slider = document.getElementById('compare-slider');
+    const afterLayer = document.getElementById('compare-after-layer');
+    const handle = document.getElementById('compare-handle');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = slider.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0.05, Math.min(0.95, pos));
+      const pct = (pos * 100).toFixed(1);
+      afterLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      handle.style.left = `${pct}%`;
+    }
+
+    slider.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      updateSlider(e.clientX);
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    });
+    window.addEventListener('pointerup', () => { isDragging = false; });
+    window.addEventListener('pointercancel', () => { isDragging = false; });
+
+    // HTML5 CANVAS AMBIENT PARTICLES
+    const canvas = document.getElementById('canvas-particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(245, 158, 11, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 30; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>

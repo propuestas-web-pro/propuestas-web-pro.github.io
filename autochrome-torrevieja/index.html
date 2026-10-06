@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>AUTOCHROME | Carrocería de Precisión y Pintura al Horno en Torrevieja</title>
+  <meta name="description" content="Taller de chapa y pintura de alta precisión en Torrevieja. Pintura al horno, bancada láser, pulido cerámico y gestión con aseguradoras. C. Antonio Ruiz Coves, 46.">
+  <meta property="og:title" content="AUTOCHROME · Torrevieja">
+  <meta property="og:description" content="Carrocería de precisión, pintura al horno y acabados de espejo en Torrevieja. Pide presupuesto sin compromiso por WhatsApp.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #06b6d4;
+      --primary-light: #67e8f9;
+      --primary-glow: rgba(6, 182, 212, 0.35);
+      --accent: #f59e0b;
+      --bg-dark: #070e17;
+      --bg-card: rgba(11, 23, 38, 0.85);
+      --bg-card-border: rgba(6, 182, 212, 0.22);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-tech: 'Space Grotesk', monospace;
+    }
+
+    body.theme-gold {
+      --primary: #f59e0b;
+      --primary-light: #fbbf24;
+      --primary-glow: rgba(245, 158, 11, 0.35);
+      --accent: #06b6d4;
+      --bg-dark: #0f0d09;
+      --bg-card: rgba(28, 22, 14, 0.85);
+      --bg-card-border: rgba(245, 158, 11, 0.25);
+    }
+
+    body.theme-red {
+      --primary: #ef4444;
+      --primary-light: #f87171;
+      --primary-glow: rgba(239, 68, 68, 0.35);
+      --accent: #f59e0b;
+      --bg-dark: #120909;
+      --bg-card: rgba(28, 15, 15, 0.85);
+      --bg-card-border: rgba(239, 68, 68, 0.25);
+    }
+
+    /* ZERO HORIZONTAL SCROLL LOCK */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    #canvas-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    .app-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 60px 16px 120px 16px;
+    }
+
+    /* THEME SWITCHER */
+    .theme-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .theme-bar-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .theme-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .theme-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .theme-dot.active {
+      transform: scale(1.15);
+      border-color: #ffffff;
+    }
+    .theme-dot.cyan { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .theme-dot.gold { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .theme-dot.red { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 10px 0 24px;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid var(--primary-glow);
+      color: var(--primary-light);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary-light);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    h1 {
+      font-family: var(--font-title);
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin: 0 0 10px 0;
+      background: linear-gradient(180deg, #ffffff 40%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin: 0 auto 18px;
+      max-width: 380px;
+    }
+
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 24px;
+    }
+    .rating-pill span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CARD SYSTEM */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+    }
+    .card-title {
+      font-family: var(--font-title);
+      font-size: 19px;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+
+    /* INTERACTIVE DAMAGE / SERVICE SELECTOR */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .service-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--text-main);
+    }
+    .service-btn.active {
+      background: rgba(6, 182, 212, 0.15);
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .service-icon {
+      font-size: 22px;
+    }
+    .service-name {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .service-badge {
+      font-size: 11px;
+      color: var(--primary-light);
+      font-family: var(--font-tech);
+    }
+
+    .service-detail-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border-left: 3px solid var(--primary);
+      font-size: 13px;
+      line-height: 1.45;
+      color: #cbd5e1;
+    }
+
+    /* BEFORE / AFTER COMPARATOR */
+    .compare-container {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      user-select: none;
+      touch-action: none; /* CRITICAL FOR SMOOTH TOUCH SLIDER */
+    }
+    .compare-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .compare-before {
+      background-image: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80');
+      filter: saturate(0.6) contrast(1.1);
+    }
+    .compare-after {
+      background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80');
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    .compare-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: #ffffff;
+      transform: translateX(-50%);
+      cursor: ew-resize;
+      box-shadow: 0 0 12px rgba(0,0,0,0.8);
+    }
+    .compare-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .compare-tag {
+      position: absolute;
+      bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .tag-before {
+      right: 12px;
+      background: rgba(239, 68, 68, 0.85);
+      color: #ffffff;
+    }
+    .tag-after {
+      left: 12px;
+      background: rgba(6, 182, 212, 0.85);
+      color: #ffffff;
+    }
+
+    /* TECH SPECS GRID */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .spec-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .spec-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .spec-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-top: 3px;
+    }
+
+    /* REVIEWS SECTION */
+    .review-bubble {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid #fbbf24;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .review-author {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .review-stars {
+      color: #fbbf24;
+    }
+    .review-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    /* FLOATING ACTION DOCK (MOBILE OPTIMIZED) */
+    .bottom-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(7, 14, 23, 0.95);
+      border-top: 1px solid var(--primary-glow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 12px 16px env(safe-area-inset-bottom, 12px);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+    }
+    .dock-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+    .dock-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-wa-main {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(34, 197, 94, 0.4);
+    }
+    .btn-wa-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(34, 197, 94, 0.6);
+    }
+    .btn-location {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex: 0 0 52px;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas-particles"></canvas>
+
+  <div class="app-wrapper">
+    <!-- THEME SELECTOR -->
+    <div class="theme-bar">
+      <span class="theme-bar-label">Estilo Visual:</span>
+      <div class="theme-dots">
+        <button class="theme-dot cyan active" title="Cromo Azul" onclick="setTheme('')"></button>
+        <button class="theme-dot gold" title="Titanio Oro" onclick="setTheme('theme-gold')"></button>
+        <button class="theme-dot red" title="Racing Rojo" onclick="setTheme('theme-red')"></button>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <div class="status-badge">
+        <div class="pulse-dot"></div>
+        <span>CABINA DE PINTURA AL HORNO ACTIVA</span>
+      </div>
+      <h1>AUTOCHROME</h1>
+      <p class="hero-sub">Carrocería de precisión, desabollado y pintura al horno con acabado de espejo en Torrevieja.</p>
+      
+      <div class="rating-pill">
+        ⭐ 4.6 <span>(46 reseñas en Torrevieja)</span>
+      </div>
+    </header>
+
+    <!-- BEFORE / AFTER COMPARATOR -->
+    <div class="card">
+      <div class="card-title">
+        <span>✨ Acabado Espejo al Horno</span>
+      </div>
+      <p class="card-desc">Arrastra el centro para comparar un panel dañado frente a nuestro acabado recién horneado con lacas de alto sólido.</p>
+
+      <div class="compare-container" id="compare-slider">
+        <div class="compare-img compare-before"></div>
+        <div class="compare-img compare-after" id="compare-after-layer"></div>
+        <div class="compare-handle" id="compare-handle">
+          <div class="compare-circle">↔</div>
+        </div>
+        <span class="compare-tag tag-after">AUTOCHROME</span>
+        <span class="compare-tag tag-before">DAÑO ORIGINAL</span>
+      </div>
+    </div>
+
+    <!-- INTERACTIVE SERVICE & QUOTE SELECTOR -->
+    <div class="card">
+      <div class="card-title">
+        <span>🛠️ Consulta Directa por Foto</span>
+      </div>
+      <p class="card-desc">Selecciona el tipo de trabajo que necesitas para preparar tu consulta rápida con el taller:</p>
+
+      <div class="service-grid">
+        <button class="service-btn active" onclick="selectService(0)">
+          <span class="service-icon">🎨</span>
+          <span class="service-name">Pintura al Horno</span>
+          <span class="service-badge">Piezas o Completo</span>
+        </button>
+        <button class="service-btn" onclick="selectService(1)">
+          <span class="service-icon">🔨</span>
+          <span class="service-name">Chapa & Bancada</span>
+          <span class="service-badge">Golpes y Abolladuras</span>
+        </button>
+        <button class="service-btn" onclick="selectService(2)">
+          <span class="service-icon">✨</span>
+          <span class="service-name">Pulido Cerámico</span>
+          <span class="service-badge">Eliminación Rayas</span>
+        </button>
+        <button class="service-btn" onclick="selectService(3)">
+          <span class="service-icon">📋</span>
+          <span class="service-name">Aseguradoras</span>
+          <span class="service-badge">Sin Papeleos</span>
+        </button>
+      </div>
+
+      <div class="service-detail-box" id="service-detail-text">
+        <strong>Pintura al Horno Presurizada:</strong> Cabina de secado rápido con control térmico e infrarrojos. Colorimetría digital exacta según código original de fábrica de cualquier marca.
+      </div>
+    </div>
+
+    <!-- TECH SPECS / WHY US -->
+    <div class="card">
+      <div class="card-title">
+        <span>⚙️ Equipamiento y Garantía</span>
+      </div>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-label">Colorimetría</div>
+          <div class="spec-value">Espectrofotómetro Digital</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Secado</div>
+          <div class="spec-value">Horno 60°C Presurizado</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Garantía</div>
+          <div class="spec-value">Brillo y Adherencia 100%</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Ubicación</div>
+          <div class="spec-value">Torrevieja Centro / Polígono</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOCAL VERIFIED REVIEWS -->
+    <div class="card">
+      <div class="card-title">
+        <span>⭐ Clientes en Torrevieja</span>
+      </div>
+      <div class="review-bubble">
+        <div class="review-author">
+          <span>Carlos M. (Torrevieja)</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">"Pinté el paragolpes y la aleta de mi BMW y el color quedó milimétrico, no se nota la diferencia con la pintura original. Rapidez y trato impecable."</p>
+      </div>
+
+      <div class="review-bubble">
+        <div class="review-author">
+          <span>Svetlana K. (La Mata)</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">"Grandes profesionales de chapa y pintura. Me gestionaron todo el parte del seguro sin ninguna molestia para mí. 100% recomendables en Torrevieja."</p>
+      </div>
+    </div>
+
+    <!-- LOCAL ADDRESS -->
+    <div class="card" style="text-align: center;">
+      <div class="card-title" style="justify-content: center;">
+        <span>📍 Visítanos en Torrevieja</span>
+      </div>
+      <p style="font-size: 14px; margin: 8px 0 14px; color: #cbd5e1;">
+        <strong>Calle Antonio Ruiz Coves, Nº 46</strong><br>
+        03183 Torrevieja (Alicante)
+      </p>
+      <a href="https://maps.google.com/?q=Calle+Antonio+Ruiz+Coves+46+Torrevieja" target="_blank" rel="noopener" style="display: inline-block; padding: 10px 18px; border-radius: 10px; background: rgba(255,255,255,0.08); color: var(--primary-light); text-decoration: none; font-size: 13px; font-weight: 700; border: 1px solid var(--primary-glow);">
+        Ver en Google Maps ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <div class="bottom-dock">
+    <div class="dock-inner">
+      <a id="cta-whatsapp-link" href="https://wa.me/34677466807?text=%C2%A1Hola%20AUTOCHROME!%20Os%20mando%20foto%20de%20mi%20coche%20para%20un%20presupuesto%20de%20chapa%20y%20pintura." target="_blank" rel="noopener" class="dock-btn btn-wa-main">
+        <span>💬 Enviar Foto por WhatsApp</span>
+      </a>
+      <a href="https://maps.google.com/?q=Calle+Antonio+Ruiz+Coves+46+Torrevieja" target="_blank" rel="noopener" class="dock-btn btn-location" title="Cómo llegar">
+        📍
+      </a>
+    </div>
+  </div>
+
+  <script src="../owner-banner.js"></script>
+
+  <script>
+    // THEME SELECTOR
+    function setTheme(themeClass) {
+      document.body.className = themeClass;
+      document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+      if (!themeClass) document.querySelector('.theme-dot.cyan').classList.add('active');
+      else if (themeClass === 'theme-gold') document.querySelector('.theme-dot.gold').classList.add('active');
+      else if (themeClass === 'theme-red') document.querySelector('.theme-dot.red').classList.add('active');
+    }
+
+    // SERVICE SELECTOR
+    const services = [
+      {
+        title: "Pintura al Horno Presurizada",
+        desc: "Cabina de secado rápido con control térmico e infrarrojos. Colorimetría digital exacta según código original de fábrica de cualquier marca.",
+        waMsg: "¡Hola AUTOCHROME! Quiero pedir presupuesto para pintar piezas de mi coche con pintura al horno."
+      },
+      {
+        title: "Chapa & Bancada de Precisión",
+        desc: "Enderezado milimétrico de golpes y abolladuras. Desabollado varillero sin dañar pintura cuando sea posible y sustitución de piezas estructurales.",
+        waMsg: "¡Hola AUTOCHROME! Tengo un golpe de chapa en mi vehículo y os paso foto para valorar reparación."
+      },
+      {
+        title: "Pulido Cerámico & Restauración",
+        desc: "Eliminación de microarañazos, swirls y marcas de desgaste. Protección hidrofóbica y sellado con brillo espejo de larga duración.",
+        waMsg: "¡Hola AUTOCHROME! Estoy interesado en un pulido cerámico y corrección de pintura para mi coche."
+      },
+      {
+        title: "Gestión Directa con Aseguradoras",
+        desc: "Colaboramos con las principales compañías. Tramitamos tu parte y peritaje para que tú no tengas que preocuparte de ningún trámite.",
+        waMsg: "¡Hola AUTOCHROME! Tengo que dar un parte al seguro y me gustaría tramitar la reparación de chapa y pintura con vosotros."
+      }
+    ];
+
+    function selectService(index) {
+      document.querySelectorAll('.service-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === index);
+      });
+      const s = services[index];
+      document.getElementById('service-detail-text').innerHTML = `<strong>${s.title}:</strong> ${s.desc}`;
+      const link = document.getElementById('cta-whatsapp-link');
+      link.href = `https://wa.me/34677466807?text=${encodeURIComponent(s.waMsg)}`;
+    }
+
+    // BEFORE / AFTER SLIDER LOGIC WITH TOUCH-LOCK
+    const slider = document.getElementById('compare-slider');
+    const afterLayer = document.getElementById('compare-after-layer');
+    const handle = document.getElementById('compare-handle');
+    let isDragging = false;
+
+    function updateSlider(x) {
+      const rect = slider.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0.05, Math.min(0.95, pos));
+      const pct = (pos * 100).toFixed(1);
+      afterLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      handle.style.left = `${pct}%`;
+    }
+
+    slider.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      updateSlider(e.clientX);
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      updateSlider(e.clientX);
+    });
+    window.addEventListener('pointerup', () => { isDragging = false; });
+    window.addEventListener('pointercancel', () => { isDragging = false; });
+
+    // HTML5 CANVAS AMBIENT PARTICLES
+    const canvas = document.getElementById('canvas-particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(6, 182, 212, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 30; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
