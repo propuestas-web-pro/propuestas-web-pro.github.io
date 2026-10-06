@@ -3,365 +3,369 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Yanico Servicios y Reformas | Reformas Integrales en Dolores</title>
-  <meta name="description" content="Yanico Servicios y Reformas en Calle San Antonio, 8 (Dolores). Cocinas de diseño, baños con microcemento, albañilería, fontanería y climatización en Vega Baja.">
+  <title>Yanico Servicios y Reformas | Reformas de Lujo & Alta Gama en Dolores</title>
+  <meta name="description" content="Yanico Servicios y Reformas en Calle San Antonio, 8 (Dolores). Cocinas de diseño, baños con microcemento, albañilería y climatización en Vega Baja.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #d4af37;
-      --primary-dark: #b89324;
-      --primary-glow: rgba(212, 175, 55, 0.35);
-      --accent: #f59e0b;
-      --bg-body: #080a0e;
-      --bg-surface: #10141b;
-      --bg-card: rgba(18, 22, 30, 0.75);
-      --border: rgba(212, 175, 55, 0.2);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --gold-primary: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-glow: rgba(245, 158, 11, 0.35);
+      --gold-gradient: linear-gradient(135deg, #fef08a 0%, #f59e0b 60%, #b45309 100%);
+      --bg-dark: #070a14;
+      --bg-card: rgba(14, 21, 38, 0.78);
+      --bg-card-border: rgba(245, 158, 11, 0.28);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-accent: 'Cinzel', serif;
     }
 
-    body.theme-industrial {
-      --primary: #38bdf8;
-      --primary-dark: #0284c7;
-      --primary-glow: rgba(56, 189, 248, 0.35);
-      --bg-body: #070e17;
-      --bg-surface: #0e1a2b;
-      --border: rgba(56, 189, 248, 0.2);
-    }
-
-    body.theme-mediterranean {
-      --primary: #10b981;
-      --primary-dark: #059669;
-      --primary-glow: rgba(16, 185, 129, 0.35);
-      --bg-body: #060e0a;
-      --bg-surface: #0d1e15;
-      --border: rgba(16, 185, 129, 0.2);
-    }
-
-    * {
-      box-sizing: border-box;
+    /* ZERO HORIZONTAL SCROLL LOCK */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      background: #060913;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      background: var(--bg-body);
-      color: var(--text);
+    *, *::before, *::after {
+      box-sizing: border-box;
+      max-width: 100%;
     }
 
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-body);
-      color: var(--text);
-      line-height: 1.5;
-      overflow-x: hidden;
-      padding-bottom: calc(75px + env(safe-area-inset-bottom));
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* AMBIENT BACKGROUND GLOW */
-    .ambient-orb {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
-      top: -80px;
-      right: -80px;
-      filter: blur(80px);
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    /* TOP DEMO RIBBON (NON-STICKY to prevent screen eating on mobile) */
-    .demo-ribbon {
-      background: rgba(212, 175, 55, 0.08);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
-      font-size: 0.76rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 20;
-    }
-    .demo-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .demo-tag::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 8px var(--primary);
-    }
-    .theme-picker {
-      display: flex;
-      gap: 5px;
-    }
-    .theme-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .theme-pill.active {
-      background: var(--primary);
-      color: #000;
-      border-color: var(--primary);
-    }
-
-    /* CONTAINER */
-    .container {
+    /* DYNAMIC RADIAL GRADIENT BACKGROUND & AURORAS */
+    .bg-universe {
+      position: fixed;
+      inset: 0;
       width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 18px;
-      position: relative;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 12%, #132247 0%, #080d1e 50%, #04060c 100%);
+    }
+
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       z-index: 1;
     }
 
+    .aurora-gold-1 {
+      position: absolute;
+      top: -150px;
+      right: -100px;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(90px);
+      animation: pulseGlow 10s ease-in-out infinite alternate;
+    }
+
+    .aurora-blue-2 {
+      position: absolute;
+      bottom: 10%;
+      left: -120px;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.22) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(100px);
+      animation: pulseGlow 14s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+      100% { transform: scale(1.15) translate(30px, 20px); opacity: 1; }
+    }
+
+    /* TOP EXCLUSIVE PROPOSAL BAR */
+    .proposal-ribbon {
+      position: relative;
+      z-index: 10;
+      background: rgba(14, 21, 38, 0.85);
+      border-bottom: 1px solid var(--bg-card-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.76rem;
+    }
+    .ribbon-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ribbon-tag::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #f59e0b;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+    .ribbon-cta {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-decoration: none;
+    }
+
+    /* APP CONTAINER */
+    .app-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px calc(80px + env(safe-area-inset-bottom));
+      overflow-x: hidden;
+    }
+
     /* HEADER */
-    .site-header {
-      padding: 18px 0 12px;
+    .brand-header {
+      padding: 16px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .brand-logo {
+    .brand-identity {
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
+      gap: 12px;
     }
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    .brand-emblem {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--gold-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #000;
-      font-size: 1.1rem;
-      font-weight: 900;
-      box-shadow: 0 4px 14px var(--primary-glow);
+      font-family: var(--font-accent);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #070a14;
+      box-shadow: 0 0 20px var(--gold-glow);
     }
-    .brand-name {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
+    .brand-names h1 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
       font-weight: 800;
       color: #fff;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      line-height: 1.1;
+      margin: 0;
     }
-    .brand-sub {
-      font-size: 0.7rem;
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .header-badge {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 12px;
-      border-radius: 999px;
+    .brand-names span {
       font-size: 0.72rem;
+      color: var(--gold-light);
       font-weight: 700;
-      color: #cbd5e1;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .verified-rating {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fef08a;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
-    /* HERO SECTION (MOBILE OPTIMIZED) */
-    .hero {
-      padding: 24px 0 36px;
+    /* HERO SECTION */
+    .hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 24px;
+      padding: 26px 20px;
+      margin: 10px 0 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold-gradient);
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border);
-      color: var(--primary);
-      font-size: 0.74rem;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--gold-glow);
+      color: var(--gold-light);
+      font-size: 0.72rem;
       font-weight: 800;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 7.5vw, 3.4rem);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+    .hero-headline {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 6.5vw, 2.7rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       color: #fff;
+      margin-bottom: 12px;
     }
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, #ffffff 40%, var(--primary) 100%);
+    .hero-headline .gold-text {
+      background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero-subtitle {
-      font-size: 0.95rem;
+    .hero-description {
+      font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.55;
-      margin-bottom: 24px;
-      max-width: 580px;
+      margin-bottom: 22px;
     }
 
-    /* PRIMARY CTA BUTTON (NATIVE FEEL) */
+    /* ACTION BUTTONS */
     .hero-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
+      gap: 10px;
+      margin-bottom: 22px;
     }
-    @media (min-width: 640px) {
-      .hero-actions { flex-direction: row; align-items: center; }
-    }
-    .btn-main {
+    .btn-gold-primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: var(--primary);
-      color: #000;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1rem;
-      padding: 15px 24px;
+      gap: 10px;
+      background: var(--gold-gradient);
+      color: #070a14;
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.96rem;
+      padding: 15px 22px;
       border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 10px 25px var(--primary-glow);
-      transition: transform 0.2s var(--ease-spring);
+      box-shadow: 0 10px 30px var(--gold-glow);
       touch-action: manipulation;
+      transition: transform 0.2s ease;
     }
-    .btn-main:active { transform: scale(0.97); }
-    .btn-main-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-    }
-    .btn-subtle {
+    .btn-gold-primary:active { transform: scale(0.97); }
+    .btn-gold-subtle {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
-      font-size: 0.9rem;
       font-weight: 700;
-      padding: 14px 20px;
+      font-size: 0.88rem;
+      padding: 13px 20px;
       border-radius: 16px;
       text-decoration: none;
       touch-action: manipulation;
     }
-    .btn-subtle:active { background: rgba(255,255,255,0.1); }
+    .btn-gold-subtle:active { background: rgba(255,255,255,0.1); }
 
-    /* TRUST CHIPS ROW */
-    .trust-chips {
+    /* KPI STATS ROW */
+    .kpi-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 12px 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 16px;
       text-align: center;
     }
-    .chip-item strong {
+    .kpi-box strong {
       display: block;
-      font-family: var(--font-heading);
+      font-family: var(--font-title);
       font-size: 1.15rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #fff;
       line-height: 1.1;
     }
-    .chip-item span {
+    .kpi-box span {
       font-size: 0.68rem;
       color: var(--text-muted);
-      line-height: 1.2;
     }
 
-    /* SECTION TITLE */
-    .section-wrap {
-      margin-top: 42px;
+    /* SECTION HEADERS */
+    .section-title-wrap {
+      margin: 32px 0 14px;
     }
-    .sec-tag {
-      color: var(--primary);
+    .sec-eyebrow {
+      color: var(--gold-light);
       font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .sec-title {
-      font-family: var(--font-heading);
+    .sec-heading {
+      font-family: var(--font-title);
       font-size: 1.45rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
       color: #fff;
-      margin-bottom: 16px;
-      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
-    /* MOBILE-PERFECT BEFORE/AFTER SLIDER (CLIP-PATH BASED - NO 1200PX OVERFLOW) */
-    .slider-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    /* ROCK-SOLID TOUCH SLIDER (NO HORIZONTAL SCROLL OVERFLOW) */
+    .slider-shell {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
       border-radius: 20px;
       padding: 12px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
-    .slider-frame {
+    .slider-stage {
       position: relative;
       width: 100%;
-      height: 280px;
+      height: 270px;
       border-radius: 14px;
       overflow: hidden;
-      cursor: ew-resize;
+      touch-action: none; /* CRITICAL: prevents touchmove from scrolling the page horizontally! */
       user-select: none;
       -webkit-user-select: none;
     }
-    .slider-img-base {
+    .slider-img {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -369,211 +373,200 @@
       object-fit: cover;
       pointer-events: none;
     }
-    .slider-img-clip {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
+    .slider-img-clipped {
       clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
     }
-    .slider-divider {
+    .slider-split-bar {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 50%;
       width: 2px;
-      background: var(--primary);
+      background: #f59e0b;
+      box-shadow: 0 0 12px #f59e0b;
       transform: translateX(-50%);
       pointer-events: none;
-      box-shadow: 0 0 10px var(--primary);
     }
-    .slider-handle {
+    .slider-thumb {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: var(--primary);
-      color: #000;
+      background: var(--gold-gradient);
+      color: #070a14;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 1rem;
-      box-shadow: 0 0 20px var(--primary-glow);
+      font-size: 1.1rem;
+      box-shadow: 0 0 25px var(--gold-glow);
       pointer-events: none;
     }
-    .slider-badge {
+    .slider-label {
       position: absolute;
-      top: 12px;
+      top: 10px;
       padding: 4px 10px;
       border-radius: 8px;
       font-size: 0.65rem;
       font-weight: 800;
       letter-spacing: 0.5px;
       backdrop-filter: blur(8px);
-      z-index: 10;
+      z-index: 5;
     }
-    .badge-before {
-      left: 12px;
-      background: rgba(0, 0, 0, 0.7);
-      color: var(--primary);
-      border: 1px solid var(--primary);
+    .label-before {
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-primary);
     }
-    .badge-after {
-      right: 12px;
-      background: rgba(0, 0, 0, 0.7);
+    .label-after {
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
       color: #fff;
       border: 1px solid rgba(255,255,255,0.2);
     }
-    .slider-hint {
+    .slider-caption {
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
       margin-top: 10px;
     }
 
-    /* BUDGET CALCULATOR */
+    /* INSTANT BUDGET CALCULATOR */
     .calc-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
       border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      padding: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
-    .calc-opt-label {
+    .calc-group-title {
       font-size: 0.75rem;
       font-weight: 800;
-      color: var(--text-muted);
+      color: var(--gold-light);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       margin-bottom: 8px;
     }
-    .calc-btn-group {
+    .calc-pill-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
       margin-bottom: 16px;
     }
-    .calc-pill {
+    .calc-pill-btn {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       color: #cbd5e1;
       padding: 12px 10px;
       border-radius: 12px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-align: left;
       cursor: pointer;
       touch-action: manipulation;
     }
-    .calc-pill.active {
-      background: rgba(212, 175, 55, 0.18);
-      border-color: var(--primary);
-      color: var(--primary);
+    .calc-pill-btn.active {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--gold-primary);
+      color: #fef08a;
     }
-    .calc-summary {
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border-subtle);
+    .calc-display-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(245, 158, 11, 0.35);
       border-radius: 16px;
       padding: 18px;
       text-align: center;
     }
-    .calc-est-title {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-    .calc-est-price {
-      font-family: var(--font-heading);
-      font-size: 2.4rem;
+    .calc-price-num {
+      font-family: var(--font-title);
+      font-size: 2.6rem;
       font-weight: 900;
-      color: var(--primary);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       line-height: 1.1;
-      margin: 6px 0;
+      margin: 4px 0;
     }
-    .calc-est-days {
+    .calc-time-est {
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .btn-calc-wa {
+    .btn-calc-action {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: var(--primary);
-      color: #000;
-      font-weight: 800;
-      font-size: 0.9rem;
-      padding: 13px 20px;
+      background: var(--gold-gradient);
+      color: #070a14;
+      font-weight: 900;
+      font-size: 0.88rem;
+      padding: 14px 20px;
       border-radius: 14px;
       text-decoration: none;
       touch-action: manipulation;
     }
-    .btn-calc-wa:active { transform: scale(0.97); }
+    .btn-calc-action:active { transform: scale(0.97); }
 
-    /* SERVICES STACK */
-    .services-stack {
+    /* SERVICES VERTICAL FEED */
+    .services-feed {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 14px;
     }
-    .service-item {
+    .srv-item {
       position: relative;
-      height: 190px;
+      height: 200px;
       border-radius: 18px;
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .service-img {
+    .srv-img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .service-mask {
+    .srv-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(8,10,14,0.1) 0%, rgba(8,10,14,0.92) 80%);
+      background: linear-gradient(180deg, rgba(7,10,20,0.1) 0%, rgba(7,10,20,0.94) 80%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 16px;
+      padding: 18px;
     }
-    .service-badge {
+    .srv-badge {
       font-size: 0.65rem;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--gold-light);
       text-transform: uppercase;
       letter-spacing: 0.8px;
       margin-bottom: 4px;
     }
-    .service-name {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
+    .srv-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fff;
       line-height: 1.2;
       margin-bottom: 4px;
     }
-    .service-text {
+    .srv-desc {
       font-size: 0.78rem;
       color: var(--text-muted);
       line-height: 1.35;
     }
 
     /* GUARANTEES */
-    .method-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    .trust-card-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 16px;
       display: flex;
@@ -581,67 +574,67 @@
       align-items: flex-start;
       margin-bottom: 10px;
     }
-    .method-step {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border);
-      color: var(--primary);
-      font-size: 1.1rem;
+    .trust-emblem {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
     }
-    .method-info h4 {
-      font-size: 0.95rem;
+    .trust-details h4 {
+      font-size: 0.96rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-    .method-info p {
+    .trust-details p {
       font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.4;
     }
 
     /* REVIEWS CARD */
-    .review-bubble {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    .quote-bubble {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 10px;
     }
-    .review-stars {
-      color: #f59e0b;
+    .quote-stars {
+      color: #fbbf24;
       font-size: 0.85rem;
       margin-bottom: 6px;
     }
-    .review-quote {
-      font-size: 0.85rem;
+    .quote-text {
+      font-size: 0.86rem;
       color: #e2e8f0;
       line-height: 1.45;
       margin-bottom: 8px;
     }
-    .review-user {
+    .quote-author {
       display: flex;
       justify-content: space-between;
       font-size: 0.75rem;
       color: var(--text-muted);
     }
-    .review-user strong { color: #fff; }
+    .quote-author strong { color: #fff; }
 
-    /* LOCATION & CLINIC CARD */
-    .clinic-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    /* LOCATION */
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
       border-radius: 18px;
       padding: 18px;
       margin-top: 14px;
     }
-    .clinic-row {
+    .contact-line {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -649,159 +642,160 @@
       font-size: 0.85rem;
       color: #cbd5e1;
     }
-    .clinic-row:last-child { margin-bottom: 0; }
-    .clinic-icon { font-size: 1.1rem; }
+    .contact-line:last-child { margin-bottom: 0; }
 
-    /* FLOATING WHATSAPP PILL (MINIMAL NATIVE, NO SANDWICH) */
-    .floating-wa-pill {
+    /* ULTRA CLEAN FLOATING WHATSAPP PILL */
+    .floating-wa-btn {
       position: fixed;
       bottom: calc(16px + env(safe-area-inset-bottom));
       right: 16px;
       z-index: 9999;
       background: #25d366;
-      color: #000;
+      color: #070a14;
       padding: 12px 18px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-heading);
+      font-family: var(--font-title);
       font-size: 0.88rem;
-      font-weight: 800;
+      font-weight: 900;
       text-decoration: none;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
       touch-action: manipulation;
     }
-    .floating-wa-pill:active { transform: scale(0.95); }
-    .floating-dot {
+    .floating-wa-btn:active { transform: scale(0.95); }
+    .wa-pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #000;
+      background: #070a14;
     }
 
-    /* FOOTER */
-    .site-footer {
-      margin-top: 45px;
+    .footer-bar {
+      margin-top: 40px;
       text-align: center;
       font-size: 0.72rem;
       color: var(--text-muted);
       padding: 20px 0;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
-<body id="page-body">
-  <div class="ambient-orb"></div>
-
-  <!-- TOP NON-STICKY DEMO RIBBON (Doesn't block mobile screen!) -->
-  <div class="demo-ribbon">
-    <div class="demo-tag">Propuesta Yanico Reformas</div>
-    <div class="theme-picker">
-      <button class="theme-pill active" onclick="setTheme('default', this)">1. Titanio & Oro</button>
-      <button class="theme-pill" onclick="setTheme('theme-industrial', this)">2. Pizarra</button>
-      <button class="theme-pill" onclick="setTheme('theme-mediterranean', this)">3. Mediterráneo</button>
-    </div>
+<body>
+  <!-- DYNAMIC BACKGROUND -->
+  <div class="bg-universe">
+    <canvas id="particles-canvas"></canvas>
+    <div class="aurora-gold-1"></div>
+    <div class="aurora-blue-2"></div>
   </div>
 
-  <div class="container">
+  <!-- PROPOSAL STRIP -->
+  <div class="proposal-ribbon">
+    <div class="ribbon-tag">Propuesta Exclusiva para Yanico</div>
+    <a href="https://wa.me/34632768152?text=Hola%20Álvaro,%20quiero%20activar%20la%20web%20de%20Yanico%20Reformas%20por%20150€." class="ribbon-cta">Activar Web (150€)</a>
+  </div>
+
+  <div class="app-wrapper">
     <!-- HEADER -->
-    <header class="site-header">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon">Y</div>
-        <div>
-          <div class="brand-name">Yanico</div>
-          <div class="brand-sub">Servicios & Reformas</div>
+    <header class="brand-header">
+      <div class="brand-identity">
+        <div class="brand-emblem">Y</div>
+        <div class="brand-names">
+          <h1>Yanico</h1>
+          <span>Servicios & Reformas · Dolores</span>
         </div>
-      </a>
-      <div class="header-badge">
-        <span>★</span> 4.8 en Google
       </div>
+      <div class="verified-rating">★ 4.8 Google</div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- HERO CARD -->
+    <section class="hero-card">
       <div class="hero-eyebrow">
-        <span>●</span> DOLORES · VEGA BAJA
+        <span>★</span> VEGA BAJA · DOLORES
       </div>
-      <h1 class="hero-title">
-        Reformas integrales con <span class="gradient-text">acabados de lujo</span>.
-      </h1>
-      <p class="hero-subtitle">
-        Cocinas de diseño con isla, baños de microcemento, fontanería y climatización en Dolores y alrededores. Presupuesto cerrado en 24h y garantía por contrato.
+      <h2 class="hero-headline">
+        Reformas de vivienda con <span class="gold-text">acabados de lujo</span> y garantía total.
+      </h2>
+      <p class="hero-description">
+        Cocinas de diseño con isla, baños en microcemento, fontanería y climatización en Dolores y alrededores. Presupuesto detallado en 24h sin sorpresas.
       </p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20presupuesto%20para%20una%20reforma." target="_blank" rel="noopener" class="btn-main">
-          <span>Pedir Presupuesto por WhatsApp</span>
-          <div class="btn-main-icon">↗</div>
+        <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20presupuesto%20para%20una%20reforma." target="_blank" rel="noopener" class="btn-gold-primary">
+          <span>Pedir Presupuesto WhatsApp</span>
+          <span>↗</span>
         </a>
-        <a href="#antes-despues" class="btn-subtle">
-          <span>Ver Antes / Después</span>
+        <a href="#antes-despues" class="btn-gold-subtle">
+          <span>Ver Antes y Después</span>
         </a>
       </div>
 
-      <div class="trust-chips">
-        <div class="chip-item">
+      <div class="kpi-row">
+        <div class="kpi-box">
           <strong>4.8★</strong>
           <span>30 Reseñas</span>
         </div>
-        <div class="chip-item">
+        <div class="kpi-box">
           <strong>24 Meses</strong>
           <span>Garantía escrita</span>
         </div>
-        <div class="chip-item">
+        <div class="kpi-box">
           <strong>24 Horas</strong>
           <span>Presupuesto</span>
         </div>
       </div>
     </section>
 
-    <!-- ANTES / DESPUÉS SLIDER -->
-    <section id="antes-despues" class="section-wrap">
-      <div class="sec-tag">TRANSFORMACIONES REALES</div>
-      <h2 class="sec-title">Desliza para ver la reforma</h2>
+    <!-- BEFORE / AFTER TOUCH SLIDER -->
+    <section id="antes-despues">
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">TRANSFORMACIONES REALES</div>
+        <h3 class="sec-heading">Desliza para ver la reforma</h3>
+      </div>
 
-      <div class="slider-box">
-        <div class="slider-frame" id="sliderTouchFrame">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Reforma terminada por Yanico" class="slider-img-base">
-          <div class="slider-badge badge-after">DESPUÉS</div>
+      <div class="slider-shell">
+        <div class="slider-stage" id="sliderStage">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Cocina reformada Yanico" class="slider-img">
+          <div class="slider-label label-after">DESPUÉS (YANICO)</div>
 
-          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Estado anterior de la cocina" class="slider-img-clip" id="sliderClip">
-          <div class="slider-badge badge-before">ANTES</div>
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Cocina antes de la reforma" class="slider-img slider-img-clipped" id="sliderClippedImg">
+          <div class="slider-label label-before">ANTES</div>
 
-          <div class="slider-divider" id="sliderLine"></div>
-          <div class="slider-handle" id="sliderDot">⟷</div>
+          <div class="slider-split-bar" id="sliderDivider"></div>
+          <div class="slider-thumb" id="sliderThumb">⟷</div>
         </div>
-        <p class="slider-hint">👆 Arrastra con el dedo a izquierda o derecha</p>
+        <p class="slider-caption">👆 Desliza el botón a izquierda o derecha</p>
       </div>
     </section>
 
-    <!-- CALCULADORA DE PRESUPUESTO -->
-    <section class="section-wrap">
-      <div class="sec-tag">SIMULADOR EN DIRECTO</div>
-      <h2 class="sec-title">Calcula el coste orientativo</h2>
+    <!-- CALCULADORA -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">SIMULADOR EN DIRECTO</div>
+        <h3 class="sec-heading">Calcula el presupuesto</h3>
+      </div>
 
       <div class="calc-card">
-        <div class="calc-opt-label">1. Tipo de Reforma:</div>
-        <div class="calc-btn-group">
-          <button class="calc-pill active" onclick="setProject(2800, 7, 'Baño Completo', this)">🚿 Baño Completo</button>
-          <button class="calc-pill" onclick="setProject(6200, 14, 'Cocina con Isla', this)">🍳 Cocina de Diseño</button>
-          <button class="calc-pill" onclick="setProject(18500, 35, 'Reforma Integral', this)">🏠 Reforma Integral</button>
-          <button class="calc-pill" onclick="setProject(1400, 3, 'Fontanería y Clima', this)">🔧 Fontanería / Clima</button>
+        <div class="calc-group-title">1. Tipo de Trabajo:</div>
+        <div class="calc-pill-grid">
+          <button class="calc-pill-btn active" onclick="setProject(2800, 7, 'Baño Completo', this)">🚿 Baño Completo</button>
+          <button class="calc-pill-btn" onclick="setProject(6200, 14, 'Cocina con Isla', this)">🍳 Cocina con Isla</button>
+          <button class="calc-pill-btn" onclick="setProject(18500, 35, 'Reforma Integral', this)">🏠 Reforma Integral</button>
+          <button class="calc-pill-btn" onclick="setProject(1400, 3, 'Fontanería y Clima', this)">🔧 Fontanería / Clima</button>
         </div>
 
-        <div class="calc-opt-label">2. Superficie / Estancia:</div>
-        <div class="calc-btn-group">
-          <button class="calc-pill active" onclick="setSize(1, this)">Vivienda Estándar</button>
-          <button class="calc-pill" onclick="setSize(1.4, this)">Chalet / Amplio</button>
+        <div class="calc-group-title">2. Superficie / Estancia:</div>
+        <div class="calc-pill-grid">
+          <button class="calc-pill-btn active" onclick="setSize(1, this)">Vivienda Estándar</button>
+          <button class="calc-pill-btn" onclick="setSize(1.4, this)">Chalet / Amplio</button>
         </div>
 
-        <div class="calc-summary">
-          <div class="calc-est-title">Presupuesto Estimado:</div>
-          <div class="calc-est-price" id="calcPrice">2.800€</div>
-          <div class="calc-est-days" id="calcDays">⏱️ Ejecución aprox: ~7 días laborales</div>
-          <a id="calcWaLink" href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20calculado%20un%20presupuesto%20orientativo%20para%20Baño%20Completo%20(2.800€).%20¿Podemos%20cerrar%20visita?" target="_blank" rel="noopener" class="btn-calc-wa">
+        <div class="calc-display-box">
+          <div style="font-size: 0.72rem; color: var(--gold-light); text-transform: uppercase; font-weight: 800;">Presupuesto Orientativo:</div>
+          <div class="calc-price-num" id="calcPrice">2.800€</div>
+          <div class="calc-time-est" id="calcDays">⏱️ Ejecución estimada: ~7 días laborales</div>
+          <a id="calcWaLink" href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20calculado%20un%20presupuesto%20orientativo%20para%20Baño%20Completo%20(2.800€).%20¿Podemos%20cerrar%20visita?" target="_blank" rel="noopener" class="btn-calc-action">
             <span>Consultar Viabilidad por WhatsApp ↗</span>
           </a>
         </div>
@@ -809,155 +803,204 @@
     </section>
 
     <!-- SERVICIOS -->
-    <section class="section-wrap">
-      <div class="sec-tag">SERVICIOS PROFESIONALES</div>
-      <h2 class="sec-title">Especialistas en cada detalle</h2>
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">SERVICIOS DE ALTO NIVEL</div>
+        <h3 class="sec-heading">Especialidades Yanico</h3>
+      </div>
 
-      <div class="services-stack">
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="Cocinas modernas" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">ALTA GAMA</div>
-            <h3 class="service-name">Cocinas Abiertas de Diseño</h3>
-            <p class="service-text">Mobiliario a medida, encimeras porcelánicas e iluminación led empotrada.</p>
+      <div class="services-feed">
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="Cocina abierta de diseño" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">ALTA GAMA</div>
+            <h4 class="srv-title">Cocinas Abiertas con Isla</h4>
+            <p class="srv-desc">Mobiliario a medida, encimeras porcelánicas e iluminación led integrada.</p>
           </div>
         </div>
 
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Baños modernos" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">TENDENCIA</div>
-            <h3 class="service-name">Baños & Microcemento</h3>
-            <p class="service-text">Cambio de bañera por plato extraplano de resina y grifería empotrada.</p>
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Baños modernos de microcemento" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">TENDENCIA</div>
+            <h4 class="srv-title">Baños & Microcemento</h4>
+            <p class="srv-desc">Platos extraplanos de resina, grifería empotrada y revestimientos continuos.</p>
           </div>
         </div>
 
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Reformas integrales" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">LLAVE EN MANO</div>
-            <h3 class="service-name">Reformas de Chalets y Pisos</h3>
-            <p class="service-text">Redistribución, alisado de paredes, climatización y fontanería de precisión.</p>
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Reforma integral chalet" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">LLAVE EN MANO</div>
+            <h4 class="srv-title">Reformas Integrales</h4>
+            <p class="srv-desc">Redistribución, alisado de paredes, fontanería y climatización de alta eficiencia.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- GARANTÍAS -->
-    <section class="section-wrap">
-      <div class="sec-tag">TRANQUILIDAD TOTAL</div>
-      <h2 class="sec-title">Garantías por contrato</h2>
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">TRANQUILIDAD CONTRACTUAL</div>
+        <h3 class="sec-heading">Por qué elegir a Yanico</h3>
+      </div>
 
-      <div class="method-card">
-        <div class="method-step">📋</div>
-        <div class="method-info">
+      <div class="trust-card-item">
+        <div class="trust-emblem">📋</div>
+        <div class="trust-details">
           <h4>Presupuesto Cerrado</h4>
-          <p>Sin sorpresas ni partidas fantasma. Lo que presupuestamos es lo que pagas.</p>
+          <p>Sin partidas sorpresa ni sobrecostes a mitad de obra. Lo acordado es lo que pagas.</p>
         </div>
       </div>
 
-      <div class="method-card">
-        <div class="method-step">⏱️</div>
-        <div class="method-info">
+      <div class="trust-card-item">
+        <div class="trust-emblem">⏱️</div>
+        <div class="trust-details">
           <h4>Plazos Garantizados</h4>
-          <p>Compromiso formal de fecha de finalización por contrato.</p>
+          <p>Fecha de finalización fijada por contrato para tu total tranquilidad.</p>
         </div>
       </div>
 
-      <div class="method-card">
-        <div class="method-step">🛡️</div>
-        <div class="method-info">
-          <h4>Garantía de 2 Años</h4>
-          <p>Cobertura integral ante cualquier desperfecto en materiales o instalación.</p>
+      <div class="trust-card-item">
+        <div class="trust-emblem">🛡️</div>
+        <div class="trust-details">
+          <h4>Garantía 24 Meses</h4>
+          <p>Cobertura integral en materiales y mano de obra ante cualquier incidencia.</p>
         </div>
       </div>
     </section>
 
     <!-- RESEÑAS -->
-    <section class="section-wrap">
-      <div class="sec-tag">CLIENTES SATISFECHOS</div>
-      <h2 class="sec-title">Opiniones en Dolores</h2>
-
-      <div class="review-bubble">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-quote">"Nos reformaron la cocina y un baño en Dolores. Limpios, puntuales y con acabados de primera. Muy recomendables."</p>
-        <div class="review-user"><strong>Antonio M. G.</strong><span>Dolores</span></div>
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">OPINIONES VERIFICADAS</div>
+        <h3 class="sec-heading">Clientes en Dolores y Vega Baja</h3>
       </div>
 
-      <div class="review-bubble">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-quote">"Avería urgente de fontanería y alicatado en nuestro chalet. Vinieron el mismo día y solucionado. Grandes profesionales."</p>
-        <div class="review-user"><strong>Laura R.</strong><span>Almoradí</span></div>
+      <div class="quote-bubble">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Nos reformaron la cocina y un baño en Dolores. Limpios, puntuales y con acabados de primera. Muy recomendables."</p>
+        <div class="quote-author"><strong>Antonio M. G.</strong><span>Dolores</span></div>
+      </div>
+
+      <div class="quote-bubble">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Avería urgente de fontanería y alicatado en nuestro chalet. Vinieron el mismo día y solucionado. Grandes profesionales."</p>
+        <div class="quote-author"><strong>Laura R.</strong><span>Almoradí</span></div>
       </div>
     </section>
 
-    <!-- LOCATION -->
-    <section class="section-wrap">
-      <div class="sec-tag">CONTACTO DIRECTO</div>
-      <h2 class="sec-title">Empresa local en Dolores</h2>
+    <!-- CONTACTO LOCAL -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">LOCALIZACIÓN</div>
+        <h3 class="sec-heading">Atención en Dolores</h3>
+      </div>
 
-      <div class="clinic-card">
-        <div class="clinic-row">
-          <span class="clinic-icon">📍</span>
+      <div class="contact-card">
+        <div class="contact-line">
+          <span>📍</span>
           <span>Calle San Antonio, 8, 03150 Dolores (Alicante)</span>
         </div>
-        <div class="clinic-row">
-          <span class="clinic-icon">📞</span>
+        <div class="contact-line">
+          <span>📞</span>
           <span>+34 678 51 04 40</span>
         </div>
-        <div class="clinic-row">
-          <span class="clinic-icon">⚡</span>
+        <div class="contact-line">
+          <span>⚡</span>
           <span>Presupuestos y visitas sin compromiso en 24h</span>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
+    <footer class="footer-bar">
       <p>© 2026 Yanico Servicios y Reformas · Dolores (Alicante)</p>
     </footer>
   </div>
 
-  <!-- FLOATING WA PILL (NATIVE LOOK, NO SANDWICH) -->
-  <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20quiero%20pedir%20presupuesto." target="_blank" rel="noopener" class="floating-wa-pill">
-    <div class="floating-dot"></div>
+  <!-- FLOATING WA BUTTON -->
+  <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20quiero%20pedir%20presupuesto%20para%20una%20reforma." target="_blank" rel="noopener" class="floating-wa-btn">
+    <div class="wa-pulse-dot"></div>
     <span>Pedir Presupuesto WhatsApp</span>
   </a>
 
+  <!-- PARTICLE CANVAS LOGIC & TOUCH SLIDER -->
   <script>
-    function setTheme(themeClass, btn) {
-      document.body.className = themeClass === 'default' ? '' : themeClass;
-      document.querySelectorAll('.theme-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // 1. PARTICLES CANVAS SYSTEM
+    const canvas = document.getElementById('particles-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const particles = [];
+      const count = Math.min(60, Math.floor((w * h) / 12000));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.7 + 0.2,
+          speed: Math.random() * 0.4 + 0.1,
+          color: ['#f59e0b', '#fbbf24', '#fef08a', '#38bdf8', '#ffffff'][Math.floor(Math.random() * 5)]
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+          p.y -= p.speed;
+          if (p.y < 0) p.y = h;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
     }
 
-    // SLIDER TOUCH & DRAG
-    const frame = document.getElementById('sliderTouchFrame');
-    const clip = document.getElementById('sliderClip');
-    const line = document.getElementById('sliderLine');
-    const dot = document.getElementById('sliderDot');
-    let dragging = false;
+    // 2. ROCK-SOLID BEFORE/AFTER SLIDER (TOUCH PREVENTS PAGE WOBBLE)
+    const stage = document.getElementById('sliderStage');
+    const clipped = document.getElementById('sliderClippedImg');
+    const divBar = document.getElementById('sliderDivider');
+    const thumb = document.getElementById('sliderThumb');
+    let isDragging = false;
 
-    function updateSlider(clientX) {
-      const rect = frame.getBoundingClientRect();
-      let x = (clientX - rect.left) / rect.width;
-      if (x < 0.05) x = 0.05;
-      if (x > 0.95) x = 0.95;
-      const pct = (x * 100).toFixed(1) + '%';
-      clip.style.clipPath = 'polygon(0 0, ' + pct + ' 0, ' + pct + ' 100%, 0 100%)';
-      line.style.left = pct;
-      dot.style.left = pct;
+    function applyPosition(clientX) {
+      const r = stage.getBoundingClientRect();
+      let pos = (clientX - r.left) / r.width;
+      if (pos < 0.04) pos = 0.04;
+      if (pos > 0.96) pos = 0.96;
+      const pct = (pos * 100).toFixed(1) + '%';
+      clipped.style.clipPath = 'polygon(0 0, ' + pct + ' 0, ' + pct + ' 100%, 0 100%)';
+      divBar.style.left = pct;
+      thumb.style.left = pct;
     }
 
-    frame.addEventListener('mousedown', (e) => { dragging = true; updateSlider(e.clientX); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-    window.addEventListener('mousemove', (e) => { if (dragging) updateSlider(e.clientX); });
+    stage.addEventListener('mousedown', (e) => { isDragging = true; applyPosition(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) applyPosition(e.clientX); });
 
-    frame.addEventListener('touchstart', (e) => { dragging = true; updateSlider(e.touches[0].clientX); });
-    window.addEventListener('touchend', () => { dragging = false; });
-    window.addEventListener('touchmove', (e) => { if (dragging) updateSlider(e.touches[0].clientX); });
+    stage.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      applyPosition(e.touches[0].clientX);
+    }, { passive: true });
 
-    // CALCULATOR
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    stage.addEventListener('touchmove', (e) => {
+      if (isDragging) {
+        applyPosition(e.touches[0].clientX);
+      }
+    }, { passive: false });
+
+    // 3. CALCULATOR LOGIC
     let basePrice = 2800;
     let baseDays = 7;
     let sizeMult = 1;
@@ -976,14 +1019,14 @@
       basePrice = p;
       baseDays = d;
       projName = name;
-      btn.parentElement.querySelectorAll('.calc-pill').forEach(b => b.classList.remove('active'));
+      btn.parentElement.querySelectorAll('.calc-pill-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       refreshCalc();
     }
 
     function setSize(m, btn) {
       sizeMult = m;
-      btn.parentElement.querySelectorAll('.calc-pill').forEach(b => b.classList.remove('active'));
+      btn.parentElement.querySelectorAll('.calc-pill-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       refreshCalc();
     }

@@ -3,355 +3,359 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Recocap Fisioterapia Dolores | Fisioterapia Avanzada y Osteopatía</title>
-  <meta name="description" content="Recocap Fisioterapia en Avda. Alcalde José Rodríguez, 78 (Dolores). Alivio del dolor de espalda, lesiones deportivas, osteopatía y punción seca. Cita rápida por WhatsApp.">
+  <title>Recocap Fisioterapia Dolores | Fisioterapia Avanzada & Readaptación</title>
+  <meta name="description" content="Recocap Fisioterapia en Avda. Alcalde José Rodríguez, 78 (Dolores). Alivio del dolor de espalda, lesiones deportivas, osteopatía y punción seca.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #00f5a0;
-      --primary-dark: #00c782;
-      --primary-glow: rgba(0, 245, 160, 0.35);
-      --accent: #00d9f5;
-      --bg-body: #070d14;
-      --bg-surface: #0e1724;
-      --bg-card: rgba(15, 25, 38, 0.75);
-      --border: rgba(0, 245, 160, 0.15);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --aqua-primary: #00f5c4;
+      --aqua-light: #70ffdf;
+      --aqua-glow: rgba(0, 245, 196, 0.35);
+      --aqua-gradient: linear-gradient(135deg, #a7f3d0 0%, #00f5c4 50%, #0284c7 100%);
+      --bg-dark: #050b16;
+      --bg-card: rgba(10, 22, 40, 0.78);
+      --bg-card-border: rgba(0, 245, 196, 0.28);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-accent: 'Cinzel', serif;
     }
 
-    body.theme-cyan {
-      --primary: #38bdf8;
-      --primary-dark: #0284c7;
-      --primary-glow: rgba(56, 189, 248, 0.35);
-      --bg-body: #07101a;
-      --bg-surface: #0d1e30;
-      --border: rgba(56, 189, 248, 0.2);
-    }
-
-    body.theme-zen {
-      --primary: #a78bfa;
-      --primary-dark: #8b5cf6;
-      --primary-glow: rgba(167, 139, 250, 0.35);
-      --bg-body: #0d0a17;
-      --bg-surface: #19142b;
-      --border: rgba(167, 139, 250, 0.2);
-    }
-
-    * {
-      box-sizing: border-box;
+    /* ZERO HORIZONTAL SCROLL LOCK */
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden !important;
+      position: relative;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      background: #040811;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      background: var(--bg-body);
-      color: var(--text);
+    *, *::before, *::after {
+      box-sizing: border-box;
+      max-width: 100%;
     }
 
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-body);
-      color: var(--text);
-      line-height: 1.5;
-      overflow-x: hidden;
-      padding-bottom: calc(75px + env(safe-area-inset-bottom));
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* AMBIENT BACKGROUND GLOW */
-    .ambient-orb {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
-      top: -80px;
-      right: -80px;
-      filter: blur(80px);
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    /* TOP DEMO BANNER (NON-STICKY to prevent screen eating on mobile) */
-    .demo-ribbon {
-      background: rgba(0, 245, 160, 0.08);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
-      font-size: 0.76rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 20;
-    }
-    .demo-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .demo-tag::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 8px var(--primary);
-    }
-    .theme-picker {
-      display: flex;
-      gap: 5px;
-    }
-    .theme-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .theme-pill.active {
-      background: var(--primary);
-      color: #000;
-      border-color: var(--primary);
-    }
-
-    /* CONTAINER */
-    .container {
+    /* DYNAMIC RADIAL GRADIENT BACKGROUND & AURORAS */
+    .bg-universe {
+      position: fixed;
+      inset: 0;
       width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 18px;
-      position: relative;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 12%, #0e2948 0%, #061122 50%, #02060e 100%);
+    }
+
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       z-index: 1;
     }
 
+    .aurora-aqua-1 {
+      position: absolute;
+      top: -150px;
+      right: -100px;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 245, 196, 0.28) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(90px);
+      animation: pulseGlow 10s ease-in-out infinite alternate;
+    }
+
+    .aurora-blue-2 {
+      position: absolute;
+      bottom: 10%;
+      left: -120px;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(100px);
+      animation: pulseGlow 14s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+      100% { transform: scale(1.15) translate(30px, 20px); opacity: 1; }
+    }
+
+    /* PROPOSAL STRIP */
+    .proposal-ribbon {
+      position: relative;
+      z-index: 10;
+      background: rgba(10, 22, 40, 0.85);
+      border-bottom: 1px solid var(--bg-card-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.76rem;
+    }
+    .ribbon-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      color: var(--aqua-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ribbon-tag::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--aqua-primary);
+      box-shadow: 0 0 10px var(--aqua-primary);
+    }
+    .ribbon-cta {
+      background: rgba(0, 245, 196, 0.15);
+      border: 1px solid var(--aqua-primary);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-decoration: none;
+    }
+
+    /* APP WRAPPER */
+    .app-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px calc(80px + env(safe-area-inset-bottom));
+      overflow-x: hidden;
+    }
+
     /* HEADER */
-    .site-header {
-      padding: 18px 0 12px;
+    .brand-header {
+      padding: 16px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .brand-logo {
+    .brand-identity {
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
+      gap: 12px;
     }
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    .brand-emblem {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--aqua-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #000;
-      font-size: 1.1rem;
+      font-family: var(--font-title);
+      font-size: 1.3rem;
       font-weight: 900;
-      box-shadow: 0 4px 14px var(--primary-glow);
+      color: #050b16;
+      box-shadow: 0 0 20px var(--aqua-glow);
     }
-    .brand-name {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
+    .brand-names h1 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
       font-weight: 800;
       color: #fff;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
+      line-height: 1.1;
+      margin: 0;
     }
-    .brand-sub {
-      font-size: 0.7rem;
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .header-badge {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 12px;
-      border-radius: 999px;
+    .brand-names span {
       font-size: 0.72rem;
+      color: var(--aqua-light);
       font-weight: 700;
-      color: #cbd5e1;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .verified-rating {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #a7f3d0;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
-    /* HERO SECTION (MOBILE OPTIMIZED) */
-    .hero {
-      padding: 24px 0 36px;
+    /* HERO CARD */
+    .hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 24px;
+      padding: 26px 20px;
+      margin: 10px 0 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--aqua-gradient);
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(0, 245, 160, 0.12);
-      border: 1px solid var(--border);
-      color: var(--primary);
-      font-size: 0.74rem;
+      background: rgba(0, 245, 196, 0.12);
+      border: 1px solid var(--aqua-glow);
+      color: var(--aqua-light);
+      font-size: 0.72rem;
       font-weight: 800;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(2rem, 7.5vw, 3.4rem);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+    .hero-headline {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 6.5vw, 2.7rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       color: #fff;
+      margin-bottom: 12px;
     }
-    .hero-title .gradient-text {
-      background: linear-gradient(135deg, #ffffff 40%, var(--primary) 100%);
+    .hero-headline .aqua-text {
+      background: var(--aqua-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero-subtitle {
-      font-size: 0.95rem;
+    .hero-description {
+      font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.55;
-      margin-bottom: 24px;
-      max-width: 580px;
+      margin-bottom: 22px;
     }
 
-    /* PRIMARY CTA BUTTON (NATIVE FEEL) */
+    /* ACTIONS */
     .hero-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
+      gap: 10px;
+      margin-bottom: 22px;
     }
-    @media (min-width: 640px) {
-      .hero-actions { flex-direction: row; align-items: center; }
-    }
-    .btn-main {
+    .btn-aqua-primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: var(--primary);
-      color: #000;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1rem;
-      padding: 15px 24px;
+      gap: 10px;
+      background: var(--aqua-gradient);
+      color: #050b16;
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.96rem;
+      padding: 15px 22px;
       border-radius: 16px;
       text-decoration: none;
-      box-shadow: 0 10px 25px var(--primary-glow);
-      transition: transform 0.2s var(--ease-spring);
+      box-shadow: 0 10px 30px var(--aqua-glow);
       touch-action: manipulation;
+      transition: transform 0.2s ease;
     }
-    .btn-main:active { transform: scale(0.97); }
-    .btn-main-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-    }
-    .btn-subtle {
+    .btn-aqua-primary:active { transform: scale(0.97); }
+    .btn-aqua-subtle {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
-      font-size: 0.9rem;
       font-weight: 700;
-      padding: 14px 20px;
+      font-size: 0.88rem;
+      padding: 13px 20px;
       border-radius: 16px;
       text-decoration: none;
       touch-action: manipulation;
     }
-    .btn-subtle:active { background: rgba(255,255,255,0.1); }
+    .btn-aqua-subtle:active { background: rgba(255,255,255,0.1); }
 
-    /* TRUST CHIPS ROW */
-    .trust-chips {
+    /* KPI STATS ROW */
+    .kpi-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 12px 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 16px;
       text-align: center;
     }
-    .chip-item strong {
+    .kpi-box strong {
       display: block;
-      font-family: var(--font-heading);
+      font-family: var(--font-title);
       font-size: 1.15rem;
-      font-weight: 800;
+      font-weight: 900;
       color: #fff;
       line-height: 1.1;
     }
-    .chip-item span {
+    .kpi-box span {
       font-size: 0.68rem;
       color: var(--text-muted);
-      line-height: 1.2;
     }
 
-    /* SECTION TITLE */
-    .section-wrap {
-      margin-top: 42px;
+    /* SECTION HEADERS */
+    .section-title-wrap {
+      margin: 32px 0 14px;
     }
-    .sec-tag {
-      color: var(--primary);
+    .sec-eyebrow {
+      color: var(--aqua-light);
       font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .sec-title {
-      font-family: var(--font-heading);
+    .sec-heading {
+      font-family: var(--font-title);
       font-size: 1.45rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
       color: #fff;
-      margin-bottom: 16px;
-      line-height: 1.2;
+      letter-spacing: -0.02em;
     }
 
-    /* INTERACTIVE SYMPTOM SELECTOR (MOBILE CARD) */
-    .symptom-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    /* INTERACTIVE SYMPTOM SELECTOR (ZERO HORIZONTAL LEAK) */
+    .symptom-shell {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
       border-radius: 20px;
       padding: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
-    .symptom-scroller {
+    .symptom-pill-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
@@ -359,11 +363,12 @@
       margin-bottom: 14px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
     }
-    .symptom-scroller::-webkit-scrollbar { display: none; }
-    .symptom-btn {
+    .symptom-pill-scroll::-webkit-scrollbar { display: none; }
+    .sym-pill {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #cbd5e1;
       padding: 10px 14px;
       border-radius: 12px;
@@ -376,110 +381,109 @@
       gap: 6px;
       touch-action: manipulation;
     }
-    .symptom-btn.active {
-      background: rgba(0, 245, 160, 0.18);
-      border-color: var(--primary);
-      color: var(--primary);
+    .sym-pill.active {
+      background: rgba(0, 245, 196, 0.18);
+      border-color: var(--aqua-primary);
+      color: var(--aqua-light);
     }
-    .symptom-result {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
+    .sym-result-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(0, 245, 196, 0.35);
+      border-radius: 16px;
       padding: 16px;
     }
-    .res-badge {
+    .sym-res-badge {
       font-size: 0.68rem;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--aqua-light);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
     }
-    .res-title {
-      font-family: var(--font-heading);
+    .sym-res-title {
+      font-family: var(--font-title);
       font-size: 1.15rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 6px;
     }
-    .res-desc {
+    .sym-res-desc {
       font-size: 0.82rem;
       color: var(--text-muted);
       line-height: 1.45;
       margin-bottom: 14px;
     }
-    .btn-cita-symp {
+    .btn-cita-sym {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: var(--primary);
-      color: #000;
-      font-weight: 800;
+      background: var(--aqua-gradient);
+      color: #050b16;
+      font-weight: 900;
       font-size: 0.85rem;
-      padding: 12px 18px;
+      padding: 13px 18px;
       border-radius: 12px;
       text-decoration: none;
       touch-action: manipulation;
     }
-    .btn-cita-symp:active { transform: scale(0.97); }
+    .btn-cita-sym:active { transform: scale(0.97); }
 
-    /* SERVICES LIST (MOBILE CARDS) */
-    .services-stack {
+    /* SERVICES FEED */
+    .services-feed {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 14px;
     }
-    .service-item {
+    .srv-item {
       position: relative;
-      height: 190px;
+      height: 200px;
       border-radius: 18px;
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .service-img {
+    .srv-img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    .service-mask {
+    .srv-gradient {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(7,13,20,0.1) 0%, rgba(7,13,20,0.92) 80%);
+      background: linear-gradient(180deg, rgba(5,11,22,0.1) 0%, rgba(5,11,22,0.94) 80%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 16px;
+      padding: 18px;
     }
-    .service-badge {
+    .srv-badge {
       font-size: 0.65rem;
       font-weight: 800;
-      color: var(--primary);
+      color: var(--aqua-light);
       text-transform: uppercase;
       letter-spacing: 0.8px;
       margin-bottom: 4px;
     }
-    .service-name {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
+    .srv-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
       font-weight: 800;
       color: #fff;
       line-height: 1.2;
       margin-bottom: 4px;
     }
-    .service-text {
+    .srv-desc {
       font-size: 0.78rem;
       color: var(--text-muted);
       line-height: 1.35;
     }
 
-    /* METHOD 3-STEPS */
-    .method-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    /* METHOD 3 STEPS */
+    .method-step-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 16px;
       display: flex;
@@ -487,14 +491,14 @@
       align-items: flex-start;
       margin-bottom: 10px;
     }
-    .method-step {
+    .method-badge {
       width: 38px;
       height: 38px;
-      border-radius: 10px;
-      background: rgba(0, 245, 160, 0.12);
-      border: 1px solid var(--border);
-      color: var(--primary);
-      font-family: var(--font-heading);
+      border-radius: 12px;
+      background: rgba(0, 245, 196, 0.15);
+      border: 1px solid var(--aqua-primary);
+      color: var(--aqua-light);
+      font-family: var(--font-title);
       font-weight: 900;
       font-size: 1rem;
       display: flex;
@@ -506,7 +510,7 @@
       font-size: 0.95rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .method-info p {
       font-size: 0.8rem;
@@ -515,41 +519,41 @@
     }
 
     /* REVIEWS CARD */
-    .review-bubble {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    .quote-bubble {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 16px;
       margin-bottom: 10px;
     }
-    .review-stars {
-      color: #f59e0b;
+    .quote-stars {
+      color: #fbbf24;
       font-size: 0.85rem;
       margin-bottom: 6px;
     }
-    .review-quote {
-      font-size: 0.85rem;
+    .quote-text {
+      font-size: 0.86rem;
       color: #e2e8f0;
       line-height: 1.45;
       margin-bottom: 8px;
     }
-    .review-user {
+    .quote-author {
       display: flex;
       justify-content: space-between;
       font-size: 0.75rem;
       color: var(--text-muted);
     }
-    .review-user strong { color: #fff; }
+    .quote-author strong { color: #fff; }
 
-    /* LOCATION & CLINIC CARD */
-    .clinic-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    /* LOCATION */
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
       border-radius: 18px;
       padding: 18px;
       margin-top: 14px;
     }
-    .clinic-row {
+    .contact-line {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -557,110 +561,105 @@
       font-size: 0.85rem;
       color: #cbd5e1;
     }
-    .clinic-row:last-child { margin-bottom: 0; }
-    .clinic-icon {
-      font-size: 1.1rem;
-    }
+    .contact-line:last-child { margin-bottom: 0; }
 
-    /* FLOATING WHATSAPP PILL (MINIMAL NATIVE, NO SANDWICH) */
-    .floating-wa-pill {
+    /* ULTRA CLEAN FLOATING WHATSAPP PILL */
+    .floating-wa-btn {
       position: fixed;
       bottom: calc(16px + env(safe-area-inset-bottom));
       right: 16px;
       z-index: 9999;
       background: #25d366;
-      color: #000;
+      color: #050b16;
       padding: 12px 18px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-heading);
+      font-family: var(--font-title);
       font-size: 0.88rem;
-      font-weight: 800;
+      font-weight: 900;
       text-decoration: none;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
       touch-action: manipulation;
     }
-    .floating-wa-pill:active { transform: scale(0.95); }
-    .floating-dot {
+    .floating-wa-btn:active { transform: scale(0.95); }
+    .wa-pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #000;
+      background: #050b16;
     }
 
-    /* FOOTER */
-    .site-footer {
-      margin-top: 45px;
+    .footer-bar {
+      margin-top: 40px;
       text-align: center;
       font-size: 0.72rem;
       color: var(--text-muted);
       padding: 20px 0;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
-<body id="page-body">
-  <div class="ambient-orb"></div>
-
-  <!-- TOP NON-STICKY DEMO RIBBON (Doesn't block mobile screen!) -->
-  <div class="demo-ribbon">
-    <div class="demo-tag">Propuesta Recocap Fisioterapia</div>
-    <div class="theme-picker">
-      <button class="theme-pill active" onclick="setTheme('default', this)">1. Bio Esmeralda</button>
-      <button class="theme-pill" onclick="setTheme('theme-cyan', this)">2. Azul</button>
-      <button class="theme-pill" onclick="setTheme('theme-zen', this)">3. Zen</button>
-    </div>
+<body>
+  <!-- DYNAMIC BACKGROUND -->
+  <div class="bg-universe">
+    <canvas id="particles-canvas"></canvas>
+    <div class="aurora-aqua-1"></div>
+    <div class="aurora-blue-2"></div>
   </div>
 
-  <div class="container">
+  <!-- PROPOSAL STRIP -->
+  <div class="proposal-ribbon">
+    <div class="ribbon-tag">Propuesta Recocap Fisioterapia</div>
+    <a href="https://wa.me/34632768152?text=Hola%20Álvaro,%20quiero%20activar%20la%20web%20de%20Recocap%20Fisioterapia%20por%20150€." class="ribbon-cta">Activar Web (150€)</a>
+  </div>
+
+  <div class="app-wrapper">
     <!-- HEADER -->
-    <header class="site-header">
-      <a href="#" class="brand-logo">
-        <div class="brand-icon">R</div>
-        <div>
-          <div class="brand-name">Recocap</div>
-          <div class="brand-sub">Fisioterapia Dolores</div>
+    <header class="brand-header">
+      <div class="brand-identity">
+        <div class="brand-emblem">R</div>
+        <div class="brand-names">
+          <h1>Recocap</h1>
+          <span>Fisioterapia & Readaptación · Dolores</span>
         </div>
-      </a>
-      <div class="header-badge">
-        <span>★</span> 4.9 en Google
       </div>
+      <div class="verified-rating">★ 4.9 Google</div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- HERO CARD -->
+    <section class="hero-card">
       <div class="hero-eyebrow">
         <span>●</span> DOLORES · VEGA BAJA
       </div>
-      <h1 class="hero-title">
-        Alivio del dolor desde la <span class="gradient-text">primera sesión</span>.
-      </h1>
-      <p class="hero-subtitle">
-        Fisioterapia avanzada, osteopatía y readaptación de lesiones en Avda. Alcalde José Rodríguez, 78 (Dolores). Tratamiento manual personalizado y tecnología clínica sin esperas.
+      <h2 class="hero-headline">
+        Alivio del dolor desde la <span class="aqua-text">primera sesión</span>.
+      </h2>
+      <p class="hero-description">
+        Fisioterapia personalizada, osteopatía y readaptación de lesiones en Avda. Alcalde José Rodríguez, 78 (Dolores). Tratamiento manual en camilla y tecnología clínica sin listas de espera.
       </p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/34672829195?text=Hola%20Recocap,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20cita%20de%20fisioterapia." target="_blank" rel="noopener" class="btn-main">
-          <span>Pedir Cita por WhatsApp</span>
-          <div class="btn-main-icon">↗</div>
+        <a href="https://wa.me/34672829195?text=Hola%20Recocap,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20cita%20de%20fisioterapia." target="_blank" rel="noopener" class="btn-aqua-primary">
+          <span>Pedir Cita WhatsApp</span>
+          <span>↗</span>
         </a>
-        <a href="#test-dolor" class="btn-subtle">
-          <span>¿Qué te duele? (Test)</span>
+        <a href="#test-dolor" class="btn-aqua-subtle">
+          <span>¿Qué te duele? (Test Rápido)</span>
         </a>
       </div>
 
-      <div class="trust-chips">
-        <div class="chip-item">
+      <div class="kpi-row">
+        <div class="kpi-box">
           <strong>4.9★</strong>
           <span>45 Reseñas</span>
         </div>
-        <div class="chip-item">
+        <div class="kpi-box">
           <strong>Sesión 1</strong>
           <span>Alivio real</span>
         </div>
-        <div class="chip-item">
+        <div class="kpi-box">
           <strong>Colegiados</strong>
           <span>100% Titulados</span>
         </div>
@@ -668,36 +667,38 @@
     </section>
 
     <!-- INTERACTIVE TEST -->
-    <section id="test-dolor" class="section-wrap">
-      <div class="sec-tag">TEST RÁPIDO INTERACTIVO</div>
-      <h2 class="sec-title">¿Qué zona necesitas tratar hoy?</h2>
+    <section id="test-dolor">
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">DIAGNÓSTICO INTERACTIVO EXPRESS</div>
+        <h3 class="sec-heading">¿Qué zona necesitas tratar hoy?</h3>
+      </div>
 
-      <div class="symptom-box">
-        <div class="symptom-scroller">
-          <button class="symptom-btn active" onclick="selectSymptom('Espalda / Lumbares', 'Tratamiento con terapia manual miofascial y punción seca para eliminar contracturas y aliviar la presión del ciático.', this)">
+      <div class="symptom-shell">
+        <div class="symptom-pill-scroll">
+          <button class="sym-pill active" onclick="selectSymptom('Espalda / Lumbares', 'Tratamiento con terapia manual miofascial y punción seca para eliminar contracturas y descomprimir el nervio ciático.', this)">
             🦴 Espalda / Lumbares
           </button>
-          <button class="symptom-btn" onclick="selectSymptom('Cuello / Cervicales', 'Liberación suboccipital y osteopatía suave para eliminar dolores de cabeza tensionales y rigidez de trapecio.', this)">
+          <button class="sym-pill" onclick="selectSymptom('Cuello / Cervicales', 'Liberación suboccipital y osteopatía suave para quitar dolores de cabeza tensionales y rigidez de trapecio.', this)">
             💆 Cuello / Cervicales
           </button>
-          <button class="symptom-btn" onclick="selectSymptom('Lesión Deportiva', 'Protocolo antiinflamatorio y readaptación funcional para volver al deporte sin riesgo de recaída.', this)">
+          <button class="sym-pill" onclick="selectSymptom('Lesión Deportiva', 'Protocolo antiinflamatorio y readaptación de la carga para volver a competir sin miedo a recaer.', this)">
             🏃 Lesión Deportiva
           </button>
-          <button class="symptom-btn" onclick="selectSymptom('Rodilla / Hombro', 'Terapia manual articular y ejercicio excéntrico guiado para tendinopatías y sobrecargas.', this)">
+          <button class="sym-pill" onclick="selectSymptom('Rodilla / Hombro', 'Terapia manual articular y ejercicio excéntrico para tendinopatías rotulianas y del manguito.', this)">
             🦵 Rodilla / Hombro
           </button>
-          <button class="symptom-btn" onclick="selectSymptom('Suelo Pélvico', 'Valoración abdominopélvica ecoguiada y fortalecimiento preventivo posparto.', this)">
+          <button class="sym-pill" onclick="selectSymptom('Suelo Pélvico', 'Valoración abdominopélvica ecoguiada y fortalecimiento preventivo posparto.', this)">
             🌸 Suelo Pélvico
           </button>
         </div>
 
-        <div class="symptom-result">
-          <div class="res-badge">Tratamiento Recomendado en Recocap:</div>
-          <h3 class="res-title" id="sympTitle">Espalda / Lumbares (Ciática & Lumbalgia)</h3>
-          <p class="res-desc" id="sympDesc">
-            Tratamiento con terapia manual miofascial y punción seca para eliminar contracturas y aliviar la presión del ciático de inmediato.
+        <div class="sym-result-box">
+          <div class="sym-res-badge">Tratamiento Recomendado en Recocap:</div>
+          <h4 class="sym-res-title" id="sympTitle">Espalda / Lumbares (Ciática & Lumbalgia)</h4>
+          <p class="sym-res-desc" id="sympDesc">
+            Tratamiento con terapia manual miofascial y punción seca para eliminar contracturas y descomprimir el nervio ciático de inmediato.
           </p>
-          <a id="sympWaBtn" href="https://wa.me/34672829195?text=Hola%20Recocap,%20tengo%20molestias%20en%20Espalda%20/%20Lumbares%20y%20quiero%20pedir%20cita." target="_blank" rel="noopener" class="btn-cita-symp">
+          <a id="sympWaBtn" href="https://wa.me/34672829195?text=Hola%20Recocap,%20tengo%20molestias%20en%20Espalda%20/%20Lumbares%20y%20quiero%20pedir%20cita." target="_blank" rel="noopener" class="btn-cita-sym">
             <span>Pedir Cita para Esta Molestia por WhatsApp ↗</span>
           </a>
         </div>
@@ -705,130 +706,171 @@
     </section>
 
     <!-- TRATAMIENTOS -->
-    <section class="section-wrap">
-      <div class="sec-tag">ESPECIALIDADES CLÍNICAS</div>
-      <h2 class="sec-title">Tratamientos en Dolores</h2>
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">ESPECIALIDADES CLÍNICAS</div>
+        <h3 class="sec-heading">Tratamientos en Dolores</h3>
+      </div>
 
-      <div class="services-stack">
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Fisioterapia avanzada" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">ALTA EFICACIA</div>
-            <h3 class="service-name">Fisioterapia Manual & Osteopatía</h3>
-            <p class="service-text">Sesiones individuales en cabina privada. Ajustes articulares y masaje miofascial.</p>
+      <div class="services-feed">
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Fisioterapia avanzada manual" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">ALTA EFICACIA</div>
+            <h4 class="srv-title">Fisioterapia Manual & Osteopatía</h4>
+            <p class="srv-desc">Sesiones individuales en cabina privada. Ajustes articulares y masaje miofascial.</p>
           </div>
         </div>
 
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80" alt="Readaptación deportiva" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">DEPORTE</div>
-            <h3 class="service-name">Readaptación de Lesiones</h3>
-            <p class="service-text">Puente entre la camilla y el rendimiento para entrenar sin miedo a recaer.</p>
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=800&q=80" alt="Readaptación de lesiones deportivas" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">RENDIMIENTO</div>
+            <h4 class="srv-title">Readaptación de Lesiones</h4>
+            <p class="srv-desc">Puente entre la camilla y el deporte para entrenar sin dolor ni recaídas.</p>
           </div>
         </div>
 
-        <div class="service-item">
-          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80" alt="Punción seca" class="service-img">
-          <div class="service-mask">
-            <div class="service-badge">INVASIVA</div>
-            <h3 class="service-name">Punción Seca & Neuromodulación</h3>
-            <p class="service-text">Inactivación precisa de puntos gatillo rebeldes para un alivio analgésico rápido.</p>
+        <div class="srv-item">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80" alt="Punción seca en Dolores" class="srv-img">
+          <div class="srv-gradient">
+            <div class="srv-badge">TÉCNICA INVASIVA</div>
+            <h4 class="srv-title">Punción Seca & Neuromodulación</h4>
+            <p class="srv-desc">Inactivación de puntos gatillo rebeldes para un alivio analgésico rápido.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EL MÉTODO RECOCAP -->
-    <section class="section-wrap">
-      <div class="sec-tag">MÉTODO PROBADO</div>
-      <h2 class="sec-title">Cómo te ayudamos en 3 pasos</h2>
+    <!-- MÉTODO 3 PASOS -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">EL MÉTODO RECOCAP</div>
+        <h3 class="sec-heading">Cómo te ayudamos en 3 pasos</h3>
+      </div>
 
-      <div class="method-card">
-        <div class="method-step">1</div>
+      <div class="method-step-card">
+        <div class="method-badge">1</div>
         <div class="method-info">
           <h4>Diagnóstico Preciso</h4>
           <p>Localizamos el origen real de tu lesión antes de tocar cualquier músculo.</p>
         </div>
       </div>
 
-      <div class="method-card">
-        <div class="method-step">2</div>
+      <div class="method-step-card">
+        <div class="method-badge">2</div>
         <div class="method-info">
           <h4>Alivio en Camilla</h4>
-          <p>Terapia manual y técnicas punteras para bajar el dolor desde la primera sesión.</p>
+          <p>Terapia manual y técnicas avanzadas para bajar el dolor desde el primer día.</p>
         </div>
       </div>
 
-      <div class="method-card">
-        <div class="method-step">3</div>
+      <div class="method-step-card">
+        <div class="method-badge">3</div>
         <div class="method-info">
           <h4>Prevención Activa</h4>
-          <p>Pautas y ejercicios sencillos para que no vuelvas a sufrir la misma molestia.</p>
+          <p>Pautas y ejercicios sencillos para blindar tu cuerpo frente a futuras recaídas.</p>
         </div>
       </div>
     </section>
 
     <!-- RESEÑAS -->
-    <section class="section-wrap">
-      <div class="sec-tag">PACIENTES REALES</div>
-      <h2 class="sec-title">Opiniones en Google Maps</h2>
-
-      <div class="review-bubble">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-quote">"Llegué con un lumbago brutal y en la primera sesión salí caminando derecho. Súper profesionales y atentos en Dolores."</p>
-        <div class="review-user"><strong>Carlos M.</strong><span>Dolores</span></div>
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">PACIENTES REALES</div>
+        <h3 class="sec-heading">Opiniones en Google Maps</h3>
       </div>
 
-      <div class="review-bubble">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-quote">"Me trataron un esguince crónico y gracias a sus pautas volví a correr sin dolor. Un 10 de clínica."</p>
-        <div class="review-user"><strong>María José S.</strong><span>Almoradí</span></div>
+      <div class="quote-bubble">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Llegué con un lumbago brutal y en la primera sesión salí caminando derecho. Súper profesionales y atentos en Dolores."</p>
+        <div class="quote-author"><strong>Carlos M.</strong><span>Dolores</span></div>
+      </div>
+
+      <div class="quote-bubble">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Me trataron un esguince crónico y gracias a sus pautas volví a correr sin dolor. Un 10 de clínica."</p>
+        <div class="quote-author"><strong>María José S.</strong><span>Almoradí</span></div>
       </div>
     </section>
 
-    <!-- CLINIC CONTACT -->
-    <section class="section-wrap">
-      <div class="sec-tag">UBICACIÓN Y CONTACTO</div>
-      <h2 class="sec-title">Ven a visitarnos en Dolores</h2>
+    <!-- CONTACTO LOCAL -->
+    <section>
+      <div class="section-title-wrap">
+        <div class="sec-eyebrow">UBICACIÓN Y CONTACTO</div>
+        <h3 class="sec-heading">Ven a visitarnos en Dolores</h3>
+      </div>
 
-      <div class="clinic-card">
-        <div class="clinic-row">
-          <span class="clinic-icon">📍</span>
+      <div class="contact-card">
+        <div class="contact-line">
+          <span>📍</span>
           <span>Avda. Alcalde José Rodríguez, 78, 03150 Dolores (Alicante)</span>
         </div>
-        <div class="clinic-row">
-          <span class="clinic-icon">📞</span>
+        <div class="contact-line">
+          <span>📞</span>
           <span>+34 672 82 91 95</span>
         </div>
-        <div class="clinic-row">
-          <span class="clinic-icon">⏰</span>
+        <div class="contact-line">
+          <span>⏰</span>
           <span>Lunes a Viernes con Cita Previa</span>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
+    <footer class="footer-bar">
       <p>© 2026 Recocap Fisioterapia Dolores · Todos los derechos reservados.</p>
     </footer>
   </div>
 
-  <!-- FLOATING WA PILL (NATIVE LOOK, NO SANDWICH) -->
-  <a href="https://wa.me/34672829195?text=Hola%20Recocap,%20quiero%20pedir%20cita%20de%20fisioterapia." target="_blank" rel="noopener" class="floating-wa-pill">
-    <div class="floating-dot"></div>
+  <!-- FLOATING WA BUTTON -->
+  <a href="https://wa.me/34672829195?text=Hola%20Recocap,%20quiero%20pedir%20cita%20de%20fisioterapia." target="_blank" rel="noopener" class="floating-wa-btn">
+    <div class="wa-pulse-dot"></div>
     <span>Pedir Cita WhatsApp</span>
   </a>
 
+  <!-- PARTICLE CANVAS LOGIC & SYMPTOM SELECTOR -->
   <script>
-    function setTheme(themeClass, btn) {
-      document.body.className = themeClass === 'default' ? '' : themeClass;
-      document.querySelectorAll('.theme-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // 1. PARTICLES CANVAS SYSTEM
+    const canvas = document.getElementById('particles-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+      const particles = [];
+      const count = Math.min(60, Math.floor((w * h) / 12000));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.7 + 0.2,
+          speed: Math.random() * 0.4 + 0.1,
+          color: ['#00f5c4', '#70ffdf', '#38bdf8', '#a7f3d0', '#ffffff'][Math.floor(Math.random() * 5)]
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+          p.y -= p.speed;
+          if (p.y < 0) p.y = h;
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
     }
 
+    // 2. SYMPTOM SELECTOR
     function selectSymptom(name, desc, btn) {
-      document.querySelectorAll('.symptom-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.sym-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('sympTitle').innerText = name;
       document.getElementById('sympDesc').innerText = desc;
