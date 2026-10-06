@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>MV Talleres Gran Cox | Taller Mecánico, Chapa y Pintura en Cox</title>
+  <meta name="description" content="MV Talleres Gran Cox en Calle Elche, 18 (Cox). Taller mecánico multimarca, chapa y pintura al horno, diagnosis avanzada, neumáticos y pre-ITV. Cita directa por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --primary-glow: rgba(16, 185, 129, 0.4);
+      --accent: #f59e0b;
+      --bg-body: #090d14;
+      --bg-surface: #111724;
+      --bg-card: rgba(17, 23, 36, 0.95);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(16, 185, 129, 0.5);
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body.theme-racing {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-glow: rgba(2, 132, 199, 0.4);
+      --accent: #38bdf8;
+      --bg-body: #060b14;
+      --bg-surface: #0e1726;
+      --bg-card: rgba(14, 23, 38, 0.95);
+      --border-focus: rgba(2, 132, 199, 0.5);
+    }
+
+    body.theme-red {
+      --primary: #ef4444;
+      --primary-dark: #dc2626;
+      --primary-glow: rgba(239, 68, 68, 0.4);
+      --accent: #f97316;
+      --bg-body: #0b0707;
+      --bg-surface: #180f0f;
+      --bg-card: rgba(24, 15, 15, 0.95);
+      --border-focus: rgba(239, 68, 68, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 95px;
+    }
+
+    /* TOP SELECTOR */
+    .style-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(9, 13, 20, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .style-bar span { font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .style-pills { display: flex; gap: 5px; }
+    .style-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+    }
+    .style-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #000000;
+      box-shadow: 0 2px 8px var(--primary-glow);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 16px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, rgba(255,255,255,0.1) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #000;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .brand-info h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+    }
+    .brand-info p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-open {
+      font-size: 0.68rem;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-open::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #34d399;
+    }
+
+    /* HERO */
+    .hero {
+      margin-top: 14px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+    }
+    .hero img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9, 13, 20, 0.96) 0%, rgba(9, 13, 20, 0.4) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+    .hero-tag {
+      align-self: flex-start;
+      background: var(--primary);
+      color: #000;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .hero-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .trust-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .trust-val {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      line-height: 1.2;
+    }
+    .trust-lbl {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 22px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title span {
+      color: var(--primary);
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .service-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .service-card:hover, .service-card.selected {
+      border-color: var(--primary);
+      background: rgba(16, 185, 129, 0.08);
+      transform: translateY(-2px);
+    }
+    .service-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .service-text h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .service-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .service-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    /* INTERACTIVE BOOKING CARD */
+    .booking-box {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 22px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .booking-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .booking-box p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .pill-option {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pill-option.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #000;
+      font-weight: 800;
+    }
+
+    /* DIRECT CTA BUTTON */
+    .btn-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 14px 20px;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+    }
+
+    /* GUARANTEES */
+    .guarantees {
+      margin-top: 22px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+    .guarantee-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 8px;
+    }
+    .guarantee-item:last-child { margin-bottom: 0; }
+    .guarantee-icon {
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    /* LOCATION & CONTACT */
+    .info-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-text strong {
+      font-size: 0.82rem;
+      display: block;
+      color: #fff;
+    }
+    .info-text span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* REVIEWS */
+    .reviews-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-top: 10px;
+      scrollbar-width: none;
+    }
+    .reviews-scroll::-webkit-scrollbar { display: none; }
+    .review-card {
+      min-width: 240px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      flex-shrink: 0;
+    }
+    .review-stars { color: #f59e0b; font-size: 0.8rem; margin-bottom: 4px; }
+    .review-text { font-size: 0.75rem; color: var(--text-muted); line-height: 1.35; margin-bottom: 6px; }
+    .review-author { font-size: 0.7rem; font-weight: 700; color: #fff; }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    /* FIXED BOTTOM BAR */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(9, 13, 20, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      z-index: 9999;
+    }
+    .bottom-bar-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+    .btn-call {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+    .btn-wa-fixed {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #25D366;
+      color: #000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+    }
+  </style>
+</head>
+<body id="page-body">
+
+  <!-- TOP SELECTOR (3 DISEÑOS) -->
+  <div class="style-bar">
+    <span>🎨 Estilo de Diseño:</span>
+    <div class="style-pills">
+      <a href="./index.html" class="style-pill active" id="tab-1">1. Sport Pro</a>
+      <a href="./diseno-2.html" class="style-pill" id="tab-2">2. Racing Blue</a>
+      <a href="./diseno-3.html" class="style-pill" id="tab-3">3. Red Power</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-group">
+        <div class="brand-icon">🚗</div>
+        <div class="brand-info">
+          <h1>MV Talleres Gran Cox</h1>
+          <p>📍 Calle Elche, 18 • Cox (Alicante)</p>
+        </div>
+      </div>
+      <div class="badge-open">Taller Abierto</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80" alt="Taller mecánico MV Gran Cox">
+      <div class="hero-overlay">
+        <span class="hero-tag">Mecánica • Chapa • Pintura</span>
+        <h2 class="hero-title">Tu taller de máxima confianza en Cox</h2>
+        <p class="hero-sub">Mantenimiento integral, chapa y pintura al horno, diagnosis oficial y pre-ITV con presupuesto cerrado sin compromiso.</p>
+      </div>
+    </section>
+
+    <!-- TRUST STATS -->
+    <div class="trust-bar">
+      <div class="trust-card">
+        <span class="trust-val">4.8 ⭐</span>
+        <span class="trust-lbl">15 Reseñas Google</span>
+      </div>
+      <div class="trust-card">
+        <span class="trust-val">100%</span>
+        <span class="trust-lbl">Garantía en Piezas</span>
+      </div>
+      <div class="trust-card">
+        <span class="trust-val">0€</span>
+        <span class="trust-lbl">Presupuesto Previo</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <h3 class="section-title">🔧 Servicios <span>Profesionales</span></h3>
+    <div class="services-grid">
+      
+      <div class="service-card" onclick="selectService('Chapa y Pintura')">
+        <div class="service-main">
+          <div class="service-icon">🎨</div>
+          <div class="service-text">
+            <h3>Chapa y Pintura al Horno</h3>
+            <p>Cabina de secado, reparación de abolladuras y gestión directa con todas las aseguradoras.</p>
+          </div>
+        </div>
+        <span class="service-tag">Pintura HD</span>
+      </div>
+
+      <div class="service-card" onclick="selectService('Mantenimiento y Aceite')">
+        <div class="service-main">
+          <div class="service-icon">🛢️</div>
+          <div class="service-text">
+            <h3>Mecánica Rápida y Filtros</h3>
+            <p>Aceites sintéticos homologados, filtros de aire, polen y combustible para todas las marcas.</p>
+          </div>
+        </div>
+        <span class="service-tag">Rápido</span>
+      </div>
+
+      <div class="service-card" onclick="selectService('Diagnosis y Electrónica')">
+        <div class="service-main">
+          <div class="service-icon">💻</div>
+          <div class="service-text">
+            <h3>Diagnosis Electrónica Multimarca</h3>
+            <p>Localización de averías con escáner avanzado, luces de motor, sensores y centralitas.</p>
+          </div>
+        </div>
+        <span class="service-tag">Diagnosis</span>
+      </div>
+
+      <div class="service-card" onclick="selectService('Pre-ITV y Frenos')">
+        <div class="service-main">
+          <div class="service-icon">📋</div>
+          <div class="service-text">
+            <h3>Revisión Pre-ITV y Seguridad</h3>
+            <p>Comprobación de frenos, suspensión, luces, gases y amortiguadores para pasar la ITV a la primera.</p>
+          </div>
+        </div>
+        <span class="service-tag">Pre-ITV</span>
+      </div>
+
+      <div class="service-card" onclick="selectService('Climatización y A/A')">
+        <div class="service-main">
+          <div class="service-icon">❄️</div>
+          <div class="service-text">
+            <h3>Carga de Aire Acondicionado</h3>
+            <p>Detección de micro-fugas, recarga de gas R134a/R1234yf y desinfección de conductos.</p>
+          </div>
+        </div>
+        <span class="service-tag">Clima</span>
+      </div>
+
+      <div class="service-card" onclick="selectService('Neumáticos y Paralelo')">
+        <div class="service-main">
+          <div class="service-icon">🛞</div>
+          <div class="service-text">
+            <h3>Neumáticos y Alineación</h3>
+            <p>Primeras marcas, montaje, equilibrado dinámico y alineación para máxima seguridad en carretera.</p>
+          </div>
+        </div>
+        <span class="service-tag">Ruedas</span>
+      </div>
+
+    </div>
+
+    <!-- INTERACTIVE BOOKING / PRESUPUESTO -->
+    <div class="booking-box">
+      <h3>⚡ Solicita Cita o Presupuesto Rápido</h3>
+      <p>Selecciona tu necesidad y envíanosla directamente por WhatsApp para darte precio y hueco:</p>
+
+      <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-bottom: 6px;">¿QUÉ NECESITA TU COCHE?</div>
+      <div class="pill-group" id="service-pills">
+        <div class="pill-option active" data-service="Mecánica Rápida / Aceite">Mecánica / Aceite</div>
+        <div class="pill-option" data-service="Chapa y Pintura">Chapa & Pintura</div>
+        <div class="pill-option" data-service="Pre-ITV y Frenos">Pre-ITV / Frenos</div>
+        <div class="pill-option" data-service="Diagnosis Electrónica">Diagnosis de Avería</div>
+        <div class="pill-option" data-service="Carga de Aire Acondicionado">Carga Aire A/A</div>
+      </div>
+
+      <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; margin-bottom: 6px;">PREFERENCIA DE DÍA:</div>
+      <div class="pill-group" id="day-pills">
+        <div class="pill-option active" data-day="Lo antes posible">Lo antes posible</div>
+        <div class="pill-option" data-day="Esta semana">Esta semana</div>
+        <div class="pill-option" data-day="Sábado por la mañana">Sábado mañana</div>
+      </div>
+
+      <a id="btn-wa-action" class="btn-cta" href="https://wa.me/34606871343?text=Hola%20MV%20Talleres%20Gran%20Cox%2C%20quisiera%20pedir%20presupuesto%20para%20Mec%C3%A1nica%20R%C3%A1pida%20%2F%20Aceite%20lo%20antes%20posible." target="_blank">
+        <span>📲 Consultar por WhatsApp Directo</span>
+      </a>
+      <div style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 8px;">
+        Respuesta rápida habitual en menos de 15 minutos en horario de taller
+      </div>
+    </div>
+
+    <!-- GUARANTEES -->
+    <div class="guarantees">
+      <div class="guarantee-item">
+        <span class="guarantee-icon">✓</span>
+        <span><strong>Presupuesto sin compromiso:</strong> Te explicamos la avería antes de cambiar cualquier pieza.</span>
+      </div>
+      <div class="guarantee-item">
+        <span class="guarantee-icon">✓</span>
+        <span><strong>Recambios garantizados:</strong> Trabajamos exclusivamente con marcas de primer equipo homologadas.</span>
+      </div>
+      <div class="guarantee-item">
+        <span class="guarantee-icon">✓</span>
+        <span><strong>Vehículo de sustitución:</strong> Disponibilidad sujeta a reserva previa para reparaciones largas.</span>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <h3 class="section-title">⭐ Opiniones de <span>Conductores de Cox</span></h3>
+    <div class="reviews-scroll">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Grandes profesionales. Me arreglaron un golpe de chapa y la pintura quedó impecable, como recién sacado del concesionario."</div>
+        <div class="review-author">Juan Manuel S. • Cox</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Llevo mis dos coches para las revisiones y la pre-ITV. Rápidos, honrados y muy buen precio. Recomendado 100%."</div>
+        <div class="review-author">Antonio R. • Granja de Rocamora</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Tenía una luz en el cuadro que en otro taller no daban con ella. Con su máquina de diagnosis encontraron el sensor en 20 minutos."</div>
+        <div class="review-author">David M. • Callosa de Segura</div>
+      </div>
+    </div>
+
+    <!-- LOCATION & CONTACT -->
+    <h3 class="section-title">📍 Ubicación & <span>Horarios</span></h3>
+    <div class="info-card">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+          <strong>Dirección del Taller</strong>
+          <span>Calle Elche, 18, 03350 Cox, Alicante (Ctra. de la Granja)</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🕒</div>
+        <div class="info-text">
+          <strong>Horario de Apertura</strong>
+          <span>Lunes a Viernes: 08:30 – 13:30 / 15:30 – 20:00<br>Sábados: 09:00 – 13:00</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div class="info-text">
+          <strong>Teléfonos de Contacto</strong>
+          <span>Móvil / WhatsApp: +34 606 87 13 43<br>Fijo Taller: +34 965 36 14 01</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>© 2026 MV Talleres Gran Cox • Todos los derechos reservados.</p>
+      <p style="margin-top: 4px;">Taller Mecánico, Chapa y Pintura en Cox (Vega Baja, Alicante)</p>
+    </footer>
+
+  </div>
+
+  <!-- FIXED BOTTOM BAR ON MOBILE -->
+  <div class="bottom-bar">
+    <div class="bottom-bar-inner">
+      <a href="tel:+34606871343" class="btn-call">
+        📞 Llamar
+      </a>
+      <a id="btn-wa-sticky" href="https://wa.me/34606871343?text=Hola%20MV%20Talleres%20Gran%20Cox%2C%20quisiera%20pedir%20presupuesto%20para%20mi%20coche." class="btn-wa-fixed" target="_blank">
+        💬 WhatsApp Cita
+      </a>
+    </div>
+  </div>
+
+  <!-- SCRIPT INTERACTIVO -->
+  <script>
+    let selectedService = 'Mecánica Rápida / Aceite';
+    let selectedDay = 'Lo antes posible';
+
+    function updateWaLink() {
+      const msg = encodeURIComponent(`¡Hola MV Talleres Gran Cox! Quisiera pedir cita / presupuesto para ${selectedService} (${selectedDay}) en mi vehículo.`);
+      const url = `https://wa.me/34606871343?text=${msg}`;
+      document.getElementById('btn-wa-action').href = url;
+      document.getElementById('btn-wa-sticky').href = url;
+    }
+
+    document.querySelectorAll('#service-pills .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#service-pills .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedService = el.getAttribute('data-service');
+        updateWaLink();
+      });
+    });
+
+    document.querySelectorAll('#day-pills .pill-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#day-pills .pill-option').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+        selectedDay = el.getAttribute('data-day');
+        updateWaLink();
+      });
+    });
+
+    function selectService(name) {
+      selectedService = name;
+      updateWaLink();
+      document.querySelector('.booking-box').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+  <!-- BANNER PROPIETARIO DEMO -->
+  <script src="/owner-banner.js"></script>
+</body>
+</html>
