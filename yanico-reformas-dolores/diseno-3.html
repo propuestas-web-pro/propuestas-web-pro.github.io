@@ -2,1060 +2,990 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Yanico Servicios y Reformas | Reformas Integrales & Multiservicios en Dolores</title>
-  <meta name="description" content="Yanico Servicios y Reformas en Calle San Antonio, 8, Dolores. Reformas integrales de viviendas, cocinas de diseño, baños con microcemento, fontanería y climatización en Vega Baja.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Yanico Servicios y Reformas | Reformas Integrales en Dolores</title>
+  <meta name="description" content="Yanico Servicios y Reformas en Calle San Antonio, 8 (Dolores). Cocinas de diseño, baños con microcemento, albañilería, fontanería y climatización en Vega Baja.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #d4af37;
-      --primary-hover: #b89324;
-      --primary-glow: rgba(212, 175, 55, 0.4);
+      --primary-dark: #b89324;
+      --primary-glow: rgba(212, 175, 55, 0.35);
       --accent: #f59e0b;
-      --bg-body: #08090b;
-      --bg-surface: #0f1115;
-      --bg-card: rgba(18, 20, 26, 0.75);
-      --border-outer: rgba(255, 255, 255, 0.08);
-      --border-inner: rgba(255, 255, 255, 0.05);
+      --bg-body: #080a0e;
+      --bg-surface: #10141b;
+      --bg-card: rgba(18, 22, 30, 0.75);
+      --border: rgba(212, 175, 55, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --text: #f8fafc;
       --text-muted: #94a3b8;
-      --font-display: 'Syne', sans-serif;
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --ease-elastic: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body.theme-industrial {
       --primary: #38bdf8;
-      --primary-hover: #0284c7;
+      --primary-dark: #0284c7;
       --primary-glow: rgba(56, 189, 248, 0.35);
-      --accent: #0ea5e9;
-      --bg-body: #070b10;
-      --bg-surface: #0e1520;
-      --bg-card: rgba(16, 24, 38, 0.8);
-      --border-outer: rgba(56, 189, 248, 0.15);
+      --bg-body: #070e17;
+      --bg-surface: #0e1a2b;
+      --border: rgba(56, 189, 248, 0.2);
     }
 
     body.theme-mediterranean {
       --primary: #10b981;
-      --primary-hover: #059669;
+      --primary-dark: #059669;
       --primary-glow: rgba(16, 185, 129, 0.35);
-      --accent: #34d399;
       --bg-body: #060e0a;
-      --bg-surface: #0d1a14;
-      --bg-card: rgba(14, 28, 22, 0.8);
-      --border-outer: rgba(16, 185, 129, 0.15);
+      --bg-surface: #0d1e15;
+      --border: rgba(16, 185, 129, 0.2);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; font-size: 16px; background-color: var(--bg-body); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background: var(--bg-body);
+      color: var(--text);
+    }
+
     body {
       font-family: var(--font-body);
       background-color: var(--bg-body);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
-      position: relative;
-      padding-bottom: 90px;
+      padding-bottom: calc(75px + env(safe-area-inset-bottom));
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* AMBIENT MESH LIGHTING */
-    .ambient-glow {
-      position: fixed;
-      width: 600px;
-      height: 600px;
+    /* AMBIENT BACKGROUND GLOW */
+    .ambient-orb {
+      position: absolute;
+      width: 320px;
+      height: 320px;
       border-radius: 50%;
       background: radial-gradient(circle, var(--primary-glow) 0%, rgba(0,0,0,0) 70%);
-      top: -200px;
-      right: -100px;
-      filter: blur(100px);
+      top: -80px;
+      right: -80px;
+      filter: blur(80px);
       z-index: 0;
       pointer-events: none;
       opacity: 0.6;
-      transition: background 0.5s ease;
-    }
-    .ambient-glow-2 {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(0,0,0,0) 70%);
-      bottom: 100px;
-      left: -150px;
-      filter: blur(120px);
-      z-index: 0;
-      pointer-events: none;
     }
 
-    /* TOP PROPOSAL VIP BAR */
-    .proposal-bar {
-      position: sticky;
-      top: 0;
-      z-index: 10000;
-      background: rgba(8, 9, 11, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-outer);
-      padding: 10px 20px;
+    /* TOP DEMO RIBBON (NON-STICKY to prevent screen eating on mobile) */
+    .demo-ribbon {
+      background: rgba(212, 175, 55, 0.08);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      font-size: 0.76rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .proposal-left {
-      display: flex;
-      align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 20;
     }
-    .badge-live {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid #10b981;
-      color: #34d399;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      display: flex;
+    .demo-tag {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .badge-live::before {
+    .demo-tag::before {
       content: '';
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
-      animation: pulse-dot 1.8s infinite;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
     }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-    .proposal-title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-    .proposal-title strong { color: #fff; }
-    .style-switcher {
+    .theme-picker {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
-    .style-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-outer);
+    .theme-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 8px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s var(--ease-elastic);
+      text-decoration: none;
     }
-    .style-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .style-btn.active {
+    .theme-pill.active {
       background: var(--primary);
       color: #000;
       border-color: var(--primary);
-      box-shadow: 0 0 16px var(--primary-glow);
     }
 
-    /* CONTAINER & GRIDS */
+    /* CONTAINER */
     .container {
-      max-width: 1200px;
+      width: 100%;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 18px;
       position: relative;
       z-index: 1;
     }
 
-    /* DOUBLE-BEZEL COMPONENT ARCHITECTURE */
-    .bezel-wrap {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-outer);
-      border-radius: 28px;
-      padding: 8px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      transition: transform 0.4s var(--ease-elastic), border-color 0.4s ease;
+    /* HEADER */
+    .site-header {
+      padding: 18px 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .bezel-inner {
-      background: var(--bg-card);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid var(--border-inner);
-      border-radius: 20px;
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 1.1rem;
+      font-weight: 900;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+    .brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .header-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    /* HERO SECTION */
-    .hero-section {
-      padding: 70px 0 60px;
-      text-align: center;
+    /* HERO SECTION (MOBILE OPTIMIZED) */
+    .hero {
+      padding: 24px 0 36px;
+      text-align: left;
     }
-    .eyebrow-pill {
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--primary-glow);
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
+      gap: 6px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border);
       color: var(--primary);
-      letter-spacing: 1.5px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 999px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      letter-spacing: 0.8px;
+      margin-bottom: 16px;
     }
     .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4.4rem);
-      line-height: 1.08;
-      font-weight: 900;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 7.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.12;
       letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      max-width: 950px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 16px;
+      color: #fff;
     }
-    .hero-title span.highlight {
-      background: linear-gradient(135deg, #ffffff 30%, var(--primary) 100%);
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 40%, var(--primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
+      line-height: 1.55;
+      margin-bottom: 24px;
+      max-width: 580px;
     }
 
-    /* NESTED ISLAND BUTTONS WITH MAGNETIC HOVER */
-    .btn-island-group {
+    /* PRIMARY CTA BUTTON (NATIVE FEEL) */
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    @media (min-width: 640px) {
+      .hero-actions { flex-direction: row; align-items: center; }
+    }
+    .btn-main {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-    .btn-island-primary {
-      display: inline-flex;
-      align-items: center;
       gap: 12px;
       background: var(--primary);
       color: #000;
-      font-weight: 800;
-      font-size: 0.95rem;
-      padding: 10px 10px 10px 24px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 10px 30px var(--primary-glow);
-      transition: transform 0.3s var(--ease-elastic), box-shadow 0.3s ease;
-    }
-    .btn-island-primary:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 16px 40px var(--primary-glow);
-    }
-    .btn-island-primary:active { transform: scale(0.98); }
-    .btn-icon-bubble {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s var(--ease-elastic);
-    }
-    .btn-island-primary:hover .btn-icon-bubble {
-      transform: translateX(3px) rotate(45deg);
-    }
-
-    .btn-island-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-outer);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 14px 28px;
-      border-radius: 999px;
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s var(--ease-elastic);
-    }
-    .btn-island-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* STATS CHIPS */
-    .hero-stats {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      padding-top: 10px;
-    }
-    .stat-chip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: left;
-    }
-    .stat-number {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: #fff;
-      line-height: 1;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 15px 24px;
+      border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px var(--primary-glow);
+      transition: transform 0.2s var(--ease-spring);
+      touch-action: manipulation;
     }
-    .stat-label {
-      font-size: 0.75rem;
+    .btn-main:active { transform: scale(0.97); }
+    .btn-main-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+    }
+    .btn-subtle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+    .btn-subtle:active { background: rgba(255,255,255,0.1); }
+
+    /* TRUST CHIPS ROW */
+    .trust-chips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+    .chip-item strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .chip-item span {
+      font-size: 0.68rem;
       color: var(--text-muted);
       line-height: 1.2;
     }
 
-    /* SECTION TITLES */
-    .section-header {
-      text-align: center;
-      margin-bottom: 45px;
+    /* SECTION TITLE */
+    .section-wrap {
+      margin-top: 42px;
     }
-    .section-eyebrow {
+    .sec-tag {
       color: var(--primary);
+      font-size: 0.72rem;
       font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .section-title {
+    .sec-title {
       font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-size: 1.45rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
 
-    /* INTERACTIVE BEFORE/AFTER SLIDER */
-    .slider-container {
+    /* MOBILE-PERFECT BEFORE/AFTER SLIDER (CLIP-PATH BASED - NO 1200PX OVERFLOW) */
+    .slider-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+    .slider-frame {
       position: relative;
       width: 100%;
-      height: 480px;
-      border-radius: 24px;
+      height: 280px;
+      border-radius: 14px;
       overflow: hidden;
       cursor: ew-resize;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--border-outer);
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .slider-img {
+    .slider-img-base {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       pointer-events: none;
     }
-    .slider-before-wrap {
+    .slider-img-clip {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    }
+    .slider-divider {
       position: absolute;
       top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      border-right: 2px solid var(--primary);
-      box-shadow: 5px 0 20px rgba(0,0,0,0.5);
-    }
-    .slider-before-wrap .slider-img {
-      width: 1200px;
-      max-width: none;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--primary);
+      transform: translateX(-50%);
+      pointer-events: none;
+      box-shadow: 0 0 10px var(--primary);
     }
     .slider-handle {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       background: var(--primary);
       color: #000;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 1.1rem;
-      box-shadow: 0 0 25px var(--primary-glow);
+      font-size: 1rem;
+      box-shadow: 0 0 20px var(--primary-glow);
       pointer-events: none;
     }
-    .slider-tag {
+    .slider-badge {
       position: absolute;
-      bottom: 20px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.75rem;
+      top: 12px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      backdrop-filter: blur(10px);
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(8px);
       z-index: 10;
     }
-    .slider-tag-after {
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-    .slider-tag-before {
-      left: 20px;
+    .badge-before {
+      left: 12px;
       background: rgba(0, 0, 0, 0.7);
       color: var(--primary);
       border: 1px solid var(--primary);
     }
-
-    /* INTERACTIVE BUDGET CALCULATOR */
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
+    .badge-after {
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
     }
-    @media (max-width: 900px) {
-      .calc-grid { grid-template-columns: 1fr; }
-      .slider-container { height: 350px; }
-    }
-    .calc-option-title {
-      font-size: 0.85rem;
-      font-weight: 700;
+    .slider-hint {
+      text-align: center;
+      font-size: 0.75rem;
       color: var(--text-muted);
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      margin-top: 10px;
     }
-    .calc-buttons {
+
+    /* BUDGET CALCULATOR */
+    .calc-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+    .calc-opt-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .calc-btn-group {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    .calc-btn {
+    .calc-pill {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-outer);
-      color: #fff;
-      padding: 12px 14px;
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      padding: 12px 10px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      cursor: pointer;
       text-align: left;
-      transition: all 0.2s var(--ease-elastic);
+      cursor: pointer;
+      touch-action: manipulation;
     }
-    .calc-btn:hover { background: rgba(255,255,255,0.08); }
-    .calc-btn.active {
-      background: rgba(212, 175, 55, 0.15);
+    .calc-pill.active {
+      background: rgba(212, 175, 55, 0.18);
       border-color: var(--primary);
       color: var(--primary);
     }
-    .calc-result-box {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 0, 0, 0.6));
-      border: 1px solid var(--primary-glow);
-      border-radius: 20px;
-      padding: 30px;
+    .calc-summary {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 18px;
       text-align: center;
     }
-    .calc-price {
+    .calc-est-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .calc-est-price {
       font-family: var(--font-heading);
-      font-size: 3rem;
+      font-size: 2.4rem;
       font-weight: 900;
       color: var(--primary);
-      margin: 10px 0;
-      line-height: 1;
+      line-height: 1.1;
+      margin: 6px 0;
     }
-    .calc-days {
-      font-size: 0.85rem;
+    .calc-est-days {
+      font-size: 0.78rem;
       color: var(--text-muted);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
-
-    /* BENTO SERVICES GRID */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .bento-col-8 { grid-column: span 8; }
-    .bento-col-4 { grid-column: span 4; }
-    .bento-col-6 { grid-column: span 6; }
-    @media (max-width: 900px) {
-      .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
-    }
-    .service-card {
-      position: relative;
-      height: 340px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border-outer);
-      background: #111;
-      group: hover;
-    }
-    .service-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.55;
-      transition: transform 0.6s var(--ease-elastic), opacity 0.6s ease;
-    }
-    .service-card:hover .service-bg {
-      transform: scale(1.06);
-      opacity: 0.7;
-    }
-    .service-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(8,9,11,0.92) 85%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 28px;
-    }
-    .service-badge {
-      background: rgba(0,0,0,0.6);
-      border: 1px solid var(--primary-glow);
-      color: var(--primary);
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 4px 12px;
-      border-radius: 999px;
-      width: fit-content;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-    .service-title {
-      font-family: var(--font-heading);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .service-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* TRUST BADGES */
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .trust-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-outer);
-      border-radius: 18px;
-      padding: 24px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .trust-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--primary-glow);
-      color: var(--primary);
+    .btn-calc-wa {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      gap: 8px;
+      background: var(--primary);
+      color: #000;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 13px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+    .btn-calc-wa:active { transform: scale(0.97); }
+
+    /* SERVICES STACK */
+    .services-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .service-item {
+      position: relative;
+      height: 190px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .service-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .service-mask {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,10,14,0.1) 0%, rgba(8,10,14,0.92) 80%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 16px;
+    }
+    .service-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+    .service-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .service-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* GUARANTEES */
+    .method-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .method-step {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
-    .trust-content h4 {
-      font-size: 1rem;
+    .method-info h4 {
+      font-size: 0.95rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 4px;
     }
-    .trust-content p {
-      font-size: 0.82rem;
+    .method-info p {
+      font-size: 0.8rem;
       color: var(--text-muted);
+      line-height: 1.4;
     }
 
-    /* REVIEWS SCROLLER */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+    /* REVIEWS CARD */
+    .review-bubble {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 10px;
     }
-    .review-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-outer);
-      border-radius: 20px;
-      padding: 26px;
+    .review-stars {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
     }
-    .review-stars { color: #f59e0b; margin-bottom: 12px; font-size: 0.9rem; }
-    .review-text { font-size: 0.9rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 16px; }
-    .review-author { display: flex; justify-content: space-between; align-items: center; }
-    .review-author strong { font-size: 0.85rem; color: #fff; }
-    .review-author span { font-size: 0.75rem; color: var(--text-muted); }
-
-    /* LOCATION & CONTACT */
-    .location-box {
-      margin-top: 40px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-outer);
-      border-radius: 24px;
-      padding: 32px;
+    .review-quote {
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+    .review-user {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
+    .review-user strong { color: #fff; }
 
-    /* STICKY BOTTOM VIP DOCK */
-    .vip-dock {
+    /* LOCATION & CLINIC CARD */
+    .clinic-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+    .clinic-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+    .clinic-row:last-child { margin-bottom: 0; }
+    .clinic-icon { font-size: 1.1rem; }
+
+    /* FLOATING WHATSAPP PILL (MINIMAL NATIVE, NO SANDWICH) */
+    .floating-wa-pill {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      right: 16px;
       z-index: 9999;
-      background: rgba(8, 9, 11, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border-outer);
-      padding: 12px 24px;
-    }
-    .vip-dock-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .dock-status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .dock-status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 10px #10b981;
-    }
-    .dock-status-text strong {
-      display: block;
-      font-size: 0.85rem;
-      color: #fff;
-    }
-    .dock-status-text span {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-    .dock-actions {
-      display: flex;
-      gap: 10px;
-    }
-    .btn-dock-call {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-outer);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .btn-dock-wa {
       background: #25d366;
       color: #000;
-      font-weight: 800;
-      font-size: 0.88rem;
-      padding: 10px 22px;
+      padding: 12px 18px;
       border-radius: 999px;
-      text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+      touch-action: manipulation;
+    }
+    .floating-wa-pill:active { transform: scale(0.95); }
+    .floating-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #000;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      margin-top: 45px;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 20px 0;
+      border-top: 1px solid var(--border-subtle);
     }
   </style>
 </head>
-<body id="page-body" class="theme-mediterranean">
-  <div class="ambient-glow"></div>
-  <div class="ambient-glow-2"></div>
+<body id="page-body">
+  <div class="ambient-orb"></div>
 
-  <!-- TOP PROPOSAL VIP BAR -->
-  <header class="proposal-bar">
-    <div class="proposal-left">
-      <div class="badge-live">PROPUESTA EXCLUSIVA</div>
-      <div class="proposal-title">
-        Diseño Web para <strong>Yanico Servicios y Reformas</strong> · Dolores (Vega Baja)
-      </div>
+  <!-- TOP NON-STICKY DEMO RIBBON (Doesn't block mobile screen!) -->
+  <div class="demo-ribbon">
+    <div class="demo-tag">Propuesta Yanico Reformas</div>
+    <div class="theme-picker">
+      <button class="theme-pill active" onclick="setTheme('default', this)">1. Titanio & Oro</button>
+      <button class="theme-pill" onclick="setTheme('theme-industrial', this)">2. Pizarra</button>
+      <button class="theme-pill" onclick="setTheme('theme-mediterranean', this)">3. Mediterráneo</button>
     </div>
-    <div class="style-switcher">
-      <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Estilos:</span>
-      <button class="style-btn" onclick="setTheme('default', this)">1. Titanio & Oro</button>
-      <button class="style-btn" onclick="setTheme('theme-industrial', this)">2. Industrial Pizarra</button>
-      <button class="style-btn" onclick="setTheme('theme-mediterranean', this)">3. Mediterráneo</button>
-    </div>
-  </header>
+  </div>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section container">
-    <div class="eyebrow-pill">
-      <span>★</span> REFORMAS INTEGRALES & MULTISERVICIOS · DOLORES
-    </div>
-    <h1 class="hero-title">
-      Transformamos tu espacio en un <span class="highlight">hogar extraordinario</span> sin sorpresas ni retrasos.
-    </h1>
-    <p class="hero-subtitle">
-      Especialistas en cocinas con isla, baños de microcemento, albañilería, fontanería y climatización en Dolores y toda la Vega Baja. Presupuesto detallado en 24h y garantía por contrato.
-    </p>
-
-    <div class="btn-island-group">
-      <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20presupuesto%20para%20una%20reforma" class="btn-island-primary" target="_blank" rel="noopener">
-        <span>Solicitar Presupuesto por WhatsApp</span>
-        <div class="btn-icon-bubble">↗</div>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="site-header">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">Y</div>
+        <div>
+          <div class="brand-name">Yanico</div>
+          <div class="brand-sub">Servicios & Reformas</div>
+        </div>
       </a>
-      <a href="#proyectos" class="btn-island-secondary">
-        <span>Ver Antes / Después</span>
-      </a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-chip">
-        <div class="stat-number">4.8★</div>
-        <div class="stat-label">Valoración Google<br>(30 Reseñas reales)</div>
+      <div class="header-badge">
+        <span>★</span> 4.8 en Google
       </div>
-      <div style="width: 1px; height: 35px; background: var(--border-outer);"></div>
-      <div class="stat-chip">
-        <div class="stat-number">+250</div>
-        <div class="stat-label">Reformas entregadas<br>en la Vega Baja</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span>●</span> DOLORES · VEGA BAJA
       </div>
-      <div style="width: 1px; height: 35px; background: var(--border-outer);"></div>
-      <div class="stat-chip">
-        <div class="stat-number">2 Años</div>
-        <div class="stat-label">Garantía por escrito<br>en todos los trabajos</div>
-      </div>
-    </div>
-  </section>
+      <h1 class="hero-title">
+        Reformas integrales con <span class="gradient-text">acabados de lujo</span>.
+      </h1>
+      <p class="hero-subtitle">
+        Cocinas de diseño con isla, baños de microcemento, fontanería y climatización en Dolores y alrededores. Presupuesto cerrado en 24h y garantía por contrato.
+      </p>
 
-  <!-- INTERACTIVE BEFORE/AFTER SECTION -->
-  <section id="proyectos" class="container" style="margin-bottom: 80px;">
-    <div class="section-header">
-      <div class="section-eyebrow">EL IMPACTO DEL TRABAJO BIEN HECHO</div>
-      <h2 class="section-title">Comprueba la Transformación (Desliza)</h2>
-    </div>
-
-    <div class="bezel-wrap">
-      <div class="bezel-inner" style="padding: 16px;">
-        <div class="slider-container" id="beforeAfterSlider">
-          <!-- AFTER IMAGE -->
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Reforma terminada por Yanico" class="slider-img">
-          <div class="slider-tag slider-tag-after">DESPUÉS (REFORMA YANICO)</div>
-
-          <!-- BEFORE IMAGE (CLIPPED) -->
-          <div class="slider-before-wrap" id="sliderBeforeWrap">
-            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80" alt="Estado anterior de la cocina" class="slider-img">
-            <div class="slider-tag slider-tag-before">ANTES (ORIGINAL)</div>
-          </div>
-
-          <!-- DRAGGABLE HANDLE -->
-          <div class="slider-handle" id="sliderHandle">⟷</div>
-        </div>
-        <div style="text-align: center; margin-top: 14px; font-size: 0.8rem; color: var(--text-muted);">
-          👆 Arrastra el cursor o desliza con el dedo para ver la diferencia antes y después de la reforma.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE BUDGET CALCULATOR -->
-  <section class="container" style="margin-bottom: 80px;">
-    <div class="section-header">
-      <div class="section-eyebrow">SIMULADOR EN TIEMPO REAL</div>
-      <h2 class="section-title">Calcula la Estimación de tu Proyecto</h2>
-    </div>
-
-    <div class="bezel-wrap">
-      <div class="bezel-inner">
-        <div class="calc-grid">
-          <div>
-            <div class="calc-option-title">1. Selecciona el tipo de trabajo:</div>
-            <div class="calc-buttons">
-              <button class="calc-btn active" onclick="setProjectType('bano', 2800, 7, this)">🚿 Baño Completo</button>
-              <button class="calc-btn" onclick="setProjectType('cocina', 6200, 14, this)">🍳 Cocina de Diseño</button>
-              <button class="calc-btn" onclick="setProjectType('integral', 18500, 35, this)">🏠 Reforma Integral</button>
-              <button class="calc-btn" onclick="setProjectType('fontaneria', 1400, 3, this)">🔧 Fontanería / Clima</button>
-            </div>
-
-            <div class="calc-option-title">2. Tamaño aproximado:</div>
-            <div class="calc-buttons">
-              <button class="calc-btn active" onclick="setSizeMultiplier(1, 'Estándar', this)">Vivienda / Estancia Estándar</button>
-              <button class="calc-btn" onclick="setSizeMultiplier(1.4, 'Grande / Chalet', this)">Chalet / Superficie Amplia</button>
-            </div>
-          </div>
-
-          <div class="calc-result-box">
-            <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Presupuesto Orientativo:</div>
-            <div class="calc-price" id="calcPriceDisplay">2.800€</div>
-            <div class="calc-days" id="calcDaysDisplay">⏱️ Plazo de ejecución estimado: ~7 días laborales</div>
-            
-            <a id="calcWaBtn" href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20calculado%20en%20vuestra%20web%20un%20presupuesto%20orientativo%20para%20Baño%20Completo%20(2.800€).%20¿Podemos%20cerrar%20visita%20para%20medir?" target="_blank" rel="noopener" class="btn-island-primary" style="width: 100%; justify-content: center;">
-              <span>Consultar Viabilidad por WhatsApp</span>
-              <div class="btn-icon-bubble">↗</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENTO GRID SERVICES -->
-  <section class="container" style="margin-bottom: 80px;">
-    <div class="section-header">
-      <div class="section-eyebrow">SERVICIOS DE ALTO NIVEL</div>
-      <h2 class="section-title">Especialistas en Cada Detalle de tu Obra</h2>
-    </div>
-
-    <div class="bento-grid">
-      <!-- CARD 1 -->
-      <div class="service-card bento-col-8">
-        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=1200&q=80" alt="Cocinas modernas" class="service-bg">
-        <div class="service-overlay">
-          <div class="service-badge">ALTA GAMA</div>
-          <h3 class="service-title">Cocinas Abiertas con Isla</h3>
-          <p class="service-desc">Mobiliario a medida, encimeras porcelánicas o de cuarzo, iluminación led empotrada e integración total de electrodomésticos.</p>
-        </div>
-      </div>
-
-      <!-- CARD 2 -->
-      <div class="service-card bento-col-4">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Baños modernos" class="service-bg">
-        <div class="service-overlay">
-          <div class="service-badge">TENDENCIA</div>
-          <h3 class="service-title">Baños & Microcemento</h3>
-          <p class="service-desc">Cambio de bañera por plato de ducha de resina extraplano, griferías empotradas y hornacinas iluminadas.</p>
-        </div>
-      </div>
-
-      <!-- CARD 3 -->
-      <div class="service-card bento-col-4">
-        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Fontanería y climatización" class="service-bg">
-        <div class="service-overlay">
-          <div class="service-badge">TÉCNICO</div>
-          <h3 class="service-title">Fontanería & Climatización</h3>
-          <p class="service-desc">Instalaciones de agua multicapa, aerotermia, conductos invisibles y reparaciones urgentes en Dolores.</p>
-        </div>
-      </div>
-
-      <!-- CARD 4 -->
-      <div class="service-card bento-col-8">
-        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" alt="Reformas integrales de viviendas" class="service-bg">
-        <div class="service-overlay">
-          <div class="service-badge">LLAVE EN MANO</div>
-          <h3 class="service-title">Reformas Integrales de Chalets y Pisos</h3>
-          <p class="service-desc">Derribos, redistribución de tabiques, aislamiento térmico-acústico y alisado de paredes con pintura decorativa.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST & GUARANTEES -->
-  <section class="container" style="margin-bottom: 80px;">
-    <div class="section-header">
-      <div class="section-eyebrow">POR QUÉ CONFIAR EN YANICO</div>
-      <h2 class="section-title">Cero Imprevistos. Máxima Tranquilidad.</h2>
-    </div>
-
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="trust-icon">📋</div>
-        <div class="trust-content">
-          <h4>Presupuesto Cerrado</h4>
-          <p>Lo que firmamos es lo que pagas. Sin partidas fantasma ni sobrecostes a mitad de obra.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon">⏱️</div>
-        <div class="trust-content">
-          <h4>Compromiso de Plazos</h4>
-          <p>Establecemos fecha de entrega por contrato para que planifiques tu mudanza con total seguridad.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon">🛡️</div>
-        <div class="trust-content">
-          <h4>Garantía 24 Meses</h4>
-          <p>Garantizamos por escrito la calidad de los materiales y mano de obra ante cualquier incidencia.</p>
-        </div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon">📍</div>
-        <div class="trust-content">
-          <h4>Empresa Local de Dolores</h4>
-          <p>Fácil acceso y cercanía para atender cualquier necesidad en Dolores, Catral, Almoradí y alrededores.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="container" style="margin-bottom: 80px;">
-    <div class="section-header">
-      <div class="section-eyebrow">OPINIONES DE CLIENTES REALES</div>
-      <h2 class="section-title">Lo que Dicen de Yanico en Google</h2>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Nos reformaron la cocina y un baño en Dolores. Puntualidad impecable, limpian cada día al terminar y los acabados son de diez. Súper recomendables."</p>
-        <div class="review-author">
-          <strong>Antonio M. G.</strong>
-          <span>Cliente en Dolores</span>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Tuvimos un problema urgente de fontanería y alicatado en nuestro chalet. Acudieron el mismo día y nos dejaron todo perfecto. Profesionales como pocos."</p>
-        <div class="review-author">
-          <strong>Laura R.</strong>
-          <span>Cliente en Almoradí</span>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Reforma integral llave en mano. Nos guiaron con las calidades y nos ahorraron mucho dinero en materiales. Da gusto tratar con gente tan seria."</p>
-        <div class="review-author">
-          <strong>Francisco V.</strong>
-          <span>Cliente en Catral</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- LOCATION BAR -->
-    <div class="location-box">
-      <div>
-        <h4 style="font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Yanico Servicios y Reformas</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">📍 Calle San Antonio, 8, 03150 Dolores (Alicante) · Vega Baja</p>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">📞 Teléfono: +34 678 51 04 40</p>
-      </div>
-      <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20quiero%20pedir%20presupuesto" class="btn-island-primary" target="_blank" rel="noopener">
-        <span>Hablar por WhatsApp</span>
-        <div class="btn-icon-bubble">↗</div>
-      </a>
-    </div>
-  </section>
-
-  <!-- STICKY VIP BOTTOM DOCK -->
-  <aside class="vip-dock">
-    <div class="vip-dock-inner">
-      <div class="dock-status">
-        <div class="dock-status-dot"></div>
-        <div class="dock-status-text">
-          <strong>Yanico Reformas</strong>
-          <span>En línea · Presupuestos en 24h</span>
-        </div>
-      </div>
-      <div class="dock-actions">
-        <a href="tel:+34678510440" class="btn-dock-call">Llamar</a>
-        <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20quiero%20pedir%20presupuesto" class="btn-dock-wa" target="_blank" rel="noopener">
-          <span>WhatsApp Directo</span>
+      <div class="hero-actions">
+        <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20visto%20vuestra%20web%20y%20quiero%20pedir%20presupuesto%20para%20una%20reforma." target="_blank" rel="noopener" class="btn-main">
+          <span>Pedir Presupuesto por WhatsApp</span>
+          <div class="btn-main-icon">↗</div>
+        </a>
+        <a href="#antes-despues" class="btn-subtle">
+          <span>Ver Antes / Después</span>
         </a>
       </div>
-    </div>
-  </aside>
+
+      <div class="trust-chips">
+        <div class="chip-item">
+          <strong>4.8★</strong>
+          <span>30 Reseñas</span>
+        </div>
+        <div class="chip-item">
+          <strong>24 Meses</strong>
+          <span>Garantía escrita</span>
+        </div>
+        <div class="chip-item">
+          <strong>24 Horas</strong>
+          <span>Presupuesto</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANTES / DESPUÉS SLIDER -->
+    <section id="antes-despues" class="section-wrap">
+      <div class="sec-tag">TRANSFORMACIONES REALES</div>
+      <h2 class="sec-title">Desliza para ver la reforma</h2>
+
+      <div class="slider-box">
+        <div class="slider-frame" id="sliderTouchFrame">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Reforma terminada por Yanico" class="slider-img-base">
+          <div class="slider-badge badge-after">DESPUÉS</div>
+
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Estado anterior de la cocina" class="slider-img-clip" id="sliderClip">
+          <div class="slider-badge badge-before">ANTES</div>
+
+          <div class="slider-divider" id="sliderLine"></div>
+          <div class="slider-handle" id="sliderDot">⟷</div>
+        </div>
+        <p class="slider-hint">👆 Arrastra con el dedo a izquierda o derecha</p>
+      </div>
+    </section>
+
+    <!-- CALCULADORA DE PRESUPUESTO -->
+    <section class="section-wrap">
+      <div class="sec-tag">SIMULADOR EN DIRECTO</div>
+      <h2 class="sec-title">Calcula el coste orientativo</h2>
+
+      <div class="calc-card">
+        <div class="calc-opt-label">1. Tipo de Reforma:</div>
+        <div class="calc-btn-group">
+          <button class="calc-pill active" onclick="setProject(2800, 7, 'Baño Completo', this)">🚿 Baño Completo</button>
+          <button class="calc-pill" onclick="setProject(6200, 14, 'Cocina con Isla', this)">🍳 Cocina de Diseño</button>
+          <button class="calc-pill" onclick="setProject(18500, 35, 'Reforma Integral', this)">🏠 Reforma Integral</button>
+          <button class="calc-pill" onclick="setProject(1400, 3, 'Fontanería y Clima', this)">🔧 Fontanería / Clima</button>
+        </div>
+
+        <div class="calc-opt-label">2. Superficie / Estancia:</div>
+        <div class="calc-btn-group">
+          <button class="calc-pill active" onclick="setSize(1, this)">Vivienda Estándar</button>
+          <button class="calc-pill" onclick="setSize(1.4, this)">Chalet / Amplio</button>
+        </div>
+
+        <div class="calc-summary">
+          <div class="calc-est-title">Presupuesto Estimado:</div>
+          <div class="calc-est-price" id="calcPrice">2.800€</div>
+          <div class="calc-est-days" id="calcDays">⏱️ Ejecución aprox: ~7 días laborales</div>
+          <a id="calcWaLink" href="https://wa.me/34678510440?text=Hola%20Yanico,%20he%20calculado%20un%20presupuesto%20orientativo%20para%20Baño%20Completo%20(2.800€).%20¿Podemos%20cerrar%20visita?" target="_blank" rel="noopener" class="btn-calc-wa">
+            <span>Consultar Viabilidad por WhatsApp ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section-wrap">
+      <div class="sec-tag">SERVICIOS PROFESIONALES</div>
+      <h2 class="sec-title">Especialistas en cada detalle</h2>
+
+      <div class="services-stack">
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="Cocinas modernas" class="service-img">
+          <div class="service-mask">
+            <div class="service-badge">ALTA GAMA</div>
+            <h3 class="service-name">Cocinas Abiertas de Diseño</h3>
+            <p class="service-text">Mobiliario a medida, encimeras porcelánicas e iluminación led empotrada.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Baños modernos" class="service-img">
+          <div class="service-mask">
+            <div class="service-badge">TENDENCIA</div>
+            <h3 class="service-name">Baños & Microcemento</h3>
+            <p class="service-text">Cambio de bañera por plato extraplano de resina y grifería empotrada.</p>
+          </div>
+        </div>
+
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Reformas integrales" class="service-img">
+          <div class="service-mask">
+            <div class="service-badge">LLAVE EN MANO</div>
+            <h3 class="service-name">Reformas de Chalets y Pisos</h3>
+            <p class="service-text">Redistribución, alisado de paredes, climatización y fontanería de precisión.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GARANTÍAS -->
+    <section class="section-wrap">
+      <div class="sec-tag">TRANQUILIDAD TOTAL</div>
+      <h2 class="sec-title">Garantías por contrato</h2>
+
+      <div class="method-card">
+        <div class="method-step">📋</div>
+        <div class="method-info">
+          <h4>Presupuesto Cerrado</h4>
+          <p>Sin sorpresas ni partidas fantasma. Lo que presupuestamos es lo que pagas.</p>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-step">⏱️</div>
+        <div class="method-info">
+          <h4>Plazos Garantizados</h4>
+          <p>Compromiso formal de fecha de finalización por contrato.</p>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-step">🛡️</div>
+        <div class="method-info">
+          <h4>Garantía de 2 Años</h4>
+          <p>Cobertura integral ante cualquier desperfecto en materiales o instalación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="section-wrap">
+      <div class="sec-tag">CLIENTES SATISFECHOS</div>
+      <h2 class="sec-title">Opiniones en Dolores</h2>
+
+      <div class="review-bubble">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"Nos reformaron la cocina y un baño en Dolores. Limpios, puntuales y con acabados de primera. Muy recomendables."</p>
+        <div class="review-user"><strong>Antonio M. G.</strong><span>Dolores</span></div>
+      </div>
+
+      <div class="review-bubble">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-quote">"Avería urgente de fontanería y alicatado en nuestro chalet. Vinieron el mismo día y solucionado. Grandes profesionales."</p>
+        <div class="review-user"><strong>Laura R.</strong><span>Almoradí</span></div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="section-wrap">
+      <div class="sec-tag">CONTACTO DIRECTO</div>
+      <h2 class="sec-title">Empresa local en Dolores</h2>
+
+      <div class="clinic-card">
+        <div class="clinic-row">
+          <span class="clinic-icon">📍</span>
+          <span>Calle San Antonio, 8, 03150 Dolores (Alicante)</span>
+        </div>
+        <div class="clinic-row">
+          <span class="clinic-icon">📞</span>
+          <span>+34 678 51 04 40</span>
+        </div>
+        <div class="clinic-row">
+          <span class="clinic-icon">⚡</span>
+          <span>Presupuestos y visitas sin compromiso en 24h</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>© 2026 Yanico Servicios y Reformas · Dolores (Alicante)</p>
+    </footer>
+  </div>
+
+  <!-- FLOATING WA PILL (NATIVE LOOK, NO SANDWICH) -->
+  <a href="https://wa.me/34678510440?text=Hola%20Yanico,%20quiero%20pedir%20presupuesto." target="_blank" rel="noopener" class="floating-wa-pill">
+    <div class="floating-dot"></div>
+    <span>Pedir Presupuesto WhatsApp</span>
+  </a>
 
   <script>
-    // THEME SWITCHER
     function setTheme(themeClass, btn) {
       document.body.className = themeClass === 'default' ? '' : themeClass;
-      document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.theme-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    // BEFORE/AFTER SLIDER LOGIC
-    const slider = document.getElementById('beforeAfterSlider');
-    const beforeWrap = document.getElementById('sliderBeforeWrap');
-    const handle = document.getElementById('sliderHandle');
-    let isSliding = false;
+    // SLIDER TOUCH & DRAG
+    const frame = document.getElementById('sliderTouchFrame');
+    const clip = document.getElementById('sliderClip');
+    const line = document.getElementById('sliderLine');
+    const dot = document.getElementById('sliderDot');
+    let dragging = false;
 
-    function moveSlider(clientX) {
-      const rect = slider.getBoundingClientRect();
-      let pos = (clientX - rect.left) / rect.width;
-      if (pos < 0.05) pos = 0.05;
-      if (pos > 0.95) pos = 0.95;
-      const percentage = pos * 100;
-      beforeWrap.style.width = percentage + '%';
-      handle.style.left = percentage + '%';
+    function updateSlider(clientX) {
+      const rect = frame.getBoundingClientRect();
+      let x = (clientX - rect.left) / rect.width;
+      if (x < 0.05) x = 0.05;
+      if (x > 0.95) x = 0.95;
+      const pct = (x * 100).toFixed(1) + '%';
+      clip.style.clipPath = 'polygon(0 0, ' + pct + ' 0, ' + pct + ' 100%, 0 100%)';
+      line.style.left = pct;
+      dot.style.left = pct;
     }
 
-    slider.addEventListener('mousedown', (e) => { isSliding = true; moveSlider(e.clientX); });
-    window.addEventListener('mouseup', () => { isSliding = false; });
-    window.addEventListener('mousemove', (e) => { if (isSliding) moveSlider(e.clientX); });
+    frame.addEventListener('mousedown', (e) => { dragging = true; updateSlider(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+    window.addEventListener('mousemove', (e) => { if (dragging) updateSlider(e.clientX); });
 
-    slider.addEventListener('touchstart', (e) => { isSliding = true; moveSlider(e.touches[0].clientX); });
-    window.addEventListener('touchend', () => { isSliding = false; });
-    window.addEventListener('touchmove', (e) => { if (isSliding) moveSlider(e.touches[0].clientX); });
+    frame.addEventListener('touchstart', (e) => { dragging = true; updateSlider(e.touches[0].clientX); });
+    window.addEventListener('touchend', () => { dragging = false; });
+    window.addEventListener('touchmove', (e) => { if (dragging) updateSlider(e.touches[0].clientX); });
 
-    // CALCULATOR LOGIC
+    // CALCULATOR
     let basePrice = 2800;
     let baseDays = 7;
-    let sizeMultiplier = 1;
-    let currentProjectName = 'Baño Completo';
+    let sizeMult = 1;
+    let projName = 'Baño Completo';
 
-    function updateCalcDisplay() {
-      const finalPrice = Math.round(basePrice * sizeMultiplier);
-      const finalDays = Math.round(baseDays * (sizeMultiplier > 1 ? 1.3 : 1));
-      document.getElementById('calcPriceDisplay').innerText = finalPrice.toLocaleString('es-ES') + '€';
-      document.getElementById('calcDaysDisplay').innerText = '⏱️ Plazo de ejecución estimado: ~' + finalDays + ' días laborales';
-      
-      const msg = 'Hola Yanico, he calculado en vuestra web un presupuesto orientativo para ' + currentProjectName + ' (' + finalPrice.toLocaleString('es-ES') + '€). ¿Podemos cerrar visita para medir?';
-      document.getElementById('calcWaBtn').href = 'https://wa.me/34678510440?text=' + encodeURIComponent(msg);
+    function refreshCalc() {
+      const price = Math.round(basePrice * sizeMult);
+      const days = Math.round(baseDays * (sizeMult > 1 ? 1.3 : 1));
+      document.getElementById('calcPrice').innerText = price.toLocaleString('es-ES') + '€';
+      document.getElementById('calcDays').innerText = '⏱️ Ejecución aprox: ~' + days + ' días laborales';
+      const msg = 'Hola Yanico, he calculado un presupuesto orientativo para ' + projName + ' (' + price.toLocaleString('es-ES') + '€). ¿Podemos cerrar visita?';
+      document.getElementById('calcWaLink').href = 'https://wa.me/34678510440?text=' + encodeURIComponent(msg);
     }
 
-    function setProjectType(type, price, days, btn) {
-      basePrice = price;
-      baseDays = days;
-      currentProjectName = btn.innerText.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑs]/g, '').trim();
-      btn.parentElement.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
+    function setProject(p, d, name, btn) {
+      basePrice = p;
+      baseDays = d;
+      projName = name;
+      btn.parentElement.querySelectorAll('.calc-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      updateCalcDisplay();
+      refreshCalc();
     }
 
-    function setSizeMultiplier(mult, label, btn) {
-      sizeMultiplier = mult;
-      btn.parentElement.querySelectorAll('.calc-btn').forEach(b => b.classList.remove('active'));
+    function setSize(m, btn) {
+      sizeMult = m;
+      btn.parentElement.querySelectorAll('.calc-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      updateCalcDisplay();
+      refreshCalc();
     }
   </script>
 </body>
