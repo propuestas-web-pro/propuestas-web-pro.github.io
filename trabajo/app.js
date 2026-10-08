@@ -987,6 +987,9 @@ function updateLiveStats() {
   const mNavBadge = document.getElementById('mNavBadgeCount');
   if (mNavBadge) mNavBadge.innerText = total;
 
+  const mHeaderBadge = document.getElementById('mCountLiveBadge');
+  if (mHeaderBadge) mHeaderBadge.innerText = total;
+
   const countJobOrihuela = document.getElementById('countJobOrihuela');
   if (countJobOrihuela) countJobOrihuela.innerText = orihuelaCount;
 

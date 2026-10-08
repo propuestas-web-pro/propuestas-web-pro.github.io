@@ -1225,21 +1225,21 @@ input, textarea, select {
   display: inline-block;
 }
 
-/* --- Modal Form --- */
-.modal-backdrop {
+/* --- Modal Form & Overlays --- */
+.modal-backdrop, .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(3, 7, 18, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 200;
+  background: rgba(3, 7, 18, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 2000;
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
 }
 
-.modal-backdrop.active {
+.modal-backdrop.active, .modal-overlay.active {
   display: flex;
 }
 
