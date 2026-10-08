@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#05070b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Radar Empleo">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Radar de Empleo en Tiempo Real | Othmane Fathi (Orihuela - Callosa)</title>
+  <meta name="description" content="Radar táctico de ofertas de empleo en tiempo real para Othmane Fathi. Especializado en soporte técnico, SAT, telecomunicaciones y turnos de mañana en Orihuela y Callosa de Segura.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Main Container -->
+  <div class="app-layout">
+    
+    <!-- Floating Header Island -->
+    <header class="top-nav-island">
+      <div class="nav-header-row">
+        <div class="nav-brand">
+          <div class="brand-avatar">
+            <span class="avatar-text">OF</span>
+            <span class="status-pulse-dot" title="Listo para incorporación inmediata"></span>
+          </div>
+          <div class="brand-info">
+            <span class="brand-name">Othmane Fathi</span>
+            <span class="brand-sub">Técnico Informático SMR & 2º DAM</span>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <button class="btn-island-pill btn-secondary" id="btnOpenMobileModal" title="Abrir en tu teléfono móvil o escanear QR">
+            <span>📱 En el Móvil</span>
+            <div class="btn-icon-circle" style="font-size: 10px; font-weight: 800;">QR</div>
+          </button>
+          <a href="cv_othmane_fathi.pdf" download="Currículum_Othmane_Fathi.pdf" class="btn-island-pill btn-emerald" id="btnDownloadCvNav">
+            <span>CV</span>
+            <div class="btn-icon-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="mainTabs">
+        <button class="tab-btn active" data-tab="radar" id="tabRadarBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span>Radar en Vivo</span>
+          <span class="live-dot-badge">LIVE</span>
+        </button>
+        <button class="tab-btn" data-tab="guia" id="tabGuiaBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>¿Cómo funciona InfoJobs?</span>
+        </button>
+        <button class="tab-btn" data-tab="directorio" id="tabDirectorioBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Directorio Orihuela/Callosa</span>
+        </button>
+        <button class="tab-btn" data-tab="pitch" id="tabPitchBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Guiones & Pitch</span>
+        </button>
+        <button class="tab-btn" data-tab="cv" id="tabCvBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Mi CV</span>
+        </button>
+        <button class="tab-btn" data-tab="kanban" id="tabKanbanBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>
+          <span>Pipeline CRM</span>
+        </button>
+        <button class="tab-btn" data-tab="plan" id="tabPlanBtn">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Misión Mañana</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Hero / Status Banner -->
+    <section class="hero-tactical">
+      <div class="hero-content">
+        <div class="eyebrow-badge">
+          <span class="badge-dot"></span>
+          <span>RADAR TÁCTICO EN TIEMPO REAL • ENLACES DIRECTOS A VACANTES REALES</span>
+        </div>
+        <h1 class="hero-title">
+          Vacantes publicadas al instante con <span class="gradient-text">enlace directo al anuncio oficial</span>
+        </h1>
+        <p class="hero-description">
+          El radar rastrea en tiempo real cada puesto publicado en <strong>Milanuncios, Tecnoempleo y empresas locales</strong> en Orihuela y Callosa de Segura. 
+          En cuanto una empresa publica una oferta, <strong>te suena una alerta acústica y te salta una notificación</strong> para abrir inmediatamente la 
+          <strong>vacante exacta</strong> y ser el primero en postularte o contactar por teléfono/WhatsApp.
+        </p>
+      </div>
+
+      <!-- Live Counters & Stats Bento -->
+      <div class="hero-bento">
+        <div class="bento-metric-card">
+          <div class="metric-top">
+            <span class="metric-label">HORARIO EXIGIDO</span>
+            <span class="metric-tag tag-cyan">MAÑANAS</span>
+          </div>
+          <div class="metric-value">07/08h — 14/15h</div>
+          <div class="metric-foot">Tardes libres para 2º DAM</div>
+        </div>
+
+        <div class="bento-metric-card">
+          <div class="metric-top">
+            <span class="metric-label">ZONA GEOGRÁFICA</span>
+            <span class="metric-tag tag-emerald">SIN COCHE</span>
+          </div>
+          <div class="metric-value">Orihuela + Callosa</div>
+          <div class="metric-foot">A pie o Tren Renfe C-1 (8 min)</div>
+        </div>
+
+        <div class="bento-metric-card">
+          <div class="metric-top">
+            <span class="metric-label">VACANTES REALES EN RADAR</span>
+            <span class="metric-tag tag-amber" id="liveAlertsCount">138</span>
+          </div>
+          <div class="metric-value mono" id="lastScanTime">Ahora mismo</div>
+          <div class="metric-foot">Escaneando cada 20 segundos</div>
+        </div>
+
+        <div class="bento-metric-card highlight-card">
+          <div class="metric-top">
+            <span class="metric-label">APERTURA COMERCIOS</span>
+            <span class="metric-tag tag-red">MAÑANA</span>
+          </div>
+          <div class="metric-value mono" id="countdownTimer">08:30 AM</div>
+          <div class="metric-foot">Momento clave para llamar</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: RADAR DE OFERTAS EN TIEMPO REAL (PRIMARY VIEW) -->
+    <main class="tab-content active" id="view-radar">
+      
+      <!-- Live Control Center Bar -->
+      <div class="radar-control-panel outer-bezel">
+        <div class="inner-core control-core">
+          <div class="control-left">
+            <div class="radar-status-indicator">
+              <span class="sonar-wave"></span>
+              <span class="sonar-dot"></span>
+              <div>
+                <strong>Radar Automático en Tiempo Real (Vacantes Específicas 100% Reales)</strong>
+                <span class="text-xs text-muted" id="radarStatusText">Detectando publicaciones individuales en Milanuncios y Tecnoempleo. Cada tarjeta te lleva al anuncio exacto.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="control-actions">
+            <!-- Toggle Sonido -->
+            <button class="btn-island-pill btn-secondary" id="btnToggleSound" title="Activar o desactivar aviso sonoro al detectar nueva oferta">
+              <span id="soundLabel">🔊 Sonido: ON</span>
+            </button>
+
+            <!-- Botón Notificaciones de Escritorio -->
+            <button class="btn-island-pill btn-secondary" id="btnRequestNotification" title="Permitir notificaciones emergentes de Windows/Navegador">
+              <span>🔔 Notificaciones PC</span>
+            </button>
+
+            <!-- Botón Añadir Oferta Real que vio el usuario -->
+            <button class="btn-island-pill btn-secondary" id="btnOpenAddJobModal" title="Pegar una oferta que acabas de encontrar en InfoJobs o Milanuncios">
+              <span>📥 + Guardar Oferta</span>
+              <div class="btn-icon-circle">+</div>
+            </button>
+
+            <!-- Botón Actualizar Feeds -->
+            <button class="btn-island-pill btn-emerald" id="btnManualScan" title="Escanear la web ahora mismo en busca de nuevas ofertas">
+              <span>⚡ Escanear Ahora</span>
+              <div class="btn-icon-circle">🔄</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner de Nueva Oferta Detectada en Tiempo Real (Dinámico) -->
+      <div id="liveNewJobBannerContainer"></div>
+
+      <!-- Live Job Filters & Search -->
+      <div class="filter-toolbar-container">
+        <div class="toolbar-search">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="filterJobSearchInput" placeholder="Buscar por puesto, empresa, soporte, técnico, dependiente, electricista, Java, redes..." autocomplete="off">
+        </div>
+
+        <!-- Fila 1: Filtro Geográfico por Cercanía (A pie & Tren Cercanías C-1 Renfe) -->
+        <div class="filter-pills-row">
+          <span class="filter-row-label">📍 ZONA TREN C-1:</span>
+          <button class="filter-pill active" data-jobcat="all">Todas las Zonas (<span id="countJobAll">0</span>)</button>
+          <button class="filter-pill" data-jobcat="orihuela" title="Caminar desde tu casa en Orihuela">🚶 Orihuela Centro (<span id="countJobOrihuela">0</span>)</button>
+          <button class="filter-pill" data-jobcat="callosa" title="8 minutos en Tren Cercanías C-1">🚆 Callosa (8 min tren) (<span id="countJobCallosa">0</span>)</button>
+          <button class="filter-pill" data-jobcat="murcia" title="18 minutos en Tren Cercanías C-1 hacia Murcia">🚆 Murcia Centro (18 min) (<span id="countJobMurcia">0</span>)</button>
+          <button class="filter-pill" data-jobcat="elche" title="22 minutos en Tren Cercanías C-1 hacia Elche">🚆 Elche Centro (22 min) (<span id="countJobElche">0</span>)</button>
+          <button class="filter-pill" data-jobcat="alicante" title="45 minutos en Tren Cercanías C-1">🚆 Alicante Centro (45 min) (<span id="countJobAlicante">0</span>)</button>
+          <button class="filter-pill" data-jobcat="presencial" title="Solo ofertas presenciales para salir de casa">🏢 100% Presencial (<span id="countJobPresencial">0</span>)</button>
+          <button class="filter-pill" data-jobcat="remoto" title="Puestos con opción de teletrabajo">💻 Remoto (<span id="countJobRemoto">0</span>)</button>
+        </div>
+
+        <!-- Fila 2: Filtro por Portales y Especialidad -->
+        <div class="filter-pills-row">
+          <span class="filter-row-label">🌐 PORTALES & TIPO:</span>
+          <button class="filter-pill" data-jobcat="portal-linkedin" title="Ver solo ofertas oficiales de LinkedIn">💼 LinkedIn Jobs (<span id="countJobLinkedIn">0</span>)</button>
+          <button class="filter-pill" data-jobcat="portal-tecnoempleo" title="Ver solo ofertas técnicas de Tecnoempleo">🔷 Tecnoempleo (<span id="countJobTecno">0</span>)</button>
+          <button class="filter-pill" data-jobcat="portal-milanuncios" title="Ver solo anuncios de Milanuncios con contacto directo">🟠 Milanuncios (<span id="countJobMilanuncios">0</span>)</button>
+          <button class="filter-pill" data-jobcat="smr" title="Filtrar puestos de soporte informático, SMR y DAM">💻 Informática / Soporte (<span id="countJobSmr">0</span>)</button>
+          <button class="filter-pill" data-jobcat="supply" title="Empresas que están contratando activamente">🔥 Empresas Contratando (<span id="countJobSupply">0</span>)</button>
+          <button class="filter-pill" data-jobcat="phone" title="Ofertas con teléfono o WhatsApp directo disponible">📞 Con Teléfono / WhatsApp (<span id="countJobPhone">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Live Alerts Feed Grid -->
+      <div class="live-jobs-feed" id="liveJobsContainer">
+        <!-- Rendered dynamically by app.js with time ago badges -->
+      </div>
+    </main>
+
+    <!-- TAB 2: GUÍA EXPLICATIVA (¿CÓMO FUNCIONA INFOJOBS?) -->
+    <section class="tab-content" id="view-guia">
+      <div class="guide-header">
+        <div class="eyebrow-badge">
+          <span>RESPUESTA CLARA A TUS DUDAS</span>
+        </div>
+        <h2>¿Qué significa "Estás inscrito" y cuál es el mejor método para conseguir trabajo?</h2>
+        <p>Si nunca has trabajado antes, esto es exactamente lo que ocurre detrás de la pantalla y la estrategia para ganar.</p>
+      </div>
+
+      <div class="guide-grid">
+        <!-- Tarjeta 1: Qué significa estar inscrito -->
+        <div class="guide-card outer-bezel">
+          <div class="inner-core">
+            <div class="guide-card-icon">❓</div>
+            <h3>1. ¿Qué significa "Estás inscrito" en InfoJobs?</h3>
+            <p><strong>NO significa que te hayan aceptado ni que tengas el trabajo.</strong></p>
+            <p class="text-sm text-muted">
+              Significa únicamente que <strong>tu currículum ha entrado en la bandeja de entrada</strong> de la empresa junto al de otras 50, 100 o 200 personas.
+            </p>
+            <div class="guide-flowchart">
+              <div class="flow-step">
+                <span class="flow-badge badge-gray">PASO 1</span>
+                <strong>Inscrito</strong>
+                <span>Tu CV está en la lista de espera. Nadie de la empresa lo ha mirado aún.</span>
+              </div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">
+                <span class="flow-badge badge-blue">PASO 2</span>
+                <strong>En proceso / CV Leído</strong>
+                <span>El de Recursos Humanos ha abierto tu perfil y ha visto tus datos.</span>
+              </div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">
+                <span class="flow-badge badge-amber">PASO 3</span>
+                <strong>Finalista / Contacto</strong>
+                <span>Les encajas y te llaman por teléfono para hacer una entrevista.</span>
+              </div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step highlight-flow">
+                <span class="flow-badge badge-emerald">PASO 4</span>
+                <strong>¡Contratado!</strong>
+                <span>Haces la entrevista, les gustas y firmas el contrato laboral.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Por qué esperar no funciona -->
+        <div class="guide-card outer-bezel">
+          <div class="inner-core">
+            <div class="guide-card-icon">⚠️</div>
+            <h3>2. El gran error de los principiantes en InfoJobs</h3>
+            <p>
+              El error que comete el 95% de la gente es pulsar <em>"Inscribirme"</em>, cerrar la aplicación y sentarse en el sofá a esperar que llamen.
+            </p>
+            <ul class="guide-bullet-list">
+              <li>
+                <strong>Se inscriben 100 personas en pocas horas:</strong> El encargado de la tienda o empresa no tiene tiempo de leer 100 currículums. Lee los primeros 5 o 10.
+              </li>
+              <li>
+                <strong>Los currículums son fríos:</strong> Para la empresa, en InfoJobs eres solo un archivo PDF más sin cara ni voz.
+              </li>
+              <li>
+                <strong>Si buscas trabajo para MAÑANA:</strong> InfoJobs puede tardar 1 o 2 semanas en responderte o no responderte nunca.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: El Método Francotirador -->
+        <div class="guide-card outer-bezel highlight-guide">
+          <div class="inner-core">
+            <div class="guide-card-icon">🎯</div>
+            <h3>3. ¿Cuál es el MEJOR MÉTODO para conseguir trabajo rápido?</h3>
+            <p>
+              Se llama la <strong>Estrategia Francotirador de los 15 Minutos</strong>:
+            </p>
+            <div class="tactics-list">
+              <div class="tactic-box">
+                <span class="tactic-num">Paso A</span>
+                <div>
+                  <strong>La velocidad (Los primeros 15 minutos):</strong>
+                  <p>Cuando veas que aparece una nueva oferta en este Radar (hace 5 min, hace 15 min), inscríbete inmediatamente en el portal para que quede tu ficha registrada.</p>
+                </div>
+              </div>
+
+              <div class="tactic-box">
+                <span class="tactic-num">Paso B</span>
+                <div>
+                  <strong>Romper la cola con WhatsApp o Llamada (El truco maestro):</strong>
+                  <p>En lugar de esperar, pulsa el botón verde de <strong>WhatsApp</strong> o <strong>Llamar</strong> que tienes en la tarjeta de esa oferta y di:</p>
+                  <blockquote class="mini-quote">
+                    «Hola, acabo de ver vuestra oferta de Técnico publicada hace unos minutos en InfoJobs. Os contacto directamente porque vivo aquí en Orihuela, tengo el Grado de SMR y estoy 100% disponible para turno de mañanas desde mañana mismo. ¿Podría hablar con el encargado?»
+                  </blockquote>
+                  <p><strong>Resultado:</strong> De los 100 inscritos que nadie conoce, tú eres el <strong>único</strong> que ha demostrado iniciativa, ganas y que vive al lado.</p>
+                </div>
+              </div>
+
+              <div class="tactic-box">
+                <span class="tactic-num">Paso C</span>
+                <div>
+                  <strong>El Canal ETT Presencial (Para empezar mañana a las 07:00 / 08:00):</strong>
+                  <p>Las ETTs (Faster Iberia en Avda. Teodomiro, a 4 min de tu casa) colocan trabajadores de un día para otro para sustituciones o almacén técnico. Entrar por su puerta a las 08:30 AM con tu CV en mano es la forma más rápida del mundo de conseguir trabajo al día siguiente.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DIRECTORIO DE EMPRESAS Y ETTS DE ORIHUELA Y CALLOSA -->
+    <section class="tab-content" id="view-directorio">
+      <div class="section-toolbar">
+        <div class="toolbar-search">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="filterSearchInput" placeholder="Buscar por empresa, servicio, SAT, fibra, ETT o puesto..." autocomplete="off">
+        </div>
+
+        <div class="filter-pills-group">
+          <button class="filter-pill active" data-category="all">Todos (<span id="countAll">0</span>)</button>
+          <button class="filter-pill" data-category="sat">Tiendas SAT & Hardware (<span id="countSat">0</span>)</button>
+          <button class="filter-pill" data-category="telecom">Fibra & Telecom (<span id="countTelecom">0</span>)</button>
+          <button class="filter-pill" data-category="ett">ETTs Empleo Urgente (<span id="countEtt">0</span>)</button>
+          <button class="filter-pill" data-category="callosa">Callosa (Tren C-1) (<span id="countCallosa">0</span>)</button>
+        </div>
+
+        <div class="toolbar-actions">
+          <button class="btn-island-pill btn-secondary" id="btnOpenAddCompanyModal">
+            <span>+ Añadir Empresa</span>
+            <div class="btn-icon-circle">+</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Companies Grid -->
+      <div class="companies-grid" id="companiesContainer">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 4: GUIONES & PITCH TELEFÓNICO / WHATSAPP -->
+    <section class="tab-content" id="view-pitch">
+      <div class="pitch-header">
+        <div class="eyebrow-badge">
+          <span>TÁCTICA DE LLAMADA & CONTACTO DIRECTO</span>
+        </div>
+        <h2>Guiones de Alta Conversión para Cerrar Entrevista Hoy</h2>
+        <p>No digas <em>"¿tienen trabajo?"</em> porque te dirán que no. Lee estos guiones exactamente como están escritos para que te citen a una entrevista.</p>
+      </div>
+
+      <div class="scripts-grid">
+        <!-- Script 1: Llamada a Tienda SAT / Oferta Recién Publicada -->
+        <div class="script-card outer-bezel">
+          <div class="inner-core">
+            <div class="script-title-row">
+              <span class="script-tag tag-cyan">LLAMADA 30 SEGUNDOS (OFERTA RECIENTE)</span>
+              <button class="btn-copy" data-copy-target="scriptPhoneSat">Copiar Guión</button>
+            </div>
+            <h3>Qué decir si llamas a una empresa que acaba de publicar oferta</h3>
+            <div class="script-content" id="scriptPhoneSat">
+— <strong>Tú:</strong> «Hola, buenos días. ¿Podría hablar un momento con el responsable técnico o el encargado de selección?»
+<br><br>
+<em>(Cuando se ponga):</em><br>
+— <strong>Tú:</strong> «Hola, buenos días, me llamo <strong>Othmane Fathi</strong>. Le llamo directamente porque acabo de ver su oferta de empleo para <strong>Técnico Informático</strong> publicada hace unos minutos. 
+Vivo aquí en Orihuela, tengo el <strong>Título Oficial de SMR (Sistemas Microinformáticos y Redes)</strong> y curso 2º de DAM. Tengo experiencia montando ordenadores, cambiando componentes, formateando e instalando redes.
+<br><br>
+Le llamo al instante porque tengo <strong>disponibilidad inmediata en turno de mañana</strong> (de 07:00/08:00 a 14:00/15:00) y estoy listo para incorporarme <strong>desde mañana mismo</strong>. 
+Me gustaría pasarme hoy a conocerles o hacer una prueba técnica si les parece bien. ¿A qué hora le viene mejor que me pase?»
+            </div>
+            <div class="script-tip">
+              💡 <strong>Por qué funciona:</strong> Eres el único candidato que llama 10 minutos después del anuncio. Demuestras que eres de Orihuela (cero problemas de transporte) y estás listo para arrancar ya.
+            </div>
+          </div>
+        </div>
+
+        <!-- Script 2: Mensaje de WhatsApp Directo -->
+        <div class="script-card outer-bezel">
+          <div class="inner-core">
+            <div class="script-title-row">
+              <span class="script-tag tag-emerald">WHATSAPP DIRECTO A LA OFERTA</span>
+              <button class="btn-copy" data-copy-target="scriptWhatsappMsg">Copiar Mensaje</button>
+            </div>
+            <h3>Mensaje para WhatsApp de Ofertas de Informática</h3>
+            <div class="script-content mono" id="scriptWhatsappMsg">
+Hola, buenos días. Mi nombre es Othmane Fathi, técnico informático residente en Orihuela.
+
+Les contacto porque acabo de ver vuestra vacante de empleo. Cuento con titulación oficial en Sistemas Microinformáticos y Redes (SMR) y estoy cursando 2º de DAM en Orihuela. Mis competencias prácticas incluyen:
+• Montaje, diagnóstico y reparación de hardware/PCs.
+• Instalación y configuración de sistemas operativos, software y redes locales.
+• Resolución rápida de incidencias y atención a usuarios.
+
+Tengo disponibilidad total e inmediata en TURNO DE MAÑANA (desde las 07:00 / 08:00 hasta 14:00 / 15:00) para incorporación desde mañana mismo.
+
+Adjunto mi currículum en PDF para su consideración. ¿Sería posible tener una breve entrevista o pasarme hoy a conocerles?
+
+Muchas gracias y un saludo,
+Othmane Fathi — 632 768 152
+            </div>
+            <div class="script-tip">
+              📲 <strong>Acción:</strong> En la pestaña "Radar", cada oferta tiene un botón verde de WhatsApp que ya te abre la conversación con este texto pre-cargado.
+            </div>
+          </div>
+        </div>
+
+        <!-- Script 3: Pitch presencial para ETTs -->
+        <div class="script-card outer-bezel">
+          <div class="inner-core">
+            <div class="script-title-row">
+              <span class="script-tag tag-amber">VISITA PRESENCIAL ETT</span>
+              <button class="btn-copy" data-copy-target="scriptEttPresencial">Copiar Guión</button>
+            </div>
+            <h3>Qué decir al entrar a Faster ETT en persona mañana a las 08:30 AM</h3>
+            <div class="script-content" id="scriptEttPresencial">
+— <strong>Tú al entrar en recepción:</strong><br>
+«Hola, buenos días. Vengo a entregar mi currículum porque tengo <strong>disponibilidad de incorporación inmediata para mañana a las 7:00 u 8:00</strong> de la mañana. 
+<br><br>
+Mi perfil es <strong>Técnico Informático</strong> (tengo Grado Medio de SMR y estoy en 2º de DAM), pero estoy disponible para cualquier puesto de turno de mañana en Orihuela o Callosa: soporte técnico, control de almacén informatizado, inventario técnico o producción.
+<br><br>
+Vivo aquí al lado (Calle San José Obrero), me puedo desplazar a pie o en tren en 10 minutos. Si alguna empresa os pide un perfil para empezar de mañanas, yo soy vuestro candidato disponible hoy mismo.»
+            </div>
+            <div class="script-tip">
+              🏃 <strong>Lleva 3 copias de tu CV impreso:</strong> Las ETTs aprecian enormemente al candidato presencial que muestra disponibilidad real de 7h a 15h.
+            </div>
+          </div>
+        </div>
+
+        <!-- Script 4: Email Formal con Plantilla -->
+        <div class="script-card outer-bezel">
+          <div class="inner-core">
+            <div class="script-title-row">
+              <span class="script-tag tag-indigo">EMAIL CORPORATIVO</span>
+              <button class="btn-copy" data-copy-target="scriptEmailFormal">Copiar Email</button>
+            </div>
+            <h3>Email formal para Responsables de RRHH y Gerencia</h3>
+            <div class="script-content mono" id="scriptEmailFormal">
+Asunto: Candidatura Urgente Turno Mañana - Othmane Fathi (Técnico Informático SMR / DAM)
+
+Estimado/a responsable de selección,
+
+Le escribo para presentarle mi candidatura con disponibilidad de incorporación INMEDIATA en turno de mañana (07:00/08:00 a 14:00/15:00) en Orihuela / Callosa de Segura.
+
+Cuento con la titulación oficial de Grado Medio en Sistemas Microinformáticos y Redes (SMR) y actualmente curso el segundo año de Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) en el IES Espeñetas de Orihuela.
+
+Mis competencias clave incluyen:
+- Montaje, mantenimiento y reparación de hardware y periféricos.
+- Instalación, configuración y soporte de sistemas operativos y redes.
+- Bases de datos SQL y fundamentos de programación orientada a objetos (Java).
+- Dominio fluido de Español, Árabe nativo e Inglés intermedio.
+
+Adjunto a este correo mi Currículum Vitae completo en formato PDF. Quedo a su entera disposición para mantener una entrevista hoy mismo o facilitar cualquier información requerida.
+
+Atentamente,
+Othmane Fathi
+Tel: 632 768 152 | Email: othmanefathidam@gmail.com
+Orihuela (Alicante)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: VISOR Y ESTACIÓN DE CV -->
+    <section class="tab-content" id="view-cv">
+      <div class="cv-station-layout">
+        <!-- PDF Viewer Panel -->
+        <div class="cv-viewer-panel outer-bezel">
+          <div class="inner-core viewer-core">
+            <div class="cv-panel-header">
+              <div>
+                <h3>Currículum Vitae Oficial</h3>
+                <span class="text-muted">cv_othmane_fathi.pdf • Listo para entrega</span>
+              </div>
+              <div class="cv-header-actions">
+                <a href="cv_othmane_fathi.pdf" target="_blank" class="btn-island-pill btn-secondary">
+                  <span>Abrir en Nueva Pestaña</span>
+                  <div class="btn-icon-circle">↗</div>
+                </a>
+                <a href="cv_othmane_fathi.pdf" download="CV_Othmane_Fathi.pdf" class="btn-island-pill btn-emerald">
+                  <span>Descargar PDF</span>
+                  <div class="btn-icon-circle">↓</div>
+                </a>
+              </div>
+            </div>
+
+            <div class="pdf-embed-wrapper">
+              <iframe src="cv_othmane_fathi.pdf#toolbar=1&navpanes=0" class="pdf-iframe" title="Currículum Vitae Othmane Fathi"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- ATS Text Extractor & Strengths -->
+        <div class="cv-data-panel">
+          <div class="outer-bezel">
+            <div class="inner-core">
+              <div class="card-title-row">
+                <h3>Texto Optimizado para Portales (Modo Rápido)</h3>
+                <button class="btn-copy" data-copy-target="atsTextRaw">Copiar Todo</button>
+              </div>
+              <p class="text-sm text-muted">Copia y pega este texto directamente en las cajas de texto de InfoJobs, Indeed o formularios sin tener que escribir a mano:</p>
+              
+              <textarea id="atsTextRaw" class="ats-textarea" readonly rows="12">
+OTHMANE FATHI
+Técnico Informático | Sistemas Microinformáticos y Redes (SMR) | Estudiante 2º DAM
+Contacto: 632 768 152 | othmanefathidam@gmail.com | Orihuela (Alicante) 03300
+
+PERFIL PROFESIONAL:
+Técnico en Sistemas Microinformáticos y Redes (SMR) y estudiante de segundo curso del Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) en el IES Espeñetas (Orihuela). Con sólida formación práctica en mantenimiento, montaje y reparación de equipos informáticos, diagnóstico de hardware, configuración de software y redes locales, así como programación en Java y bases de datos relacionales SQL.
+Disponibilidad total e inmediata para turno intensivo de mañanas (07:00/08:00 a 14:00/15:00) en Orihuela o Callosa de Segura.
+
+COMPETENCIAS TÉCNICAS:
+• Montaje, ensamblaje y desmontaje de equipos informáticos (sobremesa y portátiles).
+• Instalación y configuración básica y avanzada de sistemas operativos y software.
+• Diagnóstico, sustitución de componentes y resolución de incidencias de hardware.
+• Mantenimiento preventivo y correctivo de infraestructuras informáticas.
+• Configuración básica de redes de área local (LAN, WiFi, cableado estructurado).
+• Fundamentos de programación orientada a objetos (Java) y consultas relacionales SQL.
+
+FORMACIÓN:
+• 2024 - 2026: Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) - IES Espeñetas, Orihuela.
+• 2022 - 2024: Grado Medio en Sistemas Microinformáticos y Redes (SMR) - IES Espeñetas, Orihuela.
+
+IDIOMAS:
+• Español: Avanzado (hablado y escrito).
+• Árabe: Nativo (hablado y escrito).
+• Inglés: Intermedio (hablado y escrito).
+              </textarea>
+            </div>
+          </div>
+
+          <div class="outer-bezel mt-4">
+            <div class="inner-core">
+              <h3>Tus 4 Cartas Ganadoras en la Entrevista</h3>
+              <ul class="strengths-list">
+                <li>
+                  <span class="strength-num">01</span>
+                  <div>
+                    <strong>Cercanía Absoluta (Orihuela Centro):</strong>
+                    <span>Vives en C/ San José Obrero. Estás a pie de cualquier tienda o empresa de Orihuela y al lado de la estación de tren para Callosa. Cero riesgo de retrasos.</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="strength-num">02</span>
+                  <div>
+                    <strong>SMR Ya Titulado:</strong>
+                    <span>No eres solo un estudiante, ya tienes el Grado Oficial en Sistemas y Redes finalizado, sabes montar PCs, formatear, clonar discos y cambiar fuentes de alimentación.</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="strength-num">03</span>
+                  <div>
+                    <strong>Horario Matinal Estable:</strong>
+                    <span>Puedes comprometerte de 7:00 a 15:00 todos los días laborables sin interferir con tus estudios.</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="strength-num">04</span>
+                  <div>
+                    <strong>Trilingüe de Alto Valor:</strong>
+                    <span>Español perfecto, Árabe nativo e Inglés. Para operadoras como VegaFibra o SATs con clientes de la Vega Baja, esto es un plus gigantesco.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: PIPELINE CRM KANBAN -->
+    <section class="tab-content" id="view-kanban">
+      <div class="kanban-header">
+        <div class="eyebrow-badge">
+          <span>CONTROL TOTAL DE POSTULACIONES</span>
+        </div>
+        <h2>Tablero Kanban de Seguimiento en Tiempo Real</h2>
+        <p>Mueve las empresas según vayas contactándolas para saber exactamente a quién tienes que llamar o dónde tienes entrevista.</p>
+      </div>
+
+      <div class="kanban-board" id="kanbanBoard">
+        <div class="kanban-col" data-col="pending">
+          <div class="kanban-col-header">
+            <span class="col-indicator dot-pending"></span>
+            <h3>Por Contactar</h3>
+            <span class="col-count" id="countPending">0</span>
+          </div>
+          <div class="kanban-cards-wrapper" id="col-pending"></div>
+        </div>
+
+        <div class="kanban-col" data-col="contacted">
+          <div class="kanban-col-header">
+            <span class="col-indicator dot-contacted"></span>
+            <h3>Contactado (Llamada/Wsp)</h3>
+            <span class="col-count" id="countContacted">0</span>
+          </div>
+          <div class="kanban-cards-wrapper" id="col-contacted"></div>
+        </div>
+
+        <div class="kanban-col" data-col="interview">
+          <div class="kanban-col-header">
+            <span class="col-indicator dot-interview"></span>
+            <h3>Entrevista Pactada</h3>
+            <span class="col-count" id="countInterview">0</span>
+          </div>
+          <div class="kanban-cards-wrapper" id="col-interview"></div>
+        </div>
+
+        <div class="kanban-col" data-col="hired">
+          <div class="kanban-col-header">
+            <span class="col-indicator dot-hired"></span>
+            <h3>¡CONTRATADO! 🚀</h3>
+            <span class="col-count" id="countHired">0</span>
+          </div>
+          <div class="kanban-cards-wrapper" id="col-hired"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: PLAN DE ACCIÓN MISIÓN MAÑANA -->
+    <section class="tab-content" id="view-plan">
+      <div class="plan-header">
+        <div class="eyebrow-badge">
+          <span>ESTRATEGIA MILITAR HORA A HORA</span>
+        </div>
+        <h2>Plan de Ataque para Conseguir Trabajo Mañana</h2>
+        <p>Sigue esta rutina matemática para maximizar al 100% las opciones de firmar o cerrar prueba laboral mañana mismo.</p>
+      </div>
+
+      <div class="timeline-container">
+        
+        <div class="timeline-step outer-bezel">
+          <div class="inner-core">
+            <div class="time-badge">08:00 AM</div>
+            <div class="step-body">
+              <h3>Fase 1: Escaneo en el Radar en Tiempo Real</h3>
+              <p>Entra en la pestaña <strong>"Radar en Vivo"</strong> y revisa las alertas que salieron durante la noche o a primera hora. Si hay una de hace pocos minutos, pulsa el botón de WhatsApp o Llamada antes que nadie.</p>
+              <div class="step-meta">⏱ Duración: 20 min • Objetivo: Filtrar las 2-3 ofertas urgentes del día</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step outer-bezel">
+          <div class="inner-core">
+            <div class="time-badge">08:30 — 09:30 AM</div>
+            <div class="step-body">
+              <h3>Fase 2: Primera Ronda Telefónica a Tiendas SAT de Orihuela</h3>
+              <p>A las 8:30 / 9:00 abren los comercios. Llama con el botón directo del Directorio a:</p>
+              <ul class="plan-sublist">
+                <li><strong>Sauber Ofimática</strong> (C/ Extremadura, 9) — Tel: 966 34 22 21 *(Abren a las 08:30)*</li>
+                <li><strong>PCBox Orihuela</strong> (Av. de la Vega, 27) — Tel: 965 30 14 65</li>
+                <li><strong>Infoexpo Orihuela</strong> (Av. Teodomiro, 19) — Tel: 966 74 12 16</li>
+                <li><strong>PC Piru</strong> (C/ Duque de Tamames, 34) — Tel: 966 34 03 14</li>
+                <li><strong>APP Informática Orihuela</strong> — Tel: 966 74 38 68</li>
+              </ul>
+              <p>Lee el <strong>Guión de 30 segundos</strong> de la pestaña de Guiones. Diles que vives en Orihuela y puedes estar allí en 10 minutos para entrevista o prueba técnica.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step outer-bezel">
+          <div class="inner-core">
+            <div class="time-badge">09:30 — 10:45 AM</div>
+            <div class="step-body">
+              <h3>Fase 3: Ruta Presencial Rápida a ETTs (Avda Teodomiro y Alrededores)</h3>
+              <p>Sal a la calle con 3 copias de tu CV en la mano (está a 5 minutos a pie de tu casa):</p>
+              <ul class="plan-sublist">
+                <li><strong>Faster Iberia ETT:</strong> Avda Teodomiro 1 (Cruza la puerta y diles que estás disponible para turnos de mañana de 7h a 15h desde ya).</li>
+                <li><strong>Elite Job Interim:</strong> Avda de la Vega 22 (Entrega CV y pide hablar con el responsable de colocación industrial/servicios).</li>
+              </ul>
+              <div class="step-meta">💡 Los candidatos que entran por la puerta a primera hora se quedan con las suplencias que entran esa misma mañana.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step outer-bezel">
+          <div class="inner-core">
+            <div class="time-badge">11:00 — 12:30 AM</div>
+            <div class="step-body">
+              <h3>Fase 4: El Frente de Callosa de Segura (Tren C-1 Renfe)</h3>
+              <p>Acércate a la estación de tren de Orihuela Miguel Hernández. El cercanías C-1 tarda solo <strong>8 minutos</strong> en llegar a Callosa de Segura.</p>
+              <ul class="plan-sublist">
+                <li><strong>La Vega Baja Servicios Telemáticos (InformaticaLVB):</strong> C/ Rambla Baja 18, Callosa (a 4 minutos andando de la estación de Callosa). Empresa técnica líder con SAT oficial.</li>
+                <li><strong>VegaFibra Callosa:</strong> Acércate a su tienda u oficina técnica.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step outer-bezel">
+          <div class="inner-core">
+            <div class="time-badge">13:00 — 15:00 PM</div>
+            <div class="step-body">
+              <h3>Fase 5: Cierre de Entrevistas y Confirmación para el Día Siguiente</h3>
+              <p>Revisa las respuestas de WhatsApp y llamadas de vuelta. Si alguien te ha pedido el CV por email o WhatsApp, haz seguimiento: <em>"Le dejé el CV esta mañana, confirmo que mañana a las 7:00 / 8:00 estoy 100% listo para incorporarme si les encaja mi perfil."</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal: Añadir Empresa Personalizada -->
+    <div class="modal-backdrop" id="addCompanyModal">
+      <div class="modal-card outer-bezel">
+        <div class="inner-core modal-core">
+          <div class="modal-header">
+            <h3>Añadir Nueva Empresa al Radar</h3>
+            <button class="modal-close-btn" id="btnCloseModal">&times;</button>
+          </div>
+          <form id="addCompanyForm" class="modal-form">
+            <div class="form-group">
+              <label for="compName">Nombre de la Empresa / Comercio *</label>
+              <input type="text" id="compName" required placeholder="Ej: Talleres Informáticos Vega Baja">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="compCategory">Categoría</label>
+                <select id="compCategory">
+                  <option value="sat">Tienda SAT & Hardware</option>
+                  <option value="telecom">Fibra & Telecomunicaciones</option>
+                  <option value="ett">ETT Contratación Urgente</option>
+                  <option value="logistica">Logística / Empresa Polígono</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="compCity">Ciudad</label>
+                <select id="compCity">
+                  <option value="orihuela">Orihuela (A pie)</option>
+                  <option value="callosa">Callosa de Segura (Tren C-1)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="compPhone">Teléfono *</label>
+                <input type="tel" id="compPhone" required placeholder="Ej: 965 30 11 22">
+              </div>
+              <div class="form-group">
+                <label for="compWhatsapp">WhatsApp (Opcional)</label>
+                <input type="tel" id="compWhatsapp" placeholder="Ej: 647 12 34 56">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="compEmail">Email de Contacto</label>
+              <input type="email" id="compEmail" placeholder="contacto@empresa.com">
+            </div>
+            <div class="form-group">
+              <label for="compAddress">Dirección Física</label>
+              <input type="text" id="compAddress" placeholder="Ej: Avda Teodomiro 12, Orihuela">
+            </div>
+            <div class="form-group">
+              <label for="compNotes">Notas / Puesto buscado</label>
+              <input type="text" id="compNotes" placeholder="Ej: Turno mañanas, soporte informático">
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="btn-island-pill btn-secondary" id="btnCancelModal">Cancelar</button>
+              <button type="submit" class="btn-island-pill btn-emerald">
+                <span>Guardar Empresa</span>
+                <div class="btn-icon-circle">✓</div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Guardar Oferta Real de InfoJobs / Indeed -->
+    <div class="modal-backdrop" id="addRealJobModal">
+      <div class="modal-card outer-bezel">
+        <div class="inner-core modal-core">
+          <div class="modal-header">
+            <h3>📥 Guardar Oferta Real de InfoJobs / Indeed</h3>
+            <button class="modal-close-btn" id="btnCloseJobModal">&times;</button>
+          </div>
+          <form id="addRealJobForm" class="modal-form">
+            <p class="text-xs text-muted">Pega los datos de la oferta que acabas de encontrar en InfoJobs o Indeed para tener listos los botones de WhatsApp, Llamada y CV directo sin perder el enlace.</p>
+            <div class="form-group">
+              <label for="rjTitle">Título del Puesto *</label>
+              <input type="text" id="rjTitle" required placeholder="Ej: Técnico Microinformático / Soporte Helpdesk">
+            </div>
+            <div class="form-group">
+              <label for="rjUrl">Enlace Exacto de la Oferta (URL) *</label>
+              <input type="url" id="rjUrl" required placeholder="https://www.infojobs.net/...">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rjButtonPortal">Portal</label>
+                <select id="rjPortal">
+                  <option value="InfoJobs">InfoJobs</option>
+                  <option value="Indeed">Indeed</option>
+                  <option value="Milanuncios">Milanuncios</option>
+                  <option value="Empresa Directa">Web de Empresa</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rjCompany">Empresa</label>
+                <input type="text" id="rjCompany" placeholder="Ej: PCBox / Telecom Orihuela">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rjPhone">Teléfono de Contacto (si aparece)</label>
+                <input type="tel" id="rjPhone" placeholder="Ej: 965 30 14 65">
+              </div>
+              <div class="form-group">
+                <label for="rjCity">Ubicación</label>
+                <select id="rjCity">
+                  <option value="orihuela">Orihuela (A pie)</option>
+                  <option value="callosa">Callosa de Segura (Tren C-1)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="rjSchedule">Horario Indicado</label>
+              <input type="text" id="rjSchedule" placeholder="Ej: Turno Mañanas (08:00 a 14:30)">
+            </div>
+            <div class="modal-actions">
+              <button type="button" class="btn-island-pill btn-secondary" id="btnCancelJobModal">Cancelar</button>
+              <button type="submit" class="btn-island-pill btn-emerald">
+                <span>Guardar en mi Radar</span>
+                <div class="btn-icon-circle">✓</div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Conexión Móvil con Código QR -->
+    <div class="modal-overlay" id="mobileConnectModal">
+      <div class="modal-card outer-bezel" style="max-width: 500px;">
+        <div class="inner-core" style="padding: 24px;">
+          <div class="modal-header">
+            <div>
+              <span class="badge-tag-supply" style="margin-bottom: 6px; display: inline-block;">📱 ACCESO MÓVIL EN VIVO</span>
+              <h3 style="font-size: 20px; font-weight: 800; color: #fff;">Radar en tu Teléfono Móvil</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+                Conéctate desde tu móvil por Wi-Fi para recibir alertas sonoras y llamar a empresas al instante con 1 toque.
+              </p>
+            </div>
+            <button class="btn-close-banner" id="btnCloseMobileModal" title="Cerrar ventana">✕</button>
+          </div>
+
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin: 18px 0;">
+            <div id="qrCodeContainer" style="background: #ffffff; padding: 12px; border-radius: 16px; box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); border: 2px solid rgba(16, 185, 129, 0.4);">
+              <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fplain-phi-miss-woods.trycloudflare.com%2Ftrabajo" alt="QR Code Radar de Empleo" width="220" height="220" style="display: block; border-radius: 8px;">
+            </div>
+            <span style="font-size: 12.5px; color: #34d399; font-weight: 700; text-align: center;">📷 Escanea con la cámara de tu móvil para entrar desde cualquier lugar del mundo (4G/5G)</span>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-inner); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+            <!-- Opción 1: Enlace Público Mundial -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+              <span style="font-size: 11px; font-weight: 800; color: #34d399; font-family: 'JetBrains Mono', monospace;">🌍 ENLACE PÚBLICO MUNDIAL (4G/5G / VECINOS / CUALQUIER SITIO):</span>
+              <button class="btn-copy" id="btnCopyPublicUrl" onclick="copyMobileUrl(document.getElementById('publicUrlDisplay').innerText)" style="font-size: 11px; padding: 4px 10px;">📋 Copiar</button>
+            </div>
+            <code style="color: #6ee7b7; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; word-break: break-all; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 7px 10px; border-radius: 6px;" id="publicUrlDisplay">https://plain-phi-miss-woods.trycloudflare.com/trabajo</code>
+
+            <!-- Opción 2: Red Wi-Fi Local -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+              <span style="font-size: 11px; font-weight: 800; color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace;">🏠 EN CASA (CONECTADO A TU WI-FI):</span>
+              <button class="btn-copy" onclick="copyMobileUrl('http://192.168.1.133/trabajo')" style="font-size: 11px; padding: 4px 10px;">📋 Copiar</button>
+            </div>
+            <code style="color: #cbd5e1; font-family: 'JetBrains Mono', monospace; font-size: 12px; word-break: break-all; background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px;">http://192.168.1.133/trabajo</code>
+
+            <!-- Opción 3: En tu PC -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+              <span style="font-size: 11px; font-weight: 800; color: var(--accent-amber); font-family: 'JetBrains Mono', monospace;">💻 EN TU PC (DOMINIO LOCAL):</span>
+              <button class="btn-copy" onclick="copyMobileUrl('http://miweblocal.com/trabajo')" style="font-size: 11px; padding: 4px 10px;">📋 Copiar</button>
+            </div>
+            <code style="color: #fde68a; font-family: 'JetBrains Mono', monospace; font-size: 12px; word-break: break-all; background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px;">http://miweblocal.com/trabajo</code>
+          </div>
+
+          <div style="margin-top: 14px; font-size: 12px; color: var(--text-muted); line-height: 1.5; border-left: 2px solid var(--accent-emerald); padding-left: 10px;">
+            📲 <strong>Para usarlo como App instalada en el móvil:</strong><br>
+            • En <strong>iPhone (Safari)</strong>: Pulsa el botón "Compartir" ⎋ y elige <em>"Añadir a pantalla de inicio"</em>.<br>
+            • En <strong>Android (Chrome)</strong>: Pulsa el menú ⋮ y elige <em>"Añadir a la pantalla principal"</em>.
+          </div>
+
+          <div class="modal-actions" style="margin-top: 16px;">
+            <button type="button" class="btn-island-pill btn-secondary" id="btnCloseMobileModalBtn" style="width: 100%; justify-content: center;">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="appToast">
+      <span class="toast-icon">✓</span>
+      <span class="toast-msg">Mensaje copiado al portapapeles</span>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
