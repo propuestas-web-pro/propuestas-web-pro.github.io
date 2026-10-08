@@ -523,6 +523,13 @@ async function fetchLiveJobs(isManual = false) {
     } catch (e) {}
   }
 
+  // ORDENACIÓN CRÍTICA: De más antes publicado (más recientes/frescos) a más antiguo
+  appState.liveJobs.sort((a, b) => {
+    const timeA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const timeB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return timeB - timeA;
+  });
+
   renderLiveJobs();
   updateLiveStats();
 }
@@ -552,12 +559,19 @@ function formatTimeAgo(isoString) {
   return `Publicado hace ${diffDays} días`;
 }
 
-// Renderizado de las ofertas en vivo ordenadas cronológicamente
+// Renderizado de las ofertas en vivo ordenadas cronológicamente (de más recientemente publicado a más antiguo)
 function renderLiveJobs() {
   const container = document.getElementById('liveJobsContainer');
   if (!container) return;
 
-  const filtered = appState.liveJobs.filter(job => {
+  // Orden riguroso garantizado: ofertas más recientes primero
+  const sortedJobs = [...appState.liveJobs].sort((a, b) => {
+    const timeA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+    const timeB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+    return timeB - timeA;
+  });
+
+  const filtered = sortedJobs.filter(job => {
     // Filtro por categoría o zona de puesto
     let matchesCat = true;
     const cat = appState.activeJobCategory;
