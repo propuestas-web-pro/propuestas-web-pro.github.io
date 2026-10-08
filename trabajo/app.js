@@ -279,31 +279,86 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 10000);
 });
 
-// Navegación de Pestañas
+// Navegación de Pestañas (Desktop & Mobile Bottom Bar)
 function initTabs() {
   const tabButtons = document.querySelectorAll('.tab-btn');
+  const mobileNavItems = document.querySelectorAll('.mobile-nav-item[data-tab]');
   const tabContents = document.querySelectorAll('.tab-content');
+
+  function activateTab(targetTab) {
+    appState.activeTab = targetTab;
+
+    tabButtons.forEach(b => {
+      if (b.getAttribute('data-tab') === targetTab) {
+        b.classList.add('active');
+      } else {
+        b.classList.remove('active');
+      }
+    });
+
+    mobileNavItems.forEach(m => {
+      if (m.getAttribute('data-tab') === targetTab) {
+        m.classList.add('active');
+      } else {
+        m.classList.remove('active');
+      }
+    });
+
+    tabContents.forEach(c => c.classList.remove('active'));
+
+    const targetView = document.getElementById(`view-${targetTab}`);
+    if (targetView) {
+      targetView.classList.add('active');
+    }
+
+    if (targetTab === 'kanban') {
+      renderKanban();
+    }
+  }
 
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
-      appState.activeTab = targetTab;
+      activateTab(targetTab);
+    });
+  });
 
-      tabButtons.forEach(b => b.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
-      const targetView = document.getElementById(`view-${targetTab}`);
-      if (targetView) {
-        targetView.classList.add('active');
-      }
-
-      if (targetTab === 'kanban') {
-        renderKanban();
-      }
+  mobileNavItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const targetTab = item.getAttribute('data-tab');
+      activateTab(targetTab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 }
+
+// Compartir radar en móvil mediante Web Share API o copiar
+window.shareMobileRadar = async function() {
+  const shareData = {
+    title: 'Radar de Empleo - Othmane Fathi',
+    text: 'Radar táctico de ofertas de empleo en tiempo real para Othmane Fathi (Orihuela - Callosa).',
+    url: 'http://miweblocal.com/trabajo'
+  };
+
+  if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (e) {
+      if (e.name !== 'AbortError') console.log('Share error:', e);
+    }
+  }
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText('http://miweblocal.com/trabajo').then(() => {
+      showToast('📋 Enlace copiado: http://miweblocal.com/trabajo');
+    }).catch(() => {
+      showToast('http://miweblocal.com/trabajo');
+    });
+  } else {
+    showToast('http://miweblocal.com/trabajo');
+  }
+};
 
 // =====================================================================
 // RADAR EN TIEMPO REAL: OFERTAS VIVAS & ESCANEO
@@ -914,6 +969,9 @@ function updateLiveStats() {
 
   const countJobAll = document.getElementById('countJobAll');
   if (countJobAll) countJobAll.innerText = total;
+
+  const mNavBadge = document.getElementById('mNavBadgeCount');
+  if (mNavBadge) mNavBadge.innerText = total;
 
   const countJobOrihuela = document.getElementById('countJobOrihuela');
   if (countJobOrihuela) countJobOrihuela.innerText = orihuelaCount;
