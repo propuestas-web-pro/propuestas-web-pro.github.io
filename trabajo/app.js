@@ -206,6 +206,22 @@ const INITIAL_COMPANIES = [
     notes: 'Siempre buscan perfiles de redes y microinformática.',
     status: 'pending'
   },
+  // --- ELCHE (TREN CERCANÍAS C-1 RENFE: 22 MINUTOS) ---
+  {
+    id: 'beep-elche-sat',
+    name: 'Beep Informática Elche (SAT Centro & Taller)',
+    category: 'sat',
+    city: 'elche',
+    distance: '🚆 Tren C-1 (22 min) + 🚶 3 min a pie',
+    address: 'Av. Novelda / Apeadero Carrús, 03206 Elche',
+    phone: '966 61 00 22',
+    whatsapp: '632 768 152',
+    email: 'elche@beep.es',
+    hours: '09:00 - 14:00 / 16:30 - 20:00',
+    service: 'SAT Especializado, Montaje PCs, Reparación Express y Recuperación de Datos',
+    notes: 'A 3 minutos a pie del apeadero Renfe Elche-Carrús. Opción de liquidación y cobro diario por reparaciones.',
+    status: 'pending'
+  },
   {
     id: 'poligono-puente-alto-it',
     name: 'Empresas Polígono Puente Alto (Soporte & Almacén)',
@@ -478,6 +494,19 @@ async function fetchLiveJobs(isManual = false) {
   }
 
   if (rawJobs && rawJobs.length > 0) {
+    // FILTRO ESTRICTO: Cero remoto / 100% presencial en Orihuela, Callosa, Elche, Murcia, Alicante
+    rawJobs = rawJobs.filter(j => {
+      const city = (j.city || '').toLowerCase();
+      const loc = (j.locationText || '').toLowerCase();
+      const sch = (j.schedule || '').toLowerCase();
+      const full = ((j.title || '') + ' ' + (j.description || '')).toLowerCase();
+      if (city === 'remoto') return false;
+      if (/remoto|teletrabajo|desde casa|remote\b/i.test(loc)) return false;
+      if (/remoto|teletrabajo/i.test(sch)) return false;
+      if (/100%\s*remoto|puesto\s+remoto|remote\s+technical/i.test(full)) return false;
+      return true;
+    });
+
     // Detectar si hay ofertas nuevas que no conocíamos en este ciclo
     if (!isInitialLoad && knownJobIds.size > 0) {
       const brandNewJobs = rawJobs.filter(j => !knownJobIds.has(j.id));
@@ -575,32 +604,28 @@ function renderLiveJobs() {
     // Filtro por categoría o zona de puesto
     let matchesCat = true;
     const cat = appState.activeJobCategory;
-    const isRemote = job.city === 'remoto' || 
-                     (job.locationText && job.locationText.toLowerCase().includes('remoto')) || 
-                     (job.schedule && job.schedule.toLowerCase().includes('remoto')) || 
-                     /remoto|teletrabajo|100% remoto/i.test(job.title + " " + (job.description || ''));
 
     if (!cat || cat === 'all') {
       matchesCat = true;
+    } else if (cat === 'pago-diario') {
+      matchesCat = Boolean(job.pagoDiario) || /pago al d[ií]a|cobro diario|liquidaci[oó]n diaria|jornal|por jornada/i.test(job.title + " " + (job.salary || '') + " " + (job.description || ''));
     } else if (cat === 'orihuela') {
       matchesCat = (job.city && job.city.toLowerCase().includes('orihuela')) || 
                    (job.locationText && job.locationText.toLowerCase().includes('orihuela'));
     } else if (cat === 'callosa') {
       matchesCat = (job.city && job.city.toLowerCase().includes('callosa')) || 
                    (job.locationText && job.locationText.toLowerCase().includes('callosa'));
-    } else if (cat === 'murcia') {
-      matchesCat = (job.city && job.city.toLowerCase().includes('murcia')) || 
-                   (job.locationText && job.locationText.toLowerCase().includes('murcia'));
     } else if (cat === 'elche') {
       matchesCat = (job.city && job.city.toLowerCase().includes('elche')) || 
                    (job.locationText && job.locationText.toLowerCase().includes('elche'));
+    } else if (cat === 'murcia') {
+      matchesCat = (job.city && job.city.toLowerCase().includes('murcia')) || 
+                   (job.locationText && job.locationText.toLowerCase().includes('murcia'));
     } else if (cat === 'alicante') {
       matchesCat = (job.city && job.city.toLowerCase().includes('alicante')) || 
                    (job.locationText && job.locationText.toLowerCase().includes('alicante'));
     } else if (cat === 'presencial') {
-      matchesCat = !isRemote;
-    } else if (cat === 'remoto') {
-      matchesCat = isRemote;
+      matchesCat = true; // 100% presenciales
     } else if (cat === 'portal-linkedin') {
       matchesCat = Boolean(job.portal && job.portal.toLowerCase().includes('linkedin'));
     } else if (cat === 'portal-tecnoempleo') {
@@ -646,10 +671,6 @@ function createLiveJobCardHTML(job) {
   const isBrandNew = Boolean(job.isBrandNew);
   const isCompany = job.isCompanyOffer || job.type === 'supply';
   const hasPhone = Boolean(job.phone && job.phone.trim().length >= 9);
-  const isRemote = job.city === 'remoto' || 
-                   (job.locationText && job.locationText.toLowerCase().includes('remoto')) || 
-                   (job.schedule && job.schedule.toLowerCase().includes('remoto')) || 
-                   /remoto|teletrabajo|100% remoto/i.test(job.title + " " + (job.description || ''));
 
   const cleanPhone = hasPhone ? job.phone.replace(/\D/g, '') : '';
   const wspText = encodeURIComponent(
@@ -671,12 +692,10 @@ function createLiveJobCardHTML(job) {
               <span class="badge-portal-source portal-${(job.portal || 'portal').toLowerCase()}">
                 ${portalBadge}
               </span>
+              ${job.pagoDiario ? `<span class="badge-tag-pago-diario">💵 PAGO AL DÍA / JORNADA</span>` : ''}
               ${isCompany ? `<span class="badge-tag-supply">🔥 EMPRESA CONTRATANDO</span>` : `<span class="badge-tag-local">💼 Anuncio Local</span>`}
               ${isBrandNew ? `<span class="badge-tag-fresh pulse-glow">✨ RECIÉN DETECTADA</span>` : ''}
-              ${isRemote 
-                ? `<span class="badge-tag-remote" style="background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">💻 Teletrabajo</span>`
-                : `<span class="badge-tag-presencial" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">🏢 100% Presencial</span>`
-              }
+              <span class="badge-tag-presencial" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">🏢 100% Presencial</span>
             </div>
             <h3>${job.title}</h3>
             <p class="live-job-company">🏢 <strong>${job.company}</strong> • 📍 ${job.locationText}</p>
@@ -690,7 +709,7 @@ function createLiveJobCardHTML(job) {
         <div class="live-job-tags-row">
           <span class="tag-badge tag-dist">${job.distanceText}</span>
           <span class="tag-badge tag-schedule">⏰ ${job.schedule}</span>
-          <span class="tag-badge tag-salary">💶 ${job.salary}</span>
+          <span class="tag-badge tag-salary ${job.pagoDiario ? 'tag-salary-diario' : ''}">💶 ${job.salary}</span>
           <span class="tag-badge tag-cat">🏷️ ${job.categoryName || 'Empleo'}</span>
         </div>
 
@@ -957,18 +976,13 @@ function updateLiveStats() {
   const jobs = appState.liveJobs;
   const total = jobs.length;
 
-  const isJobRemote = (j) => j.city === 'remoto' || 
-                             (j.locationText && j.locationText.toLowerCase().includes('remoto')) || 
-                             (j.schedule && j.schedule.toLowerCase().includes('remoto')) || 
-                             /remoto|teletrabajo|100% remoto/i.test(j.title + " " + (j.description || ''));
-
+  const pagoDiarioCount = jobs.filter(j => j.pagoDiario || /pago al d[ií]a|cobro diario|liquidaci[oó]n diaria|jornal|por jornada/i.test(j.title + " " + (j.salary || '') + " " + (j.description || ''))).length;
   const orihuelaCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('orihuela')) || (j.locationText && j.locationText.toLowerCase().includes('orihuela'))).length;
   const callosaCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('callosa')) || (j.locationText && j.locationText.toLowerCase().includes('callosa'))).length;
-  const murciaCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('murcia')) || (j.locationText && j.locationText.toLowerCase().includes('murcia'))).length;
   const elcheCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('elche')) || (j.locationText && j.locationText.toLowerCase().includes('elche'))).length;
+  const murciaCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('murcia')) || (j.locationText && j.locationText.toLowerCase().includes('murcia'))).length;
   const alicanteCount = jobs.filter(j => (j.city && j.city.toLowerCase().includes('alicante')) || (j.locationText && j.locationText.toLowerCase().includes('alicante'))).length;
-  const remotoCount = jobs.filter(isJobRemote).length;
-  const presencialCount = Math.max(0, total - remotoCount);
+  const presencialCount = total;
 
   const linkedInCount = jobs.filter(j => j.portal && j.portal.toLowerCase().includes('linkedin')).length;
   const tecnoCount = jobs.filter(j => j.portal && j.portal.toLowerCase().includes('tecnoempleo')).length;
@@ -984,6 +998,9 @@ function updateLiveStats() {
   const countJobAll = document.getElementById('countJobAll');
   if (countJobAll) countJobAll.innerText = total;
 
+  const countJobPagoDiario = document.getElementById('countJobPagoDiario');
+  if (countJobPagoDiario) countJobPagoDiario.innerText = pagoDiarioCount;
+
   const mNavBadge = document.getElementById('mNavBadgeCount');
   if (mNavBadge) mNavBadge.innerText = total;
 
@@ -996,11 +1013,11 @@ function updateLiveStats() {
   const countJobCallosa = document.getElementById('countJobCallosa');
   if (countJobCallosa) countJobCallosa.innerText = callosaCount;
 
-  const countJobMurcia = document.getElementById('countJobMurcia');
-  if (countJobMurcia) countJobMurcia.innerText = murciaCount;
-
   const countJobElche = document.getElementById('countJobElche');
   if (countJobElche) countJobElche.innerText = elcheCount;
+
+  const countJobMurcia = document.getElementById('countJobMurcia');
+  if (countJobMurcia) countJobMurcia.innerText = murciaCount;
 
   const countJobAlicante = document.getElementById('countJobAlicante');
   if (countJobAlicante) countJobAlicante.innerText = alicanteCount;
@@ -1009,7 +1026,7 @@ function updateLiveStats() {
   if (countJobPresencial) countJobPresencial.innerText = presencialCount;
 
   const countJobRemoto = document.getElementById('countJobRemoto');
-  if (countJobRemoto) countJobRemoto.innerText = remotoCount;
+  if (countJobRemoto) countJobRemoto.innerText = 0;
 
   const countJobLinkedIn = document.getElementById('countJobLinkedIn');
   if (countJobLinkedIn) countJobLinkedIn.innerText = linkedInCount;
