@@ -626,12 +626,14 @@ function renderLiveJobs() {
                    (job.locationText && job.locationText.toLowerCase().includes('alicante'));
     } else if (cat === 'presencial') {
       matchesCat = true; // 100% presenciales
+    } else if (cat === 'portal-direct-url') {
+      matchesCat = Boolean(job.hasSpecificAdUrl);
     } else if (cat === 'portal-linkedin') {
       matchesCat = Boolean(job.portal && job.portal.toLowerCase().includes('linkedin'));
     } else if (cat === 'portal-tecnoempleo') {
       matchesCat = Boolean(job.portal && job.portal.toLowerCase().includes('tecnoempleo'));
-    } else if (cat === 'portal-milanuncios') {
-      matchesCat = Boolean(job.portal && job.portal.toLowerCase().includes('milanuncios'));
+    } else if (cat === 'portal-directo') {
+      matchesCat = Boolean(job.isLocalDirect);
     } else if (cat === 'smr') {
       matchesCat = job.category === 'smr' || /informatica|informatico|tecnico|soporte|redes|hardware|software|programador|dam/i.test(job.title + " " + job.description);
     } else if (cat === 'supply') {
@@ -674,14 +676,23 @@ function createLiveJobCardHTML(job) {
 
   const cleanPhone = hasPhone ? job.phone.replace(/\D/g, '') : '';
   const wspText = encodeURIComponent(
-    `Hola, buenos días. Le contacto tras ver su vacante para "${job.title}" en ${job.portal}.\n\n` +
+    `Hola, buenos días. Le contacto tras ver su vacante para "${job.title}".\n\n` +
     `Soy Othmane Fathi, técnico titulado en Sistemas Microinformáticos y Redes (SMR) y cursando 2º de DAM en Orihuela. ` +
     `Tengo disponibilidad total e inmediata en TURNO DE MAÑANA (${job.schedule}) para incorporación desde mañana mismo.\n\n` +
     `¿Sería posible concertar una breve entrevista o enviarles mi CV oficial? Muchas gracias.`
   );
   const wspUrl = hasPhone ? `https://wa.me/34${cleanPhone}?text=${wspText}` : '';
 
-  const portalBadge = job.portal === 'Milanuncios' ? '🟠 Milanuncios' : job.portal === 'LinkedIn' ? '💼 LinkedIn Jobs' : '🔷 Tecnoempleo';
+  let portalBadge = '';
+  if (job.isLocalDirect) {
+    portalBadge = '📍 Contacto Directo / Taller Físico';
+  } else if (job.portal === 'LinkedIn') {
+    portalBadge = '💼 LinkedIn Jobs (Oficial)';
+  } else if (job.portal === 'Tecnoempleo') {
+    portalBadge = '🔷 Tecnoempleo (Oficial)';
+  } else {
+    portalBadge = `🌐 ${job.portal}`;
+  }
 
   return `
     <div class="live-job-card outer-bezel ${isBrandNew ? 'is-just-now' : ''}" data-id="${job.id}">
@@ -689,9 +700,10 @@ function createLiveJobCardHTML(job) {
         <div class="live-job-header">
           <div class="live-job-title-group">
             <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px;">
-              <span class="badge-portal-source portal-${(job.portal || 'portal').toLowerCase()}">
+              <span class="badge-portal-source portal-${(job.portal || 'portal').toLowerCase().replace(/[^a-z0-9]/g, '-')}">
                 ${portalBadge}
               </span>
+              ${job.hasSpecificAdUrl ? `<span class="badge-tag-verified" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px;">✓ Enlace Exacto a la Vacante</span>` : ''}
               ${job.pagoDiario ? `<span class="badge-tag-pago-diario">💵 PAGO AL DÍA / JORNADA</span>` : ''}
               ${isCompany ? `<span class="badge-tag-supply">🔥 EMPRESA CONTRATANDO</span>` : `<span class="badge-tag-local">💼 Anuncio Local</span>`}
               ${isBrandNew ? `<span class="badge-tag-fresh pulse-glow">✨ RECIÉN DETECTADA</span>` : ''}
@@ -716,24 +728,35 @@ function createLiveJobCardHTML(job) {
         <p class="live-job-desc">${job.description}</p>
 
         <div class="live-job-actions">
-          <!-- BOTÓN DIRECTO CRÍTICO: Abre exactamente esa vacante publicada en el portal oficial -->
-          <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn-action btn-direct-offer" title="Abrir directamente el anuncio de esta vacante exacta en ${job.portal}">
-            <span>🔗 ABRIR VACANTE EN ${job.portal.toUpperCase()} ↗</span>
-          </a>
-
-          ${hasPhone ? `
-            <div class="contact-buttons-row">
-              <a href="tel:${cleanPhone}" class="btn-action btn-call" title="Llamar directamente al número verificado del anunciante">
-                <span>📞 Llamar (${job.phone})</span>
-              </a>
-              <a href="${wspUrl}" target="_blank" rel="noopener noreferrer" class="btn-action btn-wsp" title="Enviar WhatsApp directo con candidatura">
-                <span>💬 WhatsApp</span>
-              </a>
+          ${job.hasSpecificAdUrl ? `
+            <!-- BOTÓN DIRECTO REAL: Abre exactamente la vacante oficial en el portal -->
+            <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn-action btn-direct-offer" title="Abrir directamente esta vacante exacta en ${job.portal}">
+              <span>🔗 ABRIR VACANTE OFICIAL EN ${job.portal.toUpperCase()} ↗</span>
+            </a>
+            <div class="verified-link-hint" style="font-size: 11px; color: #94a3b8; margin-top: 5px; display: flex; align-items: center; gap: 5px;">
+              <span>ℹ️ Te lleva directo al anuncio específico de ${job.company} con todos los detalles e inscripción oficial.</span>
             </div>
           ` : `
-            <div class="no-phone-notice" title="En este portal la empresa recibe las candidaturas directamente a través de su vacante web">
-              <span>ℹ️ Inscripción directa en la web de ${job.portal}</span>
+            <!-- CONTACTO DIRECTO LOCAL: Taller físico en Orihuela sin intermediarios web -->
+            <div class="local-direct-notice" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px;">
+              <span style="font-size: 11px; color: #38bdf8; font-weight: 700;">📍 TALLER / SEDE PRESENCIAL EN ${job.city.toUpperCase()}</span>
+              <p style="font-size: 11px; color: #94a3b8; margin: 3px 0 0 0;">Sin intermediarios web: Llama por teléfono, contacta por WhatsApp o acude a su dirección para entregar tu CV en mano.</p>
             </div>
+            <div class="contact-buttons-row">
+              <a href="tel:${cleanPhone}" class="btn-action btn-call" title="Llamar directamente al número verificado">
+                <span>📞 Llamar al Taller (${job.phone})</span>
+              </a>
+              ${wspUrl ? `
+                <a href="${wspUrl}" target="_blank" rel="noopener noreferrer" class="btn-action btn-wsp" title="Enviar WhatsApp directo con candidatura">
+                  <span>💬 WhatsApp</span>
+                </a>
+              ` : ''}
+            </div>
+            ${job.companyUrl ? `
+              <a href="${job.companyUrl}" target="_blank" rel="noopener noreferrer" class="btn-action btn-map-link" style="margin-top: 6px; font-size: 11px; padding: 7px 12px; background: rgba(255, 255, 255, 0.05); color: #f1f5f9; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <span>🗺️ Ver Ubicación en Maps / Web de ${job.company} ↗</span>
+              </a>
+            ` : ''}
           `}
         </div>
       </div>
@@ -1027,6 +1050,15 @@ function updateLiveStats() {
 
   const countJobRemoto = document.getElementById('countJobRemoto');
   if (countJobRemoto) countJobRemoto.innerText = 0;
+
+  const directUrlCount = jobs.filter(j => j.hasSpecificAdUrl).length;
+  const localDirectCount = jobs.filter(j => j.isLocalDirect).length;
+
+  const countJobDirectUrl = document.getElementById('countJobDirectUrl');
+  if (countJobDirectUrl) countJobDirectUrl.innerText = directUrlCount;
+
+  const countJobDirecto = document.getElementById('countJobDirecto');
+  if (countJobDirecto) countJobDirecto.innerText = localDirectCount;
 
   const countJobLinkedIn = document.getElementById('countJobLinkedIn');
   if (countJobLinkedIn) countJobLinkedIn.innerText = linkedInCount;
