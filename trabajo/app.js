@@ -483,7 +483,7 @@ async function fetchLiveJobs(isManual = false) {
   // Si la API local no está disponible (ej. en miweblocal.com en la nube), cargar real_jobs.json estático
   if (!rawJobs || rawJobs.length === 0) {
     try {
-      const staticRes = await fetch('real_jobs.json');
+      const staticRes = await fetch('real_jobs.json?v=' + Date.now());
       if (staticRes.ok) {
         const payload = await staticRes.json();
         rawJobs = Array.isArray(payload) ? payload : (payload.jobs || []);
