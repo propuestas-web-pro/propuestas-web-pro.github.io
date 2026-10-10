@@ -7,20 +7,24 @@
   <meta name="description" content="Süfí Kebab en Callosa de Segura. 5.0 ★ en Google Maps. Rollo Dürüm crujiente, Pan Pita, Platos combinados, Taco Francés, Hamburguesas y servicio a domicilio. Llama al 865 75 85 11.">
   <meta name="author" content="Süfí Kebab">
 
+  <!-- Favicon para pestaña de navegador -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23ff6a00'/><text x='50%' y='70%' font-size='62' text-anchor='middle'>🔥</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23ff6a00'/><text x='50%' y='70%' font-size='62' text-anchor='middle'>🔥</text></svg>">
+
   <!-- Open Graph / WhatsApp Preview -->
   <meta property="og:type" content="restaurant.restaurant">
   <meta property="og:site_name" content="Süfí Kebab Callosa">
   <meta property="og:title" content="Süfí Kebab | El Auténtico Sabor al Fuego (Callosa de Segura)">
   <meta property="og:description" content="5.0 ★ en Google Maps (21 reseñas). Carne 100% Halal de primera calidad, Dürüm XL, platos combinados con arroz o patatas y servicio a domicilio. Llama al 865 75 85 11.">
   <meta property="og:url" content="https://miweblocal.com/sufi-callosa/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:image" content="./img/hero.jpg">
   <link rel="canonical" href="https://miweblocal.com/sufi-callosa/">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Süfí Kebab | Kebab & Brasa 100% Halal Callosa">
   <meta name="twitter:description" content="5.0 ★ en Google Maps. Rollo Dürüm, Pan Pita, Platos y servicio a domicilio en Callosa de Segura. Tel: 865 75 85 11.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:image" content="./img/hero.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +110,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(12, 10, 8, 0.92);
+      background: rgba(12, 10, 8, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -270,7 +274,7 @@
     /* ═══ HERO SECTION ═══ */
     .hero {
       position: relative;
-      padding: clamp(60px, 9vw, 110px) 0 clamp(50px, 7vw, 90px);
+      padding: clamp(50px, 8vw, 100px) 0 clamp(40px, 6vw, 80px);
       overflow: hidden;
       background: radial-gradient(circle at 50% 20%, rgba(255, 106, 0, 0.15) 0%, transparent 65%), var(--bg);
     }
@@ -280,6 +284,12 @@
       grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
       gap: 48px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .hero-badge {
@@ -308,9 +318,9 @@
 
     .hero-title {
       font-family: var(--font-head);
-      font-size: clamp(2.4rem, 5.2vw, 4rem);
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 20px;
     }
@@ -345,6 +355,7 @@
       gap: 28px;
       padding-top: 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
     }
 
     .stat-box strong {
@@ -391,6 +402,7 @@
       left: -18px;
       background: rgba(22, 18, 14, 0.94);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 120, 20, 0.35);
       border-radius: 16px;
       padding: 14px 20px;
@@ -479,14 +491,14 @@
 
     /* ═══ SECCIÓN CARTA INTERACTIVA ═══ */
     .section-menu {
-      padding: clamp(70px, 9vw, 120px) 0;
+      padding: clamp(60px, 8vw, 110px) 0;
       background: var(--bg);
     }
 
     .section-header {
       text-align: center;
       max-width: 680px;
-      margin: 0 auto 48px;
+      margin: 0 auto 40px;
     }
 
     .section-tag {
@@ -589,9 +601,10 @@
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(12, 10, 8, 0.85);
+      background: rgba(12, 10, 8, 0.88);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 120, 20, 0.4);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 120, 20, 0.45);
       color: var(--accent-gold);
       font-size: 0.75rem;
       font-weight: 700;
@@ -625,7 +638,7 @@
 
     .dish-price {
       font-family: var(--font-head);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--accent-gold);
       white-space: nowrap;
@@ -656,9 +669,9 @@
     }
 
     .dish-btn {
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 50px;
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       font-weight: 700;
       background: rgba(255, 106, 0, 0.15);
       border: 1px solid rgba(255, 106, 0, 0.4);
@@ -672,6 +685,7 @@
     .dish-btn:hover {
       background: var(--accent);
       border-color: var(--accent);
+      color: #fff;
     }
 
     /* ═══ SECCIÓN CARTA OFICIAL ESCANEADA ═══ */
@@ -731,7 +745,7 @@
     .zoom-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -749,7 +763,7 @@
 
     /* ═══ SECCIÓN COMPARATIVA DE CALIDAD ═══ */
     .section-quality {
-      padding: clamp(70px, 9vw, 110px) 0;
+      padding: clamp(60px, 8vw, 100px) 0;
     }
 
     .quality-grid {
@@ -805,7 +819,7 @@
 
     /* ═══ SECCIÓN RESEÑAS GOOGLE (5.0 ★) ═══ */
     .section-reviews {
-      padding: clamp(70px, 8vw, 110px) 0;
+      padding: clamp(60px, 8vw, 100px) 0;
       background: #110e0b;
     }
 
@@ -879,7 +893,7 @@
 
     /* ═══ SECCIÓN UBICACIÓN Y HORARIO ═══ */
     .section-contact {
-      padding: clamp(70px, 9vw, 120px) 0;
+      padding: clamp(60px, 8vw, 110px) 0;
       background: var(--bg);
     }
 
@@ -965,7 +979,7 @@
 
     /* ═══ FAQ ACORDEÓN ═══ */
     .section-faq {
-      padding: clamp(60px, 8vw, 100px) 0;
+      padding: clamp(50px, 7vw, 90px) 0;
       background: #110e0b;
     }
 
@@ -1030,7 +1044,7 @@
 
     /* ═══ CTA FINAL ═══ */
     .section-final {
-      padding: clamp(70px, 9vw, 110px) 0;
+      padding: clamp(60px, 8vw, 100px) 0;
       text-align: center;
       background: radial-gradient(circle at 50% 50%, rgba(255, 106, 0, 0.16) 0%, transparent 70%), var(--bg);
     }
@@ -1039,10 +1053,11 @@
       background: linear-gradient(135deg, rgba(22, 18, 14, 0.95), rgba(30, 24, 18, 0.95));
       border: 1px solid var(--border-hover);
       border-radius: 30px;
-      padding: clamp(40px, 7vw, 70px) 24px;
+      padding: clamp(36px, 6vw, 64px) 24px;
       max-width: 840px;
       margin: 0 auto;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(255, 106, 0, 0.15);
+      text-align: center;
     }
 
     .final-phone {
@@ -1065,7 +1080,7 @@
     .site-footer {
       background: #080605;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 40px 0 100px; /* Margen inferior para que no tape el dock en móvil */
+      padding: 40px 0 110px; /* Margen inferior para que no tape el dock en móvil */
     }
 
     .footer-top {
@@ -1127,24 +1142,28 @@
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(12, 10, 8, 0.95);
+      background: rgba(14, 11, 9, 0.96);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(255, 120, 20, 0.35);
       padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.7);
     }
 
     .dock-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
     .dock-actions .btn {
       flex: 1;
-      padding: 12px 14px;
-      font-size: 0.9rem;
+      padding: 13px 14px;
+      font-size: 0.92rem;
+      border-radius: 50px;
     }
 
     .fab-call {
@@ -1180,7 +1199,7 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      background: rgba(5, 4, 3, 0.92);
+      background: rgba(5, 4, 3, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       display: flex;
@@ -1295,27 +1314,469 @@
       cursor: pointer;
     }
 
-    /* ═══ RESPONSIVE ═══ */
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE & MOBILE POLISH (TODO CENTRADO Y PERFECTAMENTE
+       ALINEADO / JUSTIFICADO EN MÓVIL)
+       ═══════════════════════════════════════════════════════════ */
     @media (max-width: 920px) {
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
       }
-      .hero-desc { margin: 0 auto 32px; }
-      .hero-ctas { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .hero-floating-card { left: 50%; transform: translateX(-50%); bottom: -20px; }
-      .official-menu-banner { grid-template-columns: 1fr; }
-      .quality-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .hero-content {
+        align-items: center;
+        text-align: center;
+      }
+      .hero-badge {
+        margin: 0 auto 16px;
+      }
+      .hero-title {
+        text-align: center;
+      }
+      .hero-desc {
+        margin: 0 auto 28px;
+        text-align: center;
+      }
+      .hero-ctas {
+        justify-content: center;
+      }
+      .hero-stats {
+        justify-content: center;
+      }
+      .hero-floating-card {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -20px;
+      }
+      .official-menu-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .official-menu-text {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .quality-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-dock { display: block; }
-      .fab-call { bottom: 84px; right: 16px; }
-      .site-header { padding: 4px 0; }
+      .nav-links {
+        display: none;
+      }
+      .site-header {
+        padding: 2px 0;
+      }
+      .mobile-dock {
+        display: block;
+      }
+      .fab-call {
+        display: none; /* En móvil usamos el dock inferior con botón centrado */
+      }
+
+      /* Contenedor y espaciados móviles */
+      .container {
+        padding: 0 16px;
+      }
+
+      /* Hero centrado en móvil */
+      .hero {
+        padding: 36px 0 54px;
+        text-align: center;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-badge {
+        margin: 0 auto 14px;
+        font-size: 0.78rem;
+        padding: 6px 14px;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 7.8vw, 2.6rem);
+        line-height: 1.15;
+        text-align: center;
+        margin-bottom: 14px;
+      }
+      .hero-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: center;
+        margin: 0 auto 24px;
+        max-width: 95%;
+        text-wrap: balance;
+      }
+      .hero-ctas {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 28px;
+        gap: 10px;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        justify-content: center;
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        padding-top: 18px;
+        text-align: center;
+      }
+      .stat-box strong {
+        font-size: 1.22rem;
+        text-align: center;
+      }
+      .stat-box span {
+        font-size: 0.72rem;
+        text-align: center;
+      }
+
+      /* Hero Media */
+      .hero-media {
+        width: 100%;
+        max-width: 380px;
+        margin: 10px auto 0;
+      }
+      .hero-img-wrap {
+        border-radius: 20px;
+      }
+      .hero-img-wrap img {
+        height: 270px;
+      }
+      .hero-floating-card {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -16px;
+        width: calc(100% - 32px);
+        max-width: 300px;
+        justify-content: center;
+        padding: 10px 14px;
+      }
+
+      /* Sección destacados centrada */
+      .section-highlights {
+        padding: 44px 0;
+      }
+      .grid-highlights {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .highlight-card {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 22px 18px;
+      }
+      .highlight-icon {
+        margin: 0 auto 12px;
+      }
+      .highlight-card h3 {
+        text-align: center;
+        font-size: 1.12rem;
+      }
+      .highlight-card p {
+        text-align: center;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      /* Carta y Platos centrados */
+      .section-menu {
+        padding: 48px 0 54px;
+      }
+      .section-header {
+        text-align: center;
+        margin: 0 auto 28px;
+      }
+      .section-title {
+        font-size: clamp(1.7rem, 6vw, 2.2rem);
+        text-align: center;
+      }
+      .section-desc {
+        font-size: 0.92rem;
+        text-align: center;
+        margin: 0 auto;
+        text-wrap: balance;
+      }
+      .menu-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 26px;
+      }
+      .tab-btn {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+      .dish-card {
+        border-radius: 18px;
+      }
+      .dish-img-wrap {
+        height: 190px;
+      }
+      .dish-body {
+        padding: 18px 16px;
+        text-align: center;
+        align-items: center;
+      }
+      .dish-header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .dish-header h4 {
+        font-size: 1.15rem;
+        text-align: center;
+      }
+      .dish-price {
+        font-size: 1.25rem;
+        text-align: center;
+      }
+      .dish-desc {
+        font-size: 0.86rem;
+        text-align: center;
+        line-height: 1.55;
+        margin-bottom: 16px;
+        text-wrap: pretty;
+      }
+      .dish-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 12px;
+      }
+      .dish-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 0.88rem;
+      }
+
+      /* Carta Oficial Banner */
+      .section-official-menu {
+        padding: 48px 0;
+      }
+      .official-menu-banner {
+        padding: 26px 18px;
+        border-radius: 20px;
+        text-align: center;
+      }
+      .official-menu-text h3 {
+        text-align: center;
+        font-size: 1.45rem;
+      }
+      .official-menu-text p {
+        text-align: center;
+        font-size: 0.88rem;
+        line-height: 1.6;
+        text-wrap: balance;
+      }
+      .official-menu-text div {
+        justify-content: center;
+        width: 100%;
+      }
+      .official-menu-text .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+      .official-menu-preview {
+        width: 100%;
+        max-width: 340px;
+        margin: 14px auto 0;
+        border-radius: 16px;
+      }
+      .official-menu-preview img {
+        height: 220px;
+      }
+
+      /* Calidad */
+      .section-quality {
+        padding: 48px 0;
+      }
+      .quality-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .quality-card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+      .quality-card h3 {
+        font-size: 1.18rem;
+        text-align: center;
+        justify-content: center;
+      }
+      .quality-list li {
+        font-size: 0.88rem;
+        line-height: 1.5;
+      }
+
+      /* Reseñas centradas */
+      .section-reviews {
+        padding: 48px 0;
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+      .review-card {
+        padding: 22px 18px;
+        border-radius: 18px;
+        text-align: center;
+      }
+      .review-stars {
+        justify-content: center;
+      }
+      .review-text {
+        font-size: 0.9rem;
+        text-align: center;
+        line-height: 1.55;
+      }
+      .review-author {
+        justify-content: center;
+      }
+
+      /* Contacto centrado */
+      .section-contact {
+        padding: 48px 0;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .contact-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+        text-align: center;
+      }
+      .contact-card h3 {
+        text-align: center;
+        font-size: 1.45rem;
+      }
+      .contact-items {
+        gap: 16px;
+      }
+      .contact-item {
+        text-align: left;
+        gap: 12px;
+      }
+      .contact-card div[style*="display:flex"] {
+        flex-direction: column;
+        width: 100%;
+      }
+      .contact-card .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .contact-map-frame {
+        min-height: 260px;
+        height: 260px;
+        border-radius: 20px;
+      }
+
+      /* FAQ */
+      .section-faq {
+        padding: 48px 0;
+      }
+      .faq-list {
+        max-width: 420px;
+        margin: 0 auto;
+        gap: 10px;
+      }
+      .faq-btn {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+      }
+      .faq-answer {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+
+      /* Final CTA */
+      .section-final {
+        padding: 48px 0;
+      }
+      .final-card {
+        padding: 34px 18px;
+        border-radius: 22px;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .final-phone {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        margin: 12px 0 20px;
+        text-align: center;
+        display: block;
+      }
+      .final-card .btn {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 14px 20px;
+      }
+
+      /* Footer */
+      .site-footer {
+        padding: 36px 0 110px;
+        text-align: center;
+      }
+      .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+      .footer-brand {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-legal-links {
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.78rem;
+      }
     }
   </style>
 </head>
@@ -1403,13 +1864,13 @@
         </div>
         <div class="hero-media">
           <div class="hero-img-wrap">
-            <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=80" alt="Dürüm Rollo Kebab recién hecho al fuego" loading="eager">
+            <img src="./img/hero.jpg" alt="Carne Kebab asada al fuego recién cortada" loading="eager">
           </div>
           <div class="hero-floating-card">
-            <span class="badge-icon">🥙</span>
+            <span class="badge-icon">🔥</span>
             <div>
-              <strong>Rollo Dürüm XL</strong>
-              <small>Dorado a la plancha · 100% Halal</small>
+              <strong>Carne 100% Halal</strong>
+              <small>Asada a fuego lento al momento</small>
             </div>
           </div>
         </div>
@@ -1463,13 +1924,13 @@
           <button class="tab-btn" data-filter="infantil">👶 Menú Infantil (6€)</button>
         </div>
 
-        <!-- Grid de platos -->
+        <!-- Grid de platos con imágenes únicas y verificadas -->
         <div class="menu-grid" id="menuGrid">
 
           <!-- 1. Rollo Durum -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=600&q=80" alt="Rollo Dürüm Kebab" loading="lazy">
+              <img src="./img/durum.jpg" alt="Rollo Dürüm Kebab XL dorado a la plancha" loading="lazy">
               <span class="dish-badge">⭐ El más pedido</span>
             </div>
             <div class="dish-body">
@@ -1488,7 +1949,7 @@
           <!-- 2. Pan Pita -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=600&q=80" alt="Pan Pita Döner Kebab" loading="lazy">
+              <img src="./img/pita.jpg" alt="Pan Pita Döner Kebab relleno de carne y ensalada" loading="lazy">
               <span class="dish-badge">🔥 Pan Turco</span>
             </div>
             <div class="dish-body">
@@ -1507,7 +1968,7 @@
           <!-- 3. Plato Kebab Combinado -->
           <article class="dish-card" data-cat="platos">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=600&q=80" alt="Plato Kebab Combinado" loading="lazy">
+              <img src="./img/plato.jpg" alt="Plato Kebab Combinado con guarnición y verduras" loading="lazy">
               <span class="dish-badge">👑 Ración XL</span>
             </div>
             <div class="dish-body">
@@ -1526,7 +1987,7 @@
           <!-- 4. Rollo Gratinado -->
           <article class="dish-card" data-cat="platos">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Rollo Gratinado con Queso" loading="lazy">
+              <img src="./img/gratinado.jpg" alt="Rollo Gratinado con queso fundido estirado" loading="lazy">
               <span class="dish-badge">🧀 Gratinado</span>
             </div>
             <div class="dish-body">
@@ -1545,7 +2006,7 @@
           <!-- 5. Taco Francés -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=600&q=80" alt="Taco Francés" loading="lazy">
+              <img src="./img/taco.jpg" alt="Taco Francés sellado a la plancha" loading="lazy">
               <span class="dish-badge">🇫🇷 French Taco</span>
             </div>
             <div class="dish-body">
@@ -1564,7 +2025,7 @@
           <!-- 6. Kebab Box -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80" alt="Kebab Box con Patatas" loading="lazy">
+              <img src="./img/box.jpg" alt="Kebab Box con patatas fritas crujientes y carne" loading="lazy">
               <span class="dish-badge">📦 Box Cómodo</span>
             </div>
             <div class="dish-body">
@@ -1572,7 +2033,7 @@
                 <h4>Kebab Box</h4>
                 <span class="dish-price">4,50 €</span>
               </div>
-              <p class="dish-desc">Caja para llevar con base de patatas fritas crujientes doradas, colmadas con carne picada jugosa y baño de salsas.</p>
+              <p class="dish-desc">Caja para llevar con base de patatas fritas crujientes doradas, colmadas con carne picada jugosa y baño de salsas caseras.</p>
               <div class="dish-footer">
                 <span class="dish-prep">⏱️ 5-8 min</span>
                 <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
@@ -1583,7 +2044,7 @@
           <!-- 7. Hamburguesas a la Brasa -->
           <article class="dish-card" data-cat="burgers">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Hamburguesa Doble a la Brasa" loading="lazy">
+              <img src="./img/burger.jpg" alt="Hamburguesa gourmet a la plancha con queso cheddar" loading="lazy">
               <span class="dish-badge">🍔 Doble Queso</span>
             </div>
             <div class="dish-body">
@@ -1602,7 +2063,7 @@
           <!-- 8. Pizza Turca Lamacun -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Pizza Turca Lamacun" loading="lazy">
+              <img src="./img/pizza.jpg" alt="Pizza artesana horneada al fuego" loading="lazy">
               <span class="dish-badge">🍕 Tradicional</span>
             </div>
             <div class="dish-body">
@@ -1621,7 +2082,7 @@
           <!-- 9. Entrantes y Alitas -->
           <article class="dish-card" data-cat="entrantes">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80" alt="Alitas de Pollo Marinadas" loading="lazy">
+              <img src="./img/alitas.jpg" alt="Alitas de pollo crujientes marinadas" loading="lazy">
               <span class="dish-badge">🍗 Crujientes</span>
             </div>
             <div class="dish-body">
@@ -1640,7 +2101,7 @@
           <!-- 10. Menú Infantil -->
           <article class="dish-card" data-cat="infantil">
             <div class="dish-img-wrap">
-              <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80" alt="Menú Infantil con Patatas y Zumo" loading="lazy">
+              <img src="./img/infantil.jpg" alt="Menú Infantil con nuggets crujientes y patatas" loading="lazy">
               <span class="dish-badge">👶 Para Niños</span>
             </div>
             <div class="dish-body">
@@ -1990,7 +2451,7 @@
   <div class="mobile-dock" aria-label="Acciones rápidas en móvil">
     <div class="dock-actions">
       <a href="tel:865758511" class="btn btn-primary">
-        <span>📞</span> Llamar (865 75 85 11)
+        <span>📞</span> Pedir (865 75 85 11)
       </a>
       <a href="#contacto" class="btn btn-outline">
         <span>📍</span> Dónde Estamos
@@ -1998,7 +2459,7 @@
     </div>
   </div>
 
-  <!-- BOTÓN FLOTANTE FAB -->
+  <!-- BOTÓN FLOTANTE FAB (PARA TABLET / DESKTOP) -->
   <a href="tel:865758511" class="fab-call" aria-label="Llamar directamente a Süfí Kebab al 865 75 85 11">
     📞
   </a>
