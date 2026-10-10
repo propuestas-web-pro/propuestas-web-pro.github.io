@@ -342,22 +342,19 @@
     /* ═══ HERO SECTION LUMINOSA ═══ */
     .hero {
       position: relative;
-      padding: 60px 0 72px;
+      padding: 52px 0 64px;
       overflow: hidden;
       background: radial-gradient(ellipse at 50% -10%, rgba(234, 88, 12, 0.08) 0%, transparent 60%);
+      text-align: center;
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 48px;
-    }
-
-    .hero-content {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto;
     }
 
     .hero-badge {
@@ -367,11 +364,11 @@
       background: var(--accent-emerald-bg);
       border: 1px solid #a7f3d0;
       color: var(--accent-emerald);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 50px;
-      margin-bottom: 20px;
+      margin: 0 auto 18px;
       letter-spacing: 0.02em;
     }
 
@@ -396,7 +393,8 @@
       line-height: 1.12;
       letter-spacing: -0.03em;
       color: var(--ink);
-      margin-bottom: 20px;
+      margin: 0 auto 16px;
+      text-align: center;
     }
 
     .hero-title .glow-word {
@@ -407,28 +405,60 @@
     }
 
     .hero-desc {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       line-height: 1.65;
       color: var(--ink-body);
-      margin-bottom: 32px;
-      max-width: 540px;
+      margin: 0 auto 28px;
+      max-width: 620px;
+      text-align: center;
     }
 
     .hero-ctas {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 40px;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 32px;
       width: 100%;
+    }
+
+    .hero-media {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.14);
+      background: #f1f5f9;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.6s ease;
     }
 
     .hero-stats {
       display: flex;
       align-items: center;
-      gap: 28px;
+      justify-content: center;
+      gap: 40px;
       padding-top: 24px;
       border-top: 1px solid var(--border);
       width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .stat-box {
+      text-align: center;
     }
 
     .stat-box strong {
@@ -450,26 +480,6 @@
       display: block;
     }
 
-    .hero-media {
-      position: relative;
-    }
-
-    .hero-img-wrap {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      background: #f1f5f9;
-    }
-
-    .hero-img-wrap img {
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
-      object-position: center center;
-      transition: transform 0.6s ease;
-    }
 
     /* ═══ SECCIÓN HIGHLIGHTS ═══ */
     .section-highlights {
@@ -1319,26 +1329,7 @@
 
     /* Botón FAB para desktop */
     .fab-call {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 90;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: var(--accent-gradient);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 24px var(--accent-glow);
-      border: 2px solid #ffffff;
-      transition: var(--transition);
-    }
-
-    .fab-call:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(234, 88, 12, 0.4);
+      display: none !important;
     }
 
     /* ═══ MODALES (LEGAL & LIGHTBOX) ═══ */
@@ -1928,44 +1919,42 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="dot"></span>
-            Abierto Hoy · C. Hermanos Parra, 10
-          </div>
-          <h2 class="hero-title">
-            El auténtico Kebab <br>
-            <span class="glow-word">recién cortado.</span>
-          </h2>
-          <p class="hero-desc">
-            Carne 100% Halal marinada a diario y laminada directamente del asador. Dürüm crujiente, Pan Pita artesano, platos generosos con arroz basmati o patatas y salsas caseras irresistibles.
-          </p>
-          <div class="hero-ctas">
-            <a href="tel:865758511" class="btn btn-primary">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar para Pedir (865 75 85 11)
-            </a>
-            <a href="#carta" class="btn btn-outline">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Ver la Carta Completa
-            </a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-box">
-              <strong>5.0 ★</strong>
-              <span>Google Maps (21 reseñas)</span>
-            </div>
-            <div class="stat-box">
-              <strong>100%</strong>
-              <span>Carne Halal Certificada</span>
-            </div>
-            <div class="stat-box">
-              <strong>10-15m</strong>
-              <span>Preparación al Momento</span>
-            </div>
-          </div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Abierto Hoy · C. Hermanos Parra, 10
+        </div>
+        <h2 class="hero-title">
+          El auténtico Kebab <br>
+          <span class="glow-word">recién cortado.</span>
+        </h2>
+        <p class="hero-desc">
+          Carne 100% Halal marinada a diario y laminada directamente del asador. Dürüm crujiente, Pan Pita artesano, platos generosos con arroz basmati o patatas y salsas caseras irresistibles.
+        </p>
+        <div class="hero-ctas">
+          <a href="tel:865758511" class="btn btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar para Pedir (865 75 85 11)
+          </a>
+          <a href="#carta" class="btn btn-outline">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Ver la Carta Completa
+          </a>
         </div>
         <div class="hero-media">
           <div class="hero-img-wrap">
-            <img src="./img/hero.jpg?v=3" alt="El dueño de Süfí Kebab cortando el auténtico kebab en el asador en Callosa de Segura" loading="eager">
+            <img src="./img/hero.jpg?v=5" alt="El dueño de Süfí Kebab cortando el auténtico kebab en el asador en Callosa de Segura" loading="eager">
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <strong>5.0 ★</strong>
+            <span>Google Maps (21 reseñas)</span>
+          </div>
+          <div class="stat-box">
+            <strong>100%</strong>
+            <span>Carne Halal Certificada</span>
+          </div>
+          <div class="stat-box">
+            <strong>10-15m</strong>
+            <span>Preparación al Momento</span>
           </div>
         </div>
       </div>
