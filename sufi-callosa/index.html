@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Süfí Kebab | El Auténtico Sabor al Fuego · Callosa de Segura</title>
-  <meta name="description" content="Süfí Kebab en Callosa de Segura. 5.0 ★ en Google Maps. Rollo Dürüm crujiente, Pan Pita, Platos combinados, Taco Francés, Hamburguesas y servicio a domicilio. Llama al 865 75 85 11.">
+  <title>Süfí Kebab | Auténtico Kebab Tradicional · Callosa de Segura</title>
+  <meta name="description" content="Süfí Kebab en Callosa de Segura. 5.0 ★ en Google Maps. Especialidad en Rollo Dürüm recién hecho, Pan Pita crujiente, Platos combinados 100% Halal y servicio a domicilio. Llama al 865 75 85 11.">
   <meta name="author" content="Süfí Kebab">
-  <meta name="theme-color" content="#090a0f">
+  <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- Favicon para pestaña de navegador -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23ea580c'/><path d='M50 20c-15 17-27 33-27 50a27 27 0 0 0 54 0c0-17-12-33-27-50z' fill='%23ffffff'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23ea580c'/><path d='M50 20c-15 17-27 33-27 50a27 27 0 0 0 54 0c0-17-12-33-27-50z' fill='%23ffffff'/></svg>">
+  <!-- Favicon y Logo Oficial -->
+  <link rel="icon" type="image/png" href="./img/favicon.png">
+  <link rel="apple-touch-icon" href="./img/logo.png">
 
   <!-- Open Graph / WhatsApp Preview -->
   <meta property="og:type" content="restaurant.restaurant">
   <meta property="og:site_name" content="Süfí Kebab Callosa">
-  <meta property="og:title" content="Süfí Kebab | El Auténtico Sabor al Fuego (Callosa de Segura)">
-  <meta property="og:description" content="5.0 ★ en Google Maps (21 reseñas). Carne 100% Halal de primera calidad, Dürüm XL, platos combinados con arroz o patatas y servicio a domicilio. Llama al 865 75 85 11.">
+  <meta property="og:title" content="Süfí Kebab | Auténtico Kebab Tradicional (Callosa de Segura)">
+  <meta property="og:description" content="5.0 ★ en Google Maps (21 reseñas). Carne 100% Halal marinada a diario y cortada del asador. Dürüm XL, platos combinados y servicio a domicilio. Tel: 865 75 85 11.">
   <meta property="og:url" content="https://miweblocal.com/sufi-callosa/">
-  <meta property="og:image" content="./img/hero.jpg">
+  <meta property="og:image" content="./img/logo.png">
   <link rel="canonical" href="https://miweblocal.com/sufi-callosa/">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Süfí Kebab | Kebab & Brasa 100% Halal Callosa">
+  <meta name="twitter:title" content="Süfí Kebab | Auténtico Kebab Tradicional Callosa">
   <meta name="twitter:description" content="5.0 ★ en Google Maps. Rollo Dürüm, Pan Pita, Platos y servicio a domicilio en Callosa de Segura. Tel: 865 75 85 11.">
   <meta name="twitter:image" content="./img/hero.jpg">
 
@@ -214,16 +214,20 @@
       gap: 12px;
     }
 
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: var(--accent-gradient);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 14px var(--accent-glow);
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.22);
+      border: 1.5px solid rgba(234, 88, 12, 0.2);
+      background: #ffffff;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .brand:hover .brand-logo-img {
+      transform: scale(1.06) rotate(3deg);
     }
 
     .brand-text h1 {
@@ -1495,7 +1499,8 @@
       .nav-inner {
         height: 56px;
       }
-      .brand-logo {
+      .brand-logo,
+      .brand-logo-img {
         width: 38px;
         height: 38px;
       }
@@ -1883,14 +1888,14 @@
   <!-- TICKER EN DIRECTO -->
   <aside class="ticker-bar" aria-label="Información en directo">
     <div class="ticker-inner">
-      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico Kebab tradicional en Callosa de Segura</span>
       <span class="ticker-item"><span class="ticker-dot"></span> <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
-      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Ternera y pollo de primera calidad marinados a diario</span>
       <span class="ticker-item"><span class="ticker-dot"></span> <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
       <!-- Duplicado para loop continuo -->
-      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico Kebab tradicional en Callosa de Segura</span>
       <span class="ticker-item"><span class="ticker-dot"></span> <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
-      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Ternera y pollo de primera calidad marinados a diario</span>
       <span class="ticker-item"><span class="ticker-dot"></span> <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
     </div>
   </aside>
@@ -1899,10 +1904,10 @@
   <header class="site-header">
     <div class="container nav-inner">
       <a href="#inicio" class="brand">
-        <div class="brand-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+        <img src="./img/logo.png" alt="Logo Oficial Süfí Kebab" class="brand-logo-img">
         <div class="brand-text">
           <h1>Süfí Kebab</h1>
-          <span>Callosa de Segura</span>
+          <span>Kebab Tradicional · Callosa</span>
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
@@ -1929,11 +1934,11 @@
             Abierto Hoy · C. Hermanos Parra, 10
           </div>
           <h2 class="hero-title">
-            El auténtico sabor <br>
-            <span class="glow-word">al fuego.</span>
+            El auténtico Kebab <br>
+            <span class="glow-word">recién cortado.</span>
           </h2>
           <p class="hero-desc">
-            Carne 100% Halal marinada con receta propia y asada a fuego lento. Dürüm crujiente, Pan Pita esponjoso, platos generosos con arroz basmati o patatas y salsas caseras irresistibles.
+            Carne 100% Halal marinada a diario y laminada directamente del asador. Dürüm crujiente, Pan Pita artesano, platos generosos con arroz basmati o patatas y salsas caseras irresistibles.
           </p>
           <div class="hero-ctas">
             <a href="tel:865758511" class="btn btn-primary">
@@ -1960,7 +1965,7 @@
         </div>
         <div class="hero-media">
           <div class="hero-img-wrap">
-            <img src="./img/hero.jpg?v=3" alt="El dueño de Süfí Kebab cortando el auténtico kebab al fuego en Callosa de Segura" loading="eager">
+            <img src="./img/hero.jpg?v=3" alt="El dueño de Süfí Kebab cortando el auténtico kebab en el asador en Callosa de Segura" loading="eager">
           </div>
         </div>
       </div>
@@ -1976,9 +1981,9 @@
             <p>Ternera y pollo seleccionados minuciosamente. Máxima frescura, sabor tradicional y cumplimiento estricto Halal Food.</p>
           </div>
           <div class="highlight-card">
-            <div class="highlight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
-            <h3>Toque a la Brasa</h3>
-            <p>Carne recién cortada y pasada por plancha para conseguir ese sabor tostado crujiente por fuera y jugoso por dentro.</p>
+            <div class="highlight-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h3>Recién Cortado del Asador</h3>
+            <p>Carne laminada al momento directamente del trompo giratorio para garantizar máxima jugosidad, calor y sabor tradicional.</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M6 19h12"/><path d="M12 3v4"/><path d="M8 4v3"/><path d="M16 4v3"/></svg></div>
@@ -2134,7 +2139,7 @@
           <article class="dish-card" data-cat="burgers">
             <div class="dish-img-wrap">
               <img src="./img/burger.jpg" alt="Hamburguesa gourmet a la plancha con queso cheddar" loading="lazy">
-              <span class="dish-badge">🍔 Doble Queso</span>
+              <span class="dish-badge">Doble Queso</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2152,8 +2157,8 @@
           <!-- 8. Pizza Turca Lamacun -->
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
-              <img src="./img/pizza.jpg" alt="Pizza artesana horneada al fuego" loading="lazy">
-              <span class="dish-badge">🍕 Tradicional</span>
+              <img src="./img/pizza.jpg" alt="Pizza artesana horneada al horno" loading="lazy">
+              <span class="dish-badge">Tradicional</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2179,7 +2184,7 @@
                 <h4>Alitas de Pollo</h4>
                 <span class="dish-price">4,00 € <span class="menu-price-sub">Menú: 6,50 €</span></span>
               </div>
-              <p class="dish-desc">Alitas de pollo marinadas al fuego bien doradas, acompañadas de salsa para dipear. También disponibles nuggets, croquetas y samosas.</p>
+              <p class="dish-desc">Alitas de pollo marinadas al estilo tradicional bien doradas, acompañadas de salsa para dipear. También disponibles nuggets, croquetas y samosas.</p>
               <div class="dish-footer">
                 <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
                 <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
@@ -2191,7 +2196,7 @@
           <article class="dish-card" data-cat="infantil">
             <div class="dish-img-wrap">
               <img src="./img/infantil.jpg" alt="Menú Infantil con nuggets crujientes y patatas" loading="lazy">
-              <span class="dish-badge">👶 Para Niños</span>
+              <span class="dish-badge">Menú Infantil</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2222,17 +2227,17 @@
             </p>
             <div style="display:flex;gap:12px;flex-wrap:wrap">
               <button type="button" class="btn btn-gold" id="openMenuModalBtn">
-                <span>🔍</span> Ver Carta en Grande
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Ver Carta en Grande
               </button>
               <a href="tel:865758511" class="btn btn-outline">
-                <span>📞</span> Llamar y Encargar
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar y Encargar
               </a>
             </div>
           </div>
           <div class="official-menu-preview" id="openMenuModalImg">
             <img src="./img/carta-oficial-sufi-kebab.png" alt="Carta y Menú Oficial de Süfí Kebab" loading="lazy">
             <div class="zoom-overlay">
-              <span>🔍 Haz clic para ampliar la carta</span>
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Haz clic para ampliar la carta</span>
             </div>
           </div>
         </div>
@@ -2380,21 +2385,21 @@
               <h3>Visítanos en Callosa</h3>
               <div class="contact-items">
                 <div class="contact-item">
-                  <div class="contact-item-icon">📍</div>
+                  <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
                   <div class="contact-item-text">
                     <small>Dirección</small>
                     <strong>C. Hermanos Parra, 10, 03360 Callosa de Segura, Alicante</strong>
                   </div>
                 </div>
                 <div class="contact-item">
-                  <div class="contact-item-icon">🕒</div>
+                  <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                   <div class="contact-item-text">
                     <small>Horario</small>
                     <strong>Lunes a Domingo: 12:30 - 16:00 y 19:30 - 00:30</strong>
                   </div>
                 </div>
                 <div class="contact-item">
-                  <div class="contact-item-icon">📞</div>
+                  <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
                   <div class="contact-item-text">
                     <small>Teléfono de Pedidos</small>
                     <strong>865 75 85 11 (Servicio en local y reparto)</strong>
@@ -2404,10 +2409,10 @@
             </div>
             <div style="display:flex;gap:12px;flex-wrap:wrap">
               <a href="tel:865758511" class="btn btn-primary">
-                <span>📞</span> Llamar ahora (865 75 85 11)
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar ahora (865 75 85 11)
               </a>
               <a href="https://www.google.com/maps/place/Suf%C3%AD+Kebab/@38.1242969,-0.9530434,13z/data=!4m10!1m2!2m1!1skebab+callosa!3m6!1s0xd63a3a984fd332b:0x217b3a700eb04937!8m2!3d38.1242278!4d-0.8768!15sCg1rZWJhYiBjYWxsb3NhWg8iDWtlYmFiIGNhbGxvc2GSARRmYXN0X2Zvb2RfcmVzdGF1cmFudOABAA!16s%2Fg%2F11nw16b5cy?entry=ttu" target="_blank" rel="noopener" class="btn btn-outline">
-                <span>🗺️</span> Cómo Llegar (Google Maps)
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cómo Llegar (Google Maps)
               </a>
             </div>
           </div>
@@ -2491,14 +2496,14 @@
       <div class="container">
         <div class="final-card">
           <span class="section-tag">¿Tienes hambre?</span>
-          <h2 class="section-title">Pide tu Kebab al fuego recién hecho</h2>
-          <p class="section-desc">Llámanos ahora mismo al teléfono fijo de nuestro local en Callosa de Segura.</p>
+          <h2 class="section-title">Pide tu Kebab recién cortado y caliente</h2>
+          <p class="section-desc">Llámanos ahora mismo al teléfono de nuestro local en Callosa de Segura.</p>
           <a href="tel:865758511" class="final-phone">
             865 75 85 11
           </a>
           <div>
             <a href="tel:865758511" class="btn btn-primary" style="font-size:1.1rem;padding:16px 36px">
-              <span>📞</span> Llamar ahora al 865 75 85 11
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar ahora al 865 75 85 11
             </a>
           </div>
         </div>
@@ -2511,7 +2516,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="brand-logo" style="width:36px;height:36px;font-size:18px">🔥</div>
+          <img src="./img/logo.png" alt="Logo Oficial Süfí Kebab" class="brand-logo-img" style="width:38px;height:38px">
           <div>
             <h4>Süfí Kebab Callosa</h4>
             <p>© 2026 Süfí Kebab · C. Hermanos Parra, 10, 03360 Callosa de Segura, Alicante</p>
