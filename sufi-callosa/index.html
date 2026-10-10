@@ -35,39 +35,47 @@
 
   <style>
     /* ═══════════════════════════════════════════════════════════
-       SÜFÍ KEBAB · ELITE RESTAURANT DESIGN SYSTEM
-       El Auténtico Sabor al Fuego · Callosa de Segura
-       Obsidian Noir & Vibrant Flame Palette
+       SÜFÍ KEBAB · MODERN LIGHT RESTAURANT DESIGN SYSTEM
+       Fondo Blanco Luminoso, Cero Emojis, Estilo de Agencia
        ═══════════════════════════════════════════════════════════ */
     :root {
-      /* Obsidian & Deep Slate Backgrounds - Zero Muddy Brown */
-      --bg: #090a0f;
-      --bg-card: #12141c;
-      --bg-card-hover: #181b26;
-      --bg-elevated: #161824;
-      --bg-subtle: #0f1118;
+      /* Fondos Blancos y Limpios */
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #ffffff;
+      --bg-elevated: #ffffff;
+      --bg-surface: #f1f5f9;
       
-      /* Crisp Precision Hairlines */
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 94, 20, 0.45);
-      --border-accent: rgba(255, 94, 20, 0.25);
+      /* Bordes y Sombras de Alta Precisión */
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --border-hover: rgba(234, 88, 12, 0.4);
+      --border-accent: rgba(234, 88, 12, 0.25);
       
-      /* Vibrant Culinary Flame & Ember Accents */
-      --accent: #ff5722;
-      --accent-light: #ff7844;
-      --accent-dark: #e64a19;
-      --accent-gradient: linear-gradient(135deg, #ff6b2b 0%, #ff3d00 100%);
-      --accent-glow: rgba(255, 87, 34, 0.32);
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 36px rgba(234, 88, 12, 0.12), 0 4px 14px rgba(15, 23, 42, 0.05);
       
-      /* Warm Amber Gold & Fresh Emerald */
-      --accent-gold: #f59e0b;
-      --accent-gold-light: #fbbf24;
-      --accent-emerald: #10b981;
+      /* Acentos Vivos y Apetitosos de Fuego & Brasa */
+      --accent: #ea580c;
+      --accent-light: #f97316;
+      --accent-dark: #c2410c;
+      --accent-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      --accent-glow: rgba(234, 88, 12, 0.22);
       
-      /* Pure High-Contrast Typography */
-      --ink: #ffffff;
-      --ink-muted: #cbd5e1;
-      --ink-faint: #94a3b8;
+      /* Ámbar Dorado y Verde Esmeralda */
+      --accent-gold: #d97706;
+      --accent-gold-light: #f59e0b;
+      --accent-emerald: #059669;
+      --accent-emerald-bg: #ecfdf5;
+      
+      /* Tipografía Nítida sobre Fondo Blanco */
+      --ink: #0f172a;        /* Negro carbón ultra-nítido */
+      --ink-body: #334155;   /* Pizarra oscuro para párrafos */
+      --ink-muted: #64748b;  /* Gris medio */
+      --ink-faint: #94a3b8;  /* Gris claro */
 
       --font-head: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -86,7 +94,7 @@
     html {
       scroll-behavior: smooth;
       background: var(--bg);
-      color: var(--ink);
+      color: var(--ink-body);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
@@ -98,7 +106,7 @@
       overflow-x: hidden;
       min-height: 100dvh;
       background: var(--bg);
-      color: var(--ink);
+      color: var(--ink-body);
     }
 
     a {
@@ -130,10 +138,10 @@
       padding: 0 20px;
     }
 
-    /* ═══ TICKER MARQUEE SUPERIOR ═══ */
+    /* ═══ TICKER MARQUEE SUPERIOR LUMINOSO ═══ */
     .ticker-bar {
-      background: #06070a;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: #fff7ed;
+      border-bottom: 1px solid #ffedd5;
       height: 32px;
       overflow: hidden;
       display: flex;
@@ -145,8 +153,8 @@
     .ticker-inner {
       display: flex;
       white-space: nowrap;
-      animation: tickerLoop 32s linear infinite;
-      gap: 36px;
+      animation: tickerLoop 34s linear infinite;
+      gap: 32px;
     }
 
     .ticker-inner:hover {
@@ -155,15 +163,24 @@
 
     .ticker-item {
       font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--ink-muted);
+      font-weight: 600;
+      color: #9a3412;
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
     .ticker-item strong {
-      color: #fff;
+      color: #7c2d12;
+    }
+
+    .ticker-dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ea580c;
+      opacity: 0.6;
     }
 
     @keyframes tickerLoop {
@@ -176,11 +193,12 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9, 10, 15, 0.88);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
     }
 
     .nav-inner {
@@ -201,11 +219,11 @@
       height: 42px;
       border-radius: 12px;
       background: var(--accent-gradient);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 16px var(--accent-glow);
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
 
     .brand-text h1 {
@@ -214,13 +232,13 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.1;
-      color: #fff;
+      color: var(--ink);
     }
 
     .brand-text span {
       font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--accent-gold);
+      font-weight: 700;
+      color: var(--accent);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       display: block;
@@ -241,7 +259,7 @@
     }
 
     .nav-links a:hover {
-      color: #fff;
+      color: var(--accent);
     }
 
     .nav-links a::after {
@@ -271,7 +289,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       font-weight: 700;
       font-size: 0.95rem;
       border-radius: 50px;
@@ -288,41 +306,41 @@
     .btn-primary {
       background: var(--accent-gradient);
       color: #ffffff;
-      box-shadow: 0 6px 20px var(--accent-glow);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 16px var(--accent-glow);
+      border: none;
     }
 
     .btn-primary:hover {
-      box-shadow: 0 8px 28px rgba(255, 87, 34, 0.5);
+      box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4);
       transform: translateY(-2px);
     }
 
     .btn-outline {
-      background: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(8px);
+      background: #ffffff;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.28);
+      background: var(--bg-subtle);
+      border-color: #cbd5e1;
       transform: translateY(-2px);
     }
 
     .btn-gold {
       background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #090a0f;
+      color: #ffffff;
       font-weight: 800;
-      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
     }
 
-    /* ═══ HERO SECTION ═══ */
+    /* ═══ HERO SECTION LUMINOSA ═══ */
     .hero {
       position: relative;
-      padding: 64px 0 72px;
+      padding: 60px 0 72px;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 0%, rgba(255, 87, 34, 0.12) 0%, transparent 65%);
+      background: radial-gradient(ellipse at 50% -10%, rgba(234, 88, 12, 0.08) 0%, transparent 60%);
     }
 
     .hero-grid {
@@ -342,9 +360,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #34d399;
+      background: var(--accent-emerald-bg);
+      border: 1px solid #a7f3d0;
+      color: var(--accent-emerald);
       font-size: 0.82rem;
       font-weight: 700;
       padding: 6px 14px;
@@ -357,14 +375,14 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 10px #10b981;
+      background: #059669;
+      box-shadow: 0 0 10px #059669;
       animation: pulseGreen 2s infinite;
     }
 
     @keyframes pulseGreen {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     .hero-title {
@@ -373,7 +391,7 @@
       font-weight: 900;
       line-height: 1.12;
       letter-spacing: -0.03em;
-      color: #ffffff;
+      color: var(--ink);
       margin-bottom: 20px;
     }
 
@@ -387,7 +405,7 @@
     .hero-desc {
       font-size: 1.05rem;
       line-height: 1.65;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       margin-bottom: 32px;
       max-width: 540px;
     }
@@ -413,7 +431,7 @@
       font-family: var(--font-head);
       font-size: 1.35rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--ink);
       display: block;
       line-height: 1.2;
     }
@@ -424,7 +442,7 @@
 
     .stat-box span {
       font-size: 0.78rem;
-      color: var(--ink-faint);
+      color: var(--ink-muted);
       display: block;
     }
 
@@ -435,53 +453,18 @@
     .hero-img-wrap {
       border-radius: 24px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px var(--accent-glow);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
       position: relative;
-      background: var(--bg-card);
+      background: #f1f5f9;
     }
 
     .hero-img-wrap img {
       width: 100%;
       height: 380px;
       object-fit: cover;
-      object-position: center 25%;
+      object-position: center 30%;
       transition: transform 0.6s ease;
-    }
-
-    .hero-floating-card {
-      position: absolute;
-      bottom: -16px;
-      left: 20px;
-      background: rgba(18, 20, 28, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 94, 20, 0.35);
-      border-radius: 16px;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero-floating-card .badge-icon {
-      font-size: 26px;
-    }
-
-    .hero-floating-card strong {
-      font-family: var(--font-head);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
-      display: block;
-    }
-
-    .hero-floating-card small {
-      font-size: 0.76rem;
-      color: var(--accent-gold);
-      font-weight: 600;
-      display: block;
     }
 
     /* ═══ SECCIÓN HIGHLIGHTS ═══ */
@@ -505,7 +488,7 @@
       padding: 24px 20px;
       transition: var(--transition);
       position: relative;
-      overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
 
     .highlight-card::before {
@@ -514,16 +497,17 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 3px;
       background: var(--accent-gradient);
       opacity: 0;
       transition: var(--transition);
+      border-radius: 20px 20px 0 0;
     }
 
     .highlight-card:hover {
       transform: translateY(-4px);
-      border-color: var(--border-hover);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
     }
 
     .highlight-card:hover::before {
@@ -531,23 +515,23 @@
     }
 
     .highlight-icon {
-      font-size: 28px;
       margin-bottom: 14px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 48px;
       height: 48px;
-      line-height: 48px;
-      text-align: center;
       border-radius: 12px;
-      background: rgba(255, 94, 20, 0.1);
-      border: 1px solid rgba(255, 94, 20, 0.2);
+      background: #ffedd5;
+      border: 1px solid #fed7aa;
+      color: #ea580c;
     }
 
     .highlight-card h3 {
       font-family: var(--font-head);
       font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--ink);
       margin-bottom: 8px;
     }
 
@@ -561,6 +545,7 @@
     .section-menu {
       padding: clamp(64px, 8vw, 96px) 0;
       position: relative;
+      background: #ffffff;
     }
 
     .section-header {
@@ -573,11 +558,11 @@
       display: inline-block;
       font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent-gold);
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.28);
+      color: #c2410c;
+      background: #ffedd5;
+      border: 1px solid #fed7aa;
       padding: 5px 14px;
       border-radius: 50px;
       margin-bottom: 14px;
@@ -588,7 +573,7 @@
       font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: #ffffff;
+      color: var(--ink);
       line-height: 1.2;
       margin-bottom: 14px;
     }
@@ -599,7 +584,7 @@
       line-height: 1.6;
     }
 
-    /* Pestañas de filtrado */
+    /* Pestañas de filtrado (Tipográficas, sin emojis) */
     .menu-tabs {
       display: flex;
       align-items: center;
@@ -610,12 +595,12 @@
     }
 
     .tab-btn {
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--ink-muted);
-      background: var(--bg-card);
+      background: #f8fafc;
       border: 1px solid var(--border);
       transition: var(--transition);
       cursor: pointer;
@@ -623,8 +608,9 @@
     }
 
     .tab-btn:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--ink);
+      border-color: #cbd5e1;
+      background: #ffffff;
     }
 
     .tab-btn.active {
@@ -635,7 +621,7 @@
       box-shadow: 0 4px 16px var(--accent-glow);
     }
 
-    /* Grid de platos */
+    /* Grid de platos en tarjetas blancas pulidas */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -643,7 +629,7 @@
     }
 
     .dish-card {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -651,19 +637,20 @@
       flex-direction: column;
       transition: var(--transition);
       position: relative;
+      box-shadow: var(--shadow-sm);
     }
 
     .dish-card:hover {
       transform: translateY(-6px);
-      border-color: var(--border-hover);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-glow);
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-hover);
     }
 
     .dish-img-wrap {
       position: relative;
       height: 185px;
       overflow: hidden;
-      background: #0f1118;
+      background: #f1f5f9;
     }
 
     .dish-img-wrap img {
@@ -681,16 +668,18 @@
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(9, 10, 15, 0.88);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: var(--accent-gold);
-      font-size: 0.74rem;
-      font-weight: 700;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #9a3412;
+      font-size: 0.72rem;
+      font-weight: 800;
       padding: 4px 10px;
       border-radius: 50px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
     }
 
     .dish-body {
@@ -711,8 +700,8 @@
     .dish-header h4 {
       font-family: var(--font-head);
       font-size: 1.18rem;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: 800;
+      color: var(--ink);
       line-height: 1.25;
     }
 
@@ -725,7 +714,7 @@
       font-family: var(--font-head);
       font-size: 1.25rem;
       font-weight: 800;
-      color: var(--accent-gold);
+      color: var(--accent);
     }
 
     .menu-price-sub {
@@ -737,7 +726,7 @@
 
     .dish-desc {
       font-size: 0.88rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       line-height: 1.55;
       margin-bottom: 18px;
       flex: 1;
@@ -749,7 +738,7 @@
       justify-content: space-between;
       gap: 12px;
       padding-top: 14px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-light);
     }
 
     .dish-time {
@@ -758,7 +747,7 @@
       color: var(--ink-faint);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .dish-btn {
@@ -773,10 +762,11 @@
       align-items: center;
       gap: 6px;
       transition: var(--transition);
+      box-shadow: 0 2px 8px var(--accent-glow);
     }
 
     .dish-btn:hover {
-      box-shadow: 0 4px 14px var(--accent-glow);
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
       transform: translateY(-1px);
     }
 
@@ -789,7 +779,7 @@
     }
 
     .official-menu-banner {
-      background: linear-gradient(145deg, #12141c 0%, #161924 100%);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 36px 40px;
@@ -797,21 +787,21 @@
       grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 40px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-md);
     }
 
     .official-menu-text h3 {
       font-family: var(--font-head);
       font-size: 1.85rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--ink);
       line-height: 1.25;
       margin-bottom: 14px;
     }
 
     .official-menu-text p {
       font-size: 0.95rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       line-height: 1.6;
       margin-bottom: 24px;
     }
@@ -820,8 +810,8 @@
       position: relative;
       border-radius: 18px;
       overflow: hidden;
-      border: 2px solid rgba(255, 94, 20, 0.35);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      border: 2px solid #fed7aa;
+      box-shadow: var(--shadow-md);
       cursor: pointer;
       background: #ffffff;
       transition: var(--transition);
@@ -830,6 +820,7 @@
     .official-menu-preview:hover {
       transform: scale(1.02);
       border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
     }
 
     .official-menu-preview img {
@@ -842,7 +833,7 @@
     .official-menu-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(9, 10, 15, 0.6);
+      background: rgba(15, 23, 42, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -861,11 +852,16 @@
       border-radius: 50px;
       font-size: 0.88rem;
       font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     /* ═══ SECCIÓN COMPARATIVA DE CALIDAD ═══ */
     .section-quality {
       padding: clamp(64px, 8vw, 96px) 0;
+      background: #ffffff;
     }
 
     .quality-grid {
@@ -877,19 +873,19 @@
     .quality-card {
       border-radius: var(--radius-lg);
       padding: 32px 28px;
-      background: var(--bg-card);
       border: 1px solid var(--border);
       position: relative;
     }
 
     .quality-card.bad {
-      border-color: rgba(248, 113, 113, 0.25);
+      background: #fff5f5;
+      border-color: #fecdd3;
     }
 
     .quality-card.good {
-      border-color: rgba(255, 94, 20, 0.4);
-      background: linear-gradient(145deg, #12141c 0%, #1a1e2b 100%);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+      background: #fffbf5;
+      border-color: #fed7aa;
+      box-shadow: 0 10px 30px rgba(234, 88, 12, 0.08);
     }
 
     .quality-card h3 {
@@ -902,8 +898,8 @@
       gap: 10px;
     }
 
-    .quality-card.bad h3 { color: #f87171; }
-    .quality-card.good h3 { color: var(--accent-gold-light); }
+    .quality-card.bad h3 { color: #e11d48; }
+    .quality-card.good h3 { color: #c2410c; }
 
     .quality-list {
       list-style: none;
@@ -921,22 +917,24 @@
     }
 
     .quality-list li .q-icon {
-      font-size: 1.1rem;
-      line-height: 1.3;
+      line-height: 1;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      margin-top: 3px;
     }
 
     .quality-list li .q-content {
       flex: 1;
-      color: var(--ink-muted);
+      color: var(--ink-body);
     }
 
     .quality-list li .q-content strong {
-      color: #ffffff;
+      color: var(--ink);
       display: inline;
     }
 
-    /* ═══ SECCIÓN RESEÑAS GOOGLE (5.0 ★) ═══ */
+    /* ═══ SECCIÓN RESEÑAS GOOGLE (5.0) ═══ */
     .section-reviews {
       padding: clamp(64px, 8vw, 96px) 0;
       background: var(--bg-subtle);
@@ -950,7 +948,7 @@
     }
 
     .review-card {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 28px 24px;
@@ -958,23 +956,25 @@
       flex-direction: column;
       justify-content: space-between;
       transition: var(--transition);
+      box-shadow: var(--shadow-sm);
     }
 
     .review-card:hover {
       transform: translateY(-4px);
-      border-color: var(--border-hover);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
     }
 
     .review-stars {
-      color: #fbbf24;
+      color: #f59e0b;
       font-size: 1.15rem;
       margin-bottom: 14px;
+      letter-spacing: 2px;
     }
 
     .review-text {
       font-size: 0.94rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       line-height: 1.6;
       font-style: italic;
       margin-bottom: 20px;
@@ -986,7 +986,7 @@
       align-items: center;
       gap: 12px;
       padding-top: 14px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-light);
     }
 
     .author-avatar {
@@ -1005,19 +1005,20 @@
     .author-info strong {
       display: block;
       font-size: 0.9rem;
-      color: #ffffff;
+      color: var(--ink);
     }
 
     .author-info span {
       display: block;
       font-size: 0.74rem;
-      color: #34d399;
-      font-weight: 600;
+      color: #059669;
+      font-weight: 700;
     }
 
     /* ═══ SECCIÓN CONTACTO Y HORARIOS ═══ */
     .section-contact {
       padding: clamp(64px, 8vw, 96px) 0;
+      background: #ffffff;
     }
 
     .contact-grid {
@@ -1028,7 +1029,7 @@
     }
 
     .contact-card {
-      background: var(--bg-card);
+      background: var(--bg-subtle);
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 36px;
@@ -1041,7 +1042,7 @@
       font-family: var(--font-head);
       font-size: 1.85rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--ink);
       margin-bottom: 24px;
     }
 
@@ -1062,19 +1063,19 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: rgba(255, 94, 20, 0.12);
-      border: 1px solid rgba(255, 94, 20, 0.25);
+      background: #ffedd5;
+      border: 1px solid #fed7aa;
+      color: #ea580c;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
       flex-shrink: 0;
     }
 
     .contact-item-text strong {
       display: block;
       font-size: 0.82rem;
-      color: var(--ink-faint);
+      color: var(--ink-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 2px;
@@ -1082,8 +1083,8 @@
 
     .contact-item-text p, .contact-item-text a {
       font-size: 1.05rem;
-      font-weight: 600;
-      color: #ffffff;
+      font-weight: 700;
+      color: var(--ink);
       line-height: 1.4;
     }
 
@@ -1097,7 +1098,8 @@
       border: 1px solid var(--border);
       min-height: 380px;
       position: relative;
-      background: var(--bg-card);
+      background: #e2e8f0;
+      box-shadow: var(--shadow-md);
     }
 
     .contact-map-frame iframe {
@@ -1123,15 +1125,16 @@
     }
 
     .faq-item {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       overflow: hidden;
       transition: var(--transition);
+      box-shadow: var(--shadow-sm);
     }
 
     .faq-item:hover {
-      border-color: rgba(255, 255, 255, 0.16);
+      border-color: #cbd5e1;
     }
 
     .faq-btn {
@@ -1141,7 +1144,7 @@
       font-family: var(--font-head);
       font-size: 1.05rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--ink);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1162,7 +1165,7 @@
       display: none;
       padding: 0 24px 22px;
       font-size: 0.92rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       line-height: 1.6;
     }
 
@@ -1174,32 +1177,32 @@
     .section-final {
       padding: 80px 0;
       position: relative;
-      background: radial-gradient(ellipse at 50% 50%, rgba(255, 87, 34, 0.14) 0%, transparent 70%);
+      background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%);
     }
 
     .final-card {
-      background: linear-gradient(145deg, #12141c 0%, #191c28 100%);
-      border: 1px solid var(--border-accent);
+      background: #ffffff;
+      border: 1px solid #fed7aa;
       border-radius: 28px;
       padding: 56px 40px;
       text-align: center;
       max-width: 820px;
       margin: 0 auto;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
+      box-shadow: 0 16px 40px rgba(234, 88, 12, 0.1);
     }
 
     .final-card h2 {
       font-family: var(--font-head);
       font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       font-weight: 900;
-      color: #ffffff;
+      color: var(--ink);
       line-height: 1.15;
       margin-bottom: 14px;
     }
 
     .final-card p {
       font-size: 1.05rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       margin-bottom: 28px;
       max-width: 580px;
       margin-left: auto;
@@ -1210,7 +1213,7 @@
       font-family: var(--font-head);
       font-size: clamp(2.4rem, 6vw, 3.6rem);
       font-weight: 900;
-      color: var(--accent-gold);
+      color: var(--accent);
       display: inline-block;
       margin-bottom: 28px;
       letter-spacing: -0.02em;
@@ -1219,12 +1222,12 @@
 
     .final-phone:hover {
       transform: scale(1.04);
-      color: #fff;
+      color: var(--accent-dark);
     }
 
     /* ═══ FOOTER ═══ */
     .site-footer {
-      background: #050608;
+      background: #f8fafc;
       border-top: 1px solid var(--border);
       padding: 48px 0 110px;
     }
@@ -1236,7 +1239,7 @@
       gap: 24px;
       margin-bottom: 32px;
       padding-bottom: 28px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid #e2e8f0;
     }
 
     .footer-brand {
@@ -1251,21 +1254,21 @@
       flex-wrap: wrap;
       gap: 16px;
       font-size: 0.82rem;
-      color: var(--ink-faint);
+      color: var(--ink-muted);
     }
 
     .footer-legal-links button,
     .footer-legal-links a {
-      color: var(--ink-faint);
+      color: var(--ink-muted);
       transition: var(--transition);
     }
 
     .footer-legal-links button:hover,
     .footer-legal-links a:hover {
-      color: var(--accent-gold);
+      color: var(--accent);
     }
 
-    /* ═══ MOBILE FLOATING DOCK (ISLAND STYLE) ═══ */
+    /* ═══ MOBILE FLOATING DOCK (ISLA BLANCA ULTRA-LIMPIA) ═══ */
     .mobile-dock {
       display: none;
       position: fixed;
@@ -1273,13 +1276,13 @@
       left: 14px;
       right: 14px;
       z-index: 999;
-      background: rgba(18, 20, 28, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 94, 20, 0.35);
+      border: 1px solid var(--border);
       border-radius: 50px;
       padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 24px var(--accent-glow);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 0 16px rgba(234, 88, 12, 0.15);
     }
 
     .dock-actions {
@@ -1306,6 +1309,8 @@
       flex: 0.8;
       font-size: 0.82rem;
       padding: 12px 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
     }
 
     /* Botón FAB para desktop */
@@ -1322,15 +1327,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
       box-shadow: 0 8px 24px var(--accent-glow);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid #ffffff;
       transition: var(--transition);
     }
 
     .fab-call:hover {
       transform: scale(1.1);
-      box-shadow: 0 12px 32px rgba(255, 87, 34, 0.6);
+      box-shadow: 0 12px 32px rgba(234, 88, 12, 0.4);
     }
 
     /* ═══ MODALES (LEGAL & LIGHTBOX) ═══ */
@@ -1339,7 +1343,7 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(15, 23, 42, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       align-items: center;
@@ -1352,7 +1356,7 @@
     }
 
     .modal-card {
-      background: var(--bg-elevated);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 20px;
       width: 100%;
@@ -1360,7 +1364,7 @@
       max-height: 85vh;
       overflow-y: auto;
       padding: 28px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
     }
 
     .modal-header {
@@ -1375,15 +1379,15 @@
     .modal-header h3 {
       font-family: var(--font-head);
       font-size: 1.35rem;
-      color: #fff;
+      color: var(--ink);
     }
 
     .modal-close, .lightbox-close {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: #f1f5f9;
+      color: var(--ink);
       font-size: 20px;
       display: flex;
       align-items: center;
@@ -1395,16 +1399,17 @@
 
     .modal-close:hover, .lightbox-close:hover {
       background: var(--accent);
+      color: #ffffff;
     }
 
     .modal-body {
       font-size: 0.92rem;
-      color: var(--ink-muted);
+      color: var(--ink-body);
       line-height: 1.65;
     }
 
     .modal-body h4 {
-      color: #fff;
+      color: var(--ink);
       margin: 16px 0 6px;
       font-size: 1rem;
     }
@@ -1417,10 +1422,10 @@
       position: relative;
       max-width: 90vw;
       max-height: 90vh;
-      background: #fff;
+      background: #ffffff;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.4);
     }
 
     .lightbox-img-wrap img {
@@ -1434,7 +1439,8 @@
       top: 12px;
       right: 12px;
       z-index: 10;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -1460,11 +1466,6 @@
       .hero-stats {
         justify-content: center;
       }
-      .hero-floating-card {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -20px;
-      }
       .official-menu-banner {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1484,7 +1485,7 @@
     }
 
     @media (max-width: 768px) {
-      /* Navegación móvil ultra-limpia: botón circular de llamada que no satura */
+      /* Navegación móvil limpia con botón circular */
       .nav-links {
         display: none;
       }
@@ -1497,7 +1498,6 @@
       .brand-logo {
         width: 38px;
         height: 38px;
-        font-size: 20px;
       }
       .brand-text h1 {
         font-size: 1.1rem;
@@ -1513,7 +1513,6 @@
         display: flex !important;
         align-items: center;
         justify-content: center;
-        font-size: 1.2rem;
         box-shadow: 0 4px 14px var(--accent-glow);
       }
       .nav-call-btn .call-text {
@@ -1528,7 +1527,7 @@
         font-size: 0.72rem;
       }
 
-      /* Activar el dock flotante móvil y ocultar el FAB desktop */
+      /* Activar dock flotante móvil */
       .mobile-dock {
         display: block;
       }
@@ -1541,7 +1540,11 @@
         padding: 0 16px;
       }
 
-      /* ═══ HERO MÓVIL REORDENADO DE FORMA NATURAL ═══ */
+      body {
+        padding-bottom: 84px;
+      }
+
+      /* ═══ HERO MÓVIL LUMINOSO ═══ */
       .hero {
         padding: 20px 0 36px;
       }
@@ -1580,12 +1583,12 @@
         text-align: center;
       }
 
-      /* Imagen del dueño y cocina visible directamente tras el título */
+      /* Imagen del festín gastronómico en primer plano, sin cajas que la tapen */
       .hero-media {
         order: 4;
         width: 100%;
         max-width: 360px;
-        margin: 8px auto 24px;
+        margin: 8px auto 20px;
       }
 
       .hero-img-wrap {
@@ -1593,24 +1596,8 @@
       }
 
       .hero-img-wrap img {
-        height: 250px;
-      }
-
-      .hero-floating-card {
-        bottom: -14px;
-        padding: 8px 14px;
-        border-radius: 12px;
-        width: calc(100% - 32px);
-        max-width: 290px;
-        justify-content: center;
-      }
-
-      .hero-floating-card strong {
-        font-size: 0.86rem;
-      }
-
-      .hero-floating-card small {
-        font-size: 0.72rem;
+        height: 240px;
+        object-fit: cover;
       }
 
       .hero-ctas {
@@ -1619,7 +1606,7 @@
         flex-direction: column;
         width: 100%;
         max-width: 320px;
-        margin: 10px auto 20px;
+        margin: 6px auto 18px;
         gap: 10px;
       }
 
@@ -1672,8 +1659,6 @@
       .highlight-icon {
         width: 38px;
         height: 38px;
-        line-height: 38px;
-        font-size: 20px;
         margin: 0 auto 8px;
         border-radius: 10px;
       }
@@ -1786,7 +1771,7 @@
         height: 200px;
       }
 
-      /* Comparativa en móvil sin saltos raros de texto */
+      /* Comparativa en móvil */
       .section-quality {
         padding: 40px 0;
       }
@@ -1895,15 +1880,15 @@
   <!-- TICKER EN DIRECTO -->
   <aside class="ticker-bar" aria-label="Información en directo">
     <div class="ticker-inner">
-      <span class="ticker-item">🔥 <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
-      <span class="ticker-item">⭐ <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
-      <span class="ticker-item">🥩 <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
-      <span class="ticker-item">📞 <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
       <!-- Duplicado para loop continuo -->
-      <span class="ticker-item">🔥 <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
-      <span class="ticker-item">⭐ <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
-      <span class="ticker-item">🥩 <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
-      <span class="ticker-item">📞 <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Süfí Kebab:</strong> El auténtico sabor al fuego en Callosa de Segura</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>5.0 ★ en Google Maps:</strong> 21 reseñas verificadas de clientes</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Carne 100% Halal:</strong> Calidad e higiene garantizadas</span>
+      <span class="ticker-item"><span class="ticker-dot"></span> <strong>Pedidos Telefónicos:</strong> Llama al 865 75 85 11 (Recogida & Reparto a domicilio)</span>
     </div>
   </aside>
 
@@ -1911,7 +1896,7 @@
   <header class="site-header">
     <div class="container nav-inner">
       <a href="#inicio" class="brand">
-        <div class="brand-logo">🔥</div>
+        <div class="brand-logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
         <div class="brand-text">
           <h1>Süfí Kebab</h1>
           <span>Callosa de Segura</span>
@@ -1926,9 +1911,7 @@
         <a href="#contacto">Contacto & Horario</a>
       </nav>
       <div class="nav-actions">
-        <a href="tel:865758511" class="btn btn-primary nav-call-btn" aria-label="Llamar a Süfí Kebab al 865 75 85 11">
-          <span class="call-icon">📞</span><span class="call-text">865 75 85 11</span>
-        </a>
+        <a href="tel:865758511" class="btn btn-primary nav-call-btn" aria-label="Llamar al 865 75 85 11"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="call-text">865 75 85 11</span></a>
       </div>
     </div>
   </header>
@@ -1951,10 +1934,10 @@
           </p>
           <div class="hero-ctas">
             <a href="tel:865758511" class="btn btn-primary">
-              <span>📞</span> Llamar para Pedir (865 75 85 11)
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Llamar para Pedir (865 75 85 11)
             </a>
             <a href="#carta" class="btn btn-outline">
-              <span>📜</span> Ver la Carta Completa
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Ver la Carta Completa
             </a>
           </div>
           <div class="hero-stats">
@@ -1976,13 +1959,7 @@
           <div class="hero-img-wrap">
             <img src="./img/hero.jpg" alt="Dueño de Süfí Kebab preparando la carne al fuego en Callosa de Segura" loading="eager">
           </div>
-          <div class="hero-floating-card">
-            <span class="badge-icon">👨‍🍳</span>
-            <div>
-              <strong>Atendido por sus dueños</strong>
-              <small>El auténtico sabor al fuego · 100% Halal</small>
-            </div>
-          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -1992,22 +1969,22 @@
       <div class="container">
         <div class="grid-highlights">
           <div class="highlight-card">
-            <div class="highlight-icon">🥩</div>
+            <div class="highlight-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg></div>
             <h3>Carne 100% Halal</h3>
             <p>Ternera y pollo seleccionados minuciosamente. Máxima frescura, sabor tradicional y cumplimiento estricto Halal Food.</p>
           </div>
           <div class="highlight-card">
-            <div class="highlight-icon">🔥</div>
+            <div class="highlight-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
             <h3>Toque a la Brasa</h3>
             <p>Carne recién cortada y pasada por plancha para conseguir ese sabor tostado crujiente por fuera y jugoso por dentro.</p>
           </div>
           <div class="highlight-card">
-            <div class="highlight-icon">🥣</div>
+            <div class="highlight-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M6 19h12"/><path d="M12 3v4"/><path d="M8 4v3"/><path d="M16 4v3"/></svg></div>
             <h3>Salsas Caseras</h3>
             <p>Nuestra salsa blanca de yogur suave y salsa roja picante casera. Equilibrio perfecto para realzar cada bocado.</p>
           </div>
           <div class="highlight-card">
-            <div class="highlight-icon">🛵</div>
+            <div class="highlight-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><path d="M15 6h4l3 6.5-2.5 1H15z"/><path d="M2 17.5h10"/><path d="M5 6h7v11.5"/></svg></div>
             <h3>Reparto a Domicilio</h3>
             <p>Llámanos al 865 75 85 11 y recibe tu pedido recién hecho, rápido y bien caliente en Callosa de Segura y comarca.</p>
           </div>
@@ -2025,13 +2002,13 @@
         </div>
 
         <!-- Pestañas de filtrado -->
-        <div class="menu-tabs" role="tablist">
-          <button class="tab-btn active" data-filter="all">⭐ Todos</button>
-          <button class="tab-btn" data-filter="kebab">🥙 Kebabs & Dürüm</button>
-          <button class="tab-btn" data-filter="platos">🍽️ Platos & Gratinados</button>
-          <button class="tab-btn" data-filter="burgers">🍔 Hamburguesas</button>
-          <button class="tab-btn" data-filter="entrantes">🍗 Entrantes & Alitas</button>
-          <button class="tab-btn" data-filter="infantil">👶 Menú Infantil (6€)</button>
+                <div class="menu-tabs" role="tablist">
+          <button class="tab-btn active" data-filter="all">Todos</button>
+          <button class="tab-btn" data-filter="kebab">Kebabs & Dürüm</button>
+          <button class="tab-btn" data-filter="platos">Platos & Gratinados</button>
+          <button class="tab-btn" data-filter="burgers">Hamburguesas</button>
+          <button class="tab-btn" data-filter="entrantes">Entrantes & Alitas</button>
+          <button class="tab-btn" data-filter="infantil">Menú Infantil (6€)</button>
         </div>
 
         <!-- Grid de platos con imágenes únicas y verificadas -->
@@ -2041,7 +2018,7 @@
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
               <img src="./img/durum.jpg" alt="Rollo Dürüm Kebab XL dorado a la plancha" loading="lazy">
-              <span class="dish-badge">⭐ El más pedido</span>
+              <span class="dish-badge">Más pedido</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2050,8 +2027,8 @@
               </div>
               <p class="dish-desc">Masa fina artesana tostada a la plancha, carne jugosa (ternera, pollo o mixto), lechuga, tomate, cebolla morada y salsas caseras.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 5-8 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2060,7 +2037,7 @@
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
               <img src="./img/pita.jpg" alt="Pan Pita Döner Kebab relleno de carne y ensalada" loading="lazy">
-              <span class="dish-badge">🔥 Pan Turco</span>
+              <span class="dish-badge">Pan Turco</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2069,8 +2046,8 @@
               </div>
               <p class="dish-desc">Pan turco esponjoso recién tostado, relleno hasta arriba de finas láminas de carne recién cortada, ensalada fresca y salsas caseras.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 5-8 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2079,7 +2056,7 @@
           <article class="dish-card" data-cat="platos">
             <div class="dish-img-wrap">
               <img src="./img/plato.jpg" alt="Plato Kebab Combinado con patatas fritas y ensalada" loading="lazy">
-              <span class="dish-badge">👑 Ración XL</span>
+              <span class="dish-badge">Ración XL</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2088,8 +2065,8 @@
               </div>
               <p class="dish-desc">Generosa ración de carne recién cortada con guarnición a elegir entre patatas fritas doradas o arroz basmati, ensalada fresca y salsas.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 8-12 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  8-12 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2098,7 +2075,7 @@
           <article class="dish-card" data-cat="platos">
             <div class="dish-img-wrap">
               <img src="./img/gratinado.jpg" alt="Rollo Gratinado con queso fundido estirado" loading="lazy">
-              <span class="dish-badge">🧀 Gratinado</span>
+              <span class="dish-badge">Gratinado al Horno</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2107,8 +2084,8 @@
               </div>
               <p class="dish-desc">Especialidad horneada: rollo dürüm o plato cubierto de abundante queso fundido gratinado al horno hasta quedar dorado.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 8-12 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  8-12 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2117,7 +2094,7 @@
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
               <img src="./img/taco.jpg" alt="Taco Francés sellado a la plancha" loading="lazy">
-              <span class="dish-badge">🇫🇷 French Taco</span>
+              <span class="dish-badge">French Taco</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2126,8 +2103,8 @@
               </div>
               <p class="dish-desc">Sellado en plancha estriada. Relleno de carne kebab a la brasa, patatas fritas en el interior y cremosa salsa de queso caliente.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 6-10 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  6-10 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2136,7 +2113,7 @@
           <article class="dish-card" data-cat="kebab">
             <div class="dish-img-wrap">
               <img src="./img/box.jpg" alt="Kebab Box con patatas fritas crujientes y carne" loading="lazy">
-              <span class="dish-badge">📦 Box Cómodo</span>
+              <span class="dish-badge">Kebab Box</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2145,8 +2122,8 @@
               </div>
               <p class="dish-desc">Caja para llevar con base de patatas fritas crujientes doradas, colmadas con carne jugosa y baño de salsas caseras. Opción Grande disponible (6,00€).</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 5-8 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2164,8 +2141,8 @@
               </div>
               <p class="dish-desc">Carne 100% Halal cocinada a la plancha, queso cheddar fundido, lechuga fresca y tomate en pan tierno. Opción Doble disponible (6,00€).</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 8-10 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  8-10 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2183,8 +2160,8 @@
               </div>
               <p class="dish-desc">Masa fina horneada con picadillo de carne especiada y hierbas aromáticas. Se enrolla al momento con gotas de limón fresco.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 8-10 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  8-10 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2193,7 +2170,7 @@
           <article class="dish-card" data-cat="entrantes">
             <div class="dish-img-wrap">
               <img src="./img/alitas.jpg" alt="Alitas de pollo crujientes marinadas" loading="lazy">
-              <span class="dish-badge">🍗 Crujientes</span>
+              <span class="dish-badge">Crujientes</span>
             </div>
             <div class="dish-body">
               <div class="dish-header">
@@ -2202,8 +2179,8 @@
               </div>
               <p class="dish-desc">Alitas de pollo marinadas al fuego bien doradas, acompañadas de salsa para dipear. También disponibles nuggets, croquetas y samosas.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 5-8 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2221,8 +2198,8 @@
               </div>
               <p class="dish-desc">A elegir: hamburguesa suave o nuggets de pollo crujientes, siempre acompañados de patatas fritas doradas y zumo incluido.</p>
               <div class="dish-footer">
-                <span class="dish-prep">⏱️ 5-8 min</span>
-                <a href="tel:865758511" class="dish-btn">📞 Pedir</a>
+                <span class="dish-prep"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>  5-8 min</span>
+                <a href="tel:865758511" class="dish-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir</a>
               </div>
             </div>
           </article>
@@ -2271,23 +2248,23 @@
 
         <div class="quality-grid">
           <div class="quality-card bad">
-            <h3><span>❌</span> Otros kebabs genéricos</h3>
+            <h3> Otros kebabs genéricos</h3>
             <ul class="quality-list">
-              <li><span class="q-icon">⚠️</span><div class="q-content"><strong>Carne recalentada:</strong> reseca, grasienta o de procedencia dudosa.</div></li>
-              <li><span class="q-icon">⚠️</span><div class="q-content"><strong>Pan gomoso:</strong> blando y sin pasar por plancha ni tostar.</div></li>
-              <li><span class="q-icon">⚠️</span><div class="q-content"><strong>Salsas industriales:</strong> aguadas, artificiales y sin el sabor auténtico.</div></li>
-              <li><span class="q-icon">⚠️</span><div class="q-content"><strong>Raciones escasas:</strong> platos reducidos que te dejan con hambre.</div></li>
-              <li><span class="q-icon">⚠️</span><div class="q-content"><strong>Largas esperas:</strong> pedidos fríos y atención descuidada.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><div class="q-content"><strong>Carne recalentada:</strong> reseca, grasienta o de procedencia dudosa.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><div class="q-content"><strong>Pan gomoso:</strong> blando y sin pasar por plancha ni tostar.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><div class="q-content"><strong>Salsas industriales:</strong> aguadas, artificiales y sin el sabor auténtico.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><div class="q-content"><strong>Raciones escasas:</strong> platos reducidos que te dejan con hambre.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><div class="q-content"><strong>Largas esperas:</strong> pedidos fríos y atención descuidada.</div></li>
             </ul>
           </div>
           <div class="quality-card good">
-            <h3><span>✅</span> La Experiencia Süfí Kebab</h3>
+            <h3> La Experiencia Süfí Kebab</h3>
             <ul class="quality-list">
-              <li><span class="q-icon">✨</span><div class="q-content"><strong>Carne 100% Halal jugosa:</strong> marinada con receta propia y recién cortada del asador.</div></li>
-              <li><span class="q-icon">✨</span><div class="q-content"><strong>Pan turco y Dürüm tostado:</strong> pasado por la plancha hasta su punto crujiente.</div></li>
-              <li><span class="q-icon">✨</span><div class="q-content"><strong>Salsas caseras tradicionales:</strong> salsa blanca suave de yogur y salsa picante artesana.</div></li>
-              <li><span class="q-icon">✨</span><div class="q-content"><strong>Raciones generosas:</strong> platos contundentes para quedar 100% satisfecho.</div></li>
-              <li><span class="q-icon">✨</span><div class="q-content"><strong>Servicio rápido y caliente:</strong> listo en minutos para recoger o recibir a domicilio.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div class="q-content"><strong>Carne 100% Halal jugosa:</strong> marinada con receta propia y recién cortada del asador.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div class="q-content"><strong>Pan turco y Dürüm tostado:</strong> pasado por la plancha hasta su punto crujiente.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div class="q-content"><strong>Salsas caseras tradicionales:</strong> salsa blanca suave de yogur y salsa picante artesana.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div class="q-content"><strong>Raciones generosas:</strong> platos contundentes para quedar 100% satisfecho.</div></li>
+              <li><span class="q-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div class="q-content"><strong>Servicio rápido y caliente:</strong> listo en minutos para recoger o recibir a domicilio.</div></li>
             </ul>
           </div>
         </div>
@@ -2561,18 +2538,16 @@
   <div class="mobile-dock" aria-label="Acciones rápidas en móvil">
     <div class="dock-actions">
       <a href="tel:865758511" class="btn btn-primary">
-        <span>📞</span> Pedir (865 75 85 11)
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Pedir: 865 75 85 11
       </a>
       <a href="#contacto" class="btn btn-outline">
-        <span>📍</span> Dónde Estamos
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Dónde Estamos
       </a>
     </div>
   </div>
 
   <!-- BOTÓN FLOTANTE FAB (PARA TABLET / DESKTOP) -->
-  <a href="tel:865758511" class="fab-call" aria-label="Llamar directamente a Süfí Kebab al 865 75 85 11">
-    📞
-  </a>
+  <a href="tel:865758511" class="fab-call" aria-label="Llamar a Süfí Kebab"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
 
   <!-- MODAL LEGAL -->
   <div class="modal-overlay" id="legalModal" role="dialog" aria-modal="true" aria-label="Información legal">
