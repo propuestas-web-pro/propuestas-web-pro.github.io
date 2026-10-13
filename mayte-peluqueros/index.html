@@ -6,6 +6,9 @@
   <title>Mayte Peluqueros | Salón de Peluquería & Estilismo en Orihuela · 4.9 ★</title>
   <meta name="description" content="Salón de Peluquería Mayte en Calle Castellón 1, Orihuela. 4.9 ★ en Google Maps (76 reseñas). Especialistas en Mechas Balayage, Babylights, Cortes con Visagismo, Coloración sin amoniaco y Tratamientos Orgánicos. Cita previa: 965 30 47 16.">
   <meta name="author" content="Mayte Peluqueros">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <!-- Open Graph -->
   <meta property="og:type" content="business.business">
@@ -22,22 +25,20 @@
 
   <style>
     /* ═══════════════════════════════════════════════════════════
-       MAYTE PELUQUEROS · PORTAL EDITORIAL DE ALTA PELUQUERÍA
-       Calle Castellón, 1, Orihuela · Tel: 965 30 47 16
-       Diseño: Blanco Puro, Marfil Cálido & Oro Champagne Editorial
+       MAYTE PELUQUEROS · MASTER LIGHT & MOBILE SYSTEM
+       Blanco Puro, Luz de Salón, Oro Champagne & Perfección Táctil
        ═══════════════════════════════════════════════════════════ */
     :root {
       --bg: #ffffff;
       --bg-surface: #fdfbf7;
       --bg-card: #ffffff;
-      --bg-card-hover: #faf6f0;
       --border: rgba(180, 83, 9, 0.2);
       --border-subtle: #ede7df;
       --border-hover: rgba(180, 83, 9, 0.45);
       
       --accent: #b45309;
       --accent-light: #d97706;
-      --accent-gold: #92400e;
+      --accent-dark: #92400e;
       --accent-glow: rgba(180, 83, 9, 0.2);
       --wa-green: #16a34a;
       --wa-green-hover: #15803d;
@@ -70,17 +71,23 @@
       font-size: 15px;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden !important;
+      width: 100%;
+      max-width: 100%;
     }
 
     body {
-      overflow-x: hidden;
-      min-height: 100vh;
+      overflow-x: hidden !important;
+      width: 100%;
+      max-width: 100%;
+      min-height: 100dvh;
       background: var(--bg);
       color: var(--ink);
     }
 
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    button, a, [role="button"] { touch-action: manipulation; }
     img { display: block; max-width: 100%; height: auto; }
 
     .container {
@@ -131,6 +138,7 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
+      box-shadow: 0 2px 10px rgba(28, 25, 23, 0.03);
     }
 
     .nav-inner {
@@ -221,7 +229,7 @@
 
     .btn-gold {
       background: linear-gradient(135deg, var(--accent-light), var(--accent));
-      color: #fff;
+      color: #fff !important;
       box-shadow: 0 4px 16px var(--accent-glow);
     }
 
@@ -233,7 +241,7 @@
 
     .btn-wa {
       background: linear-gradient(135deg, var(--wa-green), #15803d);
-      color: #fff;
+      color: #fff !important;
       box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
     }
 
@@ -344,7 +352,6 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* Hero Media */
     .hero-media { position: relative; }
 
     .hero-card-img {
@@ -439,7 +446,7 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .section-head-text h2 {
@@ -465,6 +472,7 @@
       overflow-x: auto;
       padding-bottom: 6px;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
 
     .lookbook-filters::-webkit-scrollbar { display: none; }
@@ -491,14 +499,14 @@
 
     .filter-pill.active {
       background: linear-gradient(135deg, var(--accent-light), var(--accent));
-      color: #fff;
+      color: #fff !important;
       border-color: transparent;
       box-shadow: 0 4px 14px var(--accent-glow);
     }
 
     .lookbook-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 22px;
     }
 
@@ -846,7 +854,7 @@
     .site-footer {
       background: #fdfbf7;
       border-top: 1px solid var(--border-subtle);
-      padding: 30px 0 95px;
+      padding: 30px 0 35px;
       text-align: center;
       font-size: 0.8rem;
       color: var(--ink-subtle);
@@ -854,30 +862,34 @@
 
     .site-footer strong { color: var(--ink); }
 
-    /* ═══ MOBILE BOTTOM DOCK ═══ */
+    /* ═══ MASTER FLOATING MOBILE DOCK ═══ */
     .mobile-dock {
       display: none;
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 12px;
+      left: 14px;
+      right: 14px;
       z-index: 999;
       background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-top: 1px solid var(--border-subtle);
-      padding: 9px 16px calc(9px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 -8px 24px rgba(28, 25, 23, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50px;
+      padding: 7px 10px calc(7px + env(safe-area-inset-bottom, 0px));
+      box-shadow: 0 10px 30px rgba(28, 25, 23, 0.12), 0 0 16px rgba(180, 83, 9, 0.14);
     }
 
     .dock-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 420px;
+      margin: 0 auto;
     }
 
     .dock-btn {
-      padding: 11px 12px;
+      flex: 1;
+      padding: 12px 14px;
       border-radius: 50px;
       font-size: 0.88rem;
       font-weight: 700;
@@ -887,45 +899,344 @@
       gap: 6px;
     }
 
-    /* ═══ RESPONSIVE BREAKPOINTS ═══ */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-      .hero-tags { justify-content: center; }
-      .hero-lead { margin: 0 auto 20px; }
-      .hero-ctas { justify-content: center; }
-      .salon-chips { justify-content: center; }
-      .hero-overlay-card { left: 50%; transform: translateX(-50%); bottom: -14px; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .diag-box { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .philosophy-grid { grid-template-columns: 1fr; }
-      .location-grid { grid-template-columns: 1fr; }
-    }
-
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE MASTER PERFECTION: MÓVILES Y PANTALLAS PEQUEÑAS
+       ═══════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {
-      .top-bar { display: none; }
-      .nav-menu { display: none; }
-      .nav-actions .btn-secondary { display: none; }
-      .nav-actions .btn { padding: 8px 14px; font-size: 0.82rem; }
-      .brand-title { font-size: 1.05rem; }
-      .brand-sub { font-size: 0.64rem; }
-      .mobile-dock { display: block; }
-      .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .hero-card-img img { height: 280px; }
-    }
+      body {
+        padding-bottom: 92px !important;
+      }
 
-    @media (max-width: 480px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .brand-title { font-size: 0.98rem; }
-      .brand-sub { font-size: 0.6rem; }
-      .diag-btn-grid { grid-template-columns: 1fr; }
+      .container {
+        padding: 0 16px;
+      }
+
+      .top-bar {
+        display: none;
+      }
+
+      .site-header {
+        height: 56px;
+      }
+
+      .nav-inner {
+        height: 56px;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+      }
+
+      .brand-title {
+        font-size: 1.05rem;
+      }
+
+      .brand-sub {
+        font-size: 0.62rem;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .nav-actions .btn-secondary {
+        display: none;
+      }
+
+      .nav-actions .btn-wa {
+        width: 40px;
+        height: 40px;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+        box-shadow: 0 3px 12px rgba(22, 163, 74, 0.35);
+      }
+
+      .nav-actions .btn-wa svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* ═══ HERO MÓVIL REORDENADO CON FOTO EN PRIMER PLANO ═══ */
+      .hero {
+        padding: 12px 0 20px;
+      }
+
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 0;
+      }
+
+      .hero-content {
+        display: contents;
+      }
+
+      .hero-tags {
+        order: 1;
+        justify-content: center;
+        margin: 0 auto 6px;
+      }
+
+      .hero-tag {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+      }
+
+      .hero-title {
+        order: 2;
+        font-size: clamp(1.65rem, 6.2vw, 2.1rem);
+        line-height: 1.15;
+        margin: 0 auto 6px;
+        text-align: center;
+      }
+
+      .hero-lead {
+        order: 3;
+        font-size: 0.86rem;
+        line-height: 1.4;
+        margin: 0 auto 12px;
+        max-width: 94%;
+        text-align: center;
+      }
+
+      /* Foto del corte/peinado visible inmediatamente */
+      .hero-media {
+        order: 4;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto 14px;
+      }
+
+      .hero-card-img {
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(28, 25, 23, 0.08);
+      }
+
+      .hero-card-img img {
+        height: 220px;
+      }
+
+      .hero-overlay-card {
+        position: static;
+        margin-top: 8px;
+        transform: none;
+        box-shadow: none;
+        border-radius: 10px;
+        padding: 8px 12px;
+        justify-content: center;
+        background: #fdfbf7;
+        border: 1px solid var(--border-subtle);
+      }
+
+      .hero-overlay-card strong {
+        font-size: 0.82rem;
+      }
+
+      .hero-overlay-card small {
+        font-size: 0.72rem;
+      }
+
+      .hero-ctas {
+        order: 5;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 4px auto 14px;
+        gap: 8px;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+        padding: 12px 18px;
+        font-size: 0.92rem;
+        border-radius: 50px;
+      }
+
+      .salon-chips {
+        order: 6;
+        width: 100%;
+        padding-top: 12px;
+        margin-top: 0;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .salon-chip {
+        padding: 5px 11px;
+        font-size: 0.76rem;
+      }
+
+      /* ═══ PILARES EN MÓVIL (2x2) ═══ */
+      .portal-features {
+        padding: 18px 0;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .feature-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 12px 8px;
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-sm);
+        gap: 6px;
+      }
+
+      .feature-icon {
+        margin: 0 auto;
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+      }
+
+      .feature-text strong {
+        font-size: 0.82rem;
+      }
+
+      .feature-text span {
+        font-size: 0.7rem;
+        line-height: 1.25;
+      }
+
+      /* ═══ LOOKBOOK EN MÓVIL ═══ */
+      .section-lookbook {
+        padding: 36px 0 44px;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+
+      .lookbook-filters {
+        padding: 2px 2px 12px;
+        margin-bottom: 20px;
+      }
+
+      .lookbook-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .lookbook-card {
+        border-radius: 16px;
+      }
+
+      .lookbook-media {
+        height: 190px;
+      }
+
+      .lookbook-info {
+        padding: 15px;
+      }
+
+      .lookbook-title {
+        font-size: 1.08rem;
+      }
+
+      /* ═══ DIAGNÓSTICO EN MÓVIL ═══ */
+      .section-diagnostic {
+        padding: 36px 0;
+      }
+
+      .diag-box {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 20px;
+        max-width: 380px;
+        margin: 0 auto;
+        border-radius: 16px;
+      }
+
+      .diag-btn-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .diag-btn {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+      }
+
+      .diag-result-card {
+        padding: 18px;
+        border-radius: 14px;
+      }
+
+      .section-services {
+        padding: 36px 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .service-card {
+        padding: 18px;
+        border-radius: 16px;
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      .info-card {
+        padding: 18px;
+        border-radius: 16px;
+      }
+
+      .map-embed-card {
+        border-radius: 16px;
+      }
+
+      .map-embed-card iframe {
+        height: 230px;
+        min-height: 230px;
+      }
+
+      /* Activar dock flotante */
+      .mobile-dock {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
+  <!-- TOP BAR (DESKTOP) -->
   <aside class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
@@ -933,7 +1244,7 @@
         <span>Calle Castellón, 1</span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:965304716" class="top-bar-link" style="color:var(--ink-muted)">📞 Citas: 965 30 47 16</a>
+        <a href="tel:965304716" class="top-bar-link">📞 Citas: 965 30 47 16</a>
         <a href="#diagnostico" class="top-bar-link">✨ Diagnóstico Personalizado</a>
       </div>
     </div>
@@ -962,8 +1273,9 @@
         <a href="tel:965304716" class="btn btn-secondary">
           📞 965 30 47 16
         </a>
-        <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20en%20el%20salón." target="_blank" rel="noopener" class="btn btn-wa">
-          💬 Pedir Cita
+        <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20en%20el%20salón." target="_blank" rel="noopener" class="btn btn-wa" aria-label="Pedir Cita por WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.93 11.93 0 0 0 12.07 0C5.46 0 .09 5.37.09 11.98c0 2.11.55 4.17 1.6 5.99L0 24l6.21-1.63a11.96 11.96 0 0 0 5.86 1.51h.01c6.61 0 11.98-5.37 11.98-11.98 0-3.2-.1.25-6.07-1.6-8.42zM12.07 21.88a9.9 9.9 0 0 1-5.06-1.39l-.36-.22-3.76.99 1-3.66-.24-.38a9.92 9.92 0 0 1-1.52-5.24c0-5.48 4.46-9.94 9.94-9.94 2.65 0 5.15 1.03 7.03 2.91a9.9 9.9 0 0 1 2.91 7.03c0 5.48-4.46 9.9-9.94 9.9zm5.45-7.44c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.52-.68-.53l-.58-.01c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/></svg>
+          <span class="wa-btn-text">Pedir Cita</span>
         </a>
       </div>
     </div>
@@ -1008,12 +1320,12 @@
         <div class="hero-media">
           <div class="hero-card-img">
             <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&h=750&q=85" alt="Estilismo y balayage en Mayte Peluqueros Orihuela">
-            <div class="hero-overlay-card">
-              <div class="icon">✨</div>
-              <div>
-                <strong>Trato Cálido & Personalizado</strong>
-                <small>Asesoramiento de imagen en cada cita</small>
-              </div>
+          </div>
+          <div class="hero-overlay-card">
+            <div class="icon">✨</div>
+            <div>
+              <strong>Trato Cálido & Personalizado</strong>
+              <small>Asesoramiento de imagen en cada cita</small>
             </div>
           </div>
         </div>
@@ -1026,29 +1338,29 @@
         <div class="feature-item">
           <div class="feature-icon">⭐</div>
           <div class="feature-text">
-            <strong>4.9 ★ en Google Maps</strong>
-            <span>76 opiniones de clientes satisfechos</span>
+            <strong>4.9 ★ en Google</strong>
+            <span>76 opiniones reales</span>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">🌿</div>
           <div class="feature-text">
-            <strong>Coloración Botánica</strong>
-            <span>Sin amoniaco, respetuosa con el cuero cabelludo</span>
+            <strong>Botánica</strong>
+            <span>Sin amoniaco</span>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">🔍</div>
           <div class="feature-text">
-            <strong>Diagnóstico Previo</strong>
-            <span>Estudiamos tu textura y tono exacto</span>
+            <strong>Diagnóstico</strong>
+            <span>Estudio de visagismo</span>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">⏱️</div>
           <div class="feature-text">
-            <strong>Cita Puntual</strong>
-            <span>Atención sin esperas innecesarias</span>
+            <strong>Puntualidad</strong>
+            <span>Cita sin esperas</span>
           </div>
         </div>
       </div>
@@ -1085,7 +1397,7 @@
               <p class="lookbook-desc">Degradado sutil a mano alzada con acabado ultra-natural. Aporta puntos de luz frontales que enmarcan las facciones sin efecto raíz.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 65 €</div>
-                <div class="lookbook-time">Duración aprox: 2h 30m</div>
+                <div class="lookbook-time">Aprox: 2h 30m</div>
               </div>
             </div>
           </div>
@@ -1101,7 +1413,7 @@
               <p class="lookbook-desc">Mechas micro-finas tejidas desde la raíz para máxima luminosidad uniforme, selladas con baño de brillo nutritivo.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 55 €</div>
-                <div class="lookbook-time">Duración aprox: 2h</div>
+                <div class="lookbook-time">Aprox: 2h</div>
               </div>
             </div>
           </div>
@@ -1117,7 +1429,7 @@
               <p class="lookbook-desc">Corte estructurado según la simetría del rostro. Favorece el secado al aire y aporta volumen con movimiento natural.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 22 €</div>
-                <div class="lookbook-time">Duración aprox: 45 min</div>
+                <div class="lookbook-time">Aprox: 45 min</div>
               </div>
             </div>
           </div>
@@ -1133,7 +1445,7 @@
               <p class="lookbook-desc">Reconstrucción molecular profunda de la fibra dañada. Elimina el encrespamiento por humedad y devuelve el tacto de seda.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 45 €</div>
-                <div class="lookbook-time">Duración aprox: 1h 30m</div>
+                <div class="lookbook-time">Aprox: 1h 30m</div>
               </div>
             </div>
           </div>
@@ -1149,7 +1461,7 @@
               <p class="lookbook-desc">Cobertura perfecta del 100% de canas con aceites esenciales nutritivos. Color duradero con reflejos cálidos y brillantes.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 32 €</div>
-                <div class="lookbook-time">Duración aprox: 1h 15m</div>
+                <div class="lookbook-time">Aprox: 1h 15m</div>
               </div>
             </div>
           </div>
@@ -1161,11 +1473,11 @@
               <span class="lookbook-tag">Eventos & Novias</span>
             </div>
             <div class="lookbook-info">
-              <h3 class="lookbook-title">Peinados & Recogidos para Ocasiones Especiales</h3>
+              <h3 class="lookbook-title">Peinados & Recogidos para Fiestas</h3>
               <p class="lookbook-desc">Ondas al agua, recogidos desenfadados y peinados de fiesta adaptados al escote de tu vestido y estilo personal.</p>
               <div class="lookbook-meta">
                 <div class="lookbook-price">Desde 38 €</div>
-                <div class="lookbook-time">Prueba previa incluida</div>
+                <div class="lookbook-time">Prueba previa</div>
               </div>
             </div>
           </div>
@@ -1221,7 +1533,6 @@
         </div>
 
         <div class="services-grid">
-          <!-- Bloque Color & Mechas -->
           <div class="service-card">
             <h3>Coloración & Mechas</h3>
             
@@ -1258,7 +1569,6 @@
             </div>
           </div>
 
-          <!-- Bloque Corte, Peinado & Tratamientos -->
           <div class="service-card">
             <h3>Corte, Peinado & Tratamientos</h3>
 
@@ -1397,14 +1707,16 @@
     </div>
   </footer>
 
-  <!-- DOCK MÓVIL FIJO -->
-  <aside class="mobile-dock">
+  <!-- MASTER FLOATING MOBILE DOCK -->
+  <aside class="mobile-dock" aria-label="Contacto Rápido">
     <div class="dock-grid">
       <a href="tel:965304716" class="btn btn-gold dock-btn">
-        📞 Llamar al Salón
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Llamar al Salón
       </a>
       <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa." target="_blank" rel="noopener" class="btn btn-wa dock-btn">
-        💬 Pedir Cita
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.93 11.93 0 0 0 12.07 0C5.46 0 .09 5.37.09 11.98c0 2.11.55 4.17 1.6 5.99L0 24l6.21-1.63a11.96 11.96 0 0 0 5.86 1.51h.01c6.61 0 11.98-5.37 11.98-11.98 0-3.2-.1.25-6.07-1.6-8.42zM12.07 21.88a9.9 9.9 0 0 1-5.06-1.39l-.36-.22-3.76.99 1-3.66-.24-.38a9.92 9.92 0 0 1-1.52-5.24c0-5.48 4.46-9.94 9.94-9.94 2.65 0 5.15 1.03 7.03 2.91a9.9 9.9 0 0 1 2.91 7.03c0 5.48-4.46 9.9-9.94 9.9zm5.45-7.44c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.52-.68-.53l-.58-.01c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51 0 1.48 1.08 2.91 1.23 3.11.15.2 2.13 3.25 5.15 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.12-.28-.2-.58-.35z"/></svg>
+        Pedir Cita
       </a>
     </div>
   </aside>
@@ -1412,7 +1724,7 @@
   <!-- BANNER PROPIETARIO PARA CIERRE COMERCIAL -->
   <script src="/owner-banner.js" defer></script>
 
-  <!-- LÓGICA INTERACTIVA DEL SALÓN -->
+  <!-- SCRIPT INTERACTIVO -->
   <script>
     function filterLookbook(cat, btn) {
       document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
