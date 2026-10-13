@@ -4,23 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Mayte Peluqueros | Salón de Peluquería & Estilismo en Orihuela · 4.9 ★</title>
-  <meta name="description" content="Mayte Peluqueros en Calle Castellón 1, Orihuela. 4.9 ★ en Google Maps (76 reseñas). Especialistas en Mechas Balayage, Babylights, Cortes de Tendencia, Coloración sin amoniaco y Tratamientos Capilares. Pide tu cita por WhatsApp o teléfono.">
+  <meta name="description" content="Salón de Peluquería Mayte en Calle Castellón 1, Orihuela. 4.9 ★ en Google Maps (76 reseñas). Especialistas en Mechas Balayage, Babylights, Cortes con Visagismo, Coloración sin amoniaco y Tratamientos Orgánicos. Cita previa: 965 30 47 16.">
   <meta name="author" content="Mayte Peluqueros">
 
-  <!-- Open Graph / WhatsApp Preview -->
+  <!-- Open Graph -->
   <meta property="og:type" content="business.business">
   <meta property="og:site_name" content="Mayte Peluqueros">
   <meta property="og:title" content="Mayte Peluqueros | Salón de Peluquería en Orihuela · 4.9 ★">
-  <meta property="og:description" content="4.9 ★ en Google Maps (76 reseñas). Mechas Balayage, coloración de alta gama, cortes de tendencia y tratamientos de nutrición profunda en pleno centro de Orihuela.">
+  <meta property="og:description" content="Salón boutique de peluquería en Calle Castellón 1, Orihuela. Balayage luminoso, cortes personalizados y tratamientos capilares de alta gama. Tel: 965 30 47 16.">
   <meta property="og:url" content="https://miweblocal.com/mayte-peluqueros/">
   <meta property="og:image" content="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85">
   <link rel="canonical" href="https://miweblocal.com/mayte-peluqueros/">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mayte Peluqueros | Salón de Peluquería en Orihuela">
-  <meta name="twitter:description" content="4.9 ★ en Google Maps. Mechas Balayage, Cortes de Tendencia y Tratamientos Capilares en C/ Castellón 1, Orihuela. Tel: 965 30 47 16.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=85">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,15 +22,17 @@
 
   <style>
     /* ═══════════════════════════════════════════════════════════
-       MAYTE PELUQUEROS · LUXURY SALON DESIGN SYSTEM (ORO & CHAMPAGNE)
-       4.9 ★ en Google Maps · Calle Castellón, 1, Orihuela
-       100% Mobile First, High Contrast & Ultra Polish
+       MAYTE PELUQUEROS · PORTAL EDITORIAL DE ALTA PELUQUERÍA
+       Calle Castellón, 1, Orihuela · Tel: 965 30 47 16
+       Diseño: Oro Champagne, Negro Carbón & Tipografía Editorial
        ═══════════════════════════════════════════════════════════ */
     :root {
-      --bg: #0e0c0a;
-      --bg-card: #171410;
+      --bg: #0c0a08;
+      --bg-surface: #14110d;
+      --bg-card: #1a1612;
       --bg-card-hover: #221d18;
       --border: rgba(229, 169, 60, 0.2);
+      --border-subtle: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(229, 169, 60, 0.45);
       
       --accent: #e5a93c;
@@ -47,13 +43,13 @@
       --wa-green-hover: #16a34a;
       
       --ink: #ffffff;
-      --ink-muted: #ded4ca;
-      --ink-faint: #9c9085;
+      --ink-muted: #dcd3ca;
+      --ink-subtle: #8c8075;
 
       --font-head: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
-      --radius: 18px;
-      --transition: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --radius: 16px;
+      --transition: 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     *, *::before, *::after {
@@ -68,10 +64,9 @@
       background: var(--bg);
       color: var(--ink);
       font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 15px;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -81,23 +76,9 @@
       color: var(--ink);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    img { display: block; max-width: 100%; height: auto; }
 
     .container {
       width: 100%;
@@ -106,58 +87,55 @@
       padding: 0 20px;
     }
 
-    /* ═══ TICKER SUPERIOR ═══ */
-    .ticker-bar {
-      background: #14100c;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 9px 0;
-      display: flex;
-      font-size: 0.84rem;
-      font-weight: 600;
+    /* ═══ TOP ANNOUNCEMENT BAR ═══ */
+    .top-bar {
+      background: #080605;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 7px 0;
+      font-size: 0.8rem;
       color: var(--ink-muted);
     }
 
-    .ticker-inner {
+    .top-bar-inner {
       display: flex;
-      white-space: nowrap;
-      animation: tickerRoll 30s linear infinite;
-      gap: 36px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .ticker-item {
+    .top-bar-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .ticker-item strong {
+      gap: 6px;
       color: var(--accent-gold);
+      font-weight: 700;
     }
 
-    @keyframes tickerRoll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .top-bar-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--wa-green);
+      box-shadow: 0 0 6px var(--wa-green);
     }
 
-    /* ═══ HEADER / CABECERA ═══ */
+    /* ═══ SITE HEADER ═══ */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(14, 12, 10, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
+      background: rgba(12, 10, 8, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 72px;
-      gap: 12px;
+      height: 68px;
+      gap: 16px;
     }
 
     .brand {
@@ -167,57 +145,51 @@
       min-width: 0;
     }
 
-    .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       background: linear-gradient(135deg, var(--accent), #b87a1a);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 14px var(--accent-glow);
+      font-size: 20px;
+      box-shadow: 0 4px 12px var(--accent-glow);
       flex-shrink: 0;
     }
 
-    .brand-text {
-      min-width: 0;
-    }
-
-    .brand-text h1 {
+    .brand-title {
       font-family: var(--font-head);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.15;
       color: #fff;
     }
 
-    .brand-text span {
-      font-size: 0.72rem;
+    .brand-sub {
+      font-size: 0.68rem;
       font-weight: 600;
       color: var(--accent-gold);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       display: block;
     }
 
-    .nav-links {
+    .nav-menu {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
     }
 
-    .nav-links a {
-      font-size: 0.92rem;
+    .nav-menu a {
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--ink-muted);
       transition: color var(--transition);
     }
 
-    .nav-links a:hover {
-      color: var(--accent-light);
-    }
+    .nav-menu a:hover { color: #fff; }
 
     /* ═══ BOTONES ═══ */
     .btn {
@@ -225,355 +197,270 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 50px;
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
-      text-align: center;
       white-space: nowrap;
     }
 
-    .btn:active {
-      transform: scale(0.97);
-    }
+    .btn:active { transform: scale(0.97); }
 
     .btn-gold {
-      background: linear-gradient(135deg, var(--accent) 0%, #b87a1a 100%);
+      background: linear-gradient(135deg, var(--accent), #b87a1a);
       color: #0d0b08;
-      font-weight: 800;
-      box-shadow: 0 4px 20px var(--accent-glow);
+      box-shadow: 0 4px 16px var(--accent-glow);
     }
 
     .btn-gold:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
       transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(229, 169, 60, 0.5);
-      background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
     }
 
     .btn-wa {
-      background: linear-gradient(135deg, var(--wa-green) 0%, #15803d 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+      background: linear-gradient(135deg, var(--wa-green), #15803d);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
     }
 
     .btn-wa:hover {
+      background: linear-gradient(135deg, #4ade80, var(--wa-green));
       transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(34, 197, 94, 0.6);
-      background: linear-gradient(135deg, #4ade80 0%, var(--wa-green) 100%);
     }
 
-    .btn-outline {
+    .btn-secondary {
       background: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: 1px solid var(--border-subtle);
     }
 
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.12);
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
       border-color: var(--accent);
-      color: var(--accent-light);
-      transform: translateY(-2px);
+      color: var(--accent-gold);
     }
 
-    /* ═══ HERO SECTION ═══ */
+    /* ═══ HERO EDITORIAL ═══ */
     .hero {
       position: relative;
-      padding: clamp(40px, 6vw, 85px) 0 clamp(36px, 5vw, 70px);
-      overflow: hidden;
-      background: radial-gradient(circle at 50% 25%, rgba(229, 169, 60, 0.14) 0%, transparent 68%), var(--bg);
+      padding: clamp(36px, 5vw, 64px) 0 clamp(32px, 5vw, 56px);
+      background: radial-gradient(circle at 60% 30%, rgba(229, 169, 60, 0.12) 0%, transparent 60%), var(--bg);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      gap: 48px;
+      gap: 40px;
     }
 
-    .hero-badge {
-      display: inline-flex;
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 8px;
-      padding: 6px 16px;
-      background: rgba(229, 169, 60, 0.12);
-      border: 1px solid rgba(229, 169, 60, 0.35);
-      border-radius: 50px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      margin-bottom: 18px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      margin-bottom: 16px;
     }
 
-    .hero-badge .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
+    .hero-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(229, 169, 60, 0.1);
+      border: 1px solid var(--border);
+      color: var(--accent-gold);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
     }
 
     .hero-title {
       font-family: var(--font-head);
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-size: clamp(2.1rem, 4.2vw, 3.4rem);
       font-weight: 900;
       line-height: 1.12;
       letter-spacing: -0.03em;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    .hero-title .glow-word {
-      background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent) 100%);
+    .hero-title .glow-txt {
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline;
     }
 
-    .hero-desc {
-      font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+    .hero-lead {
+      font-size: 1.02rem;
       color: var(--ink-muted);
-      line-height: 1.65;
-      margin-bottom: 28px;
-      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 520px;
     }
 
     .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 30px;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
-    .hero-stats {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 26px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
+    .hero-media { position: relative; }
 
-    .stat-box strong {
-      font-family: var(--font-head);
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #ffffff;
-      display: block;
-      line-height: 1.1;
-    }
-
-    .stat-box span {
-      font-size: 0.8rem;
-      color: var(--ink-faint);
-    }
-
-    /* Hero Media Card */
-    .hero-media {
+    .hero-card-img {
       position: relative;
-    }
-
-    .hero-img-wrap {
-      position: relative;
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--border);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(229, 169, 60, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(229, 169, 60, 0.15);
     }
 
-    .hero-img-wrap img {
+    .hero-card-img img {
       width: 100%;
-      height: 460px;
+      height: 420px;
       object-fit: cover;
-      transition: transform 0.6s ease;
     }
 
-    .hero-img-wrap:hover img {
-      transform: scale(1.04);
-    }
-
-    .hero-floating-card {
+    .hero-overlay-card {
       position: absolute;
-      bottom: -16px;
-      left: -16px;
-      background: rgba(23, 20, 16, 0.95);
+      bottom: -14px;
+      left: -14px;
+      background: rgba(20, 17, 13, 0.95);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(229, 169, 60, 0.4);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
       padding: 12px 18px;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-      animation: floatBadge 4s ease-in-out infinite;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
-    .hero-floating-card .badge-icon {
-      font-size: 24px;
+    .hero-overlay-card .icon { font-size: 22px; }
+    .hero-overlay-card strong { font-size: 0.88rem; display: block; color: #fff; }
+    .hero-overlay-card small { font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; }
+
+    /* ═══ VALORES DEL SALÓN ═══ */
+    .portal-features {
+      padding: 24px 0;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .hero-floating-card strong {
-      font-size: 0.92rem;
-      display: block;
-      color: #fff;
-    }
-
-    .hero-floating-card small {
-      font-size: 0.76rem;
-      color: var(--accent-gold);
-      font-weight: 700;
-    }
-
-    @keyframes floatBadge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-
-    /* ═══ SECCIÓN DESTACADOS / HIGHLIGHTS ═══ */
-    .section-highlights {
-      padding: 45px 0;
-      background: #120f0d;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .grid-highlights {
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .highlight-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px 18px;
-      transition: var(--transition);
-      text-align: center;
+    .feature-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
     }
 
-    .highlight-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: 0 10px 30px rgba(229, 169, 60, 0.15);
-    }
-
-    .highlight-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
+    .feature-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       background: rgba(229, 169, 60, 0.12);
-      border: 1px solid rgba(229, 169, 60, 0.3);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin: 0 auto 14px;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
-    .highlight-card h3 {
+    .feature-text strong {
       font-family: var(--font-head);
-      font-size: 1.12rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      color: #ffffff;
-      text-align: center;
+      color: #fff;
+      display: block;
     }
 
-    .highlight-card p {
-      font-size: 0.86rem;
+    .feature-text span {
+      font-size: 0.76rem;
       color: var(--ink-muted);
-      line-height: 1.55;
-      text-align: center;
     }
 
-    /* ═══ SECCIÓN SERVICIOS / CARTA ═══ */
-    .section-services {
-      padding: clamp(55px, 7vw, 95px) 0;
+    /* ═══ CARTA DE SERVICIOS & PRECIOS ═══ */
+    .section-menu {
+      padding: clamp(48px, 6vw, 80px) 0;
       background: var(--bg);
     }
 
-    .section-header {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 38px;
+    .section-head {
+      margin-bottom: 26px;
     }
 
-    .section-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    .section-title {
+    .section-head h2 {
       font-family: var(--font-head);
-      font-size: clamp(1.85rem, 4vw, 2.9rem);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 800;
       letter-spacing: -0.025em;
-      line-height: 1.16;
-      margin-bottom: 14px;
-    }
-
-    .section-desc {
-      font-size: 1rem;
-      color: var(--ink-muted);
-    }
-
-    /* Tabs de Filtro */
-    .menu-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 34px;
-    }
-
-    .tab-btn {
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--ink-muted);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .tab-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
+      margin-bottom: 8px;
       color: #fff;
     }
 
-    .tab-btn.active {
+    .section-head p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+    }
+
+    /* Filtros píldora */
+    .menu-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+
+    .menu-filters::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--ink-muted);
+      transition: var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .filter-pill:hover { background: var(--bg-card); color: #fff; }
+
+    .filter-pill.active {
       background: linear-gradient(135deg, var(--accent), #b87a1a);
       color: #0d0b08;
       border-color: transparent;
-      box-shadow: 0 4px 16px var(--accent-glow);
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
 
     /* Grid de Servicios */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 24px;
+      gap: 22px;
     }
 
     .service-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -581,108 +468,104 @@
     }
 
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       border-color: var(--border-hover);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(229, 169, 60, 0.18);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(229, 169, 60, 0.15);
     }
 
-    .service-img-wrap {
+    .service-media {
       position: relative;
-      height: 195px;
+      height: 190px;
       overflow: hidden;
+      background: #000;
     }
 
-    .service-img-wrap img {
+    .service-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.4s ease;
     }
 
-    .service-card:hover .service-img-wrap img {
-      transform: scale(1.08);
+    .service-card:hover .service-media img {
+      transform: scale(1.06);
     }
 
     .service-badge {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(14, 12, 10, 0.88);
+      background: rgba(14, 12, 10, 0.9);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(229, 169, 60, 0.4);
+      border: 1px solid var(--border);
       color: var(--accent-gold);
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 50px;
-      letter-spacing: 0.02em;
+      font-family: var(--font-head);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
     }
 
     .service-body {
-      padding: 20px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
 
-    .service-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+    .service-title {
+      font-family: var(--font-head);
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 6px;
     }
 
-    .service-header h4 {
-      font-family: var(--font-head);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.25;
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .service-pricing {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .service-price {
       font-family: var(--font-head);
-      font-size: 1.15rem;
-      font-weight: 800;
+      font-size: 1.25rem;
+      font-weight: 900;
       color: var(--accent-gold);
-      white-space: nowrap;
-    }
-
-    .service-desc {
-      font-size: 0.87rem;
-      color: var(--ink-muted);
-      line-height: 1.55;
-      margin-bottom: 18px;
-      flex: 1;
-    }
-
-    .service-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .service-time {
-      font-size: 0.8rem;
-      color: var(--ink-faint);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--ink-subtle);
     }
 
     .service-btn {
-      padding: 8px 16px;
-      border-radius: 50px;
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 8px;
       font-size: 0.84rem;
       font-weight: 700;
       background: rgba(34, 197, 94, 0.15);
       border: 1px solid rgba(34, 197, 94, 0.4);
       color: #4ade80;
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       transition: var(--transition);
     }
@@ -690,408 +573,173 @@
     .service-btn:hover {
       background: var(--wa-green);
       border-color: var(--wa-green);
-      color: #ffffff;
-    }
-
-    /* ═══ SECCIÓN RESULTADO REAL (ANTES Y DESPUÉS) ═══ */
-    .section-transform {
-      padding: clamp(55px, 7vw, 90px) 0;
-      background: #120f0d;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .transform-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .transform-card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    .transform-card img {
-      width: 100%;
-      height: 330px;
-      object-fit: cover;
-    }
-
-    .transform-tag {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      background: rgba(14, 12, 10, 0.9);
-      backdrop-filter: blur(8px);
-      padding: 7px 14px;
-      border-radius: 50px;
-      font-size: 0.82rem;
-      font-weight: 800;
-      border: 1px solid var(--border);
       color: #fff;
     }
 
-    .transform-tag.after {
+    /* ═══ DIAGNÓSTICO CAPILAR INTERACTIVO ═══ */
+    .section-diagnostic {
+      padding: clamp(48px, 6vw, 75px) 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .diagnostic-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(24px, 4vw, 36px);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .diag-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .diag-btn {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--ink-muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .diag-btn:hover { border-color: var(--accent); color: #fff; }
+
+    .diag-btn.active {
+      background: rgba(229, 169, 60, 0.15);
       border-color: var(--accent);
       color: var(--accent-gold);
     }
 
-    /* ═══ SECCIÓN PROCESO EN 4 PASOS ═══ */
-    .section-steps {
-      padding: clamp(55px, 7vw, 90px) 0;
-      background: var(--bg);
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
-    }
-
-    .step-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 18px;
+    .diag-result {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
       text-align: center;
-      position: relative;
-      transition: var(--transition);
     }
 
-    .step-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .step-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #b87a1a);
-      color: #0d0b08;
-      font-weight: 900;
-      font-size: 1.15rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
-
-    .step-card h4 {
-      font-family: var(--font-head);
-      font-size: 1.12rem;
+    .diag-result small {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-gold);
       font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
     }
 
-    .step-card p {
-      font-size: 0.87rem;
+    .diag-result h4 {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 8px 0;
+    }
+
+    .diag-result p {
+      font-size: 0.85rem;
       color: var(--ink-muted);
       line-height: 1.55;
+      margin-bottom: 20px;
     }
 
-    /* ═══ SECCIÓN RESEÑAS GOOGLE (4.9 ★) ═══ */
-    .section-reviews {
-      padding: clamp(55px, 7vw, 95px) 0;
-      background: #120f0d;
-    }
-
-    .score-badge-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 34px;
-    }
-
-    .score-badge {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .score-badge strong {
-      font-family: var(--font-head);
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--accent-gold);
-      line-height: 1;
-    }
-
-    .score-badge .stars {
-      color: #fbbf24;
-      font-size: 1.2rem;
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .review-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-    }
-
-    .review-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-    }
-
-    .review-stars {
-      color: #fbbf24;
-      font-size: 1.1rem;
-      margin-bottom: 12px;
-    }
-
-    .review-text {
-      font-size: 0.91rem;
-      color: var(--ink-muted);
-      line-height: 1.6;
-      margin-bottom: 18px;
-      font-style: italic;
-    }
-
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #b87a1a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: #0d0b08;
-      font-size: 1rem;
-    }
-
-    .author-info strong {
-      font-size: 0.92rem;
-      color: #ffffff;
-      display: block;
-    }
-
-    .author-info span {
-      font-size: 0.77rem;
-      color: var(--ink-faint);
-    }
-
-    /* ═══ FAQ ACORDEÓN ═══ */
-    .section-faq {
-      padding: clamp(55px, 7vw, 90px) 0;
+    /* ═══ INSTALACIONES & UBICACIÓN (ORIHUELA) ═══ */
+    .section-location {
+      padding: clamp(48px, 6vw, 75px) 0;
       background: var(--bg);
     }
 
-    .faq-list {
-      max-width: 760px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .faq-btn {
-      width: 100%;
-      padding: 18px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-align: left;
-      font-family: var(--font-head);
-      font-size: 1.02rem;
-      font-weight: 700;
-      color: #ffffff;
-      gap: 16px;
-    }
-
-    .faq-btn:hover {
-      color: var(--accent-light);
-    }
-
-    .faq-icon {
-      font-size: 1.3rem;
-      transition: transform var(--transition);
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      padding: 0 22px;
-      color: var(--ink-muted);
-      font-size: 0.91rem;
-      line-height: 1.65;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding-bottom: 18px;
-    }
-
-    /* ═══ CONTACTO Y UBICACIÓN ═══ */
-    .section-contact {
-      padding: clamp(55px, 7vw, 95px) 0;
-      background: #120f0d;
-    }
-
-    .contact-grid {
+    .location-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
       align-items: stretch;
     }
 
-    .contact-card {
+    .info-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: clamp(26px, 5vw, 42px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 26px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .contact-card h3 {
+    .info-card h3 {
       font-family: var(--font-head);
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      margin-bottom: 22px;
       color: #fff;
+      margin-bottom: 16px;
     }
 
-    .contact-items {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    .contact-item {
+    .info-row {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-    }
-
-    .contact-item-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(229, 169, 60, 0.12);
-      border: 1px solid rgba(229, 169, 60, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .contact-item-text small {
-      font-size: 0.76rem;
-      color: var(--ink-faint);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .contact-item-text strong {
-      font-size: 1.02rem;
-      color: #ffffff;
-    }
-
-    .contact-map-card {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      min-height: 360px;
-      background: var(--bg-card);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    }
-
-    .contact-map-card .map-icon {
-      font-size: 44px;
+      gap: 12px;
       margin-bottom: 14px;
     }
 
-    .contact-map-card h4 {
-      font-family: var(--font-head);
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 8px;
+    .info-row-icon {
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
     }
 
-    .contact-map-card p {
-      color: var(--ink-muted);
+    .info-row-text strong {
       font-size: 0.92rem;
-      max-width: 360px;
-      margin-bottom: 22px;
+      color: #fff;
+      display: block;
+    }
+
+    .info-row-text span {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+
+    .map-embed-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-embed-card iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      border: none;
+      filter: grayscale(20%) invert(90%) contrast(90%);
     }
 
     /* ═══ FOOTER ═══ */
     .site-footer {
-      background: #090706;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 36px 0 110px;
+      background: #060504;
+      border-top: 1px solid var(--border-subtle);
+      padding: 30px 0 95px;
       text-align: center;
+      font-size: 0.8rem;
+      color: var(--ink-subtle);
     }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
+    .site-footer strong { color: #fff; }
 
-    .footer-content p {
-      font-size: 0.86rem;
-      color: var(--ink-faint);
-    }
-
-    /* ═══ DOCK INFERIOR MÓVIL ═══ */
+    /* ═══ MOBILE BOTTOM DOCK ═══ */
     .mobile-dock {
       display: none;
       position: fixed;
@@ -1099,684 +747,390 @@
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(14, 12, 10, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(12, 10, 8, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-top: 1px solid var(--border);
-      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.7);
+      padding: 9px 16px calc(9px + env(safe-area-inset-bottom, 0px));
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
     }
 
-    .dock-actions {
-      display: flex;
-      align-items: center;
+    .dock-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .dock-actions .btn {
-      flex: 1;
-      padding: 13px 14px;
-      font-size: 0.92rem;
+    .dock-btn {
+      padding: 11px 12px;
       border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .dock-actions .btn-wa {
-      animation: pulseDockWa 2.8s infinite;
-    }
-
-    @keyframes pulseDockWa {
-      0%, 100% { box-shadow: 0 4px 18px rgba(34, 197, 94, 0.4); }
-      50% { box-shadow: 0 4px 24px rgba(34, 197, 94, 0.7); }
-    }
-
-    /* ═══ RESPONSIVE & MOBILE POLISH ═══ */
-    @media (max-width: 920px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        text-align: center;
-      }
-      .hero-desc { margin: 0 auto 28px; }
+    /* ═══ RESPONSIVE BREAKPOINTS ═══ */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .hero-tags { justify-content: center; }
+      .hero-lead { margin: 0 auto 20px; }
       .hero-ctas { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .hero-floating-card { left: 50%; transform: translateX(-50%); bottom: -16px; }
-      .transform-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .hero-overlay-card { left: 50%; transform: translateX(-50%); bottom: -14px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .diagnostic-box { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-menu { display: none; }
       .mobile-dock { display: block; }
-      .site-header { padding: 2px 0; }
-      
-      /* Tabs en carrusel swipeable fluido para móvil */
-      .menu-tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 8px;
-        padding: 4px 20px 12px;
-        margin: 0 -20px 26px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .menu-tabs::-webkit-scrollbar {
-        display: none;
-      }
-      .tab-btn {
-        flex-shrink: 0;
-        white-space: nowrap;
-        padding: 8px 16px;
-        font-size: 0.84rem;
-      }
-
-      .hero-img-wrap img {
-        height: 320px;
-      }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hero-card-img img { height: 280px; }
+      .diag-options { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
-      .brand-logo {
-        width: 38px;
-        height: 38px;
-        font-size: 19px;
-        border-radius: 10px;
-      }
-      .brand-text h1 {
-        font-size: 1.05rem;
-      }
-      .brand-text span {
-        font-size: 0.65rem;
-      }
-      .nav-actions .btn {
-        padding: 8px 12px;
-        font-size: 0.82rem;
-      }
+      .features-grid { grid-template-columns: 1fr; }
+      .top-bar { display: none; }
+      .brand-title { font-size: 1rem; }
+      .brand-sub { font-size: 0.62rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TICKER MARQUEE SUPERIOR -->
-  <aside class="ticker-bar" aria-label="Información del salón">
-    <div class="ticker-inner">
-      <span class="ticker-item">⭐ <strong>4.9 ★ en Google Maps:</strong> Más de 76 valoraciones verificadas de clientes</span>
-      <span class="ticker-item">✨ <strong>Especialistas en Balayage:</strong> Rubios y reflejos luminosos sin castigar el pelo</span>
-      <span class="ticker-item">📍 <strong>Ubicación Céntrica:</strong> Calle Castellón, 1, Bajo, 03300 Orihuela</span>
-      <span class="ticker-item">📞 <strong>Pide tu Cita Previa:</strong> 965 30 47 16 (Llamada o WhatsApp)</span>
-      <!-- Duplicado para loop continuo -->
-      <span class="ticker-item">⭐ <strong>4.9 ★ en Google Maps:</strong> Más de 76 valoraciones verificadas de clientes</span>
-      <span class="ticker-item">✨ <strong>Especialistas en Balayage:</strong> Rubios y reflejos luminosos sin castigar el pelo</span>
-      <span class="ticker-item">📍 <strong>Ubicación Céntrica:</strong> Calle Castellón, 1, Bajo, 03300 Orihuela</span>
-      <span class="ticker-item">📞 <strong>Pide tu Cita Previa:</strong> 965 30 47 16 (Llamada o WhatsApp)</span>
+  <!-- TOP BAR -->
+  <aside class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="top-bar-badge"><span class="dot"></span> Abierto Hoy · Cita Previa</span>
+        <span>Calle Castellón, 1 (Centro Orihuela)</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:965304716" style="color:var(--ink-muted)">📞 Citas: 965 30 47 16</a>
+        <span>4.9 ★ en Google Maps</span>
+      </div>
     </div>
   </aside>
 
-  <!-- CABECERA NAVEGACIÓN -->
+  <!-- HEADER NAVEGACIÓN -->
   <header class="site-header">
     <div class="container nav-inner">
       <a href="#inicio" class="brand">
-        <div class="brand-logo">✂️</div>
-        <div class="brand-text">
-          <h1>Mayte Peluqueros</h1>
-          <span>ESTILISMO & TENDENCIA · ORIHUELA</span>
+        <div class="brand-icon">✂️</div>
+        <div>
+          <div class="brand-title">Mayte Peluqueros</div>
+          <span class="brand-sub">ESTILISMO & TENDENCIA · ORIHUELA</span>
         </div>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-menu">
         <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios & Precios</a>
-        <a href="#resultado">Calidad</a>
-        <a href="#opiniones">Opiniones</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios">Carta de Servicios</a>
+        <a href="#diagnostico">Diagnóstico Capilar</a>
+        <a href="#contacto">El Salón</a>
       </nav>
       <div class="nav-actions">
-        <a href="tel:965304716" class="btn btn-gold">
+        <a href="tel:965304716" class="btn btn-secondary">
           <span>📞 965 30 47 16</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <main id="inicio">
-    <section class="hero">
+  <main>
+    <!-- HERO EDITORIAL -->
+    <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div class="hero-content">
-          <div class="hero-badge">
-            <span class="dot"></span>
-            Abierto Hoy · Calle Castellón, 1, Orihuela
+          <div class="hero-tags">
+            <span class="hero-tag">Salón de Belleza Unisex</span>
+            <span class="hero-tag">4.9 ★ (76 Reseñas Google)</span>
           </div>
-          <h2 class="hero-title">
-            Tu melena soñada.<br>
-            <span class="glow-word">En su mejor versión.</span>
-          </h2>
-          <p class="hero-desc">
-            Cortes de tendencia, coloración experta, mechas Balayage y tratamientos capilares de alta gama para lucir un cabello sano, brillante y con movimiento natural.
+          <h1 class="hero-title">
+            Tu melena en su mejor versión.<br>
+            <span class="glow-txt">Color, brillo y salud.</span>
+          </h1>
+          <p class="hero-lead">
+            Especialistas en mechas Balayage y Babylights sin daño capilar, coloración botánica sin amoniaco, cortes de tendencia y tratamientos de reconstrucción profunda en Calle Castellón 1, Orihuela.
           </p>
           <div class="hero-ctas">
-            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20previa%20para%20peluquería%20en%20vuestro%20salón%20de%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa">
+            <a href="#servicios" class="btn btn-gold">
+              <span>✂️ Ver Carta de Servicios</span>
+            </a>
+            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20previa%20en%20vuestro%20salón%20de%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa">
               <span>💬 Pedir Cita por WhatsApp</span>
             </a>
-            <a href="tel:965304716" class="btn btn-outline">
-              <span>📞 Llamar al 965 30 47 16</span>
-            </a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-box">
-              <strong>4.9 ★</strong>
-              <span>Google Maps (76 reseñas)</span>
-            </div>
-            <div class="stat-box">
-              <strong>15+ años</strong>
-              <span>Pasión por el estilismo</span>
-            </div>
-            <div class="stat-box">
-              <strong>100%</strong>
-              <span>Productos profesionales</span>
-            </div>
           </div>
         </div>
 
         <div class="hero-media">
-          <div class="hero-img-wrap">
-            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&h=700&q=85" alt="Mayte Peluqueros en Orihuela">
+          <div class="hero-card-img">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85" alt="Mayte Peluqueros en Orihuela">
           </div>
-          <div class="hero-floating-card">
-            <span class="badge-icon">⭐</span>
+          <div class="hero-overlay-card">
+            <span class="icon">✨</span>
             <div>
               <strong>4.9 ★ en Google Maps</strong>
-              <small>Top Salones en Orihuela</small>
+              <small>Calle Castellón 1 · Orihuela</small>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HIGHLIGHTS / 4 TARJETAS CENTRADAS -->
-    <section class="section-highlights">
-      <div class="container grid-highlights">
-        <div class="highlight-card">
-          <div class="highlight-icon">✨</div>
-          <h3>Mechas Balayage & Luz</h3>
-          <p>Degradados suaves y babylights luminosos que aportan dimensión sin efecto raíz marcado.</p>
+    <!-- CARACTERÍSTICAS DEL SALÓN -->
+    <section class="portal-features">
+      <div class="container features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🌿</div>
+          <div class="feature-text">
+            <strong>Color Sin Daño</strong>
+            <span>Tintes con aceites botánicos</span>
+          </div>
         </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">✂️</div>
-          <h3>Cortes con Visagismo</h3>
-          <p>Cortes adaptados a tus facciones, tipo de cabello y estilo de vida con acabado profesional.</p>
+        <div class="feature-item">
+          <div class="feature-icon">✨</div>
+          <div class="feature-text">
+            <strong>Técnica Balayage</strong>
+            <span>Degradados y babylights sin efecto raíz</span>
+          </div>
         </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">🌿</div>
-          <h3>Coloración sin Daño</h3>
-          <p>Tintes con aceites nutritivos para máxima cobertura de canas y brillo espejo duradero.</p>
+        <div class="feature-item">
+          <div class="feature-icon">💆‍♀️</div>
+          <div class="feature-text">
+            <strong>Lavado Relax</strong>
+            <span>Masaje craneal desestresante</span>
+          </div>
         </div>
-        <div class="highlight-card">
-          <div class="highlight-icon">💆‍♀️</div>
-          <h3>Tratamientos & Relax</h3>
-          <p>Nutrición intensa con keratina, bótox capilar y lavado con masaje craneal desestresante.</p>
+        <div class="feature-item">
+          <div class="feature-icon">⏱️</div>
+          <div class="feature-text">
+            <strong>Puntualidad Estricta</strong>
+            <span>Cita previa sin esperas innecesarias</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CATÁLOGO DE SERVICIOS INTERACTIVO -->
-    <section class="section-services" id="servicios">
+    <!-- CARTA DE SERVICIOS & PRECIOS -->
+    <section class="section-menu" id="servicios">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">SERVICIOS & TARIFAS</span>
-          <h3 class="section-title">Elige el cuidado que necesita tu cabello</h3>
-          <p class="section-desc">Selecciona tu servicio y pulsa el botón para reservar cita directamente en WhatsApp.</p>
+        <div class="section-head">
+          <h2>Carta de Servicios & Precios</h2>
+          <p>Precios transparentes y asesoramiento de visagismo en cada servicio.</p>
         </div>
 
-        <div class="menu-tabs">
-          <button class="tab-btn active" onclick="filterServices('todos', this)">Todos los Servicios</button>
-          <button class="tab-btn" onclick="filterServices('mechas', this)">Mechas & Balayage</button>
-          <button class="tab-btn" onclick="filterServices('cortes', this)">Cortes & Peinado</button>
-          <button class="tab-btn" onclick="filterServices('color', this)">Coloración & Tintes</button>
-          <button class="tab-btn" onclick="filterServices('tratamientos', this)">Tratamientos</button>
-          <button class="tab-btn" onclick="filterServices('eventos', this)">Novias & Eventos</button>
+        <div class="menu-filters">
+          <button class="filter-pill active" onclick="filterServices('todos', this)">Todos los Servicios</button>
+          <button class="filter-pill" onclick="filterServices('mechas', this)">Mechas & Balayage</button>
+          <button class="filter-pill" onclick="filterServices('cortes', this)">Cortes & Peinados</button>
+          <button class="filter-pill" onclick="filterServices('tratamientos', this)">Tratamientos</button>
+          <button class="filter-pill" onclick="filterServices('eventos', this)">Novias & Eventos</button>
         </div>
 
         <div class="services-grid" id="servicesGrid">
+          
           <!-- Servicio 1: Balayage -->
           <div class="service-card" data-cat="mechas">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=460&q=85" alt="Mechas Balayage en Orihuela">
-              <span class="service-badge">TOP VENTAS</span>
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=85" alt="Mechas Balayage en Orihuela">
+              <span class="service-badge">TOP SERVICIO</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Mechas Balayage & Babylights</h4>
+              <h3 class="service-title">Mechas Balayage & Babylights</h3>
+              <p class="service-desc">Aclarado progresivo respetando la fibra capilar, matiz personalizado a tu tono de piel y peinado con ondas incluido.</p>
+              <div class="service-pricing">
                 <span class="service-price">Desde 65 €</span>
-              </div>
-              <p class="service-desc">Aclarado respetuoso con el pelo, matiz personalizado a tu tono de piel y peinado con ondas incluido.</p>
-              <div class="service-footer">
                 <span class="service-time">⏱️ 120-150 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Mechas%20Balayage%20en%20vuestro%20salón." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Mechas%20Balayage." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
-          <!-- Servicio 2: Cortes Femeninos -->
+          <!-- Servicio 2: Corte Mujer -->
           <div class="service-card" data-cat="cortes">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&h=460&q=85" alt="Corte y Estilismo Femenino">
-              <span class="service-badge">IMPRESCINDIBLE</span>
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&q=85" alt="Corte y Estilismo en Orihuela">
+              <span class="service-badge">ASESORAMIENTO</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Corte de Tendencia & Styling</h4>
+              <h3 class="service-title">Corte de Tendencia & Styling</h3>
+              <p class="service-desc">Estudio previo de visagismo, lavado con masaje craneal, corte técnico adaptado a tus facciones y peinado profesional.</p>
+              <div class="service-pricing">
                 <span class="service-price">Desde 18 €</span>
-              </div>
-              <p class="service-desc">Asesoramiento previo de visagismo, lavado con masaje craneal, corte técnico y peinado final con fijación natural.</p>
-              <div class="service-footer">
                 <span class="service-time">⏱️ 35-45 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20y%20Peinado." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20y%20Peinado." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
           <!-- Servicio 3: Coloración -->
-          <div class="service-card" data-cat="color">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=700&h=460&q=85" alt="Coloración y brillo">
+          <div class="service-card" data-cat="mechas">
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=700&q=85" alt="Coloración sin daño">
               <span class="service-badge">COLOR PREMIUM</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Coloración & Brillo Espejo</h4>
+              <h3 class="service-title">Coloración & Brillo Espejo</h3>
+              <p class="service-desc">Tintes sin amoniaco enriquecidos con aceites botánicos. 100% cobertura de canas y brillo radiante de larga duración.</p>
+              <div class="service-pricing">
                 <span class="service-price">Desde 35 €</span>
-              </div>
-              <p class="service-desc">Tintes sin amoniaco con aceites nutritivos. 100% cobertura de canas y brillo radiante de larga duración.</p>
-              <div class="service-footer">
                 <span class="service-time">⏱️ 45-60 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quisiera%20reservar%20cita%20para%20Coloración%20y%20Tinte." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Coloración/Tinte." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
           <!-- Servicio 4: Keratina & Botox -->
           <div class="service-card" data-cat="tratamientos">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&h=460&q=85" alt="Tratamiento Capilar Keratina">
-              <span class="service-badge">NUTRICIÓN TOTAL</span>
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=85" alt="Tratamiento Capilar Keratina">
+              <span class="service-badge">RECONSTRUCCIÓN</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Tratamiento Keratina & Bótox</h4>
+              <h3 class="service-title">Tratamiento Keratina & Bótox</h3>
+              <p class="service-desc">Reparación profunda para melenas castigadas. Elimina el encrespamiento, sella las puntas y aporta tacto de seda hasta 4 meses.</p>
+              <div class="service-pricing">
                 <span class="service-price">Desde 45 €</span>
-              </div>
-              <p class="service-desc">Reparación profunda para melenas castigadas. Elimina el encrespamiento y sella puntas con tacto de seda.</p>
-              <div class="service-footer">
                 <span class="service-time">⏱️ 60-90 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20para%20un%20Tratamiento%20de%20Keratina." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Tratamiento%20de%20Keratina." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
-          <!-- Servicio 5: Corte Caballero / Unisex -->
+          <!-- Servicio 5: Corte Caballero -->
           <div class="service-card" data-cat="cortes">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&h=460&q=85" alt="Corte Caballero y Barbería">
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=85" alt="Corte Caballero en Orihuela">
               <span class="service-badge">UNISEX</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Corte Caballero & Arreglo</h4>
-                <span class="service-price">Desde 14 €</span>
-              </div>
+              <h3 class="service-title">Corte Caballero & Arreglo</h3>
               <p class="service-desc">Degradados precisos a tijera y máquina, arreglo de contornos, lavado y acabado con cera mate profesional.</p>
-              <div class="service-footer">
+              <div class="service-pricing">
+                <span class="service-price">Desde 14 €</span>
                 <span class="service-time">⏱️ 25-30 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20Caballero." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20Caballero." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
           <!-- Servicio 6: Novias & Eventos -->
           <div class="service-card" data-cat="eventos">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&h=460&q=85" alt="Peinados para Bodas y Novias">
-              <span class="service-badge">EVENTOS & NOVIAS</span>
+            <div class="service-media">
+              <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&q=85" alt="Peinados para Novias y Bodas">
+              <span class="service-badge">EVENTOS</span>
             </div>
             <div class="service-body">
-              <div class="service-header">
-                <h4>Peinados de Fiesta & Novias</h4>
+              <h3 class="service-title">Peinados de Fiesta & Novias</h3>
+              <p class="service-desc">Recogidos sofisticados, ondas al agua y semirrecogidos de alta durabilidad para bodas, graduaciones y celebraciones.</p>
+              <div class="service-pricing">
                 <span class="service-price">Desde 30 €</span>
-              </div>
-              <p class="service-desc">Recogidos sofisticados, ondas al agua y semirrecogidos de alta durabilidad para bodas y celebraciones.</p>
-              <div class="service-footer">
                 <span class="service-time">⏱️ 50-80 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Tengo%20un%20evento%20y%20quiero%20pedir%20cita%20para%20Peinado/Recogido." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
               </div>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Tengo%20un%20evento%20y%20quiero%20cita%20para%20Peinado." target="_blank" rel="noopener" class="service-btn">
+                Pedir Cita por WhatsApp
+              </a>
             </div>
           </div>
 
-          <!-- Servicio 7: Lavado Relax & Gloss -->
-          <div class="service-card" data-cat="tratamientos">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=700&h=460&q=85" alt="Lavado relax y masaje craneal">
-              <span class="service-badge">MOMENTO RELAX</span>
-            </div>
-            <div class="service-body">
-              <div class="service-header">
-                <h4>Lavado Relax & Tratamiento Gloss</h4>
-                <span class="service-price">Desde 15 €</span>
-              </div>
-              <p class="service-desc">Lavado con champú tratante específico, masaje craneal revitalizante en lavacabezas y secado con brillo inmediato.</p>
-              <div class="service-footer">
-                <span class="service-time">⏱️ 30 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Lavado%20Relax%20y%20Peinado." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Servicio 8: Matiz & Retoque -->
-          <div class="service-card" data-cat="mechas">
-            <div class="service-img-wrap">
-              <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=700&h=460&q=85" alt="Salón de Peluquería Mayte en Orihuela">
-              <span class="service-badge">EXPRESS</span>
-            </div>
-            <div class="service-body">
-              <div class="service-header">
-                <h4>Matiz Iluminador & Baño Gloss</h4>
-                <span class="service-price">Desde 22 €</span>
-              </div>
-              <p class="service-desc">Neutraliza tonos amarillentos no deseados entre sesiones de mechas y aporta un extra de suavidad y reflejos de luz.</p>
-              <div class="service-footer">
-                <span class="service-time">⏱️ 30-40 min</span>
-                <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Matiz%20Iluminador." target="_blank" rel="noopener" class="service-btn">
-                  Pedir Cita
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN ANTES Y DESPUÉS (TRANSFORMACIÓN REAL) -->
-    <section class="section-transform" id="resultado">
+    <!-- DIAGNÓSTICO CAPILAR INTERACTIVO -->
+    <section class="section-diagnostic" id="diagnostico">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">RESULTADOS REALES</span>
-          <h3 class="section-title">El poder de un trabajo bien hecho</h3>
-          <p class="section-desc">De una melena apagada y sin fuerza a un cabello luminoso con brillo espejo y sedosidad.</p>
-        </div>
-
-        <div class="transform-grid">
-          <div class="transform-card">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&h=500&q=85" alt="Cabello antes del tratamiento">
-            <span class="transform-tag">ANTES · Tono apagado y puntas abiertas</span>
-          </div>
-          <div class="transform-card">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=500&q=85" alt="Cabello después con balayage e hidratación">
-            <span class="transform-tag after">DESPUÉS · Balayage luminoso & suavidad sedosa</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESO EN 4 PASOS -->
-    <section class="section-steps">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">PASO A PASO</span>
-          <h3 class="section-title">Tu experiencia en Mayte Peluqueros</h3>
-          <p class="section-desc">Puntualidad, trato cercano y resultados que superan tus expectativas.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-num">1</div>
-            <h4>Reserva tu cita</h4>
-            <p>Escríbenos por WhatsApp o llámanos para elegir el día y la hora que mejor te vengan.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">2</div>
-            <h4>Diagnóstico</h4>
-            <p>Analizamos el estado de tu cabello y escuchamos qué buscas antes de empezar.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">3</div>
-            <h4>Cuidado experto</h4>
-            <p>Aplicamos técnicas de tendencia utilizando productos profesionales de alta gama.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-num">4</div>
-            <h4>Resultado top</h4>
-            <p>Sales del salón con una melena llena de luz y consejos para mantenerla perfecta.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESEÑAS GOOGLE MAPS -->
-    <section class="section-reviews" id="opiniones">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">CLIENTAS REALES</span>
-          <h3 class="section-title">Lo que opinan de nosotras</h3>
-          <p class="section-desc">La satisfacción y la fidelidad de nuestras clientas en Google Maps es nuestra mayor garantía.</p>
-        </div>
-
-        <div class="score-badge-wrap">
-          <div class="score-badge">
-            <strong>4.9</strong>
-            <div>
-              <div class="stars">★★★★★</div>
-              <small style="color:var(--ink-muted)">Basado en 76 reseñas en Google Maps</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"Sin duda la mejor peluquería de Orihuela. Mayte y su equipo tienen un trato maravilloso y con el color dan en el clavo siempre. 100% recomendable."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">N</div>
-              <div class="author-info">
-                <strong>Nuria B.</strong>
-                <span>Orihuela Centro · Cliente habitual</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"Me hicieron un balayage precioso sin estropearme el pelo. El salón es súper agradable, son muy atentas y te sientes como en casa."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">L</div>
-              <div class="author-info">
-                <strong>Laura G.</strong>
-                <span>Orihuela · Reseña verificada</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"Llevo años yendo y nunca defraudan. Puntuales, profesionales y con unos productos que huelen y dejan el pelo con un brillo increíble."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">C</div>
-              <div class="author-info">
-                <strong>Carmen R.</strong>
-                <span>Callosa de Segura · Cliente habitual</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"Me peinaron para la boda de mi hermana y aguantó toda la noche perfecto sin desarmarse. El corte también me encantó. Trato de diez."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">P</div>
-              <div class="author-info">
-                <strong>Patricia M.</strong>
-                <span>Orihuela · Reseña verificada</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"El lavado con masaje craneal es una maravilla relajante. Te aconsejan con total sinceridad sobre lo que de verdad le conviene a tu pelo."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">I</div>
-              <div class="author-info">
-                <strong>Isabel V.</strong>
-                <span>Redován · Cliente habitual</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="review-card">
-            <div>
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">"Profesionalidad de 5 estrellas. Tenía el pelo castigado de tintes anteriores y me lo han recuperado por completo con sus tratamientos."</p>
-            </div>
-            <div class="review-author">
-              <div class="author-avatar">A</div>
-              <div class="author-info">
-                <strong>Ana Belén F.</strong>
-                <span>Orihuela · Reseña verificada</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ INTERACTIVO -->
-    <section class="section-faq">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">PREGUNTAS FRECUENTES</span>
-          <h3 class="section-title">Resolvemos tus dudas</h3>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">
-              <span>¿Es necesario pedir cita previa?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Sí, recomendamos reservar con antelación por teléfono o WhatsApp para asegurarte hueco y poder dedicarle a tu melena todo el tiempo que se merece sin prisas ni esperas.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">
-              <span>¿Cuánto dura una sesión de mechas Balayage?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Suele durar entre 2 y 2,5 horas dependiendo de la densidad y largura de tu melena, ya que realizamos el aclarado de forma suave para proteger la fibra capilar, seguido del matiz y peinado.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">
-              <span>¿Qué marcas de tintes utilizáis?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Trabajamos exclusivamente con firmas profesionales de alta gama libres de amoniaco y enriquecidas con aceites botánicos para garantizar la máxima cobertura con nutrición y brillo.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">
-              <span>¿Hacéis recogidos y peinados para bodas?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Sí, tanto para novias, madrinas como invitadas. Realizamos pruebas previas para que el día de la celebración vayas completamente segura y radiante.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-btn" onclick="toggleFaq(this)">
-              <span>¿Dónde está ubicado el salón y es fácil aparcar?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Estamos en Calle Castellón, 1, en pleno centro de Orihuela, con fácil acceso peatonal y zonas de aparcamiento público en las inmediaciones.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO Y UBICACIÓN -->
-    <section class="section-contact" id="contacto">
-      <div class="container contact-grid">
-        <div class="contact-card">
+        <div class="diagnostic-box">
           <div>
-            <span class="section-tag">UBICACIÓN & CONTACTO</span>
-            <h3>Ven a conocernos a Orihuela</h3>
-            <div class="contact-items">
-              <div class="contact-item">
-                <div class="contact-item-icon">📍</div>
-                <div class="contact-item-text">
-                  <small>Dirección</small>
-                  <strong>Calle Castellón, 1, Bajo, 03300 Orihuela, Alicante</strong>
-                </div>
+            <h3 style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px">¿Qué necesita tu cabello?</h3>
+            <p style="font-size:0.92rem;color:var(--ink-muted)">Selecciona cómo sientes tu pelo hoy y te recomendamos la técnica exacta para devolverle la luz.</p>
+            
+            <div class="diag-options">
+              <button type="button" class="diag-btn active" onclick="setDiagnosis('balayage', this)">✨ Falta de luz / Raíz oscura</button>
+              <button type="button" class="diag-btn" onclick="setDiagnosis('frizz', this)">⚡ Encrespado / Puntas abiertas</button>
+              <button type="button" class="diag-btn" onclick="setDiagnosis('canas', this)">🌿 Canas que cubrir sin daño</button>
+              <button type="button" class="diag-btn" onclick="setDiagnosis('corte', this)">✂️ Cambio de look / Sin forma</button>
+            </div>
+          </div>
+
+          <div class="diag-result" id="diagResultBox">
+            <small>Recomendación Experta</small>
+            <h4 id="diagTitle">Mechas Balayage & Matiz Iluminador</h4>
+            <p id="diagDesc">Un degradado suave aportará movimiento y luminosidad natural a tu rostro sin obligarte a retocar la raíz cada mes.</p>
+            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Hice%20el%20diagnóstico%20en%20la%20web%20y%20quiero%20cita%20para%20Balayage." target="_blank" rel="noopener" class="btn btn-gold" style="width:100%" id="diagWaBtn">
+              Pedir Cita para este Servicio
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALACIONES Y CONTACTO -->
+    <section class="section-location" id="contacto">
+      <div class="container location-grid">
+        <div class="info-card">
+          <div>
+            <h3>Salón Mayte Peluqueros</h3>
+            
+            <div class="info-row">
+              <span class="info-row-icon">📍</span>
+              <div class="info-row-text">
+                <strong>Dirección Céntrica</strong>
+                <span>Calle Castellón, 1, Bajo, 03300 Orihuela (Alicante)</span>
               </div>
-              <div class="contact-item">
-                <div class="contact-item-icon">🕒</div>
-                <div class="contact-item-text">
-                  <small>Horario habitual</small>
-                  <strong>Martes a Viernes: 09:30 - 13:30 / 16:30 - 20:00<br>Sábados: 09:00 - 14:00 (Lunes cerrado)</strong>
-                </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-icon">🕒</span>
+              <div class="info-row-text">
+                <strong>Horario de Atención</strong>
+                <span>Martes a Viernes: 09:30 - 13:30 / 16:30 - 20:00<br>Sábados: 09:00 - 14:00 (Lunes cerrado)</span>
               </div>
-              <div class="contact-item">
-                <div class="contact-item-icon">📞</div>
-                <div class="contact-item-text">
-                  <small>Teléfono de Citas</small>
-                  <strong>965 30 47 16</strong>
-                </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-icon">📞</span>
+              <div class="info-row-text">
+                <strong>Teléfono de Citas</strong>
+                <span>965 30 47 16</span>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span class="info-row-icon">⭐</span>
+              <div class="info-row-text">
+                <strong>Valoración en Google Maps</strong>
+                <span>4.9 ★ con 76 valoraciones verificadas de clientas</span>
               </div>
             </div>
           </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
             <a href="tel:965304716" class="btn btn-gold">Llamar al Salón</a>
-            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp Directo</a>
           </div>
         </div>
 
-        <div class="contact-map-card">
-          <div class="map-icon">🗺️</div>
-          <h4>Tu salón de confianza en Orihuela</h4>
-          <p>Visítanos en Calle Castellón 1 o pulsa a continuación para abrir la ruta en tu aplicación de mapas.</p>
-          <a href="https://www.google.com/maps/place/Mayte+peluqueros/@38.0814903,-0.943994,17z/data=!3m1!4b1!4m6!3m5!1s0xd6399276e6bd4bf:0x18975101869aeca5!8m2!3d38.0814903!4d-0.943994" target="_blank" rel="noopener" class="btn btn-outline">
-            Abrir en Google Maps
-          </a>
+        <div class="map-embed-card">
+          <iframe 
+            src="https://maps.google.com/maps?q=Mayte+peluqueros+Calle+Castell%C3%B3n+1+Orihuela&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            loading="lazy" 
+            title="Ubicación de Mayte Peluqueros en Orihuela">
+          </iframe>
         </div>
       </div>
     </section>
@@ -1784,20 +1138,20 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-content">
-      <div style="font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#fff">✂️ Mayte Peluqueros</div>
-      <p>© 2026 Mayte Peluqueros · Calle Castellón, 1, 03300 Orihuela, Alicante</p>
-      <p style="font-size:0.8rem">Salón de peluquería, estilismo y estética capilar unisex</p>
+    <div class="container">
+      <p style="margin-bottom:6px"><strong>Mayte Peluqueros</strong> · Salón de Peluquería & Estilismo Unisex</p>
+      <p>Calle Castellón, 1, Bajo, 03300 Orihuela, Alicante · Teléfono: 965 30 47 16</p>
+      <p style="margin-top:10px;font-size:0.75rem">Especialistas en Balayage, Babylights, Tratamientos Capilares y Novias</p>
     </div>
   </footer>
 
-  <!-- DOCK MÓVIL FIJO -->
-  <aside class="mobile-dock" aria-label="Contacto rápido">
-    <div class="dock-actions">
-      <a href="tel:965304716" class="btn btn-gold">
-        📞 Llamar
+  <!-- DOCK FIJO MÓVIL (APP STYLE) -->
+  <aside class="mobile-dock" aria-label="Contacto rápido móvil">
+    <div class="dock-grid">
+      <a href="tel:965304716" class="btn btn-gold dock-btn">
+        📞 Llamar al Salón
       </a>
-      <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20previa%20en%20vuestro%20salón%20de%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa">
+      <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa%20en%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa dock-btn">
         💬 WhatsApp
       </a>
     </div>
@@ -1806,10 +1160,10 @@
   <!-- BANNER DE PROPIETARIO PARA CIERRE COMERCIAL -->
   <script src="/owner-banner.js" defer></script>
 
-  <!-- SCRIPT INTERACTIVO TABS Y FAQ -->
+  <!-- LOGICA INTERACTIVA DEL SALÓN -->
   <script>
     function filterServices(cat, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const cards = document.querySelectorAll('.service-card');
       cards.forEach(c => {
@@ -1821,9 +1175,36 @@
       });
     }
 
-    function toggleFaq(btn) {
-      const item = btn.closest('.faq-item');
-      item.classList.toggle('open');
+    const diagData = {
+      balayage: {
+        title: "Mechas Balayage & Matiz Iluminador",
+        desc: "Un degradado suave aportará movimiento y luminosidad natural a tu rostro sin obligarte a retocar la raíz cada mes.",
+        wa: "¡Hola Mayte! Hice el diagnóstico y quiero pedir cita para Mechas Balayage."
+      },
+      frizz: {
+        title: "Tratamiento de Keratina & Bótox Capilar",
+        desc: "Sellado orgánico de la cutícula para eliminar por completo el encrespamiento por humedad y lucir un tacto sedoso y brillante.",
+        wa: "¡Hola Mayte! Hice el diagnóstico y quiero pedir cita para Tratamiento de Keratina."
+      },
+      canas: {
+        title: "Coloración Botánica sin Amoniaco",
+        desc: "Cobertura total de canas respetando la piel del cuero cabelludo, enriquecida con aceites nutritivos para máxima suavidad.",
+        wa: "¡Hola Mayte! Quiero pedir cita para Coloración sin Amoniaco."
+      },
+      corte: {
+        title: "Corte de Tendencia con Visagismo",
+        desc: "Analizamos la forma de tu rostro y tipo de textura para diseñar el corte que mejor te sienta con peinado profesional.",
+        wa: "¡Hola Mayte! Quiero pedir cita para Corte de Tendencia con Visagismo."
+      }
+    };
+
+    function setDiagnosis(type, btn) {
+      document.querySelectorAll('.diag-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const item = diagData[type];
+      document.getElementById('diagTitle').textContent = item.title;
+      document.getElementById('diagDesc').textContent = item.desc;
+      document.getElementById('diagWaBtn').href = "https://wa.me/34965304716?text=" + encodeURIComponent(item.wa);
     }
   </script>
 </body>
