@@ -24,32 +24,35 @@
     /* ═══════════════════════════════════════════════════════════
        MAYTE PELUQUEROS · PORTAL EDITORIAL DE ALTA PELUQUERÍA
        Calle Castellón, 1, Orihuela · Tel: 965 30 47 16
-       Diseño: Oro Champagne, Negro Carbón & Tipografía Editorial
+       Diseño: Blanco Puro, Marfil Cálido & Oro Champagne Editorial
        ═══════════════════════════════════════════════════════════ */
     :root {
-      --bg: #0c0a08;
-      --bg-surface: #14110d;
-      --bg-card: #1a1612;
-      --bg-card-hover: #221d18;
-      --border: rgba(229, 169, 60, 0.2);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(229, 169, 60, 0.45);
+      --bg: #ffffff;
+      --bg-surface: #fdfbf7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #faf6f0;
+      --border: rgba(180, 83, 9, 0.2);
+      --border-subtle: #ede7df;
+      --border-hover: rgba(180, 83, 9, 0.45);
       
-      --accent: #e5a93c;
-      --accent-light: #f5c66e;
-      --accent-gold: #ffd27d;
-      --accent-glow: rgba(229, 169, 60, 0.28);
-      --wa-green: #22c55e;
-      --wa-green-hover: #16a34a;
+      --accent: #b45309;
+      --accent-light: #d97706;
+      --accent-gold: #92400e;
+      --accent-glow: rgba(180, 83, 9, 0.2);
+      --wa-green: #16a34a;
+      --wa-green-hover: #15803d;
       
-      --ink: #ffffff;
-      --ink-muted: #dcd3ca;
-      --ink-subtle: #8c8075;
+      --ink: #1c1917;
+      --ink-muted: #57534e;
+      --ink-subtle: #78716c;
 
       --font-head: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
       --radius: 16px;
       --transition: 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 4px 20px -2px rgba(28, 25, 23, 0.06), 0 2px 6px -1px rgba(28, 25, 23, 0.04);
+      --shadow-hover: 0 16px 32px -4px rgba(28, 25, 23, 0.12), 0 4px 12px -2px rgba(180, 83, 9, 0.1);
     }
 
     *, *::before, *::after {
@@ -89,7 +92,7 @@
 
     /* ═══ TOP ANNOUNCEMENT BAR ═══ */
     .top-bar {
-      background: #080605;
+      background: #fdfbf7;
       border-bottom: 1px solid var(--border-subtle);
       padding: 7px 0;
       font-size: 0.8rem;
@@ -107,7 +110,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--accent-gold);
+      color: var(--accent);
       font-weight: 700;
     }
 
@@ -124,7 +127,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(12, 10, 8, 0.94);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
@@ -149,13 +152,14 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #b87a1a);
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 20px;
       box-shadow: 0 4px 12px var(--accent-glow);
       flex-shrink: 0;
+      color: #fff;
     }
 
     .brand-title {
@@ -164,13 +168,13 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.15;
-      color: #fff;
+      color: var(--ink);
     }
 
     .brand-sub {
       font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--accent-gold);
+      font-weight: 700;
+      color: var(--accent);
       letter-spacing: 0.06em;
       text-transform: uppercase;
       display: block;
@@ -189,7 +193,13 @@
       transition: color var(--transition);
     }
 
-    .nav-menu a:hover { color: #fff; }
+    .nav-menu a:hover { color: var(--accent); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     /* ═══ BOTONES ═══ */
     .btn {
@@ -210,44 +220,46 @@
     .btn:active { transform: scale(0.97); }
 
     .btn-gold {
-      background: linear-gradient(135deg, var(--accent), #b87a1a);
-      color: #0d0b08;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      color: #fff;
       box-shadow: 0 4px 16px var(--accent-glow);
     }
 
     .btn-gold:hover {
-      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      background: linear-gradient(135deg, #f59e0b, var(--accent-light));
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(180, 83, 9, 0.35);
     }
 
     .btn-wa {
       background: linear-gradient(135deg, var(--wa-green), #15803d);
       color: #fff;
-      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
     }
 
     .btn-wa:hover {
-      background: linear-gradient(135deg, #4ade80, var(--wa-green));
+      background: linear-gradient(135deg, #22c55e, var(--wa-green));
       transform: translateY(-2px);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
+      background: #fdfbf7;
+      color: var(--ink);
       border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: #f9f5ed;
       border-color: var(--accent);
-      color: var(--accent-gold);
+      color: var(--accent);
     }
 
-    /* ═══ HERO EDITORIAL ═══ */
+    /* ═══ HERO SALÓN ═══ */
     .hero {
       position: relative;
       padding: clamp(36px, 5vw, 64px) 0 clamp(32px, 5vw, 56px);
-      background: radial-gradient(circle at 60% 30%, rgba(229, 169, 60, 0.12) 0%, transparent 60%), var(--bg);
+      background: radial-gradient(circle at 65% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 60%), #ffffff;
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -271,9 +283,9 @@
       font-weight: 700;
       padding: 4px 12px;
       border-radius: 50px;
-      background: rgba(229, 169, 60, 0.1);
+      background: rgba(217, 119, 6, 0.08);
       border: 1px solid var(--border);
-      color: var(--accent-gold);
+      color: var(--accent);
       letter-spacing: 0.03em;
       text-transform: uppercase;
     }
@@ -285,10 +297,11 @@
       line-height: 1.12;
       letter-spacing: -0.03em;
       margin-bottom: 16px;
+      color: var(--ink);
     }
 
     .hero-title .glow-txt {
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent));
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -309,14 +322,38 @@
       margin-bottom: 28px;
     }
 
+    .salon-chips {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .salon-chip {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Hero Media */
     .hero-media { position: relative; }
 
     .hero-card-img {
       position: relative;
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(229, 169, 60, 0.15);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 40px -10px rgba(28, 25, 23, 0.12), 0 0 20px rgba(180, 83, 9, 0.06);
+      background: #faf6f0;
     }
 
     .hero-card-img img {
@@ -329,22 +366,22 @@
       position: absolute;
       bottom: -14px;
       left: -14px;
-      background: rgba(20, 17, 13, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-subtle);
       border-radius: 14px;
       padding: 12px 18px;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 25px rgba(28, 25, 23, 0.1);
     }
 
     .hero-overlay-card .icon { font-size: 22px; }
-    .hero-overlay-card strong { font-size: 0.88rem; display: block; color: #fff; }
-    .hero-overlay-card small { font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; }
+    .hero-overlay-card strong { font-size: 0.88rem; display: block; color: var(--ink); font-weight: 700; }
+    .hero-overlay-card small { font-size: 0.75rem; color: var(--accent); font-weight: 700; }
 
-    /* ═══ VALORES DEL SALÓN ═══ */
+    /* ═══ PILARES DEL SALÓN ═══ */
     .portal-features {
       padding: 24px 0;
       background: var(--bg-surface);
@@ -368,20 +405,21 @@
       width: 38px;
       height: 38px;
       border-radius: 10px;
-      background: rgba(229, 169, 60, 0.12);
+      background: rgba(217, 119, 6, 0.1);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
       flex-shrink: 0;
+      color: var(--accent);
     }
 
     .feature-text strong {
       font-family: var(--font-head);
       font-size: 0.88rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--ink);
       display: block;
     }
 
@@ -390,32 +428,36 @@
       color: var(--ink-muted);
     }
 
-    /* ═══ CARTA DE SERVICIOS & PRECIOS ═══ */
-    .section-menu {
+    /* ═══ LOOKBOOK & CATÁLOGO VISUAL ═══ */
+    .section-lookbook {
       padding: clamp(48px, 6vw, 80px) 0;
       background: var(--bg);
     }
 
     .section-head {
-      margin-bottom: 26px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
     }
 
-    .section-head h2 {
+    .section-head-text h2 {
       font-family: var(--font-head);
       font-size: clamp(1.75rem, 3.5vw, 2.5rem);
       font-weight: 800;
       letter-spacing: -0.025em;
+      line-height: 1.18;
       margin-bottom: 8px;
-      color: #fff;
+      color: var(--ink);
     }
 
-    .section-head p {
+    .section-head-text p {
       font-size: 0.95rem;
       color: var(--ink-muted);
     }
 
-    /* Filtros píldora */
-    .menu-filters {
+    .lookbook-filters {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -425,155 +467,136 @@
       scrollbar-width: none;
     }
 
-    .menu-filters::-webkit-scrollbar { display: none; }
+    .lookbook-filters::-webkit-scrollbar { display: none; }
 
     .filter-pill {
       padding: 8px 16px;
       border-radius: 50px;
       font-size: 0.84rem;
       font-weight: 700;
-      background: var(--bg-surface);
+      background: #ffffff;
       border: 1px solid var(--border-subtle);
       color: var(--ink-muted);
       transition: var(--transition);
       cursor: pointer;
       white-space: nowrap;
       flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
     }
 
-    .filter-pill:hover { background: var(--bg-card); color: #fff; }
+    .filter-pill:hover {
+      background: #faf6f0;
+      color: var(--ink);
+    }
 
     .filter-pill.active {
-      background: linear-gradient(135deg, var(--accent), #b87a1a);
-      color: #0d0b08;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      color: #fff;
       border-color: transparent;
       box-shadow: 0 4px 14px var(--accent-glow);
     }
 
-    /* Grid de Servicios */
-    .services-grid {
+    .lookbook-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 22px;
     }
 
-    .service-card {
-      background: var(--bg-card);
+    .lookbook-card {
+      background: #ffffff;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: var(--transition);
+      box-shadow: var(--shadow-card);
     }
 
-    .service-card:hover {
+    .lookbook-card:hover {
       transform: translateY(-4px);
       border-color: var(--border-hover);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(229, 169, 60, 0.15);
+      box-shadow: var(--shadow-hover);
     }
 
-    .service-media {
+    .lookbook-media {
       position: relative;
-      height: 190px;
+      height: 230px;
       overflow: hidden;
-      background: #000;
+      background: #faf6f0;
     }
 
-    .service-media img {
+    .lookbook-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
 
-    .service-card:hover .service-media img {
+    .lookbook-card:hover .lookbook-media img {
       transform: scale(1.06);
     }
 
-    .service-badge {
+    .lookbook-tag {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: rgba(14, 12, 10, 0.9);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(8px);
-      border: 1px solid var(--border);
-      color: var(--accent-gold);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent);
       font-family: var(--font-head);
       font-size: 0.72rem;
       font-weight: 800;
       padding: 3px 10px;
       border-radius: 6px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
+      box-shadow: var(--shadow-sm);
     }
 
-    .service-body {
+    .lookbook-info {
       padding: 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
 
-    .service-title {
+    .lookbook-title {
       font-family: var(--font-head);
       font-size: 1.12rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--ink);
       line-height: 1.25;
       margin-bottom: 6px;
     }
 
-    .service-desc {
-      font-size: 0.85rem;
+    .lookbook-desc {
+      font-size: 0.82rem;
       color: var(--ink-muted);
       line-height: 1.5;
-      margin-bottom: 16px;
-      flex: 1;
+      margin-bottom: 12px;
     }
 
-    .service-pricing {
+    .lookbook-meta {
       margin-top: auto;
       padding-top: 12px;
       border-top: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 12px;
     }
 
-    .service-price {
+    .lookbook-price {
       font-family: var(--font-head);
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: var(--accent-gold);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent);
     }
 
-    .service-time {
-      font-size: 0.78rem;
+    .lookbook-time {
+      font-size: 0.76rem;
       color: var(--ink-subtle);
-    }
-
-    .service-btn {
-      width: 100%;
-      padding: 9px 14px;
-      border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      color: #4ade80;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: var(--transition);
-    }
-
-    .service-btn:hover {
-      background: var(--wa-green);
-      border-color: var(--wa-green);
-      color: #fff;
+      font-weight: 600;
     }
 
     /* ═══ DIAGNÓSTICO CAPILAR INTERACTIVO ═══ */
@@ -584,77 +607,174 @@
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .diagnostic-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+    .diag-box {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
       border-radius: 20px;
       padding: clamp(24px, 4vw, 36px);
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 36px;
       align-items: center;
+      box-shadow: var(--shadow-card);
     }
 
-    .diag-options {
+    .diag-btn-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .diag-btn {
       padding: 12px 14px;
       border-radius: 10px;
-      background: var(--bg-surface);
+      background: #fdfbf7;
       border: 1px solid var(--border-subtle);
       color: var(--ink-muted);
       font-size: 0.84rem;
       font-weight: 700;
       cursor: pointer;
-      transition: var(--transition);
       text-align: left;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .diag-btn:hover { border-color: var(--accent); color: #fff; }
+    .diag-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     .diag-btn.active {
-      background: rgba(229, 169, 60, 0.15);
+      background: rgba(217, 119, 6, 0.12);
       border-color: var(--accent);
-      color: var(--accent-gold);
+      color: var(--accent);
+      font-weight: 800;
     }
 
-    .diag-result {
-      background: var(--bg-surface);
+    .diag-result-card {
+      background: #fdfbf7;
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
       padding: 24px;
       text-align: center;
     }
 
-    .diag-result small {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent-gold);
-      font-weight: 700;
-    }
-
-    .diag-result h4 {
+    .diag-result-card h4 {
       font-family: var(--font-head);
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: #fff;
-      margin: 8px 0;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
-    .diag-result p {
-      font-size: 0.85rem;
+    .diag-result-card p {
+      font-size: 0.86rem;
       color: var(--ink-muted);
-      line-height: 1.55;
-      margin-bottom: 20px;
+      line-height: 1.6;
+      margin-bottom: 18px;
     }
 
-    /* ═══ INSTALACIONES & UBICACIÓN (ORIHUELA) ═══ */
+    /* ═══ TARIFA DE SERVICIOS & CARTA ═══ */
+    .section-services {
+      padding: clamp(48px, 6vw, 80px) 0;
+      background: var(--bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .service-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #fdfbf7;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+    }
+
+    .service-row-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .service-row-title small {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .service-row-price {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* ═══ FILOSOFÍA & PRODUCTOS ═══ */
+    .section-philosophy {
+      padding: clamp(48px, 6vw, 75px) 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .philosophy-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .philosophy-card h4 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .philosophy-card p {
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* ═══ UBICACIÓN ═══ */
     .section-location {
       padding: clamp(48px, 6vw, 75px) 0;
       background: var(--bg);
@@ -664,24 +784,21 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
-      align-items: stretch;
     }
 
     .info-card {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       padding: 26px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      box-shadow: var(--shadow-card);
     }
 
     .info-card h3 {
       font-family: var(--font-head);
       font-size: 1.5rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--ink);
       margin-bottom: 16px;
     }
 
@@ -701,7 +818,7 @@
 
     .info-row-text strong {
       font-size: 0.92rem;
-      color: #fff;
+      color: var(--ink);
       display: block;
     }
 
@@ -711,12 +828,11 @@
     }
 
     .map-embed-card {
-      background: var(--bg-card);
+      background: #ffffff;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      box-shadow: var(--shadow-card);
     }
 
     .map-embed-card iframe {
@@ -724,12 +840,11 @@
       height: 100%;
       min-height: 280px;
       border: none;
-      filter: grayscale(20%) invert(90%) contrast(90%);
     }
 
     /* ═══ FOOTER ═══ */
     .site-footer {
-      background: #060504;
+      background: #fdfbf7;
       border-top: 1px solid var(--border-subtle);
       padding: 30px 0 95px;
       text-align: center;
@@ -737,7 +852,7 @@
       color: var(--ink-subtle);
     }
 
-    .site-footer strong { color: #fff; }
+    .site-footer strong { color: var(--ink); }
 
     /* ═══ MOBILE BOTTOM DOCK ═══ */
     .mobile-dock {
@@ -747,12 +862,12 @@
       left: 0;
       right: 0;
       z-index: 999;
-      background: rgba(12, 10, 8, 0.96);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-subtle);
       padding: 9px 16px calc(9px + env(safe-area-inset-bottom, 0px));
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 -8px 24px rgba(28, 25, 23, 0.08);
     }
 
     .dock-grid {
@@ -778,25 +893,33 @@
       .hero-tags { justify-content: center; }
       .hero-lead { margin: 0 auto 20px; }
       .hero-ctas { justify-content: center; }
+      .salon-chips { justify-content: center; }
       .hero-overlay-card { left: 50%; transform: translateX(-50%); bottom: -14px; }
       .features-grid { grid-template-columns: 1fr 1fr; }
-      .diagnostic-box { grid-template-columns: 1fr; }
+      .diag-box { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .philosophy-grid { grid-template-columns: 1fr; }
       .location-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
+      .top-bar { display: none; }
       .nav-menu { display: none; }
+      .nav-actions .btn-secondary { display: none; }
+      .nav-actions .btn { padding: 8px 14px; font-size: 0.82rem; }
+      .brand-title { font-size: 1.05rem; }
+      .brand-sub { font-size: 0.64rem; }
       .mobile-dock { display: block; }
       .features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
       .hero-card-img img { height: 280px; }
-      .diag-options { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
       .features-grid { grid-template-columns: 1fr; }
-      .top-bar { display: none; }
-      .brand-title { font-size: 1rem; }
-      .brand-sub { font-size: 0.62rem; }
+      .brand-title { font-size: 0.98rem; }
+      .brand-sub { font-size: 0.6rem; }
+      .diag-btn-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -806,12 +929,12 @@
   <aside class="top-bar">
     <div class="container top-bar-inner">
       <div class="top-bar-left">
-        <span class="top-bar-badge"><span class="dot"></span> Abierto Hoy · Cita Previa</span>
-        <span>Calle Castellón, 1 (Centro Orihuela)</span>
+        <span class="top-bar-badge"><span class="dot"></span> Salón Abierto Hoy en Orihuela · 4.9 ★</span>
+        <span>Calle Castellón, 1</span>
       </div>
       <div class="top-bar-right">
-        <a href="tel:965304716" style="color:var(--ink-muted)">📞 Citas: 965 30 47 16</a>
-        <span>4.9 ★ en Google Maps</span>
+        <a href="tel:965304716" class="top-bar-link" style="color:var(--ink-muted)">📞 Citas: 965 30 47 16</a>
+        <a href="#diagnostico" class="top-bar-link">✨ Diagnóstico Personalizado</a>
       </div>
     </div>
   </aside>
@@ -819,231 +942,231 @@
   <!-- HEADER NAVEGACIÓN -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a href="#inicio" class="brand">
+      <a href="#" class="brand">
         <div class="brand-icon">✂️</div>
         <div>
-          <div class="brand-title">Mayte Peluqueros</div>
-          <span class="brand-sub">ESTILISMO & TENDENCIA · ORIHUELA</span>
+          <span class="brand-title">Mayte Peluqueros</span>
+          <span class="brand-sub">Alta Peluquería & Estilismo</span>
         </div>
       </a>
+
       <nav class="nav-menu">
-        <a href="#inicio">Inicio</a>
+        <a href="#estilos">Lookbook & Técnicas</a>
+        <a href="#diagnostico">Diagnóstico</a>
         <a href="#servicios">Carta de Servicios</a>
-        <a href="#diagnostico">Diagnóstico Capilar</a>
-        <a href="#contacto">El Salón</a>
+        <a href="#filosofia">Tratamientos</a>
+        <a href="#ubicacion">Contacto</a>
       </nav>
+
       <div class="nav-actions">
         <a href="tel:965304716" class="btn btn-secondary">
-          <span>📞 965 30 47 16</span>
+          📞 965 30 47 16
+        </a>
+        <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20en%20el%20salón." target="_blank" rel="noopener" class="btn btn-wa">
+          💬 Pedir Cita
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO EDITORIAL -->
-    <section class="hero" id="inicio">
+    <!-- HERO SALÓN BOUTIQUE -->
+    <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="hero-tags">
-            <span class="hero-tag">Salón de Belleza Unisex</span>
-            <span class="hero-tag">4.9 ★ (76 Reseñas Google)</span>
+            <span class="hero-tag">Salón Unisex · Orihuela</span>
+            <span class="hero-tag">4.9 ★ (76 Reseñas)</span>
           </div>
+
           <h1 class="hero-title">
-            Tu melena en su mejor versión.<br>
-            <span class="glow-txt">Color, brillo y salud.</span>
+            El arte de cuidar y realzar <br>
+            <span class="glow-txt">la luz natural de tu cabello.</span>
           </h1>
+
           <p class="hero-lead">
-            Especialistas en mechas Balayage y Babylights sin daño capilar, coloración botánica sin amoniaco, cortes de tendencia y tratamientos de reconstrucción profunda en Calle Castellón 1, Orihuela.
+            Especialistas en mechas Balayage, Babylights fundidas, cortes con visagismo y tratamientos botánicos en Calle Castellón 1, Orihuela. Cuidamos la salud de tu fibra capilar con productos orgánicos de primera calidad.
           </p>
+
           <div class="hero-ctas">
-            <a href="#servicios" class="btn btn-gold">
-              <span>✂️ Ver Carta de Servicios</span>
+            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20un%20servicio%20en%20el%20salón." target="_blank" rel="noopener" class="btn btn-gold">
+              Pedir Cita por WhatsApp
             </a>
-            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Me%20gustaría%20pedir%20cita%20previa%20en%20vuestro%20salón%20de%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa">
-              <span>💬 Pedir Cita por WhatsApp</span>
+            <a href="#estilos" class="btn btn-secondary">
+              Ver Técnicas & Precios
             </a>
+          </div>
+
+          <div class="salon-chips">
+            <span class="salon-chip">Balayage & Matiz</span>
+            <span class="salon-chip">Babylights</span>
+            <span class="salon-chip">Keratina Orgánica</span>
+            <span class="salon-chip">Visagismo Personalizado</span>
           </div>
         </div>
 
         <div class="hero-media">
           <div class="hero-card-img">
-            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=85" alt="Mayte Peluqueros en Orihuela">
-          </div>
-          <div class="hero-overlay-card">
-            <span class="icon">✨</span>
-            <div>
-              <strong>4.9 ★ en Google Maps</strong>
-              <small>Calle Castellón 1 · Orihuela</small>
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&h=750&q=85" alt="Estilismo y balayage en Mayte Peluqueros Orihuela">
+            <div class="hero-overlay-card">
+              <div class="icon">✨</div>
+              <div>
+                <strong>Trato Cálido & Personalizado</strong>
+                <small>Asesoramiento de imagen en cada cita</small>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CARACTERÍSTICAS DEL SALÓN -->
+    <!-- PILARES -->
     <section class="portal-features">
       <div class="container features-grid">
         <div class="feature-item">
+          <div class="feature-icon">⭐</div>
+          <div class="feature-text">
+            <strong>4.9 ★ en Google Maps</strong>
+            <span>76 opiniones de clientes satisfechos</span>
+          </div>
+        </div>
+        <div class="feature-item">
           <div class="feature-icon">🌿</div>
           <div class="feature-text">
-            <strong>Color Sin Daño</strong>
-            <span>Tintes con aceites botánicos</span>
+            <strong>Coloración Botánica</strong>
+            <span>Sin amoniaco, respetuosa con el cuero cabelludo</span>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">✨</div>
+          <div class="feature-icon">🔍</div>
           <div class="feature-text">
-            <strong>Técnica Balayage</strong>
-            <span>Degradados y babylights sin efecto raíz</span>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">💆‍♀️</div>
-          <div class="feature-text">
-            <strong>Lavado Relax</strong>
-            <span>Masaje craneal desestresante</span>
+            <strong>Diagnóstico Previo</strong>
+            <span>Estudiamos tu textura y tono exacto</span>
           </div>
         </div>
         <div class="feature-item">
           <div class="feature-icon">⏱️</div>
           <div class="feature-text">
-            <strong>Puntualidad Estricta</strong>
-            <span>Cita previa sin esperas innecesarias</span>
+            <strong>Cita Puntual</strong>
+            <span>Atención sin esperas innecesarias</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CARTA DE SERVICIOS & PRECIOS -->
-    <section class="section-menu" id="servicios">
+    <!-- LOOKBOOK & TÉCNICAS -->
+    <section class="section-lookbook" id="estilos">
       <div class="container">
         <div class="section-head">
-          <h2>Carta de Servicios & Precios</h2>
-          <p>Precios transparentes y asesoramiento de visagismo en cada servicio.</p>
+          <div class="section-head-text">
+            <h2>Lookbook de Tendencias & Trabajos</h2>
+            <p>Descubre nuestras técnicas más demandadas para aportar volumen, brillo y movimiento.</p>
+          </div>
         </div>
 
-        <div class="menu-filters">
-          <button class="filter-pill active" onclick="filterServices('todos', this)">Todos los Servicios</button>
-          <button class="filter-pill" onclick="filterServices('mechas', this)">Mechas & Balayage</button>
-          <button class="filter-pill" onclick="filterServices('cortes', this)">Cortes & Peinados</button>
-          <button class="filter-pill" onclick="filterServices('tratamientos', this)">Tratamientos</button>
-          <button class="filter-pill" onclick="filterServices('eventos', this)">Novias & Eventos</button>
+        <!-- Filtros interactivos -->
+        <div class="lookbook-filters">
+          <button class="filter-pill active" onclick="filterLookbook('todos', this)">Todos los Trabajos</button>
+          <button class="filter-pill" onclick="filterLookbook('color', this)">Balayage & Coloración</button>
+          <button class="filter-pill" onclick="filterLookbook('corte', this)">Cortes & Visagismo</button>
+          <button class="filter-pill" onclick="filterLookbook('tratamiento', this)">Tratamientos Capilares</button>
         </div>
 
-        <div class="services-grid" id="servicesGrid">
+        <div class="lookbook-grid">
           
-          <!-- Servicio 1: Balayage -->
-          <div class="service-card" data-cat="mechas">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=85" alt="Mechas Balayage en Orihuela">
-              <span class="service-badge">TOP SERVICIO</span>
+          <!-- Estilo 1: Balayage Rubio Sublime -->
+          <div class="lookbook-card" data-cat="color">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&h=520&q=80" alt="Balayage Miel y Vainilla en Mayte Peluqueros">
+              <span class="lookbook-tag">Balayage</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Mechas Balayage & Babylights</h3>
-              <p class="service-desc">Aclarado progresivo respetando la fibra capilar, matiz personalizado a tu tono de piel y peinado con ondas incluido.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 65 €</span>
-                <span class="service-time">⏱️ 120-150 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Balayage Sublime Miel & Vainilla</h3>
+              <p class="lookbook-desc">Degradado sutil a mano alzada con acabado ultra-natural. Aporta puntos de luz frontales que enmarcan las facciones sin efecto raíz.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 65 €</div>
+                <div class="lookbook-time">Duración aprox: 2h 30m</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Mechas%20Balayage." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
-          <!-- Servicio 2: Corte Mujer -->
-          <div class="service-card" data-cat="cortes">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&q=85" alt="Corte y Estilismo en Orihuela">
-              <span class="service-badge">ASESORAMIENTO</span>
+          <!-- Estilo 2: Babylights & Matiz Platino -->
+          <div class="lookbook-card" data-cat="color">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&h=520&q=80" alt="Babylights y Matiz Platino">
+              <span class="lookbook-tag">Iluminación</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Corte de Tendencia & Styling</h3>
-              <p class="service-desc">Estudio previo de visagismo, lavado con masaje craneal, corte técnico adaptado a tus facciones y peinado profesional.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 18 €</span>
-                <span class="service-time">⏱️ 35-45 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Babylights & Matiz Platino</h3>
+              <p class="lookbook-desc">Mechas micro-finas tejidas desde la raíz para máxima luminosidad uniforme, selladas con baño de brillo nutritivo.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 55 €</div>
+                <div class="lookbook-time">Duración aprox: 2h</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20y%20Peinado." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
-          <!-- Servicio 3: Coloración -->
-          <div class="service-card" data-cat="mechas">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=700&q=85" alt="Coloración sin daño">
-              <span class="service-badge">COLOR PREMIUM</span>
+          <!-- Estilo 3: Corte Bob Texturizado -->
+          <div class="lookbook-card" data-cat="corte">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&h=520&q=80" alt="Corte Bob Texturizado Visagismo">
+              <span class="lookbook-tag">Corte Tendencia</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Coloración & Brillo Espejo</h3>
-              <p class="service-desc">Tintes sin amoniaco enriquecidos con aceites botánicos. 100% cobertura de canas y brillo radiante de larga duración.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 35 €</span>
-                <span class="service-time">⏱️ 45-60 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Corte Bob & Desfilado con Visagismo</h3>
+              <p class="lookbook-desc">Corte estructurado según la simetría del rostro. Favorece el secado al aire y aporta volumen con movimiento natural.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 22 €</div>
+                <div class="lookbook-time">Duración aprox: 45 min</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Coloración/Tinte." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
-          <!-- Servicio 4: Keratina & Botox -->
-          <div class="service-card" data-cat="tratamientos">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=85" alt="Tratamiento Capilar Keratina">
-              <span class="service-badge">RECONSTRUCCIÓN</span>
+          <!-- Estilo 4: Tratamiento Keratina & Bótox Orgánico -->
+          <div class="lookbook-card" data-cat="tratamiento">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&h=520&q=80" alt="Keratina Orgánica y Bótox Capilar">
+              <span class="lookbook-tag">Anti-Frizz</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Tratamiento Keratina & Bótox</h3>
-              <p class="service-desc">Reparación profunda para melenas castigadas. Elimina el encrespamiento, sella las puntas y aporta tacto de seda hasta 4 meses.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 45 €</span>
-                <span class="service-time">⏱️ 60-90 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Tratamiento Bótox & Sellado Orgánico</h3>
+              <p class="lookbook-desc">Reconstrucción molecular profunda de la fibra dañada. Elimina el encrespamiento por humedad y devuelve el tacto de seda.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 45 €</div>
+                <div class="lookbook-time">Duración aprox: 1h 30m</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Tratamiento%20de%20Keratina." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
-          <!-- Servicio 5: Corte Caballero -->
-          <div class="service-card" data-cat="cortes">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=85" alt="Corte Caballero en Orihuela">
-              <span class="service-badge">UNISEX</span>
+          <!-- Estilo 5: Coloración Botánica Cobertura Total -->
+          <div class="lookbook-card" data-cat="color">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&h=520&q=80" alt="Coloración Botánica sin Amoniaco">
+              <span class="lookbook-tag">Coloración</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Corte Caballero & Arreglo</h3>
-              <p class="service-desc">Degradados precisos a tijera y máquina, arreglo de contornos, lavado y acabado con cera mate profesional.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 14 €</span>
-                <span class="service-time">⏱️ 25-30 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Coloración Botánica sin Amoniaco</h3>
+              <p class="lookbook-desc">Cobertura perfecta del 100% de canas con aceites esenciales nutritivos. Color duradero con reflejos cálidos y brillantes.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 32 €</div>
+                <div class="lookbook-time">Duración aprox: 1h 15m</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20para%20Corte%20Caballero." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
-          <!-- Servicio 6: Novias & Eventos -->
-          <div class="service-card" data-cat="eventos">
-            <div class="service-media">
-              <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=700&q=85" alt="Peinados para Novias y Bodas">
-              <span class="service-badge">EVENTOS</span>
+          <!-- Estilo 6: Recogidos de Novia & Eventos -->
+          <div class="lookbook-card" data-cat="corte">
+            <div class="lookbook-media">
+              <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=800&h=520&q=80" alt="Peinados de Novia y Eventos en Orihuela">
+              <span class="lookbook-tag">Eventos & Novias</span>
             </div>
-            <div class="service-body">
-              <h3 class="service-title">Peinados de Fiesta & Novias</h3>
-              <p class="service-desc">Recogidos sofisticados, ondas al agua y semirrecogidos de alta durabilidad para bodas, graduaciones y celebraciones.</p>
-              <div class="service-pricing">
-                <span class="service-price">Desde 30 €</span>
-                <span class="service-time">⏱️ 50-80 min</span>
+            <div class="lookbook-info">
+              <h3 class="lookbook-title">Peinados & Recogidos para Ocasiones Especiales</h3>
+              <p class="lookbook-desc">Ondas al agua, recogidos desenfadados y peinados de fiesta adaptados al escote de tu vestido y estilo personal.</p>
+              <div class="lookbook-meta">
+                <div class="lookbook-price">Desde 38 €</div>
+                <div class="lookbook-time">Prueba previa incluida</div>
               </div>
-              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Tengo%20un%20evento%20y%20quiero%20cita%20para%20Peinado." target="_blank" rel="noopener" class="service-btn">
-                Pedir Cita por WhatsApp
-              </a>
             </div>
           </div>
 
@@ -1054,22 +1177,30 @@
     <!-- DIAGNÓSTICO CAPILAR INTERACTIVO -->
     <section class="section-diagnostic" id="diagnostico">
       <div class="container">
-        <div class="diagnostic-box">
+        <div class="diag-box">
           <div>
-            <h3 style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:8px">¿Qué necesita tu cabello?</h3>
+            <h3 style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--ink);margin-bottom:8px">¿Qué necesita tu cabello?</h3>
             <p style="font-size:0.92rem;color:var(--ink-muted)">Selecciona cómo sientes tu pelo hoy y te recomendamos la técnica exacta para devolverle la luz.</p>
-            
-            <div class="diag-options">
-              <button type="button" class="diag-btn active" onclick="setDiagnosis('balayage', this)">✨ Falta de luz / Raíz oscura</button>
-              <button type="button" class="diag-btn" onclick="setDiagnosis('frizz', this)">⚡ Encrespado / Puntas abiertas</button>
-              <button type="button" class="diag-btn" onclick="setDiagnosis('canas', this)">🌿 Canas que cubrir sin daño</button>
-              <button type="button" class="diag-btn" onclick="setDiagnosis('corte', this)">✂️ Cambio de look / Sin forma</button>
+
+            <div class="diag-btn-grid">
+              <button class="diag-btn active" onclick="setDiagnosis('balayage', this)">
+                ✨ Quiero iluminar mi tono
+              </button>
+              <button class="diag-btn" onclick="setDiagnosis('frizz', this)">
+                🌧️ Tengo encrespamiento
+              </button>
+              <button class="diag-btn" onclick="setDiagnosis('canas', this)">
+                🌿 Quiero cubrir canas
+              </button>
+              <button class="diag-btn" onclick="setDiagnosis('corte', this)">
+                ✂️ Necesito sanear y cambiar
+              </button>
             </div>
           </div>
 
-          <div class="diag-result" id="diagResultBox">
-            <small>Recomendación Experta</small>
-            <h4 id="diagTitle">Mechas Balayage & Matiz Iluminador</h4>
+          <div class="diag-result-card">
+            <small style="text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-subtle);font-weight:700">Técnica Recomendada</small>
+            <h4 id="diagTitle" style="margin-top:8px">Mechas Balayage & Matiz Iluminador</h4>
             <p id="diagDesc">Un degradado suave aportará movimiento y luminosidad natural a tu rostro sin obligarte a retocar la raíz cada mes.</p>
             <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Hice%20el%20diagnóstico%20en%20la%20web%20y%20quiero%20cita%20para%20Balayage." target="_blank" rel="noopener" class="btn btn-gold" style="width:100%" id="diagWaBtn">
               Pedir Cita para este Servicio
@@ -1079,98 +1210,219 @@
       </div>
     </section>
 
-    <!-- INSTALACIONES Y CONTACTO -->
-    <section class="section-location" id="contacto">
-      <div class="container location-grid">
-        <div class="info-card">
-          <div>
-            <h3>Salón Mayte Peluqueros</h3>
-            
-            <div class="info-row">
-              <span class="info-row-icon">📍</span>
-              <div class="info-row-text">
-                <strong>Dirección Céntrica</strong>
-                <span>Calle Castellón, 1, Bajo, 03300 Orihuela (Alicante)</span>
-              </div>
-            </div>
-
-            <div class="info-row">
-              <span class="info-row-icon">🕒</span>
-              <div class="info-row-text">
-                <strong>Horario de Atención</strong>
-                <span>Martes a Viernes: 09:30 - 13:30 / 16:30 - 20:00<br>Sábados: 09:00 - 14:00 (Lunes cerrado)</span>
-              </div>
-            </div>
-
-            <div class="info-row">
-              <span class="info-row-icon">📞</span>
-              <div class="info-row-text">
-                <strong>Teléfono de Citas</strong>
-                <span>965 30 47 16</span>
-              </div>
-            </div>
-
-            <div class="info-row">
-              <span class="info-row-icon">⭐</span>
-              <div class="info-row-text">
-                <strong>Valoración en Google Maps</strong>
-                <span>4.9 ★ con 76 valoraciones verificadas de clientas</span>
-              </div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
-            <a href="tel:965304716" class="btn btn-gold">Llamar al Salón</a>
-            <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp Directo</a>
+    <!-- SERVICIOS & CARTA DE PRECIOS -->
+    <section class="section-services" id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head-text">
+            <h2>Carta de Servicios & Precios Orientativos</h2>
+            <p>Tarifas transparentes adaptadas a la largura y estado de tu cabello en Orihuela.</p>
           </div>
         </div>
 
-        <div class="map-embed-card">
-          <iframe 
-            src="https://maps.google.com/maps?q=Mayte+peluqueros+Calle+Castell%C3%B3n+1+Orihuela&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-            loading="lazy" 
-            title="Ubicación de Mayte Peluqueros en Orihuela">
-          </iframe>
+        <div class="services-grid">
+          <!-- Bloque Color & Mechas -->
+          <div class="service-card">
+            <h3>Coloración & Mechas</h3>
+            
+            <div class="service-row">
+              <div class="service-row-title">
+                Balayage / Babylights Completo
+                <small>Incluye matiz iluminador y lavado con masaje capilar</small>
+              </div>
+              <div class="service-row-price">Desde 65 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Retoque de Raíz & Coloración Botánica
+                <small>Tinte sin amoniaco con aceites orgánicos</small>
+              </div>
+              <div class="service-row-price">Desde 28 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Baño de Brillo & Matización Gloss
+                <small>Refresca el tono y sella la cutícula entre decoloraciones</small>
+              </div>
+              <div class="service-row-price">Desde 24 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Decoloración Global & Tonos Fantasía
+                <small>Aclarado controlado con protector de enlaces plex</small>
+              </div>
+              <div class="service-row-price">Desde 70 €</div>
+            </div>
+          </div>
+
+          <!-- Bloque Corte, Peinado & Tratamientos -->
+          <div class="service-card">
+            <h3>Corte, Peinado & Tratamientos</h3>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Corte de Señora con Asesoramiento
+                <small>Lavado con champú tratante y secado rápido</small>
+              </div>
+              <div class="service-row-price">Desde 18 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Peinado & Brushing Profesional
+                <small>Moldeado con plancha o cepillo térmico duradero</small>
+              </div>
+              <div class="service-row-price">Desde 16 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Bótox Capilar & Reconstrucción
+                <small>Nutrición intensa con ácido hialurónico y colágeno</small>
+              </div>
+              <div class="service-row-price">Desde 40 €</div>
+            </div>
+
+            <div class="service-row">
+              <div class="service-row-title">
+                Corte de Caballero & Arreglo
+                <small>Corte clásico, fade o degradado con peinado</small>
+              </div>
+              <div class="service-row-price">12 €</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILOSOFÍA DEL SALÓN -->
+    <section class="section-philosophy" id="filosofia">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head-text">
+            <h2>Nuestra Filosofía en Mayte Peluqueros</h2>
+            <p>Porque no hay dos cabellos iguales, cada clienta recibe una experiencia a medida.</p>
+          </div>
+        </div>
+
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <h4>🌿 Cosmética Capilar Saludable</h4>
+            <p>Seleccionamos fórmulas respetuosas y libres de sulfatos agresivos para asegurar que el cabello retenga su hidratación natural sesión tras sesión.</p>
+          </div>
+          <div class="philosophy-card">
+            <h4>🎨 Visagismo & Estudio del Rostro</h4>
+            <p>No aplicamos cortes ni tintes por defecto. Evaluamos el tono de piel, color de ojos y forma del rostro para potenciar tus puntos fuertes.</p>
+          </div>
+          <div class="philosophy-card">
+            <h4>☕ Experiencia Tranquila & Sin Prisas</h4>
+            <p>Tu momento en el salón es para relajarte. Disfruta de un ambiente sereno, música suave y la tranquilidad de saber que estás en manos expertas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN & CONTACTO -->
+    <section class="section-location" id="ubicacion">
+      <div class="container">
+        <div class="location-grid">
+          <div class="info-card">
+            <div>
+              <h3>Pide tu Cita en Mayte Peluqueros</h3>
+
+              <div class="info-row">
+                <div class="info-row-icon">📍</div>
+                <div class="info-row-text">
+                  <strong>Calle Castellón, 1</strong>
+                  <span>03300 Orihuela, Alicante (Zona céntrica, fácil aparcamiento)</span>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-row-icon">📞</div>
+                <div class="info-row-text">
+                  <strong>Teléfono del Salón: 965 30 47 16</strong>
+                  <span>Reserva directa de cita previa</span>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-row-icon">⏰</div>
+                <div class="info-row-text">
+                  <strong>Horario de Apertura</strong>
+                  <span>Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:00<br>Sábados: 09:00 - 14:00</span>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-row-icon">⭐</div>
+                <div class="info-row-text">
+                  <strong>Excelente 4.9 ★ en Google Maps</strong>
+                  <span>Basado en 76 opiniones de clientes en Orihuela</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+              <a href="https://maps.google.com/?q=Calle+Castellón+1+Orihuela" target="_blank" rel="noopener" class="btn btn-secondary">
+                Ver en Google Maps
+              </a>
+              <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20en%20el%20salón." target="_blank" rel="noopener" class="btn btn-wa">
+                Cita por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="map-embed-card">
+            <iframe 
+              src="https://maps.google.com/maps?q=Calle+Castell%C3%B3n+1+Orihuela&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+              loading="lazy" 
+              title="Ubicación Mayte Peluqueros Orihuela">
+            </iframe>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- PIE DE PÁGINA -->
   <footer class="site-footer">
     <div class="container">
       <p style="margin-bottom:6px"><strong>Mayte Peluqueros</strong> · Salón de Peluquería & Estilismo Unisex</p>
-      <p>Calle Castellón, 1, Bajo, 03300 Orihuela, Alicante · Teléfono: 965 30 47 16</p>
+      <p>Calle Castellón, 1 · 03300 Orihuela (Alicante) · Teléfono: 965 30 47 16</p>
       <p style="margin-top:10px;font-size:0.75rem">Especialistas en Balayage, Babylights, Tratamientos Capilares y Novias</p>
     </div>
   </footer>
 
-  <!-- DOCK FIJO MÓVIL (APP STYLE) -->
-  <aside class="mobile-dock" aria-label="Contacto rápido móvil">
+  <!-- DOCK MÓVIL FIJO -->
+  <aside class="mobile-dock">
     <div class="dock-grid">
       <a href="tel:965304716" class="btn btn-gold dock-btn">
         📞 Llamar al Salón
       </a>
-      <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa%20en%20Orihuela." target="_blank" rel="noopener" class="btn btn-wa dock-btn">
-        💬 WhatsApp
+      <a href="https://wa.me/34965304716?text=¡Hola%20Mayte!%20Quiero%20pedir%20cita%20previa." target="_blank" rel="noopener" class="btn btn-wa dock-btn">
+        💬 Pedir Cita
       </a>
     </div>
   </aside>
 
-  <!-- BANNER DE PROPIETARIO PARA CIERRE COMERCIAL -->
+  <!-- BANNER PROPIETARIO PARA CIERRE COMERCIAL -->
   <script src="/owner-banner.js" defer></script>
 
-  <!-- LOGICA INTERACTIVA DEL SALÓN -->
+  <!-- LÓGICA INTERACTIVA DEL SALÓN -->
   <script>
-    function filterServices(cat, btn) {
+    function filterLookbook(cat, btn) {
       document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const cards = document.querySelectorAll('.service-card');
-      cards.forEach(c => {
-        if (cat === 'todos' || c.getAttribute('data-cat') === cat) {
-          c.style.display = 'flex';
+      const cards = document.querySelectorAll('.lookbook-card');
+      cards.forEach(card => {
+        if (cat === 'todos' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
         } else {
-          c.style.display = 'none';
+          card.style.display = 'none';
         }
       });
     }
