@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Panel de Control | Motorcycle Store Orero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-surface-blue: #f0f7ff;
+      --border: #e2e8f0;
+      --border-blue: rgba(2, 132, 199, 0.25);
+      
+      --blue-primary: #002b66;
+      --blue-navy: #091e42;
+      --blue-accent: #0284c7;
+      --blue-light: #e0f2fe;
+
+      --green: #16a34a;
+      --green-bg: #dcfce7;
+      --red: #dc2626;
+      --red-bg: #fee2e2;
+      --amber: #d97706;
+      --amber-bg: #fef3c7;
+
+      --text: #0f172a;
+      --text-muted: #334155;
+      --text-subtle: #64748b;
+
+      --radius-lg: 16px;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --font-head: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-card: 0 4px 20px -2px rgba(0, 43, 102, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* LOGIN SCREEN (BLANCO & AZUL) */
+    #loginScreen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #e0f2fe 0%, #f8fafc 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: #ffffff;
+      border: 1px solid var(--border-blue);
+      box-shadow: 0 25px 50px -12px rgba(0, 43, 102, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 440px;
+      text-align: center;
+    }
+    .login-logo {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+    }
+    .login-logo img { height: 50px; }
+    .login-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; font-weight: 500; }
+    .login-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .login-input:focus { border-color: var(--blue-accent); background: #fff; box-shadow: 0 0 0 3px var(--blue-light); }
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--blue-primary) 0%, #001a40 100%);
+      color: #fff;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 43, 102, 0.25); }
+    .login-hint { margin-top: 14px; color: var(--text-subtle); font-size: 0.8rem; }
+
+    /* TOP NAVBAR */
+    .admin-nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand img { height: 38px; }
+    
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sync-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--bg-surface-blue);
+      border: 1px solid var(--border-blue);
+      color: var(--blue-primary);
+      font-weight: 700;
+    }
+    .sync-status.online { color: var(--green); border-color: #86efac; background: var(--green-bg); }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+    .btn-action {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--blue-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn-action:hover { background: var(--bg-surface-blue); border-color: var(--blue-accent); color: var(--blue-primary); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-primary) 0%, #001a40 100%);
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 43, 102, 0.2);
+    }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--blue-accent) 0%, var(--blue-primary) 100%); color: #fff; }
+
+    /* MAIN CONTAINER & TABS */
+    .admin-main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .tab-btn:hover { color: var(--blue-primary); }
+    .tab-btn.active {
+      color: var(--blue-primary);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-bottom: 2px solid #ffffff;
+      margin-bottom: -2px;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--blue-primary);
+      border-radius: 3px 3px 0 0;
+    }
+    .tab-badge {
+      font-size: 0.72rem;
+      background: var(--blue-light);
+      color: var(--blue-primary);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    /* STATS HEADER */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-light);
+      color: var(--blue-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .stat-value {
+      font-family: var(--font-head);
+      font-size: 1.7rem;
+      font-weight: 850;
+      color: var(--blue-navy);
+      line-height: 1.1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+    /* CONTENT SECTIONS */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 850;
+      color: var(--blue-navy);
+    }
+    .section-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* SEARCH & FILTER BAR */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px 10px 38px;
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--blue-accent); box-shadow: 0 0 0 3px var(--blue-light); }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-subtle);
+    }
+    .filter-select {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* INVENTORY MOTOS GRID */
+    .motos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .moto-admin-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .moto-admin-card:hover {
+      border-color: var(--blue-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+    .moto-thumb {
+      height: 180px;
+      width: 100%;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+    .moto-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .moto-badge-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border);
+      color: var(--blue-primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+    .moto-status-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .status-in_stock { background: var(--green-bg); color: var(--green); border: 1px solid #86efac; }
+    .status-oferta { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+    .status-reservada { background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; }
+    .status-vendida { background: var(--red-bg); color: var(--red); border: 1px solid #fecaca; }
+
+    .moto-body {
+      padding: 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .moto-brand { font-size: 0.78rem; font-weight: 800; color: var(--blue-accent); text-transform: uppercase; margin-bottom: 2px; }
+    .moto-name { font-family: var(--font-head); font-size: 1.15rem; font-weight: 800; color: var(--blue-navy); margin-bottom: 8px; line-height: 1.25; }
+    .moto-specs-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .spec-pill {
+      font-size: 0.72rem;
+      background: var(--bg-surface-blue);
+      color: var(--blue-primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .moto-price-row {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .moto-cash { font-family: var(--font-head); font-size: 1.35rem; font-weight: 850; color: var(--blue-navy); }
+    .moto-finance { font-size: 0.78rem; color: var(--blue-accent); font-weight: 750; }
+
+    .moto-actions-row {
+      padding: 12px 18px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+    }
+    .btn-card {
+      flex: 1;
+      padding: 7px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+    .btn-card:hover { border-color: var(--blue-accent); color: var(--blue-primary); background: var(--bg-surface-blue); }
+    .btn-card.btn-delete:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+
+    /* POSTS TAB */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    .post-admin-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+    }
+    .post-thumb {
+      height: 200px;
+      background: #f1f5f9;
+      overflow: hidden;
+      position: relative;
+    }
+    .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .post-cat-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: var(--blue-primary);
+      color: #fff;
+    }
+    .post-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-meta { font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .post-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--blue-navy); margin-bottom: 10px; line-height: 1.3; }
+    .post-content { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+    .post-footer {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 43, 102, 0.4);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0, 43, 102, 0.2);
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 10;
+    }
+    .modal-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 850; color: var(--blue-navy); }
+    .btn-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+    .btn-close:hover { background: var(--bg-surface-blue); color: var(--blue-primary); }
+    .modal-body { padding: 24px; }
+    .modal-footer {
+      padding: 18px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      position: sticky;
+      bottom: 0;
+      background: #ffffff;
+      z-index: 10;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .form-full { grid-column: span 2; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.8rem; font-weight: 750; color: var(--blue-navy); text-transform: uppercase; letter-spacing: 0.03em; }
+    .form-input, .form-textarea, .form-select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--blue-accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px var(--blue-light);
+    }
+    .form-textarea { resize: vertical; min-height: 90px; }
+
+    .image-upload-zone {
+      border: 2px dashed var(--border-blue);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      background: var(--bg-surface-blue);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .image-upload-zone:hover {
+      border-color: var(--blue-accent);
+      background: #e0f2fe;
+    }
+    .image-preview-box {
+      width: 100%;
+      height: 160px;
+      border-radius: var(--radius-sm);
+      background: #f1f5f9;
+      overflow: hidden;
+      margin-top: 10px;
+      display: none;
+      position: relative;
+    }
+    .image-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+    .btn-remove-img {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    #toastNotification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #ffffff;
+      border: 1px solid var(--blue-accent);
+      box-shadow: 0 10px 30px rgba(0, 43, 102, 0.18);
+      padding: 14px 20px;
+      border-radius: var(--radius);
+      color: var(--blue-navy);
+      font-weight: 750;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10000;
+      transform: translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    #toastNotification.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-full { grid-column: span 1; }
+      .nav-container { padding: 12px 16px; }
+      .admin-main { padding: 16px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <div class="login-logo">
+        <img src="../assets/logo.svg" alt="Motorcycle Store Orero">
+      </div>
+      <p class="login-sub">Panel de Administración del Concesionario & Taller</p>
+      
+      <input type="password" id="adminPassInput" class="login-input" placeholder="Introduce la clave de acceso..." autofocus>
+      <button type="button" class="btn-login" onclick="attemptLogin()">Entrar al Panel</button>
+      
+      <p class="login-hint">Clave predeterminada: <strong>orero2026</strong> o <strong>admin123</strong></p>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN SUPERIOR (BLANCO & AZUL) -->
+  <header class="admin-nav">
+    <div class="nav-container">
+      <a href="/motorcycle-store-orero/" target="_blank" class="nav-brand">
+        <img src="../assets/logo.svg" alt="Motorcycle Store Orero">
+      </a>
+
+      <div class="nav-actions">
+        <span class="sync-status online" id="syncStatusBadge">
+          <span class="status-dot"></span>
+          <span id="syncStatusText">Conectado</span>
+        </span>
+
+        <a href="/motorcycle-store-orero/" target="_blank" class="btn-action">
+          <span>Ver Web Pública ↗</span>
+        </a>
+
+        <button type="button" class="btn-action" onclick="saveToDisk()" title="Guardar cambios en disco">
+          <span>💾 Guardar en Disco</span>
+        </button>
+
+        <button type="button" class="btn-action" onclick="logoutAdmin()" style="color:var(--text-subtle)">
+          <span>Salir</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="admin-main">
+    
+    <!-- TARJETAS DE ESTADÍSTICAS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🏍️</div>
+        <div>
+          <div class="stat-value" id="statMotosCount">0</div>
+          <div class="stat-label">Motos en Catálogo</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--green)">⚡</div>
+        <div>
+          <div class="stat-value" id="statStockCount">0</div>
+          <div class="stat-label">Stock Inmediato</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--blue-accent)">📰</div>
+        <div>
+          <div class="stat-value" id="statPostsCount">0</div>
+          <div class="stat-label">Publicaciones Muro</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:#f59e0b">⭐</div>
+        <div>
+          <div class="stat-value">4.8 / 5</div>
+          <div class="stat-label">85 Reseñas Google</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑAS -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('motosTab', this)">
+        <span>🏍️ Catálogo de Motos</span>
+        <span class="tab-badge" id="tabBadgeMotos">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('postsTab', this)">
+        <span>📰 Muro & Novedades (Feed)</span>
+        <span class="tab-badge" id="tabBadgePosts">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('businessTab', this)">
+        <span>⚙️ Datos del Negocio & Horarios</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('backupTab', this)">
+        <span>📦 Copias de Seguridad & Exportar</span>
+      </button>
+    </div>
+
+    <!-- PESTAÑA 1: CATÁLOGO DE MOTOS -->
+    <section id="motosTab" class="tab-pane active">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Inventario & Catálogo de Motos</h2>
+          <p class="section-desc">Añade, edita precios, fotos y estado de las motocicletas en venta.</p>
+        </div>
+        <button class="btn-action btn-primary" onclick="openMotoModal()">
+          <span>+ Añadir Nueva Moto</span>
+        </button>
+      </div>
+
+      <!-- Barra de Búsqueda y Filtros -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchMotosInput" class="search-input" placeholder="Buscar por modelo, marca o cilindrada..." oninput="renderMotosList()">
+        </div>
+        <select id="filterBrandSelect" class="filter-select" onchange="renderMotosList()">
+          <option value="todas">Todas las Marcas</option>
+          <option value="QJ Motor">QJ Motor</option>
+          <option value="KYMCO">KYMCO</option>
+          <option value="SYM">SYM</option>
+          <option value="Macbor">Macbor</option>
+          <option value="Peugeot">Peugeot</option>
+          <option value="Honda">Honda</option>
+          <option value="Yamaha">Yamaha</option>
+          <option value="Suzuki">Suzuki</option>
+          <option value="Rieju">Rieju</option>
+        </select>
+        <select id="filterStatusSelect" class="filter-select" onchange="renderMotosList()">
+          <option value="todos">Todos los Estados</option>
+          <option value="in_stock">En Stock Inmediato</option>
+          <option value="oferta">Oferta Especial</option>
+          <option value="reservada">Reservada</option>
+          <option value="vendida">Vendida</option>
+        </select>
+      </div>
+
+      <!-- Rejilla de Motos -->
+      <div class="motos-grid" id="motosGridContainer">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+    <!-- PESTAÑA 2: MURO & NOVEDADES (FEED SOCIAL) -->
+    <section id="postsTab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Muro Social & Publicaciones del Concesionario</h2>
+          <p class="section-desc">Publica entregas de motos a clientes, ofertas de la semana y consejos de taller como en Facebook.</p>
+        </div>
+        <button class="btn-action btn-primary" onclick="openPostModal()">
+          <span>+ Nueva Publicación</span>
+        </button>
+      </div>
+
+      <div class="posts-grid" id="postsGridContainer">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+    <!-- PESTAÑA 3: DATOS DEL NEGOCIO & CONTACTO -->
+    <section id="businessTab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Configuración del Negocio</h2>
+          <p class="section-desc">Teléfono para llamadas, WhatsApp para reservas, horarios y banner de avisos.</p>
+        </div>
+        <button class="btn-action btn-primary" onclick="saveBusinessConfig()">
+          <span>Guardar Cambios</span>
+        </button>
+      </div>
+
+      <div class="stat-card" style="display:block; max-width:800px; margin-bottom: 24px;">
+        <div class="form-grid">
+          <div class="form-group form-full">
+            <label class="form-label">Nombre Comercial</label>
+            <input type="text" id="cfgStoreName" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Teléfono Fijo / Llamadas</label>
+            <input type="text" id="cfgPhone" class="form-input" placeholder="966 74 01 20">
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp (sin el signo +, ej. 34966740120)</label>
+            <input type="text" id="cfgWhatsapp" class="form-input" placeholder="34966740120">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Dirección en Orihuela</label>
+            <input type="text" id="cfgLocation" class="form-input" placeholder="Calle San Agustín, 18, 03300 Orihuela, Alicante">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Horario de Apertura</label>
+            <input type="text" id="cfgHours" class="form-input" placeholder="L-V: 09:30 - 13:30 / 16:30 - 20:00 · Sáb: 10:00 - 13:30">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Banner Promocional Superior (Activo)</label>
+            <input type="text" id="cfgNotice" class="form-input" placeholder="🔥 Promoción especial...">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 4: COPIAS DE SEGURIDAD -->
+    <section id="backupTab" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Copias de Seguridad & Sincronización</h2>
+          <p class="section-desc">Descarga los datos del catálogo en un archivo JSON o restablécelos en cualquier momento.</p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        <div class="stat-card" style="display:block">
+          <h3 style="color:var(--blue-navy); margin-bottom:8px; font-family:var(--font-head)">💾 Guardar en Servidor Local</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px">Escribe los cambios directamente al archivo data/store.json en disco para que se mantengan de forma permanente.</p>
+          <button class="btn-action btn-primary" onclick="saveToDisk()">Guardar en Disco Ahora</button>
+        </div>
+
+        <div class="stat-card" style="display:block">
+          <h3 style="color:var(--blue-navy); margin-bottom:8px; font-family:var(--font-head)">📥 Descargar Copia (store.json)</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px">Descarga una copia completa en tu ordenador para tener un respaldo de seguridad del catálogo y publicaciones.</p>
+          <button class="btn-action" onclick="exportBackupJSON()">Descargar store.json</button>
+        </div>
+
+        <div class="stat-card" style="display:block">
+          <h3 style="color:var(--blue-navy); margin-bottom:8px; font-family:var(--font-head)">📤 Restaurar Copia</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px">Carga un archivo de copia de seguridad previo en formato JSON.</p>
+          <input type="file" id="importJsonFileInput" accept=".json" style="display:none" onchange="importBackupJSON(event)">
+          <button class="btn-action" onclick="document.getElementById('importJsonFileInput').click()">Subir Archivo JSON</button>
+        </div>
+
+        <div class="stat-card" style="display:block; border-color: rgba(239, 68, 68, 0.3)">
+          <h3 style="color:var(--red); margin-bottom:8px; font-family:var(--font-head)">⚠️ Restablecer de Fábrica</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px">Borra las modificaciones locales y vuelve a los datos iniciales reales.</p>
+          <button class="btn-action" style="border-color:var(--red); color:var(--red)" onclick="resetFactoryData()">Restablecer Todo</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: AÑADIR / EDITAR MOTO -->
+  <div class="modal-overlay" id="motoModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="motoModalTitle">Añadir Motocicleta</h3>
+        <button class="btn-close" onclick="closeMotoModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editMotoId">
+        <div class="form-grid">
+          
+          <div class="form-group">
+            <label class="form-label">Marca *</label>
+            <input type="text" id="motoBrand" class="form-input" placeholder="Ej. QJ Motor, KYMCO, SYM, Macbor, Honda..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Modelo *</label>
+            <input type="text" id="motoModel" class="form-input" placeholder="Ej. SRK 125J, Agility City PLUS 125" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tipo de Moto</label>
+            <select id="motoType" class="form-select">
+              <option value="scooter">Scooter (Carnet B / A2)</option>
+              <option value="naked">Naked & Carretera</option>
+              <option value="trail">Trail & Supermotard</option>
+              <option value="custom">Custom & Cruiser</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Condición</label>
+            <select id="motoCondition" class="form-select">
+              <option value="nueva">Moto Nueva de Fábrica</option>
+              <option value="km0">Kilómetro Cero</option>
+              <option value="ocasion">Segunda Mano / Ocasión Garantizada</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Estado Comercial</label>
+            <select id="motoStatus" class="form-select">
+              <option value="in_stock">En Stock Inmediato</option>
+              <option value="oferta">Oferta Especial</option>
+              <option value="reservada">Reservada</option>
+              <option value="vendida">Vendida</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Etiqueta Destacada</label>
+            <input type="text" id="motoBadge" class="form-input" placeholder="Ej. Stock Inmediato, 6 Años Garantía...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Precio al Contado (€) *</label>
+            <input type="number" id="motoPriceCash" class="form-input" placeholder="3499" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Financiación orientativa (€/mes)</label>
+            <input type="number" id="motoFinanceFrom" class="form-input" placeholder="69">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cilindrada</label>
+            <input type="text" id="motoCc" class="form-input" placeholder="125 cc">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Potencia</label>
+            <input type="text" id="motoPower" class="form-input" placeholder="15 CV">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Carnet Requerido</label>
+            <input type="text" id="motoLicense" class="form-input" placeholder="Carnet B / A1">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Año / Kilómetros</label>
+            <div style="display:flex; gap:8px;">
+              <input type="number" id="motoYear" class="form-input" placeholder="Año" value="2026">
+              <input type="number" id="motoKm" class="form-input" placeholder="Km" value="0">
+            </div>
+          </div>
+
+          <div class="form-group form-full">
+            <label class="form-label">Foto de la Motocicleta</label>
+            <div class="image-upload-zone" onclick="document.getElementById('motoFileInput').click()">
+              <div style="font-size:1.8rem; margin-bottom:4px">📸</div>
+              <div style="font-size:0.9rem; font-weight:700; color:var(--blue-navy)">Haz clic para subir foto desde tu PC o móvil</div>
+              <div style="font-size:0.75rem; color:var(--text-muted)">o pega un enlace web abajo</div>
+              <input type="file" id="motoFileInput" accept="image/*" style="display:none" onchange="handleImageUpload(event, 'motoImgPreview', 'motoImage')">
+            </div>
+            <div class="image-preview-box" id="motoImgPreview">
+              <img src="" id="motoImgPreviewTag">
+              <button type="button" class="btn-remove-img" onclick="clearImagePreview('motoImgPreview', 'motoImage')">Quitar foto</button>
+            </div>
+            <input type="text" id="motoImage" class="form-input" placeholder="O pega aquí la URL de la imagen (https://...)" style="margin-top:8px" oninput="updatePreviewFromUrl('motoImage', 'motoImgPreview')">
+          </div>
+
+          <div class="form-group form-full">
+            <label class="form-label">Equipamiento / Puntos Clave (separados por comas)</label>
+            <input type="text" id="motoFeatures" class="form-input" placeholder="Frenos ABS, Pantalla digital, 6 años garantía">
+          </div>
+
+          <div class="form-group form-full">
+            <label class="form-label">Descripción Comercial</label>
+            <textarea id="motoDescription" class="form-textarea" placeholder="Describe los detalles de confort, consumo, garantía o extras incluidos..."></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-action" onclick="closeMotoModal()">Cancelar</button>
+        <button type="button" class="btn-action btn-primary" onclick="saveMoto()">Guardar Motocicleta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CREAR / EDITAR PUBLICACIÓN (FEED DE NOVEDADES) -->
+  <div class="modal-overlay" id="postModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="postModalTitle">Nueva Publicación en Muro</h3>
+        <button class="btn-close" onclick="closePostModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editPostId">
+        <div class="form-grid">
+          
+          <div class="form-group form-full">
+            <label class="form-label">Título de la Publicación *</label>
+            <input type="text" id="postTitle" class="form-input" placeholder="Ej. ¡Entrega de Rieju Supermotard en Orihuela!" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Categoría</label>
+            <select id="postCategory" class="form-select">
+              <option value="entrega">🎉 Entrega de Moto a Cliente</option>
+              <option value="novedad">🚀 Novedad en Showroom</option>
+              <option value="taller">🔧 Taller & Mecánica</option>
+              <option value="oferta">🔥 Oferta de la Semana</option>
+              <option value="evento">🏍️ Evento Motero</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Fecha de Publicación</label>
+            <input type="text" id="postDate" class="form-input" placeholder="Ej. 14 Octubre 2026">
+          </div>
+
+          <div class="form-group form-full">
+            <label class="form-label">Foto de la Publicación</label>
+            <div class="image-upload-zone" onclick="document.getElementById('postFileInput').click()">
+              <div style="font-size:1.8rem; margin-bottom:4px">📷</div>
+              <div style="font-size:0.9rem; font-weight:700; color:var(--blue-navy)">Subir foto de la entrega o novedad</div>
+              <input type="file" id="postFileInput" accept="image/*" style="display:none" onchange="handleImageUpload(event, 'postImgPreview', 'postImage')">
+            </div>
+            <div class="image-preview-box" id="postImgPreview">
+              <img src="" id="postImgPreviewTag">
+              <button type="button" class="btn-remove-img" onclick="clearImagePreview('postImgPreview', 'postImage')">Quitar foto</button>
+            </div>
+            <input type="text" id="postImage" class="form-input" placeholder="O pega la URL de la imagen..." style="margin-top:8px" oninput="updatePreviewFromUrl('postImage', 'postImgPreview')">
+          </div>
+
+          <div class="form-group form-full">
+            <label class="form-label">Texto de la Publicación *</label>
+            <textarea id="postContent" class="form-textarea" style="min-height:120px" placeholder="¡Enhorabuena a nuestro cliente por estrenar su moto en Motorcycle Store Orero!..." required></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-action" onclick="closePostModal()">Cancelar</button>
+        <button type="button" class="btn-action btn-primary" onclick="savePost()">Publicar en el Muro</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toastNotification">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Cambio guardado con éxito</span>
+  </div>
+
+  <script>
+    let STORE = null;
+    const STORAGE_KEY = 'motorcycle_store_orero_data_v1';
+    const AUTH_KEY = 'motorcycle_store_admin_auth';
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      checkAuth();
+      await loadStoreData();
+      renderAll();
+    });
+
+    function checkAuth() {
+      const isAuth = localStorage.getItem(AUTH_KEY);
+      if (isAuth === 'true') {
+        document.getElementById('loginScreen').style.display = 'none';
+      } else {
+        document.getElementById('loginScreen').style.display = 'flex';
+      }
+    }
+
+    function attemptLogin() {
+      const pass = document.getElementById('adminPassInput').value.trim();
+      if (pass === 'orero2026' || pass === 'admin123' || pass === '1234') {
+        localStorage.setItem(AUTH_KEY, 'true');
+        document.getElementById('loginScreen').style.display = 'none';
+        showToast('Bienvenido al Panel de Control', '🔑');
+      } else {
+        alert('Contraseña incorrecta. Utiliza "orero2026" o "admin123".');
+      }
+    }
+
+    function logoutAdmin() {
+      if (confirm('¿Deseas cerrar la sesión de administración?')) {
+        localStorage.removeItem(AUTH_KEY);
+        location.reload();
+      }
+    }
+
+    async function loadStoreData() {
+      // 1. Intentar API
+      try {
+        const res = await fetch('/api/motorcycle-store-orero/data');
+        if (res.ok) {
+          STORE = await res.json();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(STORE));
+          document.getElementById('syncStatusBadge').classList.add('online');
+          document.getElementById('syncStatusText').innerText = 'Servidor Local Conectado';
+          return;
+        }
+      } catch (err) {}
+
+      // 2. Intentar archivo data/store.json
+      try {
+        const res = await fetch('../data/store.json');
+        if (res.ok) {
+          const fileData = await res.json();
+          const localStr = localStorage.getItem(STORAGE_KEY);
+          STORE = localStr ? JSON.parse(localStr) : fileData;
+          document.getElementById('syncStatusText').innerText = 'Almacenamiento Local';
+          return;
+        }
+      } catch (e) {}
+
+      const cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) STORE = JSON.parse(cached);
+    }
+
+    async function saveToDisk() {
+      persistLocal();
+      try {
+        const res = await fetch('/api/motorcycle-store-orero/data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(STORE)
+        });
+        if (res.ok) {
+          showToast('¡Guardado en el disco del servidor con éxito!', '💾');
+          document.getElementById('syncStatusBadge').classList.add('online');
+          document.getElementById('syncStatusText').innerText = 'Sincronizado';
+        } else {
+          showToast('Guardado localmente en navegador', '💾');
+        }
+      } catch (e) {
+        showToast('Guardado localmente (servidor no activo)', '💾');
+      }
+    }
+
+    function persistLocal() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(STORE));
+      window.dispatchEvent(new Event('storage'));
+    }
+
+    function renderAll() {
+      if (!STORE) return;
+      renderMotosList();
+      renderPostsList();
+      renderBusinessConfig();
+      updateStats();
+    }
+
+    function updateStats() {
+      const motos = STORE.motorcycles || [];
+      const inStock = motos.filter(m => m.status === 'in_stock').length;
+      const posts = STORE.posts || [];
+
+      document.getElementById('statMotosCount').innerText = motos.length;
+      document.getElementById('statStockCount').innerText = inStock;
+      document.getElementById('statPostsCount').innerText = posts.length;
+
+      document.getElementById('tabBadgeMotos').innerText = motos.length;
+      document.getElementById('tabBadgePosts').innerText = posts.length;
+    }
+
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function renderMotosList() {
+      const container = document.getElementById('motosGridContainer');
+      const search = (document.getElementById('searchMotosInput').value || '').toLowerCase();
+      const brandFilter = document.getElementById('filterBrandSelect').value;
+      const statusFilter = document.getElementById('filterStatusSelect').value;
+
+      let list = STORE.motorcycles || [];
+
+      if (brandFilter !== 'todas') {
+        list = list.filter(m => m.brand === brandFilter);
+      }
+      if (statusFilter !== 'todos') {
+        list = list.filter(m => m.status === statusFilter);
+      }
+      if (search) {
+        list = list.filter(m => 
+          (m.brand || '').toLowerCase().includes(search) || 
+          (m.model || '').toLowerCase().includes(search) ||
+          (m.cc || '').toLowerCase().includes(search)
+        );
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding: 48px; background:#fff; border-radius:var(--radius); border:1px dashed var(--border)">
+            <p style="font-size:1.1rem; color:var(--text-muted); margin-bottom:12px">No se encontraron motos con los filtros actuales.</p>
+            <button class="btn-action btn-primary" onclick="openMotoModal()">+ Añadir Nueva Moto</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(m => {
+        const statusMap = {
+          in_stock: { label: 'En Stock', class: 'status-in_stock' },
+          oferta: { label: 'Oferta Especial', class: 'status-oferta' },
+          reservada: { label: 'Reservada', class: 'status-reservada' },
+          vendida: { label: 'Vendida', class: 'status-vendida' }
+        };
+        const statusInfo = statusMap[m.status] || statusMap.in_stock;
+
+        return `
+          <div class="moto-admin-card">
+            <div class="moto-thumb">
+              <img src="${m.image || '../assets/showroom.jpg'}" alt="${m.model}" onerror="this.src='../assets/showroom.jpg'">
+              <span class="moto-badge-tag">${m.badge || m.condition || 'Oficial'}</span>
+              <span class="moto-status-pill ${statusInfo.class}">${statusInfo.label}</span>
+            </div>
+            <div class="moto-body">
+              <span class="moto-brand">${m.brand}</span>
+              <h3 class="moto-name">${m.model}</h3>
+              <div class="moto-specs-line">
+                <span class="spec-pill">${m.cc || '125 cc'}</span>
+                <span class="spec-pill">${m.power || ''}</span>
+                <span class="spec-pill">${m.license || 'Carnet B'}</span>
+                ${m.condition === 'ocasion' ? `<span class="spec-pill" style="color:var(--amber)">${m.km || 0} km (${m.year})</span>` : ''}
+              </div>
+              <div class="moto-price-row">
+                <div class="moto-cash">${Number(m.priceCash).toLocaleString('es-ES')} €</div>
+                <div class="moto-finance">Desde ${m.financeFrom || Math.round(m.priceCash / 48)} €/mes</div>
+              </div>
+            </div>
+            <div class="moto-actions-row">
+              <button class="btn-card" onclick="editMoto('${m.id}')">✏️ Editar</button>
+              <button class="btn-card" onclick="toggleStockStatus('${m.id}')">🔄 Estado</button>
+              <button class="btn-card btn-delete" onclick="deleteMoto('${m.id}')">🗑️ Borrar</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openMotoModal(moto = null) {
+      document.getElementById('editMotoId').value = moto ? moto.id : '';
+      document.getElementById('motoModalTitle').innerText = moto ? 'Editar Motocicleta' : 'Añadir Nueva Motocicleta';
+
+      document.getElementById('motoBrand').value = moto ? moto.brand : '';
+      document.getElementById('motoModel').value = moto ? moto.model : '';
+      document.getElementById('motoType').value = moto ? moto.type : 'scooter';
+      document.getElementById('motoCondition').value = moto ? (moto.condition || 'nueva') : 'nueva';
+      document.getElementById('motoStatus').value = moto ? (moto.status || 'in_stock') : 'in_stock';
+      document.getElementById('motoBadge').value = moto ? (moto.badge || '') : 'Stock Inmediato';
+      document.getElementById('motoPriceCash').value = moto ? moto.priceCash : '';
+      document.getElementById('motoFinanceFrom').value = moto ? (moto.financeFrom || '') : '';
+      document.getElementById('motoCc').value = moto ? (moto.cc || '125 cc') : '125 cc';
+      document.getElementById('motoPower').value = moto ? (moto.power || '') : '';
+      document.getElementById('motoLicense').value = moto ? (moto.license || 'Carnet B / A1') : 'Carnet B / A1';
+      document.getElementById('motoYear').value = moto ? (moto.year || 2026) : 2026;
+      document.getElementById('motoKm').value = moto ? (moto.km || 0) : 0;
+      
+      const imgVal = moto ? (moto.image || '') : '';
+      document.getElementById('motoImage').value = imgVal;
+      if (imgVal) {
+        document.getElementById('motoImgPreview').style.display = 'block';
+        document.getElementById('motoImgPreviewTag').src = imgVal;
+      } else {
+        document.getElementById('motoImgPreview').style.display = 'none';
+      }
+
+      document.getElementById('motoFeatures').value = moto && moto.features ? moto.features.join(', ') : 'Garantía oficial, Frenos combinados';
+      document.getElementById('motoDescription').value = moto ? (moto.description || '') : '';
+
+      document.getElementById('motoModal').classList.add('open');
+    }
+
+    function closeMotoModal() {
+      document.getElementById('motoModal').classList.remove('open');
+    }
+
+    function editMoto(id) {
+      const moto = STORE.motorcycles.find(m => m.id === id);
+      if (moto) openMotoModal(moto);
+    }
+
+    function toggleStockStatus(id) {
+      const moto = STORE.motorcycles.find(m => m.id === id);
+      if (!moto) return;
+      const order = ['in_stock', 'oferta', 'reservada', 'vendida'];
+      const nextIdx = (order.indexOf(moto.status) + 1) % order.length;
+      moto.status = order[nextIdx];
+      saveToDisk();
+      renderMotosList();
+      showToast(`Estado actualizado a: ${moto.status.toUpperCase()}`, '🔄');
+    }
+
+    function saveMoto() {
+      const brand = document.getElementById('motoBrand').value.trim();
+      const model = document.getElementById('motoModel').value.trim();
+      const priceCash = Number(document.getElementById('motoPriceCash').value) || 0;
+
+      if (!brand || !model || !priceCash) {
+        alert('Por favor, indica al menos la marca, modelo y precio de la moto.');
+        return;
+      }
+
+      const id = document.getElementById('editMotoId').value || 'moto-' + Date.now();
+      const featuresStr = document.getElementById('motoFeatures').value;
+      const featuresArr = featuresStr.split(',').map(s => s.trim()).filter(Boolean);
+
+      const motoData = {
+        id,
+        brand,
+        model,
+        type: document.getElementById('motoType').value,
+        condition: document.getElementById('motoCondition').value,
+        status: document.getElementById('motoStatus').value,
+        badge: document.getElementById('motoBadge').value.trim() || 'Oficial',
+        priceCash,
+        financeFrom: Number(document.getElementById('motoFinanceFrom').value) || Math.round(priceCash / 48),
+        cc: document.getElementById('motoCc').value.trim() || '125 cc',
+        power: document.getElementById('motoPower').value.trim(),
+        license: document.getElementById('motoLicense').value.trim() || 'Carnet B',
+        year: Number(document.getElementById('motoYear').value) || 2026,
+        km: Number(document.getElementById('motoKm').value) || 0,
+        image: document.getElementById('motoImage').value.trim() || 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=900&q=80',
+        features: featuresArr,
+        description: document.getElementById('motoDescription').value.trim()
+      };
+
+      const existingIdx = STORE.motorcycles.findIndex(m => m.id === id);
+      if (existingIdx >= 0) {
+        STORE.motorcycles[existingIdx] = motoData;
+        showToast('Moto actualizada con éxito', '🏍️');
+      } else {
+        STORE.motorcycles.unshift(motoData);
+        showToast('Nueva moto añadida al catálogo', '✅');
+      }
+
+      closeMotoModal();
+      saveToDisk();
+      renderAll();
+    }
+
+    function deleteMoto(id) {
+      const moto = STORE.motorcycles.find(m => m.id === id);
+      if (!moto) return;
+      if (confirm(`¿Seguro que deseas eliminar ${moto.brand} ${moto.model} del catálogo?`)) {
+        STORE.motorcycles = STORE.motorcycles.filter(m => m.id !== id);
+        saveToDisk();
+        renderAll();
+        showToast('Moto eliminada del catálogo', '🗑️');
+      }
+    }
+
+    function renderPostsList() {
+      const container = document.getElementById('postsGridContainer');
+      const posts = STORE.posts || [];
+
+      if (posts.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding: 48px; background:#fff; border-radius:var(--radius); border:1px dashed var(--border)">
+            <p style="font-size:1.1rem; color:var(--text-muted); margin-bottom:12px">No hay publicaciones en el muro todavía.</p>
+            <button class="btn-action btn-primary" onclick="openPostModal()">+ Crear Primera Publicación</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = posts.map(p => `
+        <div class="post-admin-card">
+          <div class="post-thumb">
+            <img src="${p.image || '../assets/entrega.jpg'}" onerror="this.src='../assets/entrega.jpg'">
+            <span class="post-cat-badge">${p.category || 'Novedad'}</span>
+          </div>
+          <div class="post-body">
+            <div class="post-meta">
+              <span>📅 ${p.date || 'Reciente'}</span>
+              <span>•</span>
+              <span>👤 ${p.author || 'Motorcycle Store Orero'}</span>
+            </div>
+            <h3 class="post-title">${p.title}</h3>
+            <p class="post-content">${p.content}</p>
+            <div class="post-footer">
+              <span style="font-size:0.8rem; color:var(--blue-accent); font-weight:750">❤️ ${p.likes || 1} Me gusta</span>
+              <div style="display:flex; gap:8px;">
+                <button class="btn-card" onclick="editPost('${p.id}')">✏️</button>
+                <button class="btn-card btn-delete" onclick="deletePost('${p.id}')">🗑️</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openPostModal(post = null) {
+      document.getElementById('editPostId').value = post ? post.id : '';
+      document.getElementById('postModalTitle').innerText = post ? 'Editar Publicación' : 'Nueva Publicación en Muro';
+
+      document.getElementById('postTitle').value = post ? post.title : '';
+      document.getElementById('postCategory').value = post ? post.category : 'entrega';
+      document.getElementById('postDate').value = post ? post.date : getFormattedToday();
+      
+      const imgVal = post ? (post.image || '') : '../assets/entrega.jpg';
+      document.getElementById('postImage').value = imgVal;
+      if (imgVal) {
+        document.getElementById('postImgPreview').style.display = 'block';
+        document.getElementById('postImgPreviewTag').src = imgVal;
+      }
+
+      document.getElementById('postContent').value = post ? post.content : '';
+      document.getElementById('postModal').classList.add('open');
+    }
+
+    function closePostModal() {
+      document.getElementById('postModal').classList.remove('open');
+    }
+
+    function getFormattedToday() {
+      const d = new Date();
+      const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+      return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function editPost(id) {
+      const post = STORE.posts.find(p => p.id === id);
+      if (post) openPostModal(post);
+    }
+
+    function savePost() {
+      const title = document.getElementById('postTitle').value.trim();
+      const content = document.getElementById('postContent').value.trim();
+      if (!title || !content) {
+        alert('Por favor, indica un título y el texto de la publicación.');
+        return;
+      }
+
+      const id = document.getElementById('editPostId').value || 'post-' + Date.now();
+      const postData = {
+        id,
+        title,
+        category: document.getElementById('postCategory').value,
+        date: document.getElementById('postDate').value.trim() || getFormattedToday(),
+        author: 'Motorcycle Store Orero',
+        image: document.getElementById('postImage').value.trim() || '../assets/entrega.jpg',
+        content,
+        likes: 15
+      };
+
+      const idx = STORE.posts.findIndex(p => p.id === id);
+      if (idx >= 0) {
+        STORE.posts[idx] = postData;
+        showToast('Publicación actualizada', '📰');
+      } else {
+        STORE.posts.unshift(postData);
+        showToast('Publicación lanzada al muro', '🚀');
+      }
+
+      closePostModal();
+      saveToDisk();
+      renderAll();
+    }
+
+    function deletePost(id) {
+      if (confirm('¿Deseas eliminar esta publicación del muro?')) {
+        STORE.posts = STORE.posts.filter(p => p.id !== id);
+        saveToDisk();
+        renderAll();
+        showToast('Publicación eliminada', '🗑️');
+      }
+    }
+
+    function renderBusinessConfig() {
+      const b = STORE.business || {};
+      document.getElementById('cfgStoreName').value = b.name || '';
+      document.getElementById('cfgPhone').value = b.phone || '';
+      document.getElementById('cfgWhatsapp').value = b.whatsapp || '';
+      document.getElementById('cfgLocation').value = b.location || '';
+      document.getElementById('cfgHours').value = b.hours || '';
+      document.getElementById('cfgNotice').value = b.notice || '';
+    }
+
+    function saveBusinessConfig() {
+      STORE.business = STORE.business || {};
+      STORE.business.name = document.getElementById('cfgStoreName').value.trim();
+      STORE.business.phone = document.getElementById('cfgPhone').value.trim();
+      STORE.business.whatsapp = document.getElementById('cfgWhatsapp').value.trim();
+      STORE.business.location = document.getElementById('cfgLocation').value.trim();
+      STORE.business.hours = document.getElementById('cfgHours').value.trim();
+      STORE.business.notice = document.getElementById('cfgNotice').value.trim();
+      saveToDisk();
+      showToast('Configuración del negocio actualizada', '⚙️');
+    }
+
+    async function handleImageUpload(e, previewBoxId, inputTargetId) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async function(event) {
+        const base64Data = event.target.result;
+        
+        const box = document.getElementById(previewBoxId);
+        const tag = box.querySelector('img');
+        tag.src = base64Data;
+        box.style.display = 'block';
+
+        try {
+          const res = await fetch('/api/motorcycle-store-orero/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: file.name, base64: base64Data })
+          });
+          const json = await res.json();
+          if (json.ok && json.url) {
+            document.getElementById(inputTargetId).value = json.url;
+            showToast('Foto subida y guardada en servidor', '📷');
+            return;
+          }
+        } catch (err) {}
+
+        document.getElementById(inputTargetId).value = base64Data;
+        showToast('Foto lista', '📷');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearImagePreview(boxId, inputId) {
+      document.getElementById(boxId).style.display = 'none';
+      document.getElementById(inputId).value = '';
+    }
+
+    function updatePreviewFromUrl(inputId, boxId) {
+      const val = document.getElementById(inputId).value.trim();
+      const box = document.getElementById(boxId);
+      if (val) {
+        box.querySelector('img').src = val;
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    function exportBackupJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(STORE, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `motorcycle_store_orero_backup_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast('Copia store.json descargada', '📥');
+    }
+
+    function importBackupJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        try {
+          const imported = JSON.parse(event.target.result);
+          if (imported.motorcycles && Array.isArray(imported.motorcycles)) {
+            STORE = imported;
+            saveToDisk();
+            renderAll();
+            showToast('Copia restaurada con éxito', '✅');
+          } else {
+            alert('El archivo no parece ser un JSON válido de Motorcycle Store Orero.');
+          }
+        } catch (err) {
+          alert('Error al leer el archivo JSON: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetFactoryData() {
+      if (confirm('¿Seguro que deseas restablecer los datos originales? Se sincronizarán de nuevo los datos de fábrica.')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    let toastTimeout = null;
+    function showToast(msg, icon = '✅') {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMsg').innerText = msg;
+      document.getElementById('toastIcon').innerText = icon;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
