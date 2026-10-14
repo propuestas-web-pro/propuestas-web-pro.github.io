@@ -15,7 +15,7 @@
 <meta property="og:title" content="Motorcycle Store Orero | Concesionario Oficial de Motos en Orihuela">
 <meta property="og:description" content="Motos de ocasión garantizadas, scooters 125cc, cascos y taller mecánico en Calle San Agustín 18, Orihuela. Tel: 966 74 01 20.">
 <meta property="og:url" content="https://miweblocal.com/motorcycle-store-orero/">
-<meta property="og:image" content="assets/real_store_interior.jpg">
+<meta property="og:image" content="assets/hero_showroom_4k.jpg">
 <link rel="canonical" href="https://miweblocal.com/motorcycle-store-orero/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -628,6 +628,49 @@ nav {
 .card-status-badge.reservada {
   background: #d97706;
 }
+
+.card.is-sold {
+  opacity: 0.9;
+  border-color: #cbd5e1;
+}
+.card.is-sold .card-pic img {
+  filter: grayscale(20%);
+}
+.card.is-sold:hover {
+  opacity: 1;
+}
+.card.is-sold:hover .card-pic img {
+  filter: grayscale(0%);
+}
+.card-status-badge.vendida {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+}
+.card-status-badge.in-stock {
+  background: #15803d;
+  color: #ffffff;
+}
+.card-status-badge.oferta {
+  background: #e8431a;
+  color: #ffffff;
+}
+.card-status-badge.reservada {
+  background: #d97706;
+  color: #ffffff;
+}
+.btn.sold-btn {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  border: 1.5px solid #cbd5e1 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+.btn.sold-btn::after { display: none !important; }
+
 
 .card-body {
   padding: 22px;
@@ -1540,7 +1583,7 @@ footer a:hover {
     <div class="hero-stage">
       <article class="hero-main-card">
         <div class="hero-card-media">
-          <img src="assets/real_store_interior.jpg" alt="Interior Showroom Motorcycle Store Orero Orihuela">
+          <img src="assets/hero_showroom_4k.jpg" alt="Exposición Showroom Motorcycle Store Orero Orihuela" style="object-fit: cover; width: 100%; height: 100%;">
           <span class="hero-badge-tag">Showroom Oficial Orihuela</span>
         </div>
         <div class="hero-card-bottom">
@@ -1578,6 +1621,7 @@ footer a:hover {
       <button class="f-pill" data-filter="ocasion">Ocasión Garantizada</button>
       <button class="f-pill" data-filter="custom">Custom &amp; Clásicas</button>
       <button class="f-pill" data-filter="ciclomotor">Ciclomotores 50cc</button>
+      <button class="f-pill" data-filter="vendida">Vendidas (<span id="countVendida">0</span>)</button>
     </div>
 
     <div class="cards" id="cards"></div>
@@ -1977,246 +2021,70 @@ footer a:hover {
 <!-- ═══ SCRIPTS INTERACTIVOS ═══ -->
 <script>
 // 1. Catálogo Real de Motocicletas con Fotos Reales Extraídas
-const BIKES = [
-  {
-    id: "yamaha-virago",
-    brand: "Yamaha",
-    model: "XV 535 SP Virago Custom",
-    type: "custom",
-    condition: "ocasion",
-    badge: "Clásica Garantizada",
-    price: 2500,
-    finance: 59,
-    year: 1998,
-    km: "45.978 km",
-    cv: "46 CV",
-    license: "Carnet A2",
-    img: "assets/real_yamaha_virago.jpg",
-    desc: "Auténtico clásico custom japonés en inmejorable estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire.",
-    color: "#e8431a"
-  },
-  {
-    id: "peugeot-metropolis",
-    brand: "Peugeot",
-    model: "Metropolis 400 Active (3 Ruedas)",
-    type: "scooter",
-    condition: "ocasion",
-    badge: "Reestreno 379 km Reales",
-    price: 6500,
-    finance: 129,
-    year: 2021,
-    km: "379 km",
-    cv: "36 CV",
-    license: "Carnet B (Coche)",
-    img: "assets/real_peugeot_metropolis.jpg",
-    desc: "Maxitriciclo de 3 ruedas con solo 379 km reales certificados en cuadro digital. Conducible con carnet B de coche. Máxima estabilidad y seguridad en autovía y ciudad.",
-    color: "#2563eb"
-  },
-  {
-    id: "kymco-kxct",
-    brand: "KYMCO",
-    model: "K-XCT 125i Sport ABS",
-    type: "scooter",
-    condition: "ocasion",
-    badge: "Ocasión Revisada",
-    price: 1750,
-    finance: 45,
-    year: 2016,
-    km: "47.598 km",
-    cv: "14.4 CV",
-    license: "Carnet B / A1",
-    img: "assets/real_kymco_kxct.jpg",
-    desc: "Scooter deportivo 125cc con frenada ABS de doble circuito y motor de 4 válvulas. Historial de revisiones al día grabadas en KYMCO España. ITV y neumáticos al día.",
-    color: "#e8431a"
-  },
-  {
-    id: "suzuki-burgman",
-    brand: "Suzuki",
-    model: "Burgman 250 Executive",
-    type: "scooter",
-    condition: "ocasion",
-    badge: "Motor en Rodaje",
-    price: 1350,
-    finance: 39,
-    year: 2005,
-    km: "86.258 km",
-    cv: "23 CV",
-    license: "Carnet A2",
-    img: "assets/real_suzuki_burgman.jpg",
-    desc: "Gran confort y capacidad para 2 cascos integrales. Cilindro y pistón nuevos montados en nuestro taller (en proceso de rodaje). ITV al día y garantizada.",
-    color: "#ff5a1f"
-  },
-  {
-    id: "peugeot-citystar",
-    brand: "Peugeot",
-    model: "Citystar 50 RS Sport",
-    type: "ciclomotor",
-    condition: "ocasion",
-    badge: "Edición Deportiva",
-    price: 1050,
-    finance: 32,
-    year: 2017,
-    km: "36.238 km",
-    cv: "4.8 CV",
-    license: "Licencia AM / Carnet B",
-    img: "assets/real_peugeot_citystar.jpg",
-    desc: "Scooter de chasis robusto con frenos de disco delantero y trasero. Muy ágil para desplazamientos urbanos económicos y fiables.",
-    color: "#2563eb"
-  },
-  {
-    id: "qj-srk",
-    brand: "QJ Motor",
-    model: "SRK 125J (6 Años Garantía)",
-    type: "naked",
-    condition: "nueva",
-    badge: "6 Años Garantía Oficial",
-    price: 3499,
-    finance: 69,
-    year: 2026,
-    km: "0 km (Nueva)",
-    cv: "15 CV (Tope Carnet B)",
-    license: "Carnet B / A1",
-    img: "assets/showroom.jpg",
-    desc: "Naked deportiva de última hornada con 15 CV máximos permitidos por ley. Refrigeración líquida, ABS Bosch de doble canal y seguro gratis primer año.",
-    color: "#e8431a"
-  },
-  {
-    id: "kymco-agility",
-    brand: "KYMCO",
-    model: "Agility City PLUS 125 Euro 5+",
-    type: "scooter",
-    condition: "nueva",
-    badge: "Top Ventas Rueda Alta",
-    price: 2199,
-    finance: 49,
-    year: 2026,
-    km: "0 km (Nueva)",
-    cv: "9.5 CV",
-    license: "Carnet B / A1",
-    img: "assets/real_moto_detail_2.jpg",
-    desc: "Rueda delantera alta de 16 pulgadas, suelo plano portaobjetos y frenada combinada CBS. Entrega inmediata con 3 años de garantía oficial KYMCO.",
-    color: "#2563eb"
-  },
-  {
-    id: "sym-symphony",
-    brand: "SYM",
-    model: "Symphony 125 SR con Baúl SHAD",
-    type: "scooter",
-    condition: "nueva",
-    badge: "5 Años Garantía Oficial",
-    price: 2499,
-    finance: 55,
-    year: 2026,
-    km: "0 km (Nueva)",
-    cv: "11.4 CV",
-    license: "Carnet B / A1",
-    img: "assets/real_moto_detail_3.jpg",
-    desc: "5 años de garantía incluidos de fábrica y baúl trasero SHAD de regalo a juego. Inyección electrónica de mínimo consumo y máxima agilidad.",
-    color: "#e8431a"
-  },
-  {
-    id: "macbor-montana",
-    brand: "Macbor",
-    model: "Montana XR1 125 EVO Trail",
-    type: "trail",
-    condition: "nueva",
-    badge: "Aventura & Pistas",
-    price: 3799,
-    finance: 79,
-    year: 2026,
-    km: "0 km (Nueva)",
-    cv: "14.7 CV",
-    license: "Carnet B / A1",
-    img: "assets/showroom.jpg",
-    desc: "Trail aventurera para ciudad y caminos rurales con carnet de coche B. Defensas integradas, refrigeración líquida y 6 marchas.",
-    color: "#ff5a1f"
-  },
-  {
-    id: "rieju-mrt",
-    brand: "Rieju",
-    model: "MRT 50 Pro Black Series Supermotard",
-    type: "ciclomotor",
-    condition: "nueva",
-    badge: "Competición 2T",
-    price: 3899,
-    finance: 75,
-    year: 2026,
-    km: "0 km (Nueva)",
-    cv: "Minarelli AM6 2T",
-    license: "Licencia Ciclomotor (AM)",
-    img: "assets/entrega.jpg",
-    desc: "Horquilla invertida de 40mm, chasis perimetral, frenos de disco wave y el mítico motor Minarelli AM6 2T con refrigeración líquida.",
-    color: "#2563eb"
-  },
-  {
-    id: "kymco-venox",
-    brand: "KYMCO",
-    model: "Venox 250 Custom V-Twin",
-    type: "custom",
-    condition: "ocasion",
-    badge: "Bicilíndrica en V",
-    price: 999,
-    finance: 29,
-    year: 2005,
-    km: "54.927 km",
-    cv: "28 CV",
-    license: "Carnet A2",
-    img: "assets/real_yamaha_virago.jpg",
-    desc: "Custom bicilíndrica en V con 28 CV y sonido auténtico. Revisada íntegramente en taller y lista para rodar por Orihuela y comarca.",
-    color: "#e8431a"
-  },
-  {
-    id: "honda-sh350",
-    brand: "Honda",
-    model: "SH 350i Sport ABS",
-    type: "scooter",
-    condition: "ocasion",
-    badge: "Sport Edition",
-    price: 4250,
-    finance: 85,
-    year: 2022,
-    km: "59.857 km",
-    cv: "29.2 CV",
-    license: "Carnet A2",
-    img: "assets/real_peugeot_metropolis.jpg",
-    desc: "El referente rueda alta de Honda. Control de tracción HSTC, llave inteligente Smart Key y top case original a juego.",
-    color: "#2563eb"
-  },
-  {
-    id: "hanway-furious",
-    brand: "Hanway",
-    model: "Furious NK 125 Naked",
-    type: "naked",
-    condition: "ocasion",
-    badge: "Solo 2.500 km",
-    price: 1750,
-    finance: 45,
-    year: 2021,
-    km: "2.537 km",
-    cv: "14.9 CV",
-    license: "Carnet B / A1",
-    img: "assets/showroom.jpg",
-    desc: "Naked urbana con tan solo 2.537 km rodados. Motor 4 válvulas y 15 CV con refrigeración líquida y horquilla invertida.",
-    color: "#e8431a"
-  },
-  {
-    id: "vespa-lx",
-    brand: "Vespa",
-    model: "LX 50 2T Clásica",
-    type: "ciclomotor",
-    condition: "ocasion",
-    badge: "Mito Italiano",
-    price: 900,
-    finance: 29,
-    year: 2007,
-    km: "52.957 km",
-    cv: "4.5 CV",
-    license: "Licencia AM / Carnet B",
-    img: "assets/real_cascos_entrega.jpg",
-    desc: "Carrocería de chapa de acero estampada, motor 2 tiempos con agilidad máxima para aparcar en cualquier rincón.",
-    color: "#2563eb"
+
+// 1. Initial State & Dynamic Catalog Loader
+let BIKES = [{"id":"moto-yamaha-virago","brand":"Yamaha","model":"XV 535 SP Virago Custom","type":"custom","condition":"ocasion","status":"in_stock","badge":"Clásica Garantizada","price":2500,"finance":59,"year":1998,"km":"45.978 km","cv":"46 CV","license":"Carnet A2","img":"assets/virago_custom_4k.jpg","desc":"Auténtico clásico custom japonés en inmejorable estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero de alta calidad.","color":"#e8431a"},{"id":"moto-peugeot-metropolis","brand":"Peugeot","model":"Metropolis 400 Active (3 Ruedas)","type":"scooter","condition":"ocasion","status":"in_stock","badge":"Reestreno 379 km Reales","price":6500,"finance":129,"year":2021,"km":"379 km","cv":"36 CV","license":"Carnet B (Coche)","img":"assets/peugeot_metropolis_4k.jpg","desc":"Maxitriciclo de 3 ruedas con solo 379 km reales certificados en cuadro digital. Conducible directamente con carnet B de coche. Máxima estabilidad, confort y seguridad en autovía y ciudad.","color":"#2563eb"},{"id":"moto-qj-srk","brand":"QJ Motor","model":"SRK 125J (6 Años Garantía)","type":"naked","condition":"nueva","status":"oferta","badge":"6 Años Garantía Oficial","price":3499,"finance":69,"year":2026,"km":"0 km (Nueva)","cv":"15 CV (Tope Carnet B)","license":"Carnet B / A1","img":"assets/qj_srk_4k.jpg","desc":"Naked deportiva de última generación con los 15 CV máximos permitidos por ley con refrigeración líquida. Iluminación Full LED, cuadro digital TFT, frenos ABS Bosch doble canal y seguro gratis 1er año.","color":"#ff5a1f"},{"id":"moto-honda-sh350","brand":"Honda","model":"SH 350i Sport ABS","type":"scooter","condition":"ocasion","status":"in_stock","badge":"Sport Edition","price":4250,"finance":85,"year":2022,"km":"59.857 km","cv":"29.2 CV","license":"Carnet A2","img":"assets/honda_sh350_4k.jpg","desc":"El referente absoluto de los scooters urbanos rueda alta. Acabado Sport con llantas negras y detalles mate. Motor eSP+ de 29 CV con control de tracción HSTC, llave inteligente Smart Key y baúl original.","color":"#2563eb"},{"id":"moto-kymco-agility","brand":"KYMCO","model":"Agility City PLUS 125 Euro 5+","type":"scooter","condition":"nueva","status":"in_stock","badge":"Top Ventas Rueda Alta","price":2199,"finance":49,"year":2026,"km":"0 km (Nueva)","cv":"9.5 CV","license":"Carnet B / A1","img":"assets/kymco_agility_4k.jpg","desc":"El scooter de rueda delantera alta de 16 pulgadas más vendido y fiable del mercado español. Consumo mínimo de 2.2L/100km, suelo plano y frenos de disco combinados CBS.","color":"#2563eb"},{"id":"moto-sym-symphony","brand":"SYM","model":"Symphony 125 SR (Baúl Incluido)","type":"scooter","condition":"nueva","status":"in_stock","badge":"5 Años Garantía Oficial","price":2499,"finance":55,"year":2026,"km":"0 km (Nueva)","cv":"11.4 CV","license":"Carnet B / A1","img":"assets/sym_symphony_4k.jpg","desc":"Elegancia, suelo plano y baúl trasero SHAD a juego de regalo oficial. 5 años de garantía incluidos de fábrica. Motor de inyección de bajo consumo con excelente aceleración urbana.","color":"#2563eb"},{"id":"moto-macbor-montana","brand":"Macbor","model":"Montana XR1 125 EVO Trail","type":"trail","condition":"nueva","status":"in_stock","badge":"Trail Aventura","price":3799,"finance":79,"year":2026,"km":"0 km (Nueva)","cv":"14.7 CV","license":"Carnet B / A1","img":"assets/macbor_montana_4k.jpg","desc":"La trail de 125cc más deseada para ciudad y escapadas por pistas rurales. Motor de 15 CV con refrigeración líquida, barras de protección integradas, cúpula elevada touring y defensas completas.","color":"#ff5a1f"},{"id":"moto-kymco-kxct","brand":"KYMCO","model":"K-XCT 125i Sport ABS","type":"scooter","condition":"ocasion","status":"in_stock","badge":"Ocasión Revisada","price":1750,"finance":45,"year":2016,"km":"47.598 km","cv":"14.4 CV","license":"Carnet B / A1","img":"assets/kymco_kxct_4k.jpg","desc":"Maxiscooter deportivo en excelente estado. Historial de revisiones al día registradas en KYMCO España, pantalla ahumada, cúpula deportiva corta y gran capacidad de aceleración para rondas y secundarias.","color":"#2563eb"},{"id":"moto-suzuki-burgman","brand":"Suzuki","model":"Burgman 250 Executive","type":"scooter","condition":"ocasion","status":"in_stock","badge":"Motor en Rodaje","price":1350,"finance":39,"year":2005,"km":"86.258 km","cv":"23 CV","license":"Carnet A2","img":"assets/suzuki_burgman_4k.jpg","desc":"Scooter de gran confort con cilindro y pistón nuevos montados en nuestro taller (en proceso de rodaje). Gran capacidad bajo el asiento para dos cascos integrales y protección aerodinámica sobresaliente.","color":"#2563eb"},{"id":"moto-peugeot-citystar","brand":"Peugeot","model":"Citystar 50 RS Sport","type":"ciclomotor","condition":"ocasion","status":"in_stock","badge":"Edición Deportiva","price":1050,"finance":32,"year":2017,"km":"36.238 km","cv":"4.8 CV","license":"Licencia AM / Carnet B","img":"assets/peugeot_citystar_4k.jpg","desc":"Scooter de chasis robusto con frenos de disco delantero y trasero. Muy ágil para desplazamientos urbanos económicos y fiables.","color":"#ff5a1f"},{"id":"moto-rieju-mrt","brand":"Rieju","model":"MRT 50 Pro Black Series Supermotard","type":"ciclomotor","condition":"nueva","status":"in_stock","badge":"Competición 2T","price":3899,"finance":75,"year":2026,"km":"0 km (Nueva)","cv":"2T Minarelli AM6","license":"Licencia Ciclomotor (AM)","img":"assets/rieju_mrt_4k.jpg","desc":"La supermotard 50cc más equipada del mercado. Motor Minarelli AM6 con refrigeración líquida, suspensiones Pro invertidas, basculante de aluminio y frenos de disco wave de competición.","color":"#ff5a1f"},{"id":"moto-hanway-furious","brand":"Hanway","model":"Furious NK 125 Naked","type":"naked","condition":"ocasion","status":"in_stock","badge":"Reestreno 2.500 km","price":1750,"finance":45,"year":2021,"km":"2537 km","cv":"14.9 CV","license":"Carnet B / A1","img":"assets/hanway_furious_4k.jpg","desc":"Naked urbana con solo 2.537 km. Motor de 4 válvulas y 15 CV con refrigeración líquida, horquilla invertida y escape deportivo bajo el motor con sonido limpio.","color":"#ff5a1f"},{"id":"moto-vespa-lx","brand":"Vespa","model":"LX 50 2T Clásica","type":"ciclomotor","condition":"ocasion","status":"in_stock","badge":"Ocasión Económica","price":900,"finance":29,"year":2007,"km":"52.957 km","cv":"4.5 CV","license":"Licencia AM / Carnet B","img":"assets/vespa_lx_4k.jpg","desc":"Auténtico mito italiano. Carrocería de chapa de acero, motor 2 tiempos con brío y tamaño compacto para aparcar en cualquier rincón. Revisada en taller para entrega inmediata.","color":"#ff5a1f"},{"id":"moto-benda-napoleon","brand":"Benda","model":"Napoleon Bob 250 Custom Bobber","type":"custom","condition":"nueva","status":"oferta","badge":"Diseño Exclusivo","price":4490,"finance":89,"year":2026,"km":"0 km (Nueva)","cv":"26 CV V-Twin","license":"Carnet A2","img":"assets/virago_custom_4k.jpg","desc":"Bobber neo-retro con motor bicilíndrico en V de refrigeración líquida. Estética radical monoplaza, horquilla delantera carenada con suspensión tipo Hossack y sonido profundo.","color":"#e8431a"}];
+
+let currentFilter = 'all';
+
+async function loadStoreCatalog() {
+  let loaded = null;
+  // 1. Check localStorage first
+  try {
+    const raw = localStorage.getItem('orero_store_data');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.motorcycles) && parsed.motorcycles.length > 0) {
+        loaded = parsed.motorcycles;
+      }
+    }
+  } catch(e) {}
+
+  // 2. Fetch fresh data from store.json or api
+  try {
+    const res = await fetch('data/store.json?t=' + Date.now());
+    if (res.ok) {
+      const serverData = await res.json();
+      if (serverData && Array.isArray(serverData.motorcycles) && serverData.motorcycles.length > 0) {
+        if (!loaded) {
+          loaded = serverData.motorcycles;
+          localStorage.setItem('orero_store_data', JSON.stringify(serverData));
+        }
+      }
+    }
+  } catch(e) {}
+
+  if (loaded && loaded.length > 0) {
+    BIKES = loaded.map(m => ({
+      id: m.id,
+      brand: m.brand,
+      model: m.model,
+      type: m.type,
+      condition: m.condition || (m.km === 0 ? 'nueva' : 'ocasion'),
+      status: m.status || 'in_stock',
+      badge: m.badge || (m.status === 'vendida' ? 'Vendido' : (m.km === 0 ? 'Nueva 0 km' : 'Garantizada')),
+      price: m.priceCash || m.price || 0,
+      finance: m.financeFrom || m.finance || Math.round((m.priceCash || 2000) / 48),
+      year: m.year,
+      km: typeof m.km === 'number' ? (m.km === 0 ? '0 km (Nueva)' : m.km.toLocaleString('es-ES') + ' km') : m.km,
+      cv: m.power || m.cv || '',
+      license: m.license,
+      img: m.image || m.img,
+      desc: m.description || m.desc || '',
+      color: m.type === 'scooter' ? '#2563eb' : (m.type === 'custom' ? '#e8431a' : '#ff5a1f')
+    }));
   }
-];
+
+  updateFilterCounts();
+  applyFilter(currentFilter);
+}
+
+// Cross-tab synchronization
+window.addEventListener('storage', (e) => {
+  if (e.key === 'orero_store_data') {
+    loadStoreCatalog();
+  }
+});
 
 // 2. Boutique & Cascos
 const BOUTIQUE = [
@@ -2224,60 +2092,82 @@ const BOUTIQUE = [
     name: "Casco Integral MT Helmets Thunder 4 SV",
     tag: "Homologación ECE 22.06",
     price: 119,
-    img: "assets/real_cascos_entrega.jpg",
+    img: "assets/boutique_cascos_4k.jpg",
     desc: "Casco integral de alta gama con la nueva normativa europea de impacto ECE 22.06. Visor solar interior escamoteable y pantalla anti-rayas."
   },
   {
     name: "Casco Jet LS2 OF562 Airflow",
     tag: "Urbano & Verano",
     price: 69,
-    img: "assets/real_store_interior.jpg",
+    img: "assets/clean_cascos_entrega_4k.jpg",
     desc: "Casco abierto ideal para scooter en Orihuela. Pantalla larga protectora de viento, peso ultra reducido y cierre micrométrico."
   },
   {
     name: "Chaqueta Cordura 4 Estaciones Alpinestars",
     tag: "100% Impermeable",
     price: 189,
-    img: "assets/real_store_interior.jpg",
+    img: "assets/hero_showroom_4k.jpg",
     desc: "Forro térmico desmontable para invierno, ventilaciones para verano y protecciones homologadas en codos, hombros y espalda."
   },
   {
     name: "Guantes de Piel y Kevlar con Nudillos",
     tag: "Protección CE Nivel 1",
     price: 45,
-    img: "assets/real_cascos_entrega.jpg",
+    img: "assets/clean_cascos_entrega_4k.jpg",
     desc: "Refuerzo en la palma, protecciones rígidas de nudillos de carbono y puntera táctil compatible con teléfono móvil."
   },
   {
     name: "Antirrobo de Disco con Alarma 120 dB",
     tag: "Oxford Screamer",
     price: 49,
-    img: "assets/real_moto_detail_1.jpg",
+    img: "assets/virago_custom_4k.jpg",
     desc: "Sensor de impacto y movimiento que activa una potente sirena de 120 decibelios si tocan tu moto. Incluye cable flúor de aviso."
   },
   {
     name: "Baúl Trasero SHAD SH39 con Respaldo",
     tag: "Capacidad 1 Integral + 1 Jet",
     price: 125,
-    img: "assets/real_moto_detail_2.jpg",
+    img: "assets/sym_symphony_4k.jpg",
     desc: "Pletina universal incluida de anclaje, dos llaves de seguridad y cojín de confort para el acompañante."
   }
 ];
 
 const eur = v => v.toLocaleString("es-ES") + " €";
 
+
 // 3. Render Bikes Grid
 const cardsContainer = document.getElementById("cards");
 
 function renderBikes(list) {
-  cardsContainer.innerHTML = list.map((b, i) => `
-    <article class="card rv in" style="transition-delay: ${i * 0.05}s">
+  if (!cardsContainer) return;
+  if (!list.length) {
+    cardsContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--mu); background: var(--bg2); border: 1px dashed var(--bd); border-radius: 20px;"><h3>No hay motocicletas en esta categoría actualmente.</h3><p style="margin-top: 8px;">Llámanos al 966 74 01 20 para consultar próximas entradas de stock.</p></div>';
+    return;
+  }
+  cardsContainer.innerHTML = list.map((b, i) => {
+    const isSold = b.status === 'vendida' || b.status === 'vendido';
+    const isReserved = b.status === 'reservada';
+    const isOffer = b.status === 'oferta';
+
+    let statusBadgeText = '✓ En Exposición';
+    let statusClass = 'in-stock';
+    if (isSold) {
+      statusBadgeText = '● VENDIDO';
+      statusClass = 'vendida';
+    } else if (isReserved) {
+      statusBadgeText = '● Reservada';
+      statusClass = 'reservada';
+    } else if (isOffer) {
+      statusBadgeText = '🔥 OFERTA';
+      statusClass = 'oferta';
+    }
+
+    return `
+    <article class="card rv in ${isSold ? 'is-sold' : ''}" style="transition-delay: ${i * 0.04}s">
       <div class="card-pic">
-        <img src="${b.img}" alt="${b.brand} ${b.model}" loading="lazy" onerror="this.src='assets/showroom.jpg'">
+        <img src="${b.img}" alt="${b.brand} ${b.model}" loading="lazy" onerror="this.src='assets/hero_showroom_4k.jpg'">
         <span class="card-tag">${b.badge}</span>
-        <span class="card-status-badge ${b.status === 'reservada' ? 'reservada' : ''}">
-          ${b.status === 'reservada' ? '● Reservada' : '✓ En Exposición'}
-        </span>
+        <span class="card-status-badge ${statusClass}">${statusBadgeText}</span>
       </div>
       <div class="card-body">
         <span class="card-brand-sub">${b.brand} · ${b.license}</span>
@@ -2296,44 +2186,63 @@ function renderBikes(list) {
             <small>o desde ${b.finance} €/mes</small>
           </div>
           <div class="card-actions">
-            <button class="btn" onclick="openReservation('${b.id}')">⚡ Reservar</button>
-            <a href="tel:966740120" class="btn ghost" title="Llamar">📞</a>
+            ${isSold
+              ? '<button class="btn sold-btn" disabled>✓ Vendido</button><a href="tel:966740120" class="btn call" title="Consultar si entra otra unidad">📞 Preguntar</a>'
+              : (isReserved
+                ? '<button class="btn ghost" disabled>⏳ Reservada</button><a href="tel:966740120" class="btn call" title="Llamar al taller">📞</a>'
+                : `<button class="btn" onclick="openReservation('${b.id}')">⚡ Reservar</button><a href="tel:966740120" class="btn ghost" title="Llamar">📞</a>`
+              )
+            }
           </div>
         </div>
       </div>
     </article>
-  `).join("");
+    `;
+  }).join("");
 }
 
-renderBikes(BIKES);
+function updateFilterCounts() {
+  const elAll = document.getElementById("countAll");
+  const elVendida = document.getElementById("countVendida");
+  if (elAll) elAll.textContent = BIKES.length;
+  if (elVendida) elVendida.textContent = BIKES.filter(b => b.status === 'vendida' || b.status === 'vendido').length;
+}
 
-// 4. Filter Pills
+function applyFilter(f) {
+  currentFilter = f;
+  if (f === 'all') {
+    renderBikes(BIKES);
+  } else if (f === 'scooter') {
+    renderBikes(BIKES.filter(b => b.type === 'scooter'));
+  } else if (f === 'nueva') {
+    renderBikes(BIKES.filter(b => b.condition === 'nueva'));
+  } else if (f === 'ocasion') {
+    renderBikes(BIKES.filter(b => b.condition === 'ocasion'));
+  } else if (f === 'custom') {
+    renderBikes(BIKES.filter(b => b.type === 'custom'));
+  } else if (f === 'ciclomotor') {
+    renderBikes(BIKES.filter(b => b.type === 'ciclomotor'));
+  } else if (f === 'vendida') {
+    renderBikes(BIKES.filter(b => b.status === 'vendida' || b.status === 'vendido'));
+  }
+}
+
+// Filter Pills Click Handlers
 document.querySelectorAll(".f-pill").forEach(pill => {
   pill.addEventListener("click", () => {
     document.querySelectorAll(".f-pill").forEach(p => p.classList.remove("active"));
     pill.classList.add("active");
-    const filter = pill.dataset.filter;
-    if (filter === "all") {
-      renderBikes(BIKES);
-    } else if (filter === "scooter") {
-      renderBikes(BIKES.filter(b => b.type === "scooter"));
-    } else if (filter === "nueva") {
-      renderBikes(BIKES.filter(b => b.condition === "nueva"));
-    } else if (filter === "ocasion") {
-      renderBikes(BIKES.filter(b => b.condition === "ocasion"));
-    } else if (filter === "custom") {
-      renderBikes(BIKES.filter(b => b.type === "custom"));
-    } else if (filter === "ciclomotor") {
-      renderBikes(BIKES.filter(b => b.type === "ciclomotor"));
-    }
+    applyFilter(pill.dataset.filter);
   });
 });
+
+loadStoreCatalog();
 
 // 5. Render Boutique
 document.getElementById("boutiqueGrid").innerHTML = BOUTIQUE.map(item => `
   <article class="boutique-card rv in">
     <div class="boutique-media">
-      <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='assets/real_store_interior.jpg'">
+      <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='assets/hero_showroom_4k.jpg'">
       <span class="boutique-tag">${item.tag}</span>
     </div>
     <div class="boutique-body">
@@ -2495,10 +2404,26 @@ reservationForm.addEventListener("submit", (e) => {
   // Generar Código Oficial de Reserva
   const refCode = "#ORE-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
 
-  // Marcar moto como reservada en la interfaz
+  // Marcar moto como reservada en la interfaz y persistir
   if (selectedBike) {
     selectedBike.status = "reservada";
-    renderBikes(BIKES);
+    applyFilter(currentFilter);
+    try {
+      const raw = localStorage.getItem('orero_store_data');
+      if (raw) {
+        const store = JSON.parse(raw);
+        const target = store.motorcycles.find(m => m.id === selectedBike.id);
+        if (target) {
+          target.status = "reservada";
+          localStorage.setItem('orero_store_data', JSON.stringify(store));
+          fetch('/api/motorcycle-store-orero/data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(store)
+          }).catch(() => {});
+        }
+      }
+    } catch(e) {}
   }
 
   // Guardar en localStorage
