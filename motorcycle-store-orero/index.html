@@ -1635,6 +1635,121 @@ footer a:hover {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .rv { opacity: 1; transform: none; }
 }
+
+/* ═══ MODAL DETALLE DE MOTO WIDE & FICHA TÉCNICA ═══ */
+.dlg-wide {
+  max-width: 860px;
+  padding: 30px 24px;
+}
+.detail-header {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: 18px;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 26px;
+}
+@media (max-width: 768px) {
+  .detail-grid { grid-template-columns: 1fr; gap: 20px; }
+  .dlg-wide { padding: 22px 16px; }
+}
+.detail-gallery {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0f172a;
+  position: relative;
+  aspect-ratio: 16/11;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.detail-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0 16px;
+  font-size: 0.88rem;
+}
+.spec-table tr {
+  border-bottom: 1px solid var(--bd);
+}
+.spec-table td {
+  padding: 8px 6px;
+}
+.spec-table td:first-child {
+  color: var(--mu);
+  font-weight: 500;
+}
+.spec-table td:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: var(--tx);
+}
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 0.83rem;
+}
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tx);
+}
+.checklist li span.check {
+  color: #15803d;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.calc-box {
+  background: var(--bg2);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 14px 0 18px;
+}
+.calc-box input[type="range"] {
+  width: 100%;
+  margin: 10px 0 4px;
+  accent-color: var(--ac);
+  cursor: pointer;
+}
+.btn-detail {
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  background: var(--bg2);
+  color: var(--tx);
+  border: 1px solid var(--bd);
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-detail:hover {
+  background: #e2e8f0;
+  color: var(--tx-head);
+  border-color: #cbd5e1;
+}
+.card-title-clickable {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.card-title-clickable:hover {
+  color: var(--ac);
+}
+
 </style>
 </head>
 <body>
@@ -1642,10 +1757,14 @@ footer a:hover {
 <div id="glow"></div>
 
 <!-- Top Official Notice Bar -->
-<aside class="top-notice">
+<aside class="top-notice" id="topNoticeBar">
   <div class="wrap top-notice-inner">
     <div>
-      📍 <strong>Calle San Agustín, 18, Orihuela</strong> · Concesionario Multimarca &amp; Taller
+      📍 <strong>Calle San Agustín, 18, Orihuela</strong> · Concesionario Multimarca &amp; Taller Oficial
+    </div>
+    <div id="topNoticeAnnouncement" style="display: inline-flex; align-items: center; gap: 8px;">
+      <span style="display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e;"></span>
+      <span id="topNoticeText">Garantía Oficial de hasta 6 años + Financiación en 24h sin entrada</span>
     </div>
     <div>
       📞 Tel: <a href="tel:966740120"><strong>966 74 01 20</strong></a> · L-V 09:30-13:30 / 16:30-20:00 · Sáb 10:00-13:30
@@ -1722,10 +1841,10 @@ footer a:hover {
 
     <!-- Stats Grid -->
     <div class="stats" style="grid-column: 1 / -1;">
-      <div class="stats-item"><b data-n="14">0</b><span>Motos en Stock Real</span></div>
-      <div class="stats-item"><b data-n="100">0</b><span>% con Garantía</span></div>
-      <div class="stats-item"><b data-n="6">0</b><span>Años Garantía Oficial</span></div>
-      <div class="stats-item"><b data-n="48">0</b><span>★ 4.8 Reseñas Google</span></div>
+      <div class="stats-item"><b id="statStock">14+</b><span>Motos en Stock Real</span></div>
+      <div class="stats-item"><b>100%</b><span>Revisadas y Garantizadas</span></div>
+      <div class="stats-item"><b>Hasta 6 Años</b><span>Garantía Oficial Fabricante</span></div>
+      <div class="stats-item"><b style="color: #eab308;">★ 4.8</b><span>85+ Reseñas en Google</span></div>
     </div>
   </div>
 </section>
@@ -2052,6 +2171,91 @@ footer a:hover {
   </div>
 </footer>
 
+<!-- ═══ MODAL FICHA TÉCNICA Y DETALLES COMPLETOS ═══ -->
+<div class="modal" id="modalDetalleMoto" role="dialog" aria-modal="true">
+  <div class="dlg dlg-wide">
+    <button class="dlg-close" id="btnCloseDetailModal" aria-label="Cerrar">&times;</button>
+    
+    <div class="detail-header">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+        <span class="eyebrow" id="detailEyebrow">FICHA TÉCNICA OFICIAL</span>
+        <span class="card-status-badge in_stock" id="detailStatusBadge">IN STOCK</span>
+      </div>
+      <h2 id="detailMotoTitle" style="font-size: 1.85rem; line-height: 1.2;">Yamaha XV 535 Virago</h2>
+      <p id="detailMotoSub" style="color: var(--mu); font-size: 0.9rem;">Vehículo verificado en taller propio · Calle San Agustín 18, Orihuela</p>
+    </div>
+
+    <div class="detail-grid">
+      <!-- Columna Izquierda: Foto y Certificación -->
+      <div>
+        <div class="detail-gallery">
+          <img id="detailMotoImg" src="assets/real_showroom_orero_master.jpg" alt="Detalle Motocicleta">
+        </div>
+
+        <div style="margin-top: 16px; background: #f8fafc; border: 1px solid var(--bd); border-radius: 14px; padding: 14px 16px;">
+          <h4 style="font-size: 0.95rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <span>🛡️</span> Certificación Orero 50 Puntos
+          </h4>
+          <p style="font-size: 0.8rem; color: var(--mu); margin-bottom: 8px;">Revisada exhaustivamente por nuestros mecánicos:</p>
+          <ul class="checklist" id="detailChecklist">
+            <li><span class="check">✓</span> <span>Motor probado y compresión certificada</span></li>
+            <li><span class="check">✓</span> <span>Neumáticos y pastillas de freno en estado óptimo</span></li>
+            <li><span class="check">✓</span> <span>Transmisión, embrague y líquidos sustituidos</span></li>
+            <li><span class="check">✓</span> <span>ITV en vigor y documentación transferible</span></li>
+            <li><span class="check">✓</span> <span>Libre de cargas e historial DGT verificado</span></li>
+            <li><span class="check">✓</span> <span>1 Año de garantía en taller propio</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Specs, Financiación y Acciones -->
+      <div>
+        <table class="spec-table">
+          <tbody>
+            <tr><td>Marca y Modelo</td><td id="dtBrandModel">-</td></tr>
+            <tr><td>Cilindrada</td><td id="dtCc">-</td></tr>
+            <tr><td>Potencia</td><td id="dtPower">-</td></tr>
+            <tr><td>Permiso Requerido</td><td id="dtLicense">-</td></tr>
+            <tr><td>Año de Matriculación</td><td id="dtYear">-</td></tr>
+            <tr><td>Kilometraje Certificado</td><td id="dtKm">-</td></tr>
+            <tr><td>Combustible / Motor</td><td>Gasolina · 4 Tiempos</td></tr>
+            <tr><td>Garantía Oficial</td><td id="dtWarranty">1 Año Completa</td></tr>
+          </tbody>
+        </table>
+
+        <div class="calc-box">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;">
+            <span style="font-weight: 700; font-size: 0.95rem;">Precio al Contado:</span>
+            <strong id="dtPriceCash" style="font-size: 1.45rem; color: var(--ac);">0 €</strong>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--mu); margin-bottom: 12px;">IVA y transferencia incluidos sin sorpresas</div>
+
+          <div style="border-top: 1px dashed var(--bd); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.88rem; font-weight: 600;">Simulador de Financiación:</span>
+              <strong id="dtCalcQuota" style="font-size: 1.25rem; color: #2563eb;">0 €/mes</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--mu); margin-top: 4px;">
+              <span>Plazo: <b id="dtCalcMonthsLabel" style="color: var(--tx);">48 meses</b></span>
+              <span>Sin entrada obligatoria</span>
+            </div>
+            <input type="range" id="dtRangeMonths" min="12" max="60" step="12" value="48" aria-label="Plazo de financiación en meses">
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+          <button class="btn" id="btnDetailReserve" style="width: 100%; justify-content: center; font-size: 1rem;">
+            ⚡ Reservar Esta Moto Ahora
+          </button>
+          <a href="tel:966740120" class="btn call" style="width: 100%; justify-content: center;">
+            📞 Llamar al Concesionario (966 74 01 20)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ MODAL TRANSACCIONAL DE RESERVA DE MOTO ═══ -->
 <div class="modal" id="modalReserva" role="dialog" aria-modal="true">
   <div class="dlg">
@@ -2308,52 +2512,7 @@ let BIKES = [
   }
 ];
 
-let currentFilter = 'all';
-
-async function loadStoreCatalog() {
-  try {
-    const res = await fetch('data/store.json?t=' + Date.now());
-    if (res.ok) {
-      const serverData = await res.json();
-      if (serverData && Array.isArray(serverData.motorcycles) && serverData.motorcycles.length > 0) {
-        BIKES = serverData.motorcycles.map(m => ({
-          id: m.id,
-          brand: m.brand,
-          model: m.model,
-          type: m.type,
-          condition: m.condition || (m.km === 0 ? 'nueva' : 'ocasion'),
-          status: m.status || 'in_stock',
-          badge: m.badge || (m.status === 'vendida' ? 'Vendido' : (m.km === 0 ? 'Nueva 0 km' : 'Garantizada')),
-          price: m.priceCash || m.price || 0,
-          finance: m.financeFrom || m.finance || Math.round((m.priceCash || 2000) / 48),
-          year: m.year,
-          km: typeof m.km === 'number' ? (m.km === 0 ? '0 km (Nueva)' : m.km.toLocaleString('es-ES') + ' km') : m.km,
-          cv: m.power || m.cv || '',
-          license: m.license,
-          img: m.image || m.img,
-          desc: m.description || m.desc || '',
-          color: m.type === 'scooter' ? '#2563eb' : (m.type === 'custom' ? '#e8431a' : '#ff5a1f')
-        }));
-        localStorage.setItem('orero_store_data', JSON.stringify(serverData));
-      }
-    }
-  } catch(e) {
-    console.log('Using default catalog:', e);
-  }
-
-  updateFilterCounts();
-  applyFilter(currentFilter);
-}
-
-// Cross-tab synchronization
-window.addEventListener('storage', (e) => {
-  if (e.key === 'orero_store_data') {
-    loadStoreCatalog();
-  }
-});
-
-// 2. Boutique & Cascos (Real items)
-const BOUTIQUE = [
+let BOUTIQUE = [
   {
     name: "Casco Integral MT Helmets Thunder 4 SV",
     tag: "Homologación ECE 22.06",
@@ -2369,6 +2528,13 @@ const BOUTIQUE = [
     desc: "Casco abierto ideal para scooter en Orihuela. Pantalla larga protectora de viento, peso ultra reducido y cierre micrométrico."
   },
   {
+    name: "Casco Modular LS2 Strobe II Doble Homologación",
+    tag: "Homologación P/J ECE 22.06",
+    price: 139,
+    img: "assets/clean_cascos_entrega_4k.jpg",
+    desc: "Mentonera abatible con bloqueo seguro para circular abierto o cerrado. Calota aerodinámica con visor solar retráctil y preinstalación Bluetooth."
+  },
+  {
     name: "Chaqueta Cordura 4 Estaciones Alpinestars",
     tag: "100% Impermeable",
     price: 189,
@@ -2381,8 +2547,101 @@ const BOUTIQUE = [
     price: 49,
     img: "assets/clean_cascos_entrega_4k.jpg",
     desc: "Piel de primera flor con refuerzos en palma, nudillos rígidos de carbono y tejido táctil en dedos para usar el móvil."
+  },
+  {
+    name: "Antirrobo Disco de Freno con Alarma 120 dB",
+    tag: "Acero Templado",
+    price: 39,
+    img: "assets/real_yamaha_virago_master.jpg",
+    desc: "Sensor de movimiento y vibración con sirena ultra acústica disuasoria de 120 dB. Cable espiral recordatorio de regalo para el manillar."
   }
 ];
+
+let currentFilter = 'all';
+let currentReservingBike = null;
+let currentDetailBike = null;
+
+async function loadStoreCatalog() {
+  try {
+    let serverData = null;
+    const apiRes = await fetch('/api/motorcycle-store-orero/data?t=' + Date.now());
+    if (apiRes.ok) {
+      serverData = await apiRes.json();
+    } else {
+      const jsonRes = await fetch('data/store.json?t=' + Date.now());
+      if (jsonRes.ok) serverData = await jsonRes.json();
+    }
+
+    if (serverData) {
+      if (Array.isArray(serverData.motorcycles) && serverData.motorcycles.length > 0) {
+        BIKES = serverData.motorcycles.map(m => ({
+          id: m.id,
+          brand: m.brand,
+          model: m.model,
+          type: m.type,
+          condition: m.condition || (m.km === 0 ? 'nueva' : 'ocasion'),
+          status: m.status || 'in_stock',
+          badge: m.badge || (m.status === 'vendida' ? 'Vendido' : (m.km === 0 ? 'Nueva 0 km' : 'Garantizada')),
+          price: m.priceCash || m.price || 0,
+          finance: m.financeFrom || m.finance || Math.round((m.priceCash || 2000) / 48),
+          year: m.year,
+          km: typeof m.km === 'number' ? (m.km === 0 ? '0 km (Nueva)' : m.km.toLocaleString('es-ES') + ' km') : m.km,
+          rawKm: m.km,
+          cv: m.power || m.cv || '',
+          cc: m.cc || '',
+          license: m.license || 'Carnet B / A1',
+          img: m.image || m.img,
+          desc: m.description || m.desc || '',
+          features: m.features || [],
+          color: m.type === 'scooter' ? '#2563eb' : (m.type === 'custom' ? '#e8431a' : '#ff5a1f')
+        }));
+      }
+
+      if (Array.isArray(serverData.boutique) && serverData.boutique.length > 0) {
+        BOUTIQUE = serverData.boutique.map(b => ({
+          name: b.name || b.title,
+          tag: b.tag || b.category || 'Homologación ECE 22.06',
+          price: b.price || 0,
+          img: b.image || b.img || 'assets/boutique_cascos_4k.jpg',
+          desc: b.desc || b.description || ''
+        }));
+      }
+
+      if (serverData.business) {
+        const mq = document.getElementById('mq');
+        if (mq && serverData.business.marqueeText) {
+          mq.innerHTML = ('<span>' + serverData.business.marqueeText + ' ✦ </span>').repeat(6);
+        }
+        const topNoticeText = document.getElementById('topNoticeText');
+        const topNoticeBar = document.getElementById('topNoticeBar');
+        if (topNoticeText && serverData.business.notice) {
+          topNoticeText.textContent = serverData.business.notice;
+        }
+        if (topNoticeBar && serverData.business.noticeActive === false) {
+          topNoticeBar.style.display = 'none';
+        }
+      }
+
+      localStorage.setItem('orero_store_data', JSON.stringify(serverData));
+    }
+  } catch(e) {
+    console.log('Using default catalog:', e);
+  }
+
+  const statStock = document.getElementById('statStock');
+  if (statStock) statStock.textContent = BIKES.length + '+';
+
+  updateFilterCounts();
+  applyFilter(currentFilter);
+  renderBoutique();
+}
+
+// Cross-tab synchronization
+window.addEventListener('storage', (e) => {
+  if (e.key === 'orero_store_data') {
+    loadStoreCatalog();
+  }
+});
 
 function renderBoutique() {
   const container = document.getElementById('boutiqueGrid');
@@ -2407,7 +2666,7 @@ function renderBoutique() {
   `).join('');
 }
 
-// 3. Render Cards
+// 3. Render Cards with Detail & Reserve actions
 function renderCards(bikesList) {
   const cardsContainer = document.getElementById('cards');
   if (!cardsContainer) return;
@@ -2431,14 +2690,14 @@ function renderCards(bikesList) {
 
     return `
       <article class="card rv ${isSold ? 'is-sold' : ''}" style="transition-delay: ${i * 0.05}s">
-        <div class="card-pic">
+        <div class="card-pic" data-detail-id="${b.id}" style="cursor: pointer;" title="Haz clic para ver fotos y ficha técnica">
           <span class="card-tag">${b.badge}</span>
           <span class="card-status-badge ${statusClass}">${statusText}</span>
           <img src="${b.img}" alt="${b.brand} ${b.model} en Orihuela" loading="lazy" onerror="this.src='assets/real_showroom_orero_master.jpg'">
         </div>
         <div class="card-body">
           <div class="card-brand-sub">${b.brand} · ${b.type.toUpperCase()}</div>
-          <h3>${b.model}</h3>
+          <h3 class="card-title-clickable" data-detail-id="${b.id}" title="Ver ficha técnica completa">${b.model}</h3>
           
           <div class="spec">
             <span>⛽ Gasolina</span>
@@ -2458,6 +2717,7 @@ function renderCards(bikesList) {
             </div>
             
             <div class="card-actions">
+              <button class="btn btn-detail" data-detail-id="${b.id}" title="Ver ficha técnica completa">🔍 Ficha</button>
               ${isSold ? `
                 <button class="btn sold-btn" disabled>Vendida</button>
               ` : `
@@ -2513,9 +2773,100 @@ function applyFilter(filter) {
   renderCards(filtered);
 }
 
-// 5. Reservation Modal Transaction System
+// 5. Ficha Técnica & Detail Modal System
+const detailModal = document.getElementById('modalDetalleMoto');
+
+function calculateMonthlyQuota(price, months) {
+  if (!price || !months) return 0;
+  // Interest rate ~7.5% APR
+  const total = price * (1 + 0.075 * (months / 12));
+  return Math.round(total / months);
+}
+
+function openDetailModal(bikeId) {
+  currentDetailBike = BIKES.find(b => b.id === bikeId);
+  if (!currentDetailBike || !detailModal) return;
+
+  const b = currentDetailBike;
+  const isSold = b.status === 'vendida';
+  const isReserved = b.status === 'reservada';
+  const statusText = isSold ? 'VENDIDA' : (isReserved ? 'RESERVADA' : (b.status === 'oferta' ? 'OFERTA' : 'IN STOCK'));
+  const statusClass = b.status || 'in_stock';
+
+  document.getElementById('detailEyebrow').textContent = b.brand.toUpperCase() + ' · ' + (b.condition === 'nueva' ? 'NUEVA 0 KM' : 'OCASIÓN GARANTIZADA');
+  const badgeEl = document.getElementById('detailStatusBadge');
+  badgeEl.className = 'card-status-badge ' + statusClass;
+  badgeEl.textContent = statusText;
+
+  document.getElementById('detailMotoTitle').textContent = b.brand + ' ' + b.model;
+  document.getElementById('detailMotoSub').textContent = (b.desc || 'Vehículo verificado en taller propio') + ' · Calle San Agustín 18, Orihuela';
+  document.getElementById('detailMotoImg').src = b.img;
+
+  document.getElementById('dtBrandModel').textContent = b.brand + ' ' + b.model;
+  document.getElementById('dtCc').textContent = b.cc || (b.model.match(/\d{2,4}/) ? b.model.match(/\d{2,4}/)[0] + ' cc' : '125 cc');
+  document.getElementById('dtPower').textContent = b.cv || 'Potencia Homologada';
+  document.getElementById('dtLicense').textContent = b.license || 'Carnet B / A1';
+  document.getElementById('dtYear').textContent = b.year || '2024';
+  document.getElementById('dtKm').textContent = b.km;
+  document.getElementById('dtWarranty').textContent = b.condition === 'nueva' ? (b.brand === 'QJ Motor' ? '6 Años Oficial' : '5 Años Oficial') : '1 Año Completa en Taller Propio';
+
+  document.getElementById('dtPriceCash').textContent = b.price.toLocaleString('es-ES') + ' €';
+
+  const rangeEl = document.getElementById('dtRangeMonths');
+  rangeEl.value = 48;
+  document.getElementById('dtCalcMonthsLabel').textContent = '48 meses';
+  document.getElementById('dtCalcQuota').textContent = calculateMonthlyQuota(b.price, 48) + ' €/mes';
+
+  const btnReserve = document.getElementById('btnDetailReserve');
+  if (isSold) {
+    btnReserve.disabled = true;
+    btnReserve.textContent = 'Vehículo Vendido';
+    btnReserve.style.background = '#94a3b8';
+  } else {
+    btnReserve.disabled = false;
+    btnReserve.textContent = '⚡ Reservar Esta Moto Ahora';
+    btnReserve.style.background = 'var(--ac)';
+  }
+
+  detailModal.classList.add('o');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetailModal() {
+  if (detailModal) detailModal.classList.remove('o');
+  document.body.style.overflow = '';
+}
+
+if (detailModal) {
+  document.getElementById('btnCloseDetailModal').addEventListener('click', closeDetailModal);
+  detailModal.addEventListener('click', (e) => {
+    if (e.target === detailModal) closeDetailModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && detailModal.classList.contains('o')) closeDetailModal();
+  });
+
+  const rangeEl = document.getElementById('dtRangeMonths');
+  if (rangeEl) {
+    rangeEl.addEventListener('input', (e) => {
+      const months = parseInt(e.target.value, 10);
+      document.getElementById('dtCalcMonthsLabel').textContent = months + ' meses';
+      if (currentDetailBike) {
+        document.getElementById('dtCalcQuota').textContent = calculateMonthlyQuota(currentDetailBike.price, months) + ' €/mes';
+      }
+    });
+  }
+
+  document.getElementById('btnDetailReserve').addEventListener('click', () => {
+    if (currentDetailBike) {
+      closeDetailModal();
+      openReserveModal(currentDetailBike.id);
+    }
+  });
+}
+
+// 6. Reservation Modal Transaction System
 const modal = document.getElementById('modalReserva');
-let currentReservingBike = null;
 
 function openReserveModal(bikeId) {
   currentReservingBike = BIKES.find(b => b.id === bikeId);
@@ -2546,38 +2897,71 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal.classList.contains('o')) closeReserveModal();
 });
 
-// Event Delegation for Reserve Buttons
+// Event Delegation for Reserve Buttons & Ficha Técnica clicks
 document.getElementById('cards').addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn-reserve');
-  if (btn) {
-    openReserveModal(btn.dataset.id);
+  const reserveBtn = e.target.closest('.btn-reserve');
+  if (reserveBtn) {
+    openReserveModal(reserveBtn.dataset.id);
+    return;
+  }
+
+  const detailEl = e.target.closest('[data-detail-id]');
+  if (detailEl) {
+    openDetailModal(detailEl.dataset.detailId);
+    return;
   }
 });
 
-// Reservation Form Submission
-document.getElementById('reservationForm').addEventListener('submit', (e) => {
+// Reservation Form Submission (Real API Backend + Local Fallback)
+document.getElementById('reservationForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('rName').value.trim();
-  const phone = document.getElementById('rPhone').value.trim().replace(/\D/g, '');
+  const phone = document.getElementById('rPhone').value.trim();
   const finance = document.getElementById('rFinance').value;
+  const notes = document.getElementById('rNotes') ? document.getElementById('rNotes').value.trim() : '';
 
   if (name.length < 3) {
     alert('Por favor, indica tu nombre completo.');
     return;
   }
-  if (phone.length < 9) {
+  if (phone.replace(/\D/g, '').length < 9) {
     alert('Por favor, indica un teléfono válido de al menos 9 dígitos.');
     return;
   }
 
-  const dossierCode = 'ORE-' + Math.floor(1000 + Math.random() * 9000);
-  
+  let dossierCode = 'ORE-' + Math.floor(1000 + Math.random() * 9000);
+  const bikeName = currentReservingBike ? (currentReservingBike.brand + ' ' + currentReservingBike.model) : 'Motocicleta';
+  const bikePrice = currentReservingBike ? currentReservingBike.price : 0;
+  const bikeId = currentReservingBike ? currentReservingBike.id : '';
+
+  try {
+    const res = await fetch('/api/motorcycle-store-orero/reserve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        motoId: bikeId,
+        motoName: bikeName,
+        price: bikePrice,
+        clientName: name,
+        clientPhone: phone,
+        mode: finance,
+        notes: notes
+      })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.dossier) dossierCode = data.dossier;
+    }
+  } catch(err) {
+    console.warn('Network issue saving to server API, fallback to local storage:', err);
+  }
+
   // Save in localStorage transaction history
   const history = JSON.parse(localStorage.getItem('orero_reservations') || '[]');
   history.push({
     dossier: dossierCode,
-    bike: currentReservingBike.brand + ' ' + currentReservingBike.model,
-    price: currentReservingBike.price,
+    bike: bikeName,
+    price: bikePrice,
     client: name,
     phone: phone,
     mode: finance,
@@ -2587,8 +2971,8 @@ document.getElementById('reservationForm').addEventListener('submit', (e) => {
 
   // Populate Dossier
   document.getElementById('dossierRef').textContent = '#' + dossierCode;
-  document.getElementById('dossierMoto').textContent = currentReservingBike.brand + ' ' + currentReservingBike.model;
-  document.getElementById('dossierPrice').textContent = currentReservingBike.price.toLocaleString('es-ES') + ' €';
+  document.getElementById('dossierMoto').textContent = bikeName;
+  document.getElementById('dossierPrice').textContent = bikePrice.toLocaleString('es-ES') + ' €';
   document.getElementById('dossierMode').textContent = finance === 'contado' ? 'Pago al Contado' : 'Financiación Sin Entrada';
 
   document.getElementById('modalFormWrap').style.display = 'none';
@@ -2601,7 +2985,7 @@ document.getElementById('btnPrintDossier').addEventListener('click', () => {
   window.print();
 });
 
-// 6. Online Appraisal (Tasador)
+// 7. Online Appraisal (Tasador)
 document.getElementById('appraisalForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const brand = document.getElementById('apBrand').value.trim();
@@ -2626,8 +3010,8 @@ document.getElementById('appraisalForm').addEventListener('submit', (e) => {
   document.getElementById('appraisalResult').style.display = 'block';
 });
 
-// 7. Contact Form
-document.getElementById('contactForm').addEventListener('submit', (e) => {
+// 8. Contact Form (Real API + Feedback)
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = document.getElementById('cName').value.trim();
   const phone = document.getElementById('cPhone').value.trim();
@@ -2638,6 +3022,16 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
     return;
   }
 
+  try {
+    await fetch('/api/motorcycle-store-orero/message', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, phone: phone, message: msg })
+    });
+  } catch(err) {
+    console.warn('Network issue saving message:', err);
+  }
+
   document.getElementById('cOk').style.display = 'block';
   document.getElementById('contactForm').reset();
   setTimeout(() => {
@@ -2645,7 +3039,7 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
   }, 6000);
 });
 
-// 8. Confetti Generator
+// 9. Confetti Generator
 function triggerConfetti() {
   const colors = ['#e8431a', '#ff5a1f', '#2563eb', '#15803d', '#f59e0b'];
   for (let i = 0; i < 70; i++) {
@@ -2660,23 +3054,9 @@ function triggerConfetti() {
   }
 }
 
-// 9. Initial Marquee & Counters & Reveal Observers
-document.getElementById('mq').innerHTML = ('<span>Motos de Ocasión Garantizadas ✦ Orihuela (Calle San Agustín 18) ✦ Financiación en 24h ✦ Taller Multimarca con Diagnosis ✦ Boutique Cascos ECE 22.06 ✦ Tel: 966 74 01 20 ✦ </span>').repeat(6);
+// 10. Initial Static Marquee & Date
+document.getElementById('mq').innerHTML = ('<span>Motos de Ocasión Garantizadas ✦ Orihuela (Calle San Agustín 18) ✦ Financiación en 24h Sin Entrada ✦ Taller Multimarca con Diagnosis ✦ Boutique Cascos ECE 22.06 ✦ Tel: 966 74 01 20 ✦ Concesionario Oficial QJ Motor, Kymco, Rieju & Macbor ✦ </span>').repeat(6);
 document.getElementById('yr').textContent = new Date().getFullYear();
-
-// Counter animation
-document.querySelectorAll('[data-n]').forEach(el => {
-  const target = +el.dataset.n;
-  let cur = 0;
-  const interval = setInterval(() => {
-    cur += Math.max(1, target / 35);
-    if (cur >= target) {
-      cur = target;
-      clearInterval(interval);
-    }
-    el.textContent = Math.round(cur);
-  }, 40);
-});
 
 // Scroll Reveal Observer
 window.revealObserver = new IntersectionObserver((entries) => {
@@ -2727,7 +3107,6 @@ if (glow && window.matchMedia('(hover: hover)').matches) {
 
 // Initialize Catalog & Boutique
 loadStoreCatalog();
-renderBoutique();
 </script>
 </body>
 </html>
