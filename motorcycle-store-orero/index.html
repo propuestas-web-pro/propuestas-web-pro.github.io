@@ -2654,9 +2654,403 @@
       }
     }
 
+  
+    /* ========================================================
+       CINEMATIC MOTORCYCLE IGNITION INTRO EXPERIENCE
+       ======================================================== */
+    .ignition-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #06070a;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 20px 40px;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.65s cubic-bezier(0.23, 1, 0.32, 1), transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+      box-sizing: border-box;
+    }
+    .ignition-overlay.fading-out {
+      opacity: 0;
+      transform: scale(1.08);
+      pointer-events: none;
+    }
+    .ignition-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .ignition-top-bar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+    .ignition-brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+    .pulse-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red-accent);
+      box-shadow: 0 0 10px var(--red-accent);
+      animation: indicatorBlink 1.2s infinite;
+    }
+    @keyframes indicatorBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+    .btn-skip-intro {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #cbd5e1;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-skip-intro:hover {
+      background: rgba(239, 35, 60, 0.2);
+      border-color: var(--red-accent);
+      color: #ffffff;
+    }
+
+    .ignition-stage-center {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 880px;
+      margin: auto;
+    }
+    .ignition-bike-wrap {
+      position: relative;
+      width: min(92vw, 680px);
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(239, 35, 60, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      background: #000;
+    }
+    .ignition-bike-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.65) contrast(1.15);
+      transition: filter 0.5s ease, transform 0.8s ease;
+    }
+    .ignition-bike-wrap.roaring .ignition-bike-img {
+      filter: brightness(1.08) contrast(1.2);
+      transform: scale(1.04);
+    }
+    .ignition-lens-flare {
+      position: absolute;
+      top: 36%;
+      left: 54%;
+      width: 220px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(96, 165, 250, 0.85) 30%, rgba(239, 35, 60, 0.4) 60%, transparent 80%);
+      opacity: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      filter: blur(4px);
+      transition: opacity 0.15s ease, transform 0.4s ease;
+      z-index: 4;
+    }
+    .ignition-lens-flare.ignited {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.4);
+      animation: flareFlicker 0.12s infinite alternate;
+    }
+    @keyframes flareFlicker {
+      0% { opacity: 0.85; filter: blur(4px); }
+      100% { opacity: 1; filter: blur(2px); }
+    }
+    .ignition-shockwave {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%) scale(0.1);
+      border: 3px solid var(--red-accent);
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .ignition-shockwave.burst {
+      animation: shockwaveBurst 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes shockwaveBurst {
+      0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; border-width: 6px; }
+      100% { transform: translate(-50%, -50%) scale(8); opacity: 0; border-width: 1px; }
+    }
+
+    /* Telemetry HUD */
+    .ignition-hud {
+      width: min(92vw, 560px);
+      margin-top: 24px;
+      background: rgba(13, 17, 26, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+    }
+    .hud-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-family: var(--font-heading);
+    }
+    .hud-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #94a3b8;
+    }
+    .hud-gear {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 900;
+      padding: 2px 12px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .hud-gear.in-gear {
+      background: rgba(239, 35, 60, 0.25);
+      border-color: var(--red-accent);
+      color: #ffffff;
+      box-shadow: 0 0 12px var(--red-glow);
+    }
+    .hud-speed {
+      font-size: 20px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .hud-speed small {
+      font-size: 11px;
+      color: var(--red-accent);
+      font-weight: 800;
+    }
+    .hud-rpm-bar-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .hud-rpm-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef233c 90%);
+      border-radius: var(--radius-full);
+      transition: width 0.08s linear;
+      box-shadow: 0 0 12px var(--red-glow);
+    }
+    .hud-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .hud-ticks .red-line {
+      color: var(--red-accent);
+    }
+
+    /* Big Start Engine Button */
+    .ignition-trigger-wrap {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .btn-start-engine {
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      outline: none;
+    }
+    .btn-start-ring { pointer-events: none; 
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-full);
+      border: 2px dashed rgba(239, 35, 60, 0.6);
+      animation: rotateRing 8s linear infinite;
+    }
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .btn-start-inner {
+      background: linear-gradient(135deg, #ef233c 0%, #b91c1c 100%);
+      color: #ffffff;
+      padding: 18px 46px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 0 30px var(--red-glow), 0 10px 30px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-start-engine:hover .btn-start-inner {
+      transform: scale(1.04);
+      box-shadow: 0 0 45px rgba(239, 35, 60, 0.7), 0 12px 35px rgba(0, 0, 0, 0.8);
+    }
+    .btn-start-engine:active .btn-start-inner {
+      transform: scale(0.96);
+    }
+    .engine-icon {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+    .engine-text {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .engine-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      text-transform: uppercase;
+    }
+
+    /* Screen Shake on Engine Rev */
+    @keyframes engineShake {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-3px, 2px); }
+      40% { transform: translate(3px, -2px); }
+      60% { transform: translate(-2px, -2px); }
+      80% { transform: translate(2px, 3px); }
+    }
+    .screen-shaking {
+      animation: engineShake 0.18s ease-in-out infinite;
+    }
+
+    /* Header Re-ignite button */
+    .btn-reignite-nav {
+      background: rgba(239, 35, 60, 0.12);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      color: #ff6b81;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-reignite-nav:hover {
+      background: var(--red-accent);
+      color: #ffffff;
+      box-shadow: 0 0 16px var(--red-glow);
+      transform: translateY(-1px);
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- ════ CINEMATIC MOTORCYCLE IGNITION INTRO EXPERIENCE ════ -->
+  <div id="engineIgnitionIntro" class="ignition-overlay">
+    <canvas id="ignitionSparksCanvas" class="ignition-canvas"></canvas>
+
+    <div class="ignition-top-bar">
+      <div class="ignition-brand-badge">
+        <span class="pulse-indicator"></span> ORERO MOTORCYCLES // VIRTUAL PADDOCK
+      </div>
+      <button type="button" class="btn-skip-intro" onclick="dismissIgnitionIntro()">
+        Saltar Experiencia ✕
+      </button>
+    </div>
+
+    <div class="ignition-stage-center">
+      <!-- Frontal Superbike with Headlight Glow Layers -->
+      <div class="ignition-bike-wrap" id="ignitionBikeWrap">
+        <div class="ignition-lens-flare" id="ignitionFlare"></div>
+        <div class="ignition-shockwave" id="ignitionShockwave"></div>
+        <img src="assets/hero_ignition_front.jpg" alt="Superbike Arrancando en Orero Motorcycles" class="ignition-bike-img" id="ignitionBikeImg">
+      </div>
+
+      <!-- Virtual Digital Tachometer HUD -->
+      <div class="ignition-hud" id="ignitionHUD">
+        <div class="hud-top-row">
+          <span class="hud-label">TELEMETRÍA // RPM</span>
+          <span class="hud-gear" id="hudGear">N</span>
+          <span class="hud-speed"><span id="hudRpmVal">0</span> <small>RPM</small></span>
+        </div>
+        <div class="hud-rpm-bar-track">
+          <div class="hud-rpm-bar-fill" id="hudRpmFill"></div>
+        </div>
+        <div class="hud-ticks">
+          <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10</span><span>12</span><span class="red-line">14k</span>
+        </div>
+      </div>
+
+      <!-- Big Racing Start Engine Button -->
+      <div class="ignition-trigger-wrap" id="ignitionTriggerWrap">
+        <button type="button" class="btn-start-engine" id="btnStartEngine" onclick="triggerMotorcycleIgnition()">
+          <div class="btn-start-ring"></div>
+          <div class="btn-start-inner">
+            <span class="engine-icon">⚡</span>
+            <span class="engine-text">ARRANCAR MOTOR</span>
+            <span class="engine-sub">PULSA PARA ENCENDER</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- HEADER -->
   <header class="header">
@@ -2684,6 +3078,7 @@
         <a href="admin.html" class="icon-btn" title="Panel de Administración">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
         </a>
+        <button type="button" class="btn-reignite-nav" onclick="replayIgnitionIntro()" title="Arrancar Moto en 3D">⚡ Arrancar</button>
         <a href="#catalogo" class="btn-header-motos">
           Ver Motos
         </a>
@@ -4699,6 +5094,287 @@
     }
 
     document.addEventListener('DOMContentLoaded', initHero3DExperience);
+
+  
+    // ========================================================
+    // PROCEDURAL MOTORCYCLE SOUND ENGINE & IGNITION SEQUENCE
+    // (Built with native Web Audio API — No external audio dependencies)
+    // ========================================================
+    let _audioCtx = null;
+
+    function getAudioContext() {
+      if (!_audioCtx) {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        _audioCtx = new AudioCtxClass();
+      }
+      if (_audioCtx.state === 'suspended') {
+        _audioCtx.resume();
+      }
+      return _audioCtx;
+    }
+
+    // Procedural synthesis of a high-power twin-cylinder superbike exhaust roar
+    function playSuperbikeRoar() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // 1. Starter motor cranking sound (ch-ch-ch-ch)
+        const starterOsc = ctx.createOscillator();
+        const starterGain = ctx.createGain();
+        starterOsc.type = 'sawtooth';
+        starterOsc.frequency.setValueAtTime(120, now);
+        starterGain.gain.setValueAtTime(0.3, now);
+        starterGain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+        starterOsc.connect(starterGain);
+        starterGain.connect(ctx.destination);
+        starterOsc.start(now);
+        starterOsc.stop(now + 0.45);
+
+        // 2. Twin Cylinder Primary Exhaust Roar
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
+        const masterGain = ctx.createGain();
+
+        // Wave shaping distortion for raspy Akrapovic timbre
+        const waveShaper = ctx.createWaveShaper();
+        const curve = new Float32Array(256);
+        for (let i = 0; i < 256; ++i) {
+          const x = (i * 2) / 256 - 1;
+          curve[i] = ((Math.PI + 10) * x) / (Math.PI + 10 * Math.abs(x));
+        }
+        waveShaper.curve = curve;
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'triangle';
+
+        // Frequency rev sweep from idle 80Hz up to 340Hz (11,000 RPM)
+        const fireTime = now + 0.42;
+        osc1.frequency.setValueAtTime(70, fireTime);
+        osc2.frequency.setValueAtTime(72, fireTime);
+
+        // First initial burst
+        osc1.frequency.exponentialRampToValueAtTime(320, fireTime + 0.55);
+        osc2.frequency.exponentialRampToValueAtTime(324, fireTime + 0.55);
+
+        // Rev drop
+        osc1.frequency.exponentialRampToValueAtTime(140, fireTime + 0.95);
+        osc2.frequency.exponentialRampToValueAtTime(142, fireTime + 0.95);
+
+        // Second huge redline rev
+        osc1.frequency.exponentialRampToValueAtTime(380, fireTime + 1.4);
+        osc2.frequency.exponentialRampToValueAtTime(385, fireTime + 1.4);
+
+        // Exhaust filter sweep
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(220, fireTime);
+        filter.frequency.exponentialRampToValueAtTime(2800, fireTime + 0.55);
+        filter.frequency.exponentialRampToValueAtTime(900, fireTime + 0.95);
+        filter.frequency.exponentialRampToValueAtTime(3400, fireTime + 1.4);
+        filter.frequency.exponentialRampToValueAtTime(180, fireTime + 2.4);
+
+        // Master volume envelope
+        masterGain.gain.setValueAtTime(0.01, now);
+        masterGain.gain.setValueAtTime(0.01, fireTime);
+        masterGain.gain.linearRampToValueAtTime(0.75, fireTime + 0.1);
+        masterGain.gain.setValueAtTime(0.75, fireTime + 1.5);
+        masterGain.gain.exponentialRampToValueAtTime(0.001, fireTime + 2.5);
+
+        // Sub-bass rumble for chest-thumping engine feel
+        const subOsc = ctx.createOscillator();
+        const subGain = ctx.createGain();
+        subOsc.type = 'sine';
+        subOsc.frequency.setValueAtTime(55, fireTime);
+        subGain.gain.setValueAtTime(0.5, fireTime);
+        subGain.gain.exponentialRampToValueAtTime(0.01, fireTime + 2.2);
+
+        subOsc.connect(subGain);
+        subGain.connect(ctx.destination);
+        subOsc.start(fireTime);
+        subOsc.stop(fireTime + 2.2);
+
+        // Wire nodes
+        osc1.connect(waveShaper);
+        osc2.connect(waveShaper);
+        waveShaper.connect(filter);
+        filter.connect(masterGain);
+        masterGain.connect(ctx.destination);
+
+        osc1.start(fireTime);
+        osc2.start(fireTime);
+        osc1.stop(fireTime + 2.5);
+        osc2.stop(fireTime + 2.5);
+      } catch (e) {
+        console.warn('Audio synthesis not permitted without user gesture or not supported:', e);
+      }
+    }
+
+    let _ignitionInProgress = false;
+
+    function triggerMotorcycleIgnition() {
+      if (_ignitionInProgress) return;
+      _ignitionInProgress = true;
+
+      const overlay = document.getElementById('engineIgnitionIntro');
+      const flare = document.getElementById('ignitionFlare');
+      const shockwave = document.getElementById('ignitionShockwave');
+      const bikeWrap = document.getElementById('ignitionBikeWrap');
+      const gearEl = document.getElementById('hudGear');
+      const rpmVal = document.getElementById('hudRpmVal');
+      const rpmFill = document.getElementById('hudRpmFill');
+      const triggerWrap = document.getElementById('ignitionTriggerWrap');
+
+      // 1. Play procedural roar
+      playSuperbikeRoar();
+
+      if (triggerWrap) triggerWrap.style.display = 'none';
+
+      // 2. Cranking phase (0 to 450ms)
+      let currentRpm = 0;
+      const rpmInterval = setInterval(() => {
+        currentRpm = Math.floor(Math.random() * 800) + 200;
+        if (rpmVal) rpmVal.textContent = currentRpm;
+        if (rpmFill) rpmFill.style.width = '12%';
+      }, 50);
+
+      // 3. Ignition burst! (450ms)
+      setTimeout(() => {
+        clearInterval(rpmInterval);
+
+        if (flare) flare.classList.add('ignited');
+        if (shockwave) shockwave.classList.add('burst');
+        if (bikeWrap) bikeWrap.classList.add('roaring');
+        if (gearEl) {
+          gearEl.textContent = '1';
+          gearEl.classList.add('in-gear');
+        }
+        document.body.classList.add('screen-shaking');
+
+        // Tachometer rocket up
+        animateHUDToRPM(11800, 450);
+
+        // Shift sparks
+        spawnIgnitionSparks();
+      }, 450);
+
+      // 4. Second power rev (1400ms)
+      setTimeout(() => {
+        animateHUDToRPM(13400, 350);
+      }, 1400);
+
+      // 5. Cinematic Entry Reveal into live web (2400ms)
+      setTimeout(() => {
+        document.body.classList.remove('screen-shaking');
+        if (overlay) {
+          overlay.classList.add('fading-out');
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            sessionStorage.setItem('orero_intro_seen', 'true');
+            // Trigger 3D hero experience
+            if (typeof initHero3DExperience === 'function') initHero3DExperience();
+          }, 650);
+        }
+      }, 2400);
+    }
+
+    function animateHUDToRPM(target, duration) {
+      const rpmVal = document.getElementById('hudRpmVal');
+      const rpmFill = document.getElementById('hudRpmFill');
+      const start = performance.now();
+      const current = parseInt(rpmVal.textContent) || 0;
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const val = Math.floor(current + (target - current) * progress);
+        if (rpmVal) rpmVal.textContent = val;
+        if (rpmFill) rpmFill.style.width = (val / 14000 * 100) + '%';
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function dismissIgnitionIntro() {
+      const overlay = document.getElementById('engineIgnitionIntro');
+      if (overlay) {
+        overlay.classList.add('fading-out');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          sessionStorage.setItem('orero_intro_seen', 'true');
+        }, 400);
+      }
+    }
+
+    function replayIgnitionIntro() {
+      const overlay = document.getElementById('engineIgnitionIntro');
+      if (overlay) {
+        _ignitionInProgress = false;
+        overlay.classList.remove('fading-out');
+        overlay.style.display = 'flex';
+        const triggerWrap = document.getElementById('ignitionTriggerWrap');
+        if (triggerWrap) triggerWrap.style.display = 'flex';
+        const flare = document.getElementById('ignitionFlare');
+        if (flare) flare.classList.remove('ignited');
+        const bikeWrap = document.getElementById('ignitionBikeWrap');
+        if (bikeWrap) bikeWrap.classList.remove('roaring');
+        const gearEl = document.getElementById('hudGear');
+        if (gearEl) { gearEl.textContent = 'N'; gearEl.classList.remove('in-gear'); }
+        const rpmVal = document.getElementById('hudRpmVal');
+        if (rpmVal) rpmVal.textContent = '0';
+        const rpmFill = document.getElementById('hudRpmFill');
+        if (rpmFill) rpmFill.style.width = '0%';
+      }
+    }
+
+    function spawnIgnitionSparks() {
+      const canvas = document.getElementById('ignitionSparksCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height * 0.45;
+
+      for (let i = 0; i < 60; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 9 + 4;
+        particles.push({
+          x: centerX,
+          y: centerY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: Math.random() * 3 + 1,
+          color: Math.random() > 0.3 ? '#ef233c' : '#ffffff',
+          alpha: 1
+        });
+      }
+
+      function anim() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        for (let p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.025;
+          if (p.alpha > 0) {
+            alive = true;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.fill();
+          }
+        }
+        if (alive) requestAnimationFrame(anim);
+      }
+      anim();
+    }
 
   </script>
 </body>
