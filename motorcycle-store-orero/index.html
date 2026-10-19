@@ -2098,6 +2098,320 @@
         padding: 20px;
       }
     }
+  
+    /* ========================================================
+       STATE-OF-THE-ART MOTORSPORT ANIMATION & MOTION SYSTEM
+       (Built following Emil Kowalski's animation philosophy)
+       ======================================================== */
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-fast: 160ms;
+      --dur-normal: 260ms;
+      --dur-reveal: 650ms;
+    }
+
+    /* 1. HERO ENTRANCE KEYFRAMES */
+    @keyframes heroFadeSlideDown {
+      0% { opacity: 0; transform: translateY(-18px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeSlideUp {
+      0% { opacity: 0; transform: translateY(28px); filter: blur(3px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes heroBikePop {
+      0% { opacity: 0; transform: scale(0.92) translateY(30px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes shimmerSweep {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      25%, 100% { transform: translateX(250%) rotate(25deg); }
+    }
+    @keyframes badgePulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 35, 60, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(239, 35, 60, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 35, 60, 0); }
+    }
+    @keyframes floatWa {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.03); }
+    }
+    @keyframes tickerSlide {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    @keyframes modalSpringIn {
+      0% { opacity: 0; transform: scale(0.92) translateY(24px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Hero Elements Animated by Default */
+    .hero-content .eyebrow-red {
+      animation: heroFadeSlideDown 0.75s var(--ease-out) both 0.1s;
+    }
+    .hero-title {
+      animation: heroFadeSlideUp 0.85s var(--ease-out) both 0.25s;
+    }
+    .hero-subtitle {
+      animation: heroFadeSlideUp 0.85s var(--ease-out) both 0.4s;
+    }
+    .hero-actions {
+      animation: heroFadeSlideUp 0.75s var(--ease-out) both 0.55s;
+    }
+    .hero-mobile-bike {
+      animation: heroBikePop 0.9s var(--ease-out) both 0.45s;
+    }
+
+    /* Premium Shimmer on Primary CTAs */
+    .btn-hero-primary, .btn-workshop, .btn-modal-call, .btn-contact-primary {
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+    }
+    .btn-hero-primary::after, .btn-workshop::after, .btn-modal-call::after, .btn-contact-primary::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -50%;
+      width: 45%;
+      height: 220%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+      transform: rotate(25deg);
+      animation: shimmerSweep 4s infinite cubic-bezier(0.23, 1, 0.32, 1);
+      pointer-events: none;
+    }
+    .btn-hero-primary:active, .btn-workshop:active, .btn-modal-call:active, .btn-contact-primary:active, .btn-header-motos:active {
+      transform: scale(0.97) !important;
+      transition: transform 100ms var(--ease-out) !important;
+    }
+
+    /* Badge Pulse */
+    .badge-red, .btn-header-motos {
+      animation: badgePulse 3s infinite;
+    }
+
+    /* 2. INFINITE BRANDS MARQUEE */
+    .brands-marquee-section {
+      background: #080b11;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 16px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .brands-marquee-section::before, .brands-marquee-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .brands-marquee-section::before {
+      left: 0;
+      background: linear-gradient(90deg, #080b11 0%, transparent 100%);
+    }
+    .brands-marquee-section::after {
+      right: 0;
+      background: linear-gradient(-90deg, #080b11 0%, transparent 100%);
+    }
+    .brands-marquee-label {
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red-accent);
+      margin-bottom: 12px;
+    }
+    .brands-marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 36px;
+      animation: tickerSlide 28s linear infinite;
+      will-change: transform;
+    }
+    .brands-marquee-section:hover .brands-marquee-track {
+      animation-play-state: paused;
+    }
+    .brand-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      transition: color 0.2s ease, transform 0.2s ease;
+      cursor: default;
+    }
+    .brand-item::after {
+      content: '•';
+      color: var(--red-accent);
+      margin-left: 24px;
+      font-size: 18px;
+    }
+    .brand-item:hover {
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    /* 3. KINETIC STATS COUNTER STRIP */
+    .stats-counter-section {
+      background: linear-gradient(180deg, #080b11 0%, #0d1118 100%);
+      padding: 44px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .stats-counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-counter-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 22px 16px;
+      transition: var(--transition);
+    }
+    .stat-counter-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(239, 35, 60, 0.35);
+      transform: translateY(-4px);
+    }
+    .stat-number-wrap {
+      font-family: var(--font-heading);
+      font-size: clamp(34px, 4vw, 48px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 2px;
+    }
+    .stat-suffix {
+      color: var(--red-accent);
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 900;
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 4. SCROLL REVEAL ANIMATIONS */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(28px) scale(0.98);
+      transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+      will-change: opacity, transform;
+    }
+    .reveal-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* 5. 3D TILT & SPECULAR GLARE ON CARDS */
+    .moto-card, .service-card, .facility-card, .value-prop-card, .boutique-card {
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.3s ease;
+    }
+    .moto-card::before, .service-card::before, .facility-card::before, .boutique-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 4;
+    }
+    .moto-card:hover::before, .service-card:hover::before, .facility-card:hover::before, .boutique-card:hover::before {
+      opacity: 1;
+    }
+    .moto-card:hover {
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.7), 0 0 20px rgba(239, 35, 60, 0.25);
+    }
+    .moto-card-img {
+      transition: transform 0.65s var(--ease-out);
+    }
+    .moto-card:hover .moto-card-img {
+      transform: scale(1.08);
+    }
+
+    /* 6. MODAL SPRING ANIMATION */
+    .modal.open .moto-modal-box {
+      animation: modalSpringIn 0.36s var(--ease-spring) both;
+    }
+    #modalMainImg {
+      transition: opacity 0.18s var(--ease-out);
+    }
+
+    /* 7. FLOATING WHATSAPP & ACTIONS */
+    .btn-floating-whatsapp {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 999;
+      background: #25d366;
+      color: #ffffff;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+      transition: var(--transition);
+      animation: floatWa 3.5s ease-in-out infinite;
+    }
+    .btn-floating-whatsapp:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+    }
+    .btn-floating-whatsapp::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 211, 102, 0.5);
+      animation: badgePulse 2.4s infinite;
+    }
+
+    /* REDUCED MOTION GATING */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .brands-marquee-track { animation: none !important; }
+      .reveal-item { opacity: 1 !important; transform: none !important; }
+    }
+
+    @media (max-width: 900px) {
+      .stats-counter-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stats-counter-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -2186,6 +2500,69 @@
           <div class="value-prop-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
           <h3 class="value-prop-title">Taller Multimarca</h3>
           <p class="value-prop-text">Diagnosis oficial avanzada y mantenimiento periódico multimarca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ BRANDS MARQUEE TICKER (AUTOMATIC HARDWARE ACCELERATED) ════ -->
+  <section class="brands-marquee-section">
+    <div class="brands-marquee-label">MARCAS OFICIALES & TALLER MULTIMARCA //</div>
+    <div class="brands-marquee-track">
+      <div class="brand-item"><span>YAMAHA</span></div>
+      <div class="brand-item"><span>HONDA</span></div>
+      <div class="brand-item"><span>KAWASAKI</span></div>
+      <div class="brand-item"><span>SUZUKI</span></div>
+      <div class="brand-item"><span>PEUGEOT</span></div>
+      <div class="brand-item"><span>SYM</span></div>
+      <div class="brand-item"><span>KYMCO</span></div>
+      <div class="brand-item"><span>MACBOR</span></div>
+      <div class="brand-item"><span>RIEJU</span></div>
+      <div class="brand-item"><span>BENDA</span></div>
+      <div class="brand-item"><span>MT HELMETS</span></div>
+      <div class="brand-item"><span>ALPINESTARS</span></div>
+      <div class="brand-item"><span>YAMAHA</span></div>
+      <div class="brand-item"><span>HONDA</span></div>
+      <div class="brand-item"><span>KAWASAKI</span></div>
+      <div class="brand-item"><span>SUZUKI</span></div>
+      <div class="brand-item"><span>PEUGEOT</span></div>
+      <div class="brand-item"><span>SYM</span></div>
+      <div class="brand-item"><span>KYMCO</span></div>
+      <div class="brand-item"><span>MACBOR</span></div>
+      <div class="brand-item"><span>RIEJU</span></div>
+      <div class="brand-item"><span>BENDA</span></div>
+      <div class="brand-item"><span>MT HELMETS</span></div>
+      <div class="brand-item"><span>ALPINESTARS</span></div>
+    </div>
+  </section>
+
+  <!-- ════ KINETIC STATS COUNTER STRIP (LIVE COUNT-UP ON SCROLL) ════ -->
+  <section class="stats-counter-section">
+    <div class="container">
+      <div class="stats-counter-grid">
+        <div class="stat-counter-item reveal-item">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="18">0</span><span class="stat-suffix">+</span>
+          </div>
+          <div class="stat-label">Motos en Stock Inmediato</div>
+        </div>
+        <div class="stat-counter-item reveal-item" data-stagger="1">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+          </div>
+          <div class="stat-label">Garantía Escrita en Taller</div>
+        </div>
+        <div class="stat-counter-item reveal-item" data-stagger="2">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="25">0</span><span class="stat-suffix">+</span>
+          </div>
+          <div class="stat-label">Años de Servicio en Orihuela</div>
+        </div>
+        <div class="stat-counter-item reveal-item" data-stagger="3">
+          <div class="stat-number-wrap">
+            <span class="stat-number" data-target="4.9" data-decimals="1">0.0</span><span class="stat-suffix">★</span>
+          </div>
+          <div class="stat-label">Valoración Media en Google</div>
         </div>
       </div>
     </div>
@@ -3732,7 +4109,13 @@
 
     function switchModalMainImage(src, thumbEl) {
       const main = document.getElementById('modalMainImg');
-      if (main) main.src = src;
+      if (main) {
+        main.style.opacity = '0';
+        setTimeout(() => {
+          main.src = src;
+          main.style.opacity = '1';
+        }, 120);
+      }
       document.querySelectorAll('.modal-thumb-item').forEach(t => {
         t.style.borderColor = 'rgba(255,255,255,0.1)';
         t.classList.remove('active');
@@ -3788,6 +4171,115 @@
       alert('¡Gracias, ' + name + '! Hemos recibido tu solicitud de cita para "' + service + '" en tu ' + bike + '. Te contactaremos en el ' + phone + ' para confirmar fecha.');
       closeWorkshopModal();
     }
+  
+    // ========================================================
+    // RICH MOTION ENGINE: SCROLL REVEAL, 3D TILT & COUNT-UPS
+    // ========================================================
+    function initMotionEngine() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // 1. Tag elements for scroll reveal
+      const targetsToReveal = document.querySelectorAll(
+        '.section-title, .catalog-header, .value-prop-card, .moto-card, .service-card, .facility-card, .review-card, .contact-card'
+      );
+      targetsToReveal.forEach((el, idx) => {
+        el.classList.add('reveal-item');
+        if (!el.dataset.stagger) {
+          el.dataset.stagger = (idx % 4).toString();
+        }
+      });
+
+      // 2. IntersectionObserver for Reveal with Stagger
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const stagger = entry.target.dataset.stagger ? parseInt(entry.target.dataset.stagger) * 55 : 0;
+            setTimeout(() => {
+              entry.target.classList.add('is-revealed');
+            }, stagger);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('.reveal-item').forEach(el => revealObserver.observe(el));
+
+      // 3. Kinetic Numbers Count-Up on Scroll
+      const statsObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const numEls = entry.target.querySelectorAll('.stat-number');
+            numEls.forEach(numEl => {
+              animateCounter(numEl);
+            });
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      const statsSection = document.querySelector('.stats-counter-section');
+      if (statsSection) statsObserver.observe(statsSection);
+
+      // 4. 3D Tilt on Desktop
+      if (window.innerWidth >= 768) {
+        init3DCardTilt();
+      }
+    }
+
+    function animateCounter(el) {
+      const target = parseFloat(el.getAttribute('data-target') || '0');
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+      const duration = 1600; // ms
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = target * easeProgress;
+
+        el.textContent = decimals > 0 ? currentVal.toFixed(decimals) : Math.floor(currentVal);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = decimals > 0 ? target.toFixed(decimals) : target;
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    function init3DCardTilt() {
+      const cards = document.querySelectorAll('.moto-card, .service-card, .facility-card, .value-prop-card, .stat-counter-item');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -5.5;
+          const rotateY = ((x - centerX) / centerX) * 5.5;
+
+          card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+          card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px) scale(1.01)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+        });
+      });
+    }
+
+    // Call motion engine on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMotionEngine);
+    } else {
+      initMotionEngine();
+    }
+
   </script>
 </body>
 </html>

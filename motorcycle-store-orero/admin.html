@@ -1228,6 +1228,36 @@
       .search-box { width: 100%; }
       .welcome-banner { padding: 20px; }
     }
+  
+    /* Smooth Admin Tab and Button Motion */
+    .tab-content-panel {
+      animation: adminTabFadeIn 0.32s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @keyframes adminTabFadeIn {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .btn-create-post, .btn-lead-call, .btn-submit-publish {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-create-post::after, .btn-lead-call::after, .btn-submit-publish::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -50%;
+      width: 45%;
+      height: 220%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.28) 50%, transparent 100%);
+      transform: rotate(25deg);
+      animation: adminShimmerSweep 4.2s infinite cubic-bezier(0.23, 1, 0.32, 1);
+      pointer-events: none;
+    }
+    @keyframes adminShimmerSweep {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      25%, 100% { transform: translateX(250%) rotate(25deg); }
+    }
+
   </style>
 </head>
 <body>
