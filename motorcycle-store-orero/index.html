@@ -2412,6 +2412,248 @@
       .stats-counter-grid { grid-template-columns: 1fr; }
     }
 
+  
+    /* ========================================================
+       3D ENTRANCE EXPERIENCE: HERO SHOWROOM STAGE & TELEMETRY
+       ======================================================== */
+    .hero-section {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      padding-bottom: 60px;
+      background: radial-gradient(circle at 75% 45%, rgba(239, 35, 60, 0.15) 0%, transparent 60%),
+                  linear-gradient(180deg, #07090d 0%, #0b0d11 100%);
+      overflow: hidden;
+    }
+    .hero-particles-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-layout-split {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 580px;
+    }
+    .hero-3d-stage-wrap {
+      position: relative;
+      perspective: 1400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 10px;
+      z-index: 3;
+    }
+    .hero-3d-stage {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-lg);
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: box-shadow 0.4s var(--ease-out);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(239, 35, 60, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #090c12;
+      overflow: visible;
+    }
+    .hero-3d-stage:hover {
+      box-shadow: 0 35px 85px rgba(0, 0, 0, 0.95), 0 0 65px rgba(239, 35, 60, 0.35);
+    }
+    .hero-3d-bike-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+    .stage-glass-reflection {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 45%, rgba(0, 0, 0, 0.4) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .headlight-volumetric-beam {
+      position: absolute;
+      top: 40%;
+      left: 31%;
+      width: 320px;
+      height: 140px;
+      background: radial-gradient(ellipse at 0% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(130, 210, 255, 0.4) 30%, transparent 75%);
+      transform: rotate(-12deg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease-out);
+      mix-blend-mode: screen;
+      filter: blur(5px);
+      z-index: 4;
+    }
+    .headlight-volumetric-beam.active {
+      opacity: 1;
+      animation: beamGlow 2.5s infinite alternate ease-in-out;
+    }
+    @keyframes beamGlow {
+      0% { opacity: 0.85; filter: blur(5px); }
+      100% { opacity: 1; filter: blur(3.5px); }
+    }
+
+    /* 3D Telemetry Hotspots */
+    .stage-hotspot {
+      position: absolute;
+      z-index: 6;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      transition: opacity 0.3s ease, transform 0.25s var(--ease-spring);
+    }
+    .stage-hotspot.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(0.6);
+    }
+    .hotspot-dot {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: var(--red-accent);
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 16px var(--red-accent);
+    }
+    .hotspot-ping {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid var(--red-accent);
+      animation: pingHotspot 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+      pointer-events: none;
+    }
+    @keyframes pingHotspot {
+      75%, 100% {
+        transform: scale(2.4);
+        opacity: 0;
+      }
+    }
+    .hotspot-card {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(11, 14, 21, 0.96);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(239, 35, 60, 0.45);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+      z-index: 10;
+    }
+    .hotspot-card strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--red-accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hotspot-card span {
+      font-size: 12px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .stage-hotspot:hover .hotspot-card, .stage-hotspot.show-card .hotspot-card {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Floating 3D Controls Bar */
+    .stage-controls-bar {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(40px);
+      display: flex;
+      gap: 8px;
+      background: rgba(11, 14, 21, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-full);
+      padding: 6px 12px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+      z-index: 8;
+    }
+    .stage-ctrl-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .stage-ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .stage-ctrl-btn.active {
+      background: var(--red-accent);
+      border-color: var(--red-accent);
+      color: #ffffff;
+      box-shadow: 0 0 16px var(--red-glow);
+    }
+
+    @media (max-width: 992px) {
+      .hero-layout-split {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 32px;
+      }
+      .hero-content {
+        max-width: 100%;
+        margin-inline: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-3d-stage-wrap {
+        max-width: 520px;
+        margin-inline: auto;
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2452,21 +2694,17 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <div class="container">
+    <!-- HERO SECTION WITH 3D SHOWROOM ENTRANCE -->
+  <section class="hero-section" id="hero3DSection">
+    <canvas id="heroParticles3D" class="hero-particles-canvas"></canvas>
+
+    <div class="container hero-layout-split">
       <div class="hero-content">
         <div class="eyebrow-red">ORERO MOTORCYCLES // ORIHUELA</div>
         <h1 class="hero-title">Tu próxima<br>moto te espera</h1>
         <p class="hero-subtitle">
           Concesionario oficial multimarca, taller técnico especializado y boutique en Calle San Agustín 18. Motocicletas con garantía por escrito.
         </p>
-
-        <!-- Dedicated Mobile Showcase Bike Card (Centered, full bike visible) -->
-        <div class="hero-mobile-bike">
-          <img src="assets/hero_sportbike_dusk.jpg" alt="Ducati Superbike en Orihuela">
-          <span class="hero-mobile-badge">En Exposición Orihuela</span>
-        </div>
 
         <div class="hero-actions">
           <a href="#catalogo" class="btn-hero-primary">
@@ -2475,6 +2713,59 @@
           <a href="#contacto" class="btn-hero-secondary">
             Contactar
           </a>
+        </div>
+      </div>
+
+      <!-- Interactive 3D Showroom Stage -->
+      <div class="hero-3d-stage-wrap" id="hero3DStageWrap">
+        <div class="hero-3d-stage" id="hero3DStage">
+          <div class="stage-glass-reflection"></div>
+          
+          <img src="assets/hero_superbike_3d_stage.jpg" alt="Superbike en Showroom 3D de Orero Motorcycles" class="hero-3d-bike-img" id="hero3DBikeImg">
+
+          <!-- Volumetric Xenon Light Beam -->
+          <div class="headlight-volumetric-beam" id="headlightBeam"></div>
+
+          <!-- Interactive 3D Telemetry Hotspots -->
+          <div class="stage-hotspot hotspot-optics" style="top: 42%; left: 35%;" onclick="toggleHotspotCard(this)">
+            <span class="hotspot-dot"></span>
+            <span class="hotspot-ping"></span>
+            <div class="hotspot-card">
+              <strong>💡 ÓPTICA LED BIFARO</strong>
+              <span>Doble proyector matricial 12V 55W</span>
+            </div>
+          </div>
+
+          <div class="stage-hotspot hotspot-engine" style="top: 54%; left: 50%;" onclick="toggleHotspotCard(this)">
+            <span class="hotspot-dot"></span>
+            <span class="hotspot-ping"></span>
+            <div class="hotspot-card">
+              <strong>⚙️ MOTOR CROSSPLANE CP2</strong>
+              <span>689 cc · 73.4 CV · Par motor 67 Nm</span>
+            </div>
+          </div>
+
+          <div class="stage-hotspot hotspot-brakes" style="top: 60%; left: 37%;" onclick="toggleHotspotCard(this)">
+            <span class="hotspot-dot"></span>
+            <span class="hotspot-ping"></span>
+            <div class="hotspot-card">
+              <strong>🛑 FRENOS RACING + ABS</strong>
+              <span>Doble disco 298 mm · Pinzas radiales 4 pistones</span>
+            </div>
+          </div>
+
+          <!-- 3D Controls -->
+          <div class="stage-controls-bar">
+            <button type="button" class="stage-ctrl-btn" id="btnToggleHeadlight" onclick="toggleHeadlightBeam()">
+              <span class="ctrl-icon">💡</span> Faros LED
+            </button>
+            <button type="button" class="stage-ctrl-btn" id="btnToggleRotate" onclick="toggleStageAutoRotate()">
+              <span class="ctrl-icon">🔄</span> Giro 3D
+            </button>
+            <button type="button" class="stage-ctrl-btn active" id="btnToggleHotspots" onclick="toggleTelemetryHotspots()">
+              <span class="ctrl-icon">📐</span> Telemetría
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -4279,6 +4570,135 @@
     } else {
       initMotionEngine();
     }
+
+  
+    // ========================================================
+    // 3D ENTRANCE EXPERIENCE: TILT PHYSICS, BEAMS & PARTICLES
+    // ========================================================
+    let _is3DAutoRotating = false;
+    let _autoRotateAngle = 0;
+
+    function initHero3DExperience() {
+      const stageWrap = document.getElementById('hero3DStageWrap');
+      const stage = document.getElementById('hero3DStage');
+      const canvas = document.getElementById('heroParticles3D');
+      if (!stage || !stageWrap) return;
+
+      let targetRotateX = 0, targetRotateY = 0;
+      let currentRotateX = 0, currentRotateY = 0;
+
+      stageWrap.addEventListener('mousemove', (e) => {
+        if (_is3DAutoRotating) return;
+        const rect = stageWrap.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        targetRotateY = (x / (rect.width / 2)) * 14;
+        targetRotateX = -(y / (rect.height / 2)) * 8;
+      });
+
+      stageWrap.addEventListener('mouseleave', () => {
+        if (_is3DAutoRotating) return;
+        targetRotateX = 0;
+        targetRotateY = 0;
+      });
+
+      // Mobile touch physics
+      stageWrap.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0 && !_is3DAutoRotating) {
+          const rect = stageWrap.getBoundingClientRect();
+          const x = e.touches[0].clientX - rect.left - rect.width / 2;
+          const y = e.touches[0].clientY - rect.top - rect.height / 2;
+          targetRotateY = (x / (rect.width / 2)) * 12;
+          targetRotateX = -(y / (rect.height / 2)) * 6;
+        }
+      }, { passive: true });
+
+      function render3D() {
+        if (_is3DAutoRotating) {
+          _autoRotateAngle += 0.018;
+          currentRotateY = Math.sin(_autoRotateAngle) * 15;
+          currentRotateX = Math.cos(_autoRotateAngle * 0.7) * 4;
+        } else {
+          currentRotateX += (targetRotateX - currentRotateX) * 0.09;
+          currentRotateY += (targetRotateY - currentRotateY) * 0.09;
+        }
+
+        stage.style.transform = `perspective(1200px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translateZ(10px)`;
+        requestAnimationFrame(render3D);
+      }
+      requestAnimationFrame(render3D);
+
+      // Atmospheric Embers Canvas
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+
+        window.addEventListener('resize', () => {
+          if (!canvas) return;
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        });
+
+        const particles = [];
+        for (let i = 0; i < 40; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 2 + 0.8,
+            speedX: (Math.random() - 0.5) * 0.5,
+            speedY: -Math.random() * 0.7 - 0.2,
+            opacity: Math.random() * 0.7 + 0.2,
+            color: Math.random() > 0.4 ? '239, 35, 60' : '255, 255, 255'
+          });
+        }
+
+        function renderParticles() {
+          ctx.clearRect(0, 0, width, height);
+          for (let p of particles) {
+            p.x += p.speedX;
+            p.y += p.speedY;
+            if (p.y < 0) { p.y = height; p.x = Math.random() * width; }
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.color}, ${p.opacity})`;
+            ctx.fill();
+          }
+          requestAnimationFrame(renderParticles);
+        }
+        requestAnimationFrame(renderParticles);
+      }
+    }
+
+    function toggleHeadlightBeam() {
+      const beam = document.getElementById('headlightBeam');
+      const btn = document.getElementById('btnToggleHeadlight');
+      if (!beam) return;
+      beam.classList.toggle('active');
+      if (btn) btn.classList.toggle('active');
+    }
+
+    function toggleStageAutoRotate() {
+      const btn = document.getElementById('btnToggleRotate');
+      _is3DAutoRotating = !_is3DAutoRotating;
+      if (btn) btn.classList.toggle('active');
+    }
+
+    function toggleTelemetryHotspots() {
+      const btn = document.getElementById('btnToggleHotspots');
+      const hotspots = document.querySelectorAll('.stage-hotspot');
+      hotspots.forEach(h => h.classList.toggle('hidden'));
+      if (btn) btn.classList.toggle('active');
+    }
+
+    function toggleHotspotCard(el) {
+      el.classList.toggle('show-card');
+    }
+
+    document.addEventListener('DOMContentLoaded', initHero3DExperience);
 
   </script>
 </body>
