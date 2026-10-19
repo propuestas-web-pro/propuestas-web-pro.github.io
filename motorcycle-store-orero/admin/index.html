@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Panel del Propietario · Motorcycle Store Orero</title>
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="theme-color" content="#0b0d11">
+  <meta name="theme-color" content="#080b11">
 
   <!-- Google Fonts: Outfit for headers, Plus Jakarta Sans for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after {
@@ -35,21 +35,22 @@
     }
 
     :root {
-      --bg-dark: #0b0d11;
+      --bg-dark: #080b11;
       --bg-card: #131722;
-      --bg-surface: #1a1f2c;
-      --bg-surface-hover: #22293a;
+      --bg-surface: #0e121b;
+      --bg-surface-elevated: #1a2030;
       --text-main: #ffffff;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       --red: #ef233c;
       --red-hover: #d90429;
-      --red-glow: rgba(239, 35, 60, 0.4);
+      --red-glow: rgba(239, 35, 60, 0.45);
       --green: #10b981;
-      --green-glow: rgba(16, 185, 129, 0.3);
+      --green-glow: rgba(16, 185, 129, 0.35);
+      --green-deep: #064e3b;
       --amber: #f59e0b;
       --blue: #2563eb;
-      --border: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.09);
       --border-hover: rgba(239, 35, 60, 0.4);
       --font-heading: 'Outfit', sans-serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -57,7 +58,7 @@
       --radius-md: 14px;
       --radius-lg: 20px;
       --radius-full: 9999px;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -69,13 +70,13 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+    input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
 
     /* ════ LOGIN SCREEN (PASSWORD: casino18) ════ */
     #loginScreen {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #181d2a 0%, #0b0d11 100%);
+      background: radial-gradient(circle at center, #151a26 0%, #080b11 100%);
       z-index: 99999;
       display: flex;
       align-items: center;
@@ -105,9 +106,7 @@
       margin-bottom: 8px;
     }
 
-    .login-logo span {
-      color: var(--red);
-    }
+    .login-logo span { color: var(--red); }
 
     .login-title {
       font-family: var(--font-heading);
@@ -144,13 +143,13 @@
 
     .login-input:focus {
       border-color: var(--red);
-      background: #1e2435;
+      background: #141924;
       box-shadow: 0 0 20px var(--red-glow);
     }
 
     .btn-login {
       width: 100%;
-      background: var(--red);
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%);
       color: #ffffff;
       font-family: var(--font-heading);
       font-size: 15px;
@@ -165,8 +164,8 @@
     }
 
     .btn-login:hover {
-      background: var(--red-hover);
       transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--red-glow);
     }
 
     .login-hint {
@@ -175,13 +174,11 @@
       color: var(--text-dim);
     }
 
-    .login-hint strong {
-      color: var(--red);
-    }
+    .login-hint strong { color: var(--red); }
 
     /* ════ TOP NAVBAR (FACEBOOK SIMPLE & FRIENDLY) ════ */
     .admin-header {
-      background: rgba(11, 13, 17, 0.96);
+      background: rgba(8, 11, 17, 0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       position: sticky;
@@ -190,7 +187,7 @@
     }
 
     .admin-header-inner {
-      max-width: 1300px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 0 20px;
       height: 72px;
@@ -202,7 +199,7 @@
     .admin-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .admin-brand strong {
@@ -214,7 +211,7 @@
 
     .admin-brand span {
       background: rgba(239, 35, 60, 0.15);
-      border: 1px solid rgba(239, 35, 60, 0.3);
+      border: 1px solid rgba(239, 35, 60, 0.35);
       color: var(--red);
       font-size: 11px;
       font-weight: 800;
@@ -245,7 +242,7 @@
 
     .btn-web-link:hover {
       background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     .btn-logout {
@@ -275,7 +272,7 @@
     }
 
     .admin-tabs-inner {
-      max-width: 1300px;
+      max-width: 1320px;
       margin: 0 auto;
       display: flex;
       gap: 10px;
@@ -283,9 +280,7 @@
       scrollbar-width: none;
     }
 
-    .admin-tabs-inner::-webkit-scrollbar {
-      display: none;
-    }
+    .admin-tabs-inner::-webkit-scrollbar { display: none; }
 
     .admin-tab {
       display: inline-flex;
@@ -343,23 +338,24 @@
 
     /* ════ MAIN CONTENT CONTAINER ════ */
     .admin-container {
-      max-width: 1300px;
-      margin: 32px auto 60px;
+      max-width: 1320px;
+      margin: 28px auto 60px;
       padding: 0 20px;
     }
 
     /* ════ WELCOME HERO BANNER ════ */
     .welcome-banner {
-      background: linear-gradient(135deg, #182030 0%, #11151f 100%);
+      background: linear-gradient(135deg, #161c28 0%, #10141f 100%);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 28px 32px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .welcome-text h1 {
@@ -375,7 +371,7 @@
     }
 
     .btn-create-post {
-      background: var(--red);
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
       color: #ffffff;
       font-family: var(--font-heading);
       font-size: 14px;
@@ -393,8 +389,8 @@
     }
 
     .btn-create-post:hover {
-      background: var(--red-hover);
       transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--red-glow);
     }
 
     /* ════ SEARCH & FILTERS BAR (LIKE MARKETPLACE) ════ */
@@ -435,9 +431,7 @@
       font-weight: 500;
     }
 
-    .search-box input::placeholder {
-      color: #64748b;
-    }
+    .search-box input::placeholder { color: #64748b; }
 
     .filter-buttons {
       display: flex;
@@ -476,7 +470,7 @@
     /* ════ MOTOS CARDS FEED (LIKE FACEBOOK MARKETPLACE) ════ */
     .motos-feed-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 24px;
     }
 
@@ -488,12 +482,13 @@
       display: flex;
       flex-direction: column;
       transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .admin-moto-card:hover {
-      border-color: rgba(239, 35, 60, 0.35);
+      border-color: rgba(239, 35, 60, 0.4);
       transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
     }
 
     .admin-card-media {
@@ -509,6 +504,22 @@
       object-fit: cover;
     }
 
+    .admin-card-photos-count {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     .status-ribbon {
       position: absolute;
       top: 12px;
@@ -521,6 +532,7 @@
       padding: 4px 10px;
       border-radius: 4px;
       color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     .status-ribbon.stock { background: var(--green); }
@@ -581,18 +593,20 @@
 
     .btn-toggle-sold {
       width: 100%;
-      padding: 10px;
+      padding: 12px 14px;
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
       font-size: 13px;
       font-weight: 800;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       transition: var(--transition);
       cursor: pointer;
+      outline: none;
     }
 
     .btn-toggle-sold.is-stock {
@@ -627,46 +641,58 @@
 
     .btn-edit-moto {
       flex: 1;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      color: #ffffff;
-      padding: 8px;
+      background: #182030 !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #f1f5f9 !important;
+      padding: 10px 14px;
       border-radius: var(--radius-sm);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .btn-edit-moto:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: #222d44 !important;
+      color: #ffffff !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
     }
 
     .btn-delete-moto {
-      background: rgba(239, 35, 60, 0.1);
-      border: 1px solid rgba(239, 35, 60, 0.25);
-      color: var(--red);
-      padding: 8px 12px;
+      background: rgba(239, 35, 60, 0.12) !important;
+      border: 1px solid rgba(239, 35, 60, 0.3) !important;
+      color: #ff6b81 !important;
+      padding: 10px 14px;
       border-radius: var(--radius-sm);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .btn-delete-moto:hover {
-      background: var(--red);
-      color: #ffffff;
+      background: #ef233c !important;
+      color: #ffffff !important;
+      border-color: #ef233c !important;
     }
 
-    /* ════ SIMPLE 5-STEP FORM (LIKE FACEBOOK POST) ════ */
+    /* ════ FORMULARIO Y UPLOAD COMPONENT ════ */
     .publish-form-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 36px;
-      max-width: 780px;
+      max-width: 840px;
       margin: 0 auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     }
 
     .form-step {
@@ -709,9 +735,7 @@
       transition: var(--transition);
     }
 
-    .field-input::placeholder, .field-textarea::placeholder {
-      color: #64748b;
-    }
+    .field-input::placeholder, .field-textarea::placeholder { color: #64748b; }
 
     .field-input:focus, .field-select:focus, .field-textarea:focus {
       border-color: var(--red) !important;
@@ -749,9 +773,7 @@
       color: #ffffff !important;
     }
 
-    .radio-pill-label input {
-      display: none;
-    }
+    .radio-pill-label input { display: none; }
 
     .radio-pill-label.selected {
       border-color: var(--red) !important;
@@ -760,63 +782,151 @@
       box-shadow: 0 0 16px rgba(239, 35, 60, 0.25);
     }
 
-    /* Gallery Photo Picker */
-    .photo-picker-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      max-height: 240px;
-      overflow-y: auto;
-      padding: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-    }
-
-    .photo-thumb-option {
-      aspect-ratio: 16 / 10;
-      border-radius: 6px;
-      overflow: hidden;
-      border: 2px solid transparent;
+    /* ════ DROPZONE & MULTI-PHOTO UPLOAD ════ */
+    .upload-dropzone {
+      border: 2px dashed rgba(239, 35, 60, 0.45);
+      background: rgba(239, 35, 60, 0.04);
+      border-radius: var(--radius-md);
+      padding: 28px 20px;
+      text-align: center;
       cursor: pointer;
       transition: var(--transition);
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
 
-    .photo-thumb-option img {
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+      background: rgba(239, 35, 60, 0.12);
+      border-color: var(--red);
+      transform: scale(1.01);
+    }
+
+    .upload-icon {
+      font-size: 36px;
+      margin-bottom: 2px;
+    }
+
+    .upload-text-main {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .upload-text-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .uploaded-photos-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .photo-preview-item {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: #000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .photo-preview-item.is-main {
+      border-color: var(--red);
+      box-shadow: 0 0 14px var(--red-glow);
+    }
+
+    .photo-preview-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .photo-thumb-option.selected {
-      border-color: var(--red);
-      box-shadow: 0 0 12px var(--red-glow);
+    .photo-badge-main {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: var(--red);
+      color: #ffffff;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .btn-photo-remove {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-photo-remove:hover {
+      background: var(--red);
+    }
+
+    .btn-set-main {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #cbd5e1;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .btn-set-main:hover {
+      background: var(--red);
+      color: #ffffff;
     }
 
     .btn-submit-publish {
       width: 100%;
-      background: var(--green);
-      color: #ffffff;
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%) !important;
+      color: #ffffff !important;
       font-family: var(--font-heading);
       font-size: 16px;
       font-weight: 900;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       padding: 18px;
       border-radius: var(--radius-full);
-      box-shadow: 0 6px 20px var(--green-glow);
+      box-shadow: 0 8px 24px var(--red-glow);
       transition: var(--transition);
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 14px;
+      outline: none;
     }
 
     .btn-submit-publish:hover {
-      background: #059669;
+      background: #d90429 !important;
       transform: translateY(-2px);
+      box-shadow: 0 12px 30px var(--red-glow);
     }
 
-    /* ════ CRM LEADS CARDS WITH GIANT CALL BUTTON ════ */
+    /* ════ CRM LEADS CARDS WITH GIANT CALL & WHATSAPP BUTTON ════ */
     .leads-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -825,17 +935,18 @@
 
     .lead-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-md);
       padding: 24px;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       transition: var(--transition);
     }
 
     .lead-card:hover {
       border-color: rgba(16, 185, 129, 0.35);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
     }
 
     .lead-header {
@@ -846,14 +957,28 @@
     }
 
     .lead-type-tag {
+      font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(239, 35, 60, 0.15);
-      color: var(--red);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(239, 35, 60, 0.18);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      color: #ff6b81;
+    }
+
+    .lead-type-tag.workshop {
+      background: rgba(37, 99, 235, 0.18);
+      border-color: rgba(37, 99, 235, 0.35);
+      color: #60a5fa;
+    }
+
+    .lead-type-tag.reservation {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #34d399;
     }
 
     .lead-date {
@@ -872,70 +997,105 @@
     .lead-detail-text {
       color: #cbd5e1;
       font-size: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       line-height: 1.4;
     }
 
     .btn-lead-call {
-      background: var(--green);
-      color: #ffffff;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+      color: #ffffff !important;
       font-family: var(--font-heading);
       font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.05em;
+      font-weight: 900;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      padding: 14px;
+      padding: 15px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px var(--green-glow);
+      transition: var(--transition);
+      margin-bottom: 10px;
+      text-decoration: none;
+    }
+
+    .btn-lead-call:hover {
+      background: #059669 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-lead-whatsapp {
+      background: #25d366 !important;
+      color: #ffffff !important;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 12px;
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-shadow: 0 4px 16px var(--green-glow);
-      transition: var(--transition);
       margin-bottom: 10px;
+      text-decoration: none;
+      transition: var(--transition);
     }
 
-    .btn-lead-call:hover {
-      background: #059669;
-      transform: translateY(-2px);
+    .btn-lead-whatsapp:hover {
+      background: #1eb857 !important;
+      transform: translateY(-1px);
     }
 
     .btn-lead-dismiss {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-      font-size: 12px;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: #94a3b8 !important;
+      font-size: 13px;
       font-weight: 700;
-      padding: 8px;
+      padding: 10px;
       border-radius: var(--radius-sm);
       cursor: pointer;
       transition: var(--transition);
+      width: 100%;
     }
 
     .btn-lead-dismiss:hover {
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.1);
+      color: #ff6b81 !important;
+      background: rgba(239, 35, 60, 0.14) !important;
+      border-color: rgba(239, 35, 60, 0.3) !important;
     }
 
-    /* ════ BOUTIQUE CARDS ════ */
+    /* ════ BOUTIQUE & CASCOS FULL CRUD ════ */
     .boutique-admin-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      gap: 24px;
     }
 
     .boutique-admin-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: var(--transition);
+    }
+
+    .boutique-admin-card:hover {
+      border-color: rgba(239, 35, 60, 0.35);
+      transform: translateY(-3px);
     }
 
     .boutique-admin-media {
       aspect-ratio: 4 / 3;
       background: #000;
+      position: relative;
     }
 
     .boutique-admin-media img {
@@ -945,10 +1105,16 @@
     }
 
     .boutique-admin-info {
-      padding: 18px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       flex: 1;
+    }
+
+    .boutique-admin-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
     }
 
     /* ════ SETTINGS & SOCIAL LINKS ════ */
@@ -959,37 +1125,77 @@
       padding: 36px;
       max-width: 680px;
       margin: 0 auto;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
     }
 
     .social-link-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+      gap: 14px;
+      background: #0a0d14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: var(--radius-md);
-      padding: 12px 16px;
-      margin-bottom: 12px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      transition: var(--transition);
+    }
+
+    .social-link-row:hover {
+      border-color: rgba(239, 35, 60, 0.35);
+      background: #121722;
     }
 
     .social-link-icon {
-      font-size: 20px;
+      font-size: 22px;
       color: var(--red);
     }
 
-    .social-link-info {
-      flex: 1;
+    .social-link-info { flex: 1; }
+    .social-link-title { font-weight: 800; font-size: 15px; color: #ffffff; }
+    .social-link-url { font-size: 12px; color: var(--text-dim); }
+
+    /* ════ MODAL RÁPIDO PARA AÑADIR CASCO / CITAS ════ */
+    .admin-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    .social-link-title {
-      font-weight: 800;
-      font-size: 14px;
+    .admin-modal-overlay.open { display: flex; }
+
+    .admin-modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
     }
 
-    .social-link-url {
-      font-size: 12px;
-      color: var(--text-dim);
+    .admin-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
+
+    .admin-modal-close:hover { background: var(--red); }
 
     /* ════ TOAST NOTIFICATION ════ */
     .admin-toast {
@@ -1017,12 +1223,10 @@
     }
 
     @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-      .photo-picker-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .form-row { grid-template-columns: 1fr; }
+      .admin-tabs-inner { padding-bottom: 8px; }
+      .search-box { width: 100%; }
+      .welcome-banner { padding: 20px; }
     }
   </style>
 </head>
@@ -1087,7 +1291,7 @@
       </button>
 
       <button type="button" class="admin-tab" data-tab="tab-boutique" onclick="switchTab('tab-boutique')">
-        🪖 Boutique & Cascos <span class="tab-badge">6</span>
+        🪖 Boutique & Cascos <span class="tab-badge" id="tabCountBoutique">6</span>
       </button>
 
       <button type="button" class="admin-tab" data-tab="tab-settings" onclick="switchTab('tab-settings')">
@@ -1129,7 +1333,7 @@
       </div>
     </section>
 
-    <!-- ════ TAB 2: PUBLICAR NUEVA MOTO (FACEBOOK-STYLE 5 STEPS) ════ -->
+    <!-- ════ TAB 2: PUBLICAR NUEVA MOTO (CON SUBIDA DE ARCHIVOS MULTIFOTO) ════ -->
     <section id="tab-publish" class="tab-content-panel" style="display: none;">
       <div class="publish-form-card">
         <div style="text-align: center; margin-bottom: 28px;">
@@ -1137,7 +1341,7 @@
             Publicar una Moto en tu Web
           </h2>
           <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">
-            Rellena los datos básicos tal como cuando publicas en Facebook. Aparecerá en tu web al instante.
+            Sube las fotos desde tu móvil u ordenador y rellena los datos como en Facebook.
           </p>
         </div>
 
@@ -1194,14 +1398,25 @@
             </div>
           </div>
 
-          <!-- Step 5 -->
+          <!-- Step 5: MULTI-PHOTO UPLOAD DIRECTO -->
           <div class="form-step">
-            <label class="step-label">5. Foto de la moto</label>
-            <div class="step-desc">Selecciona una foto de la galería o escribe el nombre del archivo:</div>
-            <div class="photo-picker-grid" id="photoGalleryPicker">
-              <!-- Injected via JavaScript -->
+            <label class="step-label">5. Fotos de la moto (puedes subir varias)</label>
+            <div class="step-desc">Sube las fotos directamente desde tu móvil u ordenador:</div>
+            
+            <label class="upload-dropzone" for="motoFileInput" id="dropzoneBox">
+              <span class="upload-icon">📁</span>
+              <span class="upload-text-main">Haz clic aquí o arrastra tus fotos</span>
+              <span class="upload-text-sub">Admite varias fotos a la vez (frontal, lateral, cuentakilómetros...)</span>
+              <input type="file" id="motoFileInput" multiple accept="image/*" style="display:none;" onchange="handleMotoFilesSelected(event)">
+            </label>
+
+            <!-- Uploaded photos preview grid -->
+            <div class="uploaded-photos-preview" id="uploadedPhotosContainer"></div>
+
+            <div style="margin-top: 16px;">
+              <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 8px;">O elige una foto rápida de la galería oficial:</div>
+              <div class="photo-picker-grid" id="photoGalleryPicker" style="display: flex; gap: 8px; overflow-x: auto; padding: 8px; background: #0a0d14; border-radius: 8px;"></div>
             </div>
-            <input type="text" id="newImage" class="field-input" style="margin-top: 12px;" placeholder="assets/moto_yamaha_mt07.jpg" value="assets/moto_yamaha_mt07.jpg" required>
           </div>
 
           <!-- Step 6 -->
@@ -1218,12 +1433,24 @@
       </div>
     </section>
 
-    <!-- ════ TAB 3: CLIENTES Y CITAS (CRM WITH GIANT CALL BUTTON) ════ -->
+    <!-- ════ TAB 3: CLIENTES Y CITAS (CRM CON BOTÓN LLAMAR Y WHATSAPP) ════ -->
     <section id="tab-leads" class="tab-content-panel" style="display: none;">
       <div class="welcome-banner" style="background: linear-gradient(135deg, #13241b 0%, #0d1712 100%); border-color: rgba(16, 185, 129, 0.25);">
         <div class="welcome-text">
           <h1>Clientes y Peticiones de Cita</h1>
-          <p>Personas que han dejado su teléfono en la web para pedir cita de taller, reservar una moto o solicitar tasación.</p>
+          <p>Llama o escribe por WhatsApp a las personas que han pedido cita, reserva o tasación.</p>
+        </div>
+        <button type="button" class="btn-create-post" style="background: #10b981; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);" onclick="openAddLeadModal()">
+          ➕ Anotar Cita Manual
+        </button>
+      </div>
+
+      <div class="catalog-controls">
+        <div class="filter-buttons">
+          <button type="button" class="filter-btn active" data-leadfilter="all" onclick="filterLeadsBySource('all', this)">Todos (<span id="countLeadAll">0</span>)</button>
+          <button type="button" class="filter-btn" data-leadfilter="workshops" onclick="filterLeadsBySource('workshops', this)">Citas Taller</button>
+          <button type="button" class="filter-btn" data-leadfilter="reservations" onclick="filterLeadsBySource('reservations', this)">Reservas Moto</button>
+          <button type="button" class="filter-btn" data-leadfilter="appraisals" onclick="filterLeadsBySource('appraisals', this)">Tasaciones</button>
         </div>
       </div>
 
@@ -1232,13 +1459,16 @@
       </div>
     </section>
 
-    <!-- ════ TAB 4: BOUTIQUE & CASCOS ════ -->
+    <!-- ════ TAB 4: BOUTIQUE & CASCOS (FULL CRUD: AÑADIR, EDITAR PRECIO, STOCK, BORRAR) ════ -->
     <section id="tab-boutique" class="tab-content-panel" style="display: none;">
       <div class="welcome-banner">
         <div class="welcome-text">
           <h1>Cascos y Equipación en Tienda</h1>
-          <p>Equipamiento homologado ECE 22.06 y accesorios que tienes expuestos en la tienda de Orihuela.</p>
+          <p>Aquí puedes añadir nuevos cascos, cambiar precios, marcar si quedan en stock o quitarlos.</p>
         </div>
+        <button type="button" class="btn-create-post" onclick="openAddBoutiqueModal()">
+          ➕ Añadir Casco o Accesorio
+        </button>
       </div>
 
       <div class="boutique-admin-grid" id="boutiqueContainer">
@@ -1312,16 +1542,91 @@
 
   </main>
 
-  <!-- TOAST NOTIFICATION -->
-  <div class="admin-toast" id="adminToast">✓ Acción realizada con éxito</div>
+  <!-- ════ MODAL PARA AÑADIR CASCO ════ -->
+  <div class="admin-modal-overlay" id="addBoutiqueModal">
+    <div class="admin-modal-box">
+      <button type="button" class="admin-modal-close" onclick="closeAddBoutiqueModal()">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; margin-bottom: 16px;">➕ Añadir Casco o Accesorio</h3>
+      <form onsubmit="handleAddBoutiqueItem(event)">
+        <div style="margin-bottom: 12px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Nombre del Casco / Producto</label>
+          <input type="text" id="newBoutiqueName" class="field-input" placeholder="Ej. MT Thunder 4 SV Solid" required>
+        </div>
+        <div class="form-row" style="margin-bottom: 12px;">
+          <div>
+            <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Marca</label>
+            <input type="text" id="newBoutiqueBrand" class="field-input" placeholder="MT Helmets, Shiro..." value="MT Helmets">
+          </div>
+          <div>
+            <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Precio (€)</label>
+            <input type="number" id="newBoutiquePrice" class="field-input" placeholder="149" required>
+          </div>
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Homologación / Etiqueta</label>
+          <input type="text" id="newBoutiqueTag" class="field-input" placeholder="ECE 22.06 Homologado" value="ECE 22.06">
+        </div>
+        <div style="margin-bottom: 18px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Subir Foto del Casco</label>
+          <input type="file" id="newBoutiqueFile" accept="image/*" class="field-input" onchange="handleBoutiqueFile(event)">
+        </div>
+        <button type="submit" class="btn-submit-publish" style="margin-top:0;">
+          Guardar Casco en la Web
+        </button>
+      </form>
+    </div>
+  </div>
 
-  <!-- ════ JAVASCRIPT LOGIC ════ -->
+  <!-- ════ MODAL PARA ANOTAR CITA MANUAL ════ -->
+  <div class="admin-modal-overlay" id="addLeadModal">
+    <div class="admin-modal-box">
+      <button type="button" class="admin-modal-close" onclick="closeAddLeadModal()">✕</button>
+      <h3 style="font-family: var(--font-heading); font-size: 22px; font-weight: 800; margin-bottom: 16px;">📞 Anotar Cita de Cliente</h3>
+      <form onsubmit="handleAddLeadManual(event)">
+        <div style="margin-bottom: 12px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Nombre del Cliente</label>
+          <input type="text" id="manualClientName" class="field-input" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <div class="form-row" style="margin-bottom: 12px;">
+          <div>
+            <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Teléfono</label>
+            <input type="tel" id="manualClientPhone" class="field-input" placeholder="600112233" required>
+          </div>
+          <div>
+            <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Tipo de Cita</label>
+            <select id="manualLeadType" class="field-select">
+              <option value="Cita Taller">Cita Taller / Mantenimiento</option>
+              <option value="Reserva Moto">Interés / Reserva Moto</option>
+              <option value="Tasación">Tasación de Moto</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom: 14px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Moto o Servicio</label>
+          <input type="text" id="manualLeadDetail" class="field-input" placeholder="Ej. Cambio de aceite y frenos en Honda SH 125i">
+        </div>
+        <div style="margin-bottom: 18px;">
+          <label style="display:block; font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 800; margin-bottom: 4px;">Fecha y Hora acordada</label>
+          <input type="text" id="manualLeadDate" class="field-input" placeholder="Ej. Mañana Martes a las 10:30">
+        </div>
+        <button type="submit" class="btn-lead-call" style="width: 100%; border: none;">
+          ✓ Guardar Cita de Cliente
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="adminToast">✓ Guardado</div>
+
   <script>
-    const INITIAL_STORE = {"business": {"name": "Motorcycle Store Orero", "tagline": "Concesionario multimarca y taller especializado en Orihuela", "location": "Calle San Agustín, 18, 03300 Orihuela, Alicante", "phone": "966 74 01 20", "phoneClean": "+34966740120", "email": "info@motorcyclestoreorero.com", "hours": "L-V: 09:30 - 13:30 / 16:30 - 20:00 · Sáb: 10:00 - 13:30", "rating": "4.8", "reviewsCount": "85 reseñas verificadas en Google", "mapsUrl": "https://www.google.com/maps/place/MOTORCYCLE+STORE+ORERO/@38.083664,-0.9477571,17z/data=!3m1!4b1!4m6!3m5!1s0xd63991edb7a50a3:0xa7b6fa478890154c!8m2!3d38.083664!4d-0.9477571!16s%2Fg%2F12qhg48_5", "notice": "Motos de ocasión garantizadas y modelos nuevos en stock en Orihuela · Financiación sujeta a aprobación", "noticeActive": true, "marqueeText": "Motos de ocasión garantizadas ✦ Orihuela (Calle San Agustín, 18) ✦ Financiación a tu medida ✦ Taller multimarca con diagnosis ✦ Boutique y cascos ECE 22.06 ✦ Tel: 966 74 01 20 ✦ Marcas multimarca destacadas ✦", "facebook": "https://www.facebook.com/oreromotor/", "motosNet": "https://motos.coches.net/concesionario/motorcyclestoreorero/", "milanuncios": "https://www.milanuncios.com/tiendas-profesionales/motorcycle-store-orero-524553"}, "motorcycles": [{"id": "moto-yamaha-mt07", "brand": "Yamaha", "model": "MT-07", "type": "naked", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 6900, "financeFrom": 119, "year": 2021, "km": 12500, "cc": "689 cc", "power": "73.4 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_yamaha_mt07.jpg", "description": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión integral en taller oficial.", "features": ["Motor bicilíndrico Crossplane CP2 de 689 cc", "12.500 km certificados con libro de mantenimiento", "Limitada / limitable para carnet A2", "Frenos de doble disco delantero de 298 mm con ABS", "12 meses de garantía europea completa"]}, {"id": "moto-honda-cbr500r", "brand": "Honda", "model": "CBR 500R", "type": "sport", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5800, "financeFrom": 99, "year": 2022, "km": 8300, "cc": "471 cc", "power": "48 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_cbr500r.jpg", "description": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.", "features": ["Potencia exacta de 35 kW (48 CV) para carnet A2 directo", "Horquilla invertida Showa SFF-BP de 41 mm", "Solo 8.300 km reales garantizados", "Embrague antirrebote asistido y cuadro LCD invertido", "Garantía oficial y cambio de titular incluido"]}, {"id": "moto-kawasaki-ninja650", "brand": "Kawasaki", "model": "Ninja 650", "type": "sport", "condition": "nueva", "status": "destacada", "badge": "Nueva", "priceCash": 7900, "financeFrom": 139, "year": 2024, "km": 0, "cc": "649 cc", "power": "68 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_kawasaki_ninja650.jpg", "description": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.", "features": ["0 km nueva a estrenar", "Pantalla TFT color con Bluetooth Rideology", "Kit de limitación A2 disponible sin coste extra", "Garantía oficial Kawasaki de hasta 4 años", "Matriculación y puesta en calle inmediata"]}, {"id": "moto-suzuki-vstrom650", "brand": "Suzuki", "model": "V-Strom 650", "type": "trail", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5500, "financeFrom": 95, "year": 2020, "km": 18200, "cc": "645 cc", "power": "70 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_suzuki_vstrom650.jpg", "description": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.", "features": ["Llantas de radios doradas DID Tubeless", "Motor bicilíndrico en V a 90° de máxima fiabilidad", "Control de tracción STCS regulable en 2 modos y desconectable", "Defensas de motor y cubrepuños originales", "Revisión completa de 60 puntos y 1 año de garantía"]}, {"id": "moto-peugeot-metropolis", "brand": "Peugeot", "model": "Metropolis 400 Active (3 ruedas)", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "379 km certificados", "priceCash": 6500, "financeFrom": null, "year": 2021, "km": 379, "cc": "400 cc", "power": "36 CV", "fuel": "Gasolina", "license": "Permiso B (+21 años)", "image": "assets/real_peugeot_metropolis_master.jpg", "description": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad en autovía y ciudad.", "features": ["Conducible con permiso B de coche (L5e)", "Solo 379 km certificados en cuadro digital", "Frenada combinada SBC con sistema antibloqueo ABS", "Sistema de bloqueo de inclinación en parado", "Cofre con capacidad para 2 cascos"]}, {"id": "moto-qj-srk", "brand": "QJ Motor", "model": "SRK 125J", "type": "naked", "condition": "nueva", "status": "disponible", "badge": "Nueva a estrenar", "priceCash": 2999, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "15 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_qj_srk_master.jpg", "description": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV (límite legal para permiso A1/B), iluminación full LED y cuadro LCD digital.", "features": ["Potencia máxima legal: 15 CV", "Refrigeración líquida e inyección electrónica", "Horquilla invertida delantera y frenos de disco ABS", "Garantía legal de 3 años para vehículos nuevos", "Garantía comercial de hasta 6 años"]}, {"id": "moto-honda-sh350", "brand": "Honda", "model": "SH 350i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Edición Sport", "priceCash": 5200, "financeFrom": null, "year": 2022, "km": 11420, "cc": "330 cc", "power": "29.2 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_sh350.jpg", "description": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.", "features": ["Motor Honda eSP+ 29.2 CV con gran aceleración", "Control de par seleccionable Honda (HSTC)", "Ruedas altas de 16 pulgadas para máxima estabilidad", "Llave inteligente Smart Key y toma USB-C bajo el asiento", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-kymco-agility", "brand": "KYMCO", "model": "Agility City PLUS 125 Euro 5+", "type": "scooter", "condition": "nueva", "status": "oferta", "badge": "Oferta especial", "priceCash": 2199, "oldPrice": 2399, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_kymco_agility.jpg", "description": "Scooter urbano de rueda alta líder en fiabilidad. Nueva homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.", "features": ["Vehículo nuevo 0 km a estrenar", "Rueda delantera de 16 pulgadas y frenada combinada CBS", "Suelo plano funcional y gancho portabolsas", "Baúl trasero incluido de serie", "3 años de garantía legal"]}, {"id": "moto-sym-symphony", "brand": "SYM", "model": "Symphony 125 SR (Baúl incluido)", "type": "scooter", "condition": "nueva", "status": "disponible", "badge": "Baúl de serie", "priceCash": 2499, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "11.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_sym_symphony.jpg", "description": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.", "features": ["3 años de garantía legal para vehículos nuevos", "Garantía comercial SYM de hasta 5 años", "Frenada combinada de discos lobulados", "Baúl trasero incluido de fábrica", "Suelo plano y luz diurna LED"]}, {"id": "moto-macbor-montana", "brand": "Macbor", "model": "Montana XR1 125 EVO Trail", "type": "trail", "condition": "nueva", "status": "disponible", "badge": "Trail aventura", "priceCash": 3299, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "12.6 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_macbor_montana.jpg", "description": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.", "features": ["Kit de maletas y baúl adventure incluido de serie", "Defensas perimetrales y cubre cárter", "Horquilla delantera invertida y monoamortiguador trasero", "Iluminación full LED con tomas auxiliares de carga", "3 años de garantía legal"]}, {"id": "moto-kymco-kxct", "brand": "KYMCO", "model": "K-XCT 125i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión recién hecha", "priceCash": 2350, "financeFrom": null, "year": 2016, "km": 47598, "cc": "125 cc", "power": "14.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_kymco_kxct_master.jpg", "description": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.", "features": ["Motor 125 cc refrigerado por líquido con 14.4 CV", "Frenos antibloqueo ABS de doble canal", "Mantenimiento preventivo recién completado en taller", "Neumáticos y pastillas de freno en óptimo estado", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-suzuki-burgman", "brand": "Suzuki", "model": "Burgman 250 Executive", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión completa de motor", "priceCash": 1350, "financeFrom": null, "year": 2005, "km": 86258, "cc": "250 cc", "power": "23 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_suzuki_burgman_master.jpg", "description": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales y excelente protección aerodinámica.", "features": ["Cilindro y pistón nuevos instalados por nuestros mecánicos", "Enorme maletero bajo asiento para 2 cascos integrales", "Pantalla parabrisas protectora de alta cobertura", "Asiento con respaldo ergonómico para conductor y pasajero", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-peugeot-citystar", "brand": "Peugeot", "model": "Citystar 50 RS Sport", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Edición deportiva", "priceCash": 1050, "financeFrom": null, "year": 2017, "km": 36238, "cc": "50 cc", "power": "4.8 CV", "fuel": "Gasolina", "license": "Permiso AM o B", "image": "assets/real_peugeot_citystar_master.jpg", "description": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.", "features": ["Conducible con permiso AM (desde los 15 años) o B de coche", "Doble disco de freno delantero y trasero", "Gran guantera delantera y plataforma espaciosa", "Consumo mínimo inferior a 2 litros a los 100 km", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-rieju-mrt", "brand": "Rieju", "model": "MRT 50 Pro Black Series Supermotard", "type": "ciclomotor", "condition": "nueva", "status": "disponible", "badge": "Motor 2T Minarelli", "priceCash": 3899, "financeFrom": null, "year": 2026, "km": 0, "cc": "50 cc", "power": "5 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/real_rieju_mrt_master.jpg", "description": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.", "features": ["Motor Minarelli AM6 de 2 tiempos con refrigeración líquida", "Horquilla invertida Pro y monoamortiguador con bieletas", "Basculante de aluminio y manillar de sección variable", "Discos wave lobulados de gran mordida", "3 años de garantía legal para vehículos nuevos"]}, {"id": "moto-hanway-furious", "brand": "Hanway", "model": "Furious NK 125 Naked", "type": "naked", "condition": "ocasion", "status": "disponible", "badge": "2.500 km certificados", "priceCash": 1950, "financeFrom": null, "year": 2023, "km": 2500, "cc": "125 cc", "power": "14.9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_hanway_furious.jpg", "description": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.", "features": ["Motor multiválvulas DOHC 14.9 CV refrigerado por líquido", "Pantalla digital a color TFT con indicador de marcha", "Horquilla invertida delantera deportiva", "Iluminación full LED delantera y trasera", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-vespa-lx", "brand": "Vespa", "model": "LX 50 2T Clásica", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Ocasión económica", "priceCash": 950, "financeFrom": null, "year": 2008, "km": 28410, "cc": "50 cc", "power": "4.3 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/vespa_lx_hd.jpg", "description": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía en trayectos urbanos.", "features": ["Carrocería clásica de chapa de acero", "Motor 2T de respuesta inmediata y bajo coste de mantenimiento", "Arranque eléctrico y por pedal de apoyo", "Neumáticos y frenos revisados por mecánicos", "Mínimo 1 año de garantía legal de taller"]}, {"id": "moto-benda-napoleon", "brand": "Benda", "model": "Napoleon Bob 250 Custom Bobber", "type": "custom", "condition": "nueva", "status": "disponible", "badge": "Diseño exclusivo", "priceCash": 4290, "financeFrom": null, "year": 2026, "km": 0, "cc": "250 cc", "power": "26 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_benda_napoleon.jpg", "description": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.", "features": ["Motor bicilíndrico en V de refrigeración líquida", "Suspensión delantera con sistema tipo Hossack / girder", "Frenos de disco con sistema antibloqueo ABS", "Asiento monoplaza flotante estilo bobber clásico", "3 años de garantía legal para vehículos nuevos"]}, {"id": "moto-yamaha-virago", "brand": "Yamaha", "model": "XV 535 SP Virago Custom", "type": "custom", "condition": "ocasion", "status": "vendida", "badge": "Clásica revisada", "priceCash": 2500, "financeFrom": null, "year": 1998, "km": 45978, "cc": "535 cc", "power": "46 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_yamaha_virago_master.jpg", "description": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero.", "features": ["Motor bicilíndrico en V clásico", "Transmisión por cardán sin mantenimiento", "Alforjas laterales de cuero incluidas", "Pintura y cromados cuidados", "Vehículo entregado a su nuevo propietario"]}], "boutique": [{"id": "boutique-casco-integral-mt", "name": "Casco integral MT Helmets Thunder 4 SV", "category": "casco", "tag": "Homologación ECE 22.06", "price": 119, "image": "assets/boutique_casco_mt_thunder.jpg", "description": "Casco integral de alta seguridad bajo la normativa europea ECE 22.06. Visor solar interior escamoteable y pantalla anti-rayas.", "sizes": "S, M, L, XL, XXL"}, {"id": "boutique-casco-jet-ls2", "name": "Casco jet LS2 OF562 Airflow", "category": "casco", "tag": "Urbano y ligero", "price": 69, "image": "assets/boutique_casco_ls2_airflow.jpg", "description": "Casco abierto ideal para scooter y ciudad. Pantalla frontal amplia de protección frente al viento y cierre micrométrico reforzado.", "sizes": "XS, S, M, L, XL"}, {"id": "boutique-casco-modular", "name": "Casco modular LS2 Strobe II", "category": "casco", "tag": "Doble homologación P/J", "price": 149, "image": "assets/boutique_casco_ls2_strobe.jpg", "description": "Casco abatible con doble homologación P/J (apto para circular legalmente abierto o cerrado). Visor solar integrado y calota KPA de alta absorción.", "sizes": "S, M, L, XL, XXL"}, {"id": "boutique-chaqueta-alpinestars", "name": "Chaqueta de cordura 4 estaciones Alpinestars", "category": "chaqueta", "tag": "100 % impermeable · 4 estaciones", "price": 189, "image": "assets/boutique_chaqueta_alpinestars.jpg", "description": "Chaqueta touring impermeable con forro térmico desmontable para invierno, tomas de aire para verano y protecciones homologadas en codos, hombros y espalda.", "sizes": "M, L, XL, XXL"}, {"id": "boutique-guantes-carbono", "name": "Guantes técnicos de piel con protecciones de carbono", "category": "guantes", "tag": "Protección nivel 1 KP · Refuerzos carbono", "price": 49, "image": "assets/boutique_guantes_carbono.jpg", "description": "Piel flor con refuerzos en palma, protecciones rígidas en nudillos y tejido táctil en dedos para manejo de pantallas.", "sizes": "S, M, L, XL"}, {"id": "boutique-antirrobo-alarma", "name": "Antirrobo de disco con alarma 120 dB", "category": "accesorio", "tag": "Alarma 120 dB · Sensor movimiento", "price": 39, "image": "assets/boutique_antirrobo_disco.jpg", "description": "Candado para disco de freno con sensor de vibración y sirena de 120 dB. Incluye cable recordatorio de advertencia y llave de seguridad.", "sizes": "Universal"}], "reservations": [{"id": "res-1792397354280", "clientName": "Prueba Verificacion", "clientPhone": "612345678", "motoId": "", "motoName": "QJ Motor SRK 125J", "price": 2999, "mode": "Contado", "status": "pendiente", "date": "19/10/2026 10:09", "notes": ""}, {"id": "res-1792003342675", "clientName": "Carlos Gómez Prueba", "clientPhone": "677889900", "motoId": "moto-peugeot-metropolis", "motoName": "Peugeot Metropolis 400 Active (3 ruedas)", "price": 6500, "mode": "contado", "status": "pendiente", "date": "14/10/2026 20:42", "notes": ""}, {"id": "res-1792000188620", "clientName": "Carlos Gómez Prueba", "clientPhone": "677889900", "motoId": "moto-peugeot-metropolis", "motoName": "Peugeot Metropolis 400 Active (3 ruedas)", "price": 6500, "mode": "contado", "status": "pendiente", "date": "14/10/2026 19:49", "notes": ""}, {"id": "res-1791999951030", "clientName": "Test Reserva", "clientPhone": "622334455", "motoId": "moto-peugeot-metropolis", "motoName": "Motocicleta Exposición", "price": 0, "mode": "contado", "status": "pendiente", "date": "14/10/2026 19:45", "notes": ""}], "messages": [{"id": "msg-1792397354297", "name": "Prueba Mensaje", "phone": "644556677", "message": "Consulta de disponibilidad en tienda", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "msg-1792003345238", "name": "Marta Sánchez", "phone": "611998877", "message": "¿Tenéis disponibilidad de casco LS2 en talla M?", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "msg-1792000195297", "name": "Marta Sánchez", "phone": "611998877", "message": "¿Tenéis disponibilidad de casco LS2 en talla M?", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "msg-1791999951024", "name": "Test Cliente", "phone": "611223344", "message": "Consulta de prueba", "date": "14/10/2026 19:45", "status": "pendiente"}], "appraisals": [{"id": "apr-1792397354291", "name": "Prueba Tasacion", "phone": "622334455", "brand": "Honda", "model": "SH 125", "year": 2022, "km": "8000", "state": "bueno", "message": "", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "apr-1792003343773", "name": "Laura Martínez", "phone": "688990011", "brand": "Yamaha", "model": "XMAX 125", "year": "2023", "km": "8500", "state": "muy_bueno", "message": "", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "apr-1792000191517", "name": "Laura Martínez", "phone": "688990011", "brand": "Yamaha", "model": "XMAX 125", "year": "2023", "km": "8500", "state": "muy_bueno", "message": "", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "apr-1791999951033", "name": "Test Tasacion", "phone": "633445566", "brand": "Honda", "model": "SH 125", "year": "2022", "km": "10000", "state": "bueno", "message": "", "date": "14/10/2026 19:45", "status": "pendiente"}], "workshops": [{"id": "wkp-1792397354294", "name": "Prueba Taller", "phone": "633445566", "moto": "Kymco Agility", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "wkp-1792003344507", "name": "David Ruiz", "phone": "699001122", "moto": "Honda Forza 125", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "wkp-1792000192811", "name": "David Ruiz", "phone": "699001122", "moto": "Honda Forza 125", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "wkp-1791999951036", "name": "Test Taller", "phone": "644556677", "moto": "Kymco Agility", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 19:45", "status": "pendiente"}], "reviews": [{"id": "rev-1", "name": "Alejandro Rodríguez", "city": "Orihuela", "rating": 5, "date": "Hace 2 semanas", "text": "Trato inmejorable de principio a fin. Compré mi Kymco de ocasión y me la entregaron totalmente revisada, transferida y con garantía por escrito de taller. Da gusto tratar con profesionales de toda la vida en Orihuela.", "moto": "Kymco Agility City 125"}, {"id": "rev-2", "name": "Carlos Murcia", "city": "Redován (Alicante)", "rating": 5, "date": "Hace 1 mes", "text": "Llevo el mantenimiento de mi scooter aquí desde hace más de 4 años. Son rápidos, honestos con los presupuestos y conocen perfectamente la mecánica multimarca. Taller 100% de confianza.", "moto": "Servicio Oficial Taller"}, {"id": "rev-3", "name": "Vicente Gilabert", "city": "Orihuela", "rating": 5, "date": "Hace 3 semanas", "text": "Excelente atención al cliente. Me asesoraron para financiar mi moto de 125 cc con una cuota mensual comodísima de 55 €/mes. Todo el papeleo listo en menos de 24 horas y me la llevé puesta.", "moto": "QJ Motor SRK 125J"}, {"id": "rev-4", "name": "Sonia Pastor", "city": "Callosa de Segura", "rating": 5, "date": "Hace 1 mes", "text": "Gran stock de cascos homologados ECE 22.06 y accesorios. Me atendieron con mucha paciencia para dar con mi talla exacta. Trato cercano, profesional y precios muy competitivos.", "moto": "Boutique & Casco LS2"}], "posts": [{"id": "post-1", "title": "¡Entrega de hoy en Orihuela!", "date": "Hoy · 11:30", "image": "assets/real_peugeot_metropolis_master.jpg", "text": "Enhorabuena a David por estrenar su Peugeot Metropolis 400 Active con solo 379 km certificados. ¡A devorar kilómetros con la máxima seguridad de sus 3 ruedas!", "likes": 54, "tag": "Entrega de Vehículo"}, {"id": "post-2", "title": "Nueva entrada en Showroom", "date": "Ayer · 17:45", "image": "assets/real_qj_srk_master.jpg", "text": "Recién salida de caja: QJ Motor SRK 125J en acabado deportivo. Conducible con carnet de coche B. ¡Ven a probarla a Calle San Agustín 18!", "likes": 68, "tag": "Nueva a Estrenar"}, {"id": "post-3", "title": "Seguridad Homologada ECE 22.06", "date": "Esta semana", "image": "assets/boutique_casco_ls2_strobe.jpg", "text": "Renovamos nuestra boutique con los nuevos cascos modulares LS2 e integrales MT con la estricta homologación europea ECE 22.06. Tu seguridad es lo primero.", "likes": 41, "tag": "Boutique & Accesorios"}]};
-    let appData = INITIAL_STORE;
+    let appData = {"business": {"name": "Motorcycle Store Orero", "tagline": "Concesionario multimarca y taller especializado en Orihuela", "location": "Calle San Agustín, 18, 03300 Orihuela, Alicante", "phone": "966 74 01 20", "phoneClean": "+34966740120", "email": "info@motorcyclestoreorero.com", "hours": "L-V: 09:30 - 13:30 / 16:30 - 20:00 · Sáb: 10:00 - 13:30", "rating": "4.8", "reviewsCount": "85 reseñas verificadas en Google", "mapsUrl": "https://www.google.com/maps/place/MOTORCYCLE+STORE+ORERO/@38.083664,-0.9477571,17z/data=!3m1!4b1!4m6!3m5!1s0xd63991edb7a50a3:0xa7b6fa478890154c!8m2!3d38.083664!4d-0.9477571!16s%2Fg%2F12qhg48_5", "notice": "Motos de ocasión garantizadas y modelos nuevos en stock en Orihuela · Financiación sujeta a aprobación", "noticeActive": true, "marqueeText": "Motos de ocasión garantizadas ✦ Orihuela (Calle San Agustín, 18) ✦ Financiación a tu medida ✦ Taller multimarca con diagnosis ✦ Boutique y cascos ECE 22.06 ✦ Tel: 966 74 01 20 ✦ Marcas multimarca destacadas ✦", "facebook": "https://www.facebook.com/oreromotor/", "motosNet": "https://motos.coches.net/concesionario/motorcyclestoreorero/", "milanuncios": "https://www.milanuncios.com/tiendas-profesionales/motorcycle-store-orero-524553"}, "motorcycles": [{"id": "moto-yamaha-mt07", "brand": "Yamaha", "model": "MT-07", "type": "naked", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 6900, "financeFrom": 119, "year": 2021, "km": 12500, "cc": "689 cc", "power": "73.4 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_yamaha_mt07.jpg", "description": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión integral en taller oficial.", "features": ["Motor bicilíndrico Crossplane CP2 de 689 cc", "12.500 km certificados con libro de mantenimiento", "Limitada / limitable para carnet A2", "Frenos de doble disco delantero de 298 mm con ABS", "12 meses de garantía europea completa"], "images": ["assets/moto_yamaha_mt07.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-honda-cbr500r", "brand": "Honda", "model": "CBR 500R", "type": "sport", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5800, "financeFrom": 99, "year": 2022, "km": 8300, "cc": "471 cc", "power": "48 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_cbr500r.jpg", "description": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.", "features": ["Potencia exacta de 35 kW (48 CV) para carnet A2 directo", "Horquilla invertida Showa SFF-BP de 41 mm", "Solo 8.300 km reales garantizados", "Embrague antirrebote asistido y cuadro LCD invertido", "Garantía oficial y cambio de titular incluido"], "images": ["assets/moto_honda_cbr500r.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-kawasaki-ninja650", "brand": "Kawasaki", "model": "Ninja 650", "type": "sport", "condition": "nueva", "status": "destacada", "badge": "Nueva", "priceCash": 7900, "financeFrom": 139, "year": 2024, "km": 0, "cc": "649 cc", "power": "68 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_kawasaki_ninja650.jpg", "description": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.", "features": ["0 km nueva a estrenar", "Pantalla TFT color con Bluetooth Rideology", "Kit de limitación A2 disponible sin coste extra", "Garantía oficial Kawasaki de hasta 4 años", "Matriculación y puesta en calle inmediata"], "images": ["assets/moto_kawasaki_ninja650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-suzuki-vstrom650", "brand": "Suzuki", "model": "V-Strom 650", "type": "trail", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5500, "financeFrom": 95, "year": 2020, "km": 18200, "cc": "645 cc", "power": "70 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_suzuki_vstrom650.jpg", "description": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.", "features": ["Llantas de radios doradas DID Tubeless", "Motor bicilíndrico en V a 90° de máxima fiabilidad", "Control de tracción STCS regulable en 2 modos y desconectable", "Defensas de motor y cubrepuños originales", "Revisión completa de 60 puntos y 1 año de garantía"], "images": ["assets/moto_suzuki_vstrom650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-peugeot-metropolis", "brand": "Peugeot", "model": "Metropolis 400 Active (3 ruedas)", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "379 km certificados", "priceCash": 6500, "financeFrom": null, "year": 2021, "km": 379, "cc": "400 cc", "power": "36 CV", "fuel": "Gasolina", "license": "Permiso B (+21 años)", "image": "assets/real_peugeot_metropolis_master.jpg", "description": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad en autovía y ciudad.", "features": ["Conducible con permiso B de coche (L5e)", "Solo 379 km certificados en cuadro digital", "Frenada combinada SBC con sistema antibloqueo ABS", "Sistema de bloqueo de inclinación en parado", "Cofre con capacidad para 2 cascos"], "images": ["assets/real_peugeot_metropolis_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-qj-srk", "brand": "QJ Motor", "model": "SRK 125J", "type": "naked", "condition": "nueva", "status": "disponible", "badge": "Nueva a estrenar", "priceCash": 2999, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "15 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_qj_srk_master.jpg", "description": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV (límite legal para permiso A1/B), iluminación full LED y cuadro LCD digital.", "features": ["Potencia máxima legal: 15 CV", "Refrigeración líquida e inyección electrónica", "Horquilla invertida delantera y frenos de disco ABS", "Garantía legal de 3 años para vehículos nuevos", "Garantía comercial de hasta 6 años"], "images": ["assets/real_qj_srk_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-honda-sh350", "brand": "Honda", "model": "SH 350i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Edición Sport", "priceCash": 5200, "financeFrom": null, "year": 2022, "km": 11420, "cc": "330 cc", "power": "29.2 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_sh350.jpg", "description": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.", "features": ["Motor Honda eSP+ 29.2 CV con gran aceleración", "Control de par seleccionable Honda (HSTC)", "Ruedas altas de 16 pulgadas para máxima estabilidad", "Llave inteligente Smart Key y toma USB-C bajo el asiento", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/moto_honda_sh350.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-kymco-agility", "brand": "KYMCO", "model": "Agility City PLUS 125 Euro 5+", "type": "scooter", "condition": "nueva", "status": "oferta", "badge": "Oferta especial", "priceCash": 2199, "oldPrice": 2399, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_kymco_agility.jpg", "description": "Scooter urbano de rueda alta líder en fiabilidad. Nueva homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.", "features": ["Vehículo nuevo 0 km a estrenar", "Rueda delantera de 16 pulgadas y frenada combinada CBS", "Suelo plano funcional y gancho portabolsas", "Baúl trasero incluido de serie", "3 años de garantía legal"], "images": ["assets/moto_kymco_agility.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-sym-symphony", "brand": "SYM", "model": "Symphony 125 SR (Baúl incluido)", "type": "scooter", "condition": "nueva", "status": "disponible", "badge": "Baúl de serie", "priceCash": 2499, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "11.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_sym_symphony.jpg", "description": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.", "features": ["3 años de garantía legal para vehículos nuevos", "Garantía comercial SYM de hasta 5 años", "Frenada combinada de discos lobulados", "Baúl trasero incluido de fábrica", "Suelo plano y luz diurna LED"], "images": ["assets/moto_sym_symphony.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-macbor-montana", "brand": "Macbor", "model": "Montana XR1 125 EVO Trail", "type": "trail", "condition": "nueva", "status": "disponible", "badge": "Trail aventura", "priceCash": 3299, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "12.6 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_macbor_montana.jpg", "description": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.", "features": ["Kit de maletas y baúl adventure incluido de serie", "Defensas perimetrales y cubre cárter", "Horquilla delantera invertida y monoamortiguador trasero", "Iluminación full LED con tomas auxiliares de carga", "3 años de garantía legal"], "images": ["assets/moto_macbor_montana.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-kymco-kxct", "brand": "KYMCO", "model": "K-XCT 125i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión recién hecha", "priceCash": 2350, "financeFrom": null, "year": 2016, "km": 47598, "cc": "125 cc", "power": "14.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_kymco_kxct_master.jpg", "description": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.", "features": ["Motor 125 cc refrigerado por líquido con 14.4 CV", "Frenos antibloqueo ABS de doble canal", "Mantenimiento preventivo recién completado en taller", "Neumáticos y pastillas de freno en óptimo estado", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_kymco_kxct_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-suzuki-burgman", "brand": "Suzuki", "model": "Burgman 250 Executive", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión completa de motor", "priceCash": 1350, "financeFrom": null, "year": 2005, "km": 86258, "cc": "250 cc", "power": "23 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_suzuki_burgman_master.jpg", "description": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales y excelente protección aerodinámica.", "features": ["Cilindro y pistón nuevos instalados por nuestros mecánicos", "Enorme maletero bajo asiento para 2 cascos integrales", "Pantalla parabrisas protectora de alta cobertura", "Asiento con respaldo ergonómico para conductor y pasajero", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_suzuki_burgman_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-peugeot-citystar", "brand": "Peugeot", "model": "Citystar 50 RS Sport", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Edición deportiva", "priceCash": 1050, "financeFrom": null, "year": 2017, "km": 36238, "cc": "50 cc", "power": "4.8 CV", "fuel": "Gasolina", "license": "Permiso AM o B", "image": "assets/real_peugeot_citystar_master.jpg", "description": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.", "features": ["Conducible con permiso AM (desde los 15 años) o B de coche", "Doble disco de freno delantero y trasero", "Gran guantera delantera y plataforma espaciosa", "Consumo mínimo inferior a 2 litros a los 100 km", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_peugeot_citystar_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-rieju-mrt", "brand": "Rieju", "model": "MRT 50 Pro Black Series Supermotard", "type": "ciclomotor", "condition": "nueva", "status": "disponible", "badge": "Motor 2T Minarelli", "priceCash": 3899, "financeFrom": null, "year": 2026, "km": 0, "cc": "50 cc", "power": "5 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/real_rieju_mrt_master.jpg", "description": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.", "features": ["Motor Minarelli AM6 de 2 tiempos con refrigeración líquida", "Horquilla invertida Pro y monoamortiguador con bieletas", "Basculante de aluminio y manillar de sección variable", "Discos wave lobulados de gran mordida", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/real_rieju_mrt_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-hanway-furious", "brand": "Hanway", "model": "Furious NK 125 Naked", "type": "naked", "condition": "ocasion", "status": "disponible", "badge": "2.500 km certificados", "priceCash": 1950, "financeFrom": null, "year": 2023, "km": 2500, "cc": "125 cc", "power": "14.9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_hanway_furious.jpg", "description": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.", "features": ["Motor multiválvulas DOHC 14.9 CV refrigerado por líquido", "Pantalla digital a color TFT con indicador de marcha", "Horquilla invertida delantera deportiva", "Iluminación full LED delantera y trasera", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/moto_hanway_furious.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-vespa-lx", "brand": "Vespa", "model": "LX 50 2T Clásica", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Ocasión económica", "priceCash": 950, "financeFrom": null, "year": 2008, "km": 28410, "cc": "50 cc", "power": "4.3 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/vespa_lx_hd.jpg", "description": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía en trayectos urbanos.", "features": ["Carrocería clásica de chapa de acero", "Motor 2T de respuesta inmediata y bajo coste de mantenimiento", "Arranque eléctrico y por pedal de apoyo", "Neumáticos y frenos revisados por mecánicos", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/vespa_lx_hd.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-benda-napoleon", "brand": "Benda", "model": "Napoleon Bob 250 Custom Bobber", "type": "custom", "condition": "nueva", "status": "disponible", "badge": "Diseño exclusivo", "priceCash": 4290, "financeFrom": null, "year": 2026, "km": 0, "cc": "250 cc", "power": "26 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_benda_napoleon.jpg", "description": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.", "features": ["Motor bicilíndrico en V de refrigeración líquida", "Suspensión delantera con sistema tipo Hossack / girder", "Frenos de disco con sistema antibloqueo ABS", "Asiento monoplaza flotante estilo bobber clásico", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/moto_benda_napoleon.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, {"id": "moto-yamaha-virago", "brand": "Yamaha", "model": "XV 535 SP Virago Custom", "type": "custom", "condition": "ocasion", "status": "vendida", "badge": "Clásica revisada", "priceCash": 2500, "financeFrom": null, "year": 1998, "km": 45978, "cc": "535 cc", "power": "46 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_yamaha_virago_master.jpg", "description": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero.", "features": ["Motor bicilíndrico en V clásico", "Transmisión por cardán sin mantenimiento", "Alforjas laterales de cuero incluidas", "Pintura y cromados cuidados", "Vehículo entregado a su nuevo propietario"], "images": ["assets/real_yamaha_virago_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}], "boutique": [{"id": "boutique-casco-integral-mt", "name": "Casco integral MT Helmets Thunder 4 SV", "category": "casco", "tag": "Homologación ECE 22.06", "price": 119, "image": "assets/boutique_casco_mt_thunder.jpg", "description": "Casco integral de alta seguridad bajo la normativa europea ECE 22.06. Visor solar interior escamoteable y pantalla anti-rayas.", "sizes": "S, M, L, XL, XXL"}, {"id": "boutique-casco-jet-ls2", "name": "Casco jet LS2 OF562 Airflow", "category": "casco", "tag": "Urbano y ligero", "price": 69, "image": "assets/boutique_casco_ls2_airflow.jpg", "description": "Casco abierto ideal para scooter y ciudad. Pantalla frontal amplia de protección frente al viento y cierre micrométrico reforzado.", "sizes": "XS, S, M, L, XL"}, {"id": "boutique-casco-modular", "name": "Casco modular LS2 Strobe II", "category": "casco", "tag": "Doble homologación P/J", "price": 149, "image": "assets/boutique_casco_ls2_strobe.jpg", "description": "Casco abatible con doble homologación P/J (apto para circular legalmente abierto o cerrado). Visor solar integrado y calota KPA de alta absorción.", "sizes": "S, M, L, XL, XXL"}, {"id": "boutique-chaqueta-alpinestars", "name": "Chaqueta de cordura 4 estaciones Alpinestars", "category": "chaqueta", "tag": "100 % impermeable · 4 estaciones", "price": 189, "image": "assets/boutique_chaqueta_alpinestars.jpg", "description": "Chaqueta touring impermeable con forro térmico desmontable para invierno, tomas de aire para verano y protecciones homologadas en codos, hombros y espalda.", "sizes": "M, L, XL, XXL"}, {"id": "boutique-guantes-carbono", "name": "Guantes técnicos de piel con protecciones de carbono", "category": "guantes", "tag": "Protección nivel 1 KP · Refuerzos carbono", "price": 49, "image": "assets/boutique_guantes_carbono.jpg", "description": "Piel flor con refuerzos en palma, protecciones rígidas en nudillos y tejido táctil en dedos para manejo de pantallas.", "sizes": "S, M, L, XL"}, {"id": "boutique-antirrobo-alarma", "name": "Antirrobo de disco con alarma 120 dB", "category": "accesorio", "tag": "Alarma 120 dB · Sensor movimiento", "price": 39, "image": "assets/boutique_antirrobo_disco.jpg", "description": "Candado para disco de freno con sensor de vibración y sirena de 120 dB. Incluye cable recordatorio de advertencia y llave de seguridad.", "sizes": "Universal"}], "reservations": [{"id": "res-1792397354280", "clientName": "Prueba Verificacion", "clientPhone": "612345678", "motoId": "", "motoName": "QJ Motor SRK 125J", "price": 2999, "mode": "Contado", "status": "pendiente", "date": "19/10/2026 10:09", "notes": ""}, {"id": "res-1792003342675", "clientName": "Carlos Gómez Prueba", "clientPhone": "677889900", "motoId": "moto-peugeot-metropolis", "motoName": "Peugeot Metropolis 400 Active (3 ruedas)", "price": 6500, "mode": "contado", "status": "pendiente", "date": "14/10/2026 20:42", "notes": ""}, {"id": "res-1792000188620", "clientName": "Carlos Gómez Prueba", "clientPhone": "677889900", "motoId": "moto-peugeot-metropolis", "motoName": "Peugeot Metropolis 400 Active (3 ruedas)", "price": 6500, "mode": "contado", "status": "pendiente", "date": "14/10/2026 19:49", "notes": ""}, {"id": "res-1791999951030", "clientName": "Test Reserva", "clientPhone": "622334455", "motoId": "moto-peugeot-metropolis", "motoName": "Motocicleta Exposición", "price": 0, "mode": "contado", "status": "pendiente", "date": "14/10/2026 19:45", "notes": ""}], "messages": [{"id": "msg-1792397354297", "name": "Prueba Mensaje", "phone": "644556677", "message": "Consulta de disponibilidad en tienda", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "msg-1792003345238", "name": "Marta Sánchez", "phone": "611998877", "message": "¿Tenéis disponibilidad de casco LS2 en talla M?", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "msg-1792000195297", "name": "Marta Sánchez", "phone": "611998877", "message": "¿Tenéis disponibilidad de casco LS2 en talla M?", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "msg-1791999951024", "name": "Test Cliente", "phone": "611223344", "message": "Consulta de prueba", "date": "14/10/2026 19:45", "status": "pendiente"}], "appraisals": [{"id": "apr-1792397354291", "name": "Prueba Tasacion", "phone": "622334455", "brand": "Honda", "model": "SH 125", "year": 2022, "km": "8000", "state": "bueno", "message": "", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "apr-1792003343773", "name": "Laura Martínez", "phone": "688990011", "brand": "Yamaha", "model": "XMAX 125", "year": "2023", "km": "8500", "state": "muy_bueno", "message": "", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "apr-1792000191517", "name": "Laura Martínez", "phone": "688990011", "brand": "Yamaha", "model": "XMAX 125", "year": "2023", "km": "8500", "state": "muy_bueno", "message": "", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "apr-1791999951033", "name": "Test Tasacion", "phone": "633445566", "brand": "Honda", "model": "SH 125", "year": "2022", "km": "10000", "state": "bueno", "message": "", "date": "14/10/2026 19:45", "status": "pendiente"}], "workshops": [{"id": "wkp-1792397354294", "name": "Prueba Taller", "phone": "633445566", "moto": "Kymco Agility", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "19/10/2026 10:09", "status": "pendiente"}, {"id": "wkp-1792003344507", "name": "David Ruiz", "phone": "699001122", "moto": "Honda Forza 125", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 20:42", "status": "pendiente"}, {"id": "wkp-1792000192811", "name": "David Ruiz", "phone": "699001122", "moto": "Honda Forza 125", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 19:49", "status": "pendiente"}, {"id": "wkp-1791999951036", "name": "Test Taller", "phone": "644556677", "moto": "Kymco Agility", "service": "mantenimiento", "preferredTime": "manana", "notes": "", "date": "14/10/2026 19:45", "status": "pendiente"}], "reviews": [{"id": "rev-1", "name": "Alejandro Rodríguez", "city": "Orihuela", "rating": 5, "date": "Hace 2 semanas", "text": "Trato inmejorable de principio a fin. Compré mi Kymco de ocasión y me la entregaron totalmente revisada, transferida y con garantía por escrito de taller. Da gusto tratar con profesionales de toda la vida en Orihuela.", "moto": "Kymco Agility City 125"}, {"id": "rev-2", "name": "Carlos Murcia", "city": "Redován (Alicante)", "rating": 5, "date": "Hace 1 mes", "text": "Llevo el mantenimiento de mi scooter aquí desde hace más de 4 años. Son rápidos, honestos con los presupuestos y conocen perfectamente la mecánica multimarca. Taller 100% de confianza.", "moto": "Servicio Oficial Taller"}, {"id": "rev-3", "name": "Vicente Gilabert", "city": "Orihuela", "rating": 5, "date": "Hace 3 semanas", "text": "Excelente atención al cliente. Me asesoraron para financiar mi moto de 125 cc con una cuota mensual comodísima de 55 €/mes. Todo el papeleo listo en menos de 24 horas y me la llevé puesta.", "moto": "QJ Motor SRK 125J"}, {"id": "rev-4", "name": "Sonia Pastor", "city": "Callosa de Segura", "rating": 5, "date": "Hace 1 mes", "text": "Gran stock de cascos homologados ECE 22.06 y accesorios. Me atendieron con mucha paciencia para dar con mi talla exacta. Trato cercano, profesional y precios muy competitivos.", "moto": "Boutique & Casco LS2"}], "posts": [{"id": "post-1", "title": "¡Entrega de hoy en Orihuela!", "date": "Hoy · 11:30", "image": "assets/real_peugeot_metropolis_master.jpg", "text": "Enhorabuena a David por estrenar su Peugeot Metropolis 400 Active con solo 379 km certificados. ¡A devorar kilómetros con la máxima seguridad de sus 3 ruedas!", "likes": 54, "tag": "Entrega de Vehículo"}, {"id": "post-2", "title": "Nueva entrada en Showroom", "date": "Ayer · 17:45", "image": "assets/real_qj_srk_master.jpg", "text": "Recién salida de caja: QJ Motor SRK 125J en acabado deportivo. Conducible con carnet de coche B. ¡Ven a probarla a Calle San Agustín 18!", "likes": 68, "tag": "Nueva a Estrenar"}, {"id": "post-3", "title": "Seguridad Homologada ECE 22.06", "date": "Esta semana", "image": "assets/boutique_casco_ls2_strobe.jpg", "text": "Renovamos nuestra boutique con los nuevos cascos modulares LS2 e integrales MT con la estricta homologación europea ECE 22.06. Tu seguridad es lo primero.", "likes": 41, "tag": "Boutique & Accesorios"}]};
     let currentFilter = 'all';
+    let currentLeadFilter = 'all';
+    let uploadedMotoImages = [];
+    let uploadedBoutiqueImage = '';
 
-    // 1. Password Verification (casino18)
+    // Password Verification
     function checkAuth() {
       const auth = sessionStorage.getItem('orero_admin_auth');
       if (auth === 'true') {
@@ -1346,7 +1651,6 @@
       window.location.reload();
     }
 
-    // Toast
     function showToast(text) {
       const t = document.getElementById('adminToast');
       t.textContent = text;
@@ -1354,7 +1658,6 @@
       setTimeout(() => t.classList.remove('show'), 2800);
     }
 
-    // Tab Navigation
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content-panel').forEach(p => p.style.display = 'none');
       document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
@@ -1368,7 +1671,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Data Loading & Syncing
     async function loadData() {
       try {
         const res = await fetch('/api/motorcycle-store-orero/data?t=' + Date.now());
@@ -1376,12 +1678,12 @@
           appData = await res.json();
         }
       } catch(err) {
-        console.log('Usando datos de inicio');
+        console.log('Usando datos locales');
       }
       renderMotosFeed();
       renderLeads();
       renderBoutique();
-      renderPhotoPicker();
+      renderStockPhotoPicker();
     }
 
     async function persistData() {
@@ -1399,7 +1701,7 @@
       } catch(e) {}
     }
 
-    // Render Motos Feed (Marketplace cards)
+    // ════ 1. MOTOS FEED (MARKETPLACE STYLE) ════
     function renderMotosFeed() {
       const container = document.getElementById('motosFeedContainer');
       const query = (document.getElementById('motosSearchInput')?.value || '').toLowerCase().trim();
@@ -1442,12 +1744,15 @@
         const kmStr = m.km ? m.km.toLocaleString('es-ES') + ' km' : '0 km';
         const toggleBtnLabel = isSold ? '🔄 Volver a poner EN VENTA' : '✔️ Marcar como VENDIDA';
         const toggleBtnClass = isSold ? 'is-sold' : 'is-stock';
+        const numPhotos = (m.images && m.images.length) ? m.images.length : 1;
+        const mainImg = (m.images && m.images[0]) ? m.images[0] : (m.image || 'assets/hero_sportbike_dusk.jpg');
 
         return `
           <div class="admin-moto-card">
             <div class="admin-card-media">
-              <img src="${m.image}" alt="${m.brand} ${m.model}" class="admin-card-img" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
+              <img src="${mainImg}" alt="${m.brand} ${m.model}" class="admin-card-img" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
               <span class="status-ribbon ${ribbonClass}">${ribbonLabel}</span>
+              <span class="admin-card-photos-count">📷 ${numPhotos} foto${numPhotos > 1 ? 's' : ''}</span>
             </div>
             <div class="admin-card-body">
               <div class="admin-card-brand">${(m.brand || '').toUpperCase()}</div>
@@ -1479,9 +1784,7 @@
       }).join('');
     }
 
-    function filterMotos() {
-      renderMotosFeed();
-    }
+    function filterMotos() { renderMotosFeed(); }
 
     function applyStatusFilter(status, btn) {
       currentFilter = status;
@@ -1491,29 +1794,28 @@
     }
 
     function toggleMotoSold(id) {
-      const m = appData.motorcycles.find(x => x.id === id);
-      if (!m) return;
-      if (m.status === 'vendida') {
-        m.status = 'disponible';
-        showToast('✓ ' + m.brand + ' ' + m.model + ' marcada como EN VENTA');
+      const moto = (appData.motorcycles || []).find(m => m.id === id);
+      if (!moto) return;
+      if (moto.status === 'vendida') {
+        moto.status = 'disponible';
+        showToast('✓ Moto puesta EN VENTA nuevamente');
       } else {
-        m.status = 'vendida';
-        showToast('✓ ' + m.brand + ' ' + m.model + ' marcada como VENDIDA');
+        moto.status = 'vendida';
+        showToast('✓ Moto marcada como VENDIDA');
       }
       renderMotosFeed();
       persistData();
     }
 
     function editMotoPrice(id) {
-      const m = appData.motorcycles.find(x => x.id === id);
-      if (!m) return;
-      const currentPrice = m.priceCash || 0;
-      const newPriceStr = prompt("Cambiar precio de venta para " + m.brand + " " + m.model + ":", currentPrice);
-      if (newPriceStr !== null) {
-        const parsed = parseInt(newPriceStr.replace(/\D/g, ''));
-        if (!isNaN(parsed) && parsed > 0) {
-          m.priceCash = parsed;
-          showToast("✓ Precio actualizado a " + parsed.toLocaleString('es-ES') + " €");
+      const moto = (appData.motorcycles || []).find(m => m.id === id);
+      if (!moto) return;
+      const nuevo = prompt(`Cambiar precio de contado para ${moto.brand} ${moto.model}:`, moto.priceCash || 0);
+      if (nuevo !== null) {
+        const val = parseInt(nuevo.replace(/\D/g, ''));
+        if (!isNaN(val) && val > 0) {
+          moto.priceCash = val;
+          showToast(`✓ Precio actualizado a ${val.toLocaleString('es-ES')} €`);
           renderMotosFeed();
           persistData();
         }
@@ -1521,23 +1823,78 @@
     }
 
     function deleteMoto(id) {
-      const m = appData.motorcycles.find(x => x.id === id);
-      if (!m) return;
-      if (confirm("¿Seguro que deseas quitar la " + m.brand + " " + m.model + " de la web?")) {
-        appData.motorcycles = appData.motorcycles.filter(x => x.id !== id);
-        showToast('✓ Moto eliminada de la web');
+      const moto = (appData.motorcycles || []).find(m => m.id === id);
+      if (!moto) return;
+      if (confirm(`¿Estás seguro de quitar "${moto.brand} ${moto.model}" de la web?`)) {
+        appData.motorcycles = appData.motorcycles.filter(m => m.id !== id);
+        showToast('✓ Moto retirada de la web');
         renderMotosFeed();
         persistData();
       }
     }
 
-    // Publish New Moto Form
-    function toggleConditionPill(radio) {
-      document.getElementById('labelOcasion').classList.toggle('selected', radio.value === 'ocasion');
-      document.getElementById('labelNueva').classList.toggle('selected', radio.value === 'nueva');
+    // ════ 2. MULTI-PHOTO UPLOAD HANDLING ════
+    function handleMotoFilesSelected(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          const base64Data = event.target.result;
+          
+          // Try uploading to server
+          let finalUrl = base64Data;
+          try {
+            const resp = await fetch('/api/motorcycle-store-orero/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: file.name, data: base64Data })
+            });
+            if (resp.ok) {
+              const resData = await resp.json();
+              if (resData.url) finalUrl = resData.url;
+            }
+          } catch(err) {
+            console.log('Almacenamiento directo base64');
+          }
+
+          uploadedMotoImages.push(finalUrl);
+          renderUploadedPhotos();
+        };
+        reader.readAsDataURL(file);
+      });
     }
 
-    function renderPhotoPicker() {
+    function renderUploadedPhotos() {
+      const container = document.getElementById('uploadedPhotosContainer');
+      if (!uploadedMotoImages.length) {
+        container.innerHTML = '';
+        return;
+      }
+
+      container.innerHTML = uploadedMotoImages.map((src, idx) => `
+        <div class="photo-preview-item ${idx === 0 ? 'is-main' : ''}">
+          <img src="${src}" alt="Foto moto ${idx+1}">
+          ${idx === 0 ? '<span class="photo-badge-main">⭐ Principal</span>' : ''}
+          <button type="button" class="btn-photo-remove" onclick="removeUploadedPhoto(${idx})" title="Quitar foto">✕</button>
+          ${idx !== 0 ? `<button type="button" class="btn-set-main" onclick="setMainPhoto(${idx})">Hacer principal</button>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function setMainPhoto(idx) {
+      const item = uploadedMotoImages.splice(idx, 1)[0];
+      uploadedMotoImages.unshift(item);
+      renderUploadedPhotos();
+    }
+
+    function removeUploadedPhoto(idx) {
+      uploadedMotoImages.splice(idx, 1);
+      renderUploadedPhotos();
+    }
+
+    function renderStockPhotoPicker() {
       const picker = document.getElementById('photoGalleryPicker');
       const gallery = [
         'assets/moto_yamaha_mt07.jpg',
@@ -1554,17 +1911,26 @@
         'assets/real_suzuki_burgman_master.jpg'
       ];
 
-      picker.innerHTML = gallery.map((imgSrc, i) => `
-        <div class="photo-thumb-option ${i === 0 ? 'selected' : ''}" onclick="selectGalleryPhoto('${imgSrc}', this)">
-          <img src="${imgSrc}" alt="Foto moto">
-        </div>
+      picker.innerHTML = gallery.map(src => `
+        <img src="${src}" style="width: 70px; height: 46px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: 0.8; transition: var(--transition);" 
+             onclick="addStockPhotoToMoto('${src}')" 
+             onmouseover="this.style.opacity='1'" 
+             onmouseout="this.style.opacity='0.8'" 
+             title="Haz clic para añadir esta foto">
       `).join('');
     }
 
-    function selectGalleryPhoto(src, el) {
-      document.querySelectorAll('.photo-thumb-option').forEach(o => o.classList.remove('selected'));
-      el.classList.add('selected');
-      document.getElementById('newImage').value = src;
+    function addStockPhotoToMoto(src) {
+      if (!uploadedMotoImages.includes(src)) {
+        uploadedMotoImages.push(src);
+        renderUploadedPhotos();
+        showToast('✓ Foto añadida a la moto');
+      }
+    }
+
+    function toggleConditionPill(radio) {
+      document.querySelectorAll('.radio-pill-label').forEach(l => l.classList.remove('selected'));
+      radio.closest('.radio-pill-label').classList.add('selected');
     }
 
     function handlePublishMoto(e) {
@@ -1577,27 +1943,30 @@
       const km = parseInt(document.getElementById('newKm').value) || 0;
       const cc = document.getElementById('newCc').value.trim() || '125 cc';
       const type = document.getElementById('newType').value;
-      const image = document.getElementById('newImage').value.trim();
       const description = document.getElementById('newDesc').value.trim();
 
+      const images = uploadedMotoImages.length ? [...uploadedMotoImages] : ['assets/moto_yamaha_mt07.jpg'];
+      const primaryImage = images[0];
       const newId = 'moto-' + Date.now();
       const badge = condition === 'nueva' ? 'Nueva 0 km' : 'Ocasión Revisada';
 
       appData.motorcycles.unshift({
         id: newId,
         brand, model, type, condition, status: 'disponible',
-        priceCash, year, km, cc, image, description, badge,
+        priceCash, year, km, cc, image: primaryImage, images, description, badge,
         power: '15 CV', fuel: 'Gasolina'
       });
 
       showToast('🚀 ¡Moto publicada en tu web con éxito!');
       document.getElementById('newMotoForm').reset();
+      uploadedMotoImages = [];
+      renderUploadedPhotos();
       renderMotosFeed();
       persistData();
       switchTab('tab-motos');
     }
 
-    // Render Leads (CRM with Giant Call Button)
+    // ════ 3. CRM LEADS & CITAS ════
     function renderLeads() {
       const container = document.getElementById('leadsContainer');
       const allLeads = [];
@@ -1608,29 +1977,37 @@
       (appData.messages || []).forEach(m => allLeads.push({ ...m, leadType: 'Consulta', leadSource: 'messages', clientName: m.name || 'Usuario', clientPhone: m.phone }));
 
       document.getElementById('tabCountLeads').textContent = allLeads.length;
+      document.getElementById('countLeadAll').textContent = allLeads.length;
 
-      if (allLeads.length === 0) {
+      let filtered = allLeads;
+      if (currentLeadFilter !== 'all') {
+        filtered = allLeads.filter(l => l.leadSource === currentLeadFilter);
+      }
+
+      if (filtered.length === 0) {
         container.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
-            <h3>No tienes solicitudes pendientes</h3>
-            <p style="margin-top: 8px;">Cuando un cliente pida cita o información en tu web, aparecerá aquí con un botón grande para llamarle.</p>
+            <h3>No tienes solicitudes pendientes en esta categoría</h3>
+            <p style="margin-top: 8px;">Pulsa "Anotar Cita Manual" para apuntar una cita recibida por teléfono.</p>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = allLeads.map(l => {
+      container.innerHTML = filtered.map(l => {
         const phone = l.phone || l.clientPhone || '';
         const name = l.name || l.clientName || 'Cliente interesado';
         const date = l.date || 'Reciente';
         const detail = l.service ? `Servicio: ${l.service} en ${l.moto || 'moto'}` :
                        (l.motoName ? `Interesado en: ${l.motoName}` :
                        (l.brand ? `Tasación: ${l.brand} ${l.model}` : (l.message || 'Solicitud de contacto')));
+        const cleanPhone = phone.replace(/\D/g, '');
+        const waUrl = cleanPhone ? `https://wa.me/34${cleanPhone}?text=Hola%20${encodeURIComponent(name)},%20te%20escribo%20de%20Motorcycle%20Store%20Orero` : '#';
 
         return `
           <div class="lead-card">
             <div class="lead-header">
-              <span class="lead-type-tag">${l.leadType}</span>
+              <span class="lead-type-tag ${l.leadSource}">${l.leadType}</span>
               <span class="lead-date">${date}</span>
             </div>
 
@@ -1641,12 +2018,25 @@
               📞 LLAMAR AL CLIENTE (${phone})
             </a>
 
+            ${cleanPhone ? `
+              <a href="${waUrl}" target="_blank" class="btn-lead-whatsapp">
+                💬 ENVIAR WHATSAPP
+              </a>
+            ` : ''}
+
             <button type="button" class="btn-lead-dismiss" onclick="dismissLead('${l.leadSource}', '${l.id}')">
               ✓ Marcar como Atendido / Quitar
             </button>
           </div>
         `;
       }).join('');
+    }
+
+    function filterLeadsBySource(source, btn) {
+      currentLeadFilter = source;
+      document.querySelectorAll('[data-leadfilter]').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderLeads();
     }
 
     function dismissLead(source, id) {
@@ -1658,25 +2048,163 @@
       }
     }
 
-    // Render Boutique
+    function openAddLeadModal() { document.getElementById('addLeadModal').classList.add('open'); }
+    function closeAddLeadModal() { document.getElementById('addLeadModal').classList.remove('open'); }
+
+    function handleAddLeadManual(e) {
+      e.preventDefault();
+      const name = document.getElementById('manualClientName').value.trim();
+      const phone = document.getElementById('manualClientPhone').value.trim();
+      const type = document.getElementById('manualLeadType').value;
+      const detail = document.getElementById('manualLeadDetail').value.trim();
+      const date = document.getElementById('manualLeadDate').value.trim() || 'Anotada hoy';
+
+      if (!appData.workshops) appData.workshops = [];
+      appData.workshops.unshift({
+        id: 'manual-' + Date.now(),
+        name, phone,
+        service: type,
+        moto: detail,
+        date: date
+      });
+
+      showToast('✓ Cita de cliente anotada con éxito');
+      closeAddLeadModal();
+      renderLeads();
+      persistData();
+    }
+
+    // ════ 4. BOUTIQUE & CASCOS FULL CRUD ════
     function renderBoutique() {
       const container = document.getElementById('boutiqueContainer');
       const list = appData.boutique || [];
-      container.innerHTML = list.map(b => `
-        <div class="boutique-admin-card">
-          <div class="boutique-admin-media">
-            <img src="${b.image}" alt="${b.name}" onerror="this.src='assets/real_cascos_entrega_master.jpg'">
+      document.getElementById('tabCountBoutique').textContent = list.length;
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <h3>No hay productos en boutique</h3>
+            <p style="margin-top: 8px;">Pulsa "Añadir Casco o Accesorio" para añadir uno nuevo.</p>
           </div>
-          <div class="boutique-admin-info">
-            <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 4px;">${b.name}</h4>
-            <div style="font-size: 12px; color: var(--red); font-weight: 800; text-transform: uppercase; margin-bottom: 8px;">${b.tag || 'ECE 22.06'}</div>
-            <div style="font-family: var(--font-heading); font-size: 20px; font-weight: 900; color: #fff; margin-top: auto;">${b.price} €</div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(b => {
+        const isStock = b.status !== 'agotado';
+        const stockLabel = isStock ? '✓ En Stock' : '✕ Agotado';
+        const stockBtnStyle = isStock ? 'background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399;' : 'background: rgba(148, 163, 184, 0.15); border: 1px solid rgba(148, 163, 184, 0.3); color: #94a3b8;';
+
+        return `
+          <div class="boutique-admin-card">
+            <div class="boutique-admin-media">
+              <img src="${b.image}" alt="${b.name}" onerror="this.src='assets/real_cascos_entrega_master.jpg'">
+              <span style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); font-size: 11px; font-weight: 800; color: #fff; padding: 3px 8px; border-radius: 4px;">${b.brand || 'MT Helmets'}</span>
+            </div>
+            <div class="boutique-admin-info">
+              <h4 style="font-family: var(--font-heading); font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px;">${b.name}</h4>
+              <div style="font-size: 12px; color: var(--red); font-weight: 800; text-transform: uppercase; margin-bottom: 8px;">${b.tag || 'ECE 22.06'}</div>
+              <div style="font-family: var(--font-heading); font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 12px;">${b.price} €</div>
+
+              <div class="boutique-admin-actions">
+                <button type="button" class="btn-edit-moto" style="${stockBtnStyle}" onclick="toggleBoutiqueStock('${b.id}')">
+                  ${stockLabel}
+                </button>
+                <button type="button" class="btn-edit-moto" onclick="editBoutiquePrice('${b.id}')">
+                  ✏️ Precio
+                </button>
+                <button type="button" class="btn-delete-moto" onclick="deleteBoutiqueItem('${b.id}')">
+                  🗑️
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Save Business Settings
+    function openAddBoutiqueModal() { document.getElementById('addBoutiqueModal').classList.add('open'); }
+    function closeAddBoutiqueModal() { document.getElementById('addBoutiqueModal').classList.remove('open'); }
+
+    function handleBoutiqueFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        uploadedBoutiqueImage = ev.target.result;
+        try {
+          const resp = await fetch('/api/motorcycle-store-orero/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: file.name, data: uploadedBoutiqueImage })
+          });
+          if (resp.ok) {
+            const d = await resp.json();
+            if (d.url) uploadedBoutiqueImage = d.url;
+          }
+        } catch(err) {}
+        showToast('✓ Foto del casco cargada');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAddBoutiqueItem(e) {
+      e.preventDefault();
+      const name = document.getElementById('newBoutiqueName').value.trim();
+      const brand = document.getElementById('newBoutiqueBrand').value.trim() || 'MT Helmets';
+      const price = parseInt(document.getElementById('newBoutiquePrice').value) || 0;
+      const tag = document.getElementById('newBoutiqueTag').value.trim() || 'ECE 22.06';
+      const image = uploadedBoutiqueImage || 'assets/real_cascos_entrega_master.jpg';
+
+      if (!appData.boutique) appData.boutique = [];
+      appData.boutique.unshift({
+        id: 'boutique-' + Date.now(),
+        name, brand, price, tag, image, status: 'stock'
+      });
+
+      showToast('✓ Casco añadido a la boutique');
+      closeAddBoutiqueModal();
+      uploadedBoutiqueImage = '';
+      renderBoutique();
+      persistData();
+    }
+
+    function toggleBoutiqueStock(id) {
+      const b = (appData.boutique || []).find(x => x.id === id);
+      if (!b) return;
+      b.status = b.status === 'agotado' ? 'stock' : 'agotado';
+      showToast(b.status === 'stock' ? '✓ Producto marcado en Stock' : '✓ Producto marcado como Agotado');
+      renderBoutique();
+      persistData();
+    }
+
+    function editBoutiquePrice(id) {
+      const b = (appData.boutique || []).find(x => x.id === id);
+      if (!b) return;
+      const nuevo = prompt(`Cambiar precio de ${b.name}:`, b.price || 0);
+      if (nuevo !== null) {
+        const val = parseInt(nuevo.replace(/\D/g, ''));
+        if (!isNaN(val) && val > 0) {
+          b.price = val;
+          showToast(`✓ Precio actualizado a ${val} €`);
+          renderBoutique();
+          persistData();
+        }
+      }
+    }
+
+    function deleteBoutiqueItem(id) {
+      const b = (appData.boutique || []).find(x => x.id === id);
+      if (!b) return;
+      if (confirm(`¿Eliminar "${b.name}" de la tienda?`)) {
+        appData.boutique = appData.boutique.filter(x => x.id !== id);
+        showToast('✓ Producto eliminado');
+        renderBoutique();
+        persistData();
+      }
+    }
+
+    // ════ 5. SETTINGS ════
     function saveBusinessSettings() {
       const phone = document.getElementById('setPhone').value.trim();
       const addr = document.getElementById('setAddress').value.trim();
