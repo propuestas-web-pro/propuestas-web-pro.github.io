@@ -3410,37 +3410,40 @@
 
       playNinjaH2RSound();
 
-      // Animate Tachometer in sync with engine profile
+      // Animate Tachometer in sync with real YouTube H2 launch audio
       const startTime = performance.now();
-      const duration = 5200; // ms
+      const duration = 10400; // 10.4 seconds
 
       function updateTacho(time) {
         const elapsed = (time - startTime) / 1000;
         let rpm = 0;
-        if (elapsed < 0.65) {
-          rpm = Math.floor(400 * (elapsed / 0.65));
-        } else if (elapsed < 1.1) {
-          rpm = 4500;
-        } else if (elapsed < 1.8) {
-          rpm = 1650;
-        } else if (elapsed < 2.3) {
-          // Rev 1
-          const p = (elapsed - 1.8) / 0.5;
-          rpm = Math.floor(1650 + (12800 - 1650) * Math.pow(p, 1.8));
-        } else if (elapsed < 3.0) {
-          // Flutter drop
-          rpm = Math.floor(3200);
-        } else if (elapsed < 3.6) {
-          // REDLINE SCREAM 14,000 RPM
-          const p = (elapsed - 3.0) / 0.6;
-          rpm = Math.floor(3200 + (14200 - 3200) * Math.pow(p, 2));
-        } else if (elapsed < 4.2) {
-          rpm = 14200 - (Math.random() > 0.5 ? 400 : 0);
-        } else if (elapsed < 5.2) {
-          const p = (elapsed - 4.2) / 1.0;
-          rpm = Math.floor(13800 + (1700 - 13800) * p);
+        if (elapsed < 1.8) {
+          // Launch control 2-step bounce (4,800 - 5,600 RPM)
+          rpm = Math.floor(5200 + 400 * Math.sin(elapsed * 28));
+        } else if (elapsed < 3.8) {
+          // 1st gear clutch dump & acceleration: 5,200 -> 14,000 RPM
+          const p = (elapsed - 1.8) / 2.0;
+          rpm = Math.floor(5200 + (14000 - 5200) * Math.pow(p, 1.4));
+        } else if (elapsed < 4.1) {
+          // Quickshifter shift 1->2
+          rpm = 10800;
+        } else if (elapsed < 6.0) {
+          // 2nd gear pull: 10,800 -> 14,100 RPM
+          const p = (elapsed - 4.1) / 1.9;
+          rpm = Math.floor(10800 + (14100 - 10800) * Math.pow(p, 1.2));
+        } else if (elapsed < 6.3) {
+          // Quickshifter shift 2->3
+          rpm = 11200;
+        } else if (elapsed < 8.5) {
+          // 3rd gear full speed pull: 11,200 -> 14,200 RPM Redline
+          const p = (elapsed - 6.3) / 2.2;
+          rpm = Math.floor(11200 + (14200 - 11200) * p);
+        } else if (elapsed < 10.4) {
+          // Throttle lift & deceleration with supercharger flutter
+          const p = (elapsed - 8.5) / 1.9;
+          rpm = Math.floor(13800 + (2200 - 13800) * Math.pow(p, 0.7));
         } else {
-          rpm = 1700;
+          rpm = 1800;
         }
 
         // Clamp & Rotate Needle (-90deg = 0 RPM, +90deg = 15,000 RPM)
@@ -3452,7 +3455,6 @@
         if (elapsed < (duration / 1000)) {
           requestAnimationFrame(updateTacho);
         } else {
-          // Close intro smoothly
           closeIgnitionIntro(true);
         }
       }
