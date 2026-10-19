@@ -96,7 +96,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(11, 13, 17, 0.92);
+      background: rgba(11, 13, 17, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-dark);
@@ -250,17 +250,18 @@
     /* HERO SECTION */
     .hero-section {
       position: relative;
-      min-height: 94vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding-top: 120px;
-      padding-bottom: 60px;
-      background: linear-gradient(180deg, rgba(11,13,17,0.3) 0%, rgba(11,13,17,0.2) 35%, rgba(11,13,17,0.7) 70%, #0b0d11 100%),
-                  url('assets/hero_sportbike_dusk.jpg') center 45% / cover no-repeat;
+      padding-top: 105px;
+      padding-bottom: 50px;
+      background: linear-gradient(90deg, #0b0d11 0%, rgba(11,13,17,0.92) 32%, rgba(11,13,17,0.65) 55%, rgba(11,13,17,0.1) 75%, rgba(11,13,17,0.3) 100%),
+                  url('assets/hero_sportbike_dusk.jpg') right center / cover no-repeat;
+      overflow: hidden;
     }
 
     .hero-content {
-      max-width: 640px;
+      max-width: 580px;
       position: relative;
       z-index: 2;
     }
@@ -280,7 +281,7 @@
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(38px, 6.2vw, 68px);
+      font-size: clamp(36px, 5.8vw, 66px);
       font-weight: 900;
       text-transform: uppercase;
       line-height: 1.05;
@@ -290,12 +291,16 @@
     }
 
     .hero-subtitle {
-      font-size: clamp(16px, 1.8vw, 19px);
+      font-size: clamp(16px, 1.8vw, 18px);
       color: #cbd5e1;
       line-height: 1.6;
-      margin-bottom: 36px;
-      max-width: 520px;
+      margin-bottom: 34px;
+      max-width: 500px;
       font-weight: 400;
+    }
+
+    .hero-mobile-bike {
+      display: none;
     }
 
     .hero-actions {
@@ -329,7 +334,7 @@
     }
 
     .btn-hero-secondary {
-      background: rgba(11, 13, 17, 0.55);
+      background: rgba(11, 13, 17, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #ffffff;
       font-family: var(--font-heading);
@@ -393,7 +398,7 @@
     /* VALUE PROPOSITIONS BAR */
     .value-props-bar {
       background: #0b0d11;
-      padding: 40px 0 20px;
+      padding: 36px 0 20px;
       border-bottom: 1px solid var(--border-dark);
     }
 
@@ -424,7 +429,7 @@
     /* CATALOG SECTION */
     .catalog-section {
       background: #0b0d11;
-      padding: 80px 0 100px;
+      padding: 80px 0 90px;
     }
 
     .catalog-header {
@@ -438,7 +443,7 @@
 
     .section-title {
       font-family: var(--font-heading);
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(28px, 4vw, 42px);
       font-weight: 900;
       text-transform: uppercase;
       color: #ffffff;
@@ -462,81 +467,6 @@
 
     .link-view-all:hover {
       color: var(--red-accent);
-    }
-
-    /* FILTER & SEARCH BAR */
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-    }
-
-    .search-input-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 260px;
-      max-width: 380px;
-    }
-
-    .search-input-wrap svg {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #64748b;
-      pointer-events: none;
-    }
-
-    .search-input {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border-dark);
-      border-radius: var(--radius-full);
-      padding: 10px 18px 10px 42px;
-      color: #ffffff;
-      font-size: 14px;
-      font-family: inherit;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .search-input:focus {
-      border-color: var(--red-accent);
-      background: var(--bg-surface);
-    }
-
-    .filter-pills {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .filter-pill {
-      background: var(--bg-card);
-      border: 1px solid var(--border-dark);
-      color: #94a3b8;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: var(--transition);
-    }
-
-    .filter-pill:hover, .filter-pill.active {
-      background: var(--red-accent);
-      border-color: var(--red-accent);
-      color: #ffffff;
     }
 
     /* MOTORCYCLE CARDS GRID */
@@ -662,8 +592,8 @@
 
     .moto-card-price {
       font-family: var(--font-heading);
-      font-size: 22px;
-      font-weight: 900;
+      font-size: 24px;
+      font-weight: 800;
       color: var(--red-accent);
       letter-spacing: -0.01em;
     }
@@ -678,6 +608,92 @@
     .moto-card:hover .moto-card-arrow {
       color: #ffffff;
       transform: translateX(4px);
+    }
+
+    /* EXPANDABLE FULL FLEET DRAWER */
+    .full-fleet-drawer {
+      margin-top: 40px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+      max-width: 380px;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-full);
+      padding: 10px 18px 10px 42px;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--red-accent);
+      background: var(--bg-surface);
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      color: #94a3b8;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--red-accent);
+      border-color: var(--red-accent);
+      color: #ffffff;
     }
 
     /* SERVICES / WORKSHOP FULL-WIDTH BANNER */
@@ -699,7 +715,7 @@
 
     .workshop-title {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 4.5vw, 52px);
+      font-size: clamp(32px, 4.5vw, 50px);
       font-weight: 900;
       text-transform: uppercase;
       line-height: 1.08;
@@ -754,7 +770,7 @@
 
     .pasion-title {
       font-family: var(--font-heading);
-      font-size: clamp(34px, 4.5vw, 54px);
+      font-size: clamp(34px, 4.5vw, 52px);
       font-weight: 900;
       text-transform: uppercase;
       color: #0b0d11;
@@ -870,7 +886,7 @@
 
     .boutique-title {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 4vw, 50px);
+      font-size: clamp(32px, 4vw, 48px);
       font-weight: 900;
       text-transform: uppercase;
       line-height: 1.08;
@@ -1443,7 +1459,7 @@
       border-color: var(--red-accent);
     }
 
-    /* RESPONSIVE DESIGN */
+    /* RESPONSIVE & MOBILE-CENTERED OVERRIDES (The User's Core Directive) */
     @media (max-width: 1024px) {
       .motos-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1486,6 +1502,7 @@
         padding: 24px;
         gap: 20px;
         border-bottom: 1px solid var(--border-dark);
+        text-align: center;
       }
 
       .nav-links.open {
@@ -1500,24 +1517,259 @@
         display: none;
       }
 
+      /* HERO ON MOBILE: Clean Centered Stack with Crystal-Clear Motorcycle Image */
       .hero-section {
-        padding-top: 90px;
-        min-height: 85vh;
-        background-position: 70% center;
+        min-height: auto;
+        padding-top: 96px;
+        padding-bottom: 40px;
+        background: #0b0d11;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .eyebrow-red {
+        justify-content: center;
+        margin-inline: auto;
+      }
+
+      .hero-title {
+        font-size: clamp(28px, 7.5vw, 40px);
+        line-height: 1.1;
+        text-align: center;
+        margin-inline: auto;
+      }
+
+      .hero-subtitle {
+        font-size: 15px;
+        text-align: center;
+        margin-inline: auto;
+        max-width: 90%;
+        margin-bottom: 24px;
+      }
+
+      .hero-mobile-bike {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto 24px;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      }
+
+      .hero-mobile-bike img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+
+      .hero-actions {
+        justify-content: center;
+        gap: 12px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      .hero-scroll-wrap {
+        display: none;
+      }
+
+      /* VALUE PROPOSITIONS BAR CENTERED */
+      .value-props-bar {
+        padding: 24px 0;
       }
 
       .value-props-grid {
         grid-template-columns: 1fr;
         gap: 16px;
+        text-align: center;
+      }
+
+      .value-prop-item {
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* CATALOG HEADER & CARDS CENTERED */
+      .catalog-section {
+        padding: 60px 0 70px;
+      }
+
+      .catalog-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
       }
 
       .motos-grid {
         grid-template-columns: 1fr;
+        max-width: 380px;
+        margin-inline: auto;
+      }
+
+      .filter-bar {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .search-input-wrap {
+        width: 100%;
+        max-width: 380px;
+      }
+
+      .filter-pills {
+        justify-content: center;
+      }
+
+      /* WORKSHOP BANNER CENTERED */
+      .workshop-banner {
+        min-height: auto;
+        padding: 70px 0;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(11,13,17,0.95) 0%, rgba(11,13,17,0.85) 50%, rgba(11,13,17,0.95) 100%),
+                    url('assets/taller_motos_pro.jpg') center center / cover no-repeat;
+      }
+
+      .workshop-content {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .btn-workshop {
+        margin: 0 auto;
+      }
+
+      /* PASION WHITE SECTION CENTERED */
+      .pasion-section {
+        padding: 70px 0;
+        text-align: center;
+      }
+
+      .pasion-desc {
+        margin-inline: auto;
       }
 
       .pasion-features {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 24px;
+        max-width: 340px;
+        margin: 0 auto 36px;
+      }
+
+      .pasion-feature-card {
+        align-items: center;
+        text-align: center;
+      }
+
+      .btn-pasion {
+        margin: 0 auto;
+      }
+
+      .pasion-image-wrap {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      /* BOUTIQUE CENTERED */
+      .boutique-section {
+        padding: 70px 0;
+        text-align: center;
+      }
+
+      .boutique-photo-wrap {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .boutique-desc {
+        margin-inline: auto;
+      }
+
+      .btn-boutique-outline {
+        margin: 0 auto;
+      }
+
+      .boutique-items-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin-inline: auto;
+      }
+
+      /* CONTACT CENTERED */
+      .contact-section {
+        padding: 70px 0;
+        text-align: center;
+      }
+
+      .contact-photo-col {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .contact-list {
+        max-width: 360px;
+        margin: 0 auto 28px;
+      }
+
+      .contact-item {
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-contact-outline {
+        margin: 0 auto;
+      }
+
+      .contact-map-col {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      /* FOOTER CENTERED */
+      .footer {
+        text-align: center;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .brand-logo {
+        justify-content: center;
+      }
+
+      .footer-nav-list {
+        align-items: center;
+      }
+
+      .footer-socials {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
       }
 
       .modal-body {
@@ -1548,7 +1800,7 @@
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="icon-btn" onclick="document.getElementById('searchInput').focus(); location.href='#catalogo';" title="Buscar en catálogo">
+        <button type="button" class="icon-btn" onclick="toggleFullFleet(true); document.getElementById('searchInput').focus();" title="Buscar en catálogo">
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
         <a href="admin.html" class="icon-btn" title="Panel de Administración">
@@ -1566,19 +1818,27 @@
 
   <!-- HERO SECTION -->
   <section class="hero-section">
-    <div class="container hero-content">
-      <div class="eyebrow-red">ORERO MOTORCYCLES //</div>
-      <h1 class="hero-title">Tu próxima<br>moto te espera</h1>
-      <p class="hero-subtitle">
-        Motocicletas nuevas y de ocasión, con la mejor atención y servicio en Orihuela.
-      </p>
-      <div class="hero-actions">
-        <a href="#catalogo" class="btn-hero-primary">
-          Ver Catálogo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-        <a href="#contacto" class="btn-hero-secondary">
-          Contactar
-        </a>
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow-red">ORERO MOTORCYCLES //</div>
+        <h1 class="hero-title">Tu próxima<br>moto te espera</h1>
+        <p class="hero-subtitle">
+          Motocicletas nuevas y de ocasión, con la mejor atención y servicio en Orihuela.
+        </p>
+
+        <!-- Prominent motorcycle photo for mobile -->
+        <div class="hero-mobile-bike">
+          <img src="assets/hero_sportbike_dusk.jpg" alt="Motocicleta deportiva Orero Motorcycles" loading="eager">
+        </div>
+
+        <div class="hero-actions">
+          <a href="#catalogo" class="btn-hero-primary">
+            Ver Catálogo <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#contacto" class="btn-hero-secondary">
+            Contactar
+          </a>
+        </div>
       </div>
     </div>
 
@@ -1615,32 +1875,134 @@
           <div class="eyebrow-red">NUESTRO CATÁLOGO //</div>
           <h2 class="section-title">Motos Destacadas</h2>
         </div>
-        <button type="button" class="link-view-all" onclick="showAllBikes()">
-          Ver todas las motos <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <button type="button" class="link-view-all" onclick="toggleFullFleet()">
+          <span id="viewAllBtnText">Ver todas las motos</span> <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
       </div>
 
-      <!-- FILTER & SEARCH BAR -->
-      <div class="filter-bar">
-        <div class="search-input-wrap">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="searchInput" class="search-input" placeholder="Buscar por marca, modelo o tipo..." oninput="handleSearch()">
+      <!-- FEATURED 4 MOTOS GRID (Exact Match with Mockup) -->
+      <div class="motos-grid" id="featuredGrid">
+        
+    <div class="moto-card" data-id="moto-yamaha-mt07" data-brand="Yamaha" data-type="naked" data-condition="ocasion" data-price="6900" data-km="12500" data-year="2021" onclick="openMotoDetails('moto-yamaha-mt07')">
+      <div class="moto-card-media">
+        <img src="assets/moto_yamaha_mt07.jpg" alt="YAMAHA MT-07" class="moto-card-img" loading="lazy" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
+        <span class="moto-pill badge-red">OCASIÓN</span>
+      </div>
+      <div class="moto-card-body">
+        <div class="moto-card-brand">YAMAHA</div>
+        <h3 class="moto-card-model">MT-07</h3>
+        <div class="moto-card-specs">
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2021</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 12.500 km</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg> 689 cc</span>
         </div>
-
-        <div class="filter-pills">
-          <button type="button" class="filter-pill active" onclick="filterCategory('all', this)">Todas (18)</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('ocasion', this)">Ocasión</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('nueva', this)">Nuevas</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('naked', this)">Naked</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('sport', this)">Deportivas</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('trail', this)">Trail</button>
-          <button type="button" class="filter-pill" onclick="filterCategory('scooter', this)">Scooter</button>
+        <div class="moto-card-footer">
+          <div class="moto-card-price">6.900 €</div>
+          <div class="moto-card-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
         </div>
       </div>
+    </div>
+    
 
-      <!-- MOTORCYCLE CARDS GRID -->
-      <div class="motos-grid" id="motosGrid">
-        
+    <div class="moto-card" data-id="moto-honda-cbr500r" data-brand="Honda" data-type="sport" data-condition="ocasion" data-price="5800" data-km="8300" data-year="2022" onclick="openMotoDetails('moto-honda-cbr500r')">
+      <div class="moto-card-media">
+        <img src="assets/moto_honda_cbr500r.jpg" alt="HONDA CBR 500R" class="moto-card-img" loading="lazy" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
+        <span class="moto-pill badge-red">OCASIÓN</span>
+      </div>
+      <div class="moto-card-body">
+        <div class="moto-card-brand">HONDA</div>
+        <h3 class="moto-card-model">CBR 500R</h3>
+        <div class="moto-card-specs">
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2022</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 8.300 km</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg> 471 cc</span>
+        </div>
+        <div class="moto-card-footer">
+          <div class="moto-card-price">5.800 €</div>
+          <div class="moto-card-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="moto-card" data-id="moto-kawasaki-ninja650" data-brand="Kawasaki" data-type="sport" data-condition="nueva" data-price="7900" data-km="0" data-year="2024" onclick="openMotoDetails('moto-kawasaki-ninja650')">
+      <div class="moto-card-media">
+        <img src="assets/moto_kawasaki_ninja650.jpg" alt="KAWASAKI Ninja 650" class="moto-card-img" loading="lazy" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
+        <span class="moto-pill badge-blue">NUEVA</span>
+      </div>
+      <div class="moto-card-body">
+        <div class="moto-card-brand">KAWASAKI</div>
+        <h3 class="moto-card-model">Ninja 650</h3>
+        <div class="moto-card-specs">
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2024</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 0 km</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg> 649 cc</span>
+        </div>
+        <div class="moto-card-footer">
+          <div class="moto-card-price">7.900 €</div>
+          <div class="moto-card-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="moto-card" data-id="moto-suzuki-vstrom650" data-brand="Suzuki" data-type="trail" data-condition="ocasion" data-price="5500" data-km="18200" data-year="2020" onclick="openMotoDetails('moto-suzuki-vstrom650')">
+      <div class="moto-card-media">
+        <img src="assets/moto_suzuki_vstrom650.jpg" alt="SUZUKI V-Strom 650" class="moto-card-img" loading="lazy" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
+        <span class="moto-pill badge-red">OCASIÓN</span>
+      </div>
+      <div class="moto-card-body">
+        <div class="moto-card-brand">SUZUKI</div>
+        <h3 class="moto-card-model">V-Strom 650</h3>
+        <div class="moto-card-specs">
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2020</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 18.200 km</span>
+          <span class="spec-divider">|</span>
+          <span class="spec-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path></svg> 645 cc</span>
+        </div>
+        <div class="moto-card-footer">
+          <div class="moto-card-price">5.500 €</div>
+          <div class="moto-card-arrow"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+    </div>
+    
+      </div>
+
+      <!-- EXPANDABLE FULL FLEET SECTION -->
+      <div class="full-fleet-drawer" id="fullFleetDrawer">
+        <div style="margin: 40px 0 20px; border-top: 1px solid var(--border-dark); padding-top: 30px;">
+          <div class="eyebrow-red">FLOTA COMPLETA EN STOCK //</div>
+          <h3 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; text-transform: uppercase; margin-bottom: 24px;">
+            Inventario Completo (18 Motocicletas)
+          </h3>
+
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="searchInput" class="search-input" placeholder="Buscar por marca, modelo o tipo..." oninput="handleSearch()">
+            </div>
+
+            <div class="filter-pills">
+              <button type="button" class="filter-pill active" onclick="filterCategory('all', this)">Todas (18)</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('ocasion', this)">Ocasión</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('nueva', this)">Nuevas</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('naked', this)">Naked</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('sport', this)">Deportivas</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('trail', this)">Trail</button>
+              <button type="button" class="filter-pill" onclick="filterCategory('scooter', this)">Scooter</button>
+            </div>
+          </div>
+
+          <div class="motos-grid" id="allMotosGrid">
+            
     <div class="moto-card" data-id="moto-yamaha-mt07" data-brand="Yamaha" data-type="naked" data-condition="ocasion" data-price="6900" data-km="12500" data-year="2021" onclick="openMotoDetails('moto-yamaha-mt07')">
       <div class="moto-card-media">
         <img src="assets/moto_yamaha_mt07.jpg" alt="YAMAHA MT-07" class="moto-card-img" loading="lazy" onerror="this.src='assets/hero_sportbike_dusk.jpg'">
@@ -2054,6 +2416,8 @@
       </div>
     </div>
     
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2444,11 +2808,24 @@
       }
     }
 
+    // Toggle Full Fleet Drawer
+    function toggleFullFleet(forceOpen = false) {
+      const drawer = document.getElementById('fullFleetDrawer');
+      const text = document.getElementById('viewAllBtnText');
+      if (drawer.style.display === 'block' && !forceOpen) {
+        drawer.style.display = 'none';
+        text.textContent = 'Ver todas las motos';
+      } else {
+        drawer.style.display = 'block';
+        text.textContent = 'Ocultar catálogo completo';
+        drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     // Real-time catalog search & filtering
     function handleSearch() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.moto-card');
-      let visible = 0;
+      const cards = document.querySelectorAll('#allMotosGrid .moto-card');
 
       cards.forEach(card => {
         const brand = (card.getAttribute('data-brand') || '').toLowerCase();
@@ -2457,7 +2834,6 @@
 
         if (brand.includes(query) || model.includes(query) || type.includes(query)) {
           card.style.display = 'flex';
-          visible++;
         } else {
           card.style.display = 'none';
         }
@@ -2468,7 +2844,7 @@
       document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
-      const cards = document.querySelectorAll('.moto-card');
+      const cards = document.querySelectorAll('#allMotosGrid .moto-card');
       cards.forEach(card => {
         const condition = card.getAttribute('data-condition');
         const type = card.getAttribute('data-type');
@@ -2481,13 +2857,6 @@
           card.style.display = type === cat ? 'flex' : 'none';
         }
       });
-    }
-
-    function showAllBikes() {
-      const allPill = document.querySelector('.filter-pill');
-      if (allPill) allPill.click();
-      document.getElementById('searchInput').value = '';
-      document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
     }
 
     // Technical details modal
