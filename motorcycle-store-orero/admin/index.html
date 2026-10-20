@@ -6,6 +6,7 @@
   <title>Panel de Control · Motorcycle Store Orero</title>
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="theme-color" content="#07090e">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
   <!-- Google Fonts: Outfit (titles) + Plus Jakarta Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,11 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
     }
 
     :root {
@@ -184,6 +190,9 @@
       top: 0;
       z-index: 1000;
       backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: clip;
     }
 
     .header-top {
@@ -286,9 +295,18 @@
       align-items: center;
       gap: 4px;
       overflow-x: auto;
-      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(239, 35, 60, 0.4) transparent;
+      white-space: nowrap;
     }
-    .tabs-nav-bar::-webkit-scrollbar { display: none; }
+    .tabs-nav-bar::-webkit-scrollbar {
+      height: 3px;
+    }
+    .tabs-nav-bar::-webkit-scrollbar-thumb {
+      background: rgba(239, 35, 60, 0.4);
+      border-radius: 3px;
+    }
 
     .admin-tab {
       padding: 14px 18px;
@@ -820,10 +838,72 @@
       opacity: 1;
     }
 
+    @media (max-width: 1024px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .admin-tab { padding: 12px 14px; font-size: 13px; }
+    }
+
     @media (max-width: 768px) {
-      .header-top { flex-direction: column; align-items: flex-start; }
+      .header-top {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 14px;
+        gap: 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .brand-wrap {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .header-actions {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        box-sizing: border-box;
+      }
+      .btn-action-ghost {
+        padding: 8px 10px;
+        font-size: 11px;
+        justify-content: center;
+        white-space: nowrap;
+      }
+      .btn-save-primary {
+        grid-column: span 2;
+        padding: 9px 12px;
+        font-size: 12px;
+        justify-content: center;
+        width: 100%;
+      }
+      .tabs-nav-bar {
+        padding: 0 12px;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: auto;
+        box-sizing: border-box;
+      }
+      .admin-main {
+        padding: 16px 12px 60px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
       .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
       .search-input-wrap { width: 100%; }
+      .section-toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
+      .filter-pills { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .admin-logo { font-size: 15px; }
+      .live-badge { font-size: 9px; padding: 2px 6px; }
+      .admin-tab { padding: 10px 12px; font-size: 12px; }
+      .login-box { padding: 28px 16px; margin: 0 10px; max-width: calc(100vw - 20px); }
     }
   </style>
 </head>
@@ -947,14 +1027,19 @@
       <div class="section-toolbar">
         <div class="section-title-wrap">
           <h2>Gestión de Citas de Taller</h2>
-          <p>Solicitudes recibidas desde la web. Actualiza estados y notas internas del mecánico.</p>
+          <p>Solicitudes recibidas desde la web en tiempo real. Actualiza estados y notas del taller.</p>
         </div>
-        <div class="filter-pills">
-          <button class="pill-btn active" onclick="filterWorkshopByStatus('todas', this)">Todas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('pendiente', this)">Pendientes</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('confirmada', this)">Confirmadas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('atendida', this)">Atendidas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('cancelada', this)">Canceladas</button>
+        <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
+          <div class="filter-pills">
+            <button class="pill-btn active" onclick="filterWorkshopByStatus('todas', this)">Todas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('pendiente', this)">Pendientes</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('confirmada', this)">Confirmadas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('atendida', this)">Completadas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('cancelada', this)">Canceladas</button>
+          </div>
+          <div style="width: 100%; max-width: 380px;">
+            <input type="text" id="workshopSearchInput" class="form-control" placeholder="🔍 Buscar por cliente, teléfono o moto..." oninput="handleWorkshopSearch(this.value)" style="padding: 8px 14px; font-size: 13px; background: rgba(7, 8, 11, 0.8);">
+          </div>
         </div>
       </div>
 
@@ -1344,6 +1429,32 @@
       document.getElementById('tabCountLeads').textContent = totalLeads;
     }
 
+    
+    let workshopSearchTerm = '';
+    function handleWorkshopSearch(val) {
+      workshopSearchTerm = (val || '').toLowerCase().trim();
+      renderWorkshopCRM();
+    }
+
+    function playNotificationChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.25, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.5);
+      } catch (e) {}
+    }
+
     // ════ 1. WORKSHOP CITAS CRM LOGIC ════
     function renderWorkshopCRM() {
       const container = document.getElementById('workshopGridContainer');
@@ -1359,7 +1470,23 @@
       document.getElementById('kpiWorkshopDone').textContent = done;
       document.getElementById('kpiWorkshopTotal').textContent = list.length;
 
+            // Conflict detection for overlapping confirmed slots
+      const slotCounts = {};
+      list.filter(w => w.status === 'confirmada' && w.preferredDate).forEach(w => {
+        const key = `${w.preferredDate}_${w.preferredSlot || w.preferredTime || 'slot'}`;
+        slotCounts[key] = (slotCounts[key] || 0) + 1;
+      });
+
       let filtered = [...list];
+      if (workshopSearchTerm) {
+        filtered = filtered.filter(w => 
+          (w.name || '').toLowerCase().includes(workshopSearchTerm) ||
+          (w.phone || '').includes(workshopSearchTerm) ||
+          (w.brandModel || w.bikeModel || '').toLowerCase().includes(workshopSearchTerm) ||
+          (w.ref || w.refId || '').toLowerCase().includes(workshopSearchTerm)
+        );
+      }
+
       if (currentWorkshopFilter !== 'todas') {
         filtered = filtered.filter(w => (w.status || 'pendiente') === currentWorkshopFilter);
       }

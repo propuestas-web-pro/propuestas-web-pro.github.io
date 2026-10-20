@@ -1027,14 +1027,19 @@
       <div class="section-toolbar">
         <div class="section-title-wrap">
           <h2>Gestión de Citas de Taller</h2>
-          <p>Solicitudes recibidas desde la web. Actualiza estados y notas internas del mecánico.</p>
+          <p>Solicitudes recibidas desde la web en tiempo real. Actualiza estados y notas del taller.</p>
         </div>
-        <div class="filter-pills">
-          <button class="pill-btn active" onclick="filterWorkshopByStatus('todas', this)">Todas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('pendiente', this)">Pendientes</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('confirmada', this)">Confirmadas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('atendida', this)">Atendidas</button>
-          <button class="pill-btn" onclick="filterWorkshopByStatus('cancelada', this)">Canceladas</button>
+        <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
+          <div class="filter-pills">
+            <button class="pill-btn active" onclick="filterWorkshopByStatus('todas', this)">Todas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('pendiente', this)">Pendientes</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('confirmada', this)">Confirmadas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('atendida', this)">Completadas</button>
+            <button class="pill-btn" onclick="filterWorkshopByStatus('cancelada', this)">Canceladas</button>
+          </div>
+          <div style="width: 100%; max-width: 380px;">
+            <input type="text" id="workshopSearchInput" class="form-control" placeholder="🔍 Buscar por cliente, teléfono o moto..." oninput="handleWorkshopSearch(this.value)" style="padding: 8px 14px; font-size: 13px; background: rgba(7, 8, 11, 0.8);">
+          </div>
         </div>
       </div>
 
@@ -1424,6 +1429,32 @@
       document.getElementById('tabCountLeads').textContent = totalLeads;
     }
 
+    
+    let workshopSearchTerm = '';
+    function handleWorkshopSearch(val) {
+      workshopSearchTerm = (val || '').toLowerCase().trim();
+      renderWorkshopCRM();
+    }
+
+    function playNotificationChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.25, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.5);
+      } catch (e) {}
+    }
+
     // ════ 1. WORKSHOP CITAS CRM LOGIC ════
     function renderWorkshopCRM() {
       const container = document.getElementById('workshopGridContainer');
@@ -1439,7 +1470,23 @@
       document.getElementById('kpiWorkshopDone').textContent = done;
       document.getElementById('kpiWorkshopTotal').textContent = list.length;
 
+            // Conflict detection for overlapping confirmed slots
+      const slotCounts = {};
+      list.filter(w => w.status === 'confirmada' && w.preferredDate).forEach(w => {
+        const key = `${w.preferredDate}_${w.preferredSlot || w.preferredTime || 'slot'}`;
+        slotCounts[key] = (slotCounts[key] || 0) + 1;
+      });
+
       let filtered = [...list];
+      if (workshopSearchTerm) {
+        filtered = filtered.filter(w => 
+          (w.name || '').toLowerCase().includes(workshopSearchTerm) ||
+          (w.phone || '').includes(workshopSearchTerm) ||
+          (w.brandModel || w.bikeModel || '').toLowerCase().includes(workshopSearchTerm) ||
+          (w.ref || w.refId || '').toLowerCase().includes(workshopSearchTerm)
+        );
+      }
+
       if (currentWorkshopFilter !== 'todas') {
         filtered = filtered.filter(w => (w.status || 'pendiente') === currentWorkshopFilter);
       }
