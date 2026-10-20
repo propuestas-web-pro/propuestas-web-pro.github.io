@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
+  <!-- Enforce HTTPS & Upgrade Insecure Requests -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <link rel="canonical" href="https://oreromotorcycles.es/">
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https://' + location.hostname + (location.port ? ':' + location.port : '') + location.pathname + location.search + location.hash);
+    }
+  </script>
   <script>
     // Strict HTTPS Enforcer for production domain
     if (window.location.protocol === 'http:' && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
@@ -465,59 +473,30 @@
       color: var(--red);
     }
 
-    /* ══════════════════════════════════════════════════════════
-       SECCIÓN A: HERO CINEMATOGRÁFICO
+        /* ══════════════════════════════════════════════════════════
+       SECCIÓN A: HERO REDISEÑADO CONCESIONARIO DE PRESTIGIO
        ══════════════════════════════════════════════════════════ */
     .hero-stage {
       position: relative;
       width: 100vw;
-      height: 100vh;
-      min-height: 680px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      background: #07080b;
+      background: #060709;
       overflow: hidden;
-      padding-top: 72px; /* Header offset */
+      padding-top: 84px;
+      padding-bottom: 0;
     }
     @media (max-width: 768px) {
       .hero-stage {
-        height: auto;
-        min-height: 100vh;
-        padding-top: 84px;
-        padding-bottom: 24px;
-        justify-content: flex-end;
+        min-height: 100svh;
+        padding-top: 76px;
       }
     }
 
-    /* Luxury Studio Radial Lighting */
-    .hero-stage::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(239, 35, 60, 0.08) 0%, rgba(20, 25, 36, 0.45) 40%, #07080b 74%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    /* Pedestal Shadow Reflection */
-    .hero-stage::after {
-      content: '';
-      position: absolute;
-      bottom: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 65%;
-      max-width: 850px;
-      height: 40px;
-      background: radial-gradient(ellipse at center, rgba(239, 35, 60, 0.22) 0%, rgba(0, 0, 0, 0.75) 50%, transparent 80%);
-      border-radius: 50%;
-      filter: blur(16px);
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* Cinematic Flagship Photographic Layer */
+    /* Photographic Background Layer - Razor Sharp 2K */
     .hero-photo-layer {
       position: absolute;
       inset: 0;
@@ -530,178 +509,343 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 42%;
-      transform: scale(1.02);
-      filter: brightness(0.92) contrast(1.06);
+      object-position: 72% 50%; /* Position bike proudly on right 60% */
+      filter: brightness(0.96) contrast(1.08);
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @media (max-width: 992px) {
+      .hero-photo-img {
+        object-position: 65% 50%;
+      }
     }
     @media (max-width: 768px) {
       .hero-photo-img {
-        object-position: center 16%;
-        filter: brightness(0.88) contrast(1.08);
+        object-position: center 80%;
+        filter: brightness(0.85) contrast(1.1);
       }
     }
 
-    /* Dramatic Cinematic Vignette & Lighting Overlays */
+    /* Atmospheric Studio Lighting & Readability Gradient */
     .hero-vignette-overlay {
       position: absolute;
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      background: 
-        radial-gradient(circle at 65% 45%, rgba(239, 35, 60, 0.08) 0%, transparent 55%),
-        linear-gradient(180deg, rgba(7, 8, 11, 0.82) 0%, rgba(7, 8, 11, 0.1) 22%, rgba(7, 8, 11, 0.25) 55%, rgba(7, 8, 11, 0.95) 90%, #07080b 100%),
-        linear-gradient(90deg, rgba(7, 8, 11, 0.88) 0%, rgba(7, 8, 11, 0.7) 35%, rgba(7, 8, 11, 0.15) 70%, rgba(7, 8, 11, 0.4) 100%);
+      background:
+        linear-gradient(90deg, rgba(6, 7, 9, 0.96) 0%, rgba(6, 7, 9, 0.88) 38%, rgba(6, 7, 9, 0.25) 68%, transparent 100%),
+        linear-gradient(180deg, rgba(6, 7, 9, 0.75) 0%, transparent 18%, transparent 80%, rgba(6, 7, 9, 0.98) 100%);
     }
     @media (max-width: 768px) {
       .hero-vignette-overlay {
-        background: 
-          radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.12) 0%, transparent 60%),
-          linear-gradient(180deg, rgba(7, 8, 11, 0.75) 0%, rgba(7, 8, 11, 0.15) 28%, rgba(7, 8, 11, 0.88) 60%, #07080b 100%);
+        background:
+          linear-gradient(180deg, rgba(6, 7, 9, 0.92) 0%, rgba(6, 7, 9, 0.85) 45%, rgba(6, 7, 9, 0.4) 75%, rgba(6, 7, 9, 0.98) 100%);
       }
     }
 
-    /* Overlay HUD Content (Desktop bottom) */
-    .hero-overlay-content {
+    /* Editorial Left-Aligned Content Container */
+    .hero-main-container {
       position: relative;
       z-index: 10;
       width: 100%;
       max-width: 1440px;
-      padding: 0 36px 40px;
+      margin: auto 0;
+      padding: 30px 52px;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      pointer-events: none;
+      justify-content: flex-start;
+      align-items: center;
+      pointer-events: auto;
+    }
+    @media (max-width: 992px) {
+      .hero-main-container {
+        padding: 24px 32px;
+      }
     }
     @media (max-width: 768px) {
-      .hero-overlay-content {
-        padding: 20px 24px 32px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.95) 20%, #07080b 100%);
+      .hero-main-container {
+        padding: 16px 20px;
+        margin-top: 10px;
+        margin-bottom: auto;
+        justify-content: center;
+        text-align: center;
       }
     }
 
-    .hero-text-block {
-      max-width: 580px;
-      pointer-events: auto;
-    }
-    .hero-title {
-      font-size: clamp(2.6rem, 5.2vw, 4.6rem);
-      font-weight: 900;
-      line-height: 1.02;
-      text-transform: uppercase;
-      letter-spacing: -0.03em;
-      margin-bottom: 14px;
-    }
-    .hero-subtitle {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-      margin-bottom: 24px;
-      max-width: 520px;
+    .hero-text-col {
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
     }
     @media (max-width: 768px) {
-      .hero-subtitle { font-size: 0.88rem; margin-bottom: 18px; }
+      .hero-text-col {
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+      }
     }
 
-    .hero-ctas-row {
+    /* Luxury Pill Badge */
+    .hero-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      background: rgba(18, 22, 32, 0.85);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 16px rgba(239, 35, 60, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      margin-bottom: 22px;
+    }
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+      animation: pulseRadar 2s infinite ease-in-out;
+    }
+    .status-text {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f1f3f9;
+    }
+    @media (max-width: 768px) {
+      .hero-status-pill {
+        padding: 6px 14px;
+        margin-bottom: 14px;
+      }
+      .status-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    /* Hero Headline */
+    .hero-headline {
+      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
+    }
+    .hero-headline-accent {
+      background: linear-gradient(135deg, #ef233c 0%, #ff4d6d 60%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      .hero-headline {
+        font-size: clamp(1.85rem, 6.5vw, 2.3rem);
+        margin-bottom: 12px;
+      }
+    }
+
+    /* Subtitle Description */
+    .hero-description {
+      font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 1.6;
+      max-width: 540px;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+    }
+    @media (max-width: 768px) {
+      .hero-description {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+    }
+
+    /* Actions Container */
+    .hero-actions-container {
       display: flex;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
     }
-    @media (max-width: 480px) {
-      .hero-ctas-row { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 768px) {
+      .hero-actions-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
     }
 
-    .btn-hero {
-      padding: 14px 30px;
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 26px;
       border-radius: var(--radius-pill);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 800;
       text-decoration: none;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .hero-cta-btn {
+        width: 100%;
+        padding: 13px 20px;
+      }
+    }
+
+    /* Call Button */
+    .hero-cta-call {
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 24px rgba(239, 35, 60, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    .hero-cta-call:hover {
+      background: linear-gradient(135deg, #ff3b53 0%, #ef233c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(239, 35, 60, 0.65);
+    }
+
+    /* Appointment Button */
+    .hero-cta-appointment {
+      background: rgba(18, 22, 32, 0.85);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .hero-cta-appointment:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Stock Button */
+    .hero-cta-catalog {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .hero-cta-catalog:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Docked Luxury Trust Bar */
+    .hero-docked-trustbar {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      background: rgba(8, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6);
+      padding: 16px 24px;
+    }
+    .trustbar-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .trustbar-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .trustbar-divider { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-docked-trustbar {
+        padding: 12px 16px;
+      }
+      .trustbar-inner {
+        gap: 10px;
+      }
+    }
+
+    .trustbar-item {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .trustbar-metric {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 16px rgba(239, 35, 60, 0.35);
+    }
+    .trustbar-suffix {
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .trustbar-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #f1f3f9;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+    .trustbar-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    @media (max-width: 768px) {
+      .trustbar-desc { display: none; }
+      .trustbar-metric { font-size: 1.25rem; }
+      .trustbar-label { font-size: 0.74rem; }
+    }
+
+    .trustbar-divider {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    }
+
+    /* Call Button in Motorcycle Cards */
+    .btn-card-call {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 1.15rem;
+      text-decoration: none;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .btn-hero-red {
+    .btn-card-call:hover {
       background: var(--red);
-      color: #fff;
-      box-shadow: var(--shadow-red);
-    }
-    .btn-hero-red:hover {
-      background: var(--red-hover);
+      border-color: var(--red);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-red-lg);
-    }
-    .btn-hero-outline {
-      background: rgba(18, 22, 30, 0.7);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(12px);
-    }
-    .btn-hero-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.35);
-      color: #fff;
+      box-shadow: 0 4px 16px rgba(239, 35, 60, 0.4);
     }
 
-    /* Hero Trust Metrics & Guarantee Hub */
-    .hero-metrics-grid {
-      pointer-events: auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      background: rgba(14, 18, 26, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
-      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.85);
-    }
-    @media (min-width: 640px) {
-      .hero-metrics-grid {
-        grid-template-columns: repeat(4, auto);
-        gap: 24px;
-        padding: 18px 28px;
-      }
-    }
-    @media (max-width: 768px) {
-      .hero-metrics-grid {
-        width: 100%;
-        margin-top: 14px;
-      }
-    }
-
-    .hero-metric-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .hero-metric-val {
-      font-family: var(--font-heading);
-      font-size: 1.45rem;
-      font-weight: 900;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .hero-metric-val span {
-      color: var(--red);
-    }
-    .hero-metric-lbl {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
 
     /* ══════════════════════════════════════════════════════════
        SECCIÓN B: PRESENTACIÓN DE PRODUCTO (CATÁLOGO EN STOCK)
@@ -905,7 +1049,28 @@
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.25);
     }
-    .btn-card-wa {
+        .btn-card-call {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-size: 1.15rem;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-card-call:hover {
+      background: var(--red);
+      border-color: var(--red);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(239, 35, 60, 0.4);
+    }
+
+    .btn-card-call-old {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1491,34 +1656,11 @@
     }
 
     /* ══════════════════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
+       ACCIONES RÁPIDAS
        ══════════════════════════════════════════════════════════ */
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
-      z-index: 99;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
-    }
-    .floating-wa-btn svg {
-      width: 30px;
-      height: 30px;
-      fill: #fff;
-    }
+    
+    
+    
 
     /* ══════════════════════════════════════════════════════════
        MODALS: MOTORCYCLE DETAIL & LEGAL
@@ -1620,48 +1762,6 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
       animation: buttonGlint 3.8s infinite cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
-    }
-
-    /* 2. Floating WhatsApp Radar Ping */
-    @keyframes waRadarRing {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      50% { opacity: 0.4; }
-      100% { transform: scale(1.85); opacity: 0; }
-    }
-    @keyframes waWiggle {
-      0%, 85%, 100% { transform: rotate(0deg); }
-      88% { transform: rotate(-10deg) scale(1.08); }
-      92% { transform: rotate(10deg) scale(1.08); }
-      96% { transform: rotate(-6deg) scale(1.05); }
-    }
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 26px rgba(37, 211, 102, 0.45);
-      z-index: 999;
-      animation: waWiggle 6s ease-in-out infinite;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 2px solid #25D366;
-      animation: waRadarRing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-      pointer-events: none;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.12) translateY(-3px) !important;
-      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.65);
     }
 
     /* 3. Badge Radar Beacon (Ocasión / Nueva) */
@@ -1798,60 +1898,95 @@
       <a href="#reservar-cita" onclick="closeMobileDrawer()" style="color:var(--red);">📅 Pedir Cita Previa</a>
       <a href="#contacto" onclick="closeMobileDrawer()">Contacto & Ubicación</a>
       <a href="tel:+34966740120" style="color:#fff;">📞 Llamar al 966 74 01 20</a>
-      <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles%2C%20quisiera%20solicitar%20informaci%C3%B3n." target="_blank" rel="noopener" style="color:#34d399;">💬 WhatsApp Oficial (+34 677 34 50 18)</a>
+      <a href="tel:+34966740120" style="color:var(--red); font-weight:700;">📞 Atención Telefónica: 966 74 01 20</a>
     </div>
   </header>
 
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN A: HERO CINEMATOGRÁFICO
+      <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN A: HERO REDISEÑADO CONCESIONARIO DE PRESTIGIO
        ══════════════════════════════════════════════════════════ -->
   <section class="hero-stage" id="inicio">
-    <!-- Cinematic Flagship Photography Background Layer -->
+    <!-- Cinematic Flagship Photography Background Layer (Razor-Sharp 2K) -->
     <div class="hero-photo-layer">
-      <img src="assets/hero_flagship_orero.jpg" alt="Orero Motorcycles Flagship Showroom" class="hero-photo-img" loading="eager" fetchpriority="high">
+      <img src="assets/hero_flagship_orero.jpg" alt="Orero Motorcycles Concesionario y Taller Oficial Orihuela" class="hero-photo-img" loading="eager" fetchpriority="high">
     </div>
 
-    <!-- Dramatic Vignette & Ambient Light Overlays -->
+    <!-- Luxury Lighting & Vignette Overlay -->
     <div class="hero-vignette-overlay"></div>
 
-    <!-- Overlay Bottom HUD Content -->
-    <div class="hero-overlay-content">
-      <div class="hero-text-block">
-        <div class="eyebrow-tag">
-          <span class="dot"></span>
-          <span>Orihuela · Concesionario Multimarca & Taller Oficial</span>
+    <!-- Editorial Left-Aligned Main Container -->
+    <div class="hero-main-container">
+      <div class="hero-text-col">
+        <div class="hero-status-pill">
+          <span class="status-indicator"></span>
+          <span class="status-text">CONCESIONARIO MULTIMARCA & TALLER OFICIAL · ORIHUELA</span>
         </div>
-        <h1 class="hero-title">NACIDAS PARA SER <span class="text-red">DIFERENTES.</span></h1>
-        <p class="hero-subtitle">
-          Selección exclusiva de motocicletas con 1 año de garantía europea completa y servicio técnico especializado en Calle San Agustín 18.
+
+        <h1 class="hero-headline">
+          MOTOCICLETAS DE OCASIÓN <br>
+          <span class="hero-headline-accent">100% GARANTIZADAS</span>
+        </h1>
+
+        <p class="hero-description">
+          Selección multimarca de 18 motocicletas con certificación de 60 puntos en taller y 1 año de garantía oficial por escrito. Visítanos en Calle San Agustín 18 o llámanos directamente.
         </p>
-        <div class="hero-ctas-row">
-          <a href="#catalogo" class="btn-hero btn-hero-red">
-            <span>Descubrir Motos (18)</span>
+
+        <div class="hero-actions-container">
+          <a href="tel:+34966740120" class="hero-cta-btn hero-cta-call" id="btnHeroCall">
+            <span class="cta-emoji">📞</span>
+            <span class="cta-label">LLAMAR AL 966 74 01 20</span>
           </a>
-          <a href="#reservar-cita" class="btn-hero btn-hero-outline">
-            <span>Pedir Cita Previa</span>
+          <a href="#reservar-cita" class="hero-cta-btn hero-cta-appointment" id="btnHeroAppointment">
+            <span class="cta-emoji">📅</span>
+            <span class="cta-label">PEDIR CITA PREVIA</span>
+          </a>
+          <a href="#catalogo" class="hero-cta-btn hero-cta-catalog" id="btnHeroStock">
+            <span class="cta-emoji">🏍️</span>
+            <span class="cta-label">VER MOTOS (18)</span>
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Trust Metrics Hub with Animated Counters -->
-      <div class="hero-metrics-grid">
-        <div class="hero-metric-item">
-          <div class="hero-metric-val" id="countMotos">18<span>+</span></div>
-          <div class="hero-metric-lbl">Motos en Stock</div>
+    <!-- Bottom Docked Luxury Trust Bar (Dashboard Hud) -->
+    <div class="hero-docked-trustbar">
+      <div class="trustbar-inner">
+        <div class="trustbar-item">
+          <div class="trustbar-metric">
+            <span class="trustbar-val" id="countMotos">18</span><span class="trustbar-suffix">+</span>
+          </div>
+          <div class="trustbar-label">Motos en Stock</div>
+          <div class="trustbar-desc">Inspección y entrega inmediata</div>
         </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val" id="countGarantia">1 <span>Año</span></div>
-          <div class="hero-metric-lbl">Garantía Escrita</div>
+
+        <div class="trustbar-divider"></div>
+
+        <div class="trustbar-item">
+          <div class="trustbar-metric">
+            <span class="trustbar-val" id="countGarantia">1</span><span class="trustbar-suffix"> Año</span>
+          </div>
+          <div class="trustbar-label">Garantía Escrita</div>
+          <div class="trustbar-desc">Cobertura mecánica completa</div>
         </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val" id="countRevision">60<span> Pts</span></div>
-          <div class="hero-metric-lbl">Revisión Oficial</div>
+
+        <div class="trustbar-divider"></div>
+
+        <div class="trustbar-item">
+          <div class="trustbar-metric">
+            <span class="trustbar-val" id="countRevision">60</span><span class="trustbar-suffix"> Pts</span>
+          </div>
+          <div class="trustbar-label">Revisión Oficial</div>
+          <div class="trustbar-desc">Chequeo técnico en taller propio</div>
         </div>
-        <div class="hero-metric-item">
-          <div class="hero-metric-val" id="countEntrega">100<span>%</span></div>
-          <div class="hero-metric-lbl">Entrega Rápida</div>
+
+        <div class="trustbar-divider"></div>
+
+        <div class="trustbar-item">
+          <div class="trustbar-metric">
+            <span class="trustbar-val" id="countEntrega">100</span><span class="trustbar-suffix">%</span>
+          </div>
+          <div class="trustbar-label">Atención Directa</div>
+          <div class="trustbar-desc">Llamadas y citas sin esperas</div>
         </div>
       </div>
     </div>
@@ -1914,9 +2049,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-yamaha-mt07')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Yamaha%20MT-07%20(6900%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Yamaha MT-07 por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -1948,9 +2081,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-honda-cbr500r')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Honda%20CBR%20500R%20(5800%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Honda CBR 500R por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -1982,9 +2113,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-kawasaki-ninja650')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Kawasaki%20Ninja%20650%20(7900%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Kawasaki Ninja 650 por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2016,9 +2145,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-suzuki-vstrom650')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Suzuki%20V-Strom%20650%20(5500%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Suzuki V-Strom 650 por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2048,9 +2175,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-peugeot-metropolis')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Peugeot%20Metropolis%20400%20Active%20(3%20ruedas)%20(6500%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Peugeot Metropolis 400 Active (3 ruedas) por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2080,9 +2205,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-qj-srk')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20QJ%20Motor%20SRK%20125J%20(2999%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar QJ Motor SRK 125J por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2112,9 +2235,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-honda-sh350')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Honda%20SH%20350i%20Sport%20ABS%20(5200%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Honda SH 350i Sport ABS por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2144,9 +2265,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-kymco-agility')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20KYMCO%20Agility%20City%20PLUS%20125%20Euro%205+%20(2199%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar KYMCO Agility City PLUS 125 Euro 5+ por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2176,9 +2295,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-sym-symphony')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20SYM%20Symphony%20125%20SR%20(Baúl%20incluido)%20(2499%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar SYM Symphony 125 SR (Baúl incluido) por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2208,9 +2325,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-macbor-montana')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Macbor%20Montana%20XR1%20125%20EVO%20Trail%20(3299%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Macbor Montana XR1 125 EVO Trail por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2240,9 +2355,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-kymco-kxct')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20KYMCO%20K-XCT%20125i%20Sport%20ABS%20(2350%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar KYMCO K-XCT 125i Sport ABS por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2272,9 +2385,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-suzuki-burgman')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Suzuki%20Burgman%20250%20Executive%20(1350%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Suzuki Burgman 250 Executive por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2304,9 +2415,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-peugeot-citystar')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Peugeot%20Citystar%2050%20RS%20Sport%20(1050%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Peugeot Citystar 50 RS Sport por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2336,9 +2445,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-rieju-mrt')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Rieju%20MRT%2050%20Pro%20Black%20Series%20Supermotard%20(3899%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Rieju MRT 50 Pro Black Series Supermotard por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2368,9 +2475,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-hanway-furious')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Hanway%20Furious%20NK%20125%20Naked%20(1950%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Hanway Furious NK 125 Naked por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2400,9 +2505,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-vespa-lx')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Vespa%20LX%2050%202T%20Clásica%20(950%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Vespa LX 50 2T Clásica por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2432,9 +2535,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-benda-napoleon')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Benda%20Napoleon%20Bob%20250%20Custom%20Bobber%20(4290%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Benda Napoleon Bob 250 Custom Bobber por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2464,9 +2565,7 @@
 
             <div class="moto-card-actions">
               <button class="btn-card-detail" onclick="openMotoModal('moto-yamaha-virago')" type="button">Ver Ficha Técnica</button>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles,%20quisiera%20información%20sobre%20la%20Yamaha%20XV%20535%20SP%20Virago%20Custom%20(2500%20€)%20que%20tenéis%20en%20stock." target="_blank" rel="noopener" class="btn-card-wa" title="Consultar Yamaha XV 535 SP Virago Custom por WhatsApp" aria-label="Consultar por WhatsApp">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-              </a>
+              <a href="tel:+34966740120" class="btn-card-call" title="Llamar para consultar sobre esta moto (966 74 01 20)" aria-label="Llamar al taller">📞</a>
             </div>
           </div>
         </div>
@@ -2586,7 +2685,7 @@
           <p class="service-desc">
             Compramos tu moto al contado de forma inmediata o la valoramos como parte de pago para tu nueva motocicleta. Sin esperas ni complicaciones.
           </p>
-          <a href="https://wa.me/34677345018?text=Hola%20Orero%2C%20quisiera%20tasar%20mi%20moto%20para%20venta%20o%20cambio." target="_blank" rel="noopener" class="service-cta">Tasar por WhatsApp →</a>
+          <a href="tel:+34966740120" style="color:var(--red); font-weight:700;">📞 Atención Telefónica: 966 74 01 20</a>
         </div>
 
         <!-- Servicio 6 -->
@@ -2698,7 +2797,7 @@
           </p>
           <div class="booking-success-actions">
             <a id="btnShareWaBooking" href="#" target="_blank" rel="noopener" class="btn-hero btn-hero-red" style="font-size:0.85rem; padding:12px 24px;">
-              <span>💬 Enviar Datos por WhatsApp</span>
+              <span>📋 Solicitar Valoración o Cita</span>
             </a>
             <button class="btn-hero btn-hero-outline" onclick="resetBookingForm()" type="button" style="font-size:0.85rem; padding:12px 24px;">
               <span>Solicitar Otra Cita</span>
@@ -2721,7 +2820,7 @@
         </div>
         <h2 class="section-title">CONTACTO & <span class="text-red">LOCALIZACIÓN</span></h2>
         <p class="section-lead">
-          Estamos a tu disposición en nuestro concesionario y taller en Orihuela. Contacta con nosotros por teléfono, WhatsApp o ven a vernos en persona.
+          Estamos a tu disposición en nuestro concesionario y taller en Orihuela. Contacta con nosotros por teléfono, pide cita o ven a vernos en persona.
         </p>
       </div>
 
@@ -2756,244 +2855,13 @@
             </div>
           </div>
 
-          <!-- WhatsApp -->
+          <!-- Atención Telefónica Oficial -->
           <div class="contact-info-item">
             <div class="contact-icon-bubble" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); color:#34d399;">💬</div>
             <div>
-              <div class="contact-info-title">WhatsApp Oficial</div>
+              <div class="contact-info-title">Atención Telefónica Taller</div>
               <div class="contact-info-val">
-                <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles%2C%20quisiera%20solicitar%20informaci%C3%B3n." target="_blank" rel="noopener" style="color:#34d399;">+34 677 34 50 18</a>
-              </div>
-              <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Respuestas rápidas sobre motos de ocasión y presupuestos.
-              </div>
-            </div>
-          </div>
-
-          <!-- Horario -->
-          <div class="contact-info-item">
-            <div class="contact-icon-bubble">🕒</div>
-            <div>
-              <div class="contact-info-title">Horario Comercial</div>
-              <div class="contact-info-val">
-                Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:00<br>
-                Sábados: 10:00 - 13:30
-              </div>
-              <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Domingos y festivos: Cerrado
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- High-Performance Interactive Map Card -->
-        <div class="map-embed-col">
-          <div class="map-card-inner">
-            <img src="assets/orihuela_map_card.jpg" alt="Ubicación oficial Orero Motorcycles Calle San Agustín 18 Orihuela" class="map-card-bg" loading="lazy">
-            <div class="map-card-overlay">
-              <div class="map-pin-glow">
-                <span class="pin-dot"></span>
-                <span class="pin-ring"></span>
-              </div>
-              <div class="map-card-hud">
-                <div class="map-hud-tag">📍 CONCESIONARIO & TALLER EN ORIHUELA</div>
-                <div class="map-hud-address">Calle San Agustín, 18, 03300 Orihuela</div>
-                <div class="map-hud-sub">Frente a zona de aparcamiento · Acceso directo a taller oficial</div>
-                <a href="https://maps.google.com/?q=MOTORCYCLE+STORE+ORERO+Calle+San+Agustin+18+03300+Orihuela" target="_blank" rel="noopener" class="btn-hero btn-hero-red" style="width: 100%; padding: 12px 20px; font-size: 0.88rem; box-shadow: 0 4px 18px rgba(239, 35, 60, 0.45);">
-                  <span>🗺️ Abrir en Google Maps (Cómo Llegar)</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════════════════════
-       SECCIÓN G: FOOTER & LEGAL
-       ══════════════════════════════════════════════════════════ -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top-grid">
-        <div>
-          <div class="footer-brand-title">ORERO <span>MOTORCYCLES</span></div>
-          <p class="footer-brand-desc">
-            Concesionario multimarca y taller mecánico oficial en Orihuela. Pasión por las motocicletas, rigor técnico y atención personalizada.
-          </p>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Navegación</h4>
-          <ul class="footer-links-list">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#catalogo">Motos en Stock</a></li>
-            <li><a href="#experiencia">Garantía & Compromiso</a></li>
-            <li><a href="#servicios">Servicios de Taller</a></li>
-            <li><a href="#reservar-cita">Pedir Cita Online</a></li>
-            <li><a href="#contacto">Contacto & Dónde Estamos</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Legal & RGPD</h4>
-          <ul class="footer-links-list">
-            <li><a href="#" onclick="openLegalModal('aviso'); return false;">Aviso Legal</a></li>
-            <li><a href="#" onclick="openLegalModal('privacidad'); return false;">Política de Privacidad</a></li>
-            <li><a href="#" onclick="openLegalModal('cookies'); return false;">Política de Cookies</a></li>
-            <li><a href="/admin" target="_blank" rel="nofollow">Acceso Administración</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Redes & Portales</h4>
-          <ul class="footer-links-list">
-            <li><a href="https://www.facebook.com/oreromotor/" target="_blank" rel="noopener">Facebook Oficial</a></li>
-            <li><a href="https://motos.coches.net/concesionario/motorcyclestoreorero/" target="_blank" rel="noopener">Coches.net Concesionario</a></li>
-            <li><a href="https://www.milanuncios.com/tiendas-profesionales/motorcycle-store-orero-524553" target="_blank" rel="noopener">Milanuncios Pro</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-bar">
-        <div>
-          © 2026 Orero Motorcycles · Calle San Agustín, 18, 03300 Orihuela (Alicante). Todos los derechos reservados.
-        </div>
-        <div>
-          Web oficial asegurada mediante HTTPS y cifrado TLS 1.3
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ══════════════════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
-       ══════════════════════════════════════════════════════════ -->
-  <a
-    href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles%2C%20quisiera%20solicitar%20informaci%C3%B3n."
-    target="_blank"
-    rel="noopener"
-    class="floating-wa-btn"
-    title="Contactar por WhatsApp con Orero Motorcycles"
-    aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 0 1-5.82 2.41h-.01c-1.42 0-2.82-.37-4.04-1.08l-.29-.17-3.11.82.83-3.03-.19-.31c-.77-1.25-1.18-2.7-1.18-4.2a8.24 8.24 0 0 1 8.24-8.24m4.52 11.58c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44s-.56-1.35-.77-1.85c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.44 1.03 2.61c.13.17 1.77 2.7 4.29 3.78.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
-  </a>
-
-  <!-- ══════════════════════════════════════════════════════════
-       MODAL: FICHA TÉCNICA DE LA MOTOCICLETA
-       ══════════════════════════════════════════════════════════ -->
-  <div class="modal-overlay" id="motoModalOverlay" onclick="closeMotoModal(event)">
-    <div class="modal-container" id="motoModalContainer">
-      <button class="btn-modal-close" onclick="closeMotoModalDirect()" aria-label="Cerrar modal">&times;</button>
-      <div id="motoModalContent">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════
-       MODAL: TEXTOS LEGALES (AVISO LEGAL, PRIVACIDAD, COOKIES)
-       ══════════════════════════════════════════════════════════ -->
-  <div class="modal-overlay" id="legalModalOverlay" onclick="closeLegalModal(event)">
-    <div class="modal-container" style="max-width: 680px;">
-      <button class="btn-modal-close" onclick="closeLegalModalDirect()" aria-label="Cerrar modal">&times;</button>
-      <h3 id="legalModalTitle" style="font-size: 1.5rem; margin-bottom: 16px; color: #fff;"></h3>
-      <div id="legalModalBody" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════════════
-       CLIENT-SIDE JAVASCRIPT LOGIC
-       ══════════════════════════════════════════════════════════ -->
-  <script>
-    // Authentic Real Motorcycles Database
-    const MOTOS_DATA = {"moto-yamaha-mt07": {"id": "moto-yamaha-mt07", "brand": "Yamaha", "model": "MT-07", "type": "naked", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 6900, "financeFrom": 119, "year": 2021, "km": 12500, "cc": "689 cc", "power": "73.4 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_yamaha_mt07.jpg", "description": "Hyper-naked líder en su categoría. Motor bicilíndrico CP2 de par motor emocionante, pantalla LCD digital y neumáticos en perfecto estado. Revisión integral en taller oficial.", "features": ["Motor bicilíndrico Crossplane CP2 de 689 cc", "12.500 km certificados con libro de mantenimiento", "Limitada / limitable para carnet A2", "Frenos de doble disco delantero de 298 mm con ABS", "12 meses de garantía europea completa"], "images": ["assets/moto_yamaha_mt07.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-honda-cbr500r": {"id": "moto-honda-cbr500r", "brand": "Honda", "model": "CBR 500R", "type": "sport", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5800, "financeFrom": 99, "year": 2022, "km": 8300, "cc": "471 cc", "power": "48 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_cbr500r.jpg", "description": "Deportiva polivalente con ADN racing HRC. Horquilla invertida Showa SFF-BP de 41 mm, doble disco delantero y embrague antirrebote asistido.", "features": ["Potencia exacta de 35 kW (48 CV) para carnet A2 directo", "Horquilla invertida Showa SFF-BP de 41 mm", "Solo 8.300 km reales garantizados", "Embrague antirrebote asistido y cuadro LCD invertido", "Garantía oficial y cambio de titular incluido"], "images": ["assets/moto_honda_cbr500r.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-kawasaki-ninja650": {"id": "moto-kawasaki-ninja650", "brand": "Kawasaki", "model": "Ninja 650", "type": "sport", "condition": "nueva", "status": "destacada", "badge": "Nueva", "priceCash": 7900, "financeFrom": 139, "year": 2024, "km": 0, "cc": "649 cc", "power": "68 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_kawasaki_ninja650.jpg", "description": "Vehículo nuevo a estrenar 0 km. Pantalla TFT a color con conectividad smartphone Rideology App, embrague asistido y óptica delantera full LED KRT.", "features": ["0 km nueva a estrenar", "Pantalla TFT color con Bluetooth Rideology", "Kit de limitación A2 disponible sin coste extra", "Garantía oficial Kawasaki de hasta 4 años", "Matriculación y puesta en calle inmediata"], "images": ["assets/moto_kawasaki_ninja650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-suzuki-vstrom650": {"id": "moto-suzuki-vstrom650", "brand": "Suzuki", "model": "V-Strom 650", "type": "trail", "condition": "ocasion", "status": "destacada", "badge": "Ocasión", "priceCash": 5500, "financeFrom": 95, "year": 2020, "km": 18200, "cc": "645 cc", "power": "70 CV", "fuel": "Gasolina", "license": "Permiso A2 / A", "image": "assets/moto_suzuki_vstrom650.jpg", "description": "La reina de los viajes y la polivalencia. Edición XT con llantas doradas de radios tubeless, control de tracción desconectable de 2 modos y pantalla regulable.", "features": ["Llantas de radios doradas DID Tubeless", "Motor bicilíndrico en V a 90° de máxima fiabilidad", "Control de tracción STCS regulable en 2 modos y desconectable", "Defensas de motor y cubrepuños originales", "Revisión completa de 60 puntos y 1 año de garantía"], "images": ["assets/moto_suzuki_vstrom650.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-peugeot-metropolis": {"id": "moto-peugeot-metropolis", "brand": "Peugeot", "model": "Metropolis 400 Active (3 ruedas)", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "379 km certificados", "priceCash": 6500, "financeFrom": null, "year": 2021, "km": 379, "cc": "400 cc", "power": "36 CV", "fuel": "Gasolina", "license": "Permiso B (+21 años)", "image": "assets/real_peugeot_metropolis_master.jpg", "description": "Triciclo de 3 ruedas con solo 379 km certificados. Conducible con permiso B de coche (según normativa DGT para vehículos L5e). Máxima estabilidad y seguridad en autovía y ciudad.", "features": ["Conducible con permiso B de coche (L5e)", "Solo 379 km certificados en cuadro digital", "Frenada combinada SBC con sistema antibloqueo ABS", "Sistema de bloqueo de inclinación en parado", "Cofre con capacidad para 2 cascos"], "images": ["assets/real_peugeot_metropolis_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-qj-srk": {"id": "moto-qj-srk", "brand": "QJ Motor", "model": "SRK 125J", "type": "naked", "condition": "nueva", "status": "disponible", "badge": "Nueva a estrenar", "priceCash": 2999, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "15 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_qj_srk_master.jpg", "description": "Naked deportiva de 125 cc a estrenar. Motor monocilíndrico de refrigeración líquida de 15 CV (límite legal para permiso A1/B), iluminación full LED y cuadro LCD digital.", "features": ["Potencia máxima legal: 15 CV", "Refrigeración líquida e inyección electrónica", "Horquilla invertida delantera y frenos de disco ABS", "Garantía legal de 3 años para vehículos nuevos", "Garantía comercial de hasta 6 años"], "images": ["assets/real_qj_srk_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-honda-sh350": {"id": "moto-honda-sh350", "brand": "Honda", "model": "SH 350i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Edición Sport", "priceCash": 5200, "financeFrom": null, "year": 2022, "km": 11420, "cc": "330 cc", "power": "29.2 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_honda_sh350.jpg", "description": "El scooter de rueda alta por excelencia en su versión deportiva de 350 cc. Motor eSP+ de baja fricción, control de tracción HSTC desconectable y llave inteligente Smart Key.", "features": ["Motor Honda eSP+ 29.2 CV con gran aceleración", "Control de par seleccionable Honda (HSTC)", "Ruedas altas de 16 pulgadas para máxima estabilidad", "Llave inteligente Smart Key y toma USB-C bajo el asiento", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/moto_honda_sh350.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-kymco-agility": {"id": "moto-kymco-agility", "brand": "KYMCO", "model": "Agility City PLUS 125 Euro 5+", "type": "scooter", "condition": "nueva", "status": "oferta", "badge": "Oferta especial", "priceCash": 2199, "oldPrice": 2399, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_kymco_agility.jpg", "description": "Scooter urbano de rueda alta líder en fiabilidad. Nueva homologación Euro 5+, suelo plano, baúl trasero de serie y consumo medio inferior a 2.5 l/100 km.", "features": ["Vehículo nuevo 0 km a estrenar", "Rueda delantera de 16 pulgadas y frenada combinada CBS", "Suelo plano funcional y gancho portabolsas", "Baúl trasero incluido de serie", "3 años de garantía legal"], "images": ["assets/moto_kymco_agility.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-sym-symphony": {"id": "moto-sym-symphony", "brand": "SYM", "model": "Symphony 125 SR (Baúl incluido)", "type": "scooter", "condition": "nueva", "status": "disponible", "badge": "Baúl de serie", "priceCash": 2499, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "11.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_sym_symphony.jpg", "description": "Scooter moderno de suelo plano y rueda alta. Incluye baúl trasero SHAD a juego. Motor de inyección de bajo consumo con excelente aceleración urbana.", "features": ["3 años de garantía legal para vehículos nuevos", "Garantía comercial SYM de hasta 5 años", "Frenada combinada de discos lobulados", "Baúl trasero incluido de fábrica", "Suelo plano y luz diurna LED"], "images": ["assets/moto_sym_symphony.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-macbor-montana": {"id": "moto-macbor-montana", "brand": "Macbor", "model": "Montana XR1 125 EVO Trail", "type": "trail", "condition": "nueva", "status": "disponible", "badge": "Trail aventura", "priceCash": 3299, "financeFrom": null, "year": 2026, "km": 0, "cc": "125 cc", "power": "12.6 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_macbor_montana.jpg", "description": "Auténtica trail de aventura para disfrutar dentro y fuera del asfalto. Equipamiento de serie con defensas laterales, cubre cárter y juego de 3 maletas incluido.", "features": ["Kit de maletas y baúl adventure incluido de serie", "Defensas perimetrales y cubre cárter", "Horquilla delantera invertida y monoamortiguador trasero", "Iluminación full LED con tomas auxiliares de carga", "3 años de garantía legal"], "images": ["assets/moto_macbor_montana.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-kymco-kxct": {"id": "moto-kymco-kxct", "brand": "KYMCO", "model": "K-XCT 125i Sport ABS", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión recién hecha", "priceCash": 2350, "financeFrom": null, "year": 2016, "km": 47598, "cc": "125 cc", "power": "14.4 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/real_kymco_kxct_master.jpg", "description": "Maxiscooter deportivo en muy buen estado mecánico. Historial de mantenimiento al día, cúpula deportiva y gran agilidad tanto en carretera como en ciudad.", "features": ["Motor 125 cc refrigerado por líquido con 14.4 CV", "Frenos antibloqueo ABS de doble canal", "Mantenimiento preventivo recién completado en taller", "Neumáticos y pastillas de freno en óptimo estado", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_kymco_kxct_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-suzuki-burgman": {"id": "moto-suzuki-burgman", "brand": "Suzuki", "model": "Burgman 250 Executive", "type": "scooter", "condition": "ocasion", "status": "disponible", "badge": "Revisión completa de motor", "priceCash": 1350, "financeFrom": null, "year": 2005, "km": 86258, "cc": "250 cc", "power": "23 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_suzuki_burgman_master.jpg", "description": "Maxiscooter de amplio confort con cilindro y pistón nuevos montados en nuestro taller. Capacidad bajo el asiento para dos cascos integrales y excelente protección aerodinámica.", "features": ["Cilindro y pistón nuevos instalados por nuestros mecánicos", "Enorme maletero bajo asiento para 2 cascos integrales", "Pantalla parabrisas protectora de alta cobertura", "Asiento con respaldo ergonómico para conductor y pasajero", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_suzuki_burgman_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-peugeot-citystar": {"id": "moto-peugeot-citystar", "brand": "Peugeot", "model": "Citystar 50 RS Sport", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Edición deportiva", "priceCash": 1050, "financeFrom": null, "year": 2017, "km": 36238, "cc": "50 cc", "power": "4.8 CV", "fuel": "Gasolina", "license": "Permiso AM o B", "image": "assets/real_peugeot_citystar_master.jpg", "description": "Ciclomotor de chasis robusto con frenos de disco delantero y trasero. Muy ágil y práctico para desplazamientos urbanos económicos y fiables.", "features": ["Conducible con permiso AM (desde los 15 años) o B de coche", "Doble disco de freno delantero y trasero", "Gran guantera delantera y plataforma espaciosa", "Consumo mínimo inferior a 2 litros a los 100 km", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/real_peugeot_citystar_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-rieju-mrt": {"id": "moto-rieju-mrt", "brand": "Rieju", "model": "MRT 50 Pro Black Series Supermotard", "type": "ciclomotor", "condition": "nueva", "status": "disponible", "badge": "Motor 2T Minarelli", "priceCash": 3899, "financeFrom": null, "year": 2026, "km": 0, "cc": "50 cc", "power": "5 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/real_rieju_mrt_master.jpg", "description": "Supermotard de 50 cc con especificaciones profesionales. Motor Minarelli AM6 refrigerado por líquido, suspensión delantera invertida y basculante de aluminio.", "features": ["Motor Minarelli AM6 de 2 tiempos con refrigeración líquida", "Horquilla invertida Pro y monoamortiguador con bieletas", "Basculante de aluminio y manillar de sección variable", "Discos wave lobulados de gran mordida", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/real_rieju_mrt_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-hanway-furious": {"id": "moto-hanway-furious", "brand": "Hanway", "model": "Furious NK 125 Naked", "type": "naked", "condition": "ocasion", "status": "disponible", "badge": "2.500 km certificados", "priceCash": 1950, "financeFrom": null, "year": 2023, "km": 2500, "cc": "125 cc", "power": "14.9 CV", "fuel": "Gasolina", "license": "Permiso B (3 años de antigüedad) o A1", "image": "assets/moto_hanway_furious.jpg", "description": "Naked moderna y ligera de 125 cc con poquísimo uso. Motor DOHC de 4 válvulas y 15 CV, panel TFT a color y frenada combinada CBS.", "features": ["Motor multiválvulas DOHC 14.9 CV refrigerado por líquido", "Pantalla digital a color TFT con indicador de marcha", "Horquilla invertida delantera deportiva", "Iluminación full LED delantera y trasera", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/moto_hanway_furious.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-vespa-lx": {"id": "moto-vespa-lx", "brand": "Vespa", "model": "LX 50 2T Clásica", "type": "ciclomotor", "condition": "ocasion", "status": "disponible", "badge": "Ocasión económica", "priceCash": 950, "financeFrom": null, "year": 2008, "km": 28410, "cc": "50 cc", "power": "4.3 CV", "fuel": "Gasolina (2T)", "license": "Permiso AM o B", "image": "assets/vespa_lx_hd.jpg", "description": "Icono del diseño italiano con carrocería de chapa de acero autoportante. Mecánica 2T revisada y lista para circular con gran economía en trayectos urbanos.", "features": ["Carrocería clásica de chapa de acero", "Motor 2T de respuesta inmediata y bajo coste de mantenimiento", "Arranque eléctrico y por pedal de apoyo", "Neumáticos y frenos revisados por mecánicos", "Mínimo 1 año de garantía legal de taller"], "images": ["assets/vespa_lx_hd.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-benda-napoleon": {"id": "moto-benda-napoleon", "brand": "Benda", "model": "Napoleon Bob 250 Custom Bobber", "type": "custom", "condition": "nueva", "status": "disponible", "badge": "Diseño exclusivo", "priceCash": 4290, "financeFrom": null, "year": 2026, "km": 0, "cc": "250 cc", "power": "26 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/moto_benda_napoleon.jpg", "description": "Custom de estética bobber vanguardista con basculante específico y motor bicilíndrico en V. Estilo único, sonido inconfundible y posición de conducción rebajada.", "features": ["Motor bicilíndrico en V de refrigeración líquida", "Suspensión delantera con sistema tipo Hossack / girder", "Frenos de disco con sistema antibloqueo ABS", "Asiento monoplaza flotante estilo bobber clásico", "3 años de garantía legal para vehículos nuevos"], "images": ["assets/moto_benda_napoleon.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}, "moto-yamaha-virago": {"id": "moto-yamaha-virago", "brand": "Yamaha", "model": "XV 535 SP Virago Custom", "type": "custom", "condition": "ocasion", "status": "vendida", "badge": "Clásica revisada", "priceCash": 2500, "financeFrom": null, "year": 1998, "km": 45978, "cc": "535 cc", "power": "46 CV", "fuel": "Gasolina", "license": "Permiso A2", "image": "assets/real_yamaha_virago_master.jpg", "description": "Auténtico clásico custom japonés en muy buen estado de conservación y mecánica revisada por completo en nuestro taller de Orihuela. Motor bicilíndrico en V refrigerado por aire con alforjas de cuero.", "features": ["Motor bicilíndrico en V clásico", "Transmisión por cardán sin mantenimiento", "Alforjas laterales de cuero incluidas", "Pintura y cromados cuidados", "Vehículo entregado a su nuevo propietario"], "images": ["assets/real_yamaha_virago_master.jpg", "assets/clean_showroom_orero.jpg", "assets/real_cascos_entrega_master.jpg"]}};
-
-    // Mobile Drawer Toggle
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const btnMobileToggle = document.getElementById('btnMobileToggle');
-    btnMobileToggle.addEventListener('click', () => {
-      mobileDrawer.classList.toggle('open');
-    });
-    function closeMobileDrawer() {
-      mobileDrawer.classList.remove('open');
-    }
-
-
-
-    // Catalog Filter Logic
-    function filterCatalog(category, btnElement) {
-      const buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(b => b.classList.remove('active'));
-      if (btnElement) btnElement.classList.add('active');
-
-      const cards = document.querySelectorAll('.moto-card');
-      cards.forEach(card => {
-        const mtype = card.getAttribute('data-type');
-        const cond = card.getAttribute('data-cond');
-        const isA2 = card.getAttribute('data-a2') === 'true';
-
-        let show = false;
-        if (category === 'all') show = true;
-        else if (category === 'ocasion' && cond === 'ocasion') show = true;
-        else if (category === 'nueva' && cond === 'nueva') show = true;
-        else if (category === 'a2' && isA2) show = true;
-        else if (category === 'sport' && mtype === 'sport') show = true;
-        else if (category === 'naked' && mtype === 'naked') show = true;
-        else if (category === 'scooter' && (mtype === 'scooter' || mtype === 'scooter-3w')) show = true;
-
-        card.style.display = show ? 'flex' : 'none';
-      });
-    }
-
-    // Motorcycle Modal Details
-    function openMotoModal(motoId) {
-      const moto = MOTOS_DATA[motoId];
-      if (!moto) return;
-
-      const overlay = document.getElementById('motoModalOverlay');
-      const content = document.getElementById('motoModalContent');
-
-      const featuresHtml = (moto.features || []).map(f => `<li style="margin-bottom:6px;">✓ ${f}</li>`).join('');
-      const kmStr = moto.km > 0 ? `${moto.km.toLocaleString('es-ES')} km` : '0 km (A estrenar)';
-      const waText = encodeURIComponent(`Hola Orero Motorcycles, me gustaría solicitar cita o información sobre la ${moto.brand} ${moto.model} (${moto.priceCash} €).`);
-      const waLink = `https://wa.me/34677345018?text=${waText}`;
-
-      content.innerHTML = `
-        <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px;">
-          <span class="eyebrow-tag" style="margin:0;">${moto.brand}</span>
-          <span style="font-size:0.8rem; color:var(--text-muted);">${moto.badge || 'Stock'}</span>
-        </div>
-        <h2 style="font-size:2rem; font-weight:900; margin-bottom:16px;">${moto.brand} ${moto.model}</h2>
-        
-        <div style="width:100%; height:320px; border-radius:14px; overflow:hidden; margin-bottom:20px; background:#07080b;">
-          <img src="${moto.image}" alt="${moto.brand} ${moto.model}" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin-bottom:20px; padding:16px; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid var(--border);">
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Precio Contado:</span><strong style="font-size:1.3rem; color:#fff;">${moto.priceCash.toLocaleString('es-ES')} €</strong></div>
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Financiación:</span><strong style="font-size:1.1rem; color:var(--emerald);">Desde ${moto.financeFrom} €/mes</strong></div>
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Año:</span><strong>${moto.year}</strong></div>
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Kilometraje:</span><strong>${kmStr}</strong></div>
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Potencia:</span><strong>${moto.power}</strong></div>
-          <div><span style="font-size:0.75rem; color:var(--text-muted); display:block;">Cilindrada:</span><strong>${moto.cc}</strong></div>
-        </div>
-
-        <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;">
-          ${moto.description || 'Motocicleta en estado impecable. Revisión completa en nuestro taller oficial.'}
-        </p>
-
-        <h4 style="font-size:1rem; font-weight:800; color:#fff; margin-bottom:10px;">Equipamiento & Garantía:</h4>
-        <ul style="list-style:none; color:var(--text-muted); font-size:0.9rem; margin-bottom:28px;">
-          ${featuresHtml}
-        </ul>
-
-        <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <a href="${waLink}" target="_blank" rel="noopener" class="btn-hero btn-hero-red" style="flex:1; justify-content:center; padding:12px;">
-            <span>💬 Consultar por WhatsApp</span>
-          </a>
+                <a href="tel:+34966740120" style="color:var(--red); font-weight:700;">📞 Atención Telefónica: 966 74 01 20</a>
           <a href="tel:+34966740120" class="btn-hero btn-hero-outline" style="flex:1; justify-content:center; padding:12px;">
             <span>📞 Llamar al Taller</span>
           </a>
@@ -3064,7 +2932,7 @@
           document.getElementById('bookingRefChip').textContent = ref;
 
           const waMsg = encodeURIComponent(`Hola Orero Motorcycles, acabo de solicitar una cita previa con referencia ${ref} para mi ${moto} (${service}).`);
-          document.getElementById('btnShareWaBooking').href = `https://wa.me/34677345018?text=${waMsg}`;
+          // Contact via direct phone call
 
           form.style.display = 'none';
           document.getElementById('bookingSuccessBox').style.display = 'block';
@@ -3074,11 +2942,11 @@
           btn.innerHTML = '<span>📅 Solicitar Cita Previa</span>';
         }
       } catch (err) {
-        // Offline / Static fallback: generate client reference and prompt WhatsApp
+        // Offline fallback: generate client reference and prompt direct call
         const ref = 'TALLER-' + Math.floor(1000 + Math.random() * 9000);
         document.getElementById('bookingRefChip').textContent = ref;
         const waMsg = encodeURIComponent(`Hola Orero Motorcycles, he solicitado cita previa (${ref}) para mi ${moto} el día ${preferredDate} en horario ${preferredTime}.`);
-        document.getElementById('btnShareWaBooking').href = `https://wa.me/34677345018?text=${waMsg}`;
+        // Contact via direct phone call
 
         form.style.display = 'none';
         document.getElementById('bookingSuccessBox').style.display = 'block';
