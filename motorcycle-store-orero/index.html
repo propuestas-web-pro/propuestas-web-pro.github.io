@@ -710,19 +710,24 @@
       text-decoration: underline;
     }
 
-    /* Hero Media Tabs */
-    .hero-media-tabs {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      z-index: 10;
+    /* Hero Media Tabs Bar */
+    .hero-media-tabs-bar {
       display: flex;
-      gap: 6px;
-      background: rgba(8, 11, 17, 0.85);
-      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(14, 18, 28, 0.98);
+      border-bottom: 1px solid var(--border-dark);
+      gap: 10px;
+      box-sizing: border-box;
+    }
+    .hero-media-tabs {
+      display: inline-flex;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.06);
       padding: 4px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
     .hero-media-tab {
       padding: 6px 14px;
@@ -730,12 +735,27 @@
       font-size: 0.78rem;
       font-weight: 800;
       color: var(--text-muted);
+      border: none;
+      background: transparent;
       transition: var(--transition);
       cursor: pointer;
     }
     .hero-media-tab:hover, .hero-media-tab.active {
       background: var(--red);
       color: #fff;
+      box-shadow: 0 0 12px var(--red-glow);
+    }
+    .hero-media-badge-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     /* Hero Sound Bar & Audio Controls */
@@ -1450,7 +1470,12 @@
     }
 
     @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 28px;
+      }
       .hero-subtitle { margin-inline: auto; }
       .hero-ctas { justify-content: center; }
       .hero-trust-row { justify-content: center; }
@@ -1473,12 +1498,17 @@
       .header-actions-wrap { gap: 8px; flex-shrink: 0; }
       .btn-header-tel { display: none; }
       .btn-header-cita { padding: 8px 14px; font-size: 0.8rem; }
-      .hero-section { padding: 40px 0 50px; }
-      .hero-media-img { height: 300px; }
-      .sketchfab-stage-view { height: 420px; }
-      .hero-media-tabs { top: 10px; left: 10px; }
+      .hero-section { padding: 24px 0 36px; }
+      .hero-grid { gap: 20px; }
+      .hero-media-box-col { order: 1; }
+      .hero-content-col { order: 2; }
+      .hero-title { font-size: 2.1rem; }
+      .hero-subtitle { font-size: 0.92rem; }
+      .hero-media-img { height: 280px; }
+      #heroMedia3D .sketchfab-embed-wrapper { height: 320px !important; }
+      .sketchfab-stage-view { height: 380px; }
       .hero-media-tab { font-size: 0.72rem; padding: 5px 10px; }
-      .engine-canvas-container { height: 380px; }
+      .engine-canvas-container { height: 340px; }
       .form-row-2 { grid-template-columns: 1fr; }
       .motos-grid { grid-template-columns: 1fr; }
       .boutique-grid { grid-template-columns: 1fr; }
@@ -1691,7 +1721,7 @@
     <section id="inicio" class="hero-section">
       <div class="container">
         <div class="hero-grid">
-          <div>
+          <div class="hero-content-col">
             <div class="hero-eyebrow">✦ CONCESIONARIO MULTIMARCA & TALLER EN ORIHUELA ✦</div>
             <h1 class="hero-title">TU PRÓXIMA MOTO <span class="text-red">EMPIEZA AQUÍ.</span></h1>
             <p class="hero-subtitle">
@@ -1720,22 +1750,27 @@
             </div>
           </div>
 
-          <div>
+          <div class="hero-media-box-col">
             <div class="hero-media-box">
-              <!-- Switcher Tabs on top of Hero Box -->
-              <div class="hero-media-tabs">
-                <button type="button" class="hero-media-tab active" id="heroTab3D" onclick="switchHeroMedia('3d')">
-                  <span>🏍️ Ninja H2R 3D</span>
-                </button>
-                <button type="button" class="hero-media-tab" id="heroTabShowroom" onclick="switchHeroMedia('showroom')">
-                  <span>🏢 Showroom</span>
-                </button>
+              <!-- Switcher Tabs Bar on top of Hero Box (Non-overlapping) -->
+              <div class="hero-media-tabs-bar">
+                <div class="hero-media-tabs">
+                  <button type="button" class="hero-media-tab active" id="heroTab3D" onclick="switchHeroMedia('3d')">
+                    <span>🏍️ Ninja H2R 3D</span>
+                  </button>
+                  <button type="button" class="hero-media-tab" id="heroTabShowroom" onclick="switchHeroMedia('showroom')">
+                    <span>🏢 Showroom</span>
+                  </button>
+                </div>
+                <div class="hero-media-badge-pill">
+                  <span>⚡ 998cc · 310 CV</span>
+                </div>
               </div>
 
               <!-- View 1: Interactive 3D Kawasaki Ninja H2R (Default Active) -->
               <div id="heroMedia3D" style="display: flex; flex-direction: column; position: relative; background: #000;">
                 <div class="sketchfab-embed-wrapper" style="height: 380px; width: 100%;">
-                  <iframe title="Kawasaki Ninja H2R" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/14e30989ed2c45999d80a876fdfd86ed/embed?autostart=1&ui_theme=dark&dnt=1" style="width: 100%; height: 100%;"></iframe>
+                  <iframe title="Kawasaki Ninja H2R" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/14e30989ed2c45999d80a876fdfd86ed/embed?autostart=1&ui_theme=dark&ui_infos=0" style="width: 100%; height: 100%;"></iframe>
                 </div>
 
                 <!-- Live Engine Audio Console -->
