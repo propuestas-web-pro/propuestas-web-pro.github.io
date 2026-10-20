@@ -9,6 +9,11 @@
   <meta name="theme-color" content="#07090e">
   <meta name="robots" content="index, follow">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <script>
+    if (location.protocol === 'http:' && (location.hostname === 'oreromotorcycles.es' || location.hostname === 'www.oreromotorcycles.es')) {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
 
   <!-- Canonical Oficial: oreromotorcycles.es -->
   <link rel="canonical" href="https://oreromotorcycles.es/">
@@ -405,28 +410,66 @@
     }
 
     /* ════ HERO SECTION ════ */
+    /* ════ FULLSCREEN CINEMATIC 3D HERO STAGE ════ */
     .hero-section {
-      padding: 70px 0 80px;
       position: relative;
-      background: radial-gradient(circle at 80% 30%, rgba(239, 35, 60, 0.12) 0%, transparent 60%),
-                  radial-gradient(circle at 10% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
-                  #07090e;
+      width: 100%;
+      height: 85vh;
+      min-height: 620px;
+      max-height: 880px;
+      background: radial-gradient(circle at 50% 50%, #151922 0%, #07090e 100%);
       border-bottom: 1px solid var(--border-dark);
       overflow: hidden;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
-      gap: 52px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
     }
 
+    .hero-stage-viewport {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-stage-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .hero-stage-showroom-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Floating Top HUD */
+    .hero-hud-top {
+      position: relative;
+      z-index: 10;
+      padding: 24px 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      pointer-events: none;
+    }
+    .hero-hud-title-box {
+      pointer-events: auto;
+      max-width: 580px;
+    }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(239, 35, 60, 0.12);
-      border: 1px solid rgba(239, 35, 60, 0.35);
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(239, 35, 60, 0.4);
       color: #ffffff;
       padding: 6px 16px;
       border-radius: var(--radius-full);
@@ -434,33 +477,78 @@
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .hero-title {
       font-family: var(--font-heading);
-      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+      font-size: clamp(2.2rem, 3.8vw, 3.5rem);
       font-weight: 900;
-      line-height: 1.08;
+      line-height: 1.05;
       text-transform: uppercase;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 20px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
+      margin-bottom: 8px;
     }
     .hero-title .text-red { color: var(--red); }
     .hero-subtitle {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-      margin-bottom: 32px;
-      max-width: 580px;
+      font-size: 0.94rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+      max-width: 480px;
     }
 
-    .hero-ctas {
+    .hero-hud-top-right {
+      pointer-events: auto;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(14px);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Floating Bottom Cockpit */
+    .hero-hud-bottom {
+      position: relative;
+      z-index: 10;
+      padding: 0 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .hero-cockpit-bar {
+      pointer-events: auto;
+      width: 100%;
+      max-width: 1160px;
+      background: rgba(9, 12, 18, 0.88);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-lg);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 35px rgba(239, 35, 60, 0.15);
       flex-wrap: wrap;
-      margin-bottom: 36px;
+    }
+    .hero-cockpit-audio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-cockpit-ctas {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
     .btn-hero-primary {
       display: inline-flex;
@@ -468,10 +556,10 @@
       gap: 8px;
       background: var(--red);
       color: #ffffff;
-      padding: 15px 30px;
+      padding: 11px 22px;
       border-radius: var(--radius-full);
       font-family: var(--font-heading);
-      font-size: 0.98rem;
+      font-size: 0.86rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -490,49 +578,17 @@
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border-card);
       color: #ffffff;
-      padding: 15px 26px;
+      padding: 11px 18px;
       border-radius: var(--radius-full);
       font-family: var(--font-heading);
-      font-size: 0.98rem;
+      font-size: 0.86rem;
       font-weight: 700;
       transition: var(--transition);
     }
     .btn-hero-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .hero-trust-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-dark);
-    }
-    .trust-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-    .trust-item strong { color: #ffffff; }
-
-    /* Hero Media Showcase */
-    .hero-media-box {
-      position: relative;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-card);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px var(--red-glow);
-      background: var(--bg-card);
-    }
-    .hero-media-img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      display: block;
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
     .hero-media-badge {
       position: absolute;
@@ -1470,15 +1526,13 @@
     }
 
     @media (max-width: 1024px) {
-      .hero-grid {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 28px;
+      .hero-section {
+        height: 80vh;
+        min-height: 580px;
       }
-      .hero-subtitle { margin-inline: auto; }
-      .hero-ctas { justify-content: center; }
-      .hero-trust-row { justify-content: center; }
+      .hero-hud-top {
+        padding: 20px 20px 0;
+      }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-card:nth-child(2) { border-right: none; }
       .workshop-grid { grid-template-columns: 1fr; }
@@ -1498,14 +1552,40 @@
       .header-actions-wrap { gap: 8px; flex-shrink: 0; }
       .btn-header-tel { display: none; }
       .btn-header-cita { padding: 8px 14px; font-size: 0.8rem; }
-      .hero-section { padding: 24px 0 36px; }
-      .hero-grid { gap: 20px; }
-      .hero-media-box-col { order: 1; }
-      .hero-content-col { order: 2; }
-      .hero-title { font-size: 2.1rem; }
-      .hero-subtitle { font-size: 0.92rem; }
-      .hero-media-img { height: 280px; }
-      #heroMedia3D .sketchfab-embed-wrapper { height: 320px !important; }
+      .hero-section {
+        height: 75vh;
+        min-height: 520px;
+        max-height: 680px;
+      }
+      .hero-hud-top {
+        padding: 14px 14px 0;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero-title { font-size: 1.65rem; }
+      .hero-subtitle { display: none; }
+      .hero-hud-bottom {
+        padding: 0 10px 12px;
+      }
+      .hero-cockpit-bar {
+        padding: 10px 12px;
+        gap: 10px;
+        border-radius: var(--radius-md);
+      }
+      .hero-cockpit-audio, .hero-cockpit-ctas {
+        width: 100%;
+        justify-content: center;
+      }
+      .btn-sound-action {
+        flex: 1 1 40%;
+        min-width: 80px;
+        padding: 7px 8px;
+        font-size: 0.72rem;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
       .sketchfab-stage-view { height: 380px; }
       .hero-media-tab { font-size: 0.72rem; padding: 5px 10px; }
       .engine-canvas-container { height: 340px; }
@@ -1717,104 +1797,89 @@
   </div>
 
   <main>
-    <!-- ════ 4. HERO SECTION (HIGH IMPACT & BALANCED) ════ -->
+    <!-- ════ 4. HERO SECTION (FULLSCREEN 3D KAWASAKI NINJA H2R SHOWROOM) ════ -->
     <section id="inicio" class="hero-section">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-content-col">
-            <div class="hero-eyebrow">✦ CONCESIONARIO MULTIMARCA & TALLER EN ORIHUELA ✦</div>
-            <h1 class="hero-title">TU PRÓXIMA MOTO <span class="text-red">EMPIEZA AQUÍ.</span></h1>
-            <p class="hero-subtitle">
-              Descubre motos de ocasión revisadas en 50 puntos de control con 1 año de garantía por escrito en taller propio, o estrena tu scooter 125 cc nuevo con asesoramiento experto en Calle San Agustín 18, Orihuela.
-            </p>
+      <!-- Fullscreen 3D Stage Viewport (Toda la pantalla grande) -->
+      <div class="hero-stage-viewport">
+        <!-- 3D Ninja H2R (Full Width & Height) -->
+        <div id="heroMedia3D" style="width: 100%; height: 100%; position: absolute; inset: 0;">
+          <iframe title="Kawasaki Ninja H2R" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/14e30989ed2c45999d80a876fdfd86ed/embed?autostart=1&ui_theme=dark&ui_infos=0&ui_watermark=0&ui_controls=1" class="hero-stage-iframe"></iframe>
+        </div>
 
-            <div class="hero-ctas">
-              <a href="#catalogo" class="btn-hero-primary">
-                <span>📋 Catálogo Stock (18 Motos)</span>
-              </a>
-              <a href="#taller-cita" class="btn-hero-secondary">
-                <span>🔧 Cita Taller</span>
-              </a>
-              <a href="#tasacion" class="btn-hero-secondary">
-                <span>💶 Tasar mi Moto</span>
-              </a>
-              <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles%2C%20quisiera%20informaci%C3%B3n%20sobre%20vuestro%20stock." target="_blank" rel="noopener" class="btn-hero-secondary" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-                <span>💬 WhatsApp</span>
-              </a>
-            </div>
+        <!-- Showroom Photo (Switchable) -->
+        <div id="heroMediaShowroom" style="display: none; width: 100%; height: 100%; position: absolute; inset: 0;">
+          <img src="assets/hero_showroom_4k.jpg" alt="Showroom Orero Orihuela" class="hero-stage-showroom-img" onerror="this.src='assets/clean_showroom_orero.jpg'">
+        </div>
+      </div>
 
-            <div class="hero-trust-row">
-              <div class="trust-item">🛡️ <strong>1 Año Garantía</strong> legal por escrito</div>
-              <div class="trust-item">🔍 <strong>50 Puntos</strong> de control técnico</div>
-              <div class="trust-item">📋 <strong>DGT Inmediata</strong> cambio de nombre en 24h</div>
-            </div>
+      <!-- Floating Top HUD (Titles & Switcher) -->
+      <div class="hero-hud-top">
+        <div class="hero-hud-title-box">
+          <div class="hero-eyebrow">✦ CONCESIONARIO MULTIMARCA & TALLER EN ORIHUELA ✦</div>
+          <h1 class="hero-title">TU PRÓXIMA MOTO <span class="text-red">EMPIEZA AQUÍ.</span></h1>
+          <p class="hero-subtitle">
+            Gira y explora en 3D la Kawasaki Ninja H2R (310 CV). Revisa nuestro stock de ocasión con 1 año de garantía y taller oficial en C/ San Agustín 18.
+          </p>
+        </div>
+
+        <div class="hero-hud-top-right">
+          <div class="hero-media-tabs">
+            <button type="button" class="hero-media-tab active" id="heroTab3D" onclick="switchHeroMedia('3d')">
+              <span>🏍️ Ninja H2R 3D</span>
+            </button>
+            <button type="button" class="hero-media-tab" id="heroTabShowroom" onclick="switchHeroMedia('showroom')">
+              <span>🏢 Showroom</span>
+            </button>
           </div>
-
-          <div class="hero-media-box-col">
-            <div class="hero-media-box">
-              <!-- Switcher Tabs Bar on top of Hero Box (Non-overlapping) -->
-              <div class="hero-media-tabs-bar">
-                <div class="hero-media-tabs">
-                  <button type="button" class="hero-media-tab active" id="heroTab3D" onclick="switchHeroMedia('3d')">
-                    <span>🏍️ Ninja H2R 3D</span>
-                  </button>
-                  <button type="button" class="hero-media-tab" id="heroTabShowroom" onclick="switchHeroMedia('showroom')">
-                    <span>🏢 Showroom</span>
-                  </button>
-                </div>
-                <div class="hero-media-badge-pill">
-                  <span>⚡ 998cc · 310 CV</span>
-                </div>
-              </div>
-
-              <!-- View 1: Interactive 3D Kawasaki Ninja H2R (Default Active) -->
-              <div id="heroMedia3D" style="display: flex; flex-direction: column; position: relative; background: #000;">
-                <div class="sketchfab-embed-wrapper" style="height: 380px; width: 100%;">
-                  <iframe title="Kawasaki Ninja H2R" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/14e30989ed2c45999d80a876fdfd86ed/embed?autostart=1&ui_theme=dark&ui_infos=0" style="width: 100%; height: 100%;"></iframe>
-                </div>
-
-                <!-- Live Engine Audio Console -->
-                <div class="hero-sound-bar">
-                  <div class="hero-sound-header">
-                    <div class="engine-live-status" id="heroEngineStatus">
-                      <span class="status-pulse-dot"></span>
-                      <span id="heroEngineStatusText">MOTOR APAGADO · 0 RPM</span>
-                    </div>
-                    <span style="font-size: 0.72rem; color: var(--text-dim); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Sonido Oficial H2R</span>
-                  </div>
-                  <div class="hero-sound-buttons-row">
-                    <button type="button" class="btn-sound-action btn-sound-start" id="btnSoundStart" onclick="playEngineStartup()" title="Arrancar motor y escuchar ralentí">
-                      <span>⚡ Arrancar</span>
-                    </button>
-                    <button type="button" class="btn-sound-action btn-sound-rev" id="btnSoundRev" onclick="playEngineRev()" title="Acelerar a 14.000 RPM">
-                      <span>🚀 Acelerar</span>
-                    </button>
-                    <button type="button" class="btn-sound-action btn-sound-voice" id="btnSoundVoice" onclick="playOreroVoice()" title="Escuchar mensaje de bienvenida de Álvaro Orero">
-                      <span>🎙️ Voz Orero</span>
-                    </button>
-                    <button type="button" class="btn-sound-action btn-sound-stop" id="btnSoundStop" onclick="stopAllAudio()" title="Silenciar sonido">
-                      <span>🔇 Parar</span>
-                    </button>
-                  </div>
-                </div>
-
-                <p class="sketchfab-credits" style="padding: 6px 12px; font-size: 11px; margin: 0; background: rgba(0, 0, 0, 0.45);">
-                  <a href="https://sketchfab.com/3d-models/kawasaki-ninja-h2r-14e30989ed2c45999d80a876fdfd86ed" target="_blank" rel="nofollow">Kawasaki Ninja H2R</a> por <a href="https://sketchfab.com/seer7" target="_blank" rel="nofollow">Seer7</a> en Sketchfab · Arrastra para rotar en 360°
-                </p>
-              </div>
-
-              <!-- View 2: Showroom Photo (Switchable) -->
-              <div id="heroMediaShowroom" style="display: none; position: relative;">
-                <img src="assets/hero_showroom_4k.jpg" alt="Showroom y Exposición de Motos Orero en Orihuela" class="hero-media-img" loading="eager" onerror="this.src='assets/clean_showroom_orero.jpg'">
-                <div class="hero-media-badge">
-                  <span class="badge-live-tag">● Exposición en Vivo</span>
-                  <div class="badge-title">Showroom Orero Orihuela</div>
-                  <div class="badge-loc">Calle San Agustín, 18 · Stock físico disponible con entrega inmediata</div>
-                </div>
-              </div>
-            </div>
+          <div class="hero-media-badge-pill">
+            <span>⚡ 998cc · 310 CV</span>
           </div>
         </div>
+      </div>
+
+      <!-- Floating Bottom Cockpit (Audio Engine & Conversion CTAs) -->
+      <div class="hero-hud-bottom">
+        <div class="hero-cockpit-bar">
+          <!-- Engine Sound Console -->
+          <div class="hero-cockpit-audio">
+            <div class="engine-live-status" id="heroEngineStatus">
+              <span class="status-pulse-dot"></span>
+              <span id="heroEngineStatusText">MOTOR APAGADO · 0 RPM</span>
+            </div>
+            <button type="button" class="btn-sound-action btn-sound-start" id="btnSoundStart" onclick="playEngineStartup()" title="Arrancar motor y escuchar ralentí">
+              <span>⚡ Arrancar</span>
+            </button>
+            <button type="button" class="btn-sound-action btn-sound-rev" id="btnSoundRev" onclick="playEngineRev()" title="Acelerar a 14.000 RPM">
+              <span>🚀 Acelerar</span>
+            </button>
+            <button type="button" class="btn-sound-action btn-sound-voice" id="btnSoundVoice" onclick="playOreroVoice()" title="Escuchar mensaje de bienvenida de Álvaro Orero">
+              <span>🎙️ Voz Orero</span>
+            </button>
+            <button type="button" class="btn-sound-action btn-sound-stop" id="btnSoundStop" onclick="stopAllAudio()" title="Silenciar sonido">
+              <span>🔇 Parar</span>
+            </button>
+          </div>
+
+          <!-- Conversion CTAs -->
+          <div class="hero-cockpit-ctas">
+            <a href="#catalogo" class="btn-hero-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+              <span>📋 Catálogo Stock (18 Motos)</span>
+            </a>
+            <a href="#taller-cita" class="btn-hero-secondary" style="padding: 10px 18px; font-size: 0.85rem;">
+              <span>🔧 Cita Taller</span>
+            </a>
+            <a href="#tasacion" class="btn-hero-secondary" style="padding: 10px 18px; font-size: 0.85rem;">
+              <span>💶 Tasación</span>
+            </a>
+            <a href="https://wa.me/34677345018?text=Hola%20Orero%20Motorcycles%2C%20quisiera%20informaci%C3%B3n%20sobre%20vuestro%20stock." target="_blank" rel="noopener" class="btn-hero-secondary" style="padding: 10px 18px; font-size: 0.85rem; border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+              <span>💬 WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="sketchfab-credits" style="font-size: 11px; margin: 0; color: rgba(255, 255, 255, 0.6); pointer-events: auto;">
+          <a href="https://sketchfab.com/3d-models/kawasaki-ninja-h2r-14e30989ed2c45999d80a876fdfd86ed" target="_blank" rel="nofollow">Kawasaki Ninja H2R</a> por <a href="https://sketchfab.com/seer7" target="_blank" rel="nofollow">Seer7</a> en Sketchfab · Arrastra para rotar 360° en pantalla completa
+        </p>
       </div>
     </section>
 
