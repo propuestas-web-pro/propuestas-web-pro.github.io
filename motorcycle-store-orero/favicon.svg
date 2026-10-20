@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Gold Rings & Badges Gradient -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="45%" stop-color="#D4AF37" />
+      <stop offset="75%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#6B4E0A" />
+    </linearGradient>
+    <linearGradient id="centerGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E5C158" />
+      <stop offset="50%" stop-color="#C5A059" />
+      <stop offset="100%" stop-color="#9C7728" />
+    </linearGradient>
+    <filter id="badgeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Outer Black Circle -->
+  <circle cx="100" cy="100" r="96" fill="#14171E" stroke="url(#goldRim)" stroke-width="6" filter="url(#badgeShadow)"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(245, 158, 11, 0.4)" stroke-width="1.5"/>
+
+  <!-- Spanish Flag Horizontal Band -->
+  <g>
+    <!-- Red Top -->
+    <rect x="8" y="74" width="184" height="14" fill="#DC2626" />
+    <!-- Yellow Center -->
+    <rect x="8" y="88" width="184" height="24" fill="#FBBF24" />
+    <!-- Red Bottom -->
+    <rect x="8" y="112" width="184" height="14" fill="#DC2626" />
+  </g>
+
+  <!-- Circular Clip to keep flag inside the border -->
+  <clipPath id="innerCircleClip">
+    <circle cx="100" cy="100" r="88" />
+  </clipPath>
+
+  <!-- Center Gold Emblem Disk -->
+  <circle cx="100" cy="100" r="54" fill="url(#centerGold)" stroke="url(#goldRim)" stroke-width="3.5" />
+  <circle cx="100" cy="100" r="50" fill="none" stroke="#6B4E0A" stroke-width="1" stroke-dasharray="3,2" />
+
+  <!-- Central Bold Text: ORERO -->
+  <text x="100" y="110" 
+        font-family="'Barlow Condensed', 'Arial Black', Impact, sans-serif" 
+        font-weight="900" 
+        font-size="30" 
+        letter-spacing="0.06em" 
+        fill="#111827" 
+        text-anchor="middle">ORERO</text>
+
+  <!-- Arc Paths for Circular Text -->
+  <path id="topArc" d="M 32 100 A 68 68 0 0 1 168 100" fill="none" />
+  <text font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="12.5" fill="#FFFFFF" letter-spacing="0.16em">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      MOTORCYCLE STORE
+    </textPath>
+  </text>
+
+  <path id="bottomArc" d="M 168 100 A 68 68 0 0 1 32 100" fill="none" />
+  <text font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="800" font-size="11.5" fill="#FBBF24" letter-spacing="0.18em">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+      MOTO CLUB · ORIHUELA
+    </textPath>
+  </text>
+</svg>
