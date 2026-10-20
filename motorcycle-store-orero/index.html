@@ -3423,40 +3423,54 @@
         }
       }
     }
+  </script>
 
+  <!-- Audio Elements -->
+  <audio id="audioH2RLaunch" src="assets/h2r_launch.mp3" preload="auto"></audio>
+  <audio id="audioH2RRev" src="assets/h2r_rev.mp3" preload="auto"></audio>
+  <audio id="audioOreroVoice" src="assets/orero_voice.mp3" preload="auto"></audio>
+
+  <script>
     /* ════ H2R SUPERCHARGED AUDIO CONTROLLER ════ */
-    const audioLaunch = document.getElementById('audioH2RLaunch');
-    const audioRev = document.getElementById('audioH2RRev');
-    const audioVoice = document.getElementById('audioOreroVoice');
-    const heroStatus = document.getElementById('heroEngineStatus');
-    const heroStatusText = document.getElementById('heroEngineStatusText');
-    const btnStart = document.getElementById('btnSoundStart');
-    const btnRev = document.getElementById('btnSoundRev');
-    const btnVoice = document.getElementById('btnSoundVoice');
+    function getAudio(id) {
+      return document.getElementById(id);
+    }
 
     function stopAllAudio() {
-      [audioLaunch, audioRev, audioVoice].forEach(a => {
+      ['audioH2RLaunch', 'audioH2RRev', 'audioOreroVoice'].forEach(id => {
+        const a = getAudio(id);
         if (a) {
           a.pause();
           a.currentTime = 0;
         }
       });
+      const heroStatus = document.getElementById('heroEngineStatus');
+      const heroStatusText = document.getElementById('heroEngineStatusText');
       if (heroStatus) heroStatus.className = 'engine-live-status';
       if (heroStatusText) heroStatusText.textContent = 'MOTOR APAGADO · 0 RPM';
-      [btnStart, btnRev, btnVoice].forEach(b => {
+
+      ['btnSoundStart', 'btnSoundRev', 'btnSoundVoice'].forEach(id => {
+        const b = document.getElementById(id);
         if (b) b.classList.remove('playing');
       });
     }
 
     function playEngineStartup() {
       stopAllAudio();
+      const audioLaunch = getAudio('audioH2RLaunch');
+      const heroStatus = document.getElementById('heroEngineStatus');
+      const heroStatusText = document.getElementById('heroEngineStatusText');
+      const btnStart = document.getElementById('btnSoundStart');
+
       if (!audioLaunch) return;
       audioLaunch.currentTime = 0;
-      audioLaunch.play().then(() => {
-        if (heroStatus) heroStatus.className = 'engine-live-status idle';
-        if (heroStatusText) heroStatusText.textContent = '⚡ EN MARCHA · 1.400 RPM (RALENTÍ)';
-        if (btnStart) btnStart.classList.add('playing');
-      }).catch(err => {
+
+      // Update UI immediately on click
+      if (heroStatus) heroStatus.className = 'engine-live-status idle';
+      if (heroStatusText) heroStatusText.textContent = '⚡ EN MARCHA · 1.400 RPM (RALENTÍ)';
+      if (btnStart) btnStart.classList.add('playing');
+
+      audioLaunch.play().catch(err => {
         console.warn('Audio launch play error:', err);
       });
 
@@ -3467,13 +3481,20 @@
 
     function playEngineRev() {
       stopAllAudio();
+      const audioRev = getAudio('audioH2RRev');
+      const heroStatus = document.getElementById('heroEngineStatus');
+      const heroStatusText = document.getElementById('heroEngineStatusText');
+      const btnRev = document.getElementById('btnSoundRev');
+
       if (!audioRev) return;
       audioRev.currentTime = 0;
-      audioRev.play().then(() => {
-        if (heroStatus) heroStatus.className = 'engine-live-status revving';
-        if (heroStatusText) heroStatusText.textContent = '🔥 CORTE DE INYECCIÓN · 14.200 RPM';
-        if (btnRev) btnRev.classList.add('playing');
-      }).catch(err => {
+
+      // Update UI immediately on click
+      if (heroStatus) heroStatus.className = 'engine-live-status revving';
+      if (heroStatusText) heroStatusText.textContent = '🔥 CORTE DE INYECCIÓN · 14.200 RPM';
+      if (btnRev) btnRev.classList.add('playing');
+
+      audioRev.play().catch(err => {
         console.warn('Audio rev play error:', err);
       });
 
@@ -3486,13 +3507,20 @@
 
     function playOreroVoice() {
       stopAllAudio();
+      const audioVoice = getAudio('audioOreroVoice');
+      const heroStatus = document.getElementById('heroEngineStatus');
+      const heroStatusText = document.getElementById('heroEngineStatusText');
+      const btnVoice = document.getElementById('btnSoundVoice');
+
       if (!audioVoice) return;
       audioVoice.currentTime = 0;
-      audioVoice.play().then(() => {
-        if (heroStatus) heroStatus.className = 'engine-live-status voice';
-        if (heroStatusText) heroStatusText.textContent = '🎙️ MENSAJE DE BIENVENIDA · ÁLVARO ORERO';
-        if (btnVoice) btnVoice.classList.add('playing');
-      }).catch(err => {
+
+      // Update UI immediately on click
+      if (heroStatus) heroStatus.className = 'engine-live-status voice';
+      if (heroStatusText) heroStatusText.textContent = '🎙️ MENSAJE DE BIENVENIDA · ÁLVARO ORERO';
+      if (btnVoice) btnVoice.classList.add('playing');
+
+      audioVoice.play().catch(err => {
         console.warn('Audio voice play error:', err);
       });
 
@@ -3501,10 +3529,5 @@
       };
     }
   </script>
-
-  <!-- Audio Elements -->
-  <audio id="audioH2RLaunch" src="assets/h2r_launch.mp3" preload="auto"></audio>
-  <audio id="audioH2RRev" src="assets/h2r_rev.mp3" preload="auto"></audio>
-  <audio id="audioOreroVoice" src="assets/orero_voice.mp3" preload="auto"></audio>
 </body>
 </html>
