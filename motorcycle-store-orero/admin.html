@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Administración | Orero Motorcycles Orihuela</title>
+  <title>Panel de Control | Orero Motorcycles Orihuela</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,45 +33,49 @@
       display: flex;
       flex-direction: column;
     }
-    /* Login Screen */
+
+    /* ══════════════════════════════════════════════════════════
+       PANTALLA DE ACCESO (SOLO CONTRASEÑA: casino18)
+       ══════════════════════════════════════════════════════════ */
     .login-wrapper {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.12) 0%, transparent 60%);
+      background: radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.15) 0%, transparent 60%);
     }
     .login-card {
       width: 100%;
       max-width: 440px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 40px 32px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      padding: 44px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
       text-align: center;
       position: relative;
     }
     .login-logo {
-      width: 68px;
-      height: 68px;
+      width: 80px;
+      height: 80px;
       margin: 0 auto 18px;
       display: block;
-      filter: drop-shadow(0 4px 12px rgba(239, 35, 60, 0.3));
+      filter: drop-shadow(0 6px 16px rgba(239, 35, 60, 0.35));
     }
     .login-title {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
-      font-weight: 800;
+      font-size: 1.6rem;
+      font-weight: 900;
       letter-spacing: -0.02em;
       margin-bottom: 6px;
     }
     .login-title span { color: var(--red); }
     .login-subtitle {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       margin-bottom: 28px;
+      line-height: 1.4;
     }
     .form-group {
       text-align: left;
@@ -79,48 +83,53 @@
     }
     .form-label {
       display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #e2e8f0;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .form-input {
       width: 100%;
       background: #090c13;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 13px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 15px 18px;
       color: #fff;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       transition: all 0.2s;
     }
     .form-input:focus {
       outline: none;
       border-color: var(--red);
       box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.25);
+      background: #0d121c;
     }
     .btn-login {
       width: 100%;
       background: var(--red);
       color: #fff;
       font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.05rem;
+      font-weight: 800;
       border: none;
-      border-radius: 10px;
-      padding: 14px;
+      border-radius: 12px;
+      padding: 16px;
       cursor: pointer;
       transition: all 0.2s;
-      box-shadow: 0 4px 15px rgba(239, 35, 60, 0.35);
-      margin-top: 10px;
+      box-shadow: 0 4px 18px rgba(239, 35, 60, 0.4);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     .btn-login:hover {
       background: var(--red-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(239, 35, 60, 0.45);
+      box-shadow: 0 8px 24px rgba(239, 35, 60, 0.55);
     }
     .login-error {
       display: none;
@@ -128,13 +137,15 @@
       border: 1px solid rgba(239, 35, 60, 0.4);
       color: #fca5a5;
       padding: 12px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 0.88rem;
       margin-bottom: 20px;
       text-align: left;
     }
 
-    /* Dashboard Layout */
+    /* ══════════════════════════════════════════════════════════
+       PANEL PRINCIPAL
+       ══════════════════════════════════════════════════════════ */
     .dashboard-wrapper {
       display: none;
       flex-direction: column;
@@ -158,18 +169,18 @@
       text-decoration: none;
       color: #fff;
     }
-    .nav-brand img { width: 36px; height: 36px; }
+    .nav-brand img { width: 38px; height: 38px; }
     .nav-brand-title {
       font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.15rem;
+      font-weight: 900;
+      font-size: 1.2rem;
       letter-spacing: -0.01em;
     }
     .nav-brand-title span { color: var(--red); }
     .nav-badge {
-      background: rgba(239, 35, 60, 0.15);
-      border: 1px solid rgba(239, 35, 60, 0.3);
-      color: var(--red);
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
       font-size: 0.72rem;
       font-weight: 700;
       padding: 3px 8px;
@@ -179,15 +190,15 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
     .btn-nav-outline {
       background: transparent;
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
-      font-size: 0.84rem;
+      font-size: 0.86rem;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
@@ -207,25 +218,27 @@
       color: #fff;
     }
 
-    /* Main Container */
+    /* Contenido */
     .dashboard-content {
       flex: 1;
-      padding: 32px 28px;
+      padding: 28px;
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
     }
+
+    /* KPIs */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
     }
     .metric-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 22px;
+      padding: 20px;
       position: relative;
       overflow: hidden;
     }
@@ -235,47 +248,43 @@
       top: 0; left: 0; width: 4px; height: 100%;
       background: var(--red);
     }
-    .metric-card.gold::before { background: var(--gold); }
     .metric-card.green::before { background: var(--green); }
-    .metric-card.yellow::before { background: var(--yellow); }
+    .metric-card.gold::before { background: var(--gold); }
     .metric-label {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.04em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .metric-val {
       font-family: var(--font-heading);
-      font-size: 1.85rem;
-      font-weight: 800;
+      font-size: 1.8rem;
+      font-weight: 900;
       color: #fff;
     }
-    .metric-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
 
-    /* Section Tabs */
+    /* Pestañas */
     .tabs-bar {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       border-bottom: 1px solid var(--card-border);
       margin-bottom: 24px;
+      overflow-x: auto;
     }
     .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
       font-family: var(--font-heading);
-      font-size: 0.95rem;
-      font-weight: 700;
-      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 12px 22px;
       cursor: pointer;
       position: relative;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .tab-btn.active {
       color: #fff;
@@ -288,7 +297,204 @@
       border-radius: 3px 3px 0 0;
     }
 
-    /* Table Card */
+    /* Card Estilo Facebook: Publicar Producto */
+    .fb-creator-card {
+      background: linear-gradient(145deg, #0f1624 0%, #0a0e18 100%);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .fb-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+    }
+    .fb-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(239, 35, 60, 0.4);
+    }
+    .fb-title-wrap h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .fb-title-wrap p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .fb-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* Subir imagen */
+    .photo-upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 16px;
+    }
+    .photo-upload-box:hover {
+      border-color: var(--red);
+      background: rgba(239, 35, 60, 0.05);
+    }
+    .photo-preview {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: none;
+      margin-top: 12px;
+      border: 1px solid var(--card-border);
+    }
+    .btn-fb-publish {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 28px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-fb-publish:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.55);
+    }
+
+    /* Listado de Productos */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .product-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+    }
+    .product-thumb {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #090c13;
+    }
+    .product-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .product-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(239, 35, 60, 0.15);
+      color: var(--red);
+    }
+    .product-status-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .status-available { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .status-sold { background: rgba(239, 35, 60, 0.2); color: #fca5a5; }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .product-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .product-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+    }
+    .btn-prod-action {
+      flex: 1;
+      padding: 9px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #141b27;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .btn-prod-action:hover {
+      background: #1e283b;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .btn-prod-delete:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    /* Tabla de Citas */
     .table-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -304,40 +510,6 @@
       flex-wrap: wrap;
       gap: 14px;
       border-bottom: 1px solid var(--card-border);
-    }
-    .table-title {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-weight: 800;
-    }
-    .table-actions {
-      display: flex;
-      gap: 10px;
-    }
-    .btn-action {
-      background: #151c29;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .btn-action:hover {
-      background: #1c2638;
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-    .btn-action-primary {
-      background: var(--red);
-      border-color: var(--red);
-    }
-    .btn-action-primary:hover {
-      background: var(--red-hover);
     }
     .table-responsive {
       overflow-x: auto;
@@ -364,112 +536,60 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       color: #e2e8f0;
     }
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .badge-pending { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-confirmed { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-done { background: rgba(148, 163, 184, 0.18); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
-    .badge-shift { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
-    .action-btn-sm {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      margin-right: 4px;
-      transition: all 0.15s;
-    }
-    .action-btn-sm:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .action-btn-danger:hover {
-      background: var(--red);
-      border-color: var(--red);
-    }
-
-    /* Modal */
-    .admin-modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .admin-modal-overlay.open { display: flex; }
-    .admin-modal {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 30px;
-      width: 100%;
-      max-width: 520px;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-    }
-    .admin-modal-title {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 20px;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard-content { padding: 18px 14px; }
+      .fb-creator-card { padding: 20px 16px; }
+      .top-navbar { padding: 12px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA DE ACCESO (SOLO CONTRASEÑA: casino18)
+       ══════════════════════════════════════════════════════════ -->
   <div class="login-wrapper" id="loginScreen">
     <div class="login-card">
       <img src="favicon.svg" alt="Orero Motorcycles" class="login-logo">
-      <h1 class="login-title">ORERO <span>ADMIN</span></h1>
-      <p class="login-subtitle">Gestión central de citas, taller y catálogo multimarca</p>
+      <h1 class="login-title">ORERO <span>PANEL</span></h1>
+      <p class="login-subtitle">Introduce la contraseña para gestionar citas, motos y productos de la tienda.</p>
 
       <div class="login-error" id="loginError">
-        ⚠️ Usuario o contraseña incorrectos. Por favor, revisa tus datos de acceso.
+        ⚠️ Contraseña incorrecta. Recuerda que la contraseña es <strong>casino18</strong>.
       </div>
 
       <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <div class="form-group">
-          <label class="form-label" for="loginUser">Usuario</label>
-          <input type="text" id="loginUser" class="form-input" placeholder="admin" required autofocus>
-        </div>
+        <!-- Hidden user for standard browser autofill, not shown to user -->
+        <input type="hidden" id="loginUser" value="admin">
 
         <div class="form-group">
-          <label class="form-label" for="loginPass">Contraseña</label>
-          <input type="password" id="loginPass" class="form-input" placeholder="••••••••" required>
+          <label class="form-label" for="loginPass">Contraseña de Acceso:</label>
+          <input type="password" id="loginPass" class="form-input" placeholder="••••••••" required autofocus autocomplete="current-password">
         </div>
 
-        <button type="submit" class="btn-login">Acceder al Panel</button>
+        <button type="submit" class="btn-login">
+          <span>🔓 Entrar al Panel</span>
+        </button>
       </form>
 
-      <div style="margin-top: 24px; font-size: 0.8rem; color: var(--text-muted);">
-        <a href="./" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público</a>
+      <div style="margin-top: 24px; font-size: 0.85rem; color: var(--text-muted);">
+        <a href="./" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público de Orero</a>
       </div>
     </div>
   </div>
 
-  <!-- DASHBOARD WRAPPER -->
+  <!-- ══════════════════════════════════════════════════════════
+       DASHBOARD DE CONTROL
+       ══════════════════════════════════════════════════════════ -->
   <div class="dashboard-wrapper" id="dashboardScreen">
-    <!-- Navbar -->
     <header class="top-navbar">
       <div class="nav-brand">
-        <img src="favicon.svg" alt="Orero Motorcycles">
+        <img src="favicon.svg" alt="Orero">
         <div class="nav-brand-title">ORERO <span>MOTORCYCLES</span></div>
-        <span class="nav-badge">Panel Taller & Venta</span>
+        <span class="nav-badge">Taller & Tienda Activa</span>
       </div>
 
       <div class="nav-actions">
@@ -478,52 +598,145 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <main class="dashboard-content">
-      <!-- KPI Metrics -->
+      <!-- Estadísticas rápidas -->
       <div class="metrics-grid">
         <div class="metric-card">
-          <div class="metric-label">Citas Registradas</div>
-          <div class="metric-val" id="kpiTotalCitas">12</div>
-          <div class="metric-sub">Taller oficial & revisiones</div>
+          <div class="metric-label">Citas Recibidas</div>
+          <div class="metric-val" id="kpiTotalCitas">6</div>
         </div>
         <div class="metric-card green">
           <div class="metric-label">Citas Confirmadas</div>
-          <div class="metric-val" id="kpiConfirmadas">8</div>
-          <div class="metric-sub">Planificadas para esta semana</div>
+          <div class="metric-val" id="kpiConfirmadas">3</div>
         </div>
         <div class="metric-card gold">
-          <div class="metric-label">Motos en Stock</div>
-          <div class="metric-val">18</div>
-          <div class="metric-sub">Ocasión garantizada y nuevas</div>
+          <div class="metric-label">Productos Publicados</div>
+          <div class="metric-val" id="kpiTotalMotos">24</div>
         </div>
-        <div class="metric-card yellow">
-          <div class="metric-label">Valor del Stock</div>
-          <div class="metric-val">68.440 €</div>
-          <div class="metric-sub">En exposición Calle San Agustín 18</div>
+        <div class="metric-card">
+          <div class="metric-label">Atención Telefónica</div>
+          <div class="metric-val" style="font-size:1.3rem;">966 74 01 20</div>
         </div>
       </div>
 
-      <!-- Tabs -->
+      <!-- Barra de navegación por pestañas -->
       <div class="tabs-bar">
-        <button class="tab-btn active" onclick="switchTab('citas', this)">📅 Citas de Taller & Clientes</button>
-        <button class="tab-btn" onclick="switchTab('motos', this)">🏍️ Catálogo & Stock (18)</button>
-        <button class="tab-btn" onclick="switchTab('contacto', this)">🏢 Info Concesionario</button>
+        <button class="tab-btn active" id="tabBtnStock" onclick="switchTab('stock', this)">🏍️ Motos & Boutique (Publicar y Gestionar)</button>
+        <button class="tab-btn" id="tabBtnCitas" onclick="switchTab('citas', this)">📅 Citas de Taller (<span id="citasTabCount">6</span>)</button>
+        <button class="tab-btn" id="tabBtnTaller" onclick="switchTab('taller', this)">🏢 Info del Concesionario</button>
       </div>
 
-      <!-- Tab Content: Citas -->
-      <div id="tabCitas">
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 1: INVENTARIO & PUBLICAR COMO EN FACEBOOK
+           ══════════════════════════════════════════════════════════ -->
+      <div id="tabStock">
+        <!-- Creador estilo Facebook -->
+        <div class="fb-creator-card">
+          <div class="fb-header">
+            <div class="fb-avatar">➕</div>
+            <div class="fb-title-wrap">
+              <h3>Publicar en la Web (Fácil como en Facebook)</h3>
+              <p>Sube una foto, ponle precio y título. Aparecerá en la web al instante para tus clientes.</p>
+            </div>
+          </div>
+
+          <form id="fbPublishForm" onsubmit="handlePublishProduct(event)">
+            <div class="fb-form-grid">
+              <div class="form-group">
+                <label class="form-label">¿Qué estás publicando?</label>
+                <select id="prodCategory" class="form-input" onchange="toggleMotoFields(this.value)">
+                  <option value="ocasion">🏍️ Moto de Ocasión</option>
+                  <option value="nueva">🏍️ Moto Nueva</option>
+                  <option value="casco">🪖 Casco de Moto</option>
+                  <option value="chaqueta">🧥 Chaqueta / Chaleco / Ropa</option>
+                  <option value="accesorio">⚙️ Candado / Accesorio / Recambio</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Título o Modelo</label>
+                <input type="text" id="prodTitle" class="form-input" placeholder="Ej: Yamaha T-MAX 530 ABS" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Precio (€)</label>
+                <input type="text" id="prodPrice" class="form-input" placeholder="Ej: 5.800 € o 129 €" required>
+              </div>
+
+              <div class="form-group" id="groupMotoYear">
+                <label class="form-label">Año (si es moto)</label>
+                <input type="number" id="prodYear" class="form-input" placeholder="2022" value="2022">
+              </div>
+
+              <div class="form-group" id="groupMotoKm">
+                <label class="form-label">Kilómetros (si es moto)</label>
+                <input type="text" id="prodKm" class="form-input" placeholder="15.000 km" value="12.000 km">
+              </div>
+            </div>
+
+            <!-- Subir Foto -->
+            <label class="form-label">Foto del Producto (Sube desde tu móvil o PC):</label>
+            <div class="photo-upload-box" onclick="document.getElementById('prodPhotoInput').click()">
+              <input type="file" id="prodPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+              <div id="uploadPrompt">
+                <div style="font-size:2rem; margin-bottom:6px;">📸</div>
+                <strong style="color:#fff; font-size:0.95rem;">Pulsa aquí para elegir una foto de tu móvil o PC</strong>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Se optimizará y publicará automáticamente en la web.</p>
+              </div>
+              <img id="photoPreviewImg" class="photo-preview" alt="Vista previa">
+            </div>
+
+            <!-- O fotos de muestra de la tienda -->
+            <div style="margin-bottom: 20px;">
+              <span style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:8px;">O elige una foto rápida de stock guardada:</span>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/moto_yamaha_mt07.jpg', 'Yamaha')">🏍️ Foto Yamaha</button>
+                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/moto_honda_cbr500r.jpg', 'Honda')">🏍️ Foto Honda</button>
+                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/vespa_lx_hd.jpg', 'Vespa')">🛵 Foto Vespa</button>
+                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/boutique_casco_ls2_strobe.jpg', 'Casco LS2')">🪖 Foto Casco LS2</button>
+                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/boutique_chaqueta_alpinestars.jpg', 'Chaqueta')">🧥 Foto Chaqueta</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Descripción o Comentarios (como un post de Facebook):</label>
+              <textarea id="prodDesc" class="form-input" style="height:80px;" placeholder="Ej: Moto en impecable estado, revisada en nuestro taller en Orihuela con 1 año de garantía por escrito."></textarea>
+            </div>
+
+            <button type="submit" class="btn-fb-publish">
+              <span>🚀 Publicar Ahora en la Web</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Listado de todo lo publicado -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+          <h2 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800;">
+            Productos Publicados en la Web (<span id="totalProductsCount">0</span>)
+          </h2>
+          <span style="font-size:0.85rem; color:var(--text-muted);">Puedes cambiar el precio, marcarlo como vendido o quitarlo con 1 clic</span>
+        </div>
+
+        <div class="products-grid" id="productsGridContainer">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 2: CITAS DE TALLER
+           ══════════════════════════════════════════════════════════ -->
+      <div id="tabCitas" style="display:none;">
         <div class="table-card">
           <div class="table-header">
             <div>
-              <h2 class="table-title">Solicitudes de Cita Previa</h2>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
-                Citas recibidas desde el formulario web y registros de taller.
+              <h2 style="font-family:var(--font-heading); font-size:1.2rem; font-weight:800;">Citas Solicitadas por Clientes</h2>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
+                Clientes que han pedido cita a través del formulario web.
               </p>
             </div>
-            <div class="table-actions">
-              <button class="btn-action" onclick="exportCitasCSV()">📥 Exportar CSV</button>
-              <button class="btn-action btn-action-primary" onclick="openNewCitaModal()">➕ Nueva Cita</button>
+            <div style="display:flex; gap:10px;">
+              <button class="btn-nav-outline" onclick="exportCitasCSV()">📥 Descargar en Excel/CSV</button>
+              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.88rem;" onclick="promptNewCita()">➕ Añadir Cita Telefónica</button>
             </div>
           </div>
 
@@ -536,9 +749,9 @@
                   <th>Teléfono</th>
                   <th>Vehículo</th>
                   <th>Servicio</th>
-                  <th>Fecha & Franja</th>
+                  <th>Fecha & Turno</th>
                   <th>Estado</th>
-                  <th>Acciones</th>
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody id="citasTableBody">
@@ -549,62 +762,31 @@
         </div>
       </div>
 
-      <!-- Tab Content: Motos -->
-      <div id="tabMotos" style="display:none;">
-        <div class="table-card">
-          <div class="table-header">
-            <div>
-              <h2 class="table-title">Inventario en Exposición</h2>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
-                18 Motocicletas multimarca listas para entrega con 1 año de garantía.
-              </p>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table>
-              <thead>
-                <tr>
-                  <th>Marca / Modelo</th>
-                  <th>Año</th>
-                  <th>Kilometraje</th>
-                  <th>Tipo</th>
-                  <th>Precio Contado</th>
-                  <th>Estado</th>
-                  <th>Garantía</th>
-                </tr>
-              </thead>
-              <tbody id="motosTableBody">
-                <!-- Injected via JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab Content: Info Concesionario -->
-      <div id="tabContacto" style="display:none;">
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 3: INFO DEL TALLER
+           ══════════════════════════════════════════════════════════ -->
+      <div id="tabTaller" style="display:none;">
         <div class="table-card" style="padding: 30px;">
-          <h2 class="table-title" style="margin-bottom: 20px;">Datos Corporativos & Taller Oficial</h2>
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+          <h2 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:20px;">Datos del Concesionario & Taller</h2>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
             <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Ubicación Oficial</div>
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">DIRECCIÓN OFICIAL</div>
               <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:6px;">Calle San Agustín, 18</div>
               <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">03300 Orihuela (Alicante)</div>
             </div>
 
             <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Teléfono Fijo Oficial</div>
-              <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:6px;">
-                <a href="tel:+34966740120" style="color:#fff; text-decoration:none;">966 74 01 20</a>
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">TELÉFONO DE CITAS</div>
+              <div style="font-size:1.2rem; font-weight:800; color:#fff; margin-top:6px;">
+                <a href="tel:+34966740120" style="color:#fff; text-decoration:none;">📞 966 74 01 20</a>
               </div>
-              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Atención a clientes y repuestos</div>
+              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Llamadas directas desde la web</div>
             </div>
 
             <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Horario de Taller</div>
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">HORARIO DE APERTURA</div>
               <div style="font-size:0.95rem; font-weight:600; color:#fff; margin-top:6px;">
-                L-V: 09:30 - 13:30 / 16:30 - 20:30<br>
+                Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:30<br>
                 Sábados: 10:00 - 13:30
               </div>
             </div>
@@ -614,60 +796,39 @@
     </main>
   </div>
 
-  <!-- MODAL: NUEVA CITA MANUAL -->
-  <div class="admin-modal-overlay" id="newCitaModal">
-    <div class="admin-modal">
-      <h3 class="admin-modal-title">Registrar Cita de Taller</h3>
-      <form onsubmit="handleCreateManualCita(event)">
-        <div class="form-group">
-          <label class="form-label">Nombre del Cliente</label>
-          <input type="text" id="manualName" class="form-input" required placeholder="Ej: Manuel García">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Teléfono</label>
-          <input type="tel" id="manualPhone" class="form-input" required placeholder="Ej: 612 345 678">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Vehículo / Matrícula</label>
-          <input type="text" id="manualMoto" class="form-input" required placeholder="Ej: Honda SH 125 - 4589-KLP">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Servicio</label>
-          <select id="manualService" class="form-input">
-            <option value="Revisión Oficial 60 Pts">Revisión Oficial 60 Pts</option>
-            <option value="Mantenimiento Periódico">Mantenimiento Periódico</option>
-            <option value="Cambio de Neumáticos">Cambio de Neumáticos</option>
-            <option value="Frenos y Pastillas">Frenos y Pastillas</option>
-            <option value="Pre-ITV Oficial">Pre-ITV Oficial</option>
-            <option value="Tasación de Moto">Tasación de Moto</option>
-          </select>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label class="form-label">Fecha</label>
-            <input type="date" id="manualDate" class="form-input" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Franja</label>
-            <select id="manualSlot" class="form-input">
-              <option value="Mañana (09:30 - 13:30)">🌅 Mañana</option>
-              <option value="Tarde (16:30 - 20:30)">🌇 Tarde</option>
-              <option value="Flexible">🌙 Flexible</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:12px; margin-top:20px;">
-          <button type="submit" class="btn-login" style="margin-top:0;">Guardar Cita</button>
-          <button type="button" onclick="closeNewCitaModal()" class="btn-nav-outline" style="flex:1;">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <script>
-    // Authentic seed data for initial view
+    // Authentic Base Stock (18 Motos + Real Boutique)
+    const BASE_STOCK = [
+      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "../assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
+      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "../assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
+      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "../assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
+      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "../assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
+      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "../assets/peugeot_metropolis_hd.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
+      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "../assets/qj_srk_hd.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
+      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "../assets/honda_sh350_hd.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
+      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "../assets/kymco_agility_hd.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
+      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "../assets/sym_symphony_hd.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
+      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "../assets/macbor_montana_4k.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
+      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "../assets/kymco_kxct_hd.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
+      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "../assets/suzuki_burgman_hd.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
+      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "../assets/peugeot_citystar_hd.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
+      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "../assets/rieju_mrt_hd.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
+      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "../assets/hanway_furious_4k.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
+      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "../assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
+      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "../assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
+      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "../assets/virago_real_hd.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
+      // Boutique real
+      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
+      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
+      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
+      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "../assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
+      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "../assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
+      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "../assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
+    ];
+
+    // Seed Appointments
     const DEFAULT_CITAS = [
+      { ref: "ORERO-CITA-8367", name: "Alejandro Ramos", phone: "633445566", moto: "Yamaha MT-07 - 5678-KTM", service: "Revisión Oficial 60 Puntos", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
       { ref: "ORERO-CITA-1042", name: "Pedro Martínez Soto", phone: "644 12 34 56", moto: "Yamaha MT-07 (2021)", service: "Revisión 60 Puntos", date: "2026-10-21", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
       { ref: "ORERO-CITA-1043", name: "Laura Ruiz Morales", phone: "622 98 76 54", moto: "Kymco Agility City 125", service: "Cambio de Neumáticos Michelin", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "confirmada" },
       { ref: "ORERO-CITA-1044", name: "Vicente Sánchez Pardo", phone: "677 45 89 12", moto: "Honda CBR 500R", service: "Inspección Pre-ITV", date: "2026-10-22", slot: "Mañana (09:30 - 13:30)", status: "pendiente" },
@@ -675,35 +836,16 @@
       { ref: "ORERO-CITA-1046", name: "Carlos Navarro Gómez", phone: "655 77 88 99", moto: "Kawasaki Ninja 650", service: "Tasación para cambio", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "confirmada" }
     ];
 
-    const MOTOS_STOCK = [
-      { brand: "Yamaha", model: "MT-07", year: 2021, km: "12.500 km", type: "Naked", price: "6.900 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Honda", model: "CBR 500R", year: 2022, km: "8.300 km", type: "Sport / A2", price: "5.800 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Kawasaki", model: "Ninja 650", year: 2024, km: "0 km (Nueva)", type: "Sport", price: "7.900 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Suzuki", model: "V-Strom 650", year: 2020, km: "18.200 km", type: "Trail", price: "5.500 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Peugeot", model: "Metropolis 400 Active", year: 2021, km: "379 km", type: "Scooter 3 Ruedas", price: "6.500 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "QJ Motor", model: "SRK 125J", year: 2024, km: "0 km (Nueva)", type: "Naked 125", price: "2.999 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Honda", model: "SH 350i Sport ABS", year: 2022, km: "11.420 km", type: "Scooter", price: "5.200 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Kymco", model: "Agility City PLUS 125", year: 2024, km: "0 km (Nueva)", type: "Scooter 125", price: "2.199 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "SYM", model: "Symphony 125 SR", year: 2024, km: "0 km (Nueva)", type: "Scooter 125", price: "2.499 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Macbor", model: "Montana XR1 125 EVO", year: 2024, km: "0 km (Nueva)", type: "Trail 125", price: "3.299 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Kymco", model: "K-XCT 125i Sport ABS", year: 2016, km: "47.598 km", type: "Scooter", price: "2.350 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Suzuki", model: "Burgman 250 Executive", year: 2005, km: "86.258 km", type: "Maxiscooter", price: "1.350 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Peugeot", model: "Citystar 50 RS Sport", year: 2017, km: "36.238 km", type: "Ciclomotor", price: "1.050 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Rieju", model: "MRT 50 Pro Black", year: 2024, km: "0 km (Nueva)", type: "Supermotard", price: "3.899 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Hanway", model: "Furious NK 125 Naked", year: 2023, km: "2.500 km", type: "Naked", price: "1.950 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Vespa", model: "LX 50 2T Clásica", year: 2008, km: "28.410 km", type: "Ciclomotor", price: "950 €", status: "Disponible", warranty: "1 Año Escrito" },
-      { brand: "Benda", model: "Napoleon Bob 250 Bobber", year: 2024, km: "0 km (Nueva)", type: "Custom Bobber", price: "4.290 €", status: "Disponible", warranty: "3 Años Oficial" },
-      { brand: "Yamaha", model: "XV 535 SP Virago Custom", year: 1998, km: "45.978 km", type: "Custom", price: "2.500 €", status: "Vendida", warranty: "Entregada" }
-    ];
+    let currentUploadedPhotoData = "";
 
-    // Auth verification
+    // Auth verification (ONLY PASSWORD: casino18)
     function checkAuth() {
       const isAuth = sessionStorage.getItem('orero_admin_logged') === 'true' || localStorage.getItem('orero_admin_logged') === 'true';
       if (isAuth) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('dashboardScreen').style.display = 'flex';
+        renderProducts();
         renderCitas();
-        renderMotos();
       } else {
         document.getElementById('loginScreen').style.display = 'flex';
         document.getElementById('dashboardScreen').style.display = 'none';
@@ -712,12 +854,11 @@
 
     function handleAdminLogin(e) {
       e.preventDefault();
-      const user = document.getElementById('loginUser').value.trim();
       const pass = document.getElementById('loginPass').value.trim();
       const errBox = document.getElementById('loginError');
 
-      // Requested credentials: user = admin, pass = casino18
-      if (user.toLowerCase() === 'admin' && pass === 'casino18') {
+      // REQUIRED BY USER: Only password check, exact match casino18
+      if (pass === 'casino18') {
         sessionStorage.setItem('orero_admin_logged', 'true');
         localStorage.setItem('orero_admin_logged', 'true');
         errBox.style.display = 'none';
@@ -733,22 +874,186 @@
       checkAuth();
     }
 
-    // Get Citas (merges localStorage public submissions + seed data)
+    // Toggle fields if moto or boutique
+    function toggleMotoFields(category) {
+      const isMoto = category === 'ocasion' || category === 'nueva';
+      document.getElementById('groupMotoYear').style.display = isMoto ? 'block' : 'none';
+      document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
+    }
+
+    // Photo file upload from device
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentUploadedPhotoData = evt.target.result;
+        const img = document.getElementById('photoPreviewImg');
+        img.src = currentUploadedPhotoData;
+        img.style.display = 'block';
+        document.getElementById('uploadPrompt').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectSamplePhoto(photoPath, label) {
+      currentUploadedPhotoData = photoPath;
+      const img = document.getElementById('photoPreviewImg');
+      img.src = photoPath;
+      img.style.display = 'block';
+      document.getElementById('uploadPrompt').style.display = 'none';
+    }
+
+    // Load & Save Products
+    function getAllProducts() {
+      try {
+        const local = localStorage.getItem('orero_all_inventory');
+        if (local) return JSON.parse(local);
+      } catch (err) {}
+      return BASE_STOCK;
+    }
+
+    function saveProducts(list) {
+      localStorage.setItem('orero_all_inventory', JSON.stringify(list));
+      renderProducts();
+    }
+
+    // Publish New Product (Facebook Style)
+    function handlePublishProduct(e) {
+      e.preventDefault();
+      const category = document.getElementById('prodCategory').value;
+      const title = document.getElementById('prodTitle').value.trim();
+      const price = document.getElementById('prodPrice').value.trim();
+      const year = document.getElementById('prodYear').value;
+      const km = document.getElementById('prodKm').value.trim();
+      const desc = document.getElementById('prodDesc').value.trim();
+
+      // If no photo chosen, pick default according to category
+      let image = currentUploadedPhotoData;
+      if (!image) {
+        if (category === 'casco') image = '../assets/boutique_casco_ls2_strobe.jpg';
+        else if (category === 'chaqueta') image = '../assets/boutique_chaqueta_alpinestars.jpg';
+        else if (category === 'accesorio') image = '../assets/boutique_antirrobo_disco.jpg';
+        else image = '../assets/clean_showroom_orero.jpg';
+      }
+
+      const newId = 'prod_' + Date.now();
+      const newProduct = {
+        id: newId,
+        title: title,
+        category: category,
+        price: price.includes('€') ? price : price + ' €',
+        year: year ? parseInt(year) : 2024,
+        km: km || '0 km',
+        image: image,
+        status: 'disponible',
+        desc: desc || 'Vehículo disponible en nuestra exposición de Calle San Agustín 18, Orihuela.'
+      };
+
+      const products = getAllProducts();
+      products.unshift(newProduct);
+      saveProducts(products);
+
+      // Reset form
+      document.getElementById('fbPublishForm').reset();
+      document.getElementById('photoPreviewImg').style.display = 'none';
+      document.getElementById('uploadPrompt').style.display = 'block';
+      currentUploadedPhotoData = "";
+
+      alert('¡Publicación realizada con éxito! Ya está disponible en la web.');
+    }
+
+    function renderProducts() {
+      const products = getAllProducts();
+      const container = document.getElementById('productsGridContainer');
+      container.innerHTML = '';
+
+      document.getElementById('totalProductsCount').textContent = products.length;
+      document.getElementById('kpiTotalMotos').textContent = products.length;
+
+      products.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        const isSold = p.status === 'vendida';
+        const statusClass = isSold ? 'status-sold' : 'status-available';
+        const statusText = isSold ? '🔴 VENDIDA' : '🟢 DISPONIBLE';
+
+        let catBadge = '🏍️ MOTO OCASIÓN';
+        if (p.category === 'nueva') catBadge = '🏍️ MOTO NUEVA';
+        else if (p.category === 'casco') catBadge = '🪖 CASCO ECE 22.06';
+        else if (p.category === 'chaqueta') catBadge = '🧥 EQUIPACIÓN';
+        else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
+
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.title}" class="product-thumb" onerror="this.src='../assets/clean_showroom_orero.jpg'">
+          <div class="product-body">
+            <div class="product-badge-row">
+              <span class="product-badge">${catBadge}</span>
+              <span class="product-status-tag ${statusClass}">${statusText}</span>
+            </div>
+            <h4 class="product-title">${p.title}</h4>
+            <div class="product-price">${p.price}</div>
+            <p class="product-desc">${p.desc}</p>
+
+            <div class="product-actions">
+              <button class="btn-prod-action" onclick="toggleProductSold('${p.id}')">
+                ${isSold ? '🟢 Poner Disponible' : '🔴 Marcar Vendida'}
+              </button>
+              <button class="btn-prod-action" onclick="editProductPrice('${p.id}')">
+                ✏️ Precio
+              </button>
+              <button class="btn-prod-action btn-prod-delete" onclick="deleteProduct('${p.id}')">
+                🗑️ Quitar
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleProductSold(id) {
+      const products = getAllProducts();
+      const item = products.find(p => p.id === id);
+      if (!item) return;
+      item.status = item.status === 'vendida' ? 'disponible' : 'vendida';
+      saveProducts(products);
+    }
+
+    function editProductPrice(id) {
+      const products = getAllProducts();
+      const item = products.find(p => p.id === id);
+      if (!item) return;
+
+      const newPrice = prompt(`Introduce el nuevo precio para "${item.title}":`, item.price);
+      if (newPrice !== null && newPrice.trim() !== '') {
+        item.price = newPrice.trim().includes('€') ? newPrice.trim() : newPrice.trim() + ' €';
+        saveProducts(products);
+      }
+    }
+
+    function deleteProduct(id) {
+      if (!confirm('¿Seguro que deseas eliminar este producto de la web?')) return;
+      let products = getAllProducts();
+      products = products.filter(p => p.id !== id);
+      saveProducts(products);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // GESTIÓN DE CITAS
+    // ══════════════════════════════════════════════════════════
     function getStoredCitas() {
       let citas = [];
       try {
         const local = localStorage.getItem('orero_appointments');
-        if (local) {
-          citas = JSON.parse(local);
-        }
+        if (local) citas = JSON.parse(local);
       } catch (err) {}
 
-      // Combine with defaults ensuring no duplicate refs
       const existingRefs = new Set(citas.map(c => c.ref));
       DEFAULT_CITAS.forEach(d => {
-        if (!existingRefs.has(d.ref)) {
-          citas.push(d);
-        }
+        if (!existingRefs.has(d.ref)) citas.push(d);
       });
       return citas;
     }
@@ -764,36 +1069,41 @@
       tbody.innerHTML = '';
 
       let confirmedCount = 0;
+      document.getElementById('citasTabCount').textContent = citas.length;
+      document.getElementById('kpiTotalCitas').textContent = citas.length;
 
       citas.forEach((c, idx) => {
         if (c.status === 'confirmada') confirmedCount++;
 
         const tr = document.createElement('tr');
-        
-        let statusBadge = '<span class="badge badge-pending">Pendiente</span>';
-        if (c.status === 'confirmada') statusBadge = '<span class="badge badge-confirmed">Confirmada</span>';
-        if (c.status === 'atendida') statusBadge = '<span class="badge badge-done">Atendida</span>';
+        const isPending = c.status === 'pendiente';
+        const statusBadge = isPending 
+          ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">PENDIENTE</span>'
+          : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">CONFIRMADA</span>';
 
         tr.innerHTML = `
           <td style="font-family:monospace; font-weight:700; color:var(--red);">${c.ref || 'CITA-' + (1000+idx)}</td>
-          <td><strong>${c.name || 'Cliente'}</strong></td>
-          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none;">📞 ${c.phone}</a></td>
-          <td>${c.moto || c.bikeModel || '-'}</td>
-          <td>${c.service || 'Taller general'}</td>
+          <td><strong>${c.name}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a></td>
+          <td>${c.moto || '-'}</td>
+          <td>${c.service}</td>
           <td>
-            <div>📅 ${c.date || c.preferredDate || 'A coordinar'}</div>
-            <div style="margin-top:4px;"><span class="badge badge-shift">${c.slot || c.preferredTime || 'Cualquiera'}</span></div>
+            <div>📅 ${c.date}</div>
+            <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">${c.slot}</div>
           </td>
           <td>${statusBadge}</td>
           <td>
-            <button class="action-btn-sm" onclick="toggleCitaStatus('${c.ref}')" title="Cambiar estado">✓ Estado</button>
-            <button class="action-btn-sm action-btn-danger" onclick="deleteCita('${c.ref}')" title="Eliminar">🗑️</button>
+            <button class="btn-prod-action" style="padding:6px 10px;" onclick="toggleCitaStatus('${c.ref}')">
+              ${isPending ? '✓ Confirmar' : 'Reabrir'}
+            </button>
+            <button class="btn-prod-action btn-prod-delete" style="padding:6px 10px; margin-left:4px;" onclick="deleteCita('${c.ref}')">
+              🗑️
+            </button>
           </td>
         `;
         tbody.appendChild(tr);
       });
 
-      document.getElementById('kpiTotalCitas').textContent = citas.length;
       document.getElementById('kpiConfirmadas').textContent = confirmedCount;
     }
 
@@ -801,67 +1111,25 @@
       const citas = getStoredCitas();
       const item = citas.find(c => c.ref === ref);
       if (!item) return;
-
-      if (item.status === 'pendiente') item.status = 'confirmada';
-      else if (item.status === 'confirmada') item.status = 'atendida';
-      else item.status = 'pendiente';
-
+      item.status = item.status === 'pendiente' ? 'confirmada' : 'pendiente';
       saveCitas(citas);
     }
 
     function deleteCita(ref) {
-      if (!confirm('¿Seguro que deseas eliminar esta cita de taller?')) return;
+      if (!confirm('¿Seguro que deseas eliminar esta cita?')) return;
       let citas = getStoredCitas();
       citas = citas.filter(c => c.ref !== ref);
       saveCitas(citas);
     }
 
-    function renderMotos() {
-      const tbody = document.getElementById('motosTableBody');
-      tbody.innerHTML = '';
-      MOTOS_STOCK.forEach(m => {
-        const tr = document.createElement('tr');
-        const badgeColor = m.status === 'Disponible' ? 'badge-confirmed' : 'badge-pending';
-        tr.innerHTML = `
-          <td><strong>${m.brand} ${m.model}</strong></td>
-          <td>${m.year}</td>
-          <td>${m.km}</td>
-          <td><span class="badge" style="background:#1e293b; color:#cbd5e1;">${m.type}</span></td>
-          <td style="font-weight:700; color:#fff;">${m.price}</td>
-          <td><span class="badge ${badgeColor}">${m.status}</span></td>
-          <td style="color:var(--text-muted); font-size:0.82rem;">${m.warranty}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function switchTab(tab, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
-      document.getElementById('tabMotos').style.display = tab === 'motos' ? 'block' : 'none';
-      document.getElementById('tabContacto').style.display = tab === 'contacto' ? 'block' : 'none';
-    }
-
-    function openNewCitaModal() {
-      document.getElementById('newCitaModal').classList.add('open');
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      document.getElementById('manualDate').value = tomorrow.toISOString().split('T')[0];
-    }
-    function closeNewCitaModal() {
-      document.getElementById('newCitaModal').classList.remove('open');
-    }
-
-    function handleCreateManualCita(e) {
-      e.preventDefault();
-      const name = document.getElementById('manualName').value.trim();
-      const phone = document.getElementById('manualPhone').value.trim();
-      const moto = document.getElementById('manualMoto').value.trim();
-      const service = document.getElementById('manualService').value;
-      const date = document.getElementById('manualDate').value;
-      const slot = document.getElementById('manualSlot').value;
+    function promptNewCita() {
+      const name = prompt('Nombre del cliente:');
+      if (!name) return;
+      const phone = prompt('Teléfono del cliente:');
+      if (!phone) return;
+      const moto = prompt('Moto del cliente:', 'Yamaha MT-07');
+      const service = prompt('Servicio solicitado:', 'Revisión Oficial 60 Puntos');
+      const date = prompt('Fecha (AAAA-MM-DD):', new Date().toISOString().split('T')[0]);
 
       const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
       const citas = getStoredCitas();
@@ -872,13 +1140,10 @@
         moto,
         service,
         date,
-        slot,
+        slot: "Mañana (09:30 - 13:30)",
         status: "confirmada"
       });
-
       saveCitas(citas);
-      closeNewCitaModal();
-      alert(`Cita ${newRef} creada y confirmada correctamente.`);
     }
 
     function exportCitasCSV() {
@@ -895,7 +1160,16 @@
       a.click();
     }
 
-    // Initialize
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('tabStock').style.display = tab === 'stock' ? 'block' : 'none';
+      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
+      document.getElementById('tabTaller').style.display = tab === 'taller' ? 'block' : 'none';
+    }
+
+    // Init
     checkAuth();
   </script>
 </body>
