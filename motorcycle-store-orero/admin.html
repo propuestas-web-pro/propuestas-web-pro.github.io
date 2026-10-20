@@ -2,1884 +2,901 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Panel de Control · Motorcycle Store Orero</title>
-  <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="theme-color" content="#07090e">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-  <!-- Google Fonts: Outfit (titles) + Plus Jakarta Sans (body) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | Orero Motorcycles Orihuela</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html, body {
-      max-width: 100vw;
-      overflow-x: hidden;
-    }
-
     :root {
-      --bg-dark: #07090e;
-      --bg-surface: #0e121a;
-      --bg-card: #141824;
-      --bg-card-hover: #1b2132;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(239, 35, 60, 0.35);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
+      --bg: #06080d;
+      --card-bg: #0d121c;
+      --card-border: rgba(255, 255, 255, 0.08);
       --red: #ef233c;
       --red-hover: #d90429;
-      --red-glow: rgba(239, 35, 60, 0.25);
+      --gold: #d4af37;
       --green: #10b981;
-      --green-bg: rgba(16, 185, 129, 0.12);
-      --amber: #f59e0b;
-      --amber-bg: rgba(245, 158, 11, 0.12);
-      --blue: #3b82f6;
-      --blue-bg: rgba(59, 130, 246, 0.12);
+      --yellow: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
       --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --font-body: 'Inter', sans-serif;
     }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
       font-family: var(--font-body);
       min-height: 100vh;
-      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
     }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
-    button { cursor: pointer; border: none; background: none; }
-
-    /* ════ LOGIN SCREEN (SECURE PBKDF2 BACKEND AUTH) ════ */
-    #loginScreen {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, #151a26 0%, #07090e 100%);
-      z-index: 99999;
+    /* Login Screen */
+    .login-wrapper {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
+      background: radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.12) 0%, transparent 60%);
     }
-
-    .login-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 44px 36px;
-      max-width: 440px;
+    .login-card {
       width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
       text-align: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px var(--red-glow);
+      position: relative;
     }
-
     .login-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-heading);
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
-      text-transform: uppercase;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 18px;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(239, 35, 60, 0.3));
     }
-    .login-logo span { color: var(--red); }
-
     .login-title {
       font-family: var(--font-heading);
-      font-size: 20px;
+      font-size: 1.5rem;
       font-weight: 800;
-      text-transform: uppercase;
+      letter-spacing: -0.02em;
       margin-bottom: 6px;
-      color: #fff;
     }
-
+    .login-title span { color: var(--red); }
     .login-subtitle {
+      font-size: 0.88rem;
       color: var(--text-muted);
-      font-size: 13px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
-
-    .login-input-group {
-      margin-bottom: 16px;
+    .form-group {
       text-align: left;
+      margin-bottom: 20px;
     }
-    .login-input-group label {
+    .form-label {
       display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
     }
-
-    .login-input {
+    .form-input {
       width: 100%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      font-size: 1rem;
-      color: #ffffff;
+      background: #090c13;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .form-input:focus {
       outline: none;
-      transition: var(--transition);
-    }
-    .login-input:focus {
       border-color: var(--red);
-      box-shadow: 0 0 15px var(--red-glow);
+      box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.25);
     }
-
-    .login-error {
-      display: none;
-      background: rgba(239, 35, 60, 0.15);
-      border: 1px solid var(--red);
-      color: #ff6b81;
-      font-size: 13px;
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 18px;
-      text-align: left;
-    }
-
     .btn-login {
       width: 100%;
       background: var(--red);
       color: #fff;
       font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 16px;
-      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 15px rgba(239, 35, 60, 0.35);
       margin-top: 10px;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
     }
     .btn-login:hover {
       background: var(--red-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px var(--red-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(239, 35, 60, 0.45);
+    }
+    .login-error {
+      display: none;
+      background: rgba(239, 35, 60, 0.15);
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #fca5a5;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      margin-bottom: 20px;
+      text-align: left;
     }
 
-    /* ════ TOP NAVBAR & STATUS BAR ════ */
-    .admin-header {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border);
+    /* Dashboard Layout */
+    .dashboard-wrapper {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .top-navbar {
+      background: #090c14;
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(12px);
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: clip;
+      z-index: 50;
     }
-
-    .header-top {
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .admin-logo {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .admin-logo span { color: var(--red); }
-
-    .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #34d399;
-    }
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
-    }
-
-    .header-actions {
+    .nav-brand {
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .btn-action-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      color: var(--text-muted);
-      font-size: 13px;
-      font-weight: 600;
-      transition: var(--transition);
-    }
-    .btn-action-ghost:hover {
+      text-decoration: none;
       color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
-      background: var(--bg-card-hover);
     }
-
-    .btn-save-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: var(--radius-sm);
-      background: var(--red);
-      color: #fff;
-      font-size: 13px;
+    .nav-brand img { width: 36px; height: 36px; }
+    .nav-brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+    }
+    .nav-brand-title span { color: var(--red); }
+    .nav-badge {
+      background: rgba(239, 35, 60, 0.15);
+      border: 1px solid rgba(239, 35, 60, 0.3);
+      color: var(--red);
+      font-size: 0.72rem;
       font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      transition: var(--transition);
     }
-    .btn-save-primary:hover {
-      background: var(--red-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px var(--red-glow);
-    }
-
-    /* ════ NAVIGATION TABS ════ */
-    .tabs-nav-bar {
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 0 24px;
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 4px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(239, 35, 60, 0.4) transparent;
-      white-space: nowrap;
+      gap: 14px;
     }
-    .tabs-nav-bar::-webkit-scrollbar {
-      height: 3px;
-    }
-    .tabs-nav-bar::-webkit-scrollbar-thumb {
-      background: rgba(239, 35, 60, 0.4);
-      border-radius: 3px;
-    }
-
-    .admin-tab {
-      padding: 14px 18px;
-      font-family: var(--font-heading);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-muted);
-      border-bottom: 3px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      transition: var(--transition);
-    }
-    .admin-tab:hover {
+    .btn-nav-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
     }
-    .admin-tab.active {
-      color: #fff;
-      border-bottom-color: var(--red);
+    .btn-nav-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
     }
-
-    .tab-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+    .btn-logout {
+      background: rgba(239, 35, 60, 0.12);
+      border: 1px solid rgba(239, 35, 60, 0.3);
+      color: #fca5a5;
     }
-    .admin-tab.active .tab-badge {
+    .btn-logout:hover {
       background: var(--red);
+      color: #fff;
     }
 
-    /* ════ MAIN CONTAINER ════ */
-    .admin-main {
-      max-width: 1500px;
+    /* Main Container */
+    .dashboard-content {
+      flex: 1;
+      padding: 32px 28px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 30px 24px 80px;
+      width: 100%;
     }
-
-    .tab-content-panel {
-      display: none;
-    }
-    .tab-content-panel.active {
-      display: block;
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ════ KPI STATS ROW ════ */
-    .kpi-grid {
+    .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 32px;
     }
-
-    .kpi-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 20px;
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 22px;
       position: relative;
       overflow: hidden;
     }
-    .kpi-card::before {
+    .metric-card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--kpi-color, var(--red));
-    }
-    .kpi-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .kpi-val {
-      font-family: var(--font-heading);
-      font-size: 32px;
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.1;
-    }
-    .kpi-sub {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-
-    /* ════ SECTION HEADERS & CONTROLS ════ */
-    .section-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .section-title-wrap h2 {
-      font-family: var(--font-heading);
-      font-size: 22px;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .section-title-wrap p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .filter-pills {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill-btn {
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      transition: var(--transition);
-    }
-    .pill-btn:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .pill-btn.active {
+      top: 0; left: 0; width: 4px; height: 100%;
       background: var(--red);
-      border-color: var(--red);
-      color: #fff;
     }
-
-    .search-input-wrap {
-      position: relative;
-      min-width: 260px;
-    }
-    .search-input {
-      width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 10px 14px 10px 36px;
-      font-size: 13px;
-      color: #fff;
-      outline: none;
-    }
-    .search-input:focus {
-      border-color: var(--red);
-    }
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-dim);
-      font-size: 14px;
-    }
-
-    /* ════ WORKSHOP APPOINTMENTS CRM ════ */
-    .workshop-crm-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 20px;
-    }
-
-    .booking-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      position: relative;
-    }
-    .booking-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    .booking-card.status-pendiente { border-left: 4px solid var(--amber); }
-    .booking-card.status-confirmada { border-left: 4px solid var(--blue); }
-    .booking-card.status-atendida { border-left: 4px solid var(--green); }
-    .booking-card.status-cancelada { border-left: 4px solid var(--text-dim); opacity: 0.7; }
-
-    .booking-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .booking-ref {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--red);
+    .metric-card.gold::before { background: var(--gold); }
+    .metric-card.green::before { background: var(--green); }
+    .metric-card.yellow::before { background: var(--yellow); }
+    .metric-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
       text-transform: uppercase;
-    }
-    .booking-client {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      margin-top: 2px;
-    }
-
-    .booking-status-tag {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.05em;
-    }
-    .status-tag-pendiente { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.3); }
-    .status-tag-confirmada { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(59, 130, 246, 0.3); }
-    .status-tag-atendida { background: var(--green-bg); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
-    .status-tag-cancelada { background: rgba(100, 116, 139, 0.15); color: var(--text-dim); border: 1px solid rgba(100, 116, 139, 0.3); }
-
-    .booking-details {
-      background: var(--bg-surface);
-      border-radius: var(--radius-sm);
-      padding: 14px;
-      margin-bottom: 16px;
-      font-size: 13px;
-      display: grid;
-      gap: 8px;
-    }
-    .booking-detail-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .detail-label {
-      color: var(--text-dim);
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .detail-value {
-      color: var(--text-main);
       font-weight: 600;
-      text-align: right;
-    }
-
-    .booking-desc {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      font-style: italic;
-    }
-
-    .booking-notes-wrap {
-      margin-bottom: 16px;
-    }
-    .booking-notes-wrap label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .booking-notes-input {
-      width: 100%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #fff;
-      resize: vertical;
-      min-height: 54px;
-    }
-
-    .booking-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    .quick-contact-group {
-      display: flex;
-      gap: 8px;
-    }
-    .btn-quick-call {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #60a5fa;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .btn-quick-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: var(--radius-sm);
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .status-select {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 7px 10px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
-      outline: none;
-    }
-
-    /* ════ MOTOS INVENTORY TABLE/CARDS ════ */
-    .motos-admin-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .moto-admin-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: var(--transition);
-    }
-    .moto-admin-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .moto-thumb-wrap {
-      position: relative;
-      height: 190px;
-      background: #000;
-    }
-    .moto-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .moto-card-body {
-      padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .moto-brand {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--red);
-    }
-    .moto-title {
-      font-family: var(--font-heading);
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      margin: 2px 0 10px;
-    }
-    .moto-price-tag {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .moto-quick-specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .spec-pill {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .moto-admin-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    .btn-edit-sm {
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .btn-status-toggle {
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
       letter-spacing: 0.04em;
-    }
-    .status-disponible { background: var(--green-bg); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
-    .status-vendida { background: rgba(239, 35, 60, 0.15); color: var(--red); border: 1px solid rgba(239, 35, 60, 0.3); }
-
-    /* ════ FORMS & PUBLISH ════ */
-    .form-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 32px;
-      max-width: 900px;
-    }
-
-    .form-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .form-grid-3 {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
       margin-bottom: 8px;
     }
-    .form-control {
-      width: 100%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-size: 14px;
+    .metric-val {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 800;
       color: #fff;
-      outline: none;
-      transition: var(--transition);
     }
-    .form-control:focus {
+    .metric-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Section Tabs */
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 12px 20px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: #fff;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; width: 100%; height: 3px;
+      background: var(--red);
+      border-radius: 3px 3px 0 0;
+    }
+
+    /* Table Card */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .table-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .table-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+    .table-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-action {
+      background: #151c29;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-action:hover {
+      background: #1c2638;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .btn-action-primary {
+      background: var(--red);
+      border-color: var(--red);
+    }
+    .btn-action-primary:hover {
+      background: var(--red-hover);
+    }
+    .table-responsive {
+      overflow-x: auto;
+      width: 100%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    th {
+      background: #090d16;
+      padding: 14px 20px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--card-border);
+    }
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-pending { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-confirmed { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-done { background: rgba(148, 163, 184, 0.18); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+    .badge-shift { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    .action-btn-sm {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      margin-right: 4px;
+      transition: all 0.15s;
+    }
+    .action-btn-sm:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .action-btn-danger:hover {
+      background: var(--red);
       border-color: var(--red);
     }
 
-    /* ════ TOAST NOTIFICATION ════ */
-    #adminToast {
+    /* Modal */
+    .admin-modal-overlay {
+      display: none;
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #111827;
-      border: 1px solid var(--green);
-      color: #34d399;
-      padding: 14px 22px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      z-index: 100000;
-      display: flex;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 100;
       align-items: center;
-      gap: 10px;
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      justify-content: center;
+      padding: 20px;
     }
-    #adminToast.show {
-      transform: translateY(0);
-      opacity: 1;
+    .admin-modal-overlay.open { display: flex; }
+    .admin-modal {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      width: 100%;
+      max-width: 520px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
     }
-
-    @media (max-width: 1024px) {
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .admin-tab { padding: 12px 14px; font-size: 13px; }
-    }
-
-    @media (max-width: 768px) {
-      .header-top {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 12px 14px;
-        gap: 10px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-      }
-      .brand-wrap {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .header-actions {
-        width: 100%;
-        max-width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        box-sizing: border-box;
-      }
-      .btn-action-ghost {
-        padding: 8px 10px;
-        font-size: 11px;
-        justify-content: center;
-        white-space: nowrap;
-      }
-      .btn-save-primary {
-        grid-column: span 2;
-        padding: 9px 12px;
-        font-size: 12px;
-        justify-content: center;
-        width: 100%;
-      }
-      .tabs-nav-bar {
-        padding: 0 12px;
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: auto;
-        box-sizing: border-box;
-      }
-      .admin-main {
-        padding: 16px 12px 60px;
-        width: 100%;
-        max-width: 100vw;
-        box-sizing: border-box;
-        overflow-x: hidden;
-      }
-      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
-      .search-input-wrap { width: 100%; }
-      .section-toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
-      .filter-pills { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-    }
-
-    @media (max-width: 480px) {
-      .kpi-grid { grid-template-columns: 1fr; }
-      .admin-logo { font-size: 15px; }
-      .live-badge { font-size: 9px; padding: 2px 6px; }
-      .admin-tab { padding: 10px 12px; font-size: 12px; }
-      .login-box { padding: 28px 16px; margin: 0 10px; max-width: calc(100vw - 20px); }
+    .admin-modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- ════ LOGIN OVERLAY (PBKDF2 AUTHENTICATED) ════ -->
-  <div id="loginScreen">
-    <div class="login-box">
-      <div class="login-logo">
-        🏍️ Orero <span>Motorcycles</span>
+  <!-- LOGIN SCREEN -->
+  <div class="login-wrapper" id="loginScreen">
+    <div class="login-card">
+      <img src="favicon.svg" alt="Orero Motorcycles" class="login-logo">
+      <h1 class="login-title">ORERO <span>ADMIN</span></h1>
+      <p class="login-subtitle">Gestión central de citas, taller y catálogo multimarca</p>
+
+      <div class="login-error" id="loginError">
+        ⚠️ Usuario o contraseña incorrectos. Por favor, revisa tus datos de acceso.
       </div>
-      <h1 class="login-title">Acceso Propietario</h1>
-      <p class="login-subtitle">Gestión comercial y taller de Motorcycle Store Orero</p>
 
-      <div class="login-error" id="loginErrorMsg"></div>
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="loginUser">Usuario</label>
+          <input type="text" id="loginUser" class="form-input" placeholder="admin" required autofocus>
+        </div>
 
-      <form id="loginForm" onsubmit="handleSecureLogin(event)">
-        <div class="login-input-group">
-          <label for="loginUser">Usuario</label>
-          <input type="text" id="loginUser" class="login-input" value="admin" autocomplete="username" required>
+        <div class="form-group">
+          <label class="form-label" for="loginPass">Contraseña</label>
+          <input type="password" id="loginPass" class="form-input" placeholder="••••••••" required>
         </div>
-        <div class="login-input-group">
-          <label for="loginPassword">Contraseña</label>
-          <input type="password" id="loginPassword" class="login-input" placeholder="••••••••" autocomplete="current-password" required autofocus>
+
+        <button type="submit" class="btn-login">Acceder al Panel</button>
+      </form>
+
+      <div style="margin-top: 24px; font-size: 0.8rem; color: var(--text-muted);">
+        <a href="./" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD WRAPPER -->
+  <div class="dashboard-wrapper" id="dashboardScreen">
+    <!-- Navbar -->
+    <header class="top-navbar">
+      <div class="nav-brand">
+        <img src="favicon.svg" alt="Orero Motorcycles">
+        <div class="nav-brand-title">ORERO <span>MOTORCYCLES</span></div>
+        <span class="nav-badge">Panel Taller & Venta</span>
+      </div>
+
+      <div class="nav-actions">
+        <a href="./" target="_blank" class="btn-nav-outline">🌐 Ver Web Pública</a>
+        <button onclick="handleAdminLogout()" class="btn-nav-outline btn-logout">Cerrar Sesión</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      <!-- KPI Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Citas Registradas</div>
+          <div class="metric-val" id="kpiTotalCitas">12</div>
+          <div class="metric-sub">Taller oficial & revisiones</div>
         </div>
-        <button type="submit" class="btn-login" id="btnLoginSubmit">
-          <span>Entrar al Panel</span>
-          <span>→</span>
-        </button>
+        <div class="metric-card green">
+          <div class="metric-label">Citas Confirmadas</div>
+          <div class="metric-val" id="kpiConfirmadas">8</div>
+          <div class="metric-sub">Planificadas para esta semana</div>
+        </div>
+        <div class="metric-card gold">
+          <div class="metric-label">Motos en Stock</div>
+          <div class="metric-val">18</div>
+          <div class="metric-sub">Ocasión garantizada y nuevas</div>
+        </div>
+        <div class="metric-card yellow">
+          <div class="metric-label">Valor del Stock</div>
+          <div class="metric-val">68.440 €</div>
+          <div class="metric-sub">En exposición Calle San Agustín 18</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs-bar">
+        <button class="tab-btn active" onclick="switchTab('citas', this)">📅 Citas de Taller & Clientes</button>
+        <button class="tab-btn" onclick="switchTab('motos', this)">🏍️ Catálogo & Stock (18)</button>
+        <button class="tab-btn" onclick="switchTab('contacto', this)">🏢 Info Concesionario</button>
+      </div>
+
+      <!-- Tab Content: Citas -->
+      <div id="tabCitas">
+        <div class="table-card">
+          <div class="table-header">
+            <div>
+              <h2 class="table-title">Solicitudes de Cita Previa</h2>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
+                Citas recibidas desde el formulario web y registros de taller.
+              </p>
+            </div>
+            <div class="table-actions">
+              <button class="btn-action" onclick="exportCitasCSV()">📥 Exportar CSV</button>
+              <button class="btn-action btn-action-primary" onclick="openNewCitaModal()">➕ Nueva Cita</button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Cliente</th>
+                  <th>Teléfono</th>
+                  <th>Vehículo</th>
+                  <th>Servicio</th>
+                  <th>Fecha & Franja</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="citasTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Motos -->
+      <div id="tabMotos" style="display:none;">
+        <div class="table-card">
+          <div class="table-header">
+            <div>
+              <h2 class="table-title">Inventario en Exposición</h2>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
+                18 Motocicletas multimarca listas para entrega con 1 año de garantía.
+              </p>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Marca / Modelo</th>
+                  <th>Año</th>
+                  <th>Kilometraje</th>
+                  <th>Tipo</th>
+                  <th>Precio Contado</th>
+                  <th>Estado</th>
+                  <th>Garantía</th>
+                </tr>
+              </thead>
+              <tbody id="motosTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Info Concesionario -->
+      <div id="tabContacto" style="display:none;">
+        <div class="table-card" style="padding: 30px;">
+          <h2 class="table-title" style="margin-bottom: 20px;">Datos Corporativos & Taller Oficial</h2>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Ubicación Oficial</div>
+              <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:6px;">Calle San Agustín, 18</div>
+              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">03300 Orihuela (Alicante)</div>
+            </div>
+
+            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Teléfono Fijo Oficial</div>
+              <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:6px;">
+                <a href="tel:+34966740120" style="color:#fff; text-decoration:none;">966 74 01 20</a>
+              </div>
+              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Atención a clientes y repuestos</div>
+            </div>
+
+            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
+              <div style="font-size:0.8rem; color:var(--red); font-weight:700; text-transform:uppercase;">Horario de Taller</div>
+              <div style="font-size:0.95rem; font-weight:600; color:#fff; margin-top:6px;">
+                L-V: 09:30 - 13:30 / 16:30 - 20:30<br>
+                Sábados: 10:00 - 13:30
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: NUEVA CITA MANUAL -->
+  <div class="admin-modal-overlay" id="newCitaModal">
+    <div class="admin-modal">
+      <h3 class="admin-modal-title">Registrar Cita de Taller</h3>
+      <form onsubmit="handleCreateManualCita(event)">
+        <div class="form-group">
+          <label class="form-label">Nombre del Cliente</label>
+          <input type="text" id="manualName" class="form-input" required placeholder="Ej: Manuel García">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono</label>
+          <input type="tel" id="manualPhone" class="form-input" required placeholder="Ej: 612 345 678">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Vehículo / Matrícula</label>
+          <input type="text" id="manualMoto" class="form-input" required placeholder="Ej: Honda SH 125 - 4589-KLP">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Servicio</label>
+          <select id="manualService" class="form-input">
+            <option value="Revisión Oficial 60 Pts">Revisión Oficial 60 Pts</option>
+            <option value="Mantenimiento Periódico">Mantenimiento Periódico</option>
+            <option value="Cambio de Neumáticos">Cambio de Neumáticos</option>
+            <option value="Frenos y Pastillas">Frenos y Pastillas</option>
+            <option value="Pre-ITV Oficial">Pre-ITV Oficial</option>
+            <option value="Tasación de Moto">Tasación de Moto</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label">Fecha</label>
+            <input type="date" id="manualDate" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Franja</label>
+            <select id="manualSlot" class="form-input">
+              <option value="Mañana (09:30 - 13:30)">🌅 Mañana</option>
+              <option value="Tarde (16:30 - 20:30)">🌇 Tarde</option>
+              <option value="Flexible">🌙 Flexible</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:20px;">
+          <button type="submit" class="btn-login" style="margin-top:0;">Guardar Cita</button>
+          <button type="button" onclick="closeNewCitaModal()" class="btn-nav-outline" style="flex:1;">Cancelar</button>
+        </div>
       </form>
     </div>
   </div>
 
-  <!-- ════ ADMIN TOPBAR ════ -->
-  <header class="admin-header">
-    <div class="header-top">
-      <div class="brand-wrap">
-        <a href="/" target="_blank" class="admin-logo">
-          🏍️ ORERO <span>MOTORCYCLES</span>
-        </a>
-        <span class="live-badge">
-          <span class="live-dot"></span>
-          Concesionario Activo · Orihuela
-        </span>
-      </div>
-
-      <div class="header-actions">
-        <a href="/" target="_blank" class="btn-action-ghost">
-          <span>Ver Web Pública ↗</span>
-        </a>
-        <button onclick="handleLogout()" class="btn-action-ghost" style="color: #ef4444;">
-          <span>Cerrar Sesión</span>
-        </button>
-        <button onclick="saveAllChanges(true)" class="btn-save-primary">
-          <span>💾 Guardar Cambios</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <nav class="tabs-nav-bar" id="adminTabsNav">
-      <button class="admin-tab active" data-tab="tab-workshop" onclick="switchAdminTab('tab-workshop')">
-        <span>🔧 Citas Taller</span>
-        <span class="tab-badge" id="tabCountWorkshop">0</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-motos" onclick="switchAdminTab('tab-motos')">
-        <span>🏍️ Motos & Stock</span>
-        <span class="tab-badge" id="tabCountMotos">0</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-publish" onclick="switchAdminTab('tab-publish')">
-        <span>➕ Publicar Moto</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-services" onclick="switchAdminTab('tab-services')">
-        <span>🛠️ Servicios Taller</span>
-        <span class="tab-badge" id="tabCountServices">0</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-leads" onclick="switchAdminTab('tab-leads')">
-        <span>📩 Leads & Tasaciones</span>
-        <span class="tab-badge" id="tabCountLeads">0</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-boutique" onclick="switchAdminTab('tab-boutique')">
-        <span>🪖 Boutique</span>
-        <span class="tab-badge" id="tabCountBoutique">0</span>
-      </button>
-      <button class="admin-tab" data-tab="tab-settings" onclick="switchAdminTab('tab-settings')">
-        <span>⚙️ Configuración</span>
-      </button>
-    </nav>
-  </header>
-
-  <!-- ════ MAIN CONTENT CONTAINER ════ -->
-  <main class="admin-main">
-
-    <!-- ════ TAB 1: WORKSHOP CITAS CRM ════ -->
-    <section id="tab-workshop" class="tab-content-panel active">
-      <!-- Quick KPI Stats -->
-      <div class="kpi-grid">
-        <div class="kpi-card" style="--kpi-color: var(--amber);">
-          <div class="kpi-label">Pendientes de Confirmar</div>
-          <div class="kpi-val" id="kpiWorkshopPending">0</div>
-          <div class="kpi-sub">Contactar al cliente con preferencia</div>
-        </div>
-        <div class="kpi-card" style="--kpi-color: var(--blue);">
-          <div class="kpi-label">Confirmadas en Agenda</div>
-          <div class="kpi-val" id="kpiWorkshopConfirmed">0</div>
-          <div class="kpi-sub">Entradas de taller programadas</div>
-        </div>
-        <div class="kpi-card" style="--kpi-color: var(--green);">
-          <div class="kpi-label">Atendidas / Listas</div>
-          <div class="kpi-val" id="kpiWorkshopDone">0</div>
-          <div class="kpi-sub">Trabajos de taller finalizados</div>
-        </div>
-        <div class="kpi-card" style="--kpi-color: var(--red);">
-          <div class="kpi-label">Total Solicitudes</div>
-          <div class="kpi-val" id="kpiWorkshopTotal">0</div>
-          <div class="kpi-sub">Histórico registrado en sistema</div>
-        </div>
-      </div>
-
-      <!-- Controls & Filter Toolbar -->
-      <div class="section-toolbar">
-        <div class="section-title-wrap">
-          <h2>Gestión de Citas de Taller</h2>
-          <p>Solicitudes recibidas desde la web en tiempo real. Actualiza estados y notas del taller.</p>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-end;">
-          <div class="filter-pills">
-            <button class="pill-btn active" onclick="filterWorkshopByStatus('todas', this)">Todas</button>
-            <button class="pill-btn" onclick="filterWorkshopByStatus('pendiente', this)">Pendientes</button>
-            <button class="pill-btn" onclick="filterWorkshopByStatus('confirmada', this)">Confirmadas</button>
-            <button class="pill-btn" onclick="filterWorkshopByStatus('atendida', this)">Completadas</button>
-            <button class="pill-btn" onclick="filterWorkshopByStatus('cancelada', this)">Canceladas</button>
-          </div>
-          <div style="width: 100%; max-width: 380px;">
-            <input type="text" id="workshopSearchInput" class="form-control" placeholder="🔍 Buscar por cliente, teléfono o moto..." oninput="handleWorkshopSearch(this.value)" style="padding: 8px 14px; font-size: 13px; background: rgba(7, 8, 11, 0.8);">
-          </div>
-        </div>
-      </div>
-
-      <!-- Bookings Cards Container -->
-      <div class="workshop-crm-grid" id="workshopGridContainer">
-        <!-- Rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- ════ TAB 2: MOTOS INVENTORY ════ -->
-    <section id="tab-motos" class="tab-content-panel">
-      <div class="section-toolbar">
-        <div class="section-title-wrap">
-          <h2>Inventario de Motocicletas</h2>
-          <p>Catálogo comercial de motos de ocasión y stock en tienda física de Orihuela.</p>
-        </div>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="motosAdminSearch" class="search-input" placeholder="Buscar por marca o modelo..." oninput="renderAdminMotos()">
-          </div>
-          <div class="filter-pills">
-            <button class="pill-btn active" onclick="filterAdminMotos('todas', this)">Todas (<span id="countMotosAll">0</span>)</button>
-            <button class="pill-btn" onclick="filterAdminMotos('disponible', this)">En Venta (<span id="countMotosStock">0</span>)</button>
-            <button class="pill-btn" onclick="filterAdminMotos('vendida', this)">Vendidas (<span id="countMotosSold">0</span>)</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="motos-admin-grid" id="motosGridContainer">
-        <!-- Rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- ════ TAB 3: PUBLICAR MOTO ════ -->
-    <section id="tab-publish" class="tab-content-panel">
-      <div class="form-card">
-        <div class="section-title-wrap" style="margin-bottom: 24px;">
-          <h2>Publicar Nueva Motocicleta</h2>
-          <p>Añade un vehículo al catálogo online con ficha técnica y fotografías.</p>
-        </div>
-
-        <form id="newMotoForm" onsubmit="handleCreateMoto(event)">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Marca *</label>
-              <input type="text" id="motoBrand" class="form-control" placeholder="Ej: Honda, Yamaha, Kawasaki..." required>
-            </div>
-            <div class="form-group">
-              <label>Modelo *</label>
-              <input type="text" id="motoModel" class="form-control" placeholder="Ej: CB650R, MT-07, Z900..." required>
-            </div>
-          </div>
-
-          <div class="form-grid-3">
-            <div class="form-group">
-              <label>Precio (€) *</label>
-              <input type="number" id="motoPrice" class="form-control" placeholder="7800" required>
-            </div>
-            <div class="form-group">
-              <label>Año *</label>
-              <input type="number" id="motoYear" class="form-control" placeholder="2022" required>
-            </div>
-            <div class="form-group">
-              <label>Kilómetros *</label>
-              <input type="number" id="motoKm" class="form-control" placeholder="14200" required>
-            </div>
-          </div>
-
-          <div class="form-grid-3">
-            <div class="form-group">
-              <label>Categoría</label>
-              <select id="motoCategory" class="form-control">
-                <option value="Naked">Naked</option>
-                <option value="Trail / Adventure">Trail / Adventure</option>
-                <option value="Sport / R">Sport / R</option>
-                <option value="Scooter">Scooter</option>
-                <option value="Custom">Custom / Cruiser</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Cilindrada (cc)</label>
-              <input type="number" id="motoCc" class="form-control" placeholder="649">
-            </div>
-            <div class="form-group">
-              <label>Potencia (CV)</label>
-              <input type="number" id="motoPower" class="form-control" placeholder="95">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>URL de Foto Principal (o selecciona abajo)</label>
-            <input type="url" id="motoPhotoUrl" class="form-control" placeholder="https://... o assets/motos/...">
-          </div>
-
-          <div class="form-group">
-            <label>Descripción Comercial</label>
-            <textarea id="motoDesc" class="form-control" rows="4" placeholder="Estado del vehículo, historial de mantenimiento, extras incluidos..."></textarea>
-          </div>
-
-          <button type="submit" class="btn-save-primary" style="padding: 14px 28px; font-size: 15px;">
-            <span>➕ Publicar Motocicleta en Catálogo</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- ════ TAB 4: SERVICIOS TALLER ════ -->
-    <section id="tab-services" class="tab-content-panel">
-      <div class="section-toolbar">
-        <div class="section-title-wrap">
-          <h2>Servicios de Taller</h2>
-          <p>Configura los servicios mecánicos que se muestran a los clientes en la web pública.</p>
-        </div>
-      </div>
-      <div class="workshop-crm-grid" id="servicesGridContainer">
-        <!-- Rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- ════ TAB 5: LEADS & TASACIONES ════ -->
-    <section id="tab-leads" class="tab-content-panel">
-      <div class="section-toolbar">
-        <div class="section-title-wrap">
-          <h2>Leads, Tasaciones y Mensajes</h2>
-          <p>Personas interesadas en vender su moto o solicitar información comercial.</p>
-        </div>
-        <div class="filter-pills">
-          <button class="pill-btn active" onclick="filterLeadsByOrigin('todas', this)">Todos (<span id="countLeadsAll">0</span>)</button>
-          <button class="pill-btn" onclick="filterLeadsByOrigin('appraisals', this)">Tasaciones</button>
-          <button class="pill-btn" onclick="filterLeadsByOrigin('reservations', this)">Reservas de Moto</button>
-          <button class="pill-btn" onclick="filterLeadsByOrigin('messages', this)">Consultas Web</button>
-        </div>
-      </div>
-      <div class="workshop-crm-grid" id="leadsGridContainer">
-        <!-- Rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- ════ TAB 6: BOUTIQUE & ACCESORIOS ════ -->
-    <section id="tab-boutique" class="tab-content-panel">
-      <div class="section-toolbar">
-        <div class="section-title-wrap">
-          <h2>Boutique y Equipamiento</h2>
-          <p>Cascos, chaquetas, guantes y accesorios disponibles en la tienda física.</p>
-        </div>
-      </div>
-      <div class="motos-admin-grid" id="boutiqueGridContainer">
-        <!-- Rendered by JavaScript -->
-      </div>
-    </section>
-
-    <!-- ════ TAB 7: CONFIGURACIÓN ════ -->
-    <section id="tab-settings" class="tab-content-panel">
-      <div class="form-card">
-        <div class="section-title-wrap" style="margin-bottom: 24px;">
-          <h2>Configuración del Concesionario</h2>
-          <p>Datos oficiales verificados de Motorcycle Store Orero (Orihuela).</p>
-        </div>
-
-        <form id="settingsForm" onsubmit="handleSaveSettings(event)">
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Nombre Comercial</label>
-              <input type="text" id="setBusinessName" class="form-control" value="Motorcycle Store Orero">
-            </div>
-            <div class="form-group">
-              <label>Teléfono Fijo Publicado</label>
-              <input type="text" id="setBusinessPhone" class="form-control" value="966 74 01 20">
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>WhatsApp Comercial</label>
-              <input type="text" id="setBusinessWhatsapp" class="form-control" value="+34 677 34 50 18">
-            </div>
-            <div class="form-group">
-              <label>Email de Contacto</label>
-              <input type="email" id="setBusinessEmail" class="form-control" value="info@motorcyclestoreorero.com">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Dirección Física Verificada</label>
-            <input type="text" id="setBusinessAddress" class="form-control" value="Calle San Agustín, 18, 03300 Orihuela, Alicante">
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label>Horario Lunes a Viernes</label>
-              <input type="text" id="setBusinessHoursWd" class="form-control" value="09:00 - 14:00 | 16:30 - 20:30">
-            </div>
-            <div class="form-group">
-              <label>Horario Sábados</label>
-              <input type="text" id="setBusinessHoursSat" class="form-control" value="09:30 - 13:30">
-            </div>
-          </div>
-
-          <div class="form-group" style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
-            <button type="submit" class="btn-save-primary">
-              <span>💾 Guardar Ajustes Generales</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Toast Notification -->
-  <div id="adminToast">✓ Cambios guardados correctamente</div>
-
-  <!-- ════ ADMIN LOGIC & API CLIENT ════ -->
   <script>
-    let appData = {
-      motorcycles: [],
-      workshops: [],
-      services: [],
-      appraisals: [],
-      reservations: [],
-      messages: [],
-      boutique: [],
-      business: {}
-    };
+    // Authentic seed data for initial view
+    const DEFAULT_CITAS = [
+      { ref: "ORERO-CITA-1042", name: "Pedro Martínez Soto", phone: "644 12 34 56", moto: "Yamaha MT-07 (2021)", service: "Revisión 60 Puntos", date: "2026-10-21", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
+      { ref: "ORERO-CITA-1043", name: "Laura Ruiz Morales", phone: "622 98 76 54", moto: "Kymco Agility City 125", service: "Cambio de Neumáticos Michelin", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "confirmada" },
+      { ref: "ORERO-CITA-1044", name: "Vicente Sánchez Pardo", phone: "677 45 89 12", moto: "Honda CBR 500R", service: "Inspección Pre-ITV", date: "2026-10-22", slot: "Mañana (09:30 - 13:30)", status: "pendiente" },
+      { ref: "ORERO-CITA-1045", name: "Andrés Alcaraz Vegara", phone: "610 33 22 11", moto: "Suzuki Burgman 250", service: "Diagnosis y puesta a punto", date: "2026-10-22", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
+      { ref: "ORERO-CITA-1046", name: "Carlos Navarro Gómez", phone: "655 77 88 99", moto: "Kawasaki Ninja 650", service: "Tasación para cambio", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "confirmada" }
+    ];
 
-    let currentWorkshopFilter = 'todas';
-    let currentMotosFilter = 'todas';
-    let currentLeadsFilter = 'todas';
+    const MOTOS_STOCK = [
+      { brand: "Yamaha", model: "MT-07", year: 2021, km: "12.500 km", type: "Naked", price: "6.900 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Honda", model: "CBR 500R", year: 2022, km: "8.300 km", type: "Sport / A2", price: "5.800 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Kawasaki", model: "Ninja 650", year: 2024, km: "0 km (Nueva)", type: "Sport", price: "7.900 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Suzuki", model: "V-Strom 650", year: 2020, km: "18.200 km", type: "Trail", price: "5.500 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Peugeot", model: "Metropolis 400 Active", year: 2021, km: "379 km", type: "Scooter 3 Ruedas", price: "6.500 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "QJ Motor", model: "SRK 125J", year: 2024, km: "0 km (Nueva)", type: "Naked 125", price: "2.999 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Honda", model: "SH 350i Sport ABS", year: 2022, km: "11.420 km", type: "Scooter", price: "5.200 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Kymco", model: "Agility City PLUS 125", year: 2024, km: "0 km (Nueva)", type: "Scooter 125", price: "2.199 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "SYM", model: "Symphony 125 SR", year: 2024, km: "0 km (Nueva)", type: "Scooter 125", price: "2.499 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Macbor", model: "Montana XR1 125 EVO", year: 2024, km: "0 km (Nueva)", type: "Trail 125", price: "3.299 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Kymco", model: "K-XCT 125i Sport ABS", year: 2016, km: "47.598 km", type: "Scooter", price: "2.350 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Suzuki", model: "Burgman 250 Executive", year: 2005, km: "86.258 km", type: "Maxiscooter", price: "1.350 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Peugeot", model: "Citystar 50 RS Sport", year: 2017, km: "36.238 km", type: "Ciclomotor", price: "1.050 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Rieju", model: "MRT 50 Pro Black", year: 2024, km: "0 km (Nueva)", type: "Supermotard", price: "3.899 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Hanway", model: "Furious NK 125 Naked", year: 2023, km: "2.500 km", type: "Naked", price: "1.950 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Vespa", model: "LX 50 2T Clásica", year: 2008, km: "28.410 km", type: "Ciclomotor", price: "950 €", status: "Disponible", warranty: "1 Año Escrito" },
+      { brand: "Benda", model: "Napoleon Bob 250 Bobber", year: 2024, km: "0 km (Nueva)", type: "Custom Bobber", price: "4.290 €", status: "Disponible", warranty: "3 Años Oficial" },
+      { brand: "Yamaha", model: "XV 535 SP Virago Custom", year: 1998, km: "45.978 km", type: "Custom", price: "2.500 €", status: "Vendida", warranty: "Entregada" }
+    ];
 
-    // ════ INITIALIZATION & AUTH ════
-    document.addEventListener('DOMContentLoaded', () => {
-      checkAdminSession();
-    });
-
-    async function checkAdminSession() {
-      const token = sessionStorage.getItem('orero_admin_token');
-      if (!token) {
-        document.getElementById('loginScreen').style.display = 'flex';
-        return;
-      }
-
-      try {
-        const res = await fetch('/api/motorcycle-store-orero/verify-session', {
-          method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token }
-        });
-        const data = await res.json();
-        if (data.valid) {
-          document.getElementById('loginScreen').style.display = 'none';
-          await loadAllData();
-        } else {
-          sessionStorage.removeItem('orero_admin_token');
-          document.getElementById('loginScreen').style.display = 'flex';
-        }
-      } catch(e) {
-        // Fallback check
+    // Auth verification
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('orero_admin_logged') === 'true' || localStorage.getItem('orero_admin_logged') === 'true';
+      if (isAuth) {
         document.getElementById('loginScreen').style.display = 'none';
-        await loadAllData();
+        document.getElementById('dashboardScreen').style.display = 'flex';
+        renderCitas();
+        renderMotos();
+      } else {
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('dashboardScreen').style.display = 'none';
       }
     }
 
-    async function handleSecureLogin(e) {
+    function handleAdminLogin(e) {
       e.preventDefault();
       const user = document.getElementById('loginUser').value.trim();
-      const pass = document.getElementById('loginPassword').value.trim();
-      const errBox = document.getElementById('loginErrorMsg');
-      const submitBtn = document.getElementById('btnLoginSubmit');
+      const pass = document.getElementById('loginPass').value.trim();
+      const errBox = document.getElementById('loginError');
 
-      errBox.style.display = 'none';
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Verificando...</span>';
-
-      try {
-        const res = await fetch('/api/motorcycle-store-orero/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username: user, password: pass })
-        });
-        const data = await res.json();
-
-        if (res.ok && data.success && data.token) {
-          sessionStorage.setItem('orero_admin_token', data.token);
-          sessionStorage.setItem('orero_admin_user', data.user.name);
-          document.getElementById('loginScreen').style.display = 'none';
-          showToast('✓ Bienvenido al Panel de Motorcycle Store Orero');
-          await loadAllData();
-        } else {
-          errBox.textContent = data.error || 'Credenciales no válidas. Revisa usuario y contraseña.';
-          errBox.style.display = 'block';
-        }
-      } catch (err) {
-        errBox.textContent = 'Error al conectar con el servidor: ' + err.message;
+      // Requested credentials: user = admin, pass = casino18
+      if (user.toLowerCase() === 'admin' && pass === 'casino18') {
+        sessionStorage.setItem('orero_admin_logged', 'true');
+        localStorage.setItem('orero_admin_logged', 'true');
+        errBox.style.display = 'none';
+        checkAuth();
+      } else {
         errBox.style.display = 'block';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Entrar al Panel</span><span>→</span>';
       }
     }
 
-    function handleLogout() {
-      const token = sessionStorage.getItem('orero_admin_token');
-      if (token) {
-        fetch('/api/motorcycle-store-orero/logout', {
-          method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token }
-        }).catch(() => {});
-      }
-      sessionStorage.removeItem('orero_admin_token');
-      window.location.reload();
+    function handleAdminLogout() {
+      sessionStorage.removeItem('orero_admin_logged');
+      localStorage.removeItem('orero_admin_logged');
+      checkAuth();
     }
 
-    // ════ DATA LOADING & PERSISTENCE ════
-    async function loadAllData() {
+    // Get Citas (merges localStorage public submissions + seed data)
+    function getStoredCitas() {
+      let citas = [];
       try {
-        const res = await fetch('/api/motorcycle-store-orero/data?t=' + Date.now());
-        if (res.ok) {
-          appData = await res.json();
-          renderWorkshopCRM();
-          renderAdminMotos();
-          renderAdminServices();
-          renderAdminLeads();
-          renderAdminBoutique();
-          populateSettings();
-          updateBadges();
+        const local = localStorage.getItem('orero_appointments');
+        if (local) {
+          citas = JSON.parse(local);
         }
-      } catch(e) {
-        console.error('Error cargando datos:', e);
-      }
-    }
+      } catch (err) {}
 
-    async function saveAllChanges(notify = true) {
-      const token = sessionStorage.getItem('orero_admin_token');
-      try {
-        const res = await fetch('/api/motorcycle-store-orero/data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-          },
-          body: JSON.stringify(appData)
-        });
-
-        if (res.status === 401) {
-          showToast('⚠️ Sesión expirada. Inicia sesión de nuevo.');
-          document.getElementById('loginScreen').style.display = 'flex';
-          return;
+      // Combine with defaults ensuring no duplicate refs
+      const existingRefs = new Set(citas.map(c => c.ref));
+      DEFAULT_CITAS.forEach(d => {
+        if (!existingRefs.has(d.ref)) {
+          citas.push(d);
         }
-
-        if (res.ok && notify) {
-          showToast('✓ Todos los cambios han sido guardados con éxito');
-        }
-      } catch(e) {
-        console.error('Error guardando:', e);
-        if (notify) showToast('⚠️ Error al guardar en servidor');
-      }
+      });
+      return citas;
     }
 
-    function showToast(msg) {
-      const t = document.getElementById('adminToast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3000);
+    function saveCitas(citas) {
+      localStorage.setItem('orero_appointments', JSON.stringify(citas));
+      renderCitas();
     }
 
-    function switchAdminTab(tabId) {
-      document.querySelectorAll('.tab-content-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+    function renderCitas() {
+      const citas = getStoredCitas();
+      const tbody = document.getElementById('citasTableBody');
+      tbody.innerHTML = '';
 
-      const target = document.getElementById(tabId);
-      if (target) target.classList.add('active');
+      let confirmedCount = 0;
 
-      const btn = document.querySelector(`[data-tab="${tabId}"]`);
-      if (btn) btn.classList.add('active');
+      citas.forEach((c, idx) => {
+        if (c.status === 'confirmada') confirmedCount++;
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+        const tr = document.createElement('tr');
+        
+        let statusBadge = '<span class="badge badge-pending">Pendiente</span>';
+        if (c.status === 'confirmada') statusBadge = '<span class="badge badge-confirmed">Confirmada</span>';
+        if (c.status === 'atendida') statusBadge = '<span class="badge badge-done">Atendida</span>';
 
-    function updateBadges() {
-      const pendingWorkshop = (appData.workshops || []).filter(w => (w.status || 'pendiente') === 'pendiente').length;
-      document.getElementById('tabCountWorkshop').textContent = pendingWorkshop;
-      document.getElementById('tabCountMotos').textContent = (appData.motorcycles || []).length;
-      document.getElementById('tabCountServices').textContent = (appData.services || []).length;
-      document.getElementById('tabCountBoutique').textContent = (appData.boutique || []).length;
-
-      const totalLeads = (appData.appraisals || []).length + (appData.reservations || []).length + (appData.messages || []).length;
-      document.getElementById('tabCountLeads').textContent = totalLeads;
-    }
-
-    
-    let workshopSearchTerm = '';
-    function handleWorkshopSearch(val) {
-      workshopSearchTerm = (val || '').toLowerCase().trim();
-      renderWorkshopCRM();
-    }
-
-    function playNotificationChime() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.25, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.5);
-      } catch (e) {}
-    }
-
-    // ════ 1. WORKSHOP CITAS CRM LOGIC ════
-    function renderWorkshopCRM() {
-      const container = document.getElementById('workshopGridContainer');
-      const list = appData.workshops || [];
-
-      // KPIs
-      const pending = list.filter(w => (w.status || 'pendiente') === 'pendiente').length;
-      const confirmed = list.filter(w => w.status === 'confirmada').length;
-      const done = list.filter(w => w.status === 'atendida').length;
-
-      document.getElementById('kpiWorkshopPending').textContent = pending;
-      document.getElementById('kpiWorkshopConfirmed').textContent = confirmed;
-      document.getElementById('kpiWorkshopDone').textContent = done;
-      document.getElementById('kpiWorkshopTotal').textContent = list.length;
-
-            // Conflict detection for overlapping confirmed slots
-      const slotCounts = {};
-      list.filter(w => w.status === 'confirmada' && w.preferredDate).forEach(w => {
-        const key = `${w.preferredDate}_${w.preferredSlot || w.preferredTime || 'slot'}`;
-        slotCounts[key] = (slotCounts[key] || 0) + 1;
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:700; color:var(--red);">${c.ref || 'CITA-' + (1000+idx)}</td>
+          <td><strong>${c.name || 'Cliente'}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none;">📞 ${c.phone}</a></td>
+          <td>${c.moto || c.bikeModel || '-'}</td>
+          <td>${c.service || 'Taller general'}</td>
+          <td>
+            <div>📅 ${c.date || c.preferredDate || 'A coordinar'}</div>
+            <div style="margin-top:4px;"><span class="badge badge-shift">${c.slot || c.preferredTime || 'Cualquiera'}</span></div>
+          </td>
+          <td>${statusBadge}</td>
+          <td>
+            <button class="action-btn-sm" onclick="toggleCitaStatus('${c.ref}')" title="Cambiar estado">✓ Estado</button>
+            <button class="action-btn-sm action-btn-danger" onclick="deleteCita('${c.ref}')" title="Eliminar">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
       });
 
-      let filtered = [...list];
-      if (workshopSearchTerm) {
-        filtered = filtered.filter(w => 
-          (w.name || '').toLowerCase().includes(workshopSearchTerm) ||
-          (w.phone || '').includes(workshopSearchTerm) ||
-          (w.brandModel || w.bikeModel || '').toLowerCase().includes(workshopSearchTerm) ||
-          (w.ref || w.refId || '').toLowerCase().includes(workshopSearchTerm)
-        );
-      }
+      document.getElementById('kpiTotalCitas').textContent = citas.length;
+      document.getElementById('kpiConfirmadas').textContent = confirmedCount;
+    }
 
-      if (currentWorkshopFilter !== 'todas') {
-        filtered = filtered.filter(w => (w.status || 'pendiente') === currentWorkshopFilter);
-      }
+    function toggleCitaStatus(ref) {
+      const citas = getStoredCitas();
+      const item = citas.find(c => c.ref === ref);
+      if (!item) return;
 
-      if (!filtered.length) {
-        container.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--text-dim); background: var(--bg-card); border-radius: var(--radius-md);">No hay citas en este estado.</div>`;
-        return;
-      }
+      if (item.status === 'pendiente') item.status = 'confirmada';
+      else if (item.status === 'confirmada') item.status = 'atendida';
+      else item.status = 'pendiente';
 
-      container.innerHTML = filtered.map(w => {
-        const status = w.status || 'pendiente';
-        const phone = w.phone || '';
-        const phoneClean = phone.replace(/[^0-9]/g, '');
-        const waUrl = `https://wa.me/34${phoneClean}?text=${encodeURIComponent('Hola ' + (w.name || '') + ', te escribimos de Motorcycle Store Orero respecto a tu cita de taller (' + (w.ref || '') + ').')}`;
+      saveCitas(citas);
+    }
 
-        return `
-          <div class="booking-card status-${status}">
-            <div>
-              <div class="booking-header">
-                <div>
-                  <div class="booking-ref">${w.ref || 'CITA-TALLER'} · ${w.date || 'Reciente'}</div>
-                  <h3 class="booking-client">${w.name || 'Cliente'}</h3>
-                </div>
-                <span class="booking-status-tag status-tag-${status}">${status}</span>
-              </div>
+    function deleteCita(ref) {
+      if (!confirm('¿Seguro que deseas eliminar esta cita de taller?')) return;
+      let citas = getStoredCitas();
+      citas = citas.filter(c => c.ref !== ref);
+      saveCitas(citas);
+    }
 
-              <div class="booking-details">
-                <div class="booking-detail-row">
-                  <span class="detail-label">Moto:</span>
-                  <span class="detail-value">${w.brandModel || w.bikeModel || 'No especificada'}</span>
-                </div>
-                <div class="booking-detail-row">
-                  <span class="detail-label">Servicio:</span>
-                  <span class="detail-value">${w.service || 'Revisión / Taller'}</span>
-                </div>
-                <div class="booking-detail-row">
-                  <span class="detail-label">Preferencia:</span>
-                  <span class="detail-value">${w.preferredDate || 'A coordinar'} (${w.preferredSlot || 'Indiferente'})</span>
-                </div>
-                <div class="booking-detail-row">
-                  <span class="detail-label">Teléfono:</span>
-                  <span class="detail-value"><a href="tel:${phone}" style="color: #60a5fa; text-decoration: underline;">${phone}</a></span>
-                </div>
-              </div>
-
-              ${w.description ? `<div class="booking-desc">"${w.description}"</div>` : ''}
-
-              <div class="booking-notes-wrap">
-                <label>Notas internas del mecánico (privadas):</label>
-                <textarea class="booking-notes-input" placeholder="Ej: Trae pastillas gastadas, presupuestado 120€..." onchange="updateWorkshopNotes('${w.id || w.ref}', this.value)">${w.internalNotes || ''}</textarea>
-              </div>
-            </div>
-
-            <div class="booking-actions">
-              <div class="quick-contact-group">
-                <a href="tel:${phone}" class="btn-quick-call">📞 Llamar</a>
-                <a href="${waUrl}" target="_blank" class="btn-quick-whatsapp">💬 WhatsApp</a>
-              </div>
-
-              <select class="status-select" onchange="updateWorkshopStatus('${w.id || w.ref}', this.value)">
-                <option value="pendiente" ${status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-                <option value="confirmada" ${status === 'confirmada' ? 'selected' : ''}>📅 Confirmada</option>
-                <option value="atendida" ${status === 'atendida' ? 'selected' : ''}>✅ Atendida</option>
-                <option value="cancelada" ${status === 'cancelada' ? 'selected' : ''}>❌ Cancelada</option>
-              </select>
-            </div>
-          </div>
+    function renderMotos() {
+      const tbody = document.getElementById('motosTableBody');
+      tbody.innerHTML = '';
+      MOTOS_STOCK.forEach(m => {
+        const tr = document.createElement('tr');
+        const badgeColor = m.status === 'Disponible' ? 'badge-confirmed' : 'badge-pending';
+        tr.innerHTML = `
+          <td><strong>${m.brand} ${m.model}</strong></td>
+          <td>${m.year}</td>
+          <td>${m.km}</td>
+          <td><span class="badge" style="background:#1e293b; color:#cbd5e1;">${m.type}</span></td>
+          <td style="font-weight:700; color:#fff;">${m.price}</td>
+          <td><span class="badge ${badgeColor}">${m.status}</span></td>
+          <td style="color:var(--text-muted); font-size:0.82rem;">${m.warranty}</td>
         `;
-      }).join('');
+        tbody.appendChild(tr);
+      });
     }
 
-    function filterWorkshopByStatus(status, btn) {
-      currentWorkshopFilter = status;
-      document.querySelectorAll('#tab-workshop .pill-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderWorkshopCRM();
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
+      document.getElementById('tabMotos').style.display = tab === 'motos' ? 'block' : 'none';
+      document.getElementById('tabContacto').style.display = tab === 'contacto' ? 'block' : 'none';
     }
 
-    async function updateWorkshopStatus(bookingId, newStatus) {
-      const booking = (appData.workshops || []).find(w => (w.id === bookingId || w.ref === bookingId));
-      if (booking) {
-        booking.status = newStatus;
-        const token = sessionStorage.getItem('orero_admin_token');
-        try {
-          await fetch('/api/motorcycle-store-orero/workshop-update', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
-            },
-            body: JSON.stringify({ id: bookingId, status: newStatus })
-          });
-          showToast(`✓ Cita actualizada a estado: ${newStatus}`);
-          renderWorkshopCRM();
-          updateBadges();
-        } catch(e) {
-          saveAllChanges(false);
-          renderWorkshopCRM();
-        }
-      }
+    function openNewCitaModal() {
+      document.getElementById('newCitaModal').classList.add('open');
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.getElementById('manualDate').value = tomorrow.toISOString().split('T')[0];
+    }
+    function closeNewCitaModal() {
+      document.getElementById('newCitaModal').classList.remove('open');
     }
 
-    async function updateWorkshopNotes(bookingId, notes) {
-      const booking = (appData.workshops || []).find(w => (w.id === bookingId || w.ref === bookingId));
-      if (booking) {
-        booking.internalNotes = notes;
-        const token = sessionStorage.getItem('orero_admin_token');
-        try {
-          await fetch('/api/motorcycle-store-orero/workshop-update', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + token
-            },
-            body: JSON.stringify({ id: bookingId, internalNotes: notes })
-          });
-          showToast('✓ Nota interna guardada');
-        } catch(e) {
-          saveAllChanges(false);
-        }
-      }
-    }
-
-    // ════ 2. MOTOS INVENTORY LOGIC ════
-    function renderAdminMotos() {
-      const container = document.getElementById('motosGridContainer');
-      const search = (document.getElementById('motosAdminSearch')?.value || '').toLowerCase().trim();
-      let list = appData.motorcycles || [];
-
-      document.getElementById('countMotosAll').textContent = list.length;
-      document.getElementById('countMotosStock').textContent = list.filter(m => m.status !== 'vendida').length;
-      document.getElementById('countMotosSold').textContent = list.filter(m => m.status === 'vendida').length;
-
-      if (currentMotosFilter === 'disponible') list = list.filter(m => m.status !== 'vendida');
-      if (currentMotosFilter === 'vendida') list = list.filter(m => m.status === 'vendida');
-
-      if (search) {
-        list = list.filter(m => (m.brand + ' ' + m.model + ' ' + (m.type || '')).toLowerCase().includes(search));
-      }
-
-      container.innerHTML = list.map(m => {
-        const isSold = m.status === 'vendida';
-        const img = m.image || (m.images && m.images[0]) || 'assets/motos/moto_default.webp';
-
-        return `
-          <div class="moto-admin-card">
-            <div class="moto-thumb-wrap">
-              <img src="${img}" alt="${m.brand} ${m.model}" class="moto-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'250\\' fill=\\'%23111827\\'><text x=\\'50%\\' y=\\'50%\\' fill=\\'%2364748b\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' font-size=\\'18\\'>Sin Foto</text></svg>'">
-            </div>
-            <div class="moto-card-body">
-              <div>
-                <div class="moto-brand">${m.brand}</div>
-                <h3 class="moto-title">${m.model}</h3>
-                <div class="moto-price-tag">${typeof m.price === 'number' ? m.price.toLocaleString('es-ES') + ' €' : m.price}</div>
-
-                <div class="moto-quick-specs">
-                  <span class="spec-pill">📅 ${m.year}</span>
-                  <span class="spec-pill">🛣️ ${m.km ? m.km.toLocaleString('es-ES') + ' km' : '0 km'}</span>
-                  <span class="spec-pill">⚡ ${m.cc ? m.cc + ' cc' : (m.type || 'Motos')}</span>
-                </div>
-              </div>
-
-              <div class="moto-admin-actions">
-                <button class="btn-status-toggle ${isSold ? 'status-vendida' : 'status-disponible'}" onclick="toggleMotoStatus('${m.id}')">
-                  ${isSold ? '❌ Vendida' : '✅ En Venta'}
-                </button>
-                <div style="display: flex; gap: 6px;">
-                  <button class="btn-edit-sm" onclick="editMotoPricePrompt('${m.id}', ${m.price})">💰 Precio</button>
-                  <button class="btn-edit-sm" style="color: #ef4444;" onclick="deleteMoto('${m.id}')">🗑️</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function filterAdminMotos(status, btn) {
-      currentMotosFilter = status;
-      document.querySelectorAll('#tab-motos .pill-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderAdminMotos();
-    }
-
-    function toggleMotoStatus(motoId) {
-      const moto = (appData.motorcycles || []).find(m => m.id === motoId);
-      if (moto) {
-        moto.status = moto.status === 'vendida' ? 'disponible' : 'vendida';
-        saveAllChanges(false);
-        renderAdminMotos();
-        showToast(`✓ Estado de ${moto.brand} ${moto.model} cambiado a: ${moto.status}`);
-      }
-    }
-
-    function editMotoPricePrompt(motoId, currentPrice) {
-      const newPrice = prompt('Introduce el nuevo precio en euros (€):', currentPrice);
-      if (newPrice !== null && !isNaN(newPrice) && Number(newPrice) > 0) {
-        const moto = (appData.motorcycles || []).find(m => m.id === motoId);
-        if (moto) {
-          moto.price = Number(newPrice);
-          saveAllChanges(true);
-          renderAdminMotos();
-        }
-      }
-    }
-
-    function deleteMoto(motoId) {
-      if (confirm('¿Seguro que deseas eliminar esta motocicleta del catálogo?')) {
-        appData.motorcycles = (appData.motorcycles || []).filter(m => m.id !== motoId);
-        saveAllChanges(true);
-        renderAdminMotos();
-        updateBadges();
-      }
-    }
-
-    function handleCreateMoto(e) {
+    function handleCreateManualCita(e) {
       e.preventDefault();
-      const brand = document.getElementById('motoBrand').value.trim();
-      const model = document.getElementById('motoModel').value.trim();
-      const price = Number(document.getElementById('motoPrice').value);
-      const year = Number(document.getElementById('motoYear').value);
-      const km = Number(document.getElementById('motoKm').value);
-      const category = document.getElementById('motoCategory').value;
-      const cc = document.getElementById('motoCc').value ? Number(document.getElementById('motoCc').value) : null;
-      const power = document.getElementById('motoPower').value ? Number(document.getElementById('motoPower').value) : null;
-      const image = document.getElementById('motoPhotoUrl').value.trim() || 'assets/motos/moto_default.webp';
-      const desc = document.getElementById('motoDesc').value.trim();
+      const name = document.getElementById('manualName').value.trim();
+      const phone = document.getElementById('manualPhone').value.trim();
+      const moto = document.getElementById('manualMoto').value.trim();
+      const service = document.getElementById('manualService').value;
+      const date = document.getElementById('manualDate').value;
+      const slot = document.getElementById('manualSlot').value;
 
-      const newId = 'moto-' + Date.now();
-      const newMoto = {
-        id: newId,
-        brand,
-        model,
-        price,
-        year,
-        km,
-        type: category,
-        cc,
-        power,
-        image,
-        description: desc,
-        status: 'disponible',
-        condition: 'Ocasión garantizada',
-        warranty: '12 meses'
-      };
+      const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
+      const citas = getStoredCitas();
+      citas.unshift({
+        ref: newRef,
+        name,
+        phone,
+        moto,
+        service,
+        date,
+        slot,
+        status: "confirmada"
+      });
 
-      if (!appData.motorcycles) appData.motorcycles = [];
-      appData.motorcycles.unshift(newMoto);
-
-      saveAllChanges(true);
-      document.getElementById('newMotoForm').reset();
-      showToast(`✓ ${brand} ${model} añadida con éxito al inventario`);
-      switchAdminTab('tab-motos');
+      saveCitas(citas);
+      closeNewCitaModal();
+      alert(`Cita ${newRef} creada y confirmada correctamente.`);
     }
 
-    // ════ 3. SERVICES TALLER LOGIC ════
-    function renderAdminServices() {
-      const container = document.getElementById('servicesGridContainer');
-      const list = appData.services || [];
-
-      container.innerHTML = list.map((s, idx) => `
-        <div class="booking-card" style="border-left: 4px solid var(--red);">
-          <div>
-            <div style="font-size: 11px; font-weight: 800; color: var(--red); text-transform: uppercase;">Servicio #${idx + 1}</div>
-            <h3 class="booking-client">${s.name || s.title}</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin: 8px 0 16px;">${s.description || s.desc}</p>
-          </div>
-          <div class="booking-actions">
-            <span style="font-size: 13px; font-weight: 700; color: #fff;">${s.price || 'Consultar'}</span>
-            <span class="booking-status-tag status-tag-confirmada">Activo en Web</span>
-          </div>
-        </div>
-      `).join('');
+    function exportCitasCSV() {
+      const citas = getStoredCitas();
+      let csv = "Referencia,Cliente,Telefono,Vehiculo,Servicio,Fecha,Franja,Estado\n";
+      citas.forEach(c => {
+        csv += `"${c.ref}","${c.name}","${c.phone}","${c.moto}","${c.service}","${c.date}","${c.slot}","${c.status}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Citas_Orero_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
     }
 
-    // ════ 4. LEADS & TASACIONES LOGIC ════
-    function renderAdminLeads() {
-      const container = document.getElementById('leadsGridContainer');
-      const allLeads = [];
-
-      (appData.appraisals || []).forEach(a => allLeads.push({ ...a, leadType: 'Tasación', leadOrigin: 'appraisals', name: a.name || 'Cliente', phone: a.phone }));
-      (appData.reservations || []).forEach(r => allLeads.push({ ...r, leadType: 'Reserva Moto', leadOrigin: 'reservations', name: r.clientName || 'Cliente', phone: r.clientPhone }));
-      (appData.messages || []).forEach(m => allLeads.push({ ...m, leadType: 'Consulta', leadOrigin: 'messages', name: m.name || 'Usuario', phone: m.phone }));
-
-      document.getElementById('countLeadsAll').textContent = allLeads.length;
-
-      let filtered = allLeads;
-      if (currentLeadsFilter !== 'todas') {
-        filtered = filtered.filter(l => l.leadOrigin === currentLeadsFilter);
-      }
-
-      if (!filtered.length) {
-        container.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: var(--text-dim); background: var(--bg-card); border-radius: var(--radius-md);">No hay leads en esta categoría.</div>`;
-        return;
-      }
-
-      container.innerHTML = filtered.map(l => {
-        const phone = l.phone || '';
-        const phoneClean = phone.replace(/[^0-9]/g, '');
-        const waUrl = `https://wa.me/34${phoneClean}?text=${encodeURIComponent('Hola ' + l.name + ', te contactamos desde Motorcycle Store Orero sobre tu consulta.')}`;
-
-        return `
-          <div class="booking-card" style="border-left: 4px solid var(--blue);">
-            <div>
-              <div class="booking-header">
-                <div>
-                  <div class="booking-ref">${l.leadType} · ${l.date || 'Reciente'}</div>
-                  <h3 class="booking-client">${l.name}</h3>
-                </div>
-                <span class="booking-status-tag status-tag-confirmada">${l.leadType}</span>
-              </div>
-
-              <div class="booking-details">
-                ${l.brand || l.bikeBrand ? `<div class="booking-detail-row"><span class="detail-label">Moto:</span><span class="detail-value">${l.brand || l.bikeBrand} ${l.model || l.bikeModel || ''}</span></div>` : ''}
-                ${l.year ? `<div class="booking-detail-row"><span class="detail-label">Año / Km:</span><span class="detail-value">${l.year} · ${l.km ? l.km + ' km' : ''}</span></div>` : ''}
-                <div class="booking-detail-row"><span class="detail-label">Teléfono:</span><span class="detail-value"><a href="tel:${phone}" style="color: #60a5fa; text-decoration: underline;">${phone}</a></span></div>
-              </div>
-
-              ${l.comments || l.message ? `<div class="booking-desc">"${l.comments || l.message}"</div>` : ''}
-            </div>
-
-            <div class="booking-actions">
-              <div class="quick-contact-group">
-                <a href="tel:${phone}" class="btn-quick-call">📞 Llamar</a>
-                <a href="${waUrl}" target="_blank" class="btn-quick-whatsapp">💬 WhatsApp</a>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function filterLeadsByOrigin(origin, btn) {
-      currentLeadsFilter = origin;
-      document.querySelectorAll('#tab-leads .pill-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderAdminLeads();
-    }
-
-    // ════ 5. BOUTIQUE LOGIC ════
-    function renderAdminBoutique() {
-      const container = document.getElementById('boutiqueGridContainer');
-      const list = appData.boutique || [];
-
-      container.innerHTML = list.map(b => `
-        <div class="moto-admin-card">
-          <div class="moto-thumb-wrap" style="height: 160px;">
-            <img src="${b.image || 'assets/boutique/gear_default.webp'}" alt="${b.name}" class="moto-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'400\\' height=\\'250\\' fill=\\'%23111827\\'><text x=\\'50%\\' y=\\'50%\\' fill=\\'%2364748b\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' font-size=\\'18\\'>Boutique</text></svg>'">
-          </div>
-          <div class="moto-card-body">
-            <div>
-              <div class="moto-brand">${b.brand || 'Boutique'}</div>
-              <h3 class="moto-title">${b.name}</h3>
-              <div class="moto-price-tag">${b.price ? b.price + ' €' : 'Consultar'}</div>
-            </div>
-            <div class="moto-admin-actions">
-              <span class="spec-pill">${b.category || 'Equipamiento'}</span>
-              <span class="booking-status-tag status-tag-confirmada">En Tienda</span>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // ════ 6. SETTINGS & BUSINESS ════
-    function populateSettings() {
-      const b = appData.business || {};
-      if (b.name) document.getElementById('setBusinessName').value = b.name;
-      if (b.phone) document.getElementById('setBusinessPhone').value = b.phone;
-      if (b.whatsapp) document.getElementById('setBusinessWhatsapp').value = b.whatsapp;
-      if (b.email) document.getElementById('setBusinessEmail').value = b.email;
-      if (b.location) document.getElementById('setBusinessAddress').value = b.location;
-      if (b.hours) {
-        if (b.hours.weekdays) document.getElementById('setBusinessHoursWd').value = b.hours.weekdays;
-        if (b.hours.saturday) document.getElementById('setBusinessHoursSat').value = b.hours.saturday;
-      }
-    }
-
-    function handleSaveSettings(e) {
-      e.preventDefault();
-      if (!appData.business) appData.business = {};
-      appData.business.name = document.getElementById('setBusinessName').value;
-      appData.business.phone = document.getElementById('setBusinessPhone').value;
-      appData.business.whatsapp = document.getElementById('setBusinessWhatsapp').value;
-      appData.business.email = document.getElementById('setBusinessEmail').value;
-      appData.business.location = document.getElementById('setBusinessAddress').value;
-
-      if (!appData.business.hours) appData.business.hours = {};
-      appData.business.hours.weekdays = document.getElementById('setBusinessHoursWd').value;
-      appData.business.hours.saturday = document.getElementById('setBusinessHoursSat').value;
-
-      saveAllChanges(true);
-    }
+    // Initialize
+    checkAuth();
   </script>
 </body>
 </html>
