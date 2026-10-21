@@ -940,22 +940,6 @@
           <div class="card-price-sub">en la base</div>
         </div>
       </div>
-
-      <div class="card base">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📲</span>
-            <span class="card-name">Código QR de Alta Calidad para Imprimir</span>
-            <span class="pill-tag tag-inc">Incluido</span>
-          </div>
-          <div class="card-desc">Para tu escaparate, tarjetas, cartas de restaurante o mostradores de tienda.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price green">Incluido</div>
-          <div class="card-price-sub">en la base</div>
-        </div>
-      </div>
     </div>
 
     <!-- 2. PACKS RÁPIDOS PREDEFINIDOS -->
@@ -975,13 +959,13 @@
       <div class="pack-card active" onclick="selectPack('profesional')">
         <span class="pack-badge-top">⭐ Más Popular</span>
         <div class="pack-title">🔵 Profesional</div>
-        <div class="pack-desc">Catálogo + Reservas WhatsApp + Posicionamiento SEO Local</div>
+        <div class="pack-desc">Catálogo + Reservas Directas al Móvil + SEO Local</div>
         <div class="pack-price-tag" id="packPrice2">1.060 €</div>
       </div>
 
       <div class="pack-card" onclick="selectPack('premium')">
         <div class="pack-title">💎 Total VIP</div>
-        <div class="pack-desc">Todo incluido con multiidioma, fotos HD y 12 meses de soporte</div>
+        <div class="pack-desc">Todo incluido con reservas (web y móvil), multiidioma y soporte 12 meses</div>
         <div class="pack-price-tag" id="packPrice3">1.610 €</div>
       </div>
     </div>
@@ -995,21 +979,53 @@
 
     <div class="card-list" id="modCards">
 
-      <div class="card on" data-id="reservas" data-u="220" onclick="toggleCard(this)">
+      <div class="card" data-id="reservas-web" data-u="120" onclick="toggleCard(this)">
         <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="card-content">
           <div class="card-name-row">
-            <span class="card-emoji">📅</span>
-            <span class="card-name">Sistema de Reservas / Citas Directas</span>
+            <span class="card-emoji">🌐</span>
+            <span class="card-name">Sistema de Reservas en la Web</span>
+            <span class="pill-tag tag-gem">📅 Calendario Web</span>
+          </div>
+          <div class="card-desc">Tus clientes eligen día y hora en un calendario dentro de tu propia web con confirmación online.</div>
+        </div>
+        <div class="card-price-col">
+          <div class="card-price">+120 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>
+
+      <div class="card on" data-id="reservas-movil" data-u="220" onclick="toggleCard(this)">
+        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-content">
+          <div class="card-name-row">
+            <span class="card-emoji">📲</span>
+            <span class="card-name">Reservas Directas a Tu Móvil / WhatsApp</span>
             <span class="pill-tag tag-fire">🔥 Más Pedido</span>
           </div>
-          <div class="card-desc">Tus clientes eligen día y hora desde el móvil. Tú recibes el aviso al instante sin comisiones.</div>
+          <div class="card-desc">Cada reserva o cita te llega al instante con todos los datos del cliente directamente a tu teléfono móvil y WhatsApp.</div>
         </div>
         <div class="card-price-col">
           <div class="card-price">+220 €</div>
           <div class="card-price-sub">pago único</div>
         </div>
-      </div>
+      </div
+
+      <div class="card on" data-id="admin" data-u="190" onclick="toggleCard(this)">
+        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="card-content">
+          <div class="card-name-row">
+            <span class="card-emoji">🔐</span>
+            <span class="card-name">Panel de Control / Admin Privado (/admin)</span>
+            <span class="pill-tag tag-fire">⚡ Muy Solicitado</span>
+          </div>
+          <div class="card-desc">Acceso con contraseña para publicar productos, cambiar precios, marcar vendidos y ver citas desde tu móvil sin saber programación.</div>
+        </div>
+        <div class="card-price-col">
+          <div class="card-price">+190 €</div>
+          <div class="card-price-sub">pago único</div>
+        </div>
+      </div>>
 
       <div class="card on" data-id="catalogo" data-u="180" onclick="toggleCard(this)">
         <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
@@ -1186,8 +1202,8 @@
 
     const PACK_CONFIG = {
       esencial: ['catalogo', 'resenas'],
-      profesional: ['catalogo', 'resenas', 'reservas', 'seo'],
-      premium: ['reservas', 'catalogo', 'seo', 'galeria', 'resenas', 'mant', 'idioma', 'form']
+      profesional: ['catalogo', 'resenas', 'reservas-movil', 'admin', 'seo'],
+      premium: ['reservas-movil', 'reservas-web', 'admin', 'catalogo', 'seo', 'galeria', 'resenas', 'mant', 'idioma', 'form']
     };
 
     function toggleCard(card) {
@@ -1264,7 +1280,7 @@
       let total = BASE_PRICE;
       const items = [];
 
-      items.push('✅ Base Profesional (Diseño a medida + Dominio Propio (.com/.es) + QR + SSL + Responsive) — ' + BASE_PRICE + ' €');
+      items.push('✅ Base Profesional (Diseño a medida + Dominio Propio (.com/.es) + SSL + 100% Responsive) — ' + BASE_PRICE + ' €');
 
       selected.forEach(c => {
         const name = c.querySelector('.card-name').textContent.trim();
