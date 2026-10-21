@@ -936,6 +936,11 @@
                 <input type="number" id="prodYear" class="form-input" placeholder="2022" value="2022">
               </div>
 
+              <div class="form-group" id="groupMotoItv">
+                <label class="form-label">Fecha de Próxima ITV (Manual)</label>
+                <input type="text" id="prodItv" class="form-input" placeholder="Ej: Noviembre 2026 o 11/2026" value="11/2026">
+              </div>
+
               <div class="form-group" id="groupMotoKm">
                 <label class="form-label">Kilómetros (si es moto)</label>
                 <input type="text" id="prodKm" class="form-input" placeholder="15.000 km" value="12.000 km">
@@ -1105,8 +1110,8 @@
   <script>
     // Authentic Base Stock (18 Motos + Real Boutique)
     const BASE_STOCK = [
-      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "/assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
-      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "/assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
+      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", itv: "Noviembre 2026", image: "/assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
+      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", itv: "Marzo 2026", image: "/assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
       { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "/assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
       { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "/assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
       { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "/assets/peugeot_metropolis_hd.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
@@ -1185,6 +1190,7 @@
       const isMoto = category === 'ocasion' || category === 'nueva';
       document.getElementById('groupMotoYear').style.display = isMoto ? 'block' : 'none';
       document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
+      const itvEl = document.getElementById('groupMotoItv'); if (itvEl) itvEl.style.display = isMoto ? 'block' : 'none';
     }
 
     // Normalizador infalible de URLs para servidor, GitHub Pages y subcarpeta /admin/
@@ -1320,6 +1326,7 @@
       const price = document.getElementById('prodPrice').value.trim();
       const year = document.getElementById('prodYear').value;
       const km = document.getElementById('prodKm').value.trim();
+      const itv = (document.getElementById('prodItv') ? document.getElementById('prodItv').value.trim() : '') || '11/2026';
       const desc = document.getElementById('prodDesc').value.trim();
 
       // If no photo chosen, pick default according to category
@@ -1341,6 +1348,7 @@
         price: price.includes('€') ? price : price + ' €',
         year: year ? parseInt(year) : 2024,
         km: km || '0 km',
+        itv: itv,
         image: image,
         status: 'disponible',
         desc: desc || 'Vehículo disponible en nuestra exposición de Calle San Agustín 18, Orihuela.'
