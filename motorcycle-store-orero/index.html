@@ -172,13 +172,28 @@
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden !important;
+      width: 100%;
+      max-width: 100vw;
     }
 
     body {
       background: var(--bg-main);
       color: var(--text-main);
-      overflow-x: hidden;
+      overflow-x: hidden !important;
+      width: 100%;
+      max-width: 100vw;
       line-height: 1.6;
+      position: relative;
+    }
+
+    button, [role="button"], a {
+      touch-action: manipulation;
+    }
+
+    input, select, textarea {
+      font-size: 16px !important; /* Critical: prevents iOS auto-zoom on mobile */
     }
 
     /* Sleek Dark Scrollbar */
@@ -251,6 +266,10 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 16px;
+      max-width: 100%;
+      box-sizing: border-box;
+      white-space: normal;
+      word-break: break-word;
     }
     .eyebrow-tag span.dot {
       width: 6px;
@@ -478,7 +497,7 @@
       min-height: 680px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       background: #07080b;
       overflow: hidden;
@@ -570,11 +589,12 @@
       z-index: 10;
       width: 100%;
       max-width: 1440px;
-      padding: 0 36px 40px;
+      padding: 0 40px 75px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       pointer-events: none;
+      margin-top: auto;
     }
     @media (max-width: 768px) {
       .hero-overlay-content {
@@ -2078,11 +2098,13 @@
       margin-bottom: 12px;
     }
 
-    /* Mobile Drawer Fix */
+    /* ══════════════════════════════════════════════════════════
+       COMPREHENSIVE MOBILE-NATIVE RESPONSIVE SUITE
+       ══════════════════════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .container { padding: 0 18px; }
+      .container { padding: 0 16px; }
       .hero-grid, .brand-exp-content, .booking-card, .contact-details-col {
-        padding: 24px 18px !important;
+        padding: 24px 16px !important;
       }
       .filter-bar {
         overflow-x: auto;
@@ -2095,8 +2117,207 @@
       .modal-container {
         width: 95vw !important;
         max-width: 95vw !important;
-        padding: 24px 16px !important;
+        padding: 22px 14px !important;
         margin: 10px auto !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html, body {
+        overflow-x: hidden !important;
+        width: 100%;
+        max-width: 100vw;
+      }
+      .container {
+        padding: 0 12px !important;
+      }
+
+      /* Sticky Header Mobile: Guaranteed No Protrusion */
+      .header-inner {
+        padding: 10px 12px !important;
+        gap: 8px !important;
+      }
+      .header-brand {
+        gap: 8px !important;
+        min-width: 0 !important;
+        flex-shrink: 1 !important;
+      }
+      .header-logo-icon {
+        width: 28px !important;
+        height: 28px !important;
+        flex-shrink: 0 !important;
+      }
+      .header-logo-icon svg {
+        width: 16px !important;
+        height: 16px !important;
+      }
+      .header-brand-title {
+        font-size: 0.95rem !important;
+        letter-spacing: 0.02em !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+      .header-actions {
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+      }
+      .btn-header-cta {
+        padding: 7px 11px !important;
+        font-size: 0.72rem !important;
+        letter-spacing: 0 !important;
+        white-space: nowrap !important;
+      }
+      .btn-mobile-toggle {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.15rem !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Hero Stage Mobile */
+      .hero-stage {
+        overflow: hidden !important;
+        max-width: 100vw !important;
+      }
+      .hero-photo-layer {
+        max-width: 100vw !important;
+        overflow: hidden !important;
+      }
+      .hero-photo-img {
+        max-width: 100% !important;
+        transform: scale(1.0) !important;
+        animation: none !important; /* Stop drift animation on mobile to save frames and prevent overflow */
+      }
+      .hero-overlay-content {
+        padding: 14px 12px 24px !important;
+      }
+      .eyebrow-tag {
+        font-size: 0.68rem !important;
+        letter-spacing: 0.03em !important;
+        padding: 4px 10px !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        line-height: 1.3 !important;
+      }
+      .hero-title {
+        font-size: 2.1rem !important;
+        line-height: 1.06 !important;
+      }
+      .hero-subtitle {
+        font-size: 0.86rem !important;
+        margin-bottom: 14px !important;
+      }
+      .hero-ctas-row {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+      .btn-hero {
+        width: 100% !important;
+        padding: 12px 18px !important;
+        font-size: 0.82rem !important;
+        justify-content: center !important;
+      }
+
+      /* Hero Trust Metrics Grid */
+      .hero-metrics-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        padding: 12px 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .hero-metric-val {
+        font-size: 1.25rem !important;
+      }
+      .hero-metric-lbl {
+        font-size: 0.7rem !important;
+      }
+
+      /* Catalog Filters Bar */
+      .catalog-filters {
+        padding: 4px 12px 10px !important;
+        margin-left: -12px !important;
+        margin-right: -12px !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .catalog-filters::-webkit-scrollbar { display: none !important; }
+      .filter-btn {
+        padding: 7px 13px !important;
+        font-size: 0.78rem !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      /* Product Cards */
+      .catalog-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .moto-card {
+        border-radius: 14px !important;
+      }
+      .moto-card-media {
+        height: 200px !important;
+      }
+      .moto-card-body {
+        padding: 16px 14px !important;
+      }
+      .moto-model-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 10px !important;
+      }
+      .moto-specs-strip {
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+      }
+      .spec-item {
+        font-size: 0.75rem !important;
+      }
+
+      /* CRITICAL: Reveal animations instantly visible on mobile (Zero Black Holes) */
+      .anim-reveal, .anim-reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      /* Floating Call Button */
+      .floating-call-btn {
+        bottom: 14px !important;
+        right: 12px !important;
+        padding: 9px 14px !important;
+        font-size: 0.8rem !important;
+        gap: 6px !important;
+      }
+
+      /* Cookie Banner */
+      .cookie-banner-wrap {
+        padding: 12px !important;
+      }
+      .cookie-inner {
+        gap: 10px !important;
+      }
+      .cookie-text {
+        font-size: 0.78rem !important;
+        min-width: 100% !important;
+      }
+      .cookie-actions {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+      }
+      .btn-cookie {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 9px 10px !important;
+        font-size: 0.76rem !important;
       }
     }
 
@@ -2196,16 +2417,16 @@
           <span class="dot"></span>
           <span>Orihuela · Concesionario Multimarca & Taller Oficial</span>
         </div>
-        <h1 class="hero-title">NACIDAS PARA SER <span class="text-red">DIFERENTES.</span></h1>
+        <h1 class="hero-title">VENTA DE MOTOS & <span class="text-red">TALLER OFICIAL.</span></h1>
         <p class="hero-subtitle">
-          Selección exclusiva de motocicletas con 1 año de garantía europea completa y servicio técnico especializado en Calle San Agustín 18.
+          Motos de ocasión garantizadas con 1 año de garantía por escrito y modelos nuevos a estrenar. Taller mecánico multimarca y revisiones en Calle San Agustín 18.
         </p>
         <div class="hero-ctas-row">
           <a href="#catalogo" class="btn-hero btn-hero-red">
-            <span>Descubrir Motos (18)</span>
+            <span>Ver Motos en Stock (18)</span>
           </a>
           <a href="#reservar-cita" class="btn-hero btn-hero-outline">
-            <span>Pedir Cita Previa</span>
+            <span>Pedir Cita de Taller</span>
           </a>
         </div>
       </div>
@@ -2250,19 +2471,20 @@
 
       <!-- Filter Pills -->
       <div class="catalog-filters" id="catalogFilters">
-        <button class="filter-btn active" onclick="filterCatalog('all', this)">Todas (18)</button>
-        <button class="filter-btn" onclick="filterCatalog('ocasion', this)">Ocasión</button>
-        <button class="filter-btn" onclick="filterCatalog('nueva', this)">Nuevas</button>
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">Todo el Catálogo (24)</button>
+        <button class="filter-btn" onclick="filterCatalog('ocasion', this)">Motos Ocasión</button>
+        <button class="filter-btn" onclick="filterCatalog('nueva', this)">Motos Nuevas</button>
         <button class="filter-btn" onclick="filterCatalog('a2', this)">Carnet A2</button>
         <button class="filter-btn" onclick="filterCatalog('sport', this)">Deportivas</button>
         <button class="filter-btn" onclick="filterCatalog('naked', this)">Naked</button>
         <button class="filter-btn" onclick="filterCatalog('scooter', this)">Scooter</button>
+        <button class="filter-btn" onclick="filterCatalog('boutique', this)">🪖 Boutique & Cascos (6)</button>
       </div>
 
       <!-- Grid of Real Motorcycles -->
       <div class="catalog-grid" id="catalogGrid">
 
-        <div class="moto-card" data-type="naked" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m1" data-type="naked" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_yamaha_mt07.jpg" alt="Yamaha MT-07 en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Ocasión</span>
@@ -2294,7 +2516,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="sport" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m2" data-type="sport" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_honda_cbr500r.jpg" alt="Honda CBR 500R en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Ocasión</span>
@@ -2326,7 +2548,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="sport" data-cond="nueva" data-a2="true">
+        <div class="moto-card" id="m3" data-type="sport" data-cond="nueva" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_kawasaki_ninja650.jpg" alt="Kawasaki Ninja 650 en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Nueva</span>
@@ -2358,7 +2580,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="trail" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m4" data-type="trail" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_suzuki_vstrom650.jpg" alt="Suzuki V-Strom 650 en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Ocasión</span>
@@ -2390,7 +2612,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="ocasion" data-a2="false">
+        <div class="moto-card" id="m5" data-type="scooter" data-cond="ocasion" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/real_peugeot_metropolis_master.jpg" alt="Peugeot Metropolis 400 Active (3 ruedas) en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">379 km certificados</span>
@@ -2420,7 +2642,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="naked" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="m6" data-type="naked" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/real_qj_srk_master.jpg" alt="QJ Motor SRK 125J en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Nueva a estrenar</span>
@@ -2450,7 +2672,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m7" data-type="scooter" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_honda_sh350.jpg" alt="Honda SH 350i Sport ABS en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Edición Sport</span>
@@ -2480,7 +2702,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="m8" data-type="scooter" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/moto_kymco_agility.jpg" alt="KYMCO Agility City PLUS 125 Euro 5+ en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Oferta especial</span>
@@ -2510,7 +2732,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="m9" data-type="scooter" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/moto_sym_symphony.jpg" alt="SYM Symphony 125 SR (Baúl incluido) en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Baúl de serie</span>
@@ -2540,7 +2762,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="trail" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="m10" data-type="trail" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/moto_macbor_montana.jpg" alt="Macbor Montana XR1 125 EVO Trail en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Trail aventura</span>
@@ -2570,7 +2792,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="ocasion" data-a2="false">
+        <div class="moto-card" id="m11" data-type="scooter" data-cond="ocasion" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/real_kymco_kxct_master.jpg" alt="KYMCO K-XCT 125i Sport ABS en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Revisión recién hecha</span>
@@ -2600,7 +2822,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="scooter" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m12" data-type="scooter" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/real_suzuki_burgman_master.jpg" alt="Suzuki Burgman 250 Executive en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Revisión completa de motor</span>
@@ -2630,7 +2852,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="ciclomotor" data-cond="ocasion" data-a2="false">
+        <div class="moto-card" id="m13" data-type="ciclomotor" data-cond="ocasion" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/real_peugeot_citystar_master.jpg" alt="Peugeot Citystar 50 RS Sport en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Edición deportiva</span>
@@ -2660,7 +2882,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="ciclomotor" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="m14" data-type="ciclomotor" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/real_rieju_mrt_master.jpg" alt="Rieju MRT 50 Pro Black Series Supermotard en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Motor 2T Minarelli</span>
@@ -2690,7 +2912,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="naked" data-cond="ocasion" data-a2="false">
+        <div class="moto-card" id="m15" data-type="naked" data-cond="ocasion" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/moto_hanway_furious.jpg" alt="Hanway Furious NK 125 Naked en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">2.500 km certificados</span>
@@ -2720,7 +2942,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="ciclomotor" data-cond="ocasion" data-a2="false">
+        <div class="moto-card" id="m16" data-type="ciclomotor" data-cond="ocasion" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/vespa_lx_hd.jpg" alt="Vespa LX 50 2T Clásica en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Ocasión económica</span>
@@ -2750,7 +2972,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="custom" data-cond="nueva" data-a2="true">
+        <div class="moto-card" id="m17" data-type="custom" data-cond="nueva" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/moto_benda_napoleon.jpg" alt="Benda Napoleon Bob 250 Custom Bobber en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag tag-new">Diseño exclusivo</span>
@@ -2780,7 +3002,7 @@
           </div>
         </div>
 
-        <div class="moto-card" data-type="custom" data-cond="ocasion" data-a2="true">
+        <div class="moto-card" id="m18" data-type="custom" data-cond="ocasion" data-a2="true">
           <div class="moto-card-media">
             <img src="assets/real_yamaha_virago_master.jpg" alt="Yamaha XV 535 SP Virago Custom en Orihuela" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
             <span class="moto-badge-tag ">Clásica revisada</span>
@@ -2810,10 +3032,8 @@
           </div>
         </div>
 
-      </div>
-    
         <!-- Boutique 1: Casco LS2 Strobe II -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b1" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_casco_ls2_strobe.jpg" alt="Casco Modular LS2 Strobe II en Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">ECE 22.06</span>
@@ -2840,7 +3060,7 @@
         </div>
 
         <!-- Boutique 2: Casco MT Thunder 4 SV -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b2" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_casco_mt_thunder.jpg" alt="Casco MT Thunder 4 SV ECE 22.06 Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">Alta Seguridad</span>
@@ -2867,7 +3087,7 @@
         </div>
 
         <!-- Boutique 3: Chaqueta Alpinestars Andes v3 -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b3" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_chaqueta_alpinestars.jpg" alt="Chaqueta Alpinestars Andes v3 Drystar Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">Drystar Impermeable</span>
@@ -2894,7 +3114,7 @@
         </div>
 
         <!-- Boutique 4: Casco Jet LS2 Airflow -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b4" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_casco_ls2_airflow.jpg" alt="Casco Jet LS2 Airflow Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">Urbano Ligero</span>
@@ -2921,7 +3141,7 @@
         </div>
 
         <!-- Boutique 5: Guantes Piel & Carbono -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b5" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_guantes_carbono.jpg" alt="Guantes Piel Carbono Moto Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">Protección Carbono</span>
@@ -2948,7 +3168,7 @@
         </div>
 
         <!-- Boutique 6: Antirrobo Disco Alarma -->
-        <div class="moto-card" data-type="boutique" data-cond="nueva" data-a2="false">
+        <div class="moto-card" id="b6" data-type="boutique" data-cond="nueva" data-a2="false">
           <div class="moto-card-media">
             <img src="assets/boutique_antirrobo_disco.jpg" alt="Antirrobo Disco con Alarma Orihuela" class="moto-card-img" loading="lazy">
             <span class="moto-badge-tag">Alarma 120dB</span>
@@ -3907,6 +4127,12 @@
         '.section-header-center, .moto-card, .pillar-card, .service-card, .booking-card, .contact-details-col, .map-embed-col'
       );
 
+      // On mobile viewports, reveal immediately so user never sees empty gaps
+      if (window.innerWidth < 768) {
+        revealTargets.forEach(t => t.classList.add('revealed'));
+        return;
+      }
+
       revealTargets.forEach((target, idx) => {
         target.classList.add('anim-reveal');
         const delay = (idx % 6) * 0.08;
@@ -3959,9 +4185,46 @@
         if (!custom) return;
         const items = JSON.parse(custom);
         const grid = document.getElementById('catalogGrid');
-        if (!grid) return;
+        if (!grid || !Array.isArray(items)) return;
 
+        // Keep track of active item IDs
+        const activeIds = new Set(items.map(it => it.id));
+
+        // 1. Update status and price of existing cards
         items.forEach(item => {
+          const existingCard = document.getElementById(item.id);
+          if (existingCard) {
+            // Update Sold badge
+            const badge = existingCard.querySelector('.moto-badge-tag');
+            if (badge) {
+              if (item.status === 'vendida') {
+                badge.textContent = 'Vendida';
+                badge.classList.add('tag-sold');
+              } else {
+                badge.classList.remove('tag-sold');
+                if (badge.textContent === 'Vendida') {
+                  badge.textContent = (item.category === 'ocasion') ? 'Ocasión' : 'Disponible';
+                }
+              }
+            }
+            // Update Price
+            const priceEl = existingCard.querySelector('.price-cash');
+            if (priceEl && item.price) {
+              priceEl.textContent = item.price;
+            }
+          }
+        });
+
+        // 2. Hide any base cards deleted by the owner
+        const allBaseCards = grid.querySelectorAll('.moto-card[id^="m"], .moto-card[id^="b"]');
+        allBaseCards.forEach(c => {
+          if (!activeIds.has(c.id)) {
+            c.style.display = 'none';
+          }
+        });
+
+        // 3. Prepend newly published custom products
+        items.slice().reverse().forEach(item => {
           if (item.id && item.id.startsWith('prod_')) {
             if (document.getElementById(item.id)) return;
             const newCard = document.createElement('div');
@@ -3973,10 +4236,11 @@
 
             const isSold = item.status === 'vendida';
             const badgeTag = isSold ? 'Vendida' : (item.category === 'ocasion' ? 'Ocasión' : 'Nuevo Stock');
+            const cleanImg = (item.image && item.image.startsWith('../')) ? item.image.substring(3) : (item.image || 'assets/clean_showroom_orero.jpg');
 
             newCard.innerHTML = `
               <div class="moto-card-media">
-                <img src="${item.image}" alt="${item.title}" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
+                <img src="${cleanImg}" alt="${item.title}" class="moto-card-img" loading="lazy" onerror="this.src='assets/clean_showroom_orero.jpg'">
                 <span class="moto-badge-tag ${isSold ? 'tag-sold' : ''}">${badgeTag}</span>
               </div>
               <div class="moto-card-body">
@@ -4002,10 +4266,12 @@
             grid.prepend(newCard);
           }
         });
-      } catch (err) {}
+      } catch (err) {
+        console.warn('Sync inventory notice:', err);
+      }
     }
 
-    // Init
+    // Init/ Init
     document.addEventListener('DOMContentLoaded', () => {
       animateCounters();
       initScrollAnimations();
