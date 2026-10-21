@@ -812,6 +812,27 @@
         padding: 14px;
       }
     }
+      .filter-chip-admin {
+      background: #141b27;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-chip-admin:hover {
+      background: #1e283b;
+      color: #fff;
+    }
+    .filter-chip-admin.active {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
   </style>
 </head>
 <body>
@@ -1365,54 +1386,123 @@
       alert('¡Publicación realizada con éxito! Ya está disponible en la web.');
     }
 
+        let currentAdminCategoryFilter = 'all';
+
+    function setAdminCategoryFilter(cat, btnEl) {
+      currentAdminCategoryFilter = cat;
+      document.querySelectorAll('.filter-chip-admin').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderProducts();
+    }
+
+    function filterAdminInventory() {
+      renderProducts();
+    }
+
     function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      if (!grid) return;
       const products = getAllProducts();
-      const container = document.getElementById('productsGridContainer');
-      container.innerHTML = '';
-
-      document.getElementById('totalProductsCount').textContent = products.length;
       document.getElementById('kpiTotalMotos').textContent = products.length;
+      const countEl = document.getElementById('countAllAdmin');
+      if (countEl) countEl.textContent = products.length;
 
-      products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
+      const query = (document.getElementById('adminSearchInput') ? document.getElementById('adminSearchInput').value.trim().toLowerCase() : '');
 
-        const isSold = p.status === 'vendida';
-        const statusClass = isSold ? 'status-sold' : 'status-available';
-        const statusText = isSold ? '🔴 VENDIDA' : '🟢 DISPONIBLE';
+      const filtered = products.filter(item => {
+        // Category filter
+        if (currentAdminCategoryFilter === 'ocasion' && item.category !== 'ocasion') return false;
+        if (currentAdminCategoryFilter === 'nueva' && item.category !== 'nueva') return false;
+        if (currentAdminCategoryFilter === 'boutique' && !['casco', 'chaqueta', 'accesorio', 'boutique'].includes(item.category)) return false;
+        if (currentAdminCategoryFilter === 'vendida' && item.status !== 'vendida') return false;
 
-        let catBadge = '🏍️ MOTO OCASIÓN';
-        if (p.category === 'nueva') catBadge = '🏍️ MOTO NUEVA';
-        else if (p.category === 'casco') catBadge = '🪖 CASCO ECE 22.06';
-        else if (p.category === 'chaqueta') catBadge = '🧥 EQUIPACIÓN';
-        else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
+        // Query search
+        if (query) {
+          const matchTitle = (item.title || '').toLowerCase().includes(query);
+          const matchDesc = (item.desc || '').toLowerCase().includes(query);
+          const matchPrice = (item.price || '').toLowerCase().includes(query);
+          const matchItv = (item.itv || '').toLowerCase().includes(query);
+          if (!matchTitle && !matchDesc && !matchPrice && !matchItv) return false;
+        }
+        return true;
+      });
 
-        card.innerHTML = `
-          <img src="${toPublicAssetUrl(p.image)}" alt="${p.title}" class="product-thumb" loading="lazy" onerror="this.onerror=null; this.src=toPublicAssetUrl('assets/clean_showroom_orero.jpg');">
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted);">No se encontraron productos coincidentes.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item, idx) => `
+        <div class="product-card" id="prodCard_${item.id}">
+          <div style="position:relative;">
+            <img src="${item.image}" alt="${item.title}" class="product-thumb" onerror="this.src=toPublicAssetUrl('assets/clean_showroom_orero.jpg')">
+            <span class="product-status-tag ${item.status === 'vendida' ? 'status-sold' : 'status-available'}" style="position:absolute; top:12px; right:12px; box-shadow:0 4px 12px rgba(0,0,0,0.5);">
+              ${item.status === 'vendida' ? '● Vendida' : '● Disponible'}
+            </span>
+          </div>
           <div class="product-body">
             <div class="product-badge-row">
-              <span class="product-badge">${catBadge}</span>
-              <span class="product-status-tag ${statusClass}">${statusText}</span>
+              <span class="product-badge">${item.category.toUpperCase()}</span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">${item.year ? item.year : ''} ${item.km ? '· ' + item.km : ''}</span>
             </div>
-            <h4 class="product-title">${p.title}</h4>
-            <div class="product-price">${p.price}</div>
-            <p class="product-desc">${p.desc}</p>
+            <h3 class="product-title">${item.title}</h3>
+            <div class="product-price">${item.price}</div>
+            
+            <div style="background:#090d16; border:1px solid rgba(255,255,255,0.06); padding:8px 12px; border-radius:8px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.78rem; color:var(--text-muted);">Próxima ITV:</span>
+              <strong style="font-size:0.84rem; color:#34d399;">📅 ${item.itv || 'Al día'}</strong>
+            </div>
 
+            <p class="product-desc">${item.desc || ''}</p>
             <div class="product-actions">
-              <button class="btn-prod-action" onclick="toggleProductSold('${p.id}')">
-                ${isSold ? '🟢 Poner Disponible' : '🔴 Marcar Vendida'}
+              <button class="btn-prod-action" onclick="toggleProductStatus('${item.id}')" style="background:${item.status === 'vendida' ? '#065f46' : '#1e283b'};">
+                ${item.status === 'vendida' ? '✓ Activar Disponible' : 'Marcar Vendida'}
               </button>
-              <button class="btn-prod-action" onclick="editProductPrice('${p.id}')">
-                ✏️ Precio
-              </button>
-              <button class="btn-prod-action btn-prod-delete" onclick="deleteProduct('${p.id}')">
-                🗑️ Quitar
-              </button>
+              <button class="btn-prod-action" onclick="editProductInline('${item.id}')" title="Modificar precio o ITV">✏️ Editar</button>
+              <button class="btn-prod-action btn-prod-delete" onclick="deleteProduct('${item.id}')" title="Eliminar del catálogo">🗑️</button>
             </div>
           </div>
-        `;
-        container.appendChild(card);
-      });
+        </div>
+      `).join('');
+    }
+
+    // Toggle Product Status (Disponible / Vendida)
+    function toggleProductStatus(id) {
+      const products = getAllProducts();
+      const p = products.find(x => x.id === id);
+      if (p) {
+        p.status = (p.status === 'vendida' ? 'disponible' : 'vendida');
+        saveProducts(products);
+      }
+    }
+
+    // Inline Editor for Price and ITV Date
+    function editProductInline(id) {
+      const products = getAllProducts();
+      const p = products.find(x => x.id === id);
+      if (!p) return;
+
+      const newPrice = prompt('Editar Precio para ' + p.title + ':', p.price);
+      if (newPrice !== null && newPrice.trim()) {
+        p.price = newPrice.trim().includes('€') ? newPrice.trim() : newPrice.trim() + ' €';
+      }
+
+      const newItv = prompt('Editar Fecha de ITV manual para ' + p.title + ':', p.itv || '11/2026');
+      if (newItv !== null && newItv.trim()) {
+        p.itv = newItv.trim();
+      }
+
+      saveProducts(products);
+    }
+
+    // Delete Product
+    function deleteProduct(id) {
+      if (!confirm('¿Estás seguro de que deseas eliminar este producto de la web?')) return;
+      let products = getAllProducts();
+      products = products.filter(x => x.id !== id);
+      saveProducts(products);
+    }
+);
     }
 
     function toggleProductSold(id) {
@@ -1464,46 +1554,67 @@
       renderCitas();
     }
 
-    function renderCitas() {
-      const citas = getStoredCitas();
+        function renderCitas() {
       const tbody = document.getElementById('citasTableBody');
-      tbody.innerHTML = '';
-
-      let confirmedCount = 0;
-      document.getElementById('citasTabCount').textContent = citas.length;
+      if (!tbody) return;
+      const citas = getCitas();
       document.getElementById('kpiTotalCitas').textContent = citas.length;
+      document.getElementById('citasTabCount').textContent = citas.length;
 
-      citas.forEach((c, idx) => {
-        if (c.status === 'confirmada') confirmedCount++;
+      const confirmadas = citas.filter(c => c.status === 'confirmada').length;
+      document.getElementById('kpiConfirmadas').textContent = confirmadas;
 
-        const tr = document.createElement('tr');
-        const isPending = c.status === 'pendiente';
-        const statusBadge = isPending 
-          ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">PENDIENTE</span>'
-          : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">CONFIRMADA</span>';
-
-        tr.innerHTML = `
-          <td style="font-family:monospace; font-weight:700; color:var(--red);">${c.ref || 'CITA-' + (1000+idx)}</td>
-          <td><strong>${c.name}</strong></td>
-          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a></td>
-          <td>${c.moto || '-'}</td>
+      tbody.innerHTML = citas.map((c, idx) => `
+        <tr>
+          <td><strong style="color:var(--red);">${c.ref || 'ORERO-' + (1000 + idx)}</strong></td>
+          <td>
+            <div style="font-weight:700; color:#fff;">${c.name}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">${c.moto || 'Moto'}</div>
+          </td>
+          <td>
+            <a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a>
+          </td>
           <td>${c.service}</td>
           <td>
             <div>📅 ${c.date}</div>
-            <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">${c.slot}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${c.slot || 'Turno'}</div>
           </td>
-          <td>${statusBadge}</td>
           <td>
-            <button class="btn-prod-action" style="padding:6px 10px;" onclick="toggleCitaStatus('${c.ref}')">
-              ${isPending ? '✓ Confirmar' : 'Reabrir'}
-            </button>
-            <button class="btn-prod-action btn-prod-delete" style="padding:6px 10px; margin-left:4px;" onclick="deleteCita('${c.ref}')">
-              🗑️
-            </button>
+            <select onchange="updateCitaStatus('${c.ref}', this.value)" style="background:#0d121c; border:1px solid ${c.status === 'confirmada' ? '#059669' : '#f59e0b'}; color:#fff; padding:4px 8px; border-radius:6px; font-size:0.78rem; cursor:pointer;">
+              <option value="pendiente" ${c.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
+              <option value="confirmada" ${c.status === 'confirmada' ? 'selected' : ''}>✅ Confirmada</option>
+              <option value="completada" ${c.status === 'completada' ? 'selected' : ''}>🏁 Atendida / Completada</option>
+              <option value="cancelada" ${c.status === 'cancelada' ? 'selected' : ''}>❌ Cancelada</option>
+            </select>
           </td>
-        `;
-        tbody.appendChild(tr);
-      });
+          <td>
+            <div style="display:flex; gap:6px;">
+              <a href="https://wa.me/34${c.phone.replace(/\D/g, '')}?text=Hola%20${encodeURIComponent(c.name)},%20te%20contactamos%20desde%20Orero%20Motorcycles%20en%20relación%20a%20tu%20cita%20de%20taller." target="_blank" class="btn-prod-action" style="padding:4px 8px; font-size:0.75rem; background:#059669; color:#fff; text-decoration:none;" title="Enviar WhatsApp al cliente">💬 WA</a>
+              <button onclick="deleteCita('${c.ref}')" class="btn-prod-action btn-prod-delete" style="padding:4px 8px; font-size:0.75rem;" title="Eliminar cita">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateCitaStatus(ref, newStatus) {
+      const citas = getCitas();
+      const cita = citas.find(c => c.ref === ref);
+      if (cita) {
+        cita.status = newStatus;
+        localStorage.setItem('orero_all_citas', JSON.stringify(citas));
+        renderCitas();
+      }
+    }
+
+    function deleteCita(ref) {
+      if (!confirm('¿Deseas eliminar el registro de esta cita?')) return;
+      let citas = getCitas();
+      citas = citas.filter(c => c.ref !== ref);
+      localStorage.setItem('orero_all_citas', JSON.stringify(citas));
+      renderCitas();
+    }
+);
 
       document.getElementById('kpiConfirmadas').textContent = confirmedCount;
     }

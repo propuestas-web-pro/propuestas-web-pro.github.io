@@ -580,9 +580,15 @@
       z-index: 2;
       pointer-events: none;
       background: 
-        radial-gradient(circle at 65% 45%, rgba(239, 35, 60, 0.08) 0%, transparent 55%),
-        linear-gradient(180deg, rgba(7, 8, 11, 0.82) 0%, rgba(7, 8, 11, 0.1) 22%, rgba(7, 8, 11, 0.25) 55%, rgba(7, 8, 11, 0.95) 90%, #07080b 100%),
-        linear-gradient(90deg, rgba(7, 8, 11, 0.88) 0%, rgba(7, 8, 11, 0.7) 35%, rgba(7, 8, 11, 0.15) 70%, rgba(7, 8, 11, 0.4) 100%);
+        radial-gradient(circle at 75% 45%, rgba(239, 35, 60, 0.06) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(7, 8, 11, 0.75) 0%, rgba(7, 8, 11, 0.05) 20%, rgba(7, 8, 11, 0.15) 60%, rgba(7, 8, 11, 0.95) 92%, #07080b 100%),
+        linear-gradient(90deg, rgba(7, 8, 11, 0.92) 0%, rgba(7, 8, 11, 0.78) 38%, rgba(7, 8, 11, 0.22) 65%, rgba(7, 8, 11, 0.08) 100%);
+    }
+    @media (max-width: 768px) {
+      .hero-vignette-overlay {
+        background: 
+          linear-gradient(180deg, rgba(7, 8, 11, 0.92) 0%, rgba(7, 8, 11, 0.84) 45%, rgba(7, 8, 11, 0.35) 75%, rgba(7, 8, 11, 0.98) 100%);
+      }
     }
     @media (max-width: 768px) {
       .hero-vignette-overlay {
@@ -733,6 +739,66 @@
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+    }
+
+    
+    /* Dynamic Quiénes Somos Styles */
+    .about-nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .about-tab-btn {
+      background: #0d121c;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .about-tab-btn:hover {
+      background: #141c2d;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .about-tab-btn.active {
+      background: rgba(239, 35, 60, 0.15);
+      border-color: var(--red);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(239, 35, 60, 0.3);
+    }
+    .about-tab-panel {
+      display: none;
+      animation: fadeInAbout 0.3s ease;
+    }
+    .about-tab-panel.active {
+      display: block;
+    }
+    @keyframes fadeInAbout {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .store-photo-card {
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .store-photo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(239, 35, 60, 0.5) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+    .store-photo-card:hover img {
+      transform: scale(1.05);
+    }
+    .store-photo-card img {
+      transition: transform 0.4s ease;
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -1890,10 +1956,19 @@
       color: var(--text-muted);
     }
     .service-bullets li {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .service-bullets li .check {
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: inline-block;
+    }
+    .service-bullets li span.bullet-text {
+      flex: 1;
     }
     .service-bullets li span.check {
       color: #34d399;
@@ -2423,7 +2498,7 @@
   <section class="hero-stage" id="inicio">
     <!-- Cinematic Flagship Photography Background Layer -->
     <div class="hero-photo-layer">
-      <img src="assets/hero_orero_showroom_real.jpg?v=real_orero_v1" alt="Orero Motorcycles Concesionario y Taller Real en Orihuela" class="hero-photo-img" loading="eager" fetchpriority="high">
+      <img src="assets/hero_flagship_orero.jpg?v=orihuela_monumental_v2" alt="Orero Motorcycles Calle San Agustín en Orihuela con la Catedral de fondo" class="hero-photo-img" loading="eager" fetchpriority="high">
     </div>
 
     <!-- Dramatic Vignette & Ambient Light Overlays -->
@@ -2471,7 +2546,7 @@
   </section>
 
 
-  <!-- ══════════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════════
        SECCIÓN B: QUIÉNES SOMOS & NUESTRA HISTORIA EN ORIHUELA
        ══════════════════════════════════════════════════════════ -->
   <section class="section-wrap" id="quienes-somos" style="background:#07090e; border-bottom: 1px solid var(--border);">
@@ -2483,25 +2558,74 @@
         </div>
         <h2 class="section-title">QUIÉNES SOMOS: <span class="text-red">PASIÓN MOTERA REAL</span></h2>
         <p class="section-lead">
-          Más de una década de experiencia mecánica, rigor técnico y cercanía con cada motorista en Orihuela y la Vega Baja.
+          Más de una década de experiencia mecánica, rigor técnico y cercanía con cada motorista en Orihuela y la comarca de la Vega Baja.
         </p>
       </div>
 
-      <!-- Bloque Historia & Filosofía -->
+      <!-- Pestañas Interactivas Dinámicas -->
+      <div class="about-nav-tabs" style="justify-content:center; margin-bottom:32px;">
+        <button class="about-tab-btn active" id="tabBtnHistoria" onclick="switchAboutTab('historia')">
+          <span>🏛️ Nuestra Historia (2015 - 2026)</span>
+        </button>
+        <button class="about-tab-btn" id="tabBtnTallerPropio" onclick="switchAboutTab('taller')">
+          <span>🛠️ Taller Propio & Diagnosis</span>
+        </button>
+        <button class="about-tab-btn" id="tabBtnFilosofia" onclick="switchAboutTab('filosofia')">
+          <span>🤝 Trato Cercano & Honestidad</span>
+        </button>
+      </div>
+
+      <!-- Bloque Contenido con Pestañas Dinámicas -->
       <div class="about-grid" style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: center; margin-bottom: 48px;">
         <div class="about-text-col">
-          <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(239,35,60,0.12); border:1px solid rgba(239,35,60,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
-            <span style="color:var(--red); font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">📍 Fundado en Diciembre de 2015</span>
+          
+          <!-- Panel 1: Historia -->
+          <div class="about-tab-panel active" id="panelHistoria">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(239,35,60,0.12); border:1px solid rgba(239,35,60,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
+              <span style="color:var(--red); font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Fundado en Diciembre de 2015</span>
+            </div>
+            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
+              Tu punto de encuentro motero en <span class="text-red">Calle San Agustín, 18</span>.
+            </h3>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
+              En <strong>diciembre de 2015</strong>, abrimos las puertas de <strong>Orero Motorcycles</strong> en pleno centro histórico de Orihuela con una vocación innegociable: crear un concesionario y taller diferente, donde cada cliente recibe un trato cercano, honesto y de apasionado a apasionado de las dos ruedas.
+            </p>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
+              A lo largo de más de 9 años hemos seleccionado cuidadosamente cada vehículo, consolidándonos como el concesionario de ocasión de referencia en toda la comarca de la Vega Baja.
+            </p>
           </div>
-          <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
-            Tu referente del motociclismo en <span class="text-red">Calle San Agustín, 18</span>.
-          </h3>
-          <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
-            En <strong>diciembre de 2015</strong>, abrimos las puertas de <strong>Orero Motorcycles</strong> en pleno centro de Orihuela con una vocación innegociable: crear un concesionario y taller diferente, donde cada cliente recibe un trato cercano, honesto y de apasionado a apasionado de las dos ruedas.
-          </p>
-          <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
-            No somos un portal anónimo ni una franquicia impersonal: somos mecánicos y asesores con taller físico propio, elevadores, banco de diagnosis oficial y una exposición constante de motocicletas seleccionadas una a una. Ya vengas a buscar tu próxima moto de ocasión, a preparar tu moto para la ITV o a renovar tu equipamiento en nuestra boutique, en Orero te garantizamos seriedad, transparencia documental y cercanía total.
-          </p>
+
+          <!-- Panel 2: Taller Propio -->
+          <div class="about-tab-panel" id="panelTaller">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
+              <span style="color:#34d399; font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Servicio Mecánico Multimarca Homologado</span>
+            </div>
+            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
+              Mecánica experta, banco de diagnosis y <span class="text-red">preparación Pre-ITV</span>.
+            </h3>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
+              Contamos con taller mecánico propio integrado en nuestras instalaciones de Calle San Agustín 18. Disponemos de elevadores hidráulicos, bancos de trabajo especializados, máquinas de diagnosis multimarca y utillaje de precisión.
+            </p>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
+              Cada moto de ocasión pasa un examen exhaustivo de <strong>60 puntos de seguridad</strong> antes de su entrega, y llevamos a cabo revisiones oficiales periódicas sin perder la garantía del fabricante.
+            </p>
+          </div>
+
+          <!-- Panel 3: Filosofía -->
+          <div class="about-tab-panel" id="panelFilosofia">
+            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
+              <span style="color:var(--gold); font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Compromiso & Claridad Total</span>
+            </div>
+            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
+              Sin letra pequeña: <span class="text-red">hablas directamente con mecánicos</span>.
+            </h3>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
+              En Orero no te atenderá un comercial agresivo. Aquí hablarás cara a cara con profesionales que entienden de motores, suspensiones y componentes. Te asesoramos con honestidad tanto si compras una moto de ocasión, si nos encargas su gestión de venta como intermediario o si traes tu moto a revisión.
+            </p>
+            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
+              Transparencia documental completa: informes oficiales DGT libres de cargas, kilometraje certificado por escrito e historial verificado.
+            </p>
+          </div>
 
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
             <div style="background:#0d121c; border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px;">
@@ -2518,12 +2642,12 @@
         </div>
 
         <!-- Tarjeta Visual Principal -->
-        <div class="about-hero-card" style="position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 50px rgba(0,0,0,0.5);">
-          <img src="assets/clean_showroom_orero.jpg" alt="Exposición real Orero Motorcycles en Calle San Agustín 18 Orihuela" style="width:100%; height:380px; object-fit:cover; display:block;">
+        <div class="about-hero-card" style="position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 50px rgba(0,0,0,0.5); cursor:pointer;" onclick="openStorePhotoModal('assets/clean_showroom_orero.jpg', 'Exposición Oficial Orero Motorcycles', 'Showroom interior con arcos rústicos y selección multimarca de ocasión en Calle San Agustín 18.')">
+          <img src="assets/clean_showroom_orero.jpg" alt="Exposición real Orero Motorcycles en Calle San Agustín 18 Orihuela" style="width:100%; height:380px; object-fit:cover; display:block; transition:transform 0.4s ease;" class="hover-zoom">
           <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(6,9,14,0.95) 100%);"></div>
           <div style="position:absolute; bottom:20px; left:20px; right:20px;">
             <div style="display:inline-block; background:rgba(239,35,60,0.9); color:#fff; font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:6px; margin-bottom:8px; text-transform:uppercase;">
-              📍 Exposición Real en Orihuela
+              📍 Exposición Real en Orihuela (Pulsa para ampliar)
             </div>
             <div style="color:#fff; font-weight:800; font-size:1.1rem; line-height:1.3;">Exposición y Boutique en Calle San Agustín 18</div>
             <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">Motos de ocasión revisadas, boutique técnica y entrega personalizada</div>
@@ -2531,11 +2655,11 @@
         </div>
       </div>
 
-      <!-- Galería de Fotos Reales de la Tienda -->
+      <!-- Galería de Fotos Reales de la Tienda con Zoom Interactivo -->
       <div class="store-gallery-wrap" style="margin-top:20px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.06);">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:22px; flex-wrap:wrap; gap:12px;">
           <div>
-            <span style="font-size:0.8rem; font-weight:800; text-transform:uppercase; color:var(--red); letter-spacing:0.06em;">Fotos Reales de la Tienda</span>
+            <span style="font-size:0.8rem; font-weight:800; text-transform:uppercase; color:var(--red); letter-spacing:0.06em;">Fotos Reales de la Tienda (Pulsa en cada una para ver en grande)</span>
             <h3 style="font-size:1.45rem; font-weight:900; color:#fff; margin-top:4px;">CONOCE NUESTRAS INSTALACIONES EN CALLE SAN AGUSTÍN 18</h3>
           </div>
           <div style="font-size:0.85rem; color:var(--text-muted);">
@@ -2545,9 +2669,10 @@
 
         <div class="store-photos-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px;">
           <!-- Foto 1: Fachada exterior -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;">
-            <div style="width:100%; height:200px; overflow:hidden;">
+          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/real_storefront_hd.jpg', 'Fachada Exterior Orero Motorcycles', 'Acceso principal en Calle San Agustín 18, Orihuela. Fachada a pie de calle con fácil aparcamiento para motos.')">
+            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
               <img src="assets/real_storefront_hd.jpg" alt="Fachada exterior tienda Orero Motorcycles en Orihuela" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
             </div>
             <div style="padding:14px;">
               <div style="font-size:0.72rem; color:var(--red); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Fachada Exterior</div>
@@ -2557,9 +2682,10 @@
           </div>
 
           <!-- Foto 2: Showroom interior -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;">
-            <div style="width:100%; height:200px; overflow:hidden;">
+          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/clean_showroom_orero.jpg', 'Showroom Interior Multimarca', 'Exposición con arcos rústicos de piedra y más de 18 motocicletas de ocasión y nuevas seleccionadas.')">
+            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
               <img src="assets/clean_showroom_orero.jpg" alt="Exposición interior de motos en Orero Orihuela" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
             </div>
             <div style="padding:14px;">
               <div style="font-size:0.72rem; color:var(--gold); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Exposición Interior</div>
@@ -2569,9 +2695,10 @@
           </div>
 
           <!-- Foto 3: Taller mecánico -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;">
-            <div style="width:100%; height:200px; overflow:hidden;">
+          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/real_taller_master.jpg', 'Taller Mecánico Oficial & Pre-ITV', 'Banco de diagnosis electrónica, cambio de neumáticos, frenos, suspensiones y revisiones completas.')">
+            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
               <img src="assets/real_taller_master.jpg" alt="Taller mecánico y banco de diagnosis en Orihuela" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
             </div>
             <div style="padding:14px;">
               <div style="font-size:0.72rem; color:var(--green); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Servicio Técnico</div>
@@ -2581,9 +2708,10 @@
           </div>
 
           <!-- Foto 4: Boutique y entrega -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;">
-            <div style="width:100%; height:200px; overflow:hidden;">
+          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/clean_cascos_entrega_4k.jpg', 'Boutique Técnica Oficial & Cascos ECE 22.06', 'Cascos integrales y modulares LS2 y MT Helmets, chaquetas técnicas, guantes y entrega personalizada.')">
+            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
               <img src="assets/clean_cascos_entrega_4k.jpg" alt="Boutique técnica oficial y cascos ECE 22.06" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
             </div>
             <div style="padding:14px;">
               <div style="font-size:0.72rem; color:#93c5fd; font-weight:800; text-transform:uppercase; margin-bottom:4px;">Boutique & Equipamiento</div>
@@ -3499,22 +3627,19 @@
           <a href="#reservar-cita" onclick="selectBookingService('neumaticos')" class="btn-service-action">Consultar Neumáticos →</a>
         </div>
 
-        <!-- Servicio 5: Gestión de Venta (Intermediación Profesional) -->
+        <!-- Servicio 5: Gestión de Venta (Intermediario) -->
         <div class="service-card">
           <div class="service-icon-box">🤝</div>
-          <span class="service-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; border-color:rgba(245,158,11,0.3);">Intermediación Comercial Profesional</span>
+          <span class="service-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; border-color:rgba(245,158,11,0.3);">Intermediación Profesional</span>
           <h3 class="service-title">Gestión de Venta (Intermediario)</h3>
           <ul class="service-bullets">
-            <li><span class="check">✓</span> <strong>Actuamos como intermediario de confianza</strong> para vender tu moto al mejor precio de mercado</li>
-            <li><span class="check">✓</span> Exposición física en nuestro escaparate de Calle San Agustín 18 y difusión en portales líderes</li>
-            <li><span class="check">✓</span> Gestión documental íntegra: contratos, cambio de titular DGT y verificación de cargas</li>
+            <li><span class="check">✓</span> <span class="bullet-text"><strong>Intermediación de venta</strong> entre particulares sin complicaciones</span></li>
+            <li><span class="check">✓</span> <span class="bullet-text">Exposición en escaparate físico de Calle San Agustín 18 y difusión online</span></li>
+            <li><span class="check">✓</span> <span class="bullet-text">Gestión íntegra de contratos, verificación de cargas y transferencia DGT</span></li>
+            <li><span class="check" style="color:#fbbf24;">ℹ️</span> <span class="bullet-text" style="font-size:0.8rem; color:#fde68a;">Venta entre particulares (sin garantía directa de concesionario)</span></li>
           </ul>
-          <div style="margin-top:10px; padding:9px 12px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.25); border-radius:8px; font-size:0.76rem; color:#fde68a; line-height:1.45;">
-            ℹ️ <strong>Aclaración legal:</strong> En la gestión de venta entre particulares, Orero actúa como intermediario profesional sin garantía directa de concesionario (con posibilidad de contratar garantía mecánica externa opcional).
-          </div>
-          <a href="#reservar-cita" onclick="selectBookingService('tasacion')" class="btn-service-action" style="margin-top:12px;">Solicitar Gestión de Venta →</a>
+          <a href="#reservar-cita" onclick="selectBookingService('tasacion')" class="btn-service-action">Solicitar Gestión de Venta →</a>
         </div>
-
         <!-- Servicio 6 -->
         <div class="service-card">
           <div class="service-icon-box">🪖</div>
@@ -4017,6 +4142,65 @@
 
         card.style.display = show ? 'flex' : 'none';
       });
+    }
+
+    
+    // Switch Tabs in Quiénes Somos
+    function switchAboutTab(tabKey) {
+      document.querySelectorAll('.about-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.about-tab-panel').forEach(p => p.classList.remove('active'));
+
+      if (tabKey === 'historia') {
+        document.getElementById('tabBtnHistoria').classList.add('active');
+        document.getElementById('panelHistoria').classList.add('active');
+      } else if (tabKey === 'taller') {
+        document.getElementById('tabBtnTallerPropio').classList.add('active');
+        document.getElementById('panelTaller').classList.add('active');
+      } else if (tabKey === 'filosofia') {
+        document.getElementById('tabBtnFilosofia').classList.add('active');
+        document.getElementById('panelFilosofia').classList.add('active');
+      }
+    }
+
+    function closeStorePhotoModal() {
+      const overlay = document.getElementById('storePhotoLightbox');
+      if (overlay) {
+        overlay.style.opacity = '0';
+        overlay.style.display = 'none';
+      }
+    }
+
+    // Lightbox modal for store photos
+    function openStorePhotoModal(imgSrc, title, desc) {
+      let overlay = document.getElementById('storePhotoLightbox');
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'storePhotoLightbox';
+        overlay.style.cssText = 'position:fixed; inset:0; z-index:999999; background:rgba(0,0,0,0.88); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; transition:opacity 0.2s ease; cursor:pointer;';
+        overlay.onclick = function(e) {
+          if (e.target === overlay || e.target.closest('.close-lightbox-btn')) {
+            closeStorePhotoModal();
+          }
+        };
+        document.body.appendChild(overlay);
+      }
+
+      overlay.innerHTML = `
+        <div style="position:relative; max-width:960px; width:100%; background:#0a0d14; border:1px solid rgba(255,255,255,0.15); border-radius:20px; overflow:hidden; box-shadow:0 25px 70px rgba(0,0,0,0.8); cursor:default;" onclick="event.stopPropagation();">
+          <button class="close-lightbox-btn" onclick="closeStorePhotoModal()" style="position:absolute; top:16px; right:16px; z-index:10; background:rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.2); color:#fff; width:38px; height:38px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+          <div style="width:100%; max-height:560px; overflow:hidden; background:#000;">
+            <img src="${imgSrc}" alt="${title}" style="width:100%; height:100%; max-height:560px; object-fit:contain; display:block;">
+          </div>
+          <div style="padding:20px 24px;">
+            <div style="font-size:0.75rem; color:var(--red); font-weight:800; text-transform:uppercase; margin-bottom:4px;">📍 Instalaciones Orero Motorcycles (Calle San Agustín 18, Orihuela)</div>
+            <h3 style="font-size:1.35rem; font-weight:900; color:#fff; margin-bottom:8px;">${title}</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6; margin:0;">${desc}</p>
+          </div>
+        </div>
+      `;
+
+      overlay.style.display = 'flex';
+      setTimeout(() => { overlay.style.opacity = '1'; }, 10);
     }
 
     // Motorcycle Modal Details
