@@ -1032,7 +1032,7 @@
 
             <div class="form-group">
               <label class="form-label">Descripción o Comentarios (como un post de Facebook):</label>
-              <textarea id="prodDesc" class="form-input" style="height:80px;" placeholder="Ej: Moto en impecable estado, revisada en nuestro taller en Orihuela con 1 año de garantía por escrito."></textarea>
+              <textarea id="prodDesc" class="form-input" style="height:80px;" placeholder="Ej: Moto en impecable estado, revisada en nuestro taller en Orihuela con chequeo de 60 puntos e ITV al día."></textarea>
             </div>
 
             <button type="submit" class="btn-fb-publish">
@@ -1502,8 +1502,6 @@
       products = products.filter(x => x.id !== id);
       saveProducts(products);
     }
-);
-    }
 
     function toggleProductSold(id) {
       const products = getAllProducts();
@@ -1614,25 +1612,7 @@
       localStorage.setItem('orero_all_citas', JSON.stringify(citas));
       renderCitas();
     }
-);
 
-      document.getElementById('kpiConfirmadas').textContent = confirmedCount;
-    }
-
-    function toggleCitaStatus(ref) {
-      const citas = getStoredCitas();
-      const item = citas.find(c => c.ref === ref);
-      if (!item) return;
-      item.status = item.status === 'pendiente' ? 'confirmada' : 'pendiente';
-      saveCitas(citas);
-    }
-
-    function deleteCita(ref) {
-      if (!confirm('¿Seguro que deseas eliminar esta cita?')) return;
-      let citas = getStoredCitas();
-      citas = citas.filter(c => c.ref !== ref);
-      saveCitas(citas);
-    }
 
     function promptNewCita() {
       const name = prompt('Nombre del cliente:');
