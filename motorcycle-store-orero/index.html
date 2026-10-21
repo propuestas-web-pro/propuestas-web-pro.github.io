@@ -2436,11 +2436,273 @@
       box-shadow: 0 4px 14px rgba(239, 35, 60, 0.4);
     }
 
+    /* ══════════════════════════════════════════════════════════
+       ESTILOS DE MODO MANTENIMIENTO (ORERO MOTORCYCLES)
+       ══════════════════════════════════════════════════════════ */
+    .maintenance-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999999;
+      background: radial-gradient(circle at 50% 28%, rgba(239, 35, 60, 0.12) 0%, rgba(13, 18, 28, 0.96) 48%, #07080b 100%), #07080b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .maintenance-card {
+      max-width: 660px;
+      width: 100%;
+      background: rgba(13, 18, 28, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 42px 32px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 45px rgba(239, 35, 60, 0.15);
+      backdrop-filter: blur(16px);
+      margin: auto;
+    }
+    .maintenance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 22px;
+    }
+    .maintenance-badge .m-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 10px #fbbf24;
+      animation: pulse 1.8s infinite;
+    }
+    .maintenance-brand-wrap {
+      margin-bottom: 18px;
+    }
+    .maintenance-logo {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      object-fit: contain;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 30px rgba(239, 35, 60, 0.35);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+    }
+    .maintenance-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 2.3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .maintenance-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 530px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .maintenance-alert {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    .maintenance-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+    .btn-m-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-m-phone {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(239, 35, 60, 0.4);
+    }
+    .btn-m-phone:hover {
+      background: #d90429;
+      transform: translateY(-2px);
+    }
+    .btn-m-wa {
+      background: #059669;
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+    }
+    .btn-m-wa:hover {
+      background: #047857;
+      transform: translateY(-2px);
+    }
+    .maintenance-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      text-align: left;
+      margin-bottom: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+    }
+    .m-info-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .m-info-icon { font-size: 1.2rem; margin-bottom: 4px; }
+    .m-info-lbl { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+    .m-info-val { font-size: 0.78rem; color: #fff; line-height: 1.4; }
+    .maintenance-footer {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+    }
+    .btn-m-unlock {
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-m-unlock:hover {
+      border-color: var(--red);
+      color: #fff;
+      background: rgba(239, 35, 60, 0.1);
+    }
+    .preview-badge-floating {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 9999999;
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 8px 14px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .preview-badge-floating button {
+      background: rgba(239, 35, 60, 0.2);
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #fca5a5;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+    .preview-badge-floating button:hover {
+      background: var(--red);
+      color: #fff;
+    }
   </style>
 </head>
-
-</head>
 <body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA DE MANTENIMIENTO ACTIVA (ORERO MOTORCYCLES)
+       ══════════════════════════════════════════════════════════ -->
+  <div id="maintenanceOverlay" class="maintenance-screen" style="display: flex;">
+    <div class="maintenance-card">
+      <div class="maintenance-badge">
+        <span class="m-dot"></span>
+        <span>ACTUALIZACIÓN EN CURSO · CATÁLOGO Y SISTEMA 2026</span>
+      </div>
+
+      <div class="maintenance-brand-wrap">
+        <img src="assets/orero_official_emblem.png" alt="Orero Motorcycles Orihuela" class="maintenance-logo" onerror="this.src='assets/clean_showroom_orero.jpg'">
+      </div>
+
+      <h1 class="maintenance-title">
+        SITIO WEB EN <span class="text-red">MANTENIMIENTO</span>
+      </h1>
+
+      <p class="maintenance-desc">
+        Estamos realizando labores de mejora, fotografía y sincronización del catálogo digital de <strong>Orero Motorcycles</strong>. Muy pronto estará disponible la nueva experiencia online con todas las motocicletas de ocasión y stock nuevo en Orihuela.
+      </p>
+
+      <div class="maintenance-alert">
+        🏍️ Nuestro concesionario y taller en <strong>Calle San Agustín 18</strong> continúan abiertos con total normalidad.
+      </div>
+
+      <!-- Métodos de contacto directo -->
+      <div class="maintenance-actions">
+        <a href="tel:+34966740120" class="btn-m-cta btn-m-phone">
+          <span>📞 Llamar al Taller (966 74 01 20)</span>
+        </a>
+        <a href="https://wa.me/34966740120?text=Hola%20Orero%20Motorcycles,%20quiero%20hacer%20una%20consulta%20sobre%20una%20moto%20o%20cita%20de%20taller." target="_blank" rel="noopener" class="btn-m-cta btn-m-wa">
+          <span>💬 Contactar por WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Tarjetas de información del local -->
+      <div class="maintenance-info-grid">
+        <div class="m-info-box">
+          <div class="m-info-icon">📍</div>
+          <div class="m-info-lbl">Dirección Física</div>
+          <div class="m-info-val">Calle San Agustín, 18<br>03300 Orihuela (Alicante)</div>
+        </div>
+        <div class="m-info-box">
+          <div class="m-info-icon">🕒</div>
+          <div class="m-info-lbl">Horario de Atención</div>
+          <div class="m-info-val">L-V: 09:30 - 13:30 / 16:30 - 20:30<br>Sábados: 10:00 - 13:30</div>
+        </div>
+        <div class="m-info-box">
+          <div class="m-info-icon">🔧</div>
+          <div class="m-info-lbl">Servicios Activos</div>
+          <div class="m-info-val">Taller Multimarca, Pre-ITV, Neumáticos & Boutique</div>
+        </div>
+      </div>
+
+      <!-- Desbloqueo discreto para el equipo -->
+      <div class="maintenance-footer">
+        <button type="button" class="btn-m-unlock" onclick="promptPreviewUnlock()">🔐 Acceso Equipo / Vista Previa</button>
+        <a href="admin/" class="btn-m-unlock" style="text-decoration:none;">⚙️ Panel Admin</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante para salir de Vista Previa si está desbloqueada -->
+  <div id="previewBadgeFloating" class="preview-badge-floating" style="display: none;">
+    <span>👀 Vista Previa Activa</span>
+    <button type="button" onclick="lockMaintenanceAgain()">🔒 Volver a Mantenimiento</button>
+  </div>
 
   <!-- ══════════════════════════════════════════════════════════
        SITE HEADER NAVIGATION
@@ -4632,8 +4894,64 @@
       }
     }
 
-    // Init/ Init
+    // ══════════════════════════════════════════════════════════
+    // MODO MANTENIMIENTO LOGIC (ORERO MOTORCYCLES)
+    // ══════════════════════════════════════════════════════════
+    const MAINTENANCE_MODE = true; // Activo a petición del cliente
+
+    function checkMaintenanceStatus() {
+      const overlay = document.getElementById('maintenanceOverlay');
+      const floatBadge = document.getElementById('previewBadgeFloating');
+      if (!overlay) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const hasPreviewParam = urlParams.get('preview') === 'true' || urlParams.get('dev') === 'true';
+      const hasPreviewStorage = localStorage.getItem('orero_maintenance_unlocked') === 'true';
+      const isAdminLogged = sessionStorage.getItem('orero_admin_logged') === 'true' || localStorage.getItem('orero_admin_logged') === 'true';
+
+      if (hasPreviewParam) {
+        localStorage.setItem('orero_maintenance_unlocked', 'true');
+      }
+
+      const isUnlocked = hasPreviewParam || hasPreviewStorage || isAdminLogged;
+
+      if (MAINTENANCE_MODE && !isUnlocked) {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        if (floatBadge) floatBadge.style.display = 'none';
+      } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        if (floatBadge && MAINTENANCE_MODE) floatBadge.style.display = 'flex';
+      }
+    }
+
+    function promptPreviewUnlock() {
+      const pass = prompt('Introduce la contraseña para ver la web completa en desarrollo:');
+      if (!pass) return;
+      if (pass.trim() === 'casino18') {
+        localStorage.setItem('orero_maintenance_unlocked', 'true');
+        checkMaintenanceStatus();
+      } else {
+        alert('Contraseña incorrecta.');
+      }
+    }
+
+    function lockMaintenanceAgain() {
+      localStorage.removeItem('orero_maintenance_unlocked');
+      const url = new URL(window.location);
+      url.searchParams.delete('preview');
+      url.searchParams.delete('dev');
+      window.history.replaceState({}, '', url);
+      checkMaintenanceStatus();
+    }
+
+    // Ejecutar comprobación inmediata
+    checkMaintenanceStatus();
+
+    // Init
     document.addEventListener('DOMContentLoaded', () => {
+      checkMaintenanceStatus();
       animateCounters();
       initScrollAnimations();
       initCardTilt();
@@ -4644,6 +4962,7 @@
 
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       setTimeout(() => {
+        checkMaintenanceStatus();
         animateCounters();
         initScrollAnimations();
         initCardTilt();
