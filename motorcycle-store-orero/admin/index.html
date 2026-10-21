@@ -344,30 +344,134 @@
       margin-bottom: 16px;
     }
 
-    /* Subir imagen */
+    /* Subir imagen y Vista previa garantizada */
     .photo-upload-box {
-      border: 2px dashed rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 20px;
+      border: 2px dashed rgba(239, 35, 60, 0.4);
+      border-radius: 16px;
+      padding: 26px 20px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s;
-      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.25s ease;
+      background: rgba(239, 35, 60, 0.02);
       margin-bottom: 16px;
+      position: relative;
     }
     .photo-upload-box:hover {
       border-color: var(--red);
-      background: rgba(239, 35, 60, 0.05);
+      background: rgba(239, 35, 60, 0.07);
+      transform: translateY(-1px);
     }
-    .photo-preview {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
+    .photo-upload-box.has-photo {
+      border-style: solid;
+      border-color: rgba(16, 185, 129, 0.55);
+      background: rgba(16, 185, 129, 0.04);
+      padding: 16px;
+    }
+    .photo-preview-wrap {
       display: none;
-      margin-top: 12px;
-      border: 1px solid var(--card-border);
+      width: 100%;
+      text-align: center;
     }
+    .photo-preview-img {
+      max-width: 100%;
+      max-height: 280px;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 12px;
+      display: inline-block;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+    .photo-preview-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .photo-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 9999px;
+    }
+    .btn-change-photo, .btn-remove-photo {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-change-photo:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: #fff;
+    }
+    .btn-remove-photo {
+      background: rgba(239, 35, 60, 0.15);
+      border-color: rgba(239, 35, 60, 0.35);
+      color: #fca5a5;
+    }
+    .btn-remove-photo:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    /* Chips visuales de fotos de stock con miniaturas */
+    .sample-photos-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .sample-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0d121c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 6px 14px 6px 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #f1f5f9;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .sample-chip:hover {
+      background: #141d2e;
+      border-color: rgba(239, 35, 60, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .sample-chip.active {
+      border-color: var(--red);
+      background: rgba(239, 35, 60, 0.18);
+      box-shadow: 0 0 16px rgba(239, 35, 60, 0.45);
+      color: #fff;
+    }
+    .sample-chip-thumb {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
     .btn-fb-publish {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #fff;
@@ -553,7 +657,7 @@
        ══════════════════════════════════════════════════════════ -->
   <div class="login-wrapper" id="loginScreen">
     <div class="login-card">
-      <img src="../favicon.svg" alt="Orero Motorcycles" class="login-logo">
+      <img src="/favicon.svg" alt="Orero Motorcycles" class="login-logo" onerror="this.src='../favicon.svg'">
       <h1 class="login-title">ORERO <span>PANEL</span></h1>
       <p class="login-subtitle">Introduce la contraseña para gestionar citas, motos y productos de la tienda.</p>
 
@@ -576,7 +680,7 @@
       </form>
 
       <div style="margin-top: 24px; font-size: 0.85rem; color: var(--text-muted);">
-        <a href="../" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público de Orero</a>
+        <a href="/" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público de Orero</a>
       </div>
     </div>
   </div>
@@ -587,13 +691,13 @@
   <div class="dashboard-wrapper" id="dashboardScreen">
     <header class="top-navbar">
       <div class="nav-brand">
-        <img src="../favicon.svg" alt="Orero">
+        <img src="/favicon.svg" alt="Orero" onerror="this.src='../favicon.svg'">
         <div class="nav-brand-title">ORERO <span>MOTORCYCLES</span></div>
         <span class="nav-badge">Taller & Tienda Activa</span>
       </div>
 
       <div class="nav-actions">
-        <a href="../" target="_blank" class="btn-nav-outline">🌐 Ver Web Pública</a>
+        <a href="/" target="_blank" class="btn-nav-outline">🌐 Ver Web Pública</a>
         <button onclick="handleAdminLogout()" class="btn-nav-outline btn-logout">Cerrar Sesión</button>
       </div>
     </header>
@@ -675,26 +779,64 @@
             </div>
 
             <!-- Subir Foto -->
-            <label class="form-label">Foto del Producto (Sube desde tu móvil o PC):</label>
-            <div class="photo-upload-box" onclick="document.getElementById('prodPhotoInput').click()">
+            <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+              <span>Foto del Producto (Sube desde tu móvil o PC):</span>
+              <span style="font-size:0.78rem; color:var(--text-muted); font-weight:normal;">Visible al instante en la web</span>
+            </label>
+
+            <div class="photo-upload-box" id="photoUploadBox" onclick="triggerPhotoUpload(event)">
               <input type="file" id="prodPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+              
+              <!-- Prompt visible cuando no hay foto -->
               <div id="uploadPrompt">
-                <div style="font-size:2rem; margin-bottom:6px;">📸</div>
-                <strong style="color:#fff; font-size:0.95rem;">Pulsa aquí para elegir una foto de tu móvil o PC</strong>
-                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Se optimizará y publicará automáticamente en la web.</p>
+                <div style="font-size:2.3rem; margin-bottom:8px;">📸</div>
+                <strong style="color:#fff; font-size:1.02rem; display:block;">Pulsa aquí para elegir una foto de tu móvil o PC</strong>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:5px;">
+                  Admite JPG, PNG o WEBP. Se optimiza y publica automáticamente en alta definición.
+                </p>
               </div>
-              <img id="photoPreviewImg" class="photo-preview" alt="Vista previa">
+
+              <!-- Vista previa garantizada y limpia (oculta hasta que haya foto) -->
+              <div id="photoPreviewWrap" class="photo-preview-wrap">
+                <img id="photoPreviewImg" class="photo-preview-img" alt="Vista previa del producto" onerror="handlePreviewError(this)">
+                <div class="photo-preview-actions">
+                  <span id="photoStatusBadge" class="photo-status-badge">✓ Foto lista para publicar</span>
+                  <button type="button" class="btn-change-photo" onclick="triggerChangePhoto(event)">🔄 Cambiar foto</button>
+                  <button type="button" class="btn-remove-photo" onclick="clearSelectedPhoto(event)">✕ Quitar foto</button>
+                </div>
+              </div>
             </div>
 
-            <!-- O fotos de muestra de la tienda -->
-            <div style="margin-bottom: 20px;">
-              <span style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:8px;">O elige una foto rápida de stock guardada:</span>
-              <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/moto_yamaha_mt07.jpg', 'Yamaha')">🏍️ Foto Yamaha</button>
-                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/moto_honda_cbr500r.jpg', 'Honda')">🏍️ Foto Honda</button>
-                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/vespa_lx_hd.jpg', 'Vespa')">🛵 Foto Vespa</button>
-                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/boutique_casco_ls2_strobe.jpg', 'Casco LS2')">🪖 Foto Casco LS2</button>
-                <button type="button" class="btn-nav-outline" onclick="selectSamplePhoto('assets/boutique_chaqueta_alpinestars.jpg', 'Chaqueta')">🧥 Foto Chaqueta</button>
+            <!-- Fotos de muestra guardadas de stock con miniaturas visuales -->
+            <div style="margin-bottom: 22px;">
+              <span style="font-size:0.84rem; color:var(--text-muted); display:block; margin-bottom:10px; font-weight:600;">
+                O elige una foto de stock guardada de Orero Motorcycles:
+              </span>
+              <div class="sample-photos-row" id="sampleChipsRow">
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_yamaha_mt07.jpg', 'Yamaha MT-07', this)">
+                  <img src="/assets/moto_yamaha_mt07.jpg" alt="Yamaha MT-07" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Yamaha MT-07</span>
+                </button>
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_honda_cbr500r.jpg', 'Honda CBR 500R', this)">
+                  <img src="/assets/moto_honda_cbr500r.jpg" alt="Honda CBR 500R" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Honda CBR 500R</span>
+                </button>
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/vespa_lx_hd.jpg', 'Vespa LX 50', this)">
+                  <img src="/assets/vespa_lx_hd.jpg" alt="Vespa LX 50" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Vespa LX 50</span>
+                </button>
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_kawasaki_ninja650.jpg', 'Kawasaki Ninja 650', this)">
+                  <img src="/assets/moto_kawasaki_ninja650.jpg" alt="Kawasaki Ninja 650" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Kawasaki Ninja</span>
+                </button>
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/boutique_casco_ls2_strobe.jpg', 'Casco LS2 Strobe', this)">
+                  <img src="/assets/boutique_casco_ls2_strobe.jpg" alt="Casco LS2 Strobe" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Casco LS2</span>
+                </button>
+                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/boutique_chaqueta_alpinestars.jpg', 'Chaqueta Alpinestars', this)">
+                  <img src="/assets/boutique_chaqueta_alpinestars.jpg" alt="Chaqueta Alpinestars" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
+                  <span>Chaqueta</span>
+                </button>
               </div>
             </div>
 
@@ -799,31 +941,31 @@
   <script>
     // Authentic Base Stock (18 Motos + Real Boutique)
     const BASE_STOCK = [
-      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "../assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
-      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "../assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
-      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "../assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
-      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "../assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
-      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "../assets/peugeot_metropolis_hd.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
-      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "../assets/qj_srk_hd.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
-      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "../assets/honda_sh350_hd.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
-      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "../assets/kymco_agility_hd.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
-      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "../assets/sym_symphony_hd.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
-      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "../assets/macbor_montana_4k.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
-      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "../assets/kymco_kxct_hd.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
-      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "../assets/suzuki_burgman_hd.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
-      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "../assets/peugeot_citystar_hd.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
-      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "../assets/rieju_mrt_hd.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
-      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "../assets/hanway_furious_4k.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
-      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "../assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
-      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "../assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
-      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "../assets/virago_real_hd.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
+      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "/assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
+      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "/assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
+      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "/assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
+      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "/assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
+      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "/assets/peugeot_metropolis_hd.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
+      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "/assets/qj_srk_hd.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
+      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "/assets/honda_sh350_hd.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
+      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "/assets/kymco_agility_hd.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
+      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "/assets/sym_symphony_hd.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
+      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "/assets/macbor_montana_4k.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
+      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "/assets/kymco_kxct_hd.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
+      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "/assets/suzuki_burgman_hd.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
+      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "/assets/peugeot_citystar_hd.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
+      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "/assets/rieju_mrt_hd.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
+      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "/assets/hanway_furious_4k.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
+      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "/assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
+      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "/assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
+      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "/assets/virago_real_hd.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
       // Boutique real
-      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
-      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
-      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "../assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
-      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "../assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
-      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "../assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
-      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "../assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
+      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
+      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
+      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
+      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "/assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
+      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "/assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
+      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "/assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
     ];
 
     // Seed Appointments
@@ -881,37 +1023,124 @@
       document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
     }
 
+    // Normalizador infalible de URLs para servidor, GitHub Pages y subcarpeta /admin/
+    function toPublicAssetUrl(path) {
+      if (!path) return '/assets/clean_showroom_orero.jpg';
+      if (typeof path !== 'string') return '';
+      if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+      }
+      const clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
+      if (window.location.protocol === 'file:') {
+        const inSubdir = window.location.pathname.includes('/admin/') || window.location.pathname.endsWith('/admin');
+        return inSubdir ? '../' + clean : clean;
+      }
+      return '/' + clean;
+    }
+
     // Photo file upload from device
+    function triggerPhotoUpload(e) {
+      if (e && e.target && e.target.closest && (e.target.closest('.btn-change-photo') || e.target.closest('.btn-remove-photo'))) {
+        return;
+      }
+      const input = document.getElementById('prodPhotoInput');
+      if (input) input.click();
+    }
+
+    function triggerChangePhoto(e) {
+      if (e) e.stopPropagation();
+      const input = document.getElementById('prodPhotoInput');
+      if (input) input.click();
+    }
+
     function handlePhotoUpload(e) {
-      const file = e.target.files[0];
+      const file = e.target.files && e.target.files[0];
       if (!file) return;
 
       const reader = new FileReader();
       reader.onload = function(evt) {
         currentUploadedPhotoData = evt.target.result;
-        const img = document.getElementById('photoPreviewImg');
-        img.src = currentUploadedPhotoData;
-        img.style.display = 'block';
-        document.getElementById('uploadPrompt').style.display = 'none';
+        showPhotoInPreview(currentUploadedPhotoData, 'Foto subida: ' + file.name);
+        document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
       };
       reader.readAsDataURL(file);
     }
 
-    function selectSamplePhoto(photoPath, label) {
-      currentUploadedPhotoData = photoPath;
+    function selectSamplePhoto(photoPath, label, chipEl) {
+      const resolved = toPublicAssetUrl(photoPath);
+      currentUploadedPhotoData = resolved;
+      showPhotoInPreview(resolved, 'Foto de stock: ' + label);
+
+      document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
+      if (chipEl) chipEl.classList.add('active');
+
+      const titleInput = document.getElementById('prodTitle');
+      if (titleInput && !titleInput.value.trim()) {
+        titleInput.value = label;
+      }
+    }
+
+    function showPhotoInPreview(url, labelText) {
       const img = document.getElementById('photoPreviewImg');
-      img.src = photoPath;
-      img.style.display = 'block';
-      document.getElementById('uploadPrompt').style.display = 'none';
+      const box = document.getElementById('photoUploadBox');
+      const prompt = document.getElementById('uploadPrompt');
+      const wrap = document.getElementById('photoPreviewWrap');
+      const badge = document.getElementById('photoStatusBadge');
+
+      img.src = url;
+      wrap.style.display = 'block';
+      prompt.style.display = 'none';
+      box.classList.add('has-photo');
+
+      if (badge && labelText) {
+        badge.textContent = '✓ ' + labelText;
+      }
+    }
+
+    function clearSelectedPhoto(e) {
+      if (e) e.stopPropagation();
+      currentUploadedPhotoData = '';
+      const input = document.getElementById('prodPhotoInput');
+      if (input) input.value = '';
+
+      const img = document.getElementById('photoPreviewImg');
+      const box = document.getElementById('photoUploadBox');
+      const prompt = document.getElementById('uploadPrompt');
+      const wrap = document.getElementById('photoPreviewWrap');
+
+      img.src = '';
+      wrap.style.display = 'none';
+      prompt.style.display = 'block';
+      box.classList.remove('has-photo');
+
+      document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
+    }
+
+    function handlePreviewError(imgEl) {
+      imgEl.onerror = null;
+      imgEl.src = toPublicAssetUrl('assets/clean_showroom_orero.jpg');
+      const badge = document.getElementById('photoStatusBadge');
+      if (badge) badge.textContent = '✓ Imagen de stock Orero Motorcycles';
     }
 
     // Load & Save Products
     function getAllProducts() {
       try {
         const local = localStorage.getItem('orero_all_inventory');
-        if (local) return JSON.parse(local);
+        if (local) {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed.map(item => ({
+              ...item,
+              image: toPublicAssetUrl(item.image)
+            }));
+          }
+        }
       } catch (err) {}
-      return BASE_STOCK;
+      return BASE_STOCK.map(item => ({
+        ...item,
+        image: toPublicAssetUrl(item.image)
+      }));
     }
 
     function saveProducts(list) {
@@ -932,10 +1161,12 @@
       // If no photo chosen, pick default according to category
       let image = currentUploadedPhotoData;
       if (!image) {
-        if (category === 'casco') image = '../assets/boutique_casco_ls2_strobe.jpg';
-        else if (category === 'chaqueta') image = '../assets/boutique_chaqueta_alpinestars.jpg';
-        else if (category === 'accesorio') image = '../assets/boutique_antirrobo_disco.jpg';
-        else image = '../assets/clean_showroom_orero.jpg';
+        if (category === 'casco') image = toPublicAssetUrl('assets/boutique_casco_ls2_strobe.jpg');
+        else if (category === 'chaqueta') image = toPublicAssetUrl('assets/boutique_chaqueta_alpinestars.jpg');
+        else if (category === 'accesorio') image = toPublicAssetUrl('assets/boutique_antirrobo_disco.jpg');
+        else image = toPublicAssetUrl('assets/clean_showroom_orero.jpg');
+      } else {
+        image = toPublicAssetUrl(image);
       }
 
       const newId = 'prod_' + Date.now();
@@ -957,9 +1188,7 @@
 
       // Reset form
       document.getElementById('fbPublishForm').reset();
-      document.getElementById('photoPreviewImg').style.display = 'none';
-      document.getElementById('uploadPrompt').style.display = 'block';
-      currentUploadedPhotoData = "";
+      clearSelectedPhoto();
 
       alert('¡Publicación realizada con éxito! Ya está disponible en la web.');
     }
@@ -987,7 +1216,7 @@
         else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
 
         card.innerHTML = `
-          <img src="${p.image}" alt="${p.title}" class="product-thumb" onerror="this.src='../assets/clean_showroom_orero.jpg'">
+          <img src="${toPublicAssetUrl(p.image)}" alt="${p.title}" class="product-thumb" loading="lazy" onerror="this.onerror=null; this.src=toPublicAssetUrl('assets/clean_showroom_orero.jpg');">
           <div class="product-body">
             <div class="product-badge-row">
               <span class="product-badge">${catBadge}</span>
