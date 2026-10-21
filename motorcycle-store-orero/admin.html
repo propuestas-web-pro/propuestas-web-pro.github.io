@@ -1533,18 +1533,22 @@
     // ══════════════════════════════════════════════════════════
     // GESTIÓN DE CITAS
     // ══════════════════════════════════════════════════════════
-    function getStoredCitas() {
+    function getCitas() {
       let citas = [];
       try {
         const local = localStorage.getItem('orero_appointments');
         if (local) citas = JSON.parse(local);
       } catch (err) {}
 
-      const existingRefs = new Set(citas.map(c => c.ref));
-      DEFAULT_CITAS.forEach(d => {
-        if (!existingRefs.has(d.ref)) citas.push(d);
-      });
+      if (!Array.isArray(citas) || citas.length === 0) {
+        citas = [...DEFAULT_CITAS];
+        localStorage.setItem('orero_appointments', JSON.stringify(citas));
+      }
       return citas;
+    }
+
+    function getStoredCitas() {
+      return getCitas();
     }
 
     function saveCitas(citas) {
@@ -1552,7 +1556,7 @@
       renderCitas();
     }
 
-        function renderCitas() {
+    function renderCitas() {
       const tbody = document.getElementById('citasTableBody');
       if (!tbody) return;
       const citas = getCitas();
@@ -1600,8 +1604,7 @@
       const cita = citas.find(c => c.ref === ref);
       if (cita) {
         cita.status = newStatus;
-        localStorage.setItem('orero_all_citas', JSON.stringify(citas));
-        renderCitas();
+        saveCitas(citas);
       }
     }
 
@@ -1609,8 +1612,7 @@
       if (!confirm('¿Deseas eliminar el registro de esta cita?')) return;
       let citas = getCitas();
       citas = citas.filter(c => c.ref !== ref);
-      localStorage.setItem('orero_all_citas', JSON.stringify(citas));
-      renderCitas();
+      saveCitas(citas);
     }
 
 
