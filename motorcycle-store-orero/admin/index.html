@@ -286,6 +286,12 @@
       border-bottom: 1px solid var(--card-border);
       margin-bottom: 24px;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tabs-bar::-webkit-scrollbar {
+      display: none;
     }
     .tab-btn {
       background: transparent;
@@ -657,6 +663,276 @@
     tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
     /* ══════════════════════════════════════════════════════════
+       NOTIFICACIONES EN VIVO & CHIME BAR
+       ══════════════════════════════════════════════════════════ */
+    .live-alert-bar {
+      background: linear-gradient(90deg, rgba(239,35,60,0.9) 0%, rgba(185,28,28,0.95) 100%);
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 4px 20px rgba(239,35,60,0.4);
+      animation: alertPulse 2s infinite ease-in-out;
+      font-size: 0.92rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    @keyframes alertPulse {
+      0%, 100% { border-bottom: 2px solid #fecaca; }
+      50% { border-bottom: 2px solid #ef4444; }
+    }
+    .live-alert-badge {
+      background: #fff;
+      color: #b91c1c;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .admin-toast-container {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 440px;
+      width: calc(100vw - 32px);
+      pointer-events: none;
+    }
+    .admin-toast {
+      background: #0d121c;
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      border-left: 5px solid #ef233c;
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.85);
+      color: #fff;
+      pointer-events: auto;
+      animation: toastSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    @keyframes toastSlide {
+      from { transform: translateX(110%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       TOOLBAR DE BÚSQUEDA Y FILTROS DE CITAS
+       ══════════════════════════════════════════════════════════ */
+    .citas-toolbar {
+      padding: 18px 24px;
+      background: #090d16;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .search-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-box-wrap {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .search-box-wrap input {
+      width: 100%;
+      background: #101623;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 10px 14px 10px 38px;
+      color: #fff;
+      font-size: 0.9rem !important;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .search-box-wrap input:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,35,60,0.2);
+    }
+    .search-icon-fixed {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .filter-chips-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .chip-filter {
+      background: #141b27;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip-filter:hover {
+      background: #1e283b;
+      color: #fff;
+    }
+    .chip-filter.active {
+      background: rgba(239, 35, 60, 0.15);
+      border-color: var(--red);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SELECTORES DINÁMICOS DE ESTADO Y ACCIONES DE FILA
+       ══════════════════════════════════════════════════════════ */
+    .status-select {
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.78rem !important;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .status-sel-pendiente {
+      background: rgba(245,158,11,0.18);
+      color: #fbbf24;
+      border-color: rgba(245,158,11,0.4);
+    }
+    .status-sel-confirmada {
+      background: rgba(16,185,129,0.18);
+      color: #34d399;
+      border-color: rgba(16,185,129,0.4);
+    }
+    .status-sel-taller {
+      background: rgba(59,130,246,0.18);
+      color: #60a5fa;
+      border-color: rgba(59,130,246,0.4);
+    }
+    .status-sel-finalizada {
+      background: rgba(148,163,184,0.18);
+      color: #cbd5e1;
+      border-color: rgba(148,163,184,0.3);
+    }
+    .status-sel-cancelada {
+      background: rgba(239,35,60,0.18);
+      color: #fca5a5;
+      border-color: rgba(239,35,60,0.4);
+    }
+
+    .btn-action-icon {
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #141b27;
+      color: #fff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .btn-action-icon:hover {
+      background: #1e283b;
+      border-color: rgba(255,255,255,0.25);
+    }
+    .btn-action-wa {
+      background: rgba(37,211,102,0.15);
+      border-color: rgba(37,211,102,0.35);
+      color: #4ade80;
+    }
+    .btn-action-wa:hover {
+      background: #25d366;
+      color: #06080d;
+      border-color: #25d366;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       MODAL DE REPROGRAMACIÓN Y FICHA DE MECÁNICO
+       ══════════════════════════════════════════════════════════ */
+    .admin-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(6, 8, 13, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 99990;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .admin-modal-overlay.open { display: flex; }
+    .admin-modal {
+      background: #0d121c;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.85);
+      padding: 28px;
+      position: relative;
+    }
+    .admin-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .admin-modal-close {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .admin-modal-close:hover {
+      background: var(--red);
+      border-color: var(--red);
+    }
+    .modal-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .modal-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* ══════════════════════════════════════════════════════════
        MOBILE-NATIVE RESPONSIVE SUITE (ANTIGRAVITY & WCAG)
        ══════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {
@@ -861,10 +1137,27 @@
       </div>
 
       <div class="nav-actions">
+        <button id="btnSoundToggle" class="btn-nav-outline" onclick="toggleSound()" title="Silenciar o activar avisos sonoros de nuevas citas">🔔 Sonido: ON</button>
+        <button class="btn-nav-outline" onclick="simulateNewAppointment()" title="Simula un cliente solicitando cita desde la web para probar el aviso">🧪 Simular Cita</button>
         <a href="/" target="_blank" class="btn-nav-outline">🌐 Ver Web Pública</a>
         <button onclick="handleAdminLogout()" class="btn-nav-outline btn-logout">Cerrar Sesión</button>
       </div>
     </header>
+
+    <!-- Barra de aviso en tiempo real cuando entra una nueva cita -->
+    <div id="liveAlertBar" class="live-alert-bar" style="display:none;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="live-alert-badge">🔔 NUEVA CITA RECIBIDA</span>
+        <span id="liveAlertMessage">Un cliente acaba de solicitar cita previa para el taller.</span>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-nav-outline" style="background:#fff; color:#b91c1c; font-weight:800; border:none; padding:4px 12px; font-size:0.8rem;" onclick="dismissAlertBar(true)">Ver en Tabla</button>
+        <button class="btn-nav-outline" style="padding:4px 8px; font-size:0.8rem;" onclick="dismissAlertBar(false)">✕</button>
+      </div>
+    </div>
+
+    <!-- Contenedor de notificaciones flotantes (Toast) -->
+    <div id="adminToastContainer" class="admin-toast-container"></div>
 
     <main class="dashboard-content">
       <!-- Estadísticas rápidas -->
@@ -873,31 +1166,33 @@
           <div class="metric-label">Citas Recibidas</div>
           <div class="metric-val" id="kpiTotalCitas">6</div>
         </div>
+        <div class="metric-card gold" id="cardKpiPendientes">
+          <div class="metric-label">Pendientes de Confirmar</div>
+          <div class="metric-val" id="kpiPendientes" style="color:#fbbf24;">3</div>
+        </div>
         <div class="metric-card green">
           <div class="metric-label">Citas Confirmadas</div>
           <div class="metric-val" id="kpiConfirmadas">3</div>
         </div>
-        <div class="metric-card gold">
-          <div class="metric-label">Productos Publicados</div>
-          <div class="metric-val" id="kpiTotalMotos">24</div>
-        </div>
         <div class="metric-card">
-          <div class="metric-label">Atención Telefónica</div>
-          <div class="metric-val" style="font-size:1.3rem;">966 74 01 20</div>
+          <div class="metric-label">Motos & Boutique</div>
+          <div class="metric-val" id="kpiTotalMotos">24</div>
         </div>
       </div>
 
       <!-- Barra de navegación por pestañas -->
       <div class="tabs-bar">
-        <button class="tab-btn active" id="tabBtnStock" onclick="switchTab('stock', this)">🏍️ Motos & Boutique (Publicar y Gestionar)</button>
-        <button class="tab-btn" id="tabBtnCitas" onclick="switchTab('citas', this)">📅 Citas de Taller (<span id="citasTabCount">6</span>)</button>
-        <button class="tab-btn" id="tabBtnTaller" onclick="switchTab('taller', this)">🏢 Info del Concesionario</button>
+        <button class="tab-btn active" id="tabBtnCitas" onclick="switchTab('citas', this)">📅 Citas de Taller (<span id="citasTabCount">6</span>)</button>
+        <button class="tab-btn" id="tabBtnStock" onclick="switchTab('stock', this)">🏍️ Motos & Boutique (Publicar)</button>
+        <button class="tab-btn" id="tabBtnTasaciones" onclick="switchTab('tasaciones', this)">🤝 Tasaciones & Venta (<span id="tasacionesTabCount">3</span>)</button>
+        <button class="tab-btn" id="tabBtnTaller" onclick="switchTab('taller', this)">🏢 Info Concesionario</button>
+        <button class="tab-btn" id="tabBtnAjustes" onclick="switchTab('ajustes', this)">⚙️ Ajustes & Alertas</button>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
            PESTAÑA 1: INVENTARIO & PUBLICAR COMO EN FACEBOOK
            ══════════════════════════════════════════════════════════ -->
-      <div id="tabStock">
+      <div id="tabStock" style="display:none;">
         <!-- Creador estilo Facebook -->
         <div class="fb-creator-card">
           <div class="fb-header">
@@ -1029,20 +1324,59 @@
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 2: CITAS DE TALLER
+           PESTAÑA 2: CITAS DE TALLER (GESTIÓN INTEGRAL & ALERTAS)
            ══════════════════════════════════════════════════════════ -->
-      <div id="tabCitas" style="display:none;">
+      <div id="tabCitas" style="display:block;">
         <div class="table-card">
           <div class="table-header">
             <div>
-              <h2 style="font-family:var(--font-heading); font-size:1.2rem; font-weight:800;">Citas Solicitadas por Clientes</h2>
+              <h2 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800;">
+                Centro de Citas de Taller & Clientes
+              </h2>
               <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
-                Clientes que han pedido cita a través del formulario web.
+                Recepción activa de reservas online y telefónicas en tiempo real.
               </p>
             </div>
-            <div style="display:flex; gap:10px;">
-              <button class="btn-nav-outline" onclick="exportCitasCSV()">📥 Descargar en Excel/CSV</button>
-              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.88rem;" onclick="promptNewCita()">➕ Añadir Cita Telefónica</button>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem; background:#10b981; border-color:#10b981;" onclick="simulateNewAppointment()">
+                🧪 Simular Cita Web (Prueba)
+              </button>
+              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem;" onclick="promptNewCita()">
+                ➕ Cita Telefónica
+              </button>
+              <button class="btn-nav-outline" onclick="exportCitasCSV()">
+                📥 Excel / CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Barra de Búsqueda y Filtros de Estado -->
+          <div class="citas-toolbar">
+            <div class="search-row">
+              <div class="search-box-wrap">
+                <span class="search-icon-fixed">🔍</span>
+                <input type="text" id="citasSearchInput" placeholder="Buscar por cliente, teléfono, email, moto o referencia (ORERO-CITA-...)" oninput="filterAndRenderCitas()">
+              </div>
+              <button class="btn-nav-outline" onclick="clearCitasSearch()" style="font-size:0.8rem; padding:8px 12px;">Limpiar</button>
+            </div>
+
+            <div class="filter-chips-row">
+              <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">Filtrar estado:</span>
+              <button class="chip-filter active" id="filterChipAll" onclick="setCitaFilter('todos', this)">
+                Todas (<span id="countAll">0</span>)
+              </button>
+              <button class="chip-filter" id="filterChipPending" onclick="setCitaFilter('pendiente', this)">
+                ⏳ Pendientes (<span id="countPending">0</span>)
+              </button>
+              <button class="chip-filter" id="filterChipConfirmed" onclick="setCitaFilter('confirmada', this)">
+                ✅ Confirmadas (<span id="countConfirmed">0</span>)
+              </button>
+              <button class="chip-filter" id="filterChipInShop" onclick="setCitaFilter('en_taller', this)">
+                🔧 En Taller (<span id="countInShop">0</span>)
+              </button>
+              <button class="chip-filter" id="filterChipDone" onclick="setCitaFilter('finalizada', this)">
+                🏁 Finalizadas (<span id="countDone">0</span>)
+              </button>
             </div>
           </div>
 
@@ -1051,13 +1385,12 @@
               <thead>
                 <tr>
                   <th>Ref</th>
-                  <th>Cliente</th>
-                  <th>Teléfono</th>
-                  <th>Vehículo</th>
-                  <th>Servicio</th>
-                  <th>Fecha & Turno</th>
+                  <th>Cliente & Contacto</th>
+                  <th>Vehículo & Notas</th>
+                  <th>Servicio Solicitado</th>
+                  <th>Fecha & Franja</th>
                   <th>Estado</th>
-                  <th>Acción</th>
+                  <th style="text-align:right;">Acciones Rápidas</th>
                 </tr>
               </thead>
               <tbody id="citasTableBody">
@@ -1069,7 +1402,49 @@
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 3: INFO DEL TALLER
+           PESTAÑA 3: TASACIONES & GESTIÓN DE VENTA
+           ══════════════════════════════════════════════════════════ -->
+      <div id="tabTasaciones" style="display:none;">
+        <div class="table-card">
+          <div class="table-header">
+            <div>
+              <h2 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800;">
+                Tasaciones & Solicitudes de Gestión de Venta
+              </h2>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
+                Motos que los clientes quieren vender, tasar o entregar como parte de pago.
+              </p>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem;" onclick="promptNewTasacion()">
+                ➕ Nueva Tasación Manual
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Cliente & Teléfono</th>
+                  <th>Moto / Cilindrada</th>
+                  <th>Año & Km</th>
+                  <th>Valoración (€)</th>
+                  <th>Estado</th>
+                  <th style="text-align:right;">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tasacionesTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 4: INFO DEL TALLER & CONTACTO
            ══════════════════════════════════════════════════════════ -->
       <div id="tabTaller" style="display:none;">
         <div class="table-card" style="padding: 30px;">
@@ -1097,6 +1472,200 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 5: AJUSTES & CENTRO DE NOTIFICACIONES
+           ══════════════════════════════════════════════════════════ -->
+      <div id="tabAjustes" style="display:none;">
+        <div class="table-card" style="padding: 30px;">
+          <h2 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:10px;">
+            ⚙️ Centro de Configuración & Notificaciones
+          </h2>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:26px;">
+            Configura los canales automáticos de aviso por email y WhatsApp cuando un cliente solicita cita.
+          </p>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+            <!-- Notificaciones de Taller -->
+            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
+              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                <span>✉️</span> Recepción de Notificaciones por Email
+              </h3>
+              <div class="form-group">
+                <label class="form-label">Email Oficial de Taller (Receptor de Alertas):</label>
+                <input type="email" id="settingWorkshopEmail" class="form-input" value="taller@oreromotorcycles.es">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Teléfono de Notificaciones WhatsApp:</label>
+                <input type="tel" id="settingWorkshopPhone" class="form-input" value="966 74 01 20">
+              </div>
+              <button class="btn-nav-outline" onclick="saveAdminSettings()" style="background:rgba(239,35,60,0.15); border-color:var(--red); color:#fff; font-weight:700;">
+                💾 Guardar Configuración
+              </button>
+            </div>
+
+            <!-- Avisos Sonoros y Sincronización -->
+            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
+              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                <span>🔔</span> Alertas Acústicas & Simulación
+              </h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">
+                El panel emite una campanilla dulce y profesional cada vez que un cliente solicita una cita desde la web o teléfono.
+              </p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <button class="btn-nav-outline" onclick="testNotificationChimeDirect()" style="text-align:left; display:flex; align-items:center; gap:10px;">
+                  <span>🔊</span> <strong>Probar Sonido de Campanilla (Web Audio)</strong>
+                </button>
+                <button class="btn-login" style="margin-top:0; background:#ef233c; padding:12px; font-size:0.9rem;" onclick="simulateNewAppointment()">
+                  <span>🧪 Simular Cita Entrante de Cliente (Test Completo)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Copias de Seguridad y Datos -->
+            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
+              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+                <span>💾</span> Copias de Seguridad de Datos
+              </h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">
+                Descarga una copia completa en JSON de todas las citas, motos y tasaciones del concesionario.
+              </p>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn-nav-outline" onclick="backupAllDataJSON()">
+                  📥 Descargar Copia (JSON)
+                </button>
+                <button class="btn-nav-outline" onclick="resetDefaultSeedData()" style="color:#fca5a5;">
+                  🔄 Restaurar Datos Ejemplo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           MODAL DE DETALLES, REPROGRAMACIÓN Y FICHA DE MECÁNICO
+           ══════════════════════════════════════════════════════════ -->
+      <div id="adminModalCita" class="admin-modal-overlay" onclick="closeAdminModal(event)">
+        <div class="admin-modal" onclick="event.stopPropagation()">
+          <div class="admin-modal-header">
+            <div>
+              <div style="font-size:0.78rem; color:var(--red); font-weight:800; text-transform:uppercase; letter-spacing:0.05em;" id="modalCitaRefTag">
+                ORERO-CITA-XXXX
+              </div>
+              <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff;" id="modalCitaTitle">
+                Ficha de Cita de Taller
+              </h3>
+            </div>
+            <button class="admin-modal-close" onclick="closeAdminModalDirect()">✕</button>
+          </div>
+
+          <form id="modalCitaForm" onsubmit="saveModalCitaChanges(event)">
+            <input type="hidden" id="modalCitaRef">
+
+            <!-- Fila Datos Cliente -->
+            <div class="modal-grid-2" style="margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Nombre del Cliente:</label>
+                <input type="text" id="modalCitaName" class="form-input" required>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Teléfono Móvil:</label>
+                <input type="tel" id="modalCitaPhone" class="form-input" required>
+              </div>
+            </div>
+
+            <!-- Email Cliente & Moto -->
+            <div class="modal-grid-2" style="margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Email de Confirmación:</label>
+                <input type="email" id="modalCitaEmail" class="form-input" placeholder="cliente@correo.com">
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Vehículo & Matrícula:</label>
+                <input type="text" id="modalCitaMoto" class="form-input" required>
+              </div>
+            </div>
+
+            <!-- Servicio & Estado -->
+            <div class="modal-grid-2" style="margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Servicio Solicitado:</label>
+                <select id="modalCitaService" class="form-input">
+                  <option value="Revisión Oficial 60 Puntos">⚙️ Revisión Oficial 60 Puntos</option>
+                  <option value="Mantenimiento Periódico">🔧 Mantenimiento / Aceite y Filtros</option>
+                  <option value="Diagnosis de Avería">🔍 Diagnosis Electrónica</option>
+                  <option value="Cambio de Neumáticos">⚙️ Neumáticos</option>
+                  <option value="Frenos y Suspensiones">🛑 Frenos y Pastillas</option>
+                  <option value="Inspección Pre-ITV">📋 Pre-ITV</option>
+                  <option value="Tasación de mi Moto">💰 Tasación</option>
+                  <option value="Otro Servicio">🛠️ Otro Servicio</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Estado en Taller:</label>
+                <select id="modalCitaStatus" class="form-input">
+                  <option value="pendiente">⏳ Pendiente de Confirmar</option>
+                  <option value="confirmada">✅ Confirmada (Cita Asignada)</option>
+                  <option value="en_taller">🔧 En Taller (En Reparación)</option>
+                  <option value="finalizada">🏁 Finalizada (Lista para Entregar)</option>
+                  <option value="cancelada">❌ Cancelada</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Reprogramar Fecha & Franja -->
+            <div class="modal-grid-2" style="background:#090d16; padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.08); margin-bottom:16px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">📅 Fecha de Cita:</label>
+                <input type="date" id="modalCitaDate" class="form-input" required>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">⏰ Franja / Turno:</label>
+                <select id="modalCitaSlot" class="form-input">
+                  <option value="Mañana (09:30 - 13:30)">🌅 Mañana (09:30 - 13:30 h)</option>
+                  <option value="Tarde (16:30 - 20:30)">🌇 Tarde (16:30 - 20:30 h)</option>
+                  <option value="Flexible / Dejar Moto">🌙 Flexible / Dejar en taller</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Observaciones del cliente -->
+            <div class="form-group">
+              <label class="form-label">Observaciones facilitadas por el Cliente:</label>
+              <textarea id="modalCitaNotes" class="form-input" style="height:60px;" placeholder="Detalles de avería o peticiones del cliente..."></textarea>
+            </div>
+
+            <!-- Notas Internas del Mecánico -->
+            <div class="form-group" style="background:rgba(239,35,60,0.04); border:1px solid rgba(239,35,60,0.25); border-radius:10px; padding:14px;">
+              <label class="form-label" style="color:#fca5a5; font-weight:700;">
+                🛠️ Notas Internas del Taller & Mecánico (Presupuesto, Piezas, Diagnóstico):
+              </label>
+              <textarea id="modalCitaInternalNotes" class="form-input" style="height:70px;" placeholder="Ej: Diagnosis completada. Presupuesto 120€ aceptado por cliente. Piezas pedidas a distribuidor."></textarea>
+            </div>
+
+            <!-- Botones de Acción Rápida -->
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; border-top:1px solid var(--card-border); padding-top:18px;">
+              <button type="submit" class="btn-login" style="margin-top:0; padding:10px 20px; font-size:0.9rem;">
+                💾 Guardar Ficha
+              </button>
+              <button type="button" class="btn-action-icon btn-action-wa" onclick="sendModalClientWhatsApp()" style="padding:10px 16px; font-size:0.86rem;">
+                💬 Enviar WhatsApp al Cliente
+              </button>
+              <button type="button" class="btn-action-icon" onclick="sendModalClientEmail()" style="padding:10px 16px; font-size:0.86rem;">
+                ✉️ Enviar Email de Confirmación
+              </button>
+              <button type="button" class="btn-nav-outline" onclick="printModalWorkOrder()" style="padding:10px 16px; font-size:0.86rem;">
+                🖨️ Imprimir Ficha de Taller
+              </button>
+              <button type="button" class="btn-nav-outline btn-logout" onclick="deleteModalCita()" style="padding:10px 16px; font-size:0.86rem; margin-left:auto;">
+                🗑️ Eliminar
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </main>
@@ -1131,17 +1700,6 @@
       { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "/assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
       { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "/assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
     ];
-
-    // Seed Appointments
-    const DEFAULT_CITAS = [
-      { ref: "ORERO-CITA-8367", name: "Alejandro Ramos", phone: "633445566", moto: "Yamaha MT-07 - 5678-KTM", service: "Revisión Oficial 60 Puntos", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
-      { ref: "ORERO-CITA-1042", name: "Pedro Martínez Soto", phone: "644 12 34 56", moto: "Yamaha MT-07 (2021)", service: "Revisión 60 Puntos", date: "2026-10-21", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
-      { ref: "ORERO-CITA-1043", name: "Laura Ruiz Morales", phone: "622 98 76 54", moto: "Kymco Agility City 125", service: "Cambio de Neumáticos Michelin", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "confirmada" },
-      { ref: "ORERO-CITA-1044", name: "Vicente Sánchez Pardo", phone: "677 45 89 12", moto: "Honda CBR 500R", service: "Inspección Pre-ITV", date: "2026-10-22", slot: "Mañana (09:30 - 13:30)", status: "pendiente" },
-      { ref: "ORERO-CITA-1045", name: "Andrés Alcaraz Vegara", phone: "610 33 22 11", moto: "Suzuki Burgman 250", service: "Diagnosis y puesta a punto", date: "2026-10-22", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
-      { ref: "ORERO-CITA-1046", name: "Carlos Navarro Gómez", phone: "655 77 88 99", moto: "Kawasaki Ninja 650", service: "Tasación para cambio", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "confirmada" }
-    ];
-
     let currentUploadedPhotoData = "";
 
     // Auth verification (ONLY PASSWORD: casino18)
@@ -1435,7 +1993,133 @@
     }
 
     // ══════════════════════════════════════════════════════════
-    // GESTIÓN DE CITAS
+    // GESTIÓN INTEGRAL DE CITAS, AUDIO CHIME & NOTIFICACIONES
+    // ══════════════════════════════════════════════════════════
+    const DEFAULT_CITAS = [
+      { ref: "ORERO-CITA-8367", name: "Alejandro Ramos", phone: "633445566", email: "alejandro.ramos@gmail.com", moto: "Yamaha MT-07 - 5678-KTM", service: "Revisión Oficial 60 Puntos", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "pendiente", notes: "Revisión de los 10.000 km y cambio de aceite sintético.", internalNotes: "Revisar tensión de cadena." },
+      { ref: "ORERO-CITA-1042", name: "Pedro Martínez Soto", phone: "644 12 34 56", email: "pedro.soto@hotmail.com", moto: "Yamaha MT-07 (2021)", service: "Revisión 60 Puntos", date: "2026-10-21", slot: "Mañana (09:30 - 13:30)", status: "confirmada", notes: "Vibración leve en manillar.", internalNotes: "Equilibrado rueda delantera presupuestado en 35€." },
+      { ref: "ORERO-CITA-1043", name: "Laura Ruiz Morales", phone: "622 98 76 54", email: "laura.ruiz@yahoo.es", moto: "Kymco Agility City 125", service: "Cambio de Neumáticos Michelin", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "confirmada", notes: "Montar Michelin City Grip 2.", internalNotes: "Neumáticos apartados en almacén." },
+      { ref: "ORERO-CITA-1044", name: "Vicente Sánchez Pardo", phone: "677 45 89 12", email: "vicente.sp@gmail.com", moto: "Honda CBR 500R", service: "Inspección Pre-ITV", date: "2026-10-22", slot: "Mañana (09:30 - 13:30)", status: "pendiente", notes: "Paso ITV la próxima semana.", internalNotes: "" },
+      { ref: "ORERO-CITA-1045", name: "Andrés Alcaraz Vegara", phone: "610 33 22 11", email: "andres.alcaraz@gmail.com", moto: "Suzuki Burgman 250", service: "Diagnosis y puesta a punto", date: "2026-10-22", slot: "Tarde (16:30 - 20:30)", status: "en_taller", notes: "Cuesta arrancar en frío.", internalNotes: "Bujía y batería comprobadas. Limpieza de carburador en curso." },
+      { ref: "ORERO-CITA-1046", name: "Carlos Navarro Gómez", phone: "655 77 88 99", email: "carlos.ng@gmail.com", moto: "Kawasaki Ninja 650", service: "Tasación para cambio", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "finalizada", notes: "Quiere tasar para comprar MT-07.", internalNotes: "Tasación realizada en 4.900€. Operación cerrada." }
+    ];
+
+    const DEFAULT_TASACIONES = [
+      { ref: "ORERO-TAS-4102", name: "David Alarcón", phone: "622 11 22 33", email: "david.alarcon@gmail.com", moto: "Honda CB650R Neo Sports", year: 2021, km: "14.200 km", offer: "5.400 €", status: "oferta_enviada", notes: "Color negro mate, libro oficial de revisiones al día." },
+      { ref: "ORERO-TAS-4103", name: "Elena Martínez", phone: "644 55 66 77", email: "elena.m@hotmail.com", moto: "Yamaha MT-09 SP", year: 2022, km: "9.800 km", offer: "8.100 €", status: "pendiente", notes: "Interesada en cambio por maxiscooter de 3 ruedas." },
+      { ref: "ORERO-TAS-4104", name: "Francisco Grau", phone: "688 99 00 11", email: "fgrau@yahoo.es", moto: "BMW R 1200 GS LC", year: 2017, km: "42.000 km", offer: "9.800 €", status: "aceptada", notes: "Cliente de Orihuela, moto entregada para gestión de venta." }
+    ];
+
+    let currentFilterStatus = 'todos';
+    let knownCitasCount = -1;
+
+    // ══════════════════════════════════════════════════════════
+    // SINTETIZADOR DE CAMPANILLA (WEB AUDIO API - SIN ARCHIVOS EXTERNOS)
+    // ══════════════════════════════════════════════════════════
+    function playNotificationChime() {
+      if (localStorage.getItem('orero_admin_sound_muted') === 'true') return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const now = ctx.currentTime;
+        
+        // Tono 1: Re 5 (587.33 Hz)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(587.33, now);
+        gain1.gain.setValueAtTime(0.28, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.45);
+
+        // Tono 2: La 5 (880 Hz)
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(880, now + 0.14);
+        gain2.gain.setValueAtTime(0.38, now + 0.14);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.14);
+        osc2.stop(now + 0.85);
+      } catch (err) {
+        console.warn('Web Audio Chime Notice:', err);
+      }
+    }
+
+    function testNotificationChimeDirect() {
+      playNotificationChime();
+    }
+
+    function toggleSound() {
+      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
+      if (isMuted) {
+        localStorage.setItem('orero_admin_sound_muted', 'false');
+        document.getElementById('btnSoundToggle').textContent = '🔔 Sonido: ON';
+        playNotificationChime();
+      } else {
+        localStorage.setItem('orero_admin_sound_muted', 'true');
+        document.getElementById('btnSoundToggle').textContent = '🔕 Sonido: OFF';
+      }
+    }
+
+    // Alerta de nueva cita visual y sonora
+    function showAppointmentAlert(cita) {
+      playNotificationChime();
+
+      // Barra superior
+      const bar = document.getElementById('liveAlertBar');
+      const msg = document.getElementById('liveAlertMessage');
+      if (bar && msg) {
+        msg.innerHTML = `<strong>${cita.name}</strong> acaba de solicitar cita previa para <strong>${cita.moto || 'su moto'}</strong> (${cita.service}) · Turno: <strong>${cita.date} (${cita.slot})</strong>.`;
+        bar.style.display = 'flex';
+      }
+
+      // Notificación flotante (Toast)
+      const container = document.getElementById('adminToastContainer');
+      if (container) {
+        const toast = document.createElement('div');
+        toast.className = 'admin-toast';
+        toast.innerHTML = `
+          <div style="font-size:1.8rem; flex-shrink:0;">🔔</div>
+          <div style="flex:1;">
+            <div style="font-weight:800; font-size:0.92rem; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+              <span>¡Nueva Cita Registrada!</span>
+              <span style="font-family:monospace; color:var(--red); font-size:0.8rem; background:rgba(0,0,0,0.4); padding:2px 6px; border-radius:4px;">${cita.ref}</span>
+            </div>
+            <div style="font-size:0.84rem; color:#cbd5e1; margin-top:4px;">
+              <strong>${cita.name}</strong> · ${cita.moto}
+            </div>
+            <div style="font-size:0.8rem; color:#94a3b8; margin-top:2px;">
+              📅 ${cita.date} · ${cita.slot}
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button class="btn-action-icon" style="font-size:0.75rem; padding:4px 10px;" onclick="openCitaModal('${cita.ref}')">✏️ Ver Ficha</button>
+              <button class="btn-action-icon btn-action-wa" style="font-size:0.75rem; padding:4px 10px;" onclick="sendDirectCitaWhatsApp('${cita.ref}')">💬 WhatsApp</button>
+            </div>
+          </div>
+          <button onclick="this.parentElement.remove()" style="background:transparent; border:none; color:#94a3b8; cursor:pointer; font-size:1.1rem; padding:0 4px;">✕</button>
+        `;
+        container.appendChild(toast);
+        setTimeout(() => { if (toast.parentElement) toast.remove(); }, 10000);
+      }
+    }
+
+    function dismissAlertBar(goToTable) {
+      document.getElementById('liveAlertBar').style.display = 'none';
+      if (goToTable) {
+        switchTab('citas', document.getElementById('tabBtnCitas'));
+        window.scrollTo({ top: 320, behavior: 'smooth' });
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // PERSISTENCIA Y SINCRONIZACIÓN DE CITAS
     // ══════════════════════════════════════════════════════════
     function getStoredCitas() {
       let citas = [];
@@ -1456,63 +2140,409 @@
       renderCitas();
     }
 
+    // Sincronización continua en segundo plano (detecta citas desde la web pública)
+    function startCitasAutoSync() {
+      setInterval(() => {
+        try {
+          const citas = getStoredCitas();
+          if (knownCitasCount !== -1 && citas.length > knownCitasCount) {
+            // Se ha añadido una cita nueva
+            const newest = citas[0];
+            showAppointmentAlert(newest);
+            renderCitas();
+          }
+          knownCitasCount = citas.length;
+        } catch (e) {}
+      }, 4000);
+    }
+
+    // Simular cita entrante desde la web para probar
+    function simulateNewAppointment() {
+      const mockClients = [
+        { name: "Carlos Soler Vega", phone: "612 88 44 22", email: "carlos.soler@gmail.com", moto: "Yamaha MT-07 ABS (5432-KTM)", service: "Revisión Oficial 60 Puntos", notes: "Frenos delanteros y cambio de aceite." },
+        { name: "Marta Guillén Orihuela", phone: "677 33 22 11", email: "marta.g@hotmail.com", moto: "Honda SH 350i (9876-LMN)", service: "Cambio de Neumáticos Michelin", notes: "Deseo neumáticos nuevos Michelin City Grip." },
+        { name: "Javier Bernabé", phone: "633 99 88 77", email: "javi.orihuela@yahoo.es", moto: "Kawasaki Ninja 650", service: "Diagnosis de Avería", notes: "Luz de fallo de motor intermitente." },
+        { name: "Antonio Riquelme", phone: "655 44 33 22", email: "antonio.riquelme@gmail.com", moto: "Kymco Agility City 125", service: "Mantenimiento Periódico", notes: "Revisión de los 15.000 km." }
+      ];
+
+      const mock = mockClients[Math.floor(Math.random() * mockClients.length)];
+      const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
+
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const y = tomorrow.getFullYear();
+      const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const d = String(tomorrow.getDate()).padStart(2, '0');
+      const dateStr = `${y}-${m}-${d}`;
+
+      const newCita = {
+        ref: newRef,
+        name: mock.name,
+        phone: mock.phone,
+        email: mock.email,
+        moto: mock.moto,
+        service: mock.service,
+        date: dateStr,
+        slot: "Mañana (09:30 - 13:30)",
+        notes: mock.notes,
+        internalNotes: "",
+        status: "pendiente",
+        createdAt: new Date().toISOString()
+      };
+
+      const list = getStoredCitas();
+      list.unshift(newCita);
+      saveCitas(list);
+      showAppointmentAlert(newCita);
+      switchTab('citas', document.getElementById('tabBtnCitas'));
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // FILTROS Y BÚSQUEDA DE CITAS
+    // ══════════════════════════════════════════════════════════
+    function setCitaFilter(status, btn) {
+      currentFilterStatus = status;
+      document.querySelectorAll('.chip-filter').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderCitas();
+    }
+
+    function clearCitasSearch() {
+      const input = document.getElementById('citasSearchInput');
+      if (input) input.value = '';
+      renderCitas();
+    }
+
+    function filterAndRenderCitas() {
+      renderCitas();
+    }
+
     function renderCitas() {
-      const citas = getStoredCitas();
+      const allCitas = getStoredCitas();
+      const searchVal = (document.getElementById('citasSearchInput')?.value || '').toLowerCase().trim();
+
+      // Conteo de métricas
+      let pendingCount = 0;
+      let confirmedCount = 0;
+      let inShopCount = 0;
+      let doneCount = 0;
+
+      allCitas.forEach(c => {
+        if (c.status === 'pendiente') pendingCount++;
+        else if (c.status === 'confirmada') confirmedCount++;
+        else if (c.status === 'en_taller') inShopCount++;
+        else if (c.status === 'finalizada') doneCount++;
+      });
+
+      // Actualizar conteos
+      document.getElementById('countAll').textContent = allCitas.length;
+      document.getElementById('countPending').textContent = pendingCount;
+      document.getElementById('countConfirmed').textContent = confirmedCount;
+      document.getElementById('countInShop').textContent = inShopCount;
+      document.getElementById('countDone').textContent = doneCount;
+
+      document.getElementById('citasTabCount').textContent = allCitas.length;
+      document.getElementById('kpiTotalCitas').textContent = allCitas.length;
+      document.getElementById('kpiPendientes').textContent = pendingCount;
+      document.getElementById('kpiConfirmadas').textContent = confirmedCount;
+
+      // Filtrado
+      let filtered = allCitas.filter(c => {
+        // Filtro por chip
+        if (currentFilterStatus !== 'todos' && c.status !== currentFilterStatus) return false;
+
+        // Filtro por buscador
+        if (searchVal) {
+          const ref = (c.ref || '').toLowerCase();
+          const name = (c.name || '').toLowerCase();
+          const phone = (c.phone || '').toLowerCase();
+          const email = (c.email || '').toLowerCase();
+          const moto = (c.moto || '').toLowerCase();
+          const serv = (c.service || '').toLowerCase();
+          return ref.includes(searchVal) || name.includes(searchVal) || phone.includes(searchVal) || email.includes(searchVal) || moto.includes(searchVal) || serv.includes(searchVal);
+        }
+        return true;
+      });
+
       const tbody = document.getElementById('citasTableBody');
       tbody.innerHTML = '';
 
-      let confirmedCount = 0;
-      document.getElementById('citasTabCount').textContent = citas.length;
-      document.getElementById('kpiTotalCitas').textContent = citas.length;
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align:center; padding:36px; color:var(--text-muted);">
+              🔍 No se han encontrado citas con los filtros aplicados.
+              <br><button class="btn-nav-outline" onclick="clearCitasSearch(); setCitaFilter('todos', document.getElementById('filterChipAll'));" style="margin-top:12px;">Mostrar Todas las Citas</button>
+            </td>
+          </tr>
+        `;
+        return;
+      }
 
-      citas.forEach((c, idx) => {
-        if (c.status === 'confirmada') confirmedCount++;
-
+      filtered.forEach((c) => {
         const tr = document.createElement('tr');
-        const isPending = c.status === 'pendiente';
-        const statusBadge = isPending 
-          ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">PENDIENTE</span>'
-          : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.75rem;">CONFIRMADA</span>';
+
+        // Select de estado con color
+        const statusClass = `status-sel-${c.status || 'pendiente'}`;
 
         tr.innerHTML = `
-          <td style="font-family:monospace; font-weight:700; color:var(--red);">${c.ref || 'CITA-' + (1000+idx)}</td>
-          <td><strong>${c.name}</strong></td>
-          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a></td>
-          <td>${c.moto || '-'}</td>
-          <td>${c.service}</td>
-          <td>
-            <div>📅 ${c.date}</div>
-            <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">${c.slot}</div>
+          <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem; white-space:nowrap;">
+            ${c.ref}
           </td>
-          <td>${statusBadge}</td>
           <td>
-            <button class="btn-prod-action" style="padding:6px 10px;" onclick="toggleCitaStatus('${c.ref}')">
-              ${isPending ? '✓ Confirmar' : 'Reabrir'}
+            <div style="font-weight:700; color:#fff;">${c.name}</div>
+            ${c.email ? `<a href="mailto:${c.email}?subject=Cita Taller Orero Motorcycles (${c.ref})" style="font-size:0.75rem; color:#38bdf8; text-decoration:none; display:inline-block; margin-top:2px;">✉️ ${c.email}</a>` : `<span style="font-size:0.72rem; color:var(--text-muted);">Sin email</span>`}
+          </td>
+          <td>
+            <a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700; font-size:0.88rem; display:block;">📞 ${c.phone}</a>
+            <button class="btn-action-icon btn-action-wa" style="font-size:0.72rem; padding:2px 8px; margin-top:4px;" onclick="sendDirectCitaWhatsApp('${c.ref}')">
+              💬 WhatsApp
             </button>
-            <button class="btn-prod-action btn-prod-delete" style="padding:6px 10px; margin-left:4px;" onclick="deleteCita('${c.ref}')">
+          </td>
+          <td>
+            <div style="font-weight:700; color:#e2e8f0;">${c.moto || '-'}</div>
+            ${c.notes ? `<div style="font-size:0.75rem; color:#94a3b8; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;" title="${c.notes}">📝 ${c.notes}</div>` : ''}
+            ${c.internalNotes ? `<div style="font-size:0.72rem; color:#fca5a5; font-weight:600; margin-top:2px;" title="${c.internalNotes}">🛠️ Taller: ${c.internalNotes}</div>` : ''}
+          </td>
+          <td>
+            <div style="font-weight:600; color:#fbbf24; font-size:0.85rem;">${c.service}</div>
+          </td>
+          <td>
+            <div style="font-weight:700; color:#fff;">📅 ${c.date}</div>
+            <div style="font-size:0.76rem; color:#94a3b8; margin-top:2px;">⏰ ${c.slot}</div>
+          </td>
+          <td>
+            <select class="status-select ${statusClass}" onchange="updateCitaStatus('${c.ref}', this.value)">
+              <option value="pendiente" ${c.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
+              <option value="confirmada" ${c.status === 'confirmada' ? 'selected' : ''}>✅ Confirmada</option>
+              <option value="en_taller" ${c.status === 'en_taller' ? 'selected' : ''}>🔧 En Taller</option>
+              <option value="finalizada" ${c.status === 'finalizada' ? 'selected' : ''}>🏁 Finalizada</option>
+              <option value="cancelada" ${c.status === 'cancelada' ? 'selected' : ''}>❌ Cancelada</option>
+            </select>
+          </td>
+          <td style="text-align:right; white-space:nowrap;">
+            <button class="btn-action-icon" style="padding:6px 12px;" onclick="openCitaModal('${c.ref}')" title="Ver ficha completa, notas internas de mecánico y reprogramar">
+              ✏️ Ficha
+            </button>
+            <button class="btn-action-icon btn-prod-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteCita('${c.ref}')" title="Eliminar cita">
               🗑️
             </button>
           </td>
         `;
         tbody.appendChild(tr);
       });
-
-      document.getElementById('kpiConfirmadas').textContent = confirmedCount;
     }
 
-    function toggleCitaStatus(ref) {
+    function updateCitaStatus(ref, newStatus) {
       const citas = getStoredCitas();
       const item = citas.find(c => c.ref === ref);
       if (!item) return;
-      item.status = item.status === 'pendiente' ? 'confirmada' : 'pendiente';
+      item.status = newStatus;
       saveCitas(citas);
     }
 
     function deleteCita(ref) {
-      if (!confirm('¿Seguro que deseas eliminar esta cita?')) return;
+      if (!confirm(`¿Seguro que deseas eliminar la cita ${ref}?`)) return;
       let citas = getStoredCitas();
       citas = citas.filter(c => c.ref !== ref);
       saveCitas(citas);
+    }
+
+    function sendDirectCitaWhatsApp(ref) {
+      const citas = getStoredCitas();
+      const c = citas.find(x => x.ref === ref);
+      if (!c) return;
+
+      const cleanPhone = (c.phone || '').replace(/\D/g, '');
+      const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
+
+      const msg = `¡Hola ${c.name}! Te escribimos desde el taller de Orero Motorcycles en Orihuela (Calle San Agustín 18).\n\n` +
+        `Te confirmamos que tenemos registrada tu cita con Ref: *${c.ref}* para tu *${c.moto}* (*${c.service}*) para el día *${c.date}* en turno *${c.slot}*.\n\n` +
+        `¿Nos confirmas tu asistencia? ¡Un saludo del equipo mecánico! 🏍️🔧`;
+
+      window.open(`https://wa.me/${phoneParam}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // MODAL DE FICHA TÉCNICA, REPROGRAMACIÓN & NOTAS DE MECÁNICO
+    // ══════════════════════════════════════════════════════════
+    let activeModalCitaRef = null;
+
+    function openCitaModal(ref) {
+      const citas = getStoredCitas();
+      const c = citas.find(x => x.ref === ref);
+      if (!c) return;
+
+      activeModalCitaRef = ref;
+      document.getElementById('modalCitaRef').value = c.ref;
+      document.getElementById('modalCitaRefTag').textContent = c.ref;
+      document.getElementById('modalCitaTitle').textContent = `Ficha de Cita · ${c.name}`;
+      document.getElementById('modalCitaName').value = c.name || '';
+      document.getElementById('modalCitaPhone').value = c.phone || '';
+      document.getElementById('modalCitaEmail').value = c.email || '';
+      document.getElementById('modalCitaMoto').value = c.moto || '';
+      document.getElementById('modalCitaService').value = c.service || 'Revisión Oficial 60 Puntos';
+      document.getElementById('modalCitaStatus').value = c.status || 'pendiente';
+      document.getElementById('modalCitaDate').value = c.date || '';
+      document.getElementById('modalCitaSlot').value = c.slot || 'Mañana (09:30 - 13:30)';
+      document.getElementById('modalCitaNotes').value = c.notes || '';
+      document.getElementById('modalCitaInternalNotes').value = c.internalNotes || '';
+
+      document.getElementById('adminModalCita').classList.add('open');
+    }
+
+    function closeAdminModal(e) {
+      if (e.target.id === 'adminModalCita') {
+        document.getElementById('adminModalCita').classList.remove('open');
+      }
+    }
+    function closeAdminModalDirect() {
+      document.getElementById('adminModalCita').classList.remove('open');
+    }
+
+    function saveModalCitaChanges(e) {
+      e.preventDefault();
+      if (!activeModalCitaRef) return;
+
+      const citas = getStoredCitas();
+      const c = citas.find(x => x.ref === activeModalCitaRef);
+      if (!c) return;
+
+      c.name = document.getElementById('modalCitaName').value.trim();
+      c.phone = document.getElementById('modalCitaPhone').value.trim();
+      c.email = document.getElementById('modalCitaEmail').value.trim();
+      c.moto = document.getElementById('modalCitaMoto').value.trim();
+      c.service = document.getElementById('modalCitaService').value;
+      c.status = document.getElementById('modalCitaStatus').value;
+      c.date = document.getElementById('modalCitaDate').value;
+      c.slot = document.getElementById('modalCitaSlot').value;
+      c.notes = document.getElementById('modalCitaNotes').value.trim();
+      c.internalNotes = document.getElementById('modalCitaInternalNotes').value.trim();
+
+      saveCitas(citas);
+      closeAdminModalDirect();
+      alert(`Ficha y reprogramación de la cita ${c.ref} guardada correctamente.`);
+    }
+
+    function sendModalClientWhatsApp() {
+      if (!activeModalCitaRef) return;
+      sendDirectCitaWhatsApp(activeModalCitaRef);
+    }
+
+    function sendModalClientEmail() {
+      const email = document.getElementById('modalCitaEmail').value.trim();
+      const name = document.getElementById('modalCitaName').value.trim();
+      const ref = activeModalCitaRef;
+      const moto = document.getElementById('modalCitaMoto').value.trim();
+      const service = document.getElementById('modalCitaService').value;
+      const date = document.getElementById('modalCitaDate').value;
+      const slot = document.getElementById('modalCitaSlot').value;
+
+      if (!email) {
+        alert('Por favor introduce un email para el cliente.');
+        return;
+      }
+
+      const subject = `Confirmación Cita Taller Orero Motorcycles - Ref: ${ref}`;
+      const body = `Estimado/a ${name},\n\nLe confirmamos su cita en el taller de Orero Motorcycles en Calle San Agustín 18, Orihuela.\n\nReferencia: ${ref}\nVehículo: ${moto}\nServicio: ${service}\nFecha: ${date}\nTurno: ${slot}\nTeléfono de recepción: 966 74 01 20\n\nQuedamos a su entera disposición.\nEquipo Orero Motorcycles`;
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function printModalWorkOrder() {
+      const ref = activeModalCitaRef;
+      const name = document.getElementById('modalCitaName').value.trim();
+      const phone = document.getElementById('modalCitaPhone').value.trim();
+      const email = document.getElementById('modalCitaEmail').value.trim();
+      const moto = document.getElementById('modalCitaMoto').value.trim();
+      const service = document.getElementById('modalCitaService').value;
+      const date = document.getElementById('modalCitaDate').value;
+      const slot = document.getElementById('modalCitaSlot').value;
+      const notes = document.getElementById('modalCitaNotes').value.trim();
+      const internalNotes = document.getElementById('modalCitaInternalNotes').value.trim();
+
+      const printHtml = `
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="utf-8">
+          <title>Orden de Trabajo Taller - ${ref}</title>
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; padding: 30px; color: #111; max-width: 780px; margin: 0 auto; background: #fff; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #ef233c; padding-bottom: 12px; margin-bottom: 20px; }
+            .brand { font-size: 22px; font-weight: 900; }
+            .brand span { color: #ef233c; }
+            .box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 8px; margin-bottom: 16px; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+            .field-label { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; }
+            .field-val { font-size: 14px; font-weight: 700; }
+            .checklist { margin: 16px 0; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; }
+            .checklist-item { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 13px; }
+            .chk { width: 16px; height: 16px; border: 2px solid #334155; display: inline-block; }
+            .sign-area { display: flex; justify-content: space-between; margin-top: 40px; }
+            .sign-box { border-top: 1px solid #94a3b8; width: 45%; text-align: center; padding-top: 8px; font-size: 12px; }
+            @media print { .btn-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div style="text-align:right; margin-bottom:14px;" class="btn-print">
+            <button onclick="window.print()" style="background:#ef233c; color:#fff; border:none; padding:8px 16px; font-weight:700; border-radius:6px; cursor:pointer;">🖨️ Imprimir Hoja de Taller</button>
+          </div>
+          <div class="header">
+            <div>
+              <div class="brand">ORERO <span>MOTORCYCLES</span></div>
+              <div style="font-size:12px; color:#64748b;">Calle San Agustín 18, Orihuela · Tel. 966 74 01 20</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px; color:#64748b;">ORDEN DE TALLER</div>
+              <div style="font-size:18px; font-weight:900; color:#ef233c; font-family:monospace;">${ref}</div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="grid">
+              <div><div class="field-label">Cliente</div><div class="field-val">${name}</div></div>
+              <div><div class="field-label">Teléfono</div><div class="field-val">${phone}</div></div>
+              <div><div class="field-label">Email</div><div class="field-val">${email || 'No facilitado'}</div></div>
+              <div><div class="field-label">Moto / Matrícula</div><div class="field-val">${moto}</div></div>
+              <div><div class="field-label">Servicio Solicitado</div><div class="field-val" style="color:#b91c1c;">${service}</div></div>
+              <div><div class="field-label">Fecha / Turno Asignado</div><div class="field-val">${date} (${slot})</div></div>
+            </div>
+          </div>
+
+          ${notes ? `<div class="box"><strong>Síntomas / Petición del Cliente:</strong><br>${notes}</div>` : ''}
+
+          <div class="box" style="background:#fef2f2; border-color:#fecaca;">
+            <strong style="color:#991b1b;">Diagnóstico & Notas Internas de Mecánica:</strong><br>
+            ${internalNotes || 'Pendiente de diagnosis técnica por mecánico receptor.'}
+          </div>
+
+          <div class="checklist">
+            <strong>Checklist de Recepción en Calle San Agustín 18:</strong>
+            <div class="checklist-item"><span class="chk"></span> Llaves del vehículo entregadas</div>
+            <div class="checklist-item"><span class="chk"></span> Ficha técnica y permiso de circulación comprobados</div>
+            <div class="checklist-item"><span class="chk"></span> Nivel de combustible y estado de carrocería verificado</div>
+            <div class="checklist-item"><span class="chk"></span> Presupuesto aceptado verbal / escrito</div>
+          </div>
+
+          <div class="sign-area">
+            <div class="sign-box">Firma del Cliente Receptor</div>
+            <div class="sign-box">Firma Mecánico Responsable (Orero)</div>
+          </div>
+        </body>
+        </html>
+      `;
+      const w = window.open('', '_blank', 'width=800,height=900');
+      if (w) {
+        w.document.write(printHtml);
+        w.document.close();
+      }
+    }
+
+    function deleteModalCita() {
+      if (!activeModalCitaRef) return;
+      if (!confirm(`¿Eliminar definitivamente la cita ${activeModalCitaRef}?`)) return;
+      deleteCita(activeModalCitaRef);
+      closeAdminModalDirect();
     }
 
     function promptNewCita() {
@@ -1520,7 +2550,8 @@
       if (!name) return;
       const phone = prompt('Teléfono del cliente:');
       if (!phone) return;
-      const moto = prompt('Moto del cliente:', 'Yamaha MT-07');
+      const email = prompt('Email del cliente (opcional):', '') || '';
+      const moto = prompt('Moto del cliente (marca, modelo y matrícula):', 'Yamaha MT-07 - 1234-LMN');
       const service = prompt('Servicio solicitado:', 'Revisión Oficial 60 Puntos');
       const date = prompt('Fecha (AAAA-MM-DD):', new Date().toISOString().split('T')[0]);
 
@@ -1530,40 +2561,219 @@
         ref: newRef,
         name,
         phone,
+        email,
         moto,
         service,
         date,
         slot: "Mañana (09:30 - 13:30)",
-        status: "confirmada"
+        status: "confirmada",
+        notes: "Cita concertada por teléfono.",
+        internalNotes: ""
       });
       saveCitas(citas);
+      alert(`Cita ${newRef} añadida con éxito.`);
     }
 
     function exportCitasCSV() {
       const citas = getStoredCitas();
-      let csv = "Referencia,Cliente,Telefono,Vehiculo,Servicio,Fecha,Franja,Estado\n";
+      let csv = "Referencia,Cliente,Telefono,Email,Vehiculo,Servicio,Fecha,Franja,Estado,Observaciones,NotasTaller\n";
       citas.forEach(c => {
-        csv += `"${c.ref}","${c.name}","${c.phone}","${c.moto}","${c.service}","${c.date}","${c.slot}","${c.status}"\n`;
+        csv += `"${c.ref}","${c.name}","${c.phone}","${c.email || ''}","${c.moto}","${c.service}","${c.date}","${c.slot}","${c.status}","${(c.notes||'').replace(/"/g, '""')}","${(c.internalNotes||'').replace(/"/g, '""')}"\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Citas_Orero_${new Date().toISOString().split('T')[0]}.csv`;
+      a.download = `Citas_Orero_Motorcycles_${new Date().toISOString().split('T')[0]}.csv`;
       a.click();
     }
 
-    function switchTab(tab, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // ══════════════════════════════════════════════════════════
+    // GESTIÓN DE TASACIONES & INTERMEDIACIÓN
+    // ══════════════════════════════════════════════════════════
+    function getStoredTasaciones() {
+      let tas = [];
+      try {
+        const local = localStorage.getItem('orero_tasaciones');
+        if (local) tas = JSON.parse(local);
+      } catch (e) {}
 
-      document.getElementById('tabStock').style.display = tab === 'stock' ? 'block' : 'none';
-      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
-      document.getElementById('tabTaller').style.display = tab === 'taller' ? 'block' : 'none';
+      const set = new Set(tas.map(t => t.ref));
+      DEFAULT_TASACIONES.forEach(d => {
+        if (!set.has(d.ref)) tas.push(d);
+      });
+      return tas;
     }
 
-    // Init
+    function saveTasaciones(tas) {
+      localStorage.setItem('orero_tasaciones', JSON.stringify(tas));
+      renderTasaciones();
+    }
+
+    function renderTasaciones() {
+      const tas = getStoredTasaciones();
+      const countEl = document.getElementById('tasacionesTabCount');
+      if (countEl) countEl.textContent = tas.length;
+
+      const tbody = document.getElementById('tasacionesTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      tas.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem;">${t.ref}</td>
+          <td>
+            <div style="font-weight:700; color:#fff;">${t.name}</div>
+            <div style="font-size:0.8rem; color:#93c5fd;">📞 ${t.phone}</div>
+          </td>
+          <td>
+            <div style="font-weight:700; color:#e2e8f0;">${t.moto}</div>
+            ${t.notes ? `<div style="font-size:0.75rem; color:#94a3b8;">${t.notes}</div>` : ''}
+          </td>
+          <td>${t.year} · ${t.km}</td>
+          <td><strong style="color:#fbbf24; font-size:0.95rem;">${t.offer}</strong></td>
+          <td>
+            <select class="status-select status-sel-${t.status === 'aceptada' ? 'confirmada' : (t.status === 'pendiente' ? 'pendiente' : 'finalizada')}" onchange="updateTasacionStatus('${t.ref}', this.value)">
+              <option value="pendiente" ${t.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente de Tasar</option>
+              <option value="oferta_enviada" ${t.status === 'oferta_enviada' ? 'selected' : ''}>📨 Oferta Enviada</option>
+              <option value="aceptada" ${t.status === 'aceptada' ? 'selected' : ''}>✅ Aceptada / En Tienda</option>
+              <option value="descartada" ${t.status === 'descartada' ? 'selected' : ''}>❌ Descartada</option>
+            </select>
+          </td>
+          <td style="text-align:right;">
+            <button class="btn-action-icon btn-action-wa" onclick="sendTasacionWhatsApp('${t.ref}')">
+              💬 Oferta WhatsApp
+            </button>
+            <button class="btn-action-icon btn-prod-delete" style="margin-left:4px;" onclick="deleteTasacion('${t.ref}')">
+              🗑️
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateTasacionStatus(ref, newStatus) {
+      const tas = getStoredTasaciones();
+      const item = tas.find(t => t.ref === ref);
+      if (!item) return;
+      item.status = newStatus;
+      saveTasaciones(tas);
+    }
+
+    function sendTasacionWhatsApp(ref) {
+      const tas = getStoredTasaciones();
+      const t = tas.find(x => x.ref === ref);
+      if (!t) return;
+
+      const cleanPhone = (t.phone || '').replace(/\D/g, '');
+      const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
+
+      const msg = `¡Hola ${t.name}! Te escribimos desde Orero Motorcycles en Orihuela.\n\n` +
+        `En relación a tu valoración para ${t.moto} (${t.year}, ${t.km}), hemos preparado una propuesta preliminar de tasación / gestión de venta de *${t.offer}*.\n\n` +
+        `Si te encaja, puedes traerla a Calle San Agustín 18 para revisarla físicamente y cerrar el acuerdo. ¿Te viene bien pasar esta semana?`;
+
+      window.open(`https://wa.me/${phoneParam}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function deleteTasacion(ref) {
+      if (!confirm(`¿Eliminar la tasación ${ref}?`)) return;
+      let tas = getStoredTasaciones();
+      tas = tas.filter(t => t.ref !== ref);
+      saveTasaciones(tas);
+    }
+
+    function promptNewTasacion() {
+      const name = prompt('Nombre del cliente:');
+      if (!name) return;
+      const phone = prompt('Teléfono del cliente:');
+      if (!phone) return;
+      const moto = prompt('Moto a vender / tasar (marca y modelo):', 'Honda Hornet 750');
+      const year = prompt('Año:', '2023');
+      const km = prompt('Kilómetros:', '6.500 km');
+      const offer = prompt('Valoración estimada (€):', '5.200 €');
+
+      const newRef = "ORERO-TAS-" + Math.floor(1000 + Math.random() * 9000);
+      const tas = getStoredTasaciones();
+      tas.unshift({
+        ref: newRef,
+        name,
+        phone,
+        moto,
+        year,
+        km,
+        offer,
+        status: "pendiente",
+        notes: "Registrada manualmente desde el panel de control."
+      });
+      saveTasaciones(tas);
+      alert(`Tasación ${newRef} creada con éxito.`);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // AJUSTES, BACKUP Y RESTAURACIÓN
+    // ══════════════════════════════════════════════════════════
+    function saveAdminSettings() {
+      const email = document.getElementById('settingWorkshopEmail').value.trim();
+      const phone = document.getElementById('settingWorkshopPhone').value.trim();
+      localStorage.setItem('orero_workshop_email', email);
+      localStorage.setItem('orero_workshop_phone', phone);
+      alert('¡Configuración de notificaciones guardada con éxito!');
+    }
+
+    function backupAllDataJSON() {
+      const backup = {
+        exportedAt: new Date().toISOString(),
+        appointments: getStoredCitas(),
+        tasaciones: getStoredTasaciones(),
+        products: getAllProducts()
+      };
+      const jsonStr = JSON.stringify(backup, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Backup_Orero_Motorcycles_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+    }
+
+    function resetDefaultSeedData() {
+      if (!confirm('¿Restaurar los datos de citas y tasaciones de ejemplo?')) return;
+      localStorage.setItem('orero_appointments', JSON.stringify(DEFAULT_CITAS));
+      localStorage.setItem('orero_tasaciones', JSON.stringify(DEFAULT_TASACIONES));
+      renderCitas();
+      renderTasaciones();
+      alert('Datos restaurados correctamente.');
+    }
+
+    // Navegación de pestañas
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
+      document.getElementById('tabStock').style.display = tab === 'stock' ? 'block' : 'none';
+      document.getElementById('tabTasaciones').style.display = tab === 'tasaciones' ? 'block' : 'none';
+      document.getElementById('tabTaller').style.display = tab === 'taller' ? 'block' : 'none';
+      document.getElementById('tabAjustes').style.display = tab === 'ajustes' ? 'block' : 'none';
+
+      if (tab === 'tasaciones') renderTasaciones();
+      if (tab === 'citas') renderCitas();
+    }
+
+    // Comprobación de sonido guardado
+    function initSoundButton() {
+      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
+      const btn = document.getElementById('btnSoundToggle');
+      if (btn) btn.textContent = isMuted ? '🔕 Sonido: OFF' : '🔔 Sonido: ON';
+    }
+
+    // Inicialización al cargar el panel
     checkAuth();
+    initSoundButton();
+    renderTasaciones();
+    startCitasAutoSync();
   </script>
 </body>
 </html>

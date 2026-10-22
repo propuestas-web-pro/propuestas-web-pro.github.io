@@ -316,15 +316,16 @@
       transition: background 0.3s ease, border-color 0.3s ease;
     }
     .header-inner {
-      max-width: 1440px;
+      max-width: 1480px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: clamp(16px, 2.5vw, 40px);
     }
     @media (min-width: 768px) {
-      .header-inner { padding: 18px 36px; }
+      .header-inner { padding: 16px clamp(24px, 3vw, 42px); }
     }
 
     .header-brand {
@@ -333,20 +334,23 @@
       gap: 12px;
       text-decoration: none;
       color: #fff;
+      flex-shrink: 0;
+      margin-right: clamp(16px, 2.2vw, 36px);
     }
     .header-logo-icon {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: var(--red-muted);
       border: 1px solid var(--border-red);
       border-radius: 8px;
+      flex-shrink: 0;
     }
     .header-logo-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 19px;
+      height: 19px;
       fill: var(--red);
     }
     .header-brand-title {
@@ -356,6 +360,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1;
+      white-space: nowrap;
     }
     .header-brand-title span {
       color: var(--red);
@@ -364,19 +369,38 @@
     .header-nav-links {
       display: none;
       align-items: center;
-      gap: 32px;
+      gap: clamp(12px, 1.6vw, 24px);
+      flex: 1;
+      justify-content: center;
     }
-    @media (min-width: 1024px) {
+    @media (min-width: 1040px) {
       .header-nav-links { display: flex; }
+    }
+    @media (min-width: 1040px) and (max-width: 1240px) {
+      .header-nav-links {
+        gap: 12px;
+      }
+      .nav-link {
+        font-size: 0.8rem !important;
+      }
+      .header-phone-link {
+        padding: 6px 12px !important;
+        font-size: 0.78rem !important;
+      }
+      .btn-header-cta {
+        padding: 8px 14px !important;
+        font-size: 0.78rem !important;
+      }
     }
     .nav-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: clamp(0.82rem, 0.9vw, 0.88rem);
       font-weight: 600;
       letter-spacing: 0.02em;
       transition: color 0.2s ease;
       position: relative;
+      white-space: nowrap;
     }
     .nav-link:hover {
       color: #fff;
@@ -398,7 +422,8 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex-shrink: 0;
     }
     .header-phone-link {
       display: none;
@@ -514,11 +539,15 @@
     }
     @media (max-width: 768px) {
       .hero-stage {
-        height: auto;
-        min-height: 100vh;
-        padding-top: 84px;
-        padding-bottom: 24px;
-        justify-content: flex-end;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding-top: 72px !important;
+        padding-bottom: 28px !important;
+        background: #07080b !important;
+        overflow: visible !important;
       }
     }
 
@@ -561,15 +590,59 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 42%;
+      object-position: center 38%;
       transform: scale(1.02);
       filter: brightness(0.92) contrast(1.06);
       transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .hero-photo-badge {
+      display: none;
+    }
     @media (max-width: 768px) {
+      .hero-stage::before, .hero-stage::after {
+        display: none !important;
+      }
+      .hero-photo-layer {
+        position: relative !important;
+        width: calc(100% - 24px) !important;
+        height: 250px !important;
+        margin: 10px 12px 14px !important;
+        border-radius: 20px !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 24px rgba(239, 35, 60, 0.15) !important;
+        background: #0d1117 !important;
+        cursor: pointer !important;
+        z-index: 2 !important;
+      }
       .hero-photo-img {
-        object-position: 72% 35%;
-        filter: brightness(0.82) contrast(1.1);
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: 55% 68% !important;
+        transform: none !important;
+        animation: none !important;
+        filter: brightness(0.96) contrast(1.04) !important;
+      }
+      .hero-photo-badge {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        position: absolute !important;
+        bottom: 10px !important;
+        left: 10px !important;
+        z-index: 5 !important;
+        background: rgba(7, 8, 11, 0.78) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 9999px !important;
+        padding: 5px 12px !important;
+        color: #fff !important;
+        font-size: 0.72rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.02em !important;
+        pointer-events: none !important;
       }
     }
 
@@ -582,19 +655,14 @@
       background: 
         radial-gradient(circle at 75% 45%, rgba(239, 35, 60, 0.06) 0%, transparent 55%),
         linear-gradient(180deg, rgba(7, 8, 11, 0.75) 0%, rgba(7, 8, 11, 0.05) 20%, rgba(7, 8, 11, 0.15) 60%, rgba(7, 8, 11, 0.95) 92%, #07080b 100%),
-        linear-gradient(90deg, rgba(7, 8, 11, 0.92) 0%, rgba(7, 8, 11, 0.78) 38%, rgba(7, 8, 11, 0.22) 65%, rgba(7, 8, 11, 0.08) 100%);
+        linear-gradient(90deg, rgba(7, 8, 11, 0.82) 0%, rgba(7, 8, 11, 0.52) 38%, rgba(7, 8, 11, 0.12) 65%, transparent 100%);
     }
     @media (max-width: 768px) {
       .hero-vignette-overlay {
-        background: 
-          linear-gradient(180deg, rgba(7, 8, 11, 0.92) 0%, rgba(7, 8, 11, 0.84) 45%, rgba(7, 8, 11, 0.35) 75%, rgba(7, 8, 11, 0.98) 100%);
-      }
-    }
-    @media (max-width: 768px) {
-      .hero-vignette-overlay {
-        background: 
-          radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.12) 0%, transparent 60%),
-          linear-gradient(180deg, rgba(7, 8, 11, 0.75) 0%, rgba(7, 8, 11, 0.15) 28%, rgba(7, 8, 11, 0.88) 60%, #07080b 100%);
+        position: absolute !important;
+        inset: 0 !important;
+        background: linear-gradient(180deg, rgba(7, 8, 11, 0.15) 0%, transparent 45%, rgba(7, 8, 11, 0.65) 100%) !important;
+        pointer-events: none !important;
       }
     }
 
@@ -613,11 +681,16 @@
     }
     @media (max-width: 768px) {
       .hero-overlay-content {
-        padding: 20px 24px 32px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        background: linear-gradient(180deg, rgba(7, 8, 11, 0) 0%, rgba(7, 8, 11, 0.95) 20%, #07080b 100%);
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px !important;
+        margin: 0 !important;
+        background: transparent !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
       }
     }
 
@@ -1223,6 +1296,15 @@
     }
     @media (max-width: 640px) {
       .form-grid-2 { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+    }
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 860px) {
+      .form-grid-3 { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
     }
 
     .form-group {
@@ -2046,6 +2128,217 @@
       color: var(--red);
     }
 
+    /* ══════════════════════════════════════════════════════════════════
+       ELEVATED BOOKING DATE PICKER & QUICK CHIPS
+       ══════════════════════════════════════════════════════════════════ */
+    .booking-date-wrapper {
+      background: rgba(13, 18, 30, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      margin-bottom: 22px;
+    }
+    .date-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .date-schedule-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .schedule-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseGreenDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseGreenDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Quick Date Chips Grid */
+    .quick-dates-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 680px) {
+      .quick-dates-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .qdate-chip {
+      background: #090c14;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .qdate-chip:hover {
+      background: #121929;
+      border-color: rgba(239, 35, 60, 0.4);
+      transform: translateY(-2px);
+    }
+    .qdate-chip.active {
+      background: rgba(239, 35, 60, 0.14);
+      border-color: var(--red);
+      box-shadow: 0 0 20px rgba(239, 35, 60, 0.3), inset 0 0 0 1px rgba(239, 35, 60, 0.4);
+    }
+    .qdate-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+    }
+    .qdate-chip.active .qdate-tag {
+      color: #fca5a5;
+    }
+    .qdate-main {
+      font-family: var(--font-heading);
+      font-size: 0.96rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .qdate-chip.active .qdate-main {
+      color: #ffffff;
+    }
+    .qdate-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .qdate-chip.active .qdate-sub {
+      color: #e2e8f0;
+    }
+
+    /* Date Picker Input Row */
+    .date-picker-custom-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .date-picker-icon-prefix {
+      position: absolute;
+      left: 15px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .date-luxury-input {
+      width: 100%;
+      background: #070a12 !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 12px !important;
+      padding: 13px 18px 13px 46px !important;
+      color: #ffffff !important;
+      font-family: var(--font-body) !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      color-scheme: dark;
+      letter-spacing: 0.03em;
+      transition: all 0.2s ease;
+    }
+    .date-luxury-input:focus {
+      outline: none;
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.28) !important;
+      background: #0a0e18 !important;
+    }
+    .date-picker-action-hint {
+      position: absolute;
+      right: 16px;
+      pointer-events: none;
+      font-size: 0.74rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    @media (max-width: 560px) {
+      .date-picker-action-hint { display: none; }
+    }
+
+    /* Dynamic Date Status Card */
+    .date-status-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      transition: all 0.3s ease;
+    }
+    .date-status-card.status-closed {
+      background: rgba(239, 68, 68, 0.09);
+      border-color: rgba(239, 68, 68, 0.38);
+    }
+    .date-status-card.status-saturday {
+      background: rgba(245, 158, 11, 0.09);
+      border-color: rgba(245, 158, 11, 0.38);
+    }
+    .date-status-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .date-status-info {
+      flex: 1;
+    }
+    .date-status-primary {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .date-status-secondary {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+
+    /* Service card icon transitions */
+    .service-icon-box svg {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+    }
+    .service-card:hover .service-icon-box svg {
+      transform: scale(1.12);
+    }
+
     /* Floating Direct Call Button */
     .floating-call-btn {
       position: fixed;
@@ -2436,9 +2729,135 @@
       box-shadow: 0 4px 14px rgba(239, 35, 60, 0.4);
     }
 
-  </style>
-</head>
+  
+    /* Unified Instalaciones & Quiénes Somos Styles */
+    .store-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .store-photo-card {
+      background: #0d1118;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .store-photo-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(239, 35, 60, 0.45) !important;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6) !important;
+    }
+    .store-photo-media {
+      width: 100%;
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .store-photo-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .store-photo-card:hover .store-photo-media img {
+      transform: scale(1.06);
+    }
+    .store-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(13, 17, 24, 0.95) 100%);
+      pointer-events: none;
+    }
+    .store-photo-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 11px;
+      border-radius: 6px;
+      color: #fff;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .badge-expo { background: rgba(239, 35, 60, 0.9); }
+    .badge-taller { background: rgba(16, 185, 129, 0.9); }
+    .badge-boutique { background: rgba(59, 130, 246, 0.9); }
+    
+    .store-photo-body {
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .store-photo-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .store-photo-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+    @media (max-width: 960px) {
+      .store-photos-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+      }
+      .store-photo-media {
+        height: 210px !important;
+      }
+    }
 
+  
+    /* Luxury Asymmetrical Bento Styles */
+    .bento-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(239, 35, 60, 0.45) !important;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 25px rgba(239, 35, 60, 0.15) !important;
+    }
+    .bento-card:hover .bento-zoom-img {
+      transform: scale(1.05);
+    }
+    @media (max-width: 992px) {
+      .editorial-header-split {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+      .bento-instalaciones-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .bento-card-main {
+        min-height: 480px !important;
+      }
+      .bento-card-main h3 {
+        font-size: 1.35rem !important;
+      }
+      .bento-card {
+        height: 270px !important;
+      }
+      .bento-card h3 {
+        font-size: 1.12rem !important;
+      }
+      .bento-sublabel-hide-mobile {
+        display: none !important;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
@@ -2497,8 +2916,12 @@
        ══════════════════════════════════════════════════════════ -->
   <section class="hero-stage" id="inicio">
     <!-- Cinematic Flagship Photography Background Layer -->
-    <div class="hero-photo-layer">
-      <img src="assets/hero_real_facebook_owner.jpg" alt="Orero Motorcycles Calle San Agustín en Orihuela con la Catedral de fondo" class="hero-photo-img" loading="eager" fetchpriority="high">
+    <div class="hero-photo-layer" onclick="if(typeof openStorePhotoModal === 'function') openStorePhotoModal('assets/hero_real_calle_san_agustin_perspective_4k.jpg', 'Orero Motorcycles · Calle San Agustín 18, Orihuela', 'Concesionario multimarca y taller oficial en Orihuela.')" title="Toca para ampliar foto en alta definición">
+      <img src="assets/hero_real_calle_san_agustin_perspective_4k.jpg" alt="Orero Motorcycles en Calle San Agustín 18, Orihuela - Concesionario Oficial y Motos en Acera en 4K" class="hero-photo-img" loading="eager" fetchpriority="high">
+      <div class="hero-photo-badge">
+        <span class="hero-badge-pin">📍</span>
+        <span class="hero-badge-text">Calle San Agustín 18, Orihuela</span>
+      </div>
     </div>
 
     <!-- Dramatic Vignette & Ambient Light Overlays -->
@@ -2543,184 +2966,380 @@
         </div>
       </div>
     </div>
-  </section>
+  
+        <!-- Hero Initialization -->
+    <script>
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const heroParam = params.get('hero');
+        if (heroParam) {
+          const heroImg = document.querySelector('.hero-photo-img');
+          if (heroImg) heroImg.src = heroParam;
+        }
+      })();
+    </script>
+</section>
 
 
       <!-- ══════════════════════════════════════════════════════════
        SECCIÓN B: QUIÉNES SOMOS & NUESTRA HISTORIA EN ORIHUELA
        ══════════════════════════════════════════════════════════ -->
-  <section class="section-wrap" id="quienes-somos" style="background:#07090e; border-bottom: 1px solid var(--border);">
+    <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN B: QUIÉNES SOMOS & NUESTRAS INSTALACIONES
+       ══════════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════
+       SECCIÓN B: QUIÉNES SOMOS & ESPACIO ORERO (EDITORIAL BENTO)
+       ══════════════════════════════════════════════════════════ -->
+  <section class="section-wrap" id="quienes-somos" style="
+    position: relative;
+    background: radial-gradient(circle at 15% 25%, rgba(239, 35, 60, 0.08) 0%, transparent 55%), radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.05) 0%, transparent 55%), #07090e;
+    border-bottom: 1px solid var(--border);
+    padding: 85px 0 95px;
+    overflow: hidden;
+  ">
     <div class="container">
-      <div class="section-header-center">
-        <div class="eyebrow-tag">
-          <span class="dot"></span>
-          <span>Nuestra Historia en Orihuela · Desde Diciembre 2015</span>
+      
+      <!-- Encabezado Editorial Asimétrico con Alta Jerarquía Visual -->
+      <div class="editorial-header-split" style="
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 48px;
+      ">
+        <div>
+          <div class="eyebrow-tag" style="margin-bottom: 16px; background: rgba(239,35,60,0.12); border: 1px solid rgba(239,35,60,0.3); color: var(--red);">
+            <span class="dot"></span>
+            <span>CALLE SAN AGUSTÍN 18 · ORIHUELA · DESDE DICIEMBRE 2015</span>
+          </div>
+          <h2 style="
+            font-size: clamp(2.1rem, 3.8vw, 3.1rem);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            color: #fff;
+            margin-bottom: 18px;
+          ">
+            MÁS QUE UN CONCESIONARIO:<br>
+            <span style="color: var(--red); text-shadow: 0 0 30px rgba(239,35,60,0.35);">PASIÓN Y CRITERIO MECÁNICO</span>
+          </h2>
+          <p style="
+            font-size: 1.05rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0;
+          ">
+            En pleno centro histórico de Orihuela desde diciembre de 2015. Seleccionamos cada motocicleta con rigor técnico de taller propio y atención cercana, de apasionado a apasionado de las dos ruedas.
+          </p>
         </div>
-        <h2 class="section-title">QUIÉNES SOMOS: <span class="text-red">PASIÓN MOTERA REAL</span></h2>
-        <p class="section-lead">
-          Más de una década de experiencia mecánica, rigor técnico y cercanía con cada motorista en Orihuela y la comarca de la Vega Baja.
-        </p>
+
+        <!-- Columna Derecha: Métricas de Autoridad Machined Double-Bezel -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(14, 18, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 20px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+          ">
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--red); font-family: var(--font-heading); line-height: 1;">2015</div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: #fff;">Fundado en Orihuela</div>
+              <div style="font-size: 0.78rem; color: #64748b;">Más de 9 años de arraigo y servicio continuado en la Vega Baja.</div>
+            </div>
+          </div>
+
+          <div style="
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(14, 18, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 20px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+          ">
+            <div style="font-size: 1.8rem; font-weight: 900; color: var(--green); font-family: var(--font-heading); line-height: 1;">100%</div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: #fff;">Taller Mecánico Propio</div>
+              <div style="font-size: 0.78rem; color: #64748b;">Diagnosis electrónica multimarca, elevadores y mantenimiento oficial.</div>
+            </div>
+          </div>
+
+          <div style="
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(14, 18, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 20px;
+            border-radius: 14px;
+            backdrop-filter: blur(12px);
+          ">
+            <div style="font-size: 1.8rem; font-weight: 900; color: #38bdf8; font-family: var(--font-heading); line-height: 1;">60 Pts</div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: #fff;">Certificación Previa</div>
+              <div style="font-size: 0.78rem; color: #64748b;">Examen exhaustivo de seguridad antes de la entrega de cada moto.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Pestañas Interactivas Dinámicas -->
-      <div class="about-nav-tabs" style="justify-content:center; margin-bottom:32px;">
-        <button class="about-tab-btn active" id="tabBtnHistoria" onclick="switchAboutTab('historia')">
-          <span>🏛️ Nuestra Historia (2015 - 2026)</span>
-        </button>
-        <button class="about-tab-btn" id="tabBtnTallerPropio" onclick="switchAboutTab('taller')">
-          <span>🛠️ Taller Propio & Diagnosis</span>
-        </button>
-        <button class="about-tab-btn" id="tabBtnFilosofia" onclick="switchAboutTab('filosofia')">
-          <span>🤝 Trato Cercano & Honestidad</span>
-        </button>
-      </div>
+      <!-- MASTER ASYMMETRICAL BENTO GRID: 3 INSTALACIONES REALES -->
+      <div class="bento-instalaciones-grid" style="
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 24px;
+      ">
+        
+        <!-- BENTO CARD 1 (MONUMENTAL SHOWROOM CON ARCOS DE PIEDRA) -->
+        <div class="bento-card bento-card-main" onclick="openStorePhotoModal('assets/clean_showroom_orero.jpg', 'Showroom Interior Multimarca', 'Exposición con arcos tradicionales de piedra y selección rigurosa de motocicletas de ocasión y nuevas en Calle San Agustín 18.')" style="
+          position: relative;
+          background: #0b0e14;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 24px;
+          overflow: hidden;
+          cursor: pointer;
+          min-height: 520px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        ">
+          <!-- Background image layer with zoom on hover -->
+          <div style="position: absolute; inset: 0; overflow: hidden; background: #000;">
+            <img src="assets/clean_showroom_orero.jpg" alt="Showroom interior de motos con arcos de piedra en Orihuela" class="bento-zoom-img" style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center 40%;
+              display: block;
+              transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            ">
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,9,14,0.15) 0%, rgba(7,9,14,0.4) 40%, rgba(7,9,14,0.96) 92%);"></div>
+          </div>
 
-      <!-- Bloque Contenido con Pestañas Dinámicas -->
-      <div class="about-grid" style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: center; margin-bottom: 48px;">
-        <div class="about-text-col">
+          <!-- Top Badge Bar -->
+          <div style="position: absolute; top: 22px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: center; z-index: 2;">
+            <span style="
+              background: rgba(239, 35, 60, 0.92);
+              color: #fff;
+              font-size: 0.74rem;
+              font-weight: 800;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              padding: 6px 14px;
+              border-radius: 8px;
+              backdrop-filter: blur(8px);
+              box-shadow: 0 4px 14px rgba(239,35,60,0.4);
+            ">
+              🏛️ Exposición & Showroom
+            </span>
+            <span style="
+              background: rgba(0, 0, 0, 0.65);
+              border: 1px solid rgba(255, 255, 255, 0.18);
+              color: #fff;
+              font-size: 0.74rem;
+              font-weight: 700;
+              padding: 5px 12px;
+              border-radius: 20px;
+              backdrop-filter: blur(6px);
+            ">
+              🔍 Ver en Grande ↗
+            </span>
+          </div>
+
+          <!-- Bottom Editorial Content -->
+          <div style="position: relative; z-index: 2; padding: 32px 30px;">
+            <div class="bento-sublabel-hide-mobile" style="color: var(--red); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">
+              Instalación Principal · Calle San Agustín 18
+            </div>
+            <h3 style="
+              font-size: 1.65rem;
+              font-weight: 900;
+              color: #fff;
+              line-height: 1.25;
+              margin-bottom: 10px;
+              letter-spacing: -0.015em;
+            ">
+              Showroom con Arcos Históricos de Piedra
+            </h3>
+            <p style="
+              font-size: 0.92rem;
+              color: #cbd5e1;
+              line-height: 1.6;
+              margin: 0;
+              max-width: 520px;
+            ">
+              Un espacio con identidad propia en el corazón de Orihuela. Más de 18 motocicletas seleccionadas en exposición permanente bajo arcos rústicos de piedra, con asesoramiento mecánico directo y sin prisas.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: 2 STACKED ARCHITECTURAL CARDS -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
           
-          <!-- Panel 1: Historia -->
-          <div class="about-tab-panel active" id="panelHistoria">
-            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(239,35,60,0.12); border:1px solid rgba(239,35,60,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
-              <span style="color:var(--red); font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Fundado en Diciembre de 2015</span>
+          <!-- BENTO CARD 2: TALLER MECÁNICO -->
+          <div class="bento-card" onclick="openStorePhotoModal('assets/real_taller_master.jpg', 'Taller Mecánico Propio & Pre-ITV', 'Banco de diagnosis electrónica, cambio de neumáticos, frenos, suspensiones y revisiones de 60 puntos de seguridad.')" style="
+            position: relative;
+            background: #0b0e14;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 248px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+          ">
+            <div style="position: absolute; inset: 0; overflow: hidden; background: #000;">
+              <img src="assets/real_taller_master.jpg" alt="Taller mecánico oficial y banco de diagnosis en Orihuela" class="bento-zoom-img" style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 30%;
+                display: block;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+              ">
+              <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,9,14,0.1) 0%, rgba(7,9,14,0.4) 30%, rgba(7,9,14,0.95) 92%);"></div>
             </div>
-            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
-              Tu punto de encuentro motero en <span class="text-red">Calle San Agustín, 18</span>.
-            </h3>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
-              En <strong>diciembre de 2015</strong>, abrimos las puertas de <strong>Orero Motorcycles</strong> en pleno centro histórico de Orihuela con una vocación innegociable: crear un concesionario y taller diferente, donde cada cliente recibe un trato cercano, honesto y de apasionado a apasionado de las dos ruedas.
-            </p>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
-              A lo largo de más de 9 años hemos seleccionado cuidadosamente cada vehículo, consolidándonos como el concesionario de ocasión de referencia en toda la comarca de la Vega Baja.
-            </p>
+
+            <div style="position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 2;">
+              <span style="
+                background: rgba(16, 185, 129, 0.92);
+                color: #fff;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                padding: 4px 12px;
+                border-radius: 6px;
+                backdrop-filter: blur(8px);
+                box-shadow: 0 4px 12px rgba(16,185,129,0.35);
+              ">
+                🛠️ Taller Propio Multimarca
+              </span>
+              <span style="
+                background: rgba(0, 0, 0, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                color: #fff;
+                font-size: 0.72rem;
+                font-weight: 700;
+                padding: 4px 10px;
+                border-radius: 20px;
+              ">
+                🔍 Ampliar ↗
+              </span>
+            </div>
+
+            <div style="position: relative; z-index: 2; padding: 22px 24px;">
+              <h3 style="
+                font-size: 1.22rem;
+                font-weight: 800;
+                color: #fff;
+                line-height: 1.25;
+                margin-bottom: 6px;
+              ">
+                Taller Oficial, Diagnosis & Pre-ITV
+              </h3>
+              <p style="
+                font-size: 0.83rem;
+                color: #cbd5e1;
+                line-height: 1.5;
+                margin: 0;
+              ">
+                Elevadores hidráulicos, diagnosis electrónica por ordenador, cambio de neumáticos y mantenimiento periódico de todas las marcas.
+              </p>
+            </div>
           </div>
 
-          <!-- Panel 2: Taller Propio -->
-          <div class="about-tab-panel" id="panelTaller">
-            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
-              <span style="color:#34d399; font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Servicio Mecánico Multimarca Homologado</span>
+          <!-- BENTO CARD 3: BOUTIQUE TÉCNICA -->
+          <div class="bento-card" onclick="openStorePhotoModal('assets/clean_cascos_entrega_4k.jpg', 'Boutique Técnica & Cascos ECE 22.06', 'Cascos integrales y modulares homologados LS2 y MT Helmets, chaquetas técnicas, guantes y entrega personalizada.')" style="
+            position: relative;
+            background: #0b0e14;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 248px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+          ">
+            <div style="position: absolute; inset: 0; overflow: hidden; background: #000;">
+              <img src="assets/clean_cascos_entrega_4k.jpg" alt="Boutique técnica oficial y cascos ECE 22.06" class="bento-zoom-img" style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 35%;
+                display: block;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+              ">
+              <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,9,14,0.1) 0%, rgba(7,9,14,0.4) 30%, rgba(7,9,14,0.95) 92%);"></div>
             </div>
-            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
-              Mecánica experta, banco de diagnosis y <span class="text-red">preparación Pre-ITV</span>.
-            </h3>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
-              Contamos con taller mecánico propio integrado en nuestras instalaciones de Calle San Agustín 18. Disponemos de elevadores hidráulicos, bancos de trabajo especializados, máquinas de diagnosis multimarca y utillaje de precisión.
-            </p>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
-              Cada moto de ocasión pasa un examen exhaustivo de <strong>60 puntos de seguridad</strong> antes de su entrega, y llevamos a cabo revisiones oficiales periódicas sin perder la garantía del fabricante.
-            </p>
+
+            <div style="position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 2;">
+              <span style="
+                background: rgba(59, 130, 246, 0.92);
+                color: #fff;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                padding: 4px 12px;
+                border-radius: 6px;
+                backdrop-filter: blur(8px);
+                box-shadow: 0 4px 12px rgba(59,130,246,0.35);
+              ">
+                🛡️ Boutique Homologada
+              </span>
+              <span style="
+                background: rgba(0, 0, 0, 0.65);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                color: #fff;
+                font-size: 0.72rem;
+                font-weight: 700;
+                padding: 4px 10px;
+                border-radius: 20px;
+              ">
+                🔍 Ampliar ↗
+              </span>
+            </div>
+
+            <div style="position: relative; z-index: 2; padding: 22px 24px;">
+              <h3 style="
+                font-size: 1.22rem;
+                font-weight: 800;
+                color: #fff;
+                line-height: 1.25;
+                margin-bottom: 6px;
+              ">
+                Boutique & Equipamiento ECE 22.06
+              </h3>
+              <p style="
+                font-size: 0.83rem;
+                color: #cbd5e1;
+                line-height: 1.5;
+                margin: 0;
+              ">
+                Cascos modulares e integrales LS2 y MT Helmets, chaquetas técnicas de cordura con protecciones y entrega llave en mano.
+              </p>
+            </div>
           </div>
 
-          <!-- Panel 3: Filosofía -->
-          <div class="about-tab-panel" id="panelFilosofia">
-            <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.3); border-radius:100px; padding:6px 14px; margin-bottom:18px;">
-              <span style="color:var(--gold); font-size:0.82rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">Compromiso & Claridad Total</span>
-            </div>
-            <h3 style="font-size:1.85rem; font-weight:900; line-height:1.25; margin-bottom:18px; color:#fff;">
-              Sin letra pequeña: <span class="text-red">hablas directamente con mecánicos</span>.
-            </h3>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:16px;">
-              En Orero no te atenderá un comercial agresivo. Aquí hablarás cara a cara con profesionales que entienden de motores, suspensiones y componentes. Te asesoramos con honestidad tanto si compras una moto de ocasión, si nos encargas su gestión de venta como intermediario o si traes tu moto a revisión.
-            </p>
-            <p style="color:var(--text-muted); font-size:1rem; line-height:1.75; margin-bottom:24px;">
-              Transparencia documental completa: informes oficiales DGT libres de cargas, kilometraje certificado por escrito e historial verificado.
-            </p>
-          </div>
-
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px;">
-            <div style="background:#0d121c; border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px;">
-              <div style="font-size:1.5rem; font-weight:900; color:var(--red); font-family:var(--font-heading); margin-bottom:4px;">Dic. 2015</div>
-              <div style="font-size:0.85rem; font-weight:700; color:#fff; margin-bottom:2px;">Fundación en Orihuela</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">Más de 9 años de servicio continuado en la Vega Baja.</div>
-            </div>
-            <div style="background:#0d121c; border:1px solid rgba(255,255,255,0.06); padding:16px; border-radius:12px;">
-              <div style="font-size:1.5rem; font-weight:900; color:var(--green); font-family:var(--font-heading); margin-bottom:4px;">100% Taller Propio</div>
-              <div style="font-size:0.85rem; font-weight:700; color:#fff; margin-bottom:2px;">Mecánica Multimarca</div>
-              <div style="font-size:0.78rem; color:var(--text-muted);">Diagnosis por ordenador, revisiones oficiales y pre-ITV.</div>
-            </div>
-          </div>
         </div>
 
-        <!-- Tarjeta Visual Principal -->
-        <div class="about-hero-card" style="position:relative; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 50px rgba(0,0,0,0.5); cursor:pointer;" onclick="openStorePhotoModal('assets/clean_showroom_orero.jpg', 'Exposición Oficial Orero Motorcycles', 'Showroom interior con arcos rústicos y selección multimarca de ocasión en Calle San Agustín 18.')">
-          <img src="assets/clean_showroom_orero.jpg" alt="Exposición real Orero Motorcycles en Calle San Agustín 18 Orihuela" style="width:100%; height:380px; object-fit:cover; display:block; transition:transform 0.4s ease;" class="hover-zoom">
-          <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(6,9,14,0.95) 100%);"></div>
-          <div style="position:absolute; bottom:20px; left:20px; right:20px;">
-            <div style="display:inline-block; background:rgba(239,35,60,0.9); color:#fff; font-size:0.75rem; font-weight:800; padding:4px 10px; border-radius:6px; margin-bottom:8px; text-transform:uppercase;">
-              📍 Exposición Real en Orihuela (Pulsa para ampliar)
-            </div>
-            <div style="color:#fff; font-weight:800; font-size:1.1rem; line-height:1.3;">Exposición y Boutique en Calle San Agustín 18</div>
-            <div style="color:var(--text-muted); font-size:0.82rem; margin-top:4px;">Motos de ocasión revisadas, boutique técnica y entrega personalizada</div>
-          </div>
-        </div>
       </div>
 
-      <!-- Galería de Fotos Reales de la Tienda con Zoom Interactivo -->
-      <div class="store-gallery-wrap" style="margin-top:20px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.06);">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:22px; flex-wrap:wrap; gap:12px;">
-          <div>
-            <span style="font-size:0.8rem; font-weight:800; text-transform:uppercase; color:var(--red); letter-spacing:0.06em;">Fotos Reales de la Tienda (Pulsa en cada una para ver en grande)</span>
-            <h3 style="font-size:1.45rem; font-weight:900; color:#fff; margin-top:4px;">CONOCE NUESTRAS INSTALACIONES EN CALLE SAN AGUSTÍN 18</h3>
-          </div>
-          <div style="font-size:0.85rem; color:var(--text-muted);">
-            📍 Horario: L-V 09:30-13:30 / 16:30-20:30 · Sábados 10:00-13:30
-          </div>
-        </div>
-
-        <div class="store-photos-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px;">
-          <!-- Foto 1: Fachada exterior -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/orero_real_local_owner_crop.jpg', 'Fachada Exterior Orero Motorcycles', 'Acceso principal en Calle San Agustín 18, Orihuela. Fachada a pie de calle con fácil aparcamiento para motos.')">
-            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
-              <img src="assets/orero_real_local_owner_crop.jpg" alt="Fachada exterior tienda Orero Motorcycles en Orihuela" style="width:100%; height:100%; object-fit:cover; object-position:center 30%;">
-              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
-            </div>
-            <div style="padding:14px;">
-              <div style="font-size:0.72rem; color:var(--red); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Fachada Exterior</div>
-              <div style="font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:4px;">Acceso Principal & Entrada</div>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Fachada a pie de calle en Calle San Agustín 18 con aparcamiento para motos.</div>
-            </div>
-          </div>
-
-          <!-- Foto 2: Showroom interior -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/clean_showroom_orero.jpg', 'Showroom Interior Multimarca', 'Exposición con arcos rústicos de piedra y más de 18 motocicletas de ocasión y nuevas seleccionadas.')">
-            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
-              <img src="assets/clean_showroom_orero.jpg" alt="Exposición interior de motos en Orero Orihuela" style="width:100%; height:100%; object-fit:cover;">
-              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
-            </div>
-            <div style="padding:14px;">
-              <div style="font-size:0.72rem; color:var(--gold); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Exposición Interior</div>
-              <div style="font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:4px;">Showroom Multimarca</div>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Exposición con arcos rústicos y más de 18 motocicletas seleccionadas en stock.</div>
-            </div>
-          </div>
-
-          <!-- Foto 3: Taller mecánico -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/real_taller_master.jpg', 'Taller Mecánico Oficial & Pre-ITV', 'Banco de diagnosis electrónica, cambio de neumáticos, frenos, suspensiones y revisiones completas.')">
-            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
-              <img src="assets/real_taller_master.jpg" alt="Taller mecánico y banco de diagnosis en Orihuela" style="width:100%; height:100%; object-fit:cover;">
-              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
-            </div>
-            <div style="padding:14px;">
-              <div style="font-size:0.72rem; color:var(--green); font-weight:800; text-transform:uppercase; margin-bottom:4px;">Servicio Técnico</div>
-              <div style="font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:4px;">Taller Mecánico & Pre-ITV</div>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Banco de diagnosis electrónica, cambio de neumáticos y mantenimiento oficial.</div>
-            </div>
-          </div>
-
-          <!-- Foto 4: Boutique y entrega -->
-          <div class="store-photo-card" style="border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); background:#0a0d14;" onclick="openStorePhotoModal('assets/clean_cascos_entrega_4k.jpg', 'Boutique Técnica Oficial & Cascos ECE 22.06', 'Cascos integrales y modulares LS2 y MT Helmets, chaquetas técnicas, guantes y entrega personalizada.')">
-            <div style="width:100%; height:200px; overflow:hidden; position:relative;">
-              <img src="assets/clean_cascos_entrega_4k.jpg" alt="Boutique técnica oficial y cascos ECE 22.06" style="width:100%; height:100%; object-fit:cover;">
-              <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:#fff; font-size:0.75rem; padding:3px 8px; border-radius:6px; backdrop-filter:blur(4px);">🔍 Ampliar</span>
-            </div>
-            <div style="padding:14px;">
-              <div style="font-size:0.72rem; color:#93c5fd; font-weight:800; text-transform:uppercase; margin-bottom:4px;">Boutique & Equipamiento</div>
-              <div style="font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:4px;">Cascos Homologados ECE 22.06</div>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Cascos modulares e integrales LS2, MT Helmets, chaquetas y guantes técnicos.</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -2749,7 +3368,7 @@
         <button class="filter-btn" onclick="filterCatalog('sport', this)">Deportivas</button>
         <button class="filter-btn" onclick="filterCatalog('naked', this)">Naked</button>
         <button class="filter-btn" onclick="filterCatalog('scooter', this)">Scooter</button>
-        <button class="filter-btn" onclick="filterCatalog('boutique', this)">🪖 Boutique & Cascos (6)</button>
+        <button class="filter-btn" onclick="filterCatalog('boutique', this)">🛡️ Boutique & Cascos (6)</button>
       </div>
 
       <!-- Grid of Real Motorcycles -->
@@ -3349,7 +3968,7 @@
             <span class="moto-brand-label">LS2 Helmets</span>
             <h3 class="moto-model-title">Strobe II Modular</h3>
             <div class="moto-specs-strip">
-              <span class="spec-item">🪖 <strong>Modular P/J</strong></span>
+              <span class="spec-item">🛡️ <strong>Modular P/J</strong></span>
               <span class="spec-item">☀️ <strong>Gafa Solar</strong></span>
             </div>
             <div class="moto-card-pricing">
@@ -3577,7 +4196,15 @@
       <div class="services-grid">
         <!-- Servicio 1 -->
         <div class="service-card">
-          <div class="service-icon-box">🏍️</div>
+          <div class="service-icon-box" style="border-color: rgba(239,35,60,0.45); background: radial-gradient(circle, rgba(239,35,60,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ef233c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5" cy="16" r="3"></circle>
+              <circle cx="19" cy="16" r="3"></circle>
+              <path d="M5 16h2l3-6h4l2 3h3"></path>
+              <path d="M14 10l-2-4H8"></path>
+              <circle cx="8" cy="6" r="1.2" fill="#ef233c"></circle>
+            </svg>
+          </div>
           <span class="service-badge">Stock Multimarca Inmediato</span>
           <h3 class="service-title">Venta de Motos Nuevas & Ocasión</h3>
           <ul class="service-bullets">
@@ -3590,7 +4217,11 @@
 
         <!-- Servicio 2 -->
         <div class="service-card">
-          <div class="service-icon-box">🔧</div>
+          <div class="service-icon-box" style="border-color: rgba(245,158,11,0.45); background: radial-gradient(circle, rgba(245,158,11,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
           <span class="service-badge" style="background:rgba(212,175,55,0.15); color:var(--gold); border-color:rgba(212,175,55,0.3);">Taller Multimarca Homologado</span>
           <h3 class="service-title">Taller Mecánico & Diagnosis</h3>
           <ul class="service-bullets">
@@ -3603,7 +4234,12 @@
 
         <!-- Servicio 3 -->
         <div class="service-card">
-          <div class="service-icon-box">📋</div>
+          <div class="service-icon-box" style="border-color: rgba(16,185,129,0.45); background: radial-gradient(circle, rgba(16,185,129,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
           <span class="service-badge" style="background:rgba(16,185,129,0.15); color:var(--green); border-color:rgba(16,185,129,0.3);">Seguridad & Revisión Certificada</span>
           <h3 class="service-title">Revisiones Oficiales & Pre-ITV</h3>
           <ul class="service-bullets">
@@ -3616,7 +4252,21 @@
 
         <!-- Servicio 4 -->
         <div class="service-card">
-          <div class="service-icon-box">🛞</div>
+          <div class="service-icon-box" style="border-color: rgba(56,189,248,0.45); background: radial-gradient(circle, rgba(56,189,248,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2.2" fill="#38bdf8"></circle>
+              <line x1="12" y1="2" x2="12" y2="6"></line>
+              <line x1="12" y1="18" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="6" y2="12"></line>
+              <line x1="18" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+            </svg>
+          </div>
           <span class="service-badge" style="background:rgba(59,130,246,0.15); color:#93c5fd; border-color:rgba(59,130,246,0.3);">Montaje & Equilibrado al Momento</span>
           <h3 class="service-title">Neumáticos & Suspensiones</h3>
           <ul class="service-bullets">
@@ -3629,7 +4279,14 @@
 
         <!-- Servicio 5: Gestión de Venta (Intermediario) -->
         <div class="service-card">
-          <div class="service-icon-box">🤝</div>
+          <div class="service-icon-box" style="border-color: rgba(251,191,36,0.45); background: radial-gradient(circle, rgba(251,191,36,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
           <span class="service-badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; border-color:rgba(245,158,11,0.3);">Intermediación Profesional</span>
           <h3 class="service-title">Gestión de Venta (Intermediario)</h3>
           <ul class="service-bullets">
@@ -3642,7 +4299,13 @@
         </div>
         <!-- Servicio 6 -->
         <div class="service-card">
-          <div class="service-icon-box">🪖</div>
+          <div class="service-icon-box" style="border-color: rgba(192,132,252,0.45); background: radial-gradient(circle, rgba(192,132,252,0.22) 0%, rgba(18,24,38,0.95) 75%);">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a9 9 0 0 0-9 9c0 3.3 1.8 6.2 4.5 7.7L7 21h10l-.5-1.3c2.7-1.5 4.5-4.4 4.5-7.7a9 9 0 0 0-9-9z"></path>
+              <path d="M6 13h12a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1a2 2 0 0 1 2-2z"></path>
+              <circle cx="8" cy="15" r="1.2" fill="#c084fc"></circle>
+            </svg>
+          </div>
           <span class="service-badge" style="background:rgba(168,85,247,0.15); color:#c084fc; border-color:rgba(168,85,247,0.3);">Normativa Europea ECE 22.06</span>
           <h3 class="service-title">Boutique & Cascos Oficiales</h3>
           <ul class="service-bullets">
@@ -3677,7 +4340,7 @@
           <!-- Anti-Spam Honeypot Field -->
           <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
 
-          <div class="form-grid-2">
+          <div class="form-grid-3">
             <div class="form-group">
               <label class="form-label" for="bookName">Nombre y Apellidos <span class="req">*</span></label>
               <input type="text" id="bookName" name="name" class="form-control" placeholder="Ej: Carlos Gómez" required autocomplete="name">
@@ -3685,7 +4348,12 @@
 
             <div class="form-group">
               <label class="form-label" for="bookPhone">Teléfono de Contacto <span class="req">*</span></label>
-              <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="Ej: 612 345 678 (o fijo)" required autocomplete="tel">
+              <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="Ej: 612 345 678" required autocomplete="tel">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bookEmail">Email para Confirmación & Justificante <span class="req">*</span></label>
+              <input type="email" id="bookEmail" name="email" class="form-control" placeholder="Ej: carlos@gmail.com" required autocomplete="email">
             </div>
           </div>
 
@@ -3701,7 +4369,7 @@
                 <option value="Revisión Oficial 60 Puntos">⚙️ Revisión Oficial 60 Puntos de Seguridad</option>
                 <option value="Mantenimiento Periódico">🔧 Mantenimiento Periódico / Aceite y Filtros</option>
                 <option value="Diagnosis de Avería">🔍 Diagnosis Electrónica de Avería</option>
-                <option value="Cambio de Neumáticos">🛞 Cambio y Equilibrado de Neumáticos</option>
+                <option value="Cambio de Neumáticos">⚙️ Cambio y Equilibrado de Neumáticos</option>
                 <option value="Frenos y Suspensiones">🛑 Frenos, Pastillas y Suspensiones</option>
                 <option value="Inspección Pre-ITV">📋 Inspección Pre-ITV Oficial</option>
                 <option value="Tasación de mi Moto">💰 Tasación y Venta de mi Moto</option>
@@ -3736,9 +4404,75 @@
             <input type="hidden" id="selectedShiftValue" name="preferredTime" value="Mañana (09:30 - 13:30)">
           </div>
 
-          <div class="form-group" style="margin-bottom: 20px;">
-            <label class="form-label" for="bookDate">Fecha Preferida <span class="req">*</span></label>
-            <input type="date" id="bookDate" name="preferredDate" class="form-control" required>
+          <!-- Fecha Preferida de Alta Precisión e Interactividad -->
+          <div class="form-group booking-date-wrapper">
+            <div class="date-header-row">
+              <label class="form-label" for="bookDate" style="margin-bottom:0; display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Fecha Preferida para la Cita <span class="req">*</span></span>
+              </label>
+              <div class="date-schedule-pill">
+                <span class="schedule-dot"></span>
+                <span>Taller: L-V 09:30-20:30 · Sáb. 10:00-13:30</span>
+              </div>
+            </div>
+
+            <!-- Accesos Rápidos de Fecha (Pills) -->
+            <div class="quick-dates-strip" id="quickDatesStrip">
+              <button type="button" class="qdate-chip active" id="qbtnTomorrow" onclick="pickQuickDate(1, this)">
+                <span class="qdate-tag">Más Rápida</span>
+                <span class="qdate-main" id="qtextTomorrow">Mañana</span>
+                <span class="qdate-sub" id="qdateTomorrow">Cargando...</span>
+              </button>
+              <button type="button" class="qdate-chip" id="qbtnIn2Days" onclick="pickQuickDate(2, this)">
+                <span class="qdate-tag">Recomendado</span>
+                <span class="qdate-main" id="qtextIn2Days">En 2 días</span>
+                <span class="qdate-sub" id="qdateIn2Days">Cargando...</span>
+              </button>
+              <button type="button" class="qdate-chip" id="qbtnSat" onclick="pickQuickDate('sat', this)">
+                <span class="qdate-tag">Fin de Semana</span>
+                <span class="qdate-main">Sábado Mañana</span>
+                <span class="qdate-sub" id="qdateSat">10:00 - 13:30</span>
+              </button>
+              <button type="button" class="qdate-chip" id="qbtnMon" onclick="pickQuickDate('mon', this)">
+                <span class="qdate-tag">Próx. Semana</span>
+                <span class="qdate-main">Próximo Lunes</span>
+                <span class="qdate-sub" id="qdateMon">Jornada Completa</span>
+              </button>
+            </div>
+
+            <!-- Input de Calendario con Icono y Estilo Dark Elegante -->
+            <div class="date-picker-custom-wrap">
+              <div class="date-picker-icon-prefix">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef233c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <input type="date" id="bookDate" name="preferredDate" class="form-control date-luxury-input" required onchange="handleDateInputChange(this.value)">
+              <div class="date-picker-action-hint">Elegir otra fecha ↗</div>
+            </div>
+
+            <!-- Feedback Dinámico de Disponibilidad y Estado del Taller -->
+            <div class="date-status-card" id="dateStatusCard">
+              <div class="date-status-icon-box" id="dateStatusIconBox">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="date-status-info">
+                <div class="date-status-primary" id="dateStatusPrimary">Fecha confirmada: Calculando disponibilidad...</div>
+                <div class="date-status-secondary" id="dateStatusSecondary">Taller disponible para diagnosis y revisiones en Calle San Agustín 18.</div>
+              </div>
+            </div>
           </div>
 
           <div class="form-group" style="margin-bottom: 20px;">
@@ -3764,23 +4498,41 @@
         <div class="booking-success-box" id="bookingSuccessBox" style="display:none;">
           <div class="booking-success-icon">✓</div>
           <h3 class="booking-success-title">¡Solicitud de Cita Registrada!</h3>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Código de Referencia Oficial:</div>
+          <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Código de Referencia Oficial de Taller:</div>
           <div class="booking-ref-chip" id="bookingRefChip">ORERO-CITA-XXXX</div>
           
-          <div id="bookingSummaryDetails" style="background:#090d16; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:16px; margin:20px 0; text-align:left; font-size:0.88rem; line-height:1.6;">
+          <!-- Notificación enviada banner -->
+          <div style="background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); border-radius: 12px; padding: 14px 18px; margin: 18px 0; text-align: left; display:flex; align-items:center; gap:14px;">
+            <div style="font-size:1.8rem; flex-shrink:0;">✉️</div>
+            <div>
+              <strong style="color:#34d399; font-size:0.92rem; display:block; margin-bottom:2px;">Notificación Inmediata Generada</strong>
+              <span style="color:#cbd5e1; font-size:0.84rem; line-height:1.4;">
+                Se ha generado aviso de reserva para <strong id="confirmedClientEmail" style="color:#fff;">--</strong> y enviado una alerta directa al panel de recepción de taller (<span style="color:#93c5fd;">taller@oreromotorcycles.es</span>).
+              </span>
+            </div>
+          </div>
+
+          <div id="bookingSummaryDetails" style="background:#090d16; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:16px; margin:16px 0; text-align:left; font-size:0.88rem; line-height:1.6;">
             <!-- Summary populated via JS -->
           </div>
 
           <p class="booking-success-desc">
-            Hemos registrado tu solicitud correctamente en nuestro sistema central. Nuestro equipo de taller se pondrá en contacto contigo en breve para confirmar la hora exacta.
+            Tu cita ya está visible en el panel del taller. Te llamaremos en breve para confirmar la hora exacta o puedes agilizarla contactando directamente con nosotros.
           </p>
+
           <div class="booking-success-actions" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-            <a href="tel:+34966740120" class="btn-hero btn-hero-red" style="font-size:0.9rem; padding:12px 22px;">
-              <span>📞 Llamar al Taller (966 74 01 20)</span>
-            </a>
+            <button class="btn-hero" onclick="sendBookingWhatsAppDirect()" type="button" style="background:#25d366; color:#0b0e14; font-weight:800; font-size:0.9rem; padding:12px 22px; border:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(37,211,102,0.35); cursor:pointer;">
+              <span>💬 Confirmar por WhatsApp con Taller (1 Clic)</span>
+            </button>
+            <button class="btn-hero btn-hero-outline" onclick="printAppointmentPass()" type="button" style="font-size:0.9rem; padding:12px 20px;">
+              <span>🖨️ Descargar Justificante (Pase Taller)</span>
+            </button>
             <button class="btn-hero btn-hero-outline" onclick="downloadAppointmentICS()" type="button" style="font-size:0.9rem; padding:12px 20px;">
               <span>📅 Añadir a Calendario (.ics)</span>
             </button>
+            <a href="tel:+34966740120" class="btn-hero btn-hero-outline" style="font-size:0.9rem; padding:12px 20px;">
+              <span>📞 Llamar al Taller (966 74 01 20)</span>
+            </a>
             <button class="btn-hero btn-hero-outline" onclick="resetBookingForm()" type="button" style="font-size:0.85rem; padding:12px 18px;">
               <span>Solicitar Otra Cita</span>
             </button>
@@ -4138,21 +4890,71 @@
     }
 
     
-    // Switch Tabs in Quiénes Somos
+    // Switch Tabs in Quiénes Somos & synchronize visual card
+    let currentAboutPhoto = {
+      src: 'assets/clean_showroom_orero.jpg',
+      title: 'Showroom Interior Multimarca',
+      desc: 'Exposición oficial con arcos tradicionales de piedra y selección de motos en stock en Calle San Agustín 18.'
+    };
+
     function switchAboutTab(tabKey) {
       document.querySelectorAll('.about-tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.about-tab-panel').forEach(p => p.classList.remove('active'));
 
-      if (tabKey === 'historia') {
-        document.getElementById('tabBtnHistoria').classList.add('active');
-        document.getElementById('panelHistoria').classList.add('active');
-      } else if (tabKey === 'taller') {
-        document.getElementById('tabBtnTallerPropio').classList.add('active');
-        document.getElementById('panelTaller').classList.add('active');
-      } else if (tabKey === 'filosofia') {
-        document.getElementById('tabBtnFilosofia').classList.add('active');
-        document.getElementById('panelFilosofia').classList.add('active');
+      const imgEl = document.getElementById('aboutDynamicImg');
+      const badgeEl = document.getElementById('aboutDynamicBadge');
+      const titleEl = document.getElementById('aboutDynamicTitle');
+      const subEl = document.getElementById('aboutDynamicSub');
+
+      if (imgEl) {
+        imgEl.style.opacity = '0.4';
       }
+
+      setTimeout(() => {
+        if (tabKey === 'historia') {
+          document.getElementById('tabBtnHistoria').classList.add('active');
+          document.getElementById('panelHistoria').classList.add('active');
+          currentAboutPhoto = {
+            src: 'assets/clean_showroom_orero.jpg',
+            title: 'Showroom Interior Multimarca',
+            desc: 'Exposición oficial con arcos tradicionales de piedra y selección de ocasión en Calle San Agustín 18.'
+          };
+          if (badgeEl) { badgeEl.innerText = 'EXPOSICIÓN MULTIMARCA'; badgeEl.style.background = 'rgba(239,35,60,0.9)'; }
+          if (titleEl) { titleEl.innerText = 'Showroom Interior · Calle San Agustín 18'; }
+          if (subEl) { subEl.innerText = 'Arcos rústicos tradicionales, boutique y stock seleccionado'; }
+        } else if (tabKey === 'taller') {
+          document.getElementById('tabBtnTallerPropio').classList.add('active');
+          document.getElementById('panelTaller').classList.add('active');
+          currentAboutPhoto = {
+            src: 'assets/real_taller_master.jpg',
+            title: 'Taller Mecánico Oficial & Pre-ITV',
+            desc: 'Bancos de trabajo, elevadores hidráulicos y diagnosis multimarca por ordenador.'
+          };
+          if (badgeEl) { badgeEl.innerText = 'TALLER PROPIO & PRE-ITV'; badgeEl.style.background = 'rgba(16,185,129,0.9)'; }
+          if (titleEl) { titleEl.innerText = 'Taller Mecánico & Banco de Diagnosis'; }
+          if (subEl) { subEl.innerText = 'Mecánica multimarca, cambio de neumáticos y revisión de 60 puntos'; }
+        } else if (tabKey === 'filosofia') {
+          document.getElementById('tabBtnFilosofia').classList.add('active');
+          document.getElementById('panelFilosofia').classList.add('active');
+          currentAboutPhoto = {
+            src: 'assets/clean_cascos_entrega_4k.jpg',
+            title: 'Boutique Técnica & Seguridad ECE 22.06',
+            desc: 'Equipamiento homologado para motoristas, asesoramiento experto y entrega personalizada.'
+          };
+          if (badgeEl) { badgeEl.innerText = 'BOUTIQUE & ATENCIÓN'; badgeEl.style.background = 'rgba(212,175,55,0.9)'; }
+          if (titleEl) { titleEl.innerText = 'Boutique Técnica & Entrega Llave en Mano'; }
+          if (subEl) { subEl.innerText = 'Cascos LS2 / MT Helmets, chaquetas y trato directo de motero a motero'; }
+        }
+
+        if (imgEl) {
+          imgEl.src = currentAboutPhoto.src;
+          imgEl.onload = () => { imgEl.style.opacity = '1'; };
+        }
+      }, 150);
+    }
+
+    function openCurrentAboutPhoto() {
+      openStorePhotoModal(currentAboutPhoto.src, currentAboutPhoto.title, currentAboutPhoto.desc);
     }
 
     function closeStorePhotoModal() {
@@ -4272,6 +5074,7 @@
 
       const name = (form.name.value || '').trim();
       const phone = (form.phone.value || '').trim();
+      const email = (form.email ? form.email.value : '').trim();
       const moto = (form.moto.value || '').trim();
       const service = form.service.value;
       const preferredDate = form.preferredDate.value;
@@ -4286,7 +5089,7 @@
       }
 
       btn.disabled = true;
-      btn.innerHTML = '<span>⏳ Registrando tu cita...</span>';
+      btn.innerHTML = '<span>⏳ Conectando con recepción de taller...</span>';
 
       const ref = 'ORERO-CITA-' + Math.floor(1000 + Math.random() * 9000);
       
@@ -4294,6 +5097,7 @@
         ref: ref,
         name: name,
         phone: phone,
+        email: email,
         moto: moto,
         service: service,
         date: preferredDate,
@@ -4305,7 +5109,29 @@
 
       lastBookedAppointment = newAppointment;
 
-      // Save to localStorage so /admin immediately displays it
+      // 1. Send to server backend API
+      try {
+        await fetch('/api/motorcycle-store-orero/workshop', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            email: email,
+            moto: moto,
+            bikeModel: moto,
+            service: service,
+            preferredDate: preferredDate,
+            preferredTime: preferredTime,
+            preferredSlot: preferredTime,
+            notes: notes
+          })
+        });
+      } catch (err) {
+        console.warn('API sync warning:', err);
+      }
+
+      // 2. Save in localStorage for immediate sync with /admin
       try {
         let list = [];
         const existing = localStorage.getItem('orero_appointments');
@@ -4314,21 +5140,26 @@
         localStorage.setItem('orero_appointments', JSON.stringify(list));
       } catch (err) {}
 
-      // Display summary card
+      // 3. Update confirmation view
       document.getElementById('bookingRefChip').textContent = ref;
+      const emailEl = document.getElementById('confirmedClientEmail');
+      if (emailEl) emailEl.textContent = email || name;
+
       document.getElementById('bookingSummaryDetails').innerHTML = `
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <div><strong>Cliente:</strong> ${name}</div>
-          <div><strong>Teléfono:</strong> <a href="tel:${phone}" style="color:#93c5fd;">${phone}</a></div>
-          <div><strong>Vehículo:</strong> ${moto}</div>
-          <div><strong>Servicio:</strong> ${service}</div>
-          <div><strong>Fecha Solicitada:</strong> ${preferredDate}</div>
-          <div><strong>Turno:</strong> ${preferredTime}</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Cliente:</span><strong>${name}</strong></div>
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Teléfono:</span><a href="tel:${phone}" style="color:#93c5fd; font-weight:700;">📞 ${phone}</a></div>
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Email Notificaciones:</span><span style="color:#38bdf8;">✉️ ${email || 'No facilitado'}</span></div>
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Vehículo:</span><strong>${moto}</strong></div>
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Servicio Solicitado:</span><span style="color:#fbbf24; font-weight:600;">${service}</span></div>
+          <div><span style="color:#94a3b8; font-size:0.8rem; display:block;">Fecha & Franja:</span><strong>📅 ${preferredDate} (${preferredTime})</strong></div>
         </div>
+        ${notes ? `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed rgba(255,255,255,0.1); font-size:0.84rem; color:#cbd5e1;"><strong>Observaciones:</strong> ${notes}</div>` : ''}
       `;
 
       form.style.display = 'none';
       document.getElementById('bookingSuccessBox').style.display = 'block';
+      document.getElementById('bookingSuccessBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function resetBookingForm() {
@@ -4339,6 +5170,127 @@
       const btn = document.getElementById('btnSubmitBooking');
       btn.disabled = false;
       btn.innerHTML = '<span>📅 Solicitar Cita Previa</span>';
+      initSmartBookingDatePicker();
+    }
+
+    // Direct 1-Click WhatsApp confirmation
+    function sendBookingWhatsAppDirect() {
+      if (!lastBookedAppointment) return;
+      const a = lastBookedAppointment;
+      const msg = `¡Hola Orero Motorcycles! Acabo de solicitar cita previa en la web para el taller:\n\n` +
+        `📌 Ref: ${a.ref}\n` +
+        `👤 Nombre: ${a.name}\n` +
+        `📞 Teléfono: ${a.phone}\n` +
+        `✉️ Email: ${a.email || 'No indicado'}\n` +
+        `🏍️ Vehículo: ${a.moto}\n` +
+        `🛠️ Servicio: ${a.service}\n` +
+        `📅 Fecha preferida: ${a.date} (${a.slot})\n` +
+        (a.notes ? `📝 Notas: ${a.notes}\n\n` : `\n`) +
+        `¿Me podéis confirmar disponibilidad de recepción en Calle San Agustín 18? ¡Muchas gracias!`;
+      const url = `https://wa.me/34966740120?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    // Printable Workshop Pass / Justificante
+    function printAppointmentPass() {
+      if (!lastBookedAppointment) return;
+      const a = lastBookedAppointment;
+
+      const printHtml = `
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="utf-8">
+          <title>Pase de Taller - ${a.ref} | Orero Motorcycles</title>
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; padding: 40px; color: #111; max-width: 720px; margin: 0 auto; background: #fff; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ef233c; padding-bottom: 18px; margin-bottom: 24px; }
+            .logo-text { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
+            .logo-text span { color: #ef233c; }
+            .ref-box { background: #f4f4f5; border: 1px solid #e4e4e7; border-radius: 8px; padding: 8px 16px; text-align: right; }
+            .ref-num { font-size: 18px; font-weight: 800; color: #ef233c; font-family: monospace; }
+            .badge { display: inline-block; background: #fee2e2; color: #b91c1c; font-weight: 700; font-size: 12px; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+            .title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: #fafafa; border: 1px solid #eaeaea; border-radius: 10px; padding: 20px; margin: 20px 0; }
+            .item-label { font-size: 11px; text-transform: uppercase; color: #71717a; font-weight: 600; margin-bottom: 4px; }
+            .item-val { font-size: 15px; font-weight: 700; color: #09090b; }
+            .instructions { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin: 20px 0; font-size: 13px; line-height: 1.5; color: #166534; }
+            .instructions strong { display: block; margin-bottom: 6px; font-size: 14px; }
+            .footer { margin-top: 32px; border-top: 1px solid #e4e4e7; padding-top: 16px; font-size: 12px; color: #71717a; display: flex; justify-content: space-between; }
+            .no-print { margin-bottom: 20px; text-align: right; }
+            .btn-print { background: #ef233c; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px; }
+            @media print { .no-print { display: none; } body { padding: 0; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print">
+            <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+          </div>
+          <div class="header">
+            <div>
+              <div class="logo-text">ORERO <span>MOTORCYCLES</span></div>
+              <div style="font-size:12px; color:#71717a; margin-top:2px;">Taller Oficial Multimarca & Concesionario · Orihuela</div>
+            </div>
+            <div class="ref-box">
+              <div style="font-size:11px; color:#71717a;">JUSTIFICANTE CITA</div>
+              <div class="ref-num">${a.ref}</div>
+            </div>
+          </div>
+
+          <div class="badge">Recepción Confirmada en Sistema</div>
+          <div class="title">Pase Oficial de Entrada a Taller</div>
+          <div style="font-size:13px; color:#52525b;">Presenta este justificante al entregar tu moto en recepción.</div>
+
+          <div class="grid">
+            <div>
+              <div class="item-label">Cliente Titular</div>
+              <div class="item-val">${a.name}</div>
+            </div>
+            <div>
+              <div class="item-label">Teléfono de Contacto</div>
+              <div class="item-val">${a.phone}</div>
+            </div>
+            <div>
+              <div class="item-label">Email Notificación</div>
+              <div class="item-val">${a.email || 'Registrado en sistema'}</div>
+            </div>
+            <div>
+              <div class="item-label">Vehículo & Modelo</div>
+              <div class="item-val">${a.moto}</div>
+            </div>
+            <div>
+              <div class="item-label">Servicio Solicitado</div>
+              <div class="item-val" style="color:#b91c1c;">${a.service}</div>
+            </div>
+            <div>
+              <div class="item-label">Fecha y Franja Horaria</div>
+              <div class="item-val">${a.date} · ${a.slot}</div>
+            </div>
+          </div>
+
+          ${a.notes ? `<div style="background:#f4f4f5; padding:12px 16px; border-radius:8px; font-size:13px; margin-bottom:20px;"><strong>Observaciones del cliente:</strong> ${a.notes}</div>` : ''}
+
+          <div class="instructions">
+            <strong>📋 Instrucciones para la Recepción de la Moto:</strong>
+            1. Dirección: <strong>Calle San Agustín, 18, 03300 Orihuela (Alicante)</strong>.<br>
+            2. Presentar la ficha técnica y documentación del vehículo al mecánico.<br>
+            3. Entregar el juego de llaves al personal de recepción de taller.<br>
+            4. Teléfono directo de taller para cualquier imprevisto: <strong>966 74 01 20</strong>.
+          </div>
+
+          <div class="footer">
+            <div>Orero Motorcycles · C/ San Agustín 18, Orihuela · Tel. 966 74 01 20</div>
+            <div>Emitido: ${new Date().toLocaleDateString('es-ES')}</div>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const printWin = window.open('', '_blank', 'width=800,height=900');
+      if (printWin) {
+        printWin.document.write(printHtml);
+        printWin.document.close();
+      }
     }
 
     // Download .ICS calendar event for the appointment
@@ -4356,7 +5308,7 @@
         `DTSTART:${dateClean}T093000`,
         `DTEND:${dateClean}T110000`,
         `SUMMARY:Cita Taller Orero Motorcycles (${a.service})`,
-        `DESCRIPTION:Referencia: ${a.ref}\nCliente: ${a.name}\nVehículo: ${a.moto}\nTurno: ${a.slot}\nTeléfono taller: 966 74 01 20`,
+        `DESCRIPTION:Referencia: ${a.ref}\\nCliente: ${a.name}\\nEmail: ${a.email || 'N/A'}\\nVehículo: ${a.moto}\\nTurno: ${a.slot}\\nTeléfono taller: 966 74 01 20\\nDirección: Calle San Agustín 18, Orihuela`,
         'LOCATION:Calle San Agustín, 18, 03300 Orihuela (Alicante)',
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -4427,13 +5379,170 @@
       if (banner) banner.classList.remove('show');
     }
 
-    // Set minimum date for booking input (tomorrow)
-    const bookDateInput = document.getElementById('bookDate');
-    if (bookDateInput) {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      bookDateInput.min = tomorrow.toISOString().split('T')[0];
+    // ══════════════════════════════════════════════════════════════════
+    // SMART ELEVATED DATE PICKER & WORKSHOP SCHEDULE INTELLIGENCE
+    // ══════════════════════════════════════════════════════════════════
+    function formatDateToYMD(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
     }
+
+    function initSmartBookingDatePicker() {
+      const dateInput = document.getElementById('bookDate');
+      if (!dateInput) return;
+
+      const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+      const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+      const today = new Date();
+
+      // Calculate Tomorrow
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+
+      // Calculate In 2 Days
+      const in2Days = new Date(today);
+      in2Days.setDate(today.getDate() + 2);
+
+      // Calculate Next Saturday
+      const nextSat = new Date(today);
+      let daysUntilSat = (6 - today.getDay() + 7) % 7;
+      if (daysUntilSat === 0) daysUntilSat = 7;
+      nextSat.setDate(today.getDate() + daysUntilSat);
+
+      // Calculate Next Monday
+      const nextMon = new Date(today);
+      let daysUntilMon = (1 - today.getDay() + 7) % 7;
+      if (daysUntilMon === 0) daysUntilMon = 7;
+      nextMon.setDate(today.getDate() + daysUntilMon);
+
+      window._smartDates = {
+        tomorrow: formatDateToYMD(tomorrow),
+        in2Days: formatDateToYMD(in2Days),
+        sat: formatDateToYMD(nextSat),
+        mon: formatDateToYMD(nextMon)
+      };
+
+      // Set input min to tomorrow
+      dateInput.min = window._smartDates.tomorrow;
+
+      // Update Quick Buttons labels
+      const qtextTom = document.getElementById('qtextTomorrow');
+      const qdateTom = document.getElementById('qdateTomorrow');
+      if (qtextTom && qdateTom) {
+        qtextTom.textContent = daysOfWeek[tomorrow.getDay()];
+        qdateTom.textContent = `${tomorrow.getDate()} ${months[tomorrow.getMonth()].substring(0,3)}`;
+      }
+
+      const qtext2 = document.getElementById('qtextIn2Days');
+      const qdate2 = document.getElementById('qdateIn2Days');
+      if (qtext2 && qdate2) {
+        qtext2.textContent = daysOfWeek[in2Days.getDay()];
+        qdate2.textContent = `${in2Days.getDate()} ${months[in2Days.getMonth()].substring(0,3)}`;
+      }
+
+      const qdateSat = document.getElementById('qdateSat');
+      if (qdateSat) {
+        qdateSat.textContent = `${nextSat.getDate()} ${months[nextSat.getMonth()].substring(0,3)}`;
+      }
+
+      const qdateMon = document.getElementById('qdateMon');
+      if (qdateMon) {
+        qdateMon.textContent = `${nextMon.getDate()} ${months[nextMon.getMonth()].substring(0,3)}`;
+      }
+
+      // Default selection: if tomorrow is Sunday, default to Monday, else tomorrow
+      const isTomorrowSunday = tomorrow.getDay() === 0;
+      const initialDate = isTomorrowSunday ? window._smartDates.mon : window._smartDates.tomorrow;
+      const initialBtnId = isTomorrowSunday ? 'qbtnMon' : 'qbtnTomorrow';
+
+      dateInput.value = initialDate;
+      updateDateStatusFeedback(initialDate);
+
+      document.querySelectorAll('.qdate-chip').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(initialBtnId);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function pickQuickDate(type, btn) {
+      const dateInput = document.getElementById('bookDate');
+      if (!dateInput || !window._smartDates) return;
+
+      let targetDate = '';
+      if (type === 1) targetDate = window._smartDates.tomorrow;
+      else if (type === 2) targetDate = window._smartDates.in2Days;
+      else if (type === 'sat') targetDate = window._smartDates.sat;
+      else if (type === 'mon') targetDate = window._smartDates.mon;
+
+      if (targetDate) {
+        dateInput.value = targetDate;
+        document.querySelectorAll('.qdate-chip').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        updateDateStatusFeedback(targetDate);
+      }
+    }
+
+    function handleDateInputChange(val) {
+      updateDateStatusFeedback(val);
+
+      document.querySelectorAll('.qdate-chip').forEach(b => b.classList.remove('active'));
+      if (window._smartDates) {
+        if (val === window._smartDates.tomorrow) document.getElementById('qbtnTomorrow')?.classList.add('active');
+        else if (val === window._smartDates.in2Days) document.getElementById('qbtnIn2Days')?.classList.add('active');
+        else if (val === window._smartDates.sat) document.getElementById('qbtnSat')?.classList.add('active');
+        else if (val === window._smartDates.mon) document.getElementById('qbtnMon')?.classList.add('active');
+      }
+    }
+
+    function updateDateStatusFeedback(dateStr) {
+      const card = document.getElementById('dateStatusCard');
+      const iconBox = document.getElementById('dateStatusIconBox');
+      const primary = document.getElementById('dateStatusPrimary');
+      const secondary = document.getElementById('dateStatusSecondary');
+      if (!card || !primary || !secondary) return;
+
+      if (!dateStr) {
+        primary.textContent = 'Selecciona una fecha';
+        secondary.textContent = 'Indica el día que mejor se adapta a tu horario.';
+        return;
+      }
+
+      const parts = dateStr.split('-');
+      const pickedDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+      const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+      const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+      const dayName = daysOfWeek[pickedDate.getDay()];
+      const dayNum = pickedDate.getDate();
+      const monthName = months[pickedDate.getMonth()];
+      const year = pickedDate.getFullYear();
+
+      card.classList.remove('status-closed', 'status-saturday');
+
+      if (pickedDate.getDay() === 0) {
+        // Sunday - Closed
+        card.classList.add('status-closed');
+        iconBox.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+        primary.innerHTML = `<span style="color:#f87171;">⚠️ ${dayName}, ${dayNum} de ${monthName}: Taller Cerrado por descanso</span>`;
+        secondary.innerHTML = `Los domingos el taller permanece cerrado. <strong>Te recomendamos elegir el sábado anterior (10:00 - 13:30 h) o el lunes a primera hora</strong>.`;
+      } else if (pickedDate.getDay() === 6) {
+        // Saturday - Morning only
+        card.classList.add('status-saturday');
+        iconBox.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
+        primary.innerHTML = `<span style="color:#fbbf24;">📅 ${dayName}, ${dayNum} de ${monthName} de ${year} (Horario Mañana)</span>`;
+        secondary.innerHTML = `Sábado abierto únicamente en turno matinal de <strong>10:00 a 13:30 h</strong> (Tardes cerrado). Recepción y entrega de vehículos en exposición y taller.`;
+      } else {
+        // Monday to Friday - Full schedule
+        iconBox.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+        primary.innerHTML = `<span style="color:#34d399;">✅ ${dayName}, ${dayNum} de ${monthName} de ${year}</span>`;
+        secondary.innerHTML = `Jornada completa disponible: <strong>09:30 - 13:30 h</strong> y <strong>16:30 - 20:30 h</strong>. Recepción técnica inmediata en Calle San Agustín 18.`;
+      }
+    }
+
+    // Initialize smart date picker on load
+    initSmartBookingDatePicker();
 
     // Rolling Counters
     function animateCounters() {
