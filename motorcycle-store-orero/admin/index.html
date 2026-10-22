@@ -696,9 +696,148 @@
 
     .data-table {
       width: 100%;
+      min-width: 980px;
       border-collapse: collapse;
       text-align: left;
       font-size: 0.88rem;
+    }
+
+    /* Table Action Pills & Badges */
+    .table-actions-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: flex-end;
+      white-space: nowrap;
+    }
+
+    .btn-action-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #e2e8f0;
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-action-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-action-pill.btn-wa {
+      background: rgba(37, 211, 102, 0.15);
+      border-color: rgba(37, 211, 102, 0.4);
+      color: #4ade80;
+    }
+    .btn-action-pill.btn-wa:hover {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .btn-action-pill.btn-email {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: #93c5fd;
+    }
+    .btn-action-pill.btn-email:hover {
+      background: rgba(59, 130, 246, 0.25);
+      color: #fff;
+    }
+
+    .btn-action-pill.btn-confirm {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+    .btn-action-pill.btn-confirm:hover {
+      background: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-action-pill.btn-reopen {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+    }
+    .btn-action-pill.btn-reopen:hover {
+      background: rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-action-pill.btn-invoice {
+      background: rgba(168, 85, 247, 0.12);
+      border-color: rgba(168, 85, 247, 0.35);
+      color: #c084fc;
+    }
+    .btn-action-pill.btn-invoice:hover {
+      background: rgba(168, 85, 247, 0.25);
+      color: #fff;
+    }
+
+    .btn-action-pill.btn-delete {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      padding: 6px 8px;
+    }
+    .btn-action-pill.btn-delete:hover {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fff;
+    }
+
+    .date-cell-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.84rem;
+    }
+    .slot-cell-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    /* Print styles for Invoice */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #invoiceModal, #invoiceModal * {
+        visibility: visible !important;
+      }
+      #invoiceModal {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: #fff !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .invoice-sheet {
+        background: #fff !important;
+        color: #111 !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 10px !important;
+      }
+      .invoice-sheet * {
+        color: #111 !important;
+      }
+      .invoice-sheet table th, .invoice-sheet table td {
+        border-color: #cbd5e1 !important;
+      }
     }
 
     .data-table th {
@@ -974,7 +1113,7 @@
             🏍️ Motos en Stock <span class="tab-count-pill" id="motosTabCount">18</span>
           </button>
           <button class="tab-btn" id="tabBtnBoutique" onclick="switchTab('boutique', this)">
-            🪖 Boutique & Cascos <span class="tab-count-pill">6</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path></svg> Boutique & Cascos <span class="tab-count-pill" id="boutiqueTabCount">6</span>
           </button>
           <button class="tab-btn" id="tabBtnCitas" onclick="switchTab('citas', this)">
             📅 Citas de Taller <span class="tab-count-pill" id="citasTabCount">6</span>
@@ -1036,7 +1175,7 @@
       <section id="tabBoutique" style="display:none;">
         <div class="tab-toolbar">
           <div class="tab-title-group">
-            <h2>🪖 Boutique Técnica & Cascos (<span id="totalBoutiqueCount">6</span>)</h2>
+            <h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-4px;"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path></svg> Boutique Técnica & Cascos (<span id="totalBoutiqueCount">6</span>)</h2>
             <p>Equipación de motorista disponible en tienda: Cascos ECE 22.06, chaquetas y accesorios</p>
           </div>
           <button class="btn-primary-action" onclick="openPublishModal('casco')">
@@ -1072,7 +1211,7 @@
                 <th>Teléfono</th>
                 <th>Vehículo</th>
                 <th>Servicio Solicitado</th>
-                <th>Fecha & Turno</th>
+                <th style="min-width: 140px;">Fecha & Turno</th>
                 <th>Estado</th>
                 <th style="text-align:right;">Acciones Rápidas</th>
               </tr>
@@ -1178,6 +1317,21 @@
           </div>
 
           <div class="kpi-card" style="padding:24px;">
+            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">📄 Facturas & Hojas de Taller</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px;">
+              Genera, descarga o imprime albaranes y facturas oficiales con CIF, desglose de IVA y cláusula legal para clientes de taller.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn-primary-action" onclick="openInvoiceModal('ORERO-CITA-1001')">
+                📄 Generar Modelo Factura
+              </button>
+              <button class="btn-nav-outline" onclick="switchTab('citas', document.getElementById('tabBtnCitas'))">
+                📋 Ver Citas de Taller
+              </button>
+            </div>
+          </div>
+
+          <div class="kpi-card" style="padding:24px;">
             <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">💾 Copia de Seguridad</h3>
             <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px;">
               Descarga un archivo con todos los datos de citas, tasaciones y stock para tu archivo personal.
@@ -1213,7 +1367,7 @@
           <select id="prodCat" class="form-select" onchange="toggleFormMotoFields()">
             <option value="ocasion">🏍️ Moto de Ocasión</option>
             <option value="nueva">🏍️ Moto Nueva a Estrenar</option>
-            <option value="casco">🪖 Casco de Moto</option>
+            <option value="casco">🛡️ Casco de Moto Homologado</option>
             <option value="chaqueta">🧥 Chaqueta / Equipación</option>
             <option value="accesorio">⚙️ Accesorio / Antirrobo</option>
           </select>
@@ -1273,6 +1427,258 @@
           🚀 Publicar en la Web Ahora
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MODAL: EDITAR FICHA COMPLETA DE MOTO / PRODUCTO
+       ══════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="editProductModal" onclick="if(event.target===this) closeEditProductModal()">
+    <div class="modal-card" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 class="modal-title">✏️ Editar Ficha de la Moto / Producto</h3>
+        <button class="btn-close-modal" onclick="closeEditProductModal()">✕</button>
+      </div>
+
+      <form id="editProductForm" onsubmit="handleEditProductSubmit(event)">
+        <input type="hidden" id="editProdId">
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label" for="editProdCat">Categoría</label>
+            <select id="editProdCat" class="form-select" onchange="toggleEditFormMotoFields()">
+              <option value="ocasion">🏍️ Moto de Ocasión</option>
+              <option value="nueva">🏍️ Moto Nueva a Estrenar</option>
+              <option value="casco">🛡️ Casco de Moto Homologado</option>
+              <option value="chaqueta">🧥 Chaqueta / Equipación</option>
+              <option value="accesorio">⚙️ Accesorio / Antirrobo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editProdStatus">Estado de Venta</label>
+            <select id="editProdStatus" class="form-select">
+              <option value="disponible">🟢 DISPONIBLE (En Exposición)</option>
+              <option value="vendida">🔴 VENDIDA (Reservada / Entregada)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProdTitle">Marca & Modelo (Título)</label>
+          <input type="text" id="editProdTitle" class="form-input" placeholder="Ej: Yamaha MT-07 ABS" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label" for="editProdPrice">Precio (€)</label>
+            <input type="text" id="editProdPrice" class="form-input" placeholder="Ej: 6.900 €" required>
+          </div>
+          <div class="form-group" id="groupEditMotoYear">
+            <label class="form-label" for="editProdYear">Año</label>
+            <input type="text" id="editProdYear" class="form-input" placeholder="Ej: 2022">
+          </div>
+          <div class="form-group" id="groupEditMotoKm">
+            <label class="form-label" for="editProdKm">Kilómetros</label>
+            <input type="text" id="editProdKm" class="form-input" placeholder="Ej: 12.500 km">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Fotografía de la Moto</label>
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+            <input type="file" id="editPhotoFileInput" accept="image/*" style="display:none;" onchange="handleEditPhotoUpload(event)">
+            <button type="button" class="btn-nav-outline" onclick="document.getElementById('editPhotoFileInput').click()" style="flex:1; justify-content:center; padding:10px;">
+              📁 Subir Nueva Foto desde este Dispositivo
+            </button>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <div id="editPhotoPreviewWrap" style="width:120px; height:80px; border-radius:10px; overflow:hidden; border:1px solid var(--border); flex-shrink:0;">
+              <img id="editPhotoPreview" src="" alt="Foto Moto" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div style="flex:1;">
+              <input type="text" id="editProdImgUrl" class="form-input" placeholder="Ruta o URL de la foto..." style="font-size:0.8rem;" oninput="updateEditPhotoPreviewFromUrl(this.value)">
+              <div style="font-size:0.72rem; color:var(--text-muted); margin-top:4px;">Puedes escribir la ruta o subir una nueva foto directa desde tu dispositivo.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="editProdDesc">Descripción & Equipamiento Técnico</label>
+          <textarea id="editProdDesc" class="form-textarea" rows="3" placeholder="Detalles mecánicos, extras incluidos, revisiones oficiales, garantía..."></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:16px;">
+          <button type="submit" class="btn-primary-action" style="flex:1; justify-content:center; padding:12px; font-size:0.95rem;">
+            💾 Guardar Cambios en la Moto
+          </button>
+          <button type="button" class="btn-nav-outline" onclick="closeEditProductModal()" style="padding:12px 18px;">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MODAL: FACTURA PROFORMA & HOJA DE ENTRADA DE TALLER
+       ══════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="invoiceModal" onclick="if(event.target===this) closeInvoiceModal()">
+    <div class="modal-card" style="max-width: 820px; max-height: 90vh; overflow-y: auto;">
+      <!-- Action Bar (no-print) -->
+      <div class="modal-header no-print" style="margin-bottom: 16px;">
+        <h3 class="modal-title">📄 Factura Proforma & Hoja de Taller Oficial</h3>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn-primary-action" onclick="printInvoiceSheet()" style="padding:8px 14px; font-size:0.84rem;">
+            🖨️ Imprimir / Guardar PDF
+          </button>
+          <button type="button" class="btn-nav-outline" onclick="downloadInvoiceTxt()" style="padding:8px 12px; font-size:0.84rem;">
+            📥 Descargar Hoja
+          </button>
+          <button class="btn-close-modal" onclick="closeInvoiceModal()">✕</button>
+        </div>
+      </div>
+
+      <!-- Printable Sheet -->
+      <div id="invoicePrintArea" class="invoice-sheet" style="background:#0f172a; border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:28px; color:#f1f5f9;">
+        <!-- Header -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid var(--red); padding-bottom:18px; margin-bottom:20px; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div style="font-family:'Space Grotesk', sans-serif; font-size:1.5rem; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">
+              <span style="color:var(--red);">ORERO</span> MOTORCYCLES
+            </div>
+            <div style="font-size:0.84rem; color:#94a3b8; margin-top:4px;">Concesionario Multimarca & Taller Mecánico Homologado · Desde 2015</div>
+            <div style="font-size:0.8rem; color:#cbd5e1; margin-top:2px;">Calle San Agustín 18, 03300 Orihuela (Alicante)</div>
+            <div style="font-size:0.8rem; color:#cbd5e1;">CIF: B-54982143 · Tel: +34 632 76 18 152 · oreromotorcycles.es</div>
+          </div>
+          <div style="text-align:right;">
+            <span style="background:rgba(239,35,60,0.15); border:1px solid rgba(239,35,60,0.4); color:#ff6b6b; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:800; letter-spacing:0.06em;">DOCUMENTO OFICIAL TALLER</span>
+            <div style="font-family:monospace; font-size:1.15rem; font-weight:800; color:#fff; margin-top:8px;" id="invDocNumber">FAC-ORERO-1001</div>
+            <div style="font-size:0.82rem; color:#94a3b8; margin-top:4px;" id="invDocDate">Fecha: 23/10/2026</div>
+          </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:22px;">
+          <div>
+            <div style="font-size:0.72rem; font-weight:800; color:#ef233c; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">DATOS DEL CLIENTE</div>
+            <div style="font-size:1.05rem; font-weight:800; color:#fff;" id="invClientName">Carlos Navarro</div>
+            <div style="font-size:0.85rem; color:#cbd5e1; margin-top:4px;" id="invClientPhone">📞 622 11 44 55</div>
+            <div style="font-size:0.82rem; color:#94a3b8; margin-top:2px;">📍 Orihuela (Vega Baja del Segura)</div>
+          </div>
+          <div>
+            <div style="font-size:0.72rem; font-weight:800; color:#ef233c; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">DATOS DEL VEHÍCULO & TURNO</div>
+            <div style="font-size:1.05rem; font-weight:800; color:#fff;" id="invVehicleModel">Yamaha MT-07</div>
+            <div style="font-size:0.85rem; color:#cbd5e1; margin-top:4px;" id="invServiceSlot">Turno: Mañana (09:30 - 13:30)</div>
+            <div style="font-size:0.82rem; color:#34d399; margin-top:2px;" id="invVehicleStatus">🟢 Estado Cita: Confirmada</div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <table style="width:100%; border-collapse:collapse; margin-bottom:20px; font-size:0.88rem;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.15); text-align:left; color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+              <th style="padding:10px 8px;">Concepto / Intervención Mecánica</th>
+              <th style="padding:10px 8px; text-align:center;">Unid.</th>
+              <th style="padding:10px 8px; text-align:right;">Precio Base</th>
+              <th style="padding:10px 8px; text-align:right;">Importe</th>
+            </tr>
+          </thead>
+          <tbody id="invTableBody">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:12px 8px;"><strong id="invServiceDesc" style="color:#fff;">Revisión Oficial 60 Puntos de Seguridad</strong><div style="font-size:0.75rem; color:#94a3b8;">Chequeo de frenos, suspensiones, cadena, niveles de fluidos y diagnosis electrónica OBD.</div></td>
+              <td style="padding:12px 8px; text-align:center;">1</td>
+              <td style="padding:12px 8px; text-align:right;">65,00 €</td>
+              <td style="padding:12px 8px; text-align:right; font-weight:700;">65,00 €</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:12px 8px;"><strong style="color:#fff;">Mano de Obra Mecánica Oficial Multimarca</strong><div style="font-size:0.75rem; color:#94a3b8;">Técnico mecánico especializado en Calle San Agustín 18.</div></td>
+              <td style="padding:12px 8px; text-align:center;">1.5 h</td>
+              <td style="padding:12px 8px; text-align:right;">35,00 €/h</td>
+              <td style="padding:12px 8px; text-align:right; font-weight:700;">52,50 €</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:12px 8px;"><strong style="color:#fff;">Materiales, Consumibles de Taller & Gestión de Residuos</strong><div style="font-size:0.75rem; color:#94a3b8;">Gestión medioambiental y reciclaje certificado.</div></td>
+              <td style="padding:12px 8px; text-align:center;">1</td>
+              <td style="padding:12px 8px; text-align:right;">14,50 €</td>
+              <td style="padding:12px 8px; text-align:right; font-weight:700;">14,50 €</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Totals -->
+        <div style="display:flex; justify-content:flex-end; margin-bottom:24px;">
+          <div style="width:280px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:14px;">
+            <div style="display:flex; justify-content:space-between; font-size:0.86rem; color:#94a3b8; margin-bottom:6px;">
+              <span>Base Imponible:</span>
+              <span style="color:#fff; font-weight:700;" id="invSubtotal">132,00 €</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.86rem; color:#94a3b8; margin-bottom:8px;">
+              <span>I.V.A. (21%):</span>
+              <span style="color:#fff; font-weight:700;" id="invIva">27,72 €</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:1.15rem; font-weight:900; color:#fff; border-top:1px solid rgba(255,255,255,0.15); padding-top:8px;">
+              <span style="color:#ef233c;">TOTAL FACTURA:</span>
+              <span id="invTotal">159,72 €</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disclaimer & Signature -->
+        <div style="font-size:0.72rem; color:#94a3b8; line-height:1.45; border-top:1px solid rgba(255,255,255,0.08); padding-top:14px; margin-bottom:22px;">
+          * Documento oficial emitido por Orero Motorcycles S.L. Conforme al Real Decreto 1457/1986, todas las reparaciones efectuadas tienen una garantía legal de 3 meses o 2.000 km recorridos. Las piezas sustituidas quedan a disposición del cliente.
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; text-align:center; padding-top:10px;">
+          <div style="border-top:1px dashed rgba(255,255,255,0.25); padding-top:8px; font-size:0.8rem; color:#cbd5e1;">
+            Firma & Sello Taller Orero Motorcycles
+          </div>
+          <div style="border-top:1px dashed rgba(255,255,255,0.25); padding-top:8px; font-size:0.8rem; color:#cbd5e1;">
+            Conforme Cliente (Firma y DNI)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MODAL: CONFIRMACIÓN POR EMAIL AL CLIENTE
+       ══════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="emailCitaModal" onclick="if(event.target===this) closeEmailCitaModal()">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title">✉️ Confirmación de Cita por Email</h3>
+        <button class="btn-close-modal" onclick="closeEmailCitaModal()">✕</button>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">
+          Envía al cliente la confirmación oficial a su correo o copia la plantilla redactada con un solo clic:
+        </p>
+
+        <div class="form-group">
+          <label class="form-label" for="emailInputAddr">Correo Electrónico del Cliente</label>
+          <input type="email" id="emailInputAddr" class="form-input" placeholder="cliente@ejemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="emailInputSubject">Asunto Oficial</label>
+          <input type="text" id="emailInputSubject" class="form-input" readonly>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="emailInputBody">Cuerpo del Mensaje</label>
+          <textarea id="emailInputBody" class="form-textarea" rows="8" readonly style="font-family:inherit; font-size:0.85rem; line-height:1.5;"></textarea>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button type="button" class="btn-primary-action" onclick="sendClientEmailNative()" style="flex:1; justify-content:center;">
+          📨 Abrir en mi Correo (Gmail / Outlook)
+        </button>
+        <button type="button" class="btn-nav-outline" onclick="copyEmailTemplateText()" style="padding:12px 18px;">
+          📋 Copiar Texto
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1621,7 +2027,7 @@
 
       let catBadge = '🏍️ OCASIÓN';
       if (p.category === 'nueva') catBadge = '🏍️ NUEVA';
-      else if (p.category === 'casco') catBadge = '🪖 CASCO ECE 22.06';
+      else if (p.category === 'casco') catBadge = '🛡️ CASCO ECE 22.06';
       else if (p.category === 'chaqueta') catBadge = '🧥 EQUIPACIÓN';
       else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
 
@@ -1647,8 +2053,8 @@
             <button class="btn-card-action ${isSold ? 'btn-toggle-avail' : 'btn-toggle-sold'}" onclick="toggleProductSold('${p.id}')">
               ${isSold ? '🟢 Poner Disponible' : '🔴 Marcar Vendida'}
             </button>
-            <button class="btn-card-action" onclick="editProductPrice('${p.id}')">
-              ✏️ Editar Precio
+            <button class="btn-card-action" onclick="openEditProductModal('${p.id}')">
+              ✏️ Editar Ficha
             </button>
             <a href="../#catalogo" target="_blank" class="btn-card-action">
               👁️ Ver en Web
@@ -1671,6 +2077,252 @@
       saveAllProducts(list);
       playNotificationChime();
       showAdminToast(`Estado actualizado: "${item.title}" ahora está ${item.status === 'vendida' ? '🔴 VENDIDA' : '🟢 DISPONIBLE'}.`);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // EDICIÓN COMPLETA DE MOTO / PRODUCTO
+    // ══════════════════════════════════════════════════════════
+    let _editUploadedPhoto = '';
+
+    function openEditProductModal(id) {
+      const list = getAllProducts();
+      const item = list.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('editProdId').value = item.id;
+      document.getElementById('editProdTitle').value = item.title || '';
+      document.getElementById('editProdPrice').value = item.price || '';
+      document.getElementById('editProdCat').value = item.category || 'ocasion';
+      document.getElementById('editProdStatus').value = item.status || 'disponible';
+      document.getElementById('editProdYear').value = item.year || '2022';
+      document.getElementById('editProdKm').value = item.km || '';
+      document.getElementById('editProdDesc').value = item.desc || '';
+      
+      const imgPath = toPublicAssetUrl(item.image);
+      document.getElementById('editProdImgUrl').value = item.image || '';
+      document.getElementById('editPhotoPreview').src = imgPath;
+      _editUploadedPhoto = item.image || '';
+
+      toggleEditFormMotoFields();
+      document.getElementById('editProductModal').style.display = 'flex';
+      document.getElementById('editProdTitle').focus();
+    }
+
+    function closeEditProductModal() {
+      document.getElementById('editProductModal').style.display = 'none';
+      document.getElementById('editProductForm').reset();
+      _editUploadedPhoto = '';
+    }
+
+    function toggleEditFormMotoFields() {
+      const cat = document.getElementById('editProdCat').value;
+      const isMoto = (cat === 'ocasion' || cat === 'nueva');
+      const yearGroup = document.getElementById('groupEditMotoYear');
+      const kmGroup = document.getElementById('groupEditMotoKm');
+      if (yearGroup) yearGroup.style.display = isMoto ? 'block' : 'none';
+      if (kmGroup) kmGroup.style.display = isMoto ? 'block' : 'none';
+    }
+
+    function handleEditPhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        _editUploadedPhoto = evt.target.result;
+        document.getElementById('editPhotoPreview').src = _editUploadedPhoto;
+        document.getElementById('editProdImgUrl').value = _editUploadedPhoto;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updateEditPhotoPreviewFromUrl(url) {
+      _editUploadedPhoto = url.trim();
+      document.getElementById('editPhotoPreview').src = toPublicAssetUrl(_editUploadedPhoto);
+    }
+
+    function handleEditProductSubmit(e) {
+      e.preventDefault();
+      const id = document.getElementById('editProdId').value;
+      const list = getAllProducts();
+      const item = list.find(p => p.id === id);
+      if (!item) return;
+
+      const title = document.getElementById('editProdTitle').value.trim();
+      const priceRaw = document.getElementById('editProdPrice').value.trim();
+      const price = priceRaw.includes('€') ? priceRaw : priceRaw + ' €';
+      const category = document.getElementById('editProdCat').value;
+      const status = document.getElementById('editProdStatus').value;
+      const year = document.getElementById('editProdYear').value.trim() || '2023';
+      const km = document.getElementById('editProdKm').value.trim() || '0 km';
+      const desc = document.getElementById('editProdDesc').value.trim();
+      const image = _editUploadedPhoto || document.getElementById('editProdImgUrl').value.trim() || item.image;
+
+      item.title = title;
+      item.price = price;
+      item.category = category;
+      item.status = status;
+      item.year = year;
+      item.km = km;
+      item.desc = desc;
+      item.image = image;
+
+      saveAllProducts(list);
+      closeEditProductModal();
+      playNotificationChime();
+      showAdminToast(`✅ Ficha de "${title}" actualizada con éxito.`);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // GESTIÓN DE FACTURAS PROFORMA & HOJA DE ENTRADA DE TALLER
+    // ══════════════════════════════════════════════════════════
+    let _currentInvoiceCita = null;
+
+    function openInvoiceModal(ref) {
+      const citas = getStoredCitas();
+      const cita = citas.find(c => c.ref === ref) || {
+        ref: ref || 'ORERO-CITA-1001',
+        name: 'Carlos Navarro',
+        phone: '622114455',
+        moto: 'Yamaha MT-07',
+        service: 'Revisión Oficial 60 Puntos',
+        date: '2026-10-23',
+        slot: 'Mañana (09:30 - 13:30)',
+        status: 'confirmada'
+      };
+
+      _currentInvoiceCita = cita;
+      document.getElementById('invDocNumber').textContent = 'FAC-' + cita.ref;
+      document.getElementById('invDocDate').textContent = 'Fecha: ' + cita.date;
+      document.getElementById('invClientName').textContent = cita.name;
+      document.getElementById('invClientPhone').textContent = '📞 ' + cita.phone;
+      document.getElementById('invVehicleModel').textContent = cita.moto;
+      document.getElementById('invServiceSlot').textContent = 'Turno: ' + cita.slot;
+      document.getElementById('invVehicleStatus').textContent = cita.status === 'confirmada' ? '🟢 Estado Cita: Confirmada' : '⏳ Estado Cita: Pendiente de Turno';
+      document.getElementById('invServiceDesc').textContent = cita.service;
+
+      document.getElementById('invoiceModal').style.display = 'flex';
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').style.display = 'none';
+      _currentInvoiceCita = null;
+    }
+
+    function printInvoiceSheet() {
+      window.print();
+    }
+
+    function downloadInvoiceTxt() {
+      if (!_currentInvoiceCita) return;
+      const c = _currentInvoiceCita;
+      const doc = `========================================================================
+ORERO MOTORCYCLES - TALLER OFICIAL & MULTIMARCA
+Calle San Agustín 18, 03300 Orihuela (Alicante)
+CIF: B-54982143 | Tel: +34 632 76 18 152 | Web: oreromotorcycles.es
+========================================================================
+ORDEN DE TRABAJO & FACTURA PROFORMA DE TALLER
+Documento Nº: FAC-\${c.ref}
+Fecha: \${c.date}
+Estado: \${c.status.toUpperCase()}
+
+DATOS DEL CLIENTE:
+- Nombre: \${c.name}
+- Teléfono: \${c.phone}
+- Población: Orihuela (Vega Baja del Segura)
+
+DATOS DEL VEHÍCULO:
+- Marca y Modelo: \${c.moto}
+- Turno Asignado: \${c.slot}
+- Intervención Mecánica: \${c.service}
+
+DETALLE ECONÓMICO:
+1. Intervención / Servicio Solicitado: 65,00 €
+2. Mano de Obra Oficial Especializada (1.5 h): 52,50 €
+3. Materiales, Consumibles y Gestión de Residuos: 14,50 €
+------------------------------------------------------------------------
+Base Imponible: 132,00 €
+I.V.A. (21%): 27,72 €
+TOTAL FACTURA PROFORMA: 159,72 €
+------------------------------------------------------------------------
+Garantía: Conforme al RD 1457/1986, las reparaciones cuentan con 3 meses o 2.000 km.
+========================================================================`;
+      
+      const blob = new Blob([doc], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Factura_Taller_\${c.ref}.txt`;
+      a.click();
+      showAdminToast('📥 Hoja de Taller descargada con éxito.');
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // GESTIÓN DE ENVÍO DE EMAIL DE CONFIRMACIÓN
+    // ══════════════════════════════════════════════════════════
+    let _activeEmailData = null;
+
+    function openEmailCitaModal(ref) {
+      const citas = getStoredCitas();
+      const cita = citas.find(c => c.ref === ref);
+      if (!cita) return;
+
+      const subject = `Confirmación de Cita de Taller - Orero Motorcycles [Ref: ${cita.ref}]`;
+      const body = `Estimado/a ${cita.name},
+
+Le confirmamos que su cita en el taller de Orero Motorcycles ha sido registrada y agendada correctamente.
+
+DATOS DE LA CITA:
+• Referencia: ${cita.ref}
+• Vehículo: ${cita.moto}
+• Servicio Solicitado: ${cita.service}
+• Fecha y Turno: ${cita.date} (${cita.slot})
+• Ubicación: Calle San Agustín 18, 03300 Orihuela (Alicante)
+• Teléfono de Contacto: 632 76 18 152
+
+A su llegada, nuestros mecánicos realizarán la recepción del vehículo y la diagnosis preliminar. Si necesita modificar o cancelar su cita, por favor avísenos con antelación.
+
+Gracias por confiar en Orero Motorcycles.
+
+Atentamente,
+Equipo de Taller Orero Motorcycles
+Calle San Agustín 18, Orihuela
+www.oreromotorcycles.es`;
+
+      _activeEmailData = {
+        ref: cita.ref,
+        name: cita.name,
+        subject: subject,
+        body: body
+      };
+
+      document.getElementById('emailInputAddr').value = '';
+      document.getElementById('emailInputSubject').value = subject;
+      document.getElementById('emailInputBody').value = body;
+      document.getElementById('emailCitaModal').style.display = 'flex';
+    }
+
+    function closeEmailCitaModal() {
+      document.getElementById('emailCitaModal').style.display = 'none';
+      _activeEmailData = null;
+    }
+
+    function sendClientEmailNative() {
+      if (!_activeEmailData) return;
+      const addr = document.getElementById('emailInputAddr').value.trim();
+      const subj = encodeURIComponent(_activeEmailData.subject);
+      const body = encodeURIComponent(_activeEmailData.body);
+      const mailtoUrl = `mailto:${addr}?subject=${subj}&body=${body}`;
+      window.location.href = mailtoUrl;
+      showAdminToast('📨 Abriendo cliente de correo...');
+    }
+
+    function copyEmailTemplateText() {
+      const body = document.getElementById('emailInputBody').value;
+      navigator.clipboard.writeText(body).then(() => {
+        showAdminToast('📋 Plantilla de email copiada al portapapeles.');
+      }).catch(() => {
+        showAdminToast('📋 Texto copiado.');
+      });
     }
 
     function editProductPrice(id) {
@@ -1838,6 +2490,7 @@
       citas.forEach(c => {
         const tr = document.createElement('tr');
         const isPending = c.status === 'pendiente';
+        const displayDate = (c.date || '').includes('-') ? c.date.split('-').reverse().join('/') : c.date;
         const statusBadge = isPending
           ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">PENDIENTE</span>'
           : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">CONFIRMADA</span>';
@@ -1847,26 +2500,38 @@
         const waMsg = encodeURIComponent(`Hola ${c.name}, te escribimos desde Orero Motorcycles en Orihuela para confirmar tu cita de taller (${c.ref}) para ${c.moto} el día ${c.date} (${c.slot}) en Calle San Agustín 18. ¿Te viene bien?`);
 
         tr.innerHTML = `
-          <td style="font-family:monospace; font-weight:800; color:var(--red);">${c.ref}</td>
-          <td><strong>${c.name}</strong></td>
-          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a></td>
-          <td>${c.moto}</td>
-          <td>${c.service}</td>
+          <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem;">${c.ref}</td>
+          <td><strong style="color:#fff; font-size:0.92rem;">${c.name}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700; white-space:nowrap;">📞 ${c.phone}</a></td>
+          <td style="font-weight:600; color:#f1f5f9;">${c.moto}</td>
+          <td style="color:#cbd5e1;">${c.service}</td>
           <td>
-            <div>📅 ${c.date}</div>
-            <div style="font-size:0.75rem; color:var(--text-muted);">${c.slot}</div>
+            <div class="date-cell-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ef233c" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>${displayDate}</span>
+            </div>
+            <div class="slot-cell-sub">${c.slot}</div>
           </td>
           <td>${statusBadge}</td>
           <td style="text-align:right;">
-            <a href="https://wa.me/${phoneParam}?text=${waMsg}" target="_blank" class="btn-card-action" style="background:#25D366; color:#fff; border:none; padding:6px 10px; margin-right:4px;">
-              💬 WhatsApp
-            </a>
-            <button class="btn-card-action" style="padding:6px 10px;" onclick="toggleCitaStatus('${c.ref}')">
-              ${isPending ? '✓ Confirmar' : 'Reabrir'}
-            </button>
-            <button class="btn-card-action btn-card-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteCita('${c.ref}')">
-              🗑️
-            </button>
+            <div class="table-actions-cell">
+              <a href="https://wa.me/${phoneParam}?text=${waMsg}" target="_blank" class="btn-action-pill btn-wa" title="Confirmar por WhatsApp">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                WhatsApp
+              </a>
+              <button class="btn-action-pill btn-email" onclick="openEmailCitaModal('${c.ref}')" title="Enviar Confirmación por Email">
+                ✉️ Email
+              </button>
+              <button class="btn-action-pill ${isPending ? 'btn-confirm' : 'btn-reopen'}" onclick="toggleCitaStatus('${c.ref}')" title="Cambiar Estado">
+                ${isPending ? '✓ Confirmar' : 'Reabrir'}
+              </button>
+              <button class="btn-action-pill btn-invoice" onclick="openInvoiceModal('${c.ref}')" title="Ver / Descargar Factura de Taller">
+                📄 Factura
+              </button>
+              <button class="btn-action-pill btn-delete" onclick="deleteCita('${c.ref}')" title="Eliminar Cita">
+                🗑️
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
