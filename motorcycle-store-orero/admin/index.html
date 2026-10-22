@@ -2188,7 +2188,8 @@
 
       _currentInvoiceCita = cita;
       document.getElementById('invDocNumber').textContent = 'FAC-' + cita.ref;
-      document.getElementById('invDocDate').textContent = 'Fecha: ' + cita.date;
+      const displayInvDate = (cita.date || '').includes('-') ? cita.date.split('-').reverse().join('/') : cita.date;
+      document.getElementById('invDocDate').textContent = 'Fecha: ' + displayInvDate;
       document.getElementById('invClientName').textContent = cita.name;
       document.getElementById('invClientPhone').textContent = '📞 ' + cita.phone;
       document.getElementById('invVehicleModel').textContent = cita.moto;
@@ -2205,7 +2206,321 @@
     }
 
     function printInvoiceSheet() {
-      window.print();
+      if (!_currentInvoiceCita) return;
+      const c = _currentInvoiceCita;
+      const displayDate = (c.date || '').includes('-') ? c.date.split('-').reverse().join('/') : c.date;
+
+      const printHtml = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Factura_Taller_Orero_${c.ref}</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm 15mm 10mm 15mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+    }
+    body {
+      background: #ffffff;
+      padding: 0;
+      font-size: 10pt;
+      line-height: 1.35;
+    }
+    .invoice-wrapper {
+      width: 100%;
+      max-width: 180mm;
+      margin: 0 auto;
+    }
+    .header-table {
+      width: 100%;
+      border-bottom: 2.5px solid #ef233c;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .brand-title {
+      font-size: 18pt;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+    .brand-title span {
+      color: #ef233c;
+    }
+    .brand-sub {
+      font-size: 8pt;
+      color: #475569;
+      margin-top: 1px;
+      font-weight: 600;
+    }
+    .doc-badge {
+      display: inline-block;
+      background: #fee2e2;
+      border: 1px solid #ef233c;
+      color: #b91c1c;
+      font-size: 7.5pt;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .doc-ref {
+      font-size: 13pt;
+      font-weight: 900;
+      font-family: monospace;
+      margin-top: 3px;
+      color: #000;
+    }
+    .doc-date {
+      font-size: 8pt;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .info-grid {
+      display: table;
+      width: 100%;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+    }
+    .info-col {
+      display: table-cell;
+      width: 50%;
+      vertical-align: top;
+    }
+    .section-label {
+      font-size: 7pt;
+      font-weight: 800;
+      color: #ef233c;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    .info-name {
+      font-size: 10.5pt;
+      font-weight: 800;
+      color: #000;
+    }
+    .info-sub {
+      font-size: 8pt;
+      color: #334155;
+      margin-top: 1px;
+    }
+    .table-items {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    .table-items th {
+      background: #f1f5f9;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding: 6px 8px;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #475569;
+      text-align: left;
+    }
+    .table-items td {
+      padding: 7px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 8.5pt;
+      vertical-align: middle;
+    }
+    .totals-wrap {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .totals-table {
+      margin-left: auto;
+      width: 220px;
+      border-collapse: collapse;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #f8fafc;
+    }
+    .totals-table td {
+      padding: 5px 8px;
+      font-size: 8.5pt;
+    }
+    .totals-table tr.total-row td {
+      border-top: 1.5px solid #000;
+      font-size: 10.5pt;
+      font-weight: 900;
+      color: #000;
+      background: #f1f5f9;
+    }
+    .legal-box {
+      background: #f8fafc;
+      border-left: 3px solid #ef233c;
+      padding: 6px 8px;
+      font-size: 7pt;
+      color: #475569;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .signatures-table {
+      width: 100%;
+      margin-top: 8px;
+    }
+    .signature-cell {
+      width: 50%;
+      text-align: center;
+      padding: 0 15px;
+    }
+    .signature-line {
+      border-top: 1px dashed #94a3b8;
+      padding-top: 4px;
+      font-size: 7.5pt;
+      color: #334155;
+      font-weight: 700;
+    }
+    .footer-stamp {
+      text-align: center;
+      font-size: 7pt;
+      color: #94a3b8;
+      margin-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-wrapper">
+    <table class="header-table">
+      <tr>
+        <td style="vertical-align:middle;">
+          <div class="brand-title"><span>ORERO</span> MOTORCYCLES</div>
+          <div class="brand-sub">Concesionario Multimarca & Taller Oficial · Desde Diciembre 2015</div>
+          <div class="brand-sub">Calle San Agustín 18, 03300 Orihuela (Alicante) · Tel: 966 74 01 20 / 632 76 18 152</div>
+          <div class="brand-sub">CIF: B-54982143 · Web Oficial: <strong>www.oreromotorcycles.es</strong> · Email: info@oreromotorcycles.es</div>
+        </td>
+        <td style="text-align:right; vertical-align:middle; width:200px;">
+          <div class="doc-badge">DOCUMENTO OFICIAL TALLER</div>
+          <div class="doc-ref">FAC-${c.ref}</div>
+          <div class="doc-date">Fecha Emisión: ${displayDate}</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="info-grid">
+      <div class="info-col">
+        <div class="section-label">DATOS DEL CLIENTE</div>
+        <div class="info-name">${c.name}</div>
+        <div class="info-sub">📞 Teléfono: ${c.phone}</div>
+        <div class="info-sub">📍 Orihuela / Vega Baja del Segura</div>
+      </div>
+      <div class="info-col">
+        <div class="section-label">DATOS DEL VEHÍCULO & TURNO</div>
+        <div class="info-name">${c.moto}</div>
+        <div class="info-sub">⏱️ Turno Asignado: ${c.slot}</div>
+        <div class="info-sub">🟢 Estado Cita: ${c.status === 'confirmada' ? 'Confirmada' : 'Pendiente de Turno'}</div>
+      </div>
+    </div>
+
+    <table class="table-items">
+      <thead>
+        <tr>
+          <th>Concepto / Intervención Mecánica Solicitada</th>
+          <th style="text-align:center; width:45px;">Unid.</th>
+          <th style="text-align:right; width:75px;">Precio</th>
+          <th style="text-align:right; width:75px;">Importe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>${c.service}</strong>
+            <div style="font-size:7pt; color:#64748b; margin-top:1px;">Inspección técnica multimarca oficial según protocolos del fabricante en Calle San Agustín 18.</div>
+          </td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:right;">65,00 €</td>
+          <td style="text-align:right; font-weight:700;">65,00 €</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Mano de Obra Mecánica Oficial Multimarca</strong>
+            <div style="font-size:7pt; color:#64748b; margin-top:1px;">Técnico mecánico especializado homologado (1,5 horas de intervención).</div>
+          </td>
+          <td style="text-align:center;">1.5 h</td>
+          <td style="text-align:right;">35,00 €/h</td>
+          <td style="text-align:right; font-weight:700;">52,50 €</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Materiales, Consumibles de Taller & Tasa de Residuos</strong>
+            <div style="font-size:7pt; color:#64748b; margin-top:1px;">Gestión medioambiental de residuos y reciclaje oficial certificado.</div>
+          </td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:right;">14,50 €</td>
+          <td style="text-align:right; font-weight:700;">14,50 €</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="totals-wrap">
+      <tr>
+        <td style="vertical-align:top; padding-right:12px;">
+          <div class="legal-box">
+            <strong>Garantía Oficial de Reparación:</strong> Conforme al Real Decreto 1457/1986 de talleres de reparación de vehículos, esta intervención cuenta con garantía legal de 3 meses o 2.000 km recorridos. Las piezas sustituidas quedan a disposición del cliente.
+          </div>
+        </td>
+        <td style="vertical-align:top; width:220px;">
+          <table class="totals-table">
+            <tr>
+              <td>Base Imponible:</td>
+              <td style="text-align:right; font-weight:700;">132,00 €</td>
+            </tr>
+            <tr>
+              <td>I.V.A. (21%):</td>
+              <td style="text-align:right; font-weight:700;">27,72 €</td>
+            </tr>
+            <tr class="total-row">
+              <td style="color:#ef233c;">TOTAL:</td>
+              <td style="text-align:right; color:#000;">159,72 €</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <table class="signatures-table">
+      <tr>
+        <td class="signature-cell">
+          <div style="height:25px;"></div>
+          <div class="signature-line">Firma & Sello Taller Orero Motorcycles</div>
+        </td>
+        <td class="signature-cell">
+          <div style="height:25px;"></div>
+          <div class="signature-line">Conforme Cliente (Firma y DNI)</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="footer-stamp">
+      Documento Oficial emitido por Orero Motorcycles S.L. · CIF: B-54982143 · www.oreromotorcycles.es · Calle San Agustín 18, 03300 Orihuela (Alicante)
+    </div>
+  </div>
+</body>
+</html>`;
+
+      const printWin = window.open('', '_blank', 'width=800,height=900');
+      printWin.document.open();
+      printWin.document.write(printHtml);
+      printWin.document.close();
+      printWin.focus();
+      setTimeout(() => {
+        printWin.print();
+      }, 350);
     }
 
     function downloadInvoiceTxt() {
@@ -2512,8 +2827,8 @@ www.oreromotorcycles.es`;
               <button class="btn-action-pill btn-email" onclick="openEmailCitaModal('${c.ref}')" title="Enviar Confirmación por Email">
                 ✉️ Email
               </button>
-              <button class="btn-action-pill ${isPending ? 'btn-confirm' : 'btn-reopen'}" onclick="toggleCitaStatus('${c.ref}')" title="Cambiar Estado">
-                ${isPending ? '✓ Confirmar' : 'Reabrir'}
+              <button class="btn-action-pill ${isPending ? 'btn-confirm' : 'btn-reopen'}" onclick="toggleCitaStatus('${c.ref}')" title="Cambiar Estado de Cita">
+                ${isPending ? '✓ Confirmar' : '↺ Marcar Pendiente'}
               </button>
               <button class="btn-action-pill btn-invoice" onclick="openInvoiceModal('${c.ref}')" title="Ver / Descargar Factura de Taller">
                 📄 Factura
@@ -2535,7 +2850,7 @@ www.oreromotorcycles.es`;
       item.status = item.status === 'pendiente' ? 'confirmada' : 'pendiente';
       saveStoredCitas(citas);
       playNotificationChime();
-      showAdminToast(`Cita ${ref} actualizada a ${item.status.toUpperCase()}`);
+      showAdminToast(`Cita ${ref} marcada como ${item.status === 'confirmada' ? 'CONFIRMADA' : 'PENDIENTE'}`);
     }
 
     function deleteCita(ref) {
