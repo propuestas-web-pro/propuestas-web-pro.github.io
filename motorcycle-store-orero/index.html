@@ -1680,35 +1680,7 @@
       color: var(--text-subtle);
     }
 
-    /* ══════════════════════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
-       ══════════════════════════════════════════════════════════ */
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 56px;
-      height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
-      z-index: 99;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.65);
-    }
-    .floating-wa-btn svg {
-      width: 30px;
-      height: 30px;
-      fill: #fff;
-    }
+    
 
     /* ══════════════════════════════════════════════════════════
        MODALS: MOTORCYCLE DETAIL & LEGAL
@@ -1812,47 +1784,7 @@
       pointer-events: none;
     }
 
-    /* 2. Floating WhatsApp Radar Ping */
-    @keyframes waRadarRing {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      50% { opacity: 0.4; }
-      100% { transform: scale(1.85); opacity: 0; }
-    }
-    @keyframes waWiggle {
-      0%, 85%, 100% { transform: rotate(0deg); }
-      88% { transform: rotate(-10deg) scale(1.08); }
-      92% { transform: rotate(10deg) scale(1.08); }
-      96% { transform: rotate(-6deg) scale(1.05); }
-    }
-    .floating-wa-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 26px rgba(37, 211, 102, 0.45);
-      z-index: 999;
-      animation: waWiggle 6s ease-in-out infinite;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-    }
-    .floating-wa-btn::before {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 2px solid #25D366;
-      animation: waRadarRing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-      pointer-events: none;
-    }
-    .floating-wa-btn:hover {
-      transform: scale(1.12) translateY(-3px) !important;
-      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.65);
-    }
+    
 
     /* 3. Badge Radar Beacon (Ocasión / Nueva) */
     @keyframes badgeBeacon {
@@ -4650,18 +4582,16 @@
           </p>
 
           <div class="booking-success-actions" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-            <button class="btn-hero" onclick="sendBookingWhatsAppDirect()" type="button" style="background:#25d366; color:#0b0e14; font-weight:800; font-size:0.9rem; padding:12px 22px; border:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px rgba(37,211,102,0.35); cursor:pointer;">
-              <span>💬 Confirmar por WhatsApp con Taller (1 Clic)</span>
-            </button>
+            <a href="tel:+34966740120" class="btn-hero" style="background:linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%); color:#fff; font-weight:800; font-size:0.9rem; padding:12px 22px; border:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 20px var(--red-glow); text-decoration:none; cursor:pointer;">
+              <span>📞 Llamar al Taller para Confirmar (966 74 01 20)</span>
+            </a>
             <button class="btn-hero btn-hero-outline" onclick="printAppointmentPass()" type="button" style="font-size:0.9rem; padding:12px 20px;">
               <span>🖨️ Descargar Justificante (Pase Taller)</span>
             </button>
             <button class="btn-hero btn-hero-outline" onclick="downloadAppointmentICS()" type="button" style="font-size:0.9rem; padding:12px 20px;">
               <span>📅 Añadir a Calendario (.ics)</span>
             </button>
-            <a href="tel:+34966740120" class="btn-hero btn-hero-outline" style="font-size:0.9rem; padding:12px 20px;">
-              <span>📞 Llamar al Taller (966 74 01 20)</span>
-            </a>
+
             <button class="btn-hero btn-hero-outline" onclick="resetBookingForm()" type="button" style="font-size:0.85rem; padding:12px 18px;">
               <span>Solicitar Otra Cita</span>
             </button>
@@ -5302,24 +5232,7 @@
       initSmartBookingDatePicker();
     }
 
-    // Direct 1-Click WhatsApp confirmation
-    function sendBookingWhatsAppDirect() {
-      if (!lastBookedAppointment) return;
-      const a = lastBookedAppointment;
-      const msg = `¡Hola Orero Motorcycles! Acabo de solicitar cita previa en la web para el taller:\n\n` +
-        `📌 Ref: ${a.ref}\n` +
-        `👤 Nombre: ${a.name}\n` +
-        `📞 Teléfono: ${a.phone}\n` +
-        `✉️ Email: ${a.email || 'No indicado'}\n` +
-        `🏍️ Vehículo: ${a.moto}\n` +
-        `🛠️ Servicio: ${a.service}\n` +
-        `📅 Fecha preferida: ${a.date} (${a.slot})\n` +
-        (a.notes ? `📝 Notas: ${a.notes}\n\n` : `\n`) +
-        `¿Me podéis confirmar disponibilidad de recepción en Calle San Agustín 18? ¡Muchas gracias!`;
-      const url = `https://wa.me/34966740120?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-    }
-
+    
     // Printable Workshop Pass / Justificante
     function printAppointmentPass() {
       if (!lastBookedAppointment) return;

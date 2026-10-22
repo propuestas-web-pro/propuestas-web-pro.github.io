@@ -732,15 +732,7 @@
       transform: translateY(-1px);
     }
 
-    .btn-action-pill.btn-wa {
-      background: rgba(37, 211, 102, 0.15);
-      border-color: rgba(37, 211, 102, 0.4);
-      color: #4ade80;
-    }
-    .btn-action-pill.btn-wa:hover {
-      background: #25D366;
-      color: #fff;
-    }
+    
 
     .btn-action-pill.btn-email {
       background: rgba(59, 130, 246, 0.12);
@@ -1076,10 +1068,13 @@
         </div>
       </div>
       <div style="display:flex; gap:8px;">
-        <a id="alertBarWaLink" href="#" target="_blank" class="btn-nav-outline" style="background:#25D366; color:#fff; border:none; font-weight:800;">
-          💬 WhatsApp
+        <a id="alertBarCallLink" href="tel:6327618152" class="btn-nav-outline" style="background:rgba(59,130,246,0.2); border-color:rgba(59,130,246,0.4); color:#93c5fd; font-weight:800;">
+          📞 Llamar al Cliente
         </a>
-        <button class="btn-nav-outline" onclick="dismissAlertBar()">✕ Cerrar</button>
+        <button class="btn-primary-action" onclick="switchTab('citas', document.getElementById('tabBtnCitas')); dismissAlertBar();" style="padding:7px 14px; font-size:0.8rem;">
+          📋 Ver en Citas
+        </button>
+        <button class="btn-nav-outline" onclick="dismissAlertBar()">✕</button>
       </div>
     </div>
 
@@ -1245,7 +1240,7 @@
                 <th>Año / Km</th>
                 <th>Valoración Estimada</th>
                 <th>Estado</th>
-                <th style="text-align:right;">Acciones WhatsApp</th>
+                <th style="text-align:right;">Contacto & Gestión</th>
               </tr>
             </thead>
             <tbody id="tasacionesTableBody">
@@ -1273,7 +1268,7 @@
               <strong>Dirección:</strong> Calle San Agustín, 18<br>
               <strong>Código Postal:</strong> 03300 Orihuela (Alicante)<br>
               <strong>Teléfono Taller:</strong> <a href="tel:966740120" style="color:#93c5fd; text-decoration:none; font-weight:700;">966 74 01 20</a><br>
-              <strong>WhatsApp:</strong> <a href="https://wa.me/34966740120" target="_blank" style="color:#34d399; text-decoration:none; font-weight:700;">+34 966 74 01 20</a>
+              <strong>Email Oficial:</strong> <a href="mailto:info@oreromotorcycles.es" style="color:#93c5fd; text-decoration:none; font-weight:700;">info@oreromotorcycles.es</a>
             </p>
           </div>
 
@@ -1736,7 +1731,7 @@
     // Seed Tasaciones
     const DEFAULT_TASACIONES = [
       { ref: "ORERO-TAS-801", name: "Fernando Murcia", phone: "611223344", moto: "Kawasaki Z900 A2", year: "2022", km: "9.400 km", offer: "6.800 €", status: "pendiente", notes: "Interesado en dejarla en gestión de venta en Calle San Agustín 18." },
-      { ref: "ORERO-TAS-802", name: "Antonio Serna", phone: "655667788", moto: "Yamaha XMAX 300", year: "2021", km: "14.200 km", offer: "4.300 €", status: "oferta_enviada", notes: "Revisión en taller pendiente. Enviar propuesta por WhatsApp." },
+      { ref: "ORERO-TAS-802", name: "Antonio Serna", phone: "655667788", moto: "Yamaha XMAX 300", year: "2021", km: "14.200 km", offer: "4.300 €", status: "oferta_enviada", notes: "Revisión en taller pendiente. Contactar por teléfono o email." },
       { ref: "ORERO-TAS-803", name: "Roberto Giménez", phone: "666778899", moto: "Honda CB650R Neo Sports", year: "2023", km: "5.100 km", offer: "7.100 €", status: "aceptada", notes: "Aceptada. Pasa este viernes por el concesionario a firmar depósito." }
     ];
 
@@ -2497,8 +2492,7 @@ www.oreromotorcycles.es`;
 
         const cleanPhone = (c.phone || '').replace(/\D/g, '');
         const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
-        const waMsg = encodeURIComponent(`Hola ${c.name}, te escribimos desde Orero Motorcycles en Orihuela para confirmar tu cita de taller (${c.ref}) para ${c.moto} el día ${c.date} (${c.slot}) en Calle San Agustín 18. ¿Te viene bien?`);
-
+        
         tr.innerHTML = `
           <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem;">${c.ref}</td>
           <td><strong style="color:#fff; font-size:0.92rem;">${c.name}</strong></td>
@@ -2515,10 +2509,6 @@ www.oreromotorcycles.es`;
           <td>${statusBadge}</td>
           <td style="text-align:right;">
             <div class="table-actions-cell">
-              <a href="https://wa.me/${phoneParam}?text=${waMsg}" target="_blank" class="btn-action-pill btn-wa" title="Confirmar por WhatsApp">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                WhatsApp
-              </a>
               <button class="btn-action-pill btn-email" onclick="openEmailCitaModal('${c.ref}')" title="Enviar Confirmación por Email">
                 ✉️ Email
               </button>
@@ -2651,12 +2641,14 @@ www.oreromotorcycles.es`;
             </select>
           </td>
           <td style="text-align:right;">
-            <a href="https://wa.me/${phoneParam}?text=${msg}" target="_blank" class="btn-card-action" style="background:#25D366; color:#fff; border:none; padding:7px 12px; font-weight:800;">
-              💬 Enviar Oferta WhatsApp
-            </a>
-            <button class="btn-card-action btn-card-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteTasacion('${t.ref}')">
-              🗑️
-            </button>
+            <div class="table-actions-cell">
+              <a href="tel:${t.phone}" class="btn-action-pill" style="background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.4); color:#93c5fd;" title="Llamar al Cliente">
+                📞 Llamar
+              </a>
+              <button class="btn-action-pill btn-delete" onclick="deleteTasacion('${t.ref}')" title="Eliminar Tasación">
+                🗑️
+              </button>
+            </div>
           </td>
         `;
         tbody.appendChild(tr);
@@ -2738,8 +2730,7 @@ www.oreromotorcycles.es`;
       const bar = document.getElementById('liveAlertBar');
       document.getElementById('alertBarTitle').textContent = `🔔 ¡NUEVA CITA DE TALLER: ${randomName.toUpperCase()}!`;
       document.getElementById('alertBarDesc').textContent = `Vehículo: ${randomMoto} · Revisión Oficial 60 Puntos · Calle San Agustín 18`;
-      const waMsg = encodeURIComponent(`Hola ${randomName}, hemos recibido tu petición de cita para ${randomMoto} en Orero Motorcycles Orihuela. ¿Te viene bien este horario?`);
-      document.getElementById('alertBarWaLink').href = `https://wa.me/34654321987?text=${waMsg}`;
+            if (document.getElementById('alertBarCallLink')) document.getElementById('alertBarCallLink').href = 'tel:654321987';
       bar.style.display = 'flex';
 
       showAdminToast(`🔔 Nueva cita recibida de ${randomName} (${randomMoto})`);
