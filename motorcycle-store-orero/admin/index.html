@@ -8,1708 +8,1477 @@
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #06080d;
-      --card-bg: #0d121c;
+      --bg: #07090e;
+      --card-bg: #0f131c;
       --card-border: rgba(255, 255, 255, 0.08);
       --red: #ef233c;
       --red-hover: #d90429;
-      --gold: #d4af37;
+      --red-glow: rgba(239, 35, 60, 0.35);
+      --text: #ffffff;
+      --text-muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.1);
       --green: #10b981;
       --yellow: #f59e0b;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --blue: #3b82f6;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 100%;
-      max-width: 100vw;
-      overflow-x: hidden !important;
-      -webkit-tap-highlight-color: transparent;
-    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: var(--font-body);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
-      min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      position: relative;
-    }
-    button, [role="button"], a {
-      touch-action: manipulation;
-    }
-    input, select, textarea {
-      font-size: 16px !important; /* Critical: prevents iOS auto-zoom on mobile */
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ══════════════════════════════════════════════════════════
-       PANTALLA DE ACCESO (SOLO CONTRASEÑA: casino18)
+       LOGIN SCREEN
        ══════════════════════════════════════════════════════════ */
-    .login-wrapper {
-      flex: 1;
+    .login-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      background: radial-gradient(circle at 50% 30%, rgba(239, 35, 60, 0.15) 0%, transparent 60%);
+      min-height: 100vh;
+      padding: 20px;
+      background: radial-gradient(circle at 50% 20%, rgba(239, 35, 60, 0.12) 0%, transparent 60%),
+                  radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                  var(--bg);
     }
-    .login-card {
+
+    .login-box {
       width: 100%;
       max-width: 440px;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 44px 32px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 38px 30px;
       text-align: center;
-      position: relative;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px -10px var(--red-glow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: fadeIn 0.4s ease-out;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .login-logo {
-      width: 80px;
-      height: 80px;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
       margin: 0 auto 18px;
+      border: 2px solid var(--red);
+      box-shadow: 0 0 25px var(--red-glow);
       display: block;
-      filter: drop-shadow(0 6px 16px rgba(239, 35, 60, 0.35));
     }
+
     .login-title {
-      font-family: var(--font-heading);
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.6rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    }
-    .login-title span { color: var(--red); }
-    .login-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      line-height: 1.4;
-    }
-    .form-group {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-    .form-label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #e2e8f0;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 10px;
-    }
-    .form-input {
-      width: 100%;
-      background: #090c13;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 15px 18px;
-      color: #fff;
-      font-family: inherit;
-      font-size: 1.05rem;
-      transition: all 0.2s;
-    }
-    .form-input:focus {
-      outline: none;
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(239, 35, 60, 0.25);
-      background: #0d121c;
-    }
-    .btn-login {
-      width: 100%;
-      background: var(--red);
-      color: #fff;
-      font-family: var(--font-heading);
-      font-size: 1.05rem;
       font-weight: 800;
-      border: none;
-      border-radius: 12px;
-      padding: 16px;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 18px rgba(239, 35, 60, 0.4);
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
     }
-    .btn-login:hover {
-      background: var(--red-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(239, 35, 60, 0.55);
-    }
-    .login-error {
-      display: none;
-      background: rgba(239, 35, 60, 0.15);
-      border: 1px solid rgba(239, 35, 60, 0.4);
-      color: #fca5a5;
-      padding: 12px;
-      border-radius: 10px;
+
+    .login-sub {
+      color: var(--text-muted);
       font-size: 0.88rem;
-      margin-bottom: 20px;
+      margin-bottom: 26px;
+    }
+
+    .login-form-group {
+      margin-bottom: 18px;
       text-align: left;
     }
 
+    .login-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .login-input:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 15px rgba(239, 35, 60, 0.35);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 25px var(--red-glow);
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(239, 35, 60, 0.5);
+    }
+
+    .login-error {
+      color: #f87171;
+      font-size: 0.84rem;
+      margin-top: 14px;
+      display: none;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
     /* ══════════════════════════════════════════════════════════
-       PANEL PRINCIPAL
+       DASHBOARD SCREEN
        ══════════════════════════════════════════════════════════ */
-    .dashboard-wrapper {
+    .dashboard-container {
       display: none;
       flex-direction: column;
       min-height: 100vh;
     }
-    .top-navbar {
-      background: #090c14;
-      border-bottom: 1px solid var(--card-border);
-      padding: 14px 28px;
+
+    /* Top Navigation Bar */
+    .admin-nav {
+      background: rgba(15, 19, 28, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .admin-nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      gap: 12px;
     }
-    .nav-brand {
+
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
+    }
+
+    .nav-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--red);
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 800;
       color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .nav-brand img { width: 38px; height: 38px; }
-    .nav-brand-title {
-      font-family: var(--font-heading);
-      font-weight: 900;
-      font-size: 1.2rem;
-      letter-spacing: -0.01em;
-    }
-    .nav-brand-title span { color: var(--red); }
-    .nav-badge {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
-      font-size: 0.72rem;
-      font-weight: 700;
+
+    .badge-admin-tag {
+      background: rgba(239, 35, 60, 0.15);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      color: #ff6b6b;
+      font-size: 0.65rem;
+      font-weight: 800;
       padding: 3px 8px;
       border-radius: 6px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
+
     .btn-nav-outline {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.86rem;
-      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 9px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       text-decoration: none;
       transition: all 0.2s;
-      cursor: pointer;
     }
+
     .btn-nav-outline:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    .btn-logout {
-      background: rgba(239, 35, 60, 0.12);
-      border: 1px solid rgba(239, 35, 60, 0.3);
-      color: #fca5a5;
-    }
-    .btn-logout:hover {
-      background: var(--red);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* Contenido */
-    .dashboard-content {
-      flex: 1;
-      padding: 28px;
-      max-width: 1400px;
+    .btn-sound-active {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+    }
+
+    .btn-sound-muted {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: rgba(239, 68, 68, 0.08);
+      color: #f87171;
+    }
+
+    /* Live Notification Banner */
+    .live-alert-bar {
+      background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 100%);
+      border-bottom: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 12px 20px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      animation: slideDown 0.35s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Main Content Area */
+    .admin-main {
+      max-width: 1300px;
       margin: 0 auto;
+      padding: 24px 20px;
       width: 100%;
+      flex: 1;
     }
 
-    /* KPIs */
-    .metrics-grid {
+    /* KPI Summary Cards Grid */
+    .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
-    .metric-card {
+
+    .kpi-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
       position: relative;
       overflow: hidden;
     }
-    .metric-card::before {
+
+    .kpi-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
       background: var(--red);
     }
-    .metric-card.green::before { background: var(--green); }
-    .metric-card.gold::before { background: var(--gold); }
-    .metric-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
+
+    .kpi-card-green::before { background: var(--green); }
+    .kpi-card-yellow::before { background: var(--yellow); }
+    .kpi-card-blue::before { background: var(--blue); }
+
+    .kpi-label {
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
       margin-bottom: 6px;
     }
-    .metric-val {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
+
+    .kpi-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
       font-weight: 900;
       color: #fff;
     }
 
-    /* Pestañas */
-    .tabs-bar {
-      display: flex;
-      gap: 10px;
-      border-bottom: 1px solid var(--card-border);
+    /* Tabs Bar (Scrollable on Mobile) */
+    .tab-bar-container {
       margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .tabs-bar::-webkit-scrollbar {
-      display: none;
-    }
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 800;
-      padding: 12px 22px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .tab-btn.active {
-      color: #fff;
-    }
-    .tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; width: 100%; height: 3px;
-      background: var(--red);
-      border-radius: 3px 3px 0 0;
     }
 
-    /* Card Estilo Facebook: Publicar Producto */
-    .fb-creator-card {
-      background: linear-gradient(145deg, #0f1624 0%, #0a0e18 100%);
-      border: 1px solid rgba(239, 35, 60, 0.35);
-      border-radius: 18px;
-      padding: 28px;
-      margin-bottom: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    .tab-bar-container::-webkit-scrollbar { display: none; }
+
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      min-width: max-content;
+      padding-bottom: 4px;
     }
-    .fb-header {
+
+    .tab-btn {
+      padding: 11px 18px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 14px;
+      gap: 8px;
+      transition: all 0.2s;
+      border-radius: 8px 8px 0 0;
+      font-family: inherit;
     }
-    .fb-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      border-bottom-color: var(--red);
+      background: rgba(239, 35, 60, 0.08);
+    }
+
+    .tab-count-pill {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .tab-btn.active .tab-count-pill {
       background: var(--red);
+      color: #fff;
+    }
+
+    /* Toolbar Row */
+    .tab-toolbar {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab-title-group h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #fff;
-      box-shadow: 0 4px 12px rgba(239, 35, 60, 0.4);
+      margin-bottom: 4px;
     }
-    .fb-title-wrap h3 {
-      font-family: var(--font-heading);
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #fff;
-    }
-    .fb-title-wrap p {
+
+    .tab-title-group p {
       font-size: 0.85rem;
       color: var(--text-muted);
     }
-    .fb-form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-bottom: 16px;
-    }
 
-    /* Subir imagen y Vista previa garantizada */
-    .photo-upload-box {
-      border: 2px dashed rgba(239, 35, 60, 0.4);
-      border-radius: 16px;
-      padding: 26px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      background: rgba(239, 35, 60, 0.02);
-      margin-bottom: 16px;
-      position: relative;
-    }
-    .photo-upload-box:hover {
-      border-color: var(--red);
-      background: rgba(239, 35, 60, 0.07);
-      transform: translateY(-1px);
-    }
-    .photo-upload-box.has-photo {
-      border-style: solid;
-      border-color: rgba(16, 185, 129, 0.55);
-      background: rgba(16, 185, 129, 0.04);
-      padding: 16px;
-    }
-    .photo-preview-wrap {
-      display: none;
-      width: 100%;
-      text-align: center;
-    }
-    .photo-preview-img {
-      max-width: 100%;
-      max-height: 280px;
-      width: auto;
-      height: auto;
-      object-fit: cover;
-      border-radius: 12px;
-      display: inline-block;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    }
-    .photo-preview-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
-    .photo-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      font-size: 0.84rem;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 9999px;
-    }
-    .btn-change-photo, .btn-remove-photo {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .btn-primary-action {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-hover) 100%);
       color: #fff;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-change-photo:hover {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: #fff;
-    }
-    .btn-remove-photo {
-      background: rgba(239, 35, 60, 0.15);
-      border-color: rgba(239, 35, 60, 0.35);
-      color: #fca5a5;
-    }
-    .btn-remove-photo:hover {
-      background: var(--red);
-      color: #fff;
-    }
-
-    /* Chips visuales de fotos de stock con miniaturas */
-    .sample-photos-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .sample-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #0d121c;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 12px;
-      padding: 6px 14px 6px 6px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: #f1f5f9;
-      font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-    .sample-chip:hover {
-      background: #141d2e;
-      border-color: rgba(239, 35, 60, 0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-    }
-    .sample-chip.active {
-      border-color: var(--red);
-      background: rgba(239, 35, 60, 0.18);
-      box-shadow: 0 0 16px rgba(239, 35, 60, 0.45);
-      color: #fff;
-    }
-    .sample-chip-thumb {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      object-fit: cover;
-      background: #000;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      flex-shrink: 0;
-    }
-
-    .btn-fb-publish {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #fff;
-      font-family: var(--font-heading);
-      font-size: 1.05rem;
-      font-weight: 800;
       border: none;
       border-radius: 12px;
-      padding: 15px 28px;
+      padding: 11px 20px;
+      font-size: 0.92rem;
+      font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4);
+      gap: 8px;
+      box-shadow: 0 8px 20px var(--red-glow);
       transition: all 0.2s;
     }
-    .btn-fb-publish:hover {
+
+    .btn-primary-action:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.55);
+      box-shadow: 0 12px 25px rgba(239, 35, 60, 0.45);
     }
 
-    /* Listado de Productos */
+    /* Filter Pills */
+    .filter-pills-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .pill-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .pill-btn.active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      font-weight: 800;
+    }
+
+    /* Search Input */
+    .search-box {
+      width: 100%;
+      margin-bottom: 22px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 13px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 0.92rem;
+      outline: none;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .search-input:focus {
+      border-color: var(--red);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Products Grid */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 20px;
     }
+
     .product-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: transform 0.2s, border-color 0.2s;
     }
+
     .product-card:hover {
       border-color: rgba(255, 255, 255, 0.2);
       transform: translateY(-3px);
     }
-    .product-thumb {
+
+    .thumb-wrap {
+      position: relative;
       width: 100%;
-      height: 180px;
-      object-fit: cover;
+      height: 200px;
+      overflow: hidden;
       background: #090c13;
     }
-    .product-body {
-      padding: 18px;
-      flex: 1;
+
+    .product-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-thumb {
+      transform: scale(1.04);
+    }
+
+    .status-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .status-available {
+      background: rgba(16, 185, 129, 0.85);
+      color: #ffffff;
+    }
+
+    .status-sold {
+      background: rgba(239, 68, 68, 0.85);
+      color: #ffffff;
+    }
+
+    .cat-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-body {
+      padding: 16px;
       display: flex;
       flex-direction: column;
+      flex: 1;
     }
-    .product-badge-row {
+
+    .card-head-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .product-badge {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: rgba(239, 35, 60, 0.15);
-      color: var(--red);
-    }
-    .product-status-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .status-available { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-    .status-sold { background: rgba(239, 35, 60, 0.2); color: #fca5a5; }
-
-    .product-title {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #fff;
+      align-items: flex-start;
+      gap: 10px;
       margin-bottom: 6px;
     }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
     .product-price {
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 900;
       color: var(--red);
-      margin-bottom: 12px;
+      white-space: nowrap;
     }
-    .product-desc {
-      font-size: 0.84rem;
+
+    .card-meta-row {
+      display: flex;
+      gap: 12px;
+      font-size: 0.78rem;
       color: var(--text-muted);
-      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .product-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.45;
       margin-bottom: 16px;
       flex: 1;
     }
-    .product-actions {
-      display: flex;
+
+    .card-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 14px;
-    }
-    .btn-prod-action {
-      flex: 1;
-      padding: 9px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: #141b27;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.15s;
-      text-align: center;
-    }
-    .btn-prod-action:hover {
-      background: #1e283b;
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-    .btn-prod-delete:hover {
-      background: var(--red);
-      border-color: var(--red);
+      margin-top: auto;
     }
 
-    /* Tabla de Citas */
-    .table-card {
+    .btn-card-action {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: #cbd5e1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-card-action:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-toggle-sold {
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.3);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .btn-toggle-sold:hover {
+      background: rgba(245, 158, 11, 0.18);
+    }
+
+    .btn-toggle-avail {
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .btn-toggle-avail:hover {
+      background: rgba(16, 185, 129, 0.18);
+    }
+
+    .btn-card-delete {
+      color: #f87171;
+    }
+
+    .btn-card-delete:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       TABLES (CITAS & TASACIONES)
+       ══════════════════════════════════════════════════════════ */
+    .table-container {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
       overflow: hidden;
-      margin-bottom: 32px;
-    }
-    .table-header {
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      border-bottom: 1px solid var(--card-border);
-    }
-    .table-responsive {
       overflow-x: auto;
-      width: 100%;
     }
-    table {
+
+    .data-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
       font-size: 0.88rem;
     }
-    th {
-      background: #090d16;
-      padding: 14px 20px;
-      font-size: 0.76rem;
-      font-weight: 700;
+
+    .data-table th {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px 16px;
       color: var(--text-muted);
+      font-size: 0.74rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      border-bottom: 1px solid var(--card-border);
-    }
-    td {
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      color: #e2e8f0;
-    }
-    tr:hover td { background: rgba(255, 255, 255, 0.02); }
-
-    /* ══════════════════════════════════════════════════════════
-       NOTIFICACIONES EN VIVO & CHIME BAR
-       ══════════════════════════════════════════════════════════ */
-    .live-alert-bar {
-      background: linear-gradient(90deg, rgba(239,35,60,0.9) 0%, rgba(185,28,28,0.95) 100%);
-      color: #fff;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      box-shadow: 0 4px 20px rgba(239,35,60,0.4);
-      animation: alertPulse 2s infinite ease-in-out;
-      font-size: 0.92rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    @keyframes alertPulse {
-      0%, 100% { border-bottom: 2px solid #fecaca; }
-      50% { border-bottom: 2px solid #ef4444; }
-    }
-    .live-alert-badge {
-      background: #fff;
-      color: #b91c1c;
+      border-bottom: 1px solid var(--border);
       font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
     }
-    .admin-toast-container {
+
+    .data-table td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
       position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 99999;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 440px;
-      width: calc(100vw - 32px);
-      pointer-events: none;
-    }
-    .admin-toast {
-      background: #0d121c;
-      border: 1px solid rgba(239, 35, 60, 0.4);
-      border-left: 5px solid #ef233c;
-      border-radius: 14px;
-      padding: 16px 18px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.85);
-      color: #fff;
-      pointer-events: auto;
-      animation: toastSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    @keyframes toastSlide {
-      from { transform: translateX(110%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       TOOLBAR DE BÚSQUEDA Y FILTROS DE CITAS
-       ══════════════════════════════════════════════════════════ */
-    .citas-toolbar {
-      padding: 18px 24px;
-      background: #090d16;
-      border-bottom: 1px solid var(--card-border);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .search-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .search-box-wrap {
-      flex: 1;
-      min-width: 260px;
-      position: relative;
-    }
-    .search-box-wrap input {
-      width: 100%;
-      background: #101623;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 10px;
-      padding: 10px 14px 10px 38px;
-      color: #fff;
-      font-size: 0.9rem !important;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .search-box-wrap input:focus {
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(239,35,60,0.2);
-    }
-    .search-icon-fixed {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }
-    .filter-chips-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .chip-filter {
-      background: #141b27;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-muted);
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .chip-filter:hover {
-      background: #1e283b;
-      color: #fff;
-    }
-    .chip-filter.active {
-      background: rgba(239, 35, 60, 0.15);
-      border-color: var(--red);
-      color: #fff;
-      font-weight: 700;
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       SELECTORES DINÁMICOS DE ESTADO Y ACCIONES DE FILA
-       ══════════════════════════════════════════════════════════ */
-    .status-select {
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.78rem !important;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid transparent;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .status-sel-pendiente {
-      background: rgba(245,158,11,0.18);
-      color: #fbbf24;
-      border-color: rgba(245,158,11,0.4);
-    }
-    .status-sel-confirmada {
-      background: rgba(16,185,129,0.18);
-      color: #34d399;
-      border-color: rgba(16,185,129,0.4);
-    }
-    .status-sel-taller {
-      background: rgba(59,130,246,0.18);
-      color: #60a5fa;
-      border-color: rgba(59,130,246,0.4);
-    }
-    .status-sel-finalizada {
-      background: rgba(148,163,184,0.18);
-      color: #cbd5e1;
-      border-color: rgba(148,163,184,0.3);
-    }
-    .status-sel-cancelada {
-      background: rgba(239,35,60,0.18);
-      color: #fca5a5;
-      border-color: rgba(239,35,60,0.4);
-    }
-
-    .btn-action-icon {
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: #141b27;
-      color: #fff;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      transition: all 0.15s;
-    }
-    .btn-action-icon:hover {
-      background: #1e283b;
-      border-color: rgba(255,255,255,0.25);
-    }
-    .btn-action-wa {
-      background: rgba(37,211,102,0.15);
-      border-color: rgba(37,211,102,0.35);
-      color: #4ade80;
-    }
-    .btn-action-wa:hover {
-      background: #25d366;
-      color: #06080d;
-      border-color: #25d366;
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       MODAL DE REPROGRAMACIÓN Y FICHA DE MECÁNICO
-       ══════════════════════════════════════════════════════════ */
-    .admin-modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(6, 8, 13, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 99990;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
-    .admin-modal-overlay.open { display: flex; }
-    .admin-modal {
-      background: #0d121c;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 18px;
+
+    .modal-card {
       width: 100%;
-      max-width: 680px;
+      max-width: 620px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.85);
-      padding: 28px;
-      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px 26px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px var(--red-glow);
+      animation: modalScale 0.25s ease-out;
     }
-    .admin-modal-header {
+
+    @keyframes modalScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 16px;
+      align-items: center;
       margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
-    .admin-modal-close {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+
+    .modal-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
       color: #fff;
-      width: 34px;
-      height: 34px;
+    }
+
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
+      font-size: 1.1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      transition: all 0.2s;
     }
-    .admin-modal-close:hover {
-      background: var(--red);
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
       border-color: var(--red);
+      background: rgba(255, 255, 255, 0.08);
     }
-    .modal-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+
+    .form-textarea { min-height: 80px; resize: vertical; }
+
+    /* Toast Notification */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 4px solid var(--green);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      font-size: 0.88rem;
+      font-weight: 700;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: toastIn 0.3s ease;
     }
+
+    @keyframes toastIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 600px) {
-      .modal-grid-2 { grid-template-columns: 1fr; }
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       MOBILE-NATIVE RESPONSIVE SUITE (ANTIGRAVITY & WCAG)
-       ══════════════════════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .top-navbar {
-        padding: 10px 12px;
-        gap: 8px;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-      }
-      .nav-brand {
-        gap: 8px;
-        min-width: 0;
-        flex-shrink: 1;
-      }
-      .nav-brand img {
-        width: 28px;
-        height: 28px;
-        flex-shrink: 0;
-      }
-      .nav-brand-title {
-        font-size: 0.95rem;
-        letter-spacing: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .nav-badge {
-        display: none !important; /* Hide badge on mobile header to save space */
-      }
-      .nav-actions {
-        gap: 6px;
-        flex-shrink: 0;
-      }
-      .btn-nav-outline {
-        padding: 6px 10px;
-        font-size: 0.78rem;
-        white-space: nowrap;
-      }
-      .dashboard-content {
-        padding: 14px 10px;
-      }
-
-      /* KPIs 2x2 compact on mobile */
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        margin-bottom: 18px;
-      }
-      .metric-card {
-        padding: 12px 10px;
-        border-radius: 12px;
-      }
-      .metric-label {
-        font-size: 0.7rem;
-        margin-bottom: 4px;
-      }
-      .metric-val {
-        font-size: 1.35rem;
-      }
-
-      /* Horizontal Swipable Tab Controls */
-      .tab-nav {
-        gap: 6px;
-        margin-bottom: 18px;
-        padding-bottom: 6px;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .tab-nav::-webkit-scrollbar {
-        display: none;
-      }
-      .tab-btn {
-        padding: 8px 14px;
-        font-size: 0.85rem;
-        flex-shrink: 0;
-        white-space: nowrap;
-      }
-
-      /* Facebook Publisher Card */
-      .fb-creator-card {
-        padding: 16px 12px;
-        border-radius: 14px;
-        margin-bottom: 22px;
-      }
-      .fb-header {
-        margin-bottom: 14px;
-        padding-bottom: 10px;
-      }
-      .fb-avatar {
-        width: 38px;
-        height: 38px;
-        font-size: 1.1rem;
-      }
-      .fb-title-wrap h3 {
-        font-size: 1.05rem;
-      }
-      .fb-title-wrap p {
-        font-size: 0.78rem;
-      }
-      .fb-form-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-      .photo-upload-box {
-        padding: 18px 12px;
-        border-radius: 12px;
-      }
-      .photo-preview-img {
-        max-height: 220px;
-      }
-
-      /* Horizontal Swipeable Sample Photo Chips */
-      .sample-photos-row {
-        gap: 8px;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        padding-bottom: 6px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .sample-photos-row::-webkit-scrollbar {
-        display: none;
-      }
-      .sample-chip {
-        flex-shrink: 0;
-        font-size: 0.82rem;
-        padding: 5px 12px 5px 5px;
-      }
-      .sample-chip-thumb {
-        width: 32px;
-        height: 32px;
-      }
-
-      .btn-fb-publish {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 20px;
-        font-size: 0.95rem;
-      }
-
-      /* Products Grid single column on mobile */
-      .products-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .product-thumb {
-        height: 190px;
-      }
-      .product-body {
-        padding: 14px;
-      }
+      .kpi-grid { grid-template-columns: 1fr; }
+      .admin-nav-inner { flex-direction: column; align-items: stretch; }
+      .nav-actions { justify-content: space-between; }
+      .tab-toolbar { flex-direction: column; align-items: stretch; }
+      .btn-primary-action { width: 100%; justify-content: center; }
+      .products-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════════════════════
-       PANTALLA DE ACCESO (SOLO CONTRASEÑA: casino18)
-       ══════════════════════════════════════════════════════════ -->
-  <div class="login-wrapper" id="loginScreen">
-    <div class="login-card">
-      <img src="/favicon.svg" alt="Orero Motorcycles" class="login-logo" onerror="this.src='../favicon.svg'">
-      <h1 class="login-title">ORERO <span>PANEL</span></h1>
-      <p class="login-subtitle">Introduce la contraseña para gestionar citas, motos y productos de la tienda.</p>
+  <!-- Audio Element for Crystal-Clear Sound Playback -->
+  <audio id="adminChimeAudio" preload="auto" src="../assets/chime.wav"></audio>
 
-      <div class="login-error" id="loginError">
-        ⚠️ Contraseña incorrecta. Recuerda que la contraseña es <strong>casino18</strong>.
-      </div>
+  <!-- ══════════════════════════════════════════════════════════
+       PANTALLA 1: ACCESO ADMINISTRACIÓN (CLAVE: casino18)
+       ══════════════════════════════════════════════════════════ -->
+  <div class="login-container" id="loginScreen">
+    <div class="login-box">
+      <img src="../favicon.svg" alt="Orero Motorcycles" class="login-logo" onerror="this.src='../assets/clean_showroom_orero.jpg'">
+      <h1 class="login-title">ORERO MOTORCYCLES</h1>
+      <p class="login-sub">Panel de Control & Concesionario Oficial · Orihuela</p>
 
       <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <!-- Hidden user for standard browser autofill, not shown to user -->
-        <input type="hidden" id="loginUser" value="admin">
-
-        <div class="form-group">
-          <label class="form-label" for="loginPass">Contraseña de Acceso:</label>
-          <input type="password" id="loginPass" class="form-input" placeholder="••••••••" required autofocus autocomplete="current-password">
+        <div class="login-form-group">
+          <label class="login-label" for="loginPass">Contraseña de Administrador</label>
+          <input type="password" id="loginPass" class="login-input" placeholder="Introduce la clave..." autofocus required>
         </div>
-
-        <button type="submit" class="btn-login">
-          <span>🔓 Entrar al Panel</span>
-        </button>
+        <button type="submit" class="btn-login">Acceder al Panel</button>
       </form>
-
-      <div style="margin-top: 24px; font-size: 0.85rem; color: var(--text-muted);">
-        <a href="/" style="color: var(--text-muted); text-decoration: none;">← Volver al sitio web público de Orero</a>
-      </div>
+      <div id="loginError" class="login-error">⚠️ Contraseña incorrecta. Por favor, compruébala.</div>
     </div>
   </div>
 
   <!-- ══════════════════════════════════════════════════════════
-       DASHBOARD DE CONTROL
+       PANTALLA 2: DASHBOARD INTEGRAL
        ══════════════════════════════════════════════════════════ -->
-  <div class="dashboard-wrapper" id="dashboardScreen">
-    <header class="top-navbar">
-      <div class="nav-brand">
-        <img src="/favicon.svg" alt="Orero" onerror="this.src='../favicon.svg'">
-        <div class="nav-brand-title">ORERO <span>MOTORCYCLES</span></div>
-        <span class="nav-badge">Taller & Tienda Activa</span>
-      </div>
+  <div class="dashboard-container" id="dashboardScreen">
+    
+    <!-- Top Nav -->
+    <header class="admin-nav">
+      <div class="admin-nav-inner">
+        <div class="brand-group">
+          <img src="../favicon.svg" alt="Orero" class="nav-logo" onerror="this.src='../assets/clean_showroom_orero.jpg'">
+          <div>
+            <div class="brand-title">
+              <span>ORERO MOTORCYCLES</span>
+              <span class="badge-admin-tag">ADMIN PRO</span>
+            </div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:1px;">Calle San Agustín 18, Orihuela</div>
+          </div>
+        </div>
 
-      <div class="nav-actions">
-        <button id="btnSoundToggle" class="btn-nav-outline" onclick="toggleSound()" title="Silenciar o activar avisos sonoros de nuevas citas">🔔 Sonido: ON</button>
-        <button class="btn-nav-outline" onclick="simulateNewAppointment()" title="Simula un cliente solicitando cita desde la web para probar el aviso">🧪 Simular Cita</button>
-        <a href="/" target="_blank" class="btn-nav-outline">🌐 Ver Web Pública</a>
-        <button onclick="handleAdminLogout()" class="btn-nav-outline btn-logout">Cerrar Sesión</button>
+        <div class="nav-actions">
+          <button id="btnSoundToggle" class="btn-nav-outline btn-sound-active" onclick="toggleSound()" title="Silenciar o activar sonidos de aviso">
+            🔔 Sonido: ON
+          </button>
+          <button class="btn-nav-outline" onclick="testNotificationChimeDirect()" title="Probar sonido de campanilla">
+            🔊 Probar Sonido
+          </button>
+          <button class="btn-nav-outline" onclick="simulateNewAppointment()" title="Simular la llegada de una nueva cita de taller">
+            ⚡ Simular Cita
+          </button>
+          <a href="../" target="_blank" class="btn-nav-outline" title="Abrir la página web pública">
+            👁️ Ver Web Pública
+          </a>
+          <button class="btn-nav-outline" onclick="handleAdminLogout()" style="color:#f87171;" title="Cerrar sesión">
+            🚪 Salir
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Barra de aviso en tiempo real cuando entra una nueva cita -->
-    <div id="liveAlertBar" class="live-alert-bar" style="display:none;">
+    <!-- Top Alert Notification Bar -->
+    <div id="liveAlertBar" class="live-alert-bar">
       <div style="display:flex; align-items:center; gap:12px;">
-        <span class="live-alert-badge">🔔 NUEVA CITA RECIBIDA</span>
-        <span id="liveAlertMessage">Un cliente acaba de solicitar cita previa para el taller.</span>
+        <span style="font-size:1.4rem;">🔔</span>
+        <div>
+          <div style="font-weight:800; font-size:0.92rem; color:#fff;" id="alertBarTitle">¡NUEVA CITA DE TALLER RECIBIDA!</div>
+          <div style="font-size:0.8rem; color:#cbd5e1;" id="alertBarDesc">Cliente pendiente de confirmar en Calle San Agustín 18</div>
+        </div>
       </div>
       <div style="display:flex; gap:8px;">
-        <button class="btn-nav-outline" style="background:#fff; color:#b91c1c; font-weight:800; border:none; padding:4px 12px; font-size:0.8rem;" onclick="dismissAlertBar(true)">Ver en Tabla</button>
-        <button class="btn-nav-outline" style="padding:4px 8px; font-size:0.8rem;" onclick="dismissAlertBar(false)">✕</button>
+        <a id="alertBarWaLink" href="#" target="_blank" class="btn-nav-outline" style="background:#25D366; color:#fff; border:none; font-weight:800;">
+          💬 WhatsApp
+        </a>
+        <button class="btn-nav-outline" onclick="dismissAlertBar()">✕ Cerrar</button>
       </div>
     </div>
 
-    <!-- Contenedor de notificaciones flotantes (Toast) -->
-    <div id="adminToastContainer" class="admin-toast-container"></div>
-
-    <main class="dashboard-content">
-      <!-- Estadísticas rápidas -->
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-label">Citas Recibidas</div>
-          <div class="metric-val" id="kpiTotalCitas">6</div>
+    <!-- Main Content -->
+    <main class="admin-main">
+      
+      <!-- KPI Row -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Motos en Exposición</div>
+          <div class="kpi-value" id="kpiTotalMotos">18</div>
         </div>
-        <div class="metric-card gold" id="cardKpiPendientes">
-          <div class="metric-label">Pendientes de Confirmar</div>
-          <div class="metric-val" id="kpiPendientes" style="color:#fbbf24;">3</div>
+        <div class="kpi-card kpi-card-green">
+          <div class="kpi-label">Motos Disponibles</div>
+          <div class="kpi-value" id="kpiDisponibles">16</div>
         </div>
-        <div class="metric-card green">
-          <div class="metric-label">Citas Confirmadas</div>
-          <div class="metric-val" id="kpiConfirmadas">3</div>
+        <div class="kpi-card kpi-card-yellow">
+          <div class="kpi-label">Citas Taller Recibidas</div>
+          <div class="kpi-value" id="kpiTotalCitas">6</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Motos & Boutique</div>
-          <div class="metric-val" id="kpiTotalMotos">24</div>
+        <div class="kpi-card kpi-card-blue">
+          <div class="kpi-label">Tasaciones Solicitadas</div>
+          <div class="kpi-value" id="kpiTasaciones">3</div>
         </div>
       </div>
 
-      <!-- Barra de navegación por pestañas -->
-      <div class="tabs-bar">
-        <button class="tab-btn active" id="tabBtnCitas" onclick="switchTab('citas', this)">📅 Citas de Taller (<span id="citasTabCount">6</span>)</button>
-        <button class="tab-btn" id="tabBtnStock" onclick="switchTab('stock', this)">🏍️ Motos & Boutique (Publicar)</button>
-        <button class="tab-btn" id="tabBtnTasaciones" onclick="switchTab('tasaciones', this)">🤝 Tasaciones & Venta (<span id="tasacionesTabCount">3</span>)</button>
-        <button class="tab-btn" id="tabBtnTaller" onclick="switchTab('taller', this)">🏢 Info Concesionario</button>
-        <button class="tab-btn" id="tabBtnAjustes" onclick="switchTab('ajustes', this)">⚙️ Ajustes & Alertas</button>
+      <!-- Tab Navigation -->
+      <div class="tab-bar-container">
+        <div class="tab-bar">
+          <button class="tab-btn active" id="tabBtnStock" onclick="switchTab('stock', this)">
+            🏍️ Motos en Stock <span class="tab-count-pill" id="motosTabCount">18</span>
+          </button>
+          <button class="tab-btn" id="tabBtnBoutique" onclick="switchTab('boutique', this)">
+            🪖 Boutique & Cascos <span class="tab-count-pill">6</span>
+          </button>
+          <button class="tab-btn" id="tabBtnCitas" onclick="switchTab('citas', this)">
+            📅 Citas de Taller <span class="tab-count-pill" id="citasTabCount">6</span>
+          </button>
+          <button class="tab-btn" id="tabBtnTasaciones" onclick="switchTab('tasaciones', this)">
+            🤝 Tasaciones <span class="tab-count-pill" id="tasacionesTabCount">3</span>
+          </button>
+          <button class="tab-btn" id="tabBtnTaller" onclick="switchTab('taller', this)">
+            🏢 Info Concesionario
+          </button>
+          <button class="tab-btn" id="tabBtnAjustes" onclick="switchTab('ajustes', this)">
+            ⚙️ Ajustes & Alertas
+          </button>
+        </div>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 1: INVENTARIO & PUBLICAR COMO EN FACEBOOK
+           PESTAÑA 1: MOTOS EN STOCK (VISIBLE POR DEFECTO AL ENTRAR)
            ══════════════════════════════════════════════════════════ -->
-      <div id="tabStock" style="display:none;">
-        <!-- Creador estilo Facebook -->
-        <div class="fb-creator-card">
-          <div class="fb-header">
-            <div class="fb-avatar">➕</div>
-            <div class="fb-title-wrap">
-              <h3>Publicar en la Web (Fácil como en Facebook)</h3>
-              <p>Sube una foto, ponle precio y título. Aparecerá en la web al instante para tus clientes.</p>
-            </div>
+      <section id="tabStock" style="display:block;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>🏍️ Inventario de Motos en Exposición (<span id="totalProductsCount">18</span>)</h2>
+            <p>Calle San Agustín 18, Orihuela · Control de precios, fotos y disponibilidad en tiempo real</p>
           </div>
-
-          <form id="fbPublishForm" onsubmit="handlePublishProduct(event)">
-            <div class="fb-form-grid">
-              <div class="form-group">
-                <label class="form-label">¿Qué estás publicando?</label>
-                <select id="prodCategory" class="form-input" onchange="toggleMotoFields(this.value)">
-                  <option value="ocasion">🏍️ Moto de Ocasión</option>
-                  <option value="nueva">🏍️ Moto Nueva</option>
-                  <option value="casco">🪖 Casco de Moto</option>
-                  <option value="chaqueta">🧥 Chaqueta / Chaleco / Ropa</option>
-                  <option value="accesorio">⚙️ Candado / Accesorio / Recambio</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Título o Modelo</label>
-                <input type="text" id="prodTitle" class="form-input" placeholder="Ej: Yamaha T-MAX 530 ABS" required>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Precio (€)</label>
-                <input type="text" id="prodPrice" class="form-input" placeholder="Ej: 5.800 € o 129 €" required>
-              </div>
-
-              <div class="form-group" id="groupMotoYear">
-                <label class="form-label">Año (si es moto)</label>
-                <input type="number" id="prodYear" class="form-input" placeholder="2022" value="2022">
-              </div>
-
-              <div class="form-group" id="groupMotoKm">
-                <label class="form-label">Kilómetros (si es moto)</label>
-                <input type="text" id="prodKm" class="form-input" placeholder="15.000 km" value="12.000 km">
-              </div>
-            </div>
-
-            <!-- Subir Foto -->
-            <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
-              <span>Foto del Producto (Sube desde tu móvil o PC):</span>
-              <span style="font-size:0.78rem; color:var(--text-muted); font-weight:normal;">Visible al instante en la web</span>
-            </label>
-
-            <div class="photo-upload-box" id="photoUploadBox" onclick="triggerPhotoUpload(event)">
-              <input type="file" id="prodPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
-              
-              <!-- Prompt visible cuando no hay foto -->
-              <div id="uploadPrompt">
-                <div style="font-size:2.3rem; margin-bottom:8px;">📸</div>
-                <strong style="color:#fff; font-size:1.02rem; display:block;">Pulsa aquí para elegir una foto de tu móvil o PC</strong>
-                <p style="font-size:0.84rem; color:var(--text-muted); margin-top:5px;">
-                  Admite JPG, PNG o WEBP. Se optimiza y publica automáticamente en alta definición.
-                </p>
-              </div>
-
-              <!-- Vista previa garantizada y limpia (oculta hasta que haya foto) -->
-              <div id="photoPreviewWrap" class="photo-preview-wrap">
-                <img id="photoPreviewImg" class="photo-preview-img" alt="Vista previa del producto" onerror="handlePreviewError(this)">
-                <div class="photo-preview-actions">
-                  <span id="photoStatusBadge" class="photo-status-badge">✓ Foto lista para publicar</span>
-                  <button type="button" class="btn-change-photo" onclick="triggerChangePhoto(event)">🔄 Cambiar foto</button>
-                  <button type="button" class="btn-remove-photo" onclick="clearSelectedPhoto(event)">✕ Quitar foto</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Fotos de muestra guardadas de stock con miniaturas visuales -->
-            <div style="margin-bottom: 22px;">
-              <span style="font-size:0.84rem; color:var(--text-muted); display:block; margin-bottom:10px; font-weight:600;">
-                O elige una foto de stock guardada de Orero Motorcycles:
-              </span>
-              <div class="sample-photos-row" id="sampleChipsRow">
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_yamaha_mt07.jpg', 'Yamaha MT-07', this)">
-                  <img src="/assets/moto_yamaha_mt07.jpg" alt="Yamaha MT-07" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Yamaha MT-07</span>
-                </button>
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_honda_cbr500r.jpg', 'Honda CBR 500R', this)">
-                  <img src="/assets/moto_honda_cbr500r.jpg" alt="Honda CBR 500R" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Honda CBR 500R</span>
-                </button>
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/vespa_lx_hd.jpg', 'Vespa LX 50', this)">
-                  <img src="/assets/vespa_lx_hd.jpg" alt="Vespa LX 50" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Vespa LX 50</span>
-                </button>
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/moto_kawasaki_ninja650.jpg', 'Kawasaki Ninja 650', this)">
-                  <img src="/assets/moto_kawasaki_ninja650.jpg" alt="Kawasaki Ninja 650" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Kawasaki Ninja</span>
-                </button>
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/boutique_casco_ls2_strobe.jpg', 'Casco LS2 Strobe', this)">
-                  <img src="/assets/boutique_casco_ls2_strobe.jpg" alt="Casco LS2 Strobe" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Casco LS2</span>
-                </button>
-                <button type="button" class="sample-chip" onclick="selectSamplePhoto('/assets/boutique_chaqueta_alpinestars.jpg', 'Chaqueta Alpinestars', this)">
-                  <img src="/assets/boutique_chaqueta_alpinestars.jpg" alt="Chaqueta Alpinestars" class="sample-chip-thumb" onerror="this.src='/assets/clean_showroom_orero.jpg'">
-                  <span>Chaqueta</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Descripción o Comentarios (como un post de Facebook):</label>
-              <textarea id="prodDesc" class="form-input" style="height:80px;" placeholder="Ej: Moto en impecable estado, revisada en nuestro taller en Orihuela con 1 año de garantía por escrito."></textarea>
-            </div>
-
-            <button type="submit" class="btn-fb-publish">
-              <span>🚀 Publicar Ahora en la Web</span>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-primary-action" onclick="openPublishModal('ocasion')">
+              ➕ Publicar Nueva Moto
             </button>
-          </form>
+            <a href="../#catalogo" target="_blank" class="btn-nav-outline" style="padding:11px 16px;">
+              👁️ Ver en la Web
+            </a>
+          </div>
         </div>
 
-        <!-- Listado de todo lo publicado -->
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-          <h2 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800;">
-            Productos Publicados en la Web (<span id="totalProductsCount">0</span>)
-          </h2>
-          <span style="font-size:0.85rem; color:var(--text-muted);">Puedes cambiar el precio, marcarlo como vendido o quitarlo con 1 clic</span>
+        <!-- Filter Pills -->
+        <div class="filter-pills-row">
+          <button class="pill-btn active" id="pillAll" onclick="filterAdminProducts('todas', this)">Todas las Motos (18)</button>
+          <button class="pill-btn" onclick="filterAdminProducts('ocasion', this)">🏍️ Motos Ocasión (12)</button>
+          <button class="pill-btn" onclick="filterAdminProducts('nueva', this)">🏍️ Motos Nuevas (6)</button>
+          <button class="pill-btn" onclick="filterAdminProducts('disponible', this)">🟢 Disponibles</button>
+          <button class="pill-btn" onclick="filterAdminProducts('vendida', this)">🔴 Vendidas</button>
         </div>
 
+        <!-- Search Bar -->
+        <div class="search-box">
+          <input type="text" id="adminSearchInput" class="search-input" oninput="handleAdminSearch(this.value)" placeholder="🔍 Buscar por marca o modelo (ej. Yamaha, Honda CBR, Ninja, Scooter, 125cc...)...">
+        </div>
+
+        <!-- Products Grid Container -->
         <div class="products-grid" id="productsGridContainer">
-          <!-- Rendered via JavaScript -->
+          <!-- Dynamically Injected with 100% Guaranteed Image Paths -->
         </div>
-      </div>
+      </section>
 
       <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 2: CITAS DE TALLER (GESTIÓN INTEGRAL & ALERTAS)
+           PESTAÑA 2: BOUTIQUE & CASCOS
            ══════════════════════════════════════════════════════════ -->
-      <div id="tabCitas" style="display:block;">
-        <div class="table-card">
-          <div class="table-header">
-            <div>
-              <h2 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800;">
-                Centro de Citas de Taller & Clientes
-              </h2>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
-                Recepción activa de reservas online y telefónicas en tiempo real.
-              </p>
-            </div>
+      <section id="tabBoutique" style="display:none;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>🪖 Boutique Técnica & Cascos (<span id="totalBoutiqueCount">6</span>)</h2>
+            <p>Equipación de motorista disponible en tienda: Cascos ECE 22.06, chaquetas y accesorios</p>
+          </div>
+          <button class="btn-primary-action" onclick="openPublishModal('casco')">
+            ➕ Añadir Accesorio / Casco
+          </button>
+        </div>
+        <div class="products-grid" id="boutiqueGridContainer">
+          <!-- Dynamically Injected -->
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 3: CITAS DE TALLER
+           ══════════════════════════════════════════════════════════ -->
+      <section id="tabCitas" style="display:none;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>📅 Gestión de Citas de Taller & Pre-ITV</h2>
+            <p>Atención directa y asignación de turno en Calle San Agustín 18</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn-primary-action" onclick="promptNewCita()">➕ Nueva Cita Manual</button>
+            <button class="btn-nav-outline" onclick="exportCitasCSV()">📥 Exportar CSV</button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>Cliente</th>
+                <th>Teléfono</th>
+                <th>Vehículo</th>
+                <th>Servicio Solicitado</th>
+                <th>Fecha & Turno</th>
+                <th>Estado</th>
+                <th style="text-align:right;">Acciones Rápidas</th>
+              </tr>
+            </thead>
+            <tbody id="citasTableBody">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 4: TASACIONES & VALORACIÓN
+           ══════════════════════════════════════════════════════════ -->
+      <section id="tabTasaciones" style="display:none;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>🤝 Tasaciones & Gestión de Venta de Clientes</h2>
+            <p>Valoraciones solicitadas desde la web para compra o intermediación</p>
+          </div>
+          <button class="btn-primary-action" onclick="promptNewTasacion()">➕ Nueva Valoración</button>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Referencia</th>
+                <th>Cliente</th>
+                <th>Vehículo</th>
+                <th>Año / Km</th>
+                <th>Valoración Estimada</th>
+                <th>Estado</th>
+                <th style="text-align:right;">Acciones WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody id="tasacionesTableBody">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 5: INFO CONCESIONARIO
+           ══════════════════════════════════════════════════════════ -->
+      <section id="tabTaller" style="display:none;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>🏢 Información Oficial del Concesionario & Taller</h2>
+            <p>Datos corporativos mostrados en la web pública de Orero Motorcycles</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+          <div class="kpi-card" style="padding:24px;">
+            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">📍 Ubicación & Localización</h3>
+            <p style="font-size:0.9rem; color:#cbd5e1; line-height:1.6;">
+              <strong>Dirección:</strong> Calle San Agustín, 18<br>
+              <strong>Código Postal:</strong> 03300 Orihuela (Alicante)<br>
+              <strong>Teléfono Taller:</strong> <a href="tel:966740120" style="color:#93c5fd; text-decoration:none; font-weight:700;">966 74 01 20</a><br>
+              <strong>WhatsApp:</strong> <a href="https://wa.me/34966740120" target="_blank" style="color:#34d399; text-decoration:none; font-weight:700;">+34 966 74 01 20</a>
+            </p>
+          </div>
+
+          <div class="kpi-card" style="padding:24px;">
+            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">🕒 Horarios de Atención</h3>
+            <p style="font-size:0.9rem; color:#cbd5e1; line-height:1.6;">
+              <strong>Lunes a Viernes:</strong> 09:30 - 13:30 / 16:30 - 20:30<br>
+              <strong>Sábados:</strong> 10:00 - 13:30<br>
+              <strong>Domingos:</strong> Cerrado<br>
+              <span style="color:#34d399; font-weight:700;">✓ Taller y exposición abiertos con normalidad</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════
+           PESTAÑA 6: AJUSTES & ALERTAS SONORAS
+           ══════════════════════════════════════════════════════════ -->
+      <section id="tabAjustes" style="display:none;">
+        <div class="tab-toolbar">
+          <div class="tab-title-group">
+            <h2>⚙️ Ajustes del Sistema & Notificaciones</h2>
+            <p>Configuración de avisos acústicos y copias de seguridad del inventario</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+          <div class="kpi-card" style="padding:24px;">
+            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">🔔 Avisos Sonoros & Campanilla</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px;">
+              El sistema emite una campanilla acústica cada vez que un cliente reserva cita o solicita una tasación desde su móvil.
+            </p>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem; background:#10b981; border-color:#10b981;" onclick="simulateNewAppointment()">
-                🧪 Simular Cita Web (Prueba)
+              <button class="btn-primary-action" onclick="testNotificationChimeDirect()">
+                🔊 Probar Campanilla Ahora
               </button>
-              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem;" onclick="promptNewCita()">
-                ➕ Cita Telefónica
-              </button>
-              <button class="btn-nav-outline" onclick="exportCitasCSV()">
-                📥 Excel / CSV
+              <button class="btn-nav-outline" onclick="toggleSound()">
+                🔔 Cambiar Estado Sonido
               </button>
             </div>
           </div>
 
-          <!-- Barra de Búsqueda y Filtros de Estado -->
-          <div class="citas-toolbar">
-            <div class="search-row">
-              <div class="search-box-wrap">
-                <span class="search-icon-fixed">🔍</span>
-                <input type="text" id="citasSearchInput" placeholder="Buscar por cliente, teléfono, email, moto o referencia (ORERO-CITA-...)" oninput="filterAndRenderCitas()">
-              </div>
-              <button class="btn-nav-outline" onclick="clearCitasSearch()" style="font-size:0.8rem; padding:8px 12px;">Limpiar</button>
-            </div>
-
-            <div class="filter-chips-row">
-              <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">Filtrar estado:</span>
-              <button class="chip-filter active" id="filterChipAll" onclick="setCitaFilter('todos', this)">
-                Todas (<span id="countAll">0</span>)
+          <div class="kpi-card" style="padding:24px;">
+            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:14px; color:#fff;">💾 Copia de Seguridad</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px;">
+              Descarga un archivo con todos los datos de citas, tasaciones y stock para tu archivo personal.
+            </p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn-nav-outline" onclick="backupAllDataJSON()">
+                📥 Descargar Copia JSON
               </button>
-              <button class="chip-filter" id="filterChipPending" onclick="setCitaFilter('pendiente', this)">
-                ⏳ Pendientes (<span id="countPending">0</span>)
+              <button class="btn-nav-outline" onclick="resetDefaultSeedData()" style="color:#f87171;">
+                🔄 Restaurar Catálogo Inicial
               </button>
-              <button class="chip-filter" id="filterChipConfirmed" onclick="setCitaFilter('confirmada', this)">
-                ✅ Confirmadas (<span id="countConfirmed">0</span>)
-              </button>
-              <button class="chip-filter" id="filterChipInShop" onclick="setCitaFilter('en_taller', this)">
-                🔧 En Taller (<span id="countInShop">0</span>)
-              </button>
-              <button class="chip-filter" id="filterChipDone" onclick="setCitaFilter('finalizada', this)">
-                🏁 Finalizadas (<span id="countDone">0</span>)
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table>
-              <thead>
-                <tr>
-                  <th>Ref</th>
-                  <th>Cliente & Contacto</th>
-                  <th>Vehículo & Notas</th>
-                  <th>Servicio Solicitado</th>
-                  <th>Fecha & Franja</th>
-                  <th>Estado</th>
-                  <th style="text-align:right;">Acciones Rápidas</th>
-                </tr>
-              </thead>
-              <tbody id="citasTableBody">
-                <!-- Injected via JavaScript -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 3: TASACIONES & GESTIÓN DE VENTA
-           ══════════════════════════════════════════════════════════ -->
-      <div id="tabTasaciones" style="display:none;">
-        <div class="table-card">
-          <div class="table-header">
-            <div>
-              <h2 style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800;">
-                Tasaciones & Solicitudes de Gestión de Venta
-              </h2>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-top:2px;">
-                Motos que los clientes quieren vender, tasar o entregar como parte de pago.
-              </p>
-            </div>
-            <div style="display:flex; gap:10px;">
-              <button class="btn-login" style="margin-top:0; padding:8px 16px; font-size:0.86rem;" onclick="promptNewTasacion()">
-                ➕ Nueva Tasación Manual
-              </button>
-            </div>
-          </div>
-
-          <div class="table-responsive">
-            <table>
-              <thead>
-                <tr>
-                  <th>Ref</th>
-                  <th>Cliente & Teléfono</th>
-                  <th>Moto / Cilindrada</th>
-                  <th>Año & Km</th>
-                  <th>Valoración (€)</th>
-                  <th>Estado</th>
-                  <th style="text-align:right;">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="tasacionesTableBody">
-                <!-- Injected via JavaScript -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 4: INFO DEL TALLER & CONTACTO
-           ══════════════════════════════════════════════════════════ -->
-      <div id="tabTaller" style="display:none;">
-        <div class="table-card" style="padding: 30px;">
-          <h2 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:20px;">Datos del Concesionario & Taller</h2>
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">DIRECCIÓN OFICIAL</div>
-              <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:6px;">Calle San Agustín, 18</div>
-              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">03300 Orihuela (Alicante)</div>
-            </div>
-
-            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">TELÉFONO DE CITAS</div>
-              <div style="font-size:1.2rem; font-weight:800; color:#fff; margin-top:6px;">
-                <a href="tel:+34966740120" style="color:#fff; text-decoration:none;">📞 966 74 01 20</a>
-              </div>
-              <div style="font-size:0.88rem; color:var(--text-muted); margin-top:4px;">Llamadas directas desde la web</div>
-            </div>
-
-            <div style="background:#090d16; padding:20px; border-radius:12px; border:1px solid var(--card-border);">
-              <div style="font-size:0.8rem; color:var(--red); font-weight:700;">HORARIO DE APERTURA</div>
-              <div style="font-size:0.95rem; font-weight:600; color:#fff; margin-top:6px;">
-                Lunes a Viernes: 09:30 - 13:30 / 16:30 - 20:30<br>
-                Sábados: 10:00 - 13:30
-              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- ══════════════════════════════════════════════════════════
-           PESTAÑA 5: AJUSTES & CENTRO DE NOTIFICACIONES
-           ══════════════════════════════════════════════════════════ -->
-      <div id="tabAjustes" style="display:none;">
-        <div class="table-card" style="padding: 30px;">
-          <h2 style="font-family:var(--font-heading); font-size:1.3rem; margin-bottom:10px;">
-            ⚙️ Centro de Configuración & Notificaciones
-          </h2>
-          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:26px;">
-            Configura los canales automáticos de aviso por email y WhatsApp cuando un cliente solicita cita.
-          </p>
-
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
-            <!-- Notificaciones de Taller -->
-            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
-              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                <span>✉️</span> Recepción de Notificaciones por Email
-              </h3>
-              <div class="form-group">
-                <label class="form-label">Email Oficial de Taller (Receptor de Alertas):</label>
-                <input type="email" id="settingWorkshopEmail" class="form-input" value="taller@oreromotorcycles.es">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Teléfono de Notificaciones WhatsApp:</label>
-                <input type="tel" id="settingWorkshopPhone" class="form-input" value="966 74 01 20">
-              </div>
-              <button class="btn-nav-outline" onclick="saveAdminSettings()" style="background:rgba(239,35,60,0.15); border-color:var(--red); color:#fff; font-weight:700;">
-                💾 Guardar Configuración
-              </button>
-            </div>
-
-            <!-- Avisos Sonoros y Sincronización -->
-            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
-              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                <span>🔔</span> Alertas Acústicas & Simulación
-              </h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">
-                El panel emite una campanilla dulce y profesional cada vez que un cliente solicita una cita desde la web o teléfono.
-              </p>
-              <div style="display:flex; flex-direction:column; gap:10px;">
-                <button class="btn-nav-outline" onclick="testNotificationChimeDirect()" style="text-align:left; display:flex; align-items:center; gap:10px;">
-                  <span>🔊</span> <strong>Probar Sonido de Campanilla (Web Audio)</strong>
-                </button>
-                <button class="btn-login" style="margin-top:0; background:#ef233c; padding:12px; font-size:0.9rem;" onclick="simulateNewAppointment()">
-                  <span>🧪 Simular Cita Entrante de Cliente (Test Completo)</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Copias de Seguridad y Datos -->
-            <div style="background:#090d16; padding:24px; border-radius:14px; border:1px solid var(--card-border);">
-              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-                <span>💾</span> Copias de Seguridad de Datos
-              </h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">
-                Descarga una copia completa en JSON de todas las citas, motos y tasaciones del concesionario.
-              </p>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <button class="btn-nav-outline" onclick="backupAllDataJSON()">
-                  📥 Descargar Copia (JSON)
-                </button>
-                <button class="btn-nav-outline" onclick="resetDefaultSeedData()" style="color:#fca5a5;">
-                  🔄 Restaurar Datos Ejemplo
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════
-           MODAL DE DETALLES, REPROGRAMACIÓN Y FICHA DE MECÁNICO
-           ══════════════════════════════════════════════════════════ -->
-      <div id="adminModalCita" class="admin-modal-overlay" onclick="closeAdminModal(event)">
-        <div class="admin-modal" onclick="event.stopPropagation()">
-          <div class="admin-modal-header">
-            <div>
-              <div style="font-size:0.78rem; color:var(--red); font-weight:800; text-transform:uppercase; letter-spacing:0.05em;" id="modalCitaRefTag">
-                ORERO-CITA-XXXX
-              </div>
-              <h3 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; color:#fff;" id="modalCitaTitle">
-                Ficha de Cita de Taller
-              </h3>
-            </div>
-            <button class="admin-modal-close" onclick="closeAdminModalDirect()">✕</button>
-          </div>
-
-          <form id="modalCitaForm" onsubmit="saveModalCitaChanges(event)">
-            <input type="hidden" id="modalCitaRef">
-
-            <!-- Fila Datos Cliente -->
-            <div class="modal-grid-2" style="margin-bottom:16px;">
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Nombre del Cliente:</label>
-                <input type="text" id="modalCitaName" class="form-input" required>
-              </div>
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Teléfono Móvil:</label>
-                <input type="tel" id="modalCitaPhone" class="form-input" required>
-              </div>
-            </div>
-
-            <!-- Email Cliente & Moto -->
-            <div class="modal-grid-2" style="margin-bottom:16px;">
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Email de Confirmación:</label>
-                <input type="email" id="modalCitaEmail" class="form-input" placeholder="cliente@correo.com">
-              </div>
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Vehículo & Matrícula:</label>
-                <input type="text" id="modalCitaMoto" class="form-input" required>
-              </div>
-            </div>
-
-            <!-- Servicio & Estado -->
-            <div class="modal-grid-2" style="margin-bottom:16px;">
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Servicio Solicitado:</label>
-                <select id="modalCitaService" class="form-input">
-                  <option value="Revisión Oficial 60 Puntos">⚙️ Revisión Oficial 60 Puntos</option>
-                  <option value="Mantenimiento Periódico">🔧 Mantenimiento / Aceite y Filtros</option>
-                  <option value="Diagnosis de Avería">🔍 Diagnosis Electrónica</option>
-                  <option value="Cambio de Neumáticos">⚙️ Neumáticos</option>
-                  <option value="Frenos y Suspensiones">🛑 Frenos y Pastillas</option>
-                  <option value="Inspección Pre-ITV">📋 Pre-ITV</option>
-                  <option value="Tasación de mi Moto">💰 Tasación</option>
-                  <option value="Otro Servicio">🛠️ Otro Servicio</option>
-                </select>
-              </div>
-
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">Estado en Taller:</label>
-                <select id="modalCitaStatus" class="form-input">
-                  <option value="pendiente">⏳ Pendiente de Confirmar</option>
-                  <option value="confirmada">✅ Confirmada (Cita Asignada)</option>
-                  <option value="en_taller">🔧 En Taller (En Reparación)</option>
-                  <option value="finalizada">🏁 Finalizada (Lista para Entregar)</option>
-                  <option value="cancelada">❌ Cancelada</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Reprogramar Fecha & Franja -->
-            <div class="modal-grid-2" style="background:#090d16; padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.08); margin-bottom:16px;">
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">📅 Fecha de Cita:</label>
-                <input type="date" id="modalCitaDate" class="form-input" required>
-              </div>
-              <div class="form-group" style="margin-bottom:0;">
-                <label class="form-label">⏰ Franja / Turno:</label>
-                <select id="modalCitaSlot" class="form-input">
-                  <option value="Mañana (09:30 - 13:30)">🌅 Mañana (09:30 - 13:30 h)</option>
-                  <option value="Tarde (16:30 - 20:30)">🌇 Tarde (16:30 - 20:30 h)</option>
-                  <option value="Flexible / Dejar Moto">🌙 Flexible / Dejar en taller</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Observaciones del cliente -->
-            <div class="form-group">
-              <label class="form-label">Observaciones facilitadas por el Cliente:</label>
-              <textarea id="modalCitaNotes" class="form-input" style="height:60px;" placeholder="Detalles de avería o peticiones del cliente..."></textarea>
-            </div>
-
-            <!-- Notas Internas del Mecánico -->
-            <div class="form-group" style="background:rgba(239,35,60,0.04); border:1px solid rgba(239,35,60,0.25); border-radius:10px; padding:14px;">
-              <label class="form-label" style="color:#fca5a5; font-weight:700;">
-                🛠️ Notas Internas del Taller & Mecánico (Presupuesto, Piezas, Diagnóstico):
-              </label>
-              <textarea id="modalCitaInternalNotes" class="form-input" style="height:70px;" placeholder="Ej: Diagnosis completada. Presupuesto 120€ aceptado por cliente. Piezas pedidas a distribuidor."></textarea>
-            </div>
-
-            <!-- Botones de Acción Rápida -->
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; border-top:1px solid var(--card-border); padding-top:18px;">
-              <button type="submit" class="btn-login" style="margin-top:0; padding:10px 20px; font-size:0.9rem;">
-                💾 Guardar Ficha
-              </button>
-              <button type="button" class="btn-action-icon btn-action-wa" onclick="sendModalClientWhatsApp()" style="padding:10px 16px; font-size:0.86rem;">
-                💬 Enviar WhatsApp al Cliente
-              </button>
-              <button type="button" class="btn-action-icon" onclick="sendModalClientEmail()" style="padding:10px 16px; font-size:0.86rem;">
-                ✉️ Enviar Email de Confirmación
-              </button>
-              <button type="button" class="btn-nav-outline" onclick="printModalWorkOrder()" style="padding:10px 16px; font-size:0.86rem;">
-                🖨️ Imprimir Ficha de Taller
-              </button>
-              <button type="button" class="btn-nav-outline btn-logout" onclick="deleteModalCita()" style="padding:10px 16px; font-size:0.86rem; margin-left:auto;">
-                🗑️ Eliminar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
     </main>
   </div>
 
-  <script>
-    // Authentic Base Stock (18 Motos + Real Boutique)
-    const BASE_STOCK = [
-      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "/assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
-      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "/assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
-      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "/assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
-      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "/assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
-      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "/assets/peugeot_metropolis_hd.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
-      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "/assets/qj_srk_hd.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
-      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "/assets/honda_sh350_hd.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
-      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "/assets/kymco_agility_hd.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
-      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "/assets/sym_symphony_hd.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
-      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "/assets/macbor_montana_4k.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
-      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "/assets/kymco_kxct_hd.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
-      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "/assets/suzuki_burgman_hd.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
-      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "/assets/peugeot_citystar_hd.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
-      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "/assets/rieju_mrt_hd.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
-      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "/assets/hanway_furious_4k.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
-      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "/assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
-      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "/assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
-      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "/assets/virago_real_hd.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
-      // Boutique real
-      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
-      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
-      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "/assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
-      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "/assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
-      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "/assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
-      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "/assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
-    ];
-    let currentUploadedPhotoData = "";
+  <!-- ══════════════════════════════════════════════════════════
+       MODAL: PUBLICAR NUEVA MOTO / PRODUCTO
+       ══════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="publishModal" onclick="if(event.target===this) closePublishModal()">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">➕ Publicar Nueva Moto en la Web</h3>
+        <button class="btn-close-modal" onclick="closePublishModal()">✕</button>
+      </div>
 
-    // Auth verification (ONLY PASSWORD: casino18)
+      <form id="publishForm" onsubmit="handleFormPublish(event)">
+        <div class="form-group">
+          <label class="form-label" for="prodCat">Categoría</label>
+          <select id="prodCat" class="form-select" onchange="toggleFormMotoFields()">
+            <option value="ocasion">🏍️ Moto de Ocasión</option>
+            <option value="nueva">🏍️ Moto Nueva a Estrenar</option>
+            <option value="casco">🪖 Casco de Moto</option>
+            <option value="chaqueta">🧥 Chaqueta / Equipación</option>
+            <option value="accesorio">⚙️ Accesorio / Antirrobo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prodTitle">Marca y Modelo</label>
+          <input type="text" id="prodTitle" class="form-input" placeholder="Ej: Yamaha MT-07 ABS" required>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label class="form-label" for="prodPrice">Precio de Venta (€)</label>
+            <input type="text" id="prodPrice" class="form-input" placeholder="Ej: 6.900 €" required>
+          </div>
+          <div class="form-group" id="groupMotoYear">
+            <label class="form-label" for="prodYear">Año</label>
+            <input type="number" id="prodYear" class="form-input" placeholder="2022" value="2023">
+          </div>
+        </div>
+
+        <div class="form-group" id="groupMotoKm">
+          <label class="form-label" for="prodKm">Kilómetros</label>
+          <input type="text" id="prodKm" class="form-input" placeholder="Ej: 14.500 km">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Foto del Vehículo</label>
+          <div style="margin-bottom:10px;">
+            <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handleModalPhotoUpload(event)">
+            <button type="button" class="btn-nav-outline" onclick="document.getElementById('photoFileInput').click()" style="width:100%; justify-content:center; padding:12px;">
+              📁 Subir Foto desde este Móvil / Ordenador
+            </button>
+          </div>
+
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">O elige una foto de muestra rápida:</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px;">
+            <button type="button" class="pill-btn" onclick="selectQuickPhoto('../assets/clean_showroom_orero.jpg')">Exposición Tienda</button>
+            <button type="button" class="pill-btn" onclick="selectQuickPhoto('../assets/moto_yamaha_mt07.jpg')">Naked Deportiva</button>
+            <button type="button" class="pill-btn" onclick="selectQuickPhoto('../assets/moto_honda_cbr500r.jpg')">Sport CBR</button>
+            <button type="button" class="pill-btn" onclick="selectQuickPhoto('../assets/moto_kymco_agility.jpg')">Scooter 125</button>
+            <button type="button" class="pill-btn" onclick="selectQuickPhoto('../assets/moto_suzuki_vstrom650.jpg')">Trail Aventura</button>
+          </div>
+
+          <div id="modalPhotoPreviewWrap" style="display:none; width:100%; height:160px; border-radius:12px; overflow:hidden; border:1px solid var(--border); position:relative;">
+            <img id="modalPhotoPreview" src="" alt="Preview" style="width:100%; height:100%; object-fit:cover;">
+            <button type="button" onclick="clearModalPhoto()" style="position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.7); border:none; color:#fff; border-radius:50%; width:26px; height:26px; cursor:pointer;">✕</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="prodDesc">Descripción / Detalles</label>
+          <textarea id="prodDesc" class="form-textarea" placeholder="Revisión recién hecha en taller, neumáticos nuevos, garantía por escrito..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary-action" style="width:100%; justify-content:center; padding:14px; font-size:1rem;">
+          🚀 Publicar en la Web Ahora
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Element -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">🔔</span>
+    <span id="toastMsg">Mensaje de notificación</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT APPLICATION ENGINE
+       ══════════════════════════════════════════════════════════ -->
+  <script>
+    // ══════════════════════════════════════════════════════════
+    // BASE INVENTORY (18 Authentic Motos + 6 Boutique Items)
+    // ══════════════════════════════════════════════════════════
+    const CANONICAL_STOCK = [
+      { id: "m1", title: "Yamaha MT-07", category: "ocasion", price: "6.900 €", year: 2021, km: "12.500 km", image: "assets/moto_yamaha_mt07.jpg", status: "disponible", desc: "Naked ágil y potente. Revisión completa de 60 puntos recién hecha en taller y 1 año de garantía por escrito." },
+      { id: "m2", title: "Honda CBR 500R", category: "ocasion", price: "5.800 €", year: 2022, km: "8.300 km", image: "assets/moto_honda_cbr500r.jpg", status: "disponible", desc: "Deportiva perfecta para carnet A2. Muy cuidada, neumáticos en perfecto estado." },
+      { id: "m3", title: "Kawasaki Ninja 650", category: "nueva", price: "7.900 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_kawasaki_ninja650.jpg", status: "disponible", desc: "A estrenar con 3 años de garantía oficial Kawasaki. Matriculación inmediata." },
+      { id: "m4", title: "Suzuki V-Strom 650", category: "ocasion", price: "5.500 €", year: 2020, km: "18.200 km", image: "assets/moto_suzuki_vstrom650.jpg", status: "disponible", desc: "Trail todoterreno con maleta trasera y defensas de motor instaladas." },
+      { id: "m5", title: "Peugeot Metropolis 400 Active (3 ruedas)", category: "ocasion", price: "6.500 €", year: 2021, km: "379 km", image: "assets/real_peugeot_metropolis_master.jpg", status: "disponible", desc: "Maxiscooter de 3 ruedas conducible con carnet B de coche. Solamente 379 km reales." },
+      { id: "m6", title: "QJ Motor SRK 125J Naked", category: "nueva", price: "2.999 €", year: 2024, km: "0 km (Nueva)", image: "assets/real_qj_srk_master.jpg", status: "disponible", desc: "Naked de 125 cc refrigerada por líquido, pantalla LCD, iluminación LED completa y 3 años de garantía." },
+      { id: "m7", title: "Honda SH 350i Sport ABS", category: "ocasion", price: "5.200 €", year: 2022, km: "11.420 km", image: "assets/moto_honda_sh350.jpg", status: "disponible", desc: "La reina de la ciudad en cilindrada 350 cc con llave inteligente Smart Key y frenos ABS." },
+      { id: "m8", title: "KYMCO Agility City PLUS 125", category: "nueva", price: "2.199 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_kymco_agility.jpg", status: "disponible", desc: "Rueda alta súper cómoda y económica para Orihuela y alrededores. 3 años de garantía oficial." },
+      { id: "m9", title: "SYM Symphony 125 SR", category: "nueva", price: "2.499 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_sym_symphony.jpg", status: "disponible", desc: "Incluye baúl trasero de serie y frenada combinada. Muy bajo consumo." },
+      { id: "m10", title: "Macbor Montana XR1 125 EVO", category: "nueva", price: "3.299 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_macbor_montana.jpg", status: "disponible", desc: "Trail de 125 con maletas laterales, defensas y cúpula alta." },
+      { id: "m11", title: "KYMCO K-XCT 125i Sport ABS", category: "ocasion", price: "2.350 €", year: 2016, km: "47.598 km", image: "assets/real_kymco_kxct_master.jpg", status: "disponible", desc: "Scooter deportivo con ABS y motor inyección electrónica de respuesta inmediata." },
+      { id: "m12", title: "Suzuki Burgman 250 Executive", category: "ocasion", price: "1.350 €", year: 2005, km: "86.258 km", image: "assets/real_suzuki_burgman_master.jpg", status: "disponible", desc: "Motor y pistón nuevos montados en nuestro taller. Capacidad para 2 cascos integrales." },
+      { id: "m13", title: "Peugeot Citystar 50 RS Sport", category: "ocasion", price: "1.050 €", year: 2017, km: "36.238 km", image: "assets/real_peugeot_citystar_master.jpg", status: "disponible", desc: "Ciclomotor conducible con permiso AM desde los 15 años o carnet de coche." },
+      { id: "m14", title: "Rieju MRT 50 Pro Black Series", category: "nueva", price: "3.899 €", year: 2024, km: "0 km (Nueva)", image: "assets/real_rieju_mrt_master.jpg", status: "disponible", desc: "Supermotard con motor 2 tiempos Minarelli AM6 refrigerado por líquido y horquilla invertida." },
+      { id: "m15", title: "Hanway Furious NK 125 Naked", category: "ocasion", price: "1.950 €", year: 2023, km: "2.500 km", image: "assets/moto_hanway_furious.jpg", status: "disponible", desc: "Naked con solo 2.500 km. Motor 15 CV con pantalla digital TFT a color." },
+      { id: "m16", title: "Vespa LX 50 2T Clásica", category: "ocasion", price: "950 €", year: 2008, km: "28.410 km", image: "assets/vespa_lx_hd.jpg", status: "disponible", desc: "Chapa de acero clásica en azul cielo. Muy económica y revisada." },
+      { id: "m17", title: "Benda Napoleon Bob 250 Custom Bobber", category: "nueva", price: "4.290 €", year: 2024, km: "0 km (Nueva)", image: "assets/moto_benda_napoleon.jpg", status: "disponible", desc: "Bicilíndrica en V con asiento flotante monoplaza y suspensión delantera Hossack." },
+      { id: "m18", title: "Yamaha XV 535 SP Virago Custom", category: "ocasion", price: "2.500 €", year: 1998, km: "45.978 km", image: "assets/real_yamaha_virago_master.jpg", status: "vendida", desc: "Clásica bicilíndrica con transmisión por cardán y alforjas de piel. Entregada." },
+      // Boutique
+      { id: "b1", title: "Casco Modular LS2 Strobe II", category: "casco", price: "139 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_ls2_strobe.jpg", status: "disponible", desc: "Homologado bajo la nueva normativa europea ECE 22.06 con doble homologación P/J y visor solar interior." },
+      { id: "b2", title: "Casco Jet Urbano LS2 Airflow", category: "casco", price: "69 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_ls2_airflow.jpg", status: "disponible", desc: "Casco ligero y ventilado para ciudad con pantalla antiarañazos y protección UV." },
+      { id: "b3", title: "Casco Integral MT Thunder 4 SV ECE 22.06", category: "casco", price: "159 €", year: 2026, km: "Nuevo", image: "assets/boutique_casco_mt_thunder.jpg", status: "disponible", desc: "Máxima puntuación en seguridad europea ECE 22.06 con gafa solar desplegable y cierre micrométrico metálico." },
+      { id: "b4", title: "Chaqueta Cordura Alpinestars Andes v3 Drystar", category: "chaqueta", price: "249 €", year: 2026, km: "Nuevo", image: "assets/boutique_chaqueta_alpinestars.jpg", status: "disponible", desc: "100% impermeable y transpirable con membrana Drystar, forro térmico desmontable y protecciones en codos y hombros." },
+      { id: "b5", title: "Guantes de Piel & Protección Carbono", category: "chaqueta", price: "59 €", year: 2026, km: "Nuevo", image: "assets/boutique_guantes_carbono.jpg", status: "disponible", desc: "Piel de alta resistencia a la abrasión con nudillos reforzados en fibra de carbono y compatibilidad con pantalla táctil." },
+      { id: "b6", title: "Antirrobo de Disco con Alarma Acústica 120dB", category: "accesorio", price: "45 €", year: 2026, km: "Nuevo", image: "assets/boutique_antirrobo_disco.jpg", status: "disponible", desc: "Cuerpo de acero forjado de 6 mm resistente al corte y sensor de movimiento con sirena de alta potencia." }
+    ];
+
+    // Seed Appointments
+    const DEFAULT_CITAS = [
+      { ref: "ORERO-CITA-1001", name: "Carlos Navarro", phone: "622114455", moto: "Yamaha MT-07", service: "Revisión Oficial 60 Puntos", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
+      { ref: "ORERO-CITA-1002", name: "Manuel García", phone: "633445566", moto: "Honda CBR 500R", service: "Cambio de Neumáticos Del/Tras", date: "2026-10-23", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
+      { ref: "ORERO-CITA-1003", name: "David Ruiz", phone: "677889900", moto: "Kawasaki Ninja 650", service: "Pre-ITV Completa + Ajuste Cadena", date: "2026-10-24", slot: "Mañana (09:30 - 13:30)", status: "confirmada" },
+      { ref: "ORERO-CITA-1004", name: "Alejandro López", phone: "688990011", moto: "KYMCO Agility 125", service: "Diagnosis por Ordenador & Batería", date: "2026-10-24", slot: "Tarde (16:30 - 20:30)", status: "pendiente" },
+      { ref: "ORERO-CITA-1005", name: "Laura Martínez", phone: "644556677", moto: "Suzuki V-Strom 650", service: "Revisión 20.000 km & Reglaje", date: "2026-10-25", slot: "Mañana (10:00 - 13:30)", status: "confirmada" },
+      { ref: "ORERO-CITA-1006", name: "Vicente Belmonte", phone: "699001122", moto: "SYM Symphony 125", service: "Pastillas de Freno & Aceite", date: "2026-10-26", slot: "Mañana (09:30 - 13:30)", status: "pendiente" }
+    ];
+
+    // Seed Tasaciones
+    const DEFAULT_TASACIONES = [
+      { ref: "ORERO-TAS-801", name: "Fernando Murcia", phone: "611223344", moto: "Kawasaki Z900 A2", year: "2022", km: "9.400 km", offer: "6.800 €", status: "pendiente", notes: "Interesado en dejarla en gestión de venta en Calle San Agustín 18." },
+      { ref: "ORERO-TAS-802", name: "Antonio Serna", phone: "655667788", moto: "Yamaha XMAX 300", year: "2021", km: "14.200 km", offer: "4.300 €", status: "oferta_enviada", notes: "Revisión en taller pendiente. Enviar propuesta por WhatsApp." },
+      { ref: "ORERO-TAS-803", name: "Roberto Giménez", phone: "666778899", moto: "Honda CB650R Neo Sports", year: "2023", km: "5.100 km", offer: "7.100 €", status: "aceptada", notes: "Aceptada. Pasa este viernes por el concesionario a firmar depósito." }
+    ];
+
+    // ══════════════════════════════════════════════════════════
+    // BULLETPROOF RELATIVE ASSET URL MAPPING
+    // ══════════════════════════════════════════════════════════
+    function toPublicAssetUrl(path) {
+      if (!path) return '../assets/clean_showroom_orero.jpg';
+      if (typeof path !== 'string') return '';
+      if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+      }
+      let clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
+
+      // Normalize any legacy or alternative names to guaranteed existing files
+      const aliases = {
+        'peugeot_metropolis_hd.jpg': 'real_peugeot_metropolis_master.jpg',
+        'qj_srk_hd.jpg': 'real_qj_srk_master.jpg',
+        'honda_sh350_hd.jpg': 'moto_honda_sh350.jpg',
+        'kymco_agility_hd.jpg': 'moto_kymco_agility.jpg',
+        'sym_symphony_hd.jpg': 'moto_sym_symphony.jpg',
+        'macbor_montana_4k.jpg': 'moto_macbor_montana.jpg',
+        'kymco_kxct_hd.jpg': 'real_kymco_kxct_master.jpg',
+        'suzuki_burgman_hd.jpg': 'real_suzuki_burgman_master.jpg',
+        'peugeot_citystar_hd.jpg': 'real_peugeot_citystar_master.jpg',
+        'rieju_mrt_hd.jpg': 'real_rieju_mrt_master.jpg',
+        'hanway_furious_4k.jpg': 'moto_hanway_furious.jpg',
+        'virago_real_hd.jpg': 'real_yamaha_virago_master.jpg'
+      };
+
+      for (const [oldName, newName] of Object.entries(aliases)) {
+        if (clean.includes(oldName)) {
+          clean = clean.replace(oldName, newName);
+        }
+      }
+
+      if (!clean.startsWith('assets/')) {
+        clean = 'assets/' + clean;
+      }
+
+      return '../' + clean;
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // DUAL AUDIO ENGINE (HTML5 AUDIO + WEB AUDIO SYNTH)
+    // ══════════════════════════════════════════════════════════
+    let _audioCtx = null;
+
+    function playNotificationChime() {
+      if (localStorage.getItem('orero_admin_sound_muted') === 'true') return;
+
+      // 1. Try HTML5 Audio element
+      try {
+        const audioEl = document.getElementById('adminChimeAudio');
+        if (audioEl) {
+          audioEl.currentTime = 0;
+          const playPromise = audioEl.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              // Successfully played
+            }).catch(() => {
+              synthesizeChimeTone();
+            });
+          }
+        } else {
+          synthesizeChimeTone();
+        }
+      } catch (e) {
+        synthesizeChimeTone();
+      }
+    }
+
+    function synthesizeChimeTone() {
+      try {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtxClass) return;
+        if (!_audioCtx) _audioCtx = new AudioCtxClass();
+        if (_audioCtx.state === 'suspended') {
+          _audioCtx.resume();
+        }
+
+        const now = _audioCtx.currentTime;
+        // Tone 1: E5 (659.25 Hz)
+        const osc1 = _audioCtx.createOscillator();
+        const gain1 = _audioCtx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(659.25, now);
+        gain1.gain.setValueAtTime(0.4, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        osc1.connect(gain1);
+        gain1.connect(_audioCtx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.45);
+
+        // Tone 2: B5 (987.77 Hz)
+        const osc2 = _audioCtx.createOscillator();
+        const gain2 = _audioCtx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(987.77, now + 0.12);
+        gain2.gain.setValueAtTime(0.55, now + 0.12);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+        osc2.connect(gain2);
+        gain2.connect(_audioCtx.destination);
+        osc2.start(now + 0.12);
+        osc2.stop(now + 0.85);
+      } catch (err) {
+        console.warn('Web Audio synthesis error:', err);
+      }
+    }
+
+    function testNotificationChimeDirect() {
+      playNotificationChime();
+      showAdminToast('🔊 Campanilla de notificación probada con éxito');
+    }
+
+    function toggleSound() {
+      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
+      const btn = document.getElementById('btnSoundToggle');
+      if (isMuted) {
+        localStorage.setItem('orero_admin_sound_muted', 'false');
+        btn.textContent = '🔔 Sonido: ON';
+        btn.className = 'btn-nav-outline btn-sound-active';
+        playNotificationChime();
+        showAdminToast('🔔 Sonido de alertas activado');
+      } else {
+        localStorage.setItem('orero_admin_sound_muted', 'true');
+        btn.textContent = '🔕 Sonido: OFF';
+        btn.className = 'btn-nav-outline btn-sound-muted';
+        showAdminToast('🔕 Sonido de alertas silenciado');
+      }
+    }
+
+    function initSoundState() {
+      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
+      const btn = document.getElementById('btnSoundToggle');
+      if (btn) {
+        btn.textContent = isMuted ? '🔕 Sonido: OFF' : '🔔 Sonido: ON';
+        btn.className = isMuted ? 'btn-nav-outline btn-sound-muted' : 'btn-nav-outline btn-sound-active';
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // AUTHENTICATION (PASSWORD ONLY: casino18)
+    // ══════════════════════════════════════════════════════════
     function checkAuth() {
       const isAuth = sessionStorage.getItem('orero_admin_logged') === 'true' || localStorage.getItem('orero_admin_logged') === 'true';
       if (isAuth) {
         document.getElementById('loginScreen').style.display = 'none';
         document.getElementById('dashboardScreen').style.display = 'flex';
-        renderProducts();
+        renderAllStock();
         renderCitas();
+        renderTasaciones();
       } else {
         document.getElementById('loginScreen').style.display = 'flex';
         document.getElementById('dashboardScreen').style.display = 'none';
@@ -1721,610 +1490,377 @@
       const pass = document.getElementById('loginPass').value.trim();
       const errBox = document.getElementById('loginError');
 
-      // REQUIRED BY USER: Only password check, exact match casino18
       if (pass === 'casino18') {
         sessionStorage.setItem('orero_admin_logged', 'true');
         localStorage.setItem('orero_admin_logged', 'true');
         errBox.style.display = 'none';
         checkAuth();
+        playNotificationChime();
       } else {
         errBox.style.display = 'block';
+        document.getElementById('loginPass').select();
       }
     }
 
     function handleAdminLogout() {
+      if (!confirm('¿Deseas cerrar la sesión del panel de administración?')) return;
       sessionStorage.removeItem('orero_admin_logged');
       localStorage.removeItem('orero_admin_logged');
-      checkAuth();
+      location.reload();
     }
 
-    // Toggle fields if moto or boutique
-    function toggleMotoFields(category) {
-      const isMoto = category === 'ocasion' || category === 'nueva';
-      document.getElementById('groupMotoYear').style.display = isMoto ? 'block' : 'none';
-      document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
-    }
-
-    // Normalizador infalible de URLs para servidor, GitHub Pages y subcarpeta /admin/
-    function toPublicAssetUrl(path) {
-      if (!path) return '/assets/clean_showroom_orero.jpg';
-      if (typeof path !== 'string') return '';
-      if (path.startsWith('data:') || path.startsWith('blob:') || path.startsWith('http://') || path.startsWith('https://')) {
-        return path;
-      }
-      const clean = path.replace(/^(\.\.\/|\.\/|\/)+/, '');
-      if (window.location.protocol === 'file:') {
-        const inSubdir = window.location.pathname.includes('/admin/') || window.location.pathname.endsWith('/admin');
-        return inSubdir ? '../' + clean : clean;
-      }
-      return '/' + clean;
-    }
-
-    // Photo file upload from device
-    function triggerPhotoUpload(e) {
-      if (e && e.target && e.target.closest && (e.target.closest('.btn-change-photo') || e.target.closest('.btn-remove-photo'))) {
-        return;
-      }
-      const input = document.getElementById('prodPhotoInput');
-      if (input) input.click();
-    }
-
-    function triggerChangePhoto(e) {
-      if (e) e.stopPropagation();
-      const input = document.getElementById('prodPhotoInput');
-      if (input) input.click();
-    }
-
-    function handlePhotoUpload(e) {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        currentUploadedPhotoData = evt.target.result;
-        showPhotoInPreview(currentUploadedPhotoData, 'Foto subida: ' + file.name);
-        document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function selectSamplePhoto(photoPath, label, chipEl) {
-      const resolved = toPublicAssetUrl(photoPath);
-      currentUploadedPhotoData = resolved;
-      showPhotoInPreview(resolved, 'Foto de stock: ' + label);
-
-      document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
-      if (chipEl) chipEl.classList.add('active');
-
-      const titleInput = document.getElementById('prodTitle');
-      if (titleInput && !titleInput.value.trim()) {
-        titleInput.value = label;
-      }
-    }
-
-    function showPhotoInPreview(url, labelText) {
-      const img = document.getElementById('photoPreviewImg');
-      const box = document.getElementById('photoUploadBox');
-      const prompt = document.getElementById('uploadPrompt');
-      const wrap = document.getElementById('photoPreviewWrap');
-      const badge = document.getElementById('photoStatusBadge');
-
-      img.src = url;
-      wrap.style.display = 'block';
-      prompt.style.display = 'none';
-      box.classList.add('has-photo');
-
-      if (badge && labelText) {
-        badge.textContent = '✓ ' + labelText;
-      }
-    }
-
-    function clearSelectedPhoto(e) {
-      if (e) e.stopPropagation();
-      currentUploadedPhotoData = '';
-      const input = document.getElementById('prodPhotoInput');
-      if (input) input.value = '';
-
-      const img = document.getElementById('photoPreviewImg');
-      const box = document.getElementById('photoUploadBox');
-      const prompt = document.getElementById('uploadPrompt');
-      const wrap = document.getElementById('photoPreviewWrap');
-
-      img.src = '';
-      wrap.style.display = 'none';
-      prompt.style.display = 'block';
-      box.classList.remove('has-photo');
-
-      document.querySelectorAll('.sample-chip').forEach(c => c.classList.remove('active'));
-    }
-
-    function handlePreviewError(imgEl) {
-      imgEl.onerror = null;
-      imgEl.src = toPublicAssetUrl('assets/clean_showroom_orero.jpg');
-      const badge = document.getElementById('photoStatusBadge');
-      if (badge) badge.textContent = '✓ Imagen de stock Orero Motorcycles';
-    }
-
-    // Load & Save Products
+    // ══════════════════════════════════════════════════════════
+    // PRODUCTS & INVENTORY MANAGEMENT
+    // ══════════════════════════════════════════════════════════
     function getAllProducts() {
       try {
         const local = localStorage.getItem('orero_all_inventory');
         if (local) {
           const parsed = JSON.parse(local);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed.map(item => ({
-              ...item,
-              image: toPublicAssetUrl(item.image)
-            }));
+          if (Array.isArray(parsed) && parsed.length >= 10) {
+            return parsed;
           }
         }
-      } catch (err) {}
-      return BASE_STOCK.map(item => ({
-        ...item,
-        image: toPublicAssetUrl(item.image)
-      }));
+      } catch (e) {}
+
+      // Default seed
+      localStorage.setItem('orero_all_inventory', JSON.stringify(CANONICAL_STOCK));
+      return CANONICAL_STOCK;
     }
 
-    function saveProducts(list) {
+    function saveAllProducts(list) {
       localStorage.setItem('orero_all_inventory', JSON.stringify(list));
-      renderProducts();
+      renderAllStock();
+      updateKPICounters();
     }
 
-    // Publish New Product (Facebook Style)
-    function handlePublishProduct(e) {
+    let _currentFilter = 'todas';
+    let _searchQuery = '';
+
+    function filterAdminProducts(cat, btn) {
+      _currentFilter = cat;
+      document.querySelectorAll('.filter-pills-row .pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderAllStock();
+    }
+
+    function handleAdminSearch(val) {
+      _searchQuery = val.toLowerCase().trim();
+      renderAllStock();
+    }
+
+    function renderAllStock() {
+      const all = getAllProducts();
+      const motosContainer = document.getElementById('productsGridContainer');
+      const boutiqueContainer = document.getElementById('boutiqueGridContainer');
+
+      // Separate motos from boutique
+      const motos = all.filter(p => p.category === 'ocasion' || p.category === 'nueva');
+      const boutique = all.filter(p => p.category === 'casco' || p.category === 'chaqueta' || p.category === 'accesorio');
+
+      // Filter Motos
+      let filteredMotos = motos;
+      if (_currentFilter === 'ocasion') filteredMotos = motos.filter(p => p.category === 'ocasion');
+      else if (_currentFilter === 'nueva') filteredMotos = motos.filter(p => p.category === 'nueva');
+      else if (_currentFilter === 'disponible') filteredMotos = motos.filter(p => p.status === 'disponible');
+      else if (_currentFilter === 'vendida') filteredMotos = motos.filter(p => p.status === 'vendida');
+
+      if (_searchQuery) {
+        filteredMotos = filteredMotos.filter(p =>
+          (p.title || '').toLowerCase().includes(_searchQuery) ||
+          (p.desc || '').toLowerCase().includes(_searchQuery) ||
+          (p.price || '').toLowerCase().includes(_searchQuery)
+        );
+      }
+
+      // Render Motos
+      motosContainer.innerHTML = '';
+      if (filteredMotos.length === 0) {
+        motosContainer.innerHTML = `
+          <div style="grid-column:1/-1; text-align:center; padding:40px; background:var(--card-bg); border-radius:16px; border:1px solid var(--border);">
+            <div style="font-size:2rem; margin-bottom:8px;">🔍</div>
+            <div style="font-size:1.1rem; font-weight:800; color:#fff;">No se encontraron motos con este filtro</div>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:4px;">Prueba a cambiar el término de búsqueda o selecciona "Todas".</p>
+          </div>
+        `;
+      } else {
+        filteredMotos.forEach(p => {
+          motosContainer.appendChild(createProductCard(p));
+        });
+      }
+
+      // Render Boutique
+      if (boutiqueContainer) {
+        boutiqueContainer.innerHTML = '';
+        boutique.forEach(p => {
+          boutiqueContainer.appendChild(createProductCard(p));
+        });
+      }
+
+      // Update counters
+      document.getElementById('totalProductsCount').textContent = motos.length;
+      document.getElementById('motosTabCount').textContent = motos.length;
+      const countEl = document.getElementById('totalBoutiqueCount');
+      if (countEl) countEl.textContent = boutique.length;
+
+      updateKPICounters();
+    }
+
+    function createProductCard(p) {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.id = 'prod_card_' + p.id;
+
+      const isSold = p.status === 'vendida';
+      const statusClass = isSold ? 'status-sold' : 'status-available';
+      const statusText = isSold ? '🔴 VENDIDA' : '🟢 DISPONIBLE';
+
+      let catBadge = '🏍️ OCASIÓN';
+      if (p.category === 'nueva') catBadge = '🏍️ NUEVA';
+      else if (p.category === 'casco') catBadge = '🪖 CASCO ECE 22.06';
+      else if (p.category === 'chaqueta') catBadge = '🧥 EQUIPACIÓN';
+      else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
+
+      const imgSrc = toPublicAssetUrl(p.image);
+
+      card.innerHTML = `
+        <div class="thumb-wrap">
+          <img src="${imgSrc}" alt="${p.title}" class="product-thumb" onerror="this.onerror=null; this.src='../assets/clean_showroom_orero.jpg';">
+          <span class="status-tag ${statusClass}">${statusText}</span>
+          <span class="cat-tag">${catBadge}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-head-row">
+            <h4 class="product-title">${p.title}</h4>
+            <div class="product-price">${p.price}</div>
+          </div>
+          <div class="card-meta-row">
+            <span>📅 ${p.year || '2023'}</span>
+            <span>🛣️ ${p.km || '0 km'}</span>
+          </div>
+          <p class="product-desc">${p.desc || 'Disponible en exposición Calle San Agustín 18.'}</p>
+          <div class="card-actions-grid">
+            <button class="btn-card-action ${isSold ? 'btn-toggle-avail' : 'btn-toggle-sold'}" onclick="toggleProductSold('${p.id}')">
+              ${isSold ? '🟢 Poner Disponible' : '🔴 Marcar Vendida'}
+            </button>
+            <button class="btn-card-action" onclick="editProductPrice('${p.id}')">
+              ✏️ Editar Precio
+            </button>
+            <a href="../#catalogo" target="_blank" class="btn-card-action">
+              👁️ Ver en Web
+            </a>
+            <button class="btn-card-action btn-card-delete" onclick="deleteProduct('${p.id}')">
+              🗑️ Quitar
+            </button>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function toggleProductSold(id) {
+      const list = getAllProducts();
+      const item = list.find(p => p.id === id);
+      if (!item) return;
+
+      item.status = item.status === 'vendida' ? 'disponible' : 'vendida';
+      saveAllProducts(list);
+      playNotificationChime();
+      showAdminToast(`Estado actualizado: "${item.title}" ahora está ${item.status === 'vendida' ? '🔴 VENDIDA' : '🟢 DISPONIBLE'}.`);
+    }
+
+    function editProductPrice(id) {
+      const list = getAllProducts();
+      const item = list.find(p => p.id === id);
+      if (!item) return;
+
+      const newPrice = prompt(`Introduce el nuevo precio para "${item.title}":`, item.price);
+      if (newPrice !== null && newPrice.trim() !== '') {
+        const cleanPrice = newPrice.trim().includes('€') ? newPrice.trim() : newPrice.trim() + ' €';
+        item.price = cleanPrice;
+        saveAllProducts(list);
+        playNotificationChime();
+        showAdminToast(`Precio actualizado para "${item.title}": ${cleanPrice}`);
+      }
+    }
+
+    function deleteProduct(id) {
+      const list = getAllProducts();
+      const item = list.find(p => p.id === id);
+      if (!item) return;
+
+      if (!confirm(`¿Seguro que deseas eliminar "${item.title}" del inventario?`)) return;
+      const updated = list.filter(p => p.id !== id);
+      saveAllProducts(updated);
+      showAdminToast(`Producto eliminado del inventario.`);
+    }
+
+    function updateKPICounters() {
+      const all = getAllProducts();
+      const motos = all.filter(p => p.category === 'ocasion' || p.category === 'nueva');
+      const disp = motos.filter(p => p.status === 'disponible').length;
+
+      document.getElementById('kpiTotalMotos').textContent = motos.length;
+      document.getElementById('kpiDisponibles').textContent = disp;
+
+      const citas = getStoredCitas();
+      document.getElementById('kpiTotalCitas').textContent = citas.length;
+
+      const tas = getStoredTasaciones();
+      document.getElementById('kpiTasaciones').textContent = tas.length;
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // MODAL DE PUBLICACIÓN
+    // ══════════════════════════════════════════════════════════
+    let _uploadedPhoto = '';
+
+    function openPublishModal(defaultCat) {
+      document.getElementById('publishModal').style.display = 'flex';
+      if (defaultCat) {
+        document.getElementById('prodCat').value = defaultCat;
+      }
+      toggleFormMotoFields();
+      document.getElementById('prodTitle').focus();
+    }
+
+    function closePublishModal() {
+      document.getElementById('publishModal').style.display = 'none';
+      document.getElementById('publishForm').reset();
+      clearModalPhoto();
+    }
+
+    function toggleFormMotoFields() {
+      const cat = document.getElementById('prodCat').value;
+      const isMoto = (cat === 'ocasion' || cat === 'nueva');
+      document.getElementById('groupMotoYear').style.display = isMoto ? 'block' : 'none';
+      document.getElementById('groupMotoKm').style.display = isMoto ? 'block' : 'none';
+    }
+
+    function handleModalPhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        _uploadedPhoto = evt.target.result;
+        document.getElementById('modalPhotoPreview').src = _uploadedPhoto;
+        document.getElementById('modalPhotoPreviewWrap').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function selectQuickPhoto(src) {
+      _uploadedPhoto = src;
+      document.getElementById('modalPhotoPreview').src = src;
+      document.getElementById('modalPhotoPreviewWrap').style.display = 'block';
+    }
+
+    function clearModalPhoto() {
+      _uploadedPhoto = '';
+      document.getElementById('modalPhotoPreview').src = '';
+      document.getElementById('modalPhotoPreviewWrap').style.display = 'none';
+      document.getElementById('photoFileInput').value = '';
+    }
+
+    function handleFormPublish(e) {
       e.preventDefault();
-      const category = document.getElementById('prodCategory').value;
+      const cat = document.getElementById('prodCat').value;
       const title = document.getElementById('prodTitle').value.trim();
       const price = document.getElementById('prodPrice').value.trim();
       const year = document.getElementById('prodYear').value;
       const km = document.getElementById('prodKm').value.trim();
       const desc = document.getElementById('prodDesc').value.trim();
 
-      // If no photo chosen, pick default according to category
-      let image = currentUploadedPhotoData;
+      let image = _uploadedPhoto;
       if (!image) {
-        if (category === 'casco') image = toPublicAssetUrl('assets/boutique_casco_ls2_strobe.jpg');
-        else if (category === 'chaqueta') image = toPublicAssetUrl('assets/boutique_chaqueta_alpinestars.jpg');
-        else if (category === 'accesorio') image = toPublicAssetUrl('assets/boutique_antirrobo_disco.jpg');
-        else image = toPublicAssetUrl('assets/clean_showroom_orero.jpg');
-      } else {
-        image = toPublicAssetUrl(image);
+        if (cat === 'casco') image = 'assets/boutique_casco_ls2_strobe.jpg';
+        else if (cat === 'chaqueta') image = 'assets/boutique_chaqueta_alpinestars.jpg';
+        else if (cat === 'accesorio') image = 'assets/boutique_antirrobo_disco.jpg';
+        else image = 'assets/clean_showroom_orero.jpg';
       }
 
-      const newId = 'prod_' + Date.now();
+      const cleanPrice = price.includes('€') ? price : price + ' €';
+
       const newProduct = {
-        id: newId,
-        title: title,
-        category: category,
-        price: price.includes('€') ? price : price + ' €',
+        id: 'prod_' + Date.now(),
+        title,
+        category: cat,
+        price: cleanPrice,
         year: year ? parseInt(year) : 2024,
         km: km || '0 km',
-        image: image,
+        image,
         status: 'disponible',
         desc: desc || 'Vehículo disponible en nuestra exposición de Calle San Agustín 18, Orihuela.'
       };
 
-      const products = getAllProducts();
-      products.unshift(newProduct);
-      saveProducts(products);
+      const list = getAllProducts();
+      list.unshift(newProduct);
+      saveAllProducts(list);
 
-      // Reset form
-      document.getElementById('fbPublishForm').reset();
-      clearSelectedPhoto();
-
-      alert('¡Publicación realizada con éxito! Ya está disponible en la web.');
-    }
-
-    function renderProducts() {
-      const products = getAllProducts();
-      const container = document.getElementById('productsGridContainer');
-      container.innerHTML = '';
-
-      document.getElementById('totalProductsCount').textContent = products.length;
-      document.getElementById('kpiTotalMotos').textContent = products.length;
-
-      products.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-
-        const isSold = p.status === 'vendida';
-        const statusClass = isSold ? 'status-sold' : 'status-available';
-        const statusText = isSold ? '🔴 VENDIDA' : '🟢 DISPONIBLE';
-
-        let catBadge = '🏍️ MOTO OCASIÓN';
-        if (p.category === 'nueva') catBadge = '🏍️ MOTO NUEVA';
-        else if (p.category === 'casco') catBadge = '🪖 CASCO ECE 22.06';
-        else if (p.category === 'chaqueta') catBadge = '🧥 EQUIPACIÓN';
-        else if (p.category === 'accesorio') catBadge = '⚙️ ACCESORIO';
-
-        card.innerHTML = `
-          <img src="${toPublicAssetUrl(p.image)}" alt="${p.title}" class="product-thumb" loading="lazy" onerror="this.onerror=null; this.src=toPublicAssetUrl('assets/clean_showroom_orero.jpg');">
-          <div class="product-body">
-            <div class="product-badge-row">
-              <span class="product-badge">${catBadge}</span>
-              <span class="product-status-tag ${statusClass}">${statusText}</span>
-            </div>
-            <h4 class="product-title">${p.title}</h4>
-            <div class="product-price">${p.price}</div>
-            <p class="product-desc">${p.desc}</p>
-
-            <div class="product-actions">
-              <button class="btn-prod-action" onclick="toggleProductSold('${p.id}')">
-                ${isSold ? '🟢 Poner Disponible' : '🔴 Marcar Vendida'}
-              </button>
-              <button class="btn-prod-action" onclick="editProductPrice('${p.id}')">
-                ✏️ Precio
-              </button>
-              <button class="btn-prod-action btn-prod-delete" onclick="deleteProduct('${p.id}')">
-                🗑️ Quitar
-              </button>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    function toggleProductSold(id) {
-      const products = getAllProducts();
-      const item = products.find(p => p.id === id);
-      if (!item) return;
-      item.status = item.status === 'vendida' ? 'disponible' : 'vendida';
-      saveProducts(products);
-    }
-
-    function editProductPrice(id) {
-      const products = getAllProducts();
-      const item = products.find(p => p.id === id);
-      if (!item) return;
-
-      const newPrice = prompt(`Introduce el nuevo precio para "${item.title}":`, item.price);
-      if (newPrice !== null && newPrice.trim() !== '') {
-        item.price = newPrice.trim().includes('€') ? newPrice.trim() : newPrice.trim() + ' €';
-        saveProducts(products);
-      }
-    }
-
-    function deleteProduct(id) {
-      if (!confirm('¿Seguro que deseas eliminar este producto de la web?')) return;
-      let products = getAllProducts();
-      products = products.filter(p => p.id !== id);
-      saveProducts(products);
-    }
-
-    // ══════════════════════════════════════════════════════════
-    // GESTIÓN INTEGRAL DE CITAS, AUDIO CHIME & NOTIFICACIONES
-    // ══════════════════════════════════════════════════════════
-    const DEFAULT_CITAS = [
-      { ref: "ORERO-CITA-8367", name: "Alejandro Ramos", phone: "633445566", email: "alejandro.ramos@gmail.com", moto: "Yamaha MT-07 - 5678-KTM", service: "Revisión Oficial 60 Puntos", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "pendiente", notes: "Revisión de los 10.000 km y cambio de aceite sintético.", internalNotes: "Revisar tensión de cadena." },
-      { ref: "ORERO-CITA-1042", name: "Pedro Martínez Soto", phone: "644 12 34 56", email: "pedro.soto@hotmail.com", moto: "Yamaha MT-07 (2021)", service: "Revisión 60 Puntos", date: "2026-10-21", slot: "Mañana (09:30 - 13:30)", status: "confirmada", notes: "Vibración leve en manillar.", internalNotes: "Equilibrado rueda delantera presupuestado en 35€." },
-      { ref: "ORERO-CITA-1043", name: "Laura Ruiz Morales", phone: "622 98 76 54", email: "laura.ruiz@yahoo.es", moto: "Kymco Agility City 125", service: "Cambio de Neumáticos Michelin", date: "2026-10-21", slot: "Tarde (16:30 - 20:30)", status: "confirmada", notes: "Montar Michelin City Grip 2.", internalNotes: "Neumáticos apartados en almacén." },
-      { ref: "ORERO-CITA-1044", name: "Vicente Sánchez Pardo", phone: "677 45 89 12", email: "vicente.sp@gmail.com", moto: "Honda CBR 500R", service: "Inspección Pre-ITV", date: "2026-10-22", slot: "Mañana (09:30 - 13:30)", status: "pendiente", notes: "Paso ITV la próxima semana.", internalNotes: "" },
-      { ref: "ORERO-CITA-1045", name: "Andrés Alcaraz Vegara", phone: "610 33 22 11", email: "andres.alcaraz@gmail.com", moto: "Suzuki Burgman 250", service: "Diagnosis y puesta a punto", date: "2026-10-22", slot: "Tarde (16:30 - 20:30)", status: "en_taller", notes: "Cuesta arrancar en frío.", internalNotes: "Bujía y batería comprobadas. Limpieza de carburador en curso." },
-      { ref: "ORERO-CITA-1046", name: "Carlos Navarro Gómez", phone: "655 77 88 99", email: "carlos.ng@gmail.com", moto: "Kawasaki Ninja 650", service: "Tasación para cambio", date: "2026-10-23", slot: "Mañana (09:30 - 13:30)", status: "finalizada", notes: "Quiere tasar para comprar MT-07.", internalNotes: "Tasación realizada en 4.900€. Operación cerrada." }
-    ];
-
-    const DEFAULT_TASACIONES = [
-      { ref: "ORERO-TAS-4102", name: "David Alarcón", phone: "622 11 22 33", email: "david.alarcon@gmail.com", moto: "Honda CB650R Neo Sports", year: 2021, km: "14.200 km", offer: "5.400 €", status: "oferta_enviada", notes: "Color negro mate, libro oficial de revisiones al día." },
-      { ref: "ORERO-TAS-4103", name: "Elena Martínez", phone: "644 55 66 77", email: "elena.m@hotmail.com", moto: "Yamaha MT-09 SP", year: 2022, km: "9.800 km", offer: "8.100 €", status: "pendiente", notes: "Interesada en cambio por maxiscooter de 3 ruedas." },
-      { ref: "ORERO-TAS-4104", name: "Francisco Grau", phone: "688 99 00 11", email: "fgrau@yahoo.es", moto: "BMW R 1200 GS LC", year: 2017, km: "42.000 km", offer: "9.800 €", status: "aceptada", notes: "Cliente de Orihuela, moto entregada para gestión de venta." }
-    ];
-
-    let currentFilterStatus = 'todos';
-    let knownCitasCount = -1;
-
-    // ══════════════════════════════════════════════════════════
-    // SINTETIZADOR DE CAMPANILLA (WEB AUDIO API - SIN ARCHIVOS EXTERNOS)
-    // ══════════════════════════════════════════════════════════
-    function playNotificationChime() {
-      if (localStorage.getItem('orero_admin_sound_muted') === 'true') return;
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        const now = ctx.currentTime;
-        
-        // Tono 1: Re 5 (587.33 Hz)
-        const osc1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(587.33, now);
-        gain1.gain.setValueAtTime(0.28, now);
-        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-        osc1.connect(gain1);
-        gain1.connect(ctx.destination);
-        osc1.start(now);
-        osc1.stop(now + 0.45);
-
-        // Tono 2: La 5 (880 Hz)
-        const osc2 = ctx.createOscillator();
-        const gain2 = ctx.createGain();
-        osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(880, now + 0.14);
-        gain2.gain.setValueAtTime(0.38, now + 0.14);
-        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
-        osc2.connect(gain2);
-        gain2.connect(ctx.destination);
-        osc2.start(now + 0.14);
-        osc2.stop(now + 0.85);
-      } catch (err) {
-        console.warn('Web Audio Chime Notice:', err);
-      }
-    }
-
-    function testNotificationChimeDirect() {
+      closePublishModal();
       playNotificationChime();
-    }
-
-    function toggleSound() {
-      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
-      if (isMuted) {
-        localStorage.setItem('orero_admin_sound_muted', 'false');
-        document.getElementById('btnSoundToggle').textContent = '🔔 Sonido: ON';
-        playNotificationChime();
-      } else {
-        localStorage.setItem('orero_admin_sound_muted', 'true');
-        document.getElementById('btnSoundToggle').textContent = '🔕 Sonido: OFF';
-      }
-    }
-
-    // Alerta de nueva cita visual y sonora
-    function showAppointmentAlert(cita) {
-      playNotificationChime();
-
-      // Barra superior
-      const bar = document.getElementById('liveAlertBar');
-      const msg = document.getElementById('liveAlertMessage');
-      if (bar && msg) {
-        msg.innerHTML = `<strong>${cita.name}</strong> acaba de solicitar cita previa para <strong>${cita.moto || 'su moto'}</strong> (${cita.service}) · Turno: <strong>${cita.date} (${cita.slot})</strong>.`;
-        bar.style.display = 'flex';
-      }
-
-      // Notificación flotante (Toast)
-      const container = document.getElementById('adminToastContainer');
-      if (container) {
-        const toast = document.createElement('div');
-        toast.className = 'admin-toast';
-        toast.innerHTML = `
-          <div style="font-size:1.8rem; flex-shrink:0;">🔔</div>
-          <div style="flex:1;">
-            <div style="font-weight:800; font-size:0.92rem; color:#fff; display:flex; justify-content:space-between; align-items:center;">
-              <span>¡Nueva Cita Registrada!</span>
-              <span style="font-family:monospace; color:var(--red); font-size:0.8rem; background:rgba(0,0,0,0.4); padding:2px 6px; border-radius:4px;">${cita.ref}</span>
-            </div>
-            <div style="font-size:0.84rem; color:#cbd5e1; margin-top:4px;">
-              <strong>${cita.name}</strong> · ${cita.moto}
-            </div>
-            <div style="font-size:0.8rem; color:#94a3b8; margin-top:2px;">
-              📅 ${cita.date} · ${cita.slot}
-            </div>
-            <div style="display:flex; gap:8px; margin-top:10px;">
-              <button class="btn-action-icon" style="font-size:0.75rem; padding:4px 10px;" onclick="openCitaModal('${cita.ref}')">✏️ Ver Ficha</button>
-              <button class="btn-action-icon btn-action-wa" style="font-size:0.75rem; padding:4px 10px;" onclick="sendDirectCitaWhatsApp('${cita.ref}')">💬 WhatsApp</button>
-            </div>
-          </div>
-          <button onclick="this.parentElement.remove()" style="background:transparent; border:none; color:#94a3b8; cursor:pointer; font-size:1.1rem; padding:0 4px;">✕</button>
-        `;
-        container.appendChild(toast);
-        setTimeout(() => { if (toast.parentElement) toast.remove(); }, 10000);
-      }
-    }
-
-    function dismissAlertBar(goToTable) {
-      document.getElementById('liveAlertBar').style.display = 'none';
-      if (goToTable) {
-        switchTab('citas', document.getElementById('tabBtnCitas'));
-        window.scrollTo({ top: 320, behavior: 'smooth' });
-      }
+      showAdminToast(`🎉 ¡"${title}" publicado con éxito! Visible en la web.`);
     }
 
     // ══════════════════════════════════════════════════════════
-    // PERSISTENCIA Y SINCRONIZACIÓN DE CITAS
+    // GESTIÓN DE CITAS DE TALLER
     // ══════════════════════════════════════════════════════════
     function getStoredCitas() {
-      let citas = [];
       try {
         const local = localStorage.getItem('orero_appointments');
-        if (local) citas = JSON.parse(local);
-      } catch (err) {}
-
-      const existingRefs = new Set(citas.map(c => c.ref));
-      DEFAULT_CITAS.forEach(d => {
-        if (!existingRefs.has(d.ref)) citas.push(d);
-      });
-      return citas;
+        if (local) {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      localStorage.setItem('orero_appointments', JSON.stringify(DEFAULT_CITAS));
+      return DEFAULT_CITAS;
     }
 
-    function saveCitas(citas) {
+    function saveStoredCitas(citas) {
       localStorage.setItem('orero_appointments', JSON.stringify(citas));
       renderCitas();
-    }
-
-    // Sincronización continua en segundo plano (detecta citas desde la web pública)
-    function startCitasAutoSync() {
-      setInterval(() => {
-        try {
-          const citas = getStoredCitas();
-          if (knownCitasCount !== -1 && citas.length > knownCitasCount) {
-            // Se ha añadido una cita nueva
-            const newest = citas[0];
-            showAppointmentAlert(newest);
-            renderCitas();
-          }
-          knownCitasCount = citas.length;
-        } catch (e) {}
-      }, 4000);
-    }
-
-    // Simular cita entrante desde la web para probar
-    function simulateNewAppointment() {
-      const mockClients = [
-        { name: "Carlos Soler Vega", phone: "612 88 44 22", email: "carlos.soler@gmail.com", moto: "Yamaha MT-07 ABS (5432-KTM)", service: "Revisión Oficial 60 Puntos", notes: "Frenos delanteros y cambio de aceite." },
-        { name: "Marta Guillén Orihuela", phone: "677 33 22 11", email: "marta.g@hotmail.com", moto: "Honda SH 350i (9876-LMN)", service: "Cambio de Neumáticos Michelin", notes: "Deseo neumáticos nuevos Michelin City Grip." },
-        { name: "Javier Bernabé", phone: "633 99 88 77", email: "javi.orihuela@yahoo.es", moto: "Kawasaki Ninja 650", service: "Diagnosis de Avería", notes: "Luz de fallo de motor intermitente." },
-        { name: "Antonio Riquelme", phone: "655 44 33 22", email: "antonio.riquelme@gmail.com", moto: "Kymco Agility City 125", service: "Mantenimiento Periódico", notes: "Revisión de los 15.000 km." }
-      ];
-
-      const mock = mockClients[Math.floor(Math.random() * mockClients.length)];
-      const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
-
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const y = tomorrow.getFullYear();
-      const m = String(tomorrow.getMonth() + 1).padStart(2, '0');
-      const d = String(tomorrow.getDate()).padStart(2, '0');
-      const dateStr = `${y}-${m}-${d}`;
-
-      const newCita = {
-        ref: newRef,
-        name: mock.name,
-        phone: mock.phone,
-        email: mock.email,
-        moto: mock.moto,
-        service: mock.service,
-        date: dateStr,
-        slot: "Mañana (09:30 - 13:30)",
-        notes: mock.notes,
-        internalNotes: "",
-        status: "pendiente",
-        createdAt: new Date().toISOString()
-      };
-
-      const list = getStoredCitas();
-      list.unshift(newCita);
-      saveCitas(list);
-      showAppointmentAlert(newCita);
-      switchTab('citas', document.getElementById('tabBtnCitas'));
-    }
-
-    // ══════════════════════════════════════════════════════════
-    // FILTROS Y BÚSQUEDA DE CITAS
-    // ══════════════════════════════════════════════════════════
-    function setCitaFilter(status, btn) {
-      currentFilterStatus = status;
-      document.querySelectorAll('.chip-filter').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderCitas();
-    }
-
-    function clearCitasSearch() {
-      const input = document.getElementById('citasSearchInput');
-      if (input) input.value = '';
-      renderCitas();
-    }
-
-    function filterAndRenderCitas() {
-      renderCitas();
+      updateKPICounters();
     }
 
     function renderCitas() {
-      const allCitas = getStoredCitas();
-      const searchVal = (document.getElementById('citasSearchInput')?.value || '').toLowerCase().trim();
-
-      // Conteo de métricas
-      let pendingCount = 0;
-      let confirmedCount = 0;
-      let inShopCount = 0;
-      let doneCount = 0;
-
-      allCitas.forEach(c => {
-        if (c.status === 'pendiente') pendingCount++;
-        else if (c.status === 'confirmada') confirmedCount++;
-        else if (c.status === 'en_taller') inShopCount++;
-        else if (c.status === 'finalizada') doneCount++;
-      });
-
-      // Actualizar conteos
-      document.getElementById('countAll').textContent = allCitas.length;
-      document.getElementById('countPending').textContent = pendingCount;
-      document.getElementById('countConfirmed').textContent = confirmedCount;
-      document.getElementById('countInShop').textContent = inShopCount;
-      document.getElementById('countDone').textContent = doneCount;
-
-      document.getElementById('citasTabCount').textContent = allCitas.length;
-      document.getElementById('kpiTotalCitas').textContent = allCitas.length;
-      document.getElementById('kpiPendientes').textContent = pendingCount;
-      document.getElementById('kpiConfirmadas').textContent = confirmedCount;
-
-      // Filtrado
-      let filtered = allCitas.filter(c => {
-        // Filtro por chip
-        if (currentFilterStatus !== 'todos' && c.status !== currentFilterStatus) return false;
-
-        // Filtro por buscador
-        if (searchVal) {
-          const ref = (c.ref || '').toLowerCase();
-          const name = (c.name || '').toLowerCase();
-          const phone = (c.phone || '').toLowerCase();
-          const email = (c.email || '').toLowerCase();
-          const moto = (c.moto || '').toLowerCase();
-          const serv = (c.service || '').toLowerCase();
-          return ref.includes(searchVal) || name.includes(searchVal) || phone.includes(searchVal) || email.includes(searchVal) || moto.includes(searchVal) || serv.includes(searchVal);
-        }
-        return true;
-      });
-
+      const citas = getStoredCitas();
       const tbody = document.getElementById('citasTableBody');
       tbody.innerHTML = '';
 
-      if (filtered.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7" style="text-align:center; padding:36px; color:var(--text-muted);">
-              🔍 No se han encontrado citas con los filtros aplicados.
-              <br><button class="btn-nav-outline" onclick="clearCitasSearch(); setCitaFilter('todos', document.getElementById('filterChipAll'));" style="margin-top:12px;">Mostrar Todas las Citas</button>
-            </td>
-          </tr>
-        `;
-        return;
-      }
+      document.getElementById('citasTabCount').textContent = citas.length;
 
-      filtered.forEach((c) => {
+      citas.forEach(c => {
         const tr = document.createElement('tr');
+        const isPending = c.status === 'pendiente';
+        const statusBadge = isPending
+          ? '<span style="background:rgba(245,158,11,0.2); color:#fbbf24; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">PENDIENTE</span>'
+          : '<span style="background:rgba(16,185,129,0.2); color:#34d399; padding:4px 9px; border-radius:6px; font-weight:800; font-size:0.75rem;">CONFIRMADA</span>';
 
-        // Select de estado con color
-        const statusClass = `status-sel-${c.status || 'pendiente'}`;
+        const cleanPhone = (c.phone || '').replace(/\D/g, '');
+        const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
+        const waMsg = encodeURIComponent(`Hola ${c.name}, te escribimos desde Orero Motorcycles en Orihuela para confirmar tu cita de taller (${c.ref}) para ${c.moto} el día ${c.date} (${c.slot}) en Calle San Agustín 18. ¿Te viene bien?`);
 
         tr.innerHTML = `
-          <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem; white-space:nowrap;">
-            ${c.ref}
-          </td>
+          <td style="font-family:monospace; font-weight:800; color:var(--red);">${c.ref}</td>
+          <td><strong>${c.name}</strong></td>
+          <td><a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700;">📞 ${c.phone}</a></td>
+          <td>${c.moto}</td>
+          <td>${c.service}</td>
           <td>
-            <div style="font-weight:700; color:#fff;">${c.name}</div>
-            ${c.email ? `<a href="mailto:${c.email}?subject=Cita Taller Orero Motorcycles (${c.ref})" style="font-size:0.75rem; color:#38bdf8; text-decoration:none; display:inline-block; margin-top:2px;">✉️ ${c.email}</a>` : `<span style="font-size:0.72rem; color:var(--text-muted);">Sin email</span>`}
+            <div>📅 ${c.date}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${c.slot}</div>
           </td>
-          <td>
-            <a href="tel:${c.phone}" style="color:#93c5fd; text-decoration:none; font-weight:700; font-size:0.88rem; display:block;">📞 ${c.phone}</a>
-            <button class="btn-action-icon btn-action-wa" style="font-size:0.72rem; padding:2px 8px; margin-top:4px;" onclick="sendDirectCitaWhatsApp('${c.ref}')">
+          <td>${statusBadge}</td>
+          <td style="text-align:right;">
+            <a href="https://wa.me/${phoneParam}?text=${waMsg}" target="_blank" class="btn-card-action" style="background:#25D366; color:#fff; border:none; padding:6px 10px; margin-right:4px;">
               💬 WhatsApp
+            </a>
+            <button class="btn-card-action" style="padding:6px 10px;" onclick="toggleCitaStatus('${c.ref}')">
+              ${isPending ? '✓ Confirmar' : 'Reabrir'}
             </button>
-          </td>
-          <td>
-            <div style="font-weight:700; color:#e2e8f0;">${c.moto || '-'}</div>
-            ${c.notes ? `<div style="font-size:0.75rem; color:#94a3b8; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;" title="${c.notes}">📝 ${c.notes}</div>` : ''}
-            ${c.internalNotes ? `<div style="font-size:0.72rem; color:#fca5a5; font-weight:600; margin-top:2px;" title="${c.internalNotes}">🛠️ Taller: ${c.internalNotes}</div>` : ''}
-          </td>
-          <td>
-            <div style="font-weight:600; color:#fbbf24; font-size:0.85rem;">${c.service}</div>
-          </td>
-          <td>
-            <div style="font-weight:700; color:#fff;">📅 ${c.date}</div>
-            <div style="font-size:0.76rem; color:#94a3b8; margin-top:2px;">⏰ ${c.slot}</div>
-          </td>
-          <td>
-            <select class="status-select ${statusClass}" onchange="updateCitaStatus('${c.ref}', this.value)">
-              <option value="pendiente" ${c.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
-              <option value="confirmada" ${c.status === 'confirmada' ? 'selected' : ''}>✅ Confirmada</option>
-              <option value="en_taller" ${c.status === 'en_taller' ? 'selected' : ''}>🔧 En Taller</option>
-              <option value="finalizada" ${c.status === 'finalizada' ? 'selected' : ''}>🏁 Finalizada</option>
-              <option value="cancelada" ${c.status === 'cancelada' ? 'selected' : ''}>❌ Cancelada</option>
-            </select>
-          </td>
-          <td style="text-align:right; white-space:nowrap;">
-            <button class="btn-action-icon" style="padding:6px 12px;" onclick="openCitaModal('${c.ref}')" title="Ver ficha completa, notas internas de mecánico y reprogramar">
-              ✏️ Ficha
-            </button>
-            <button class="btn-action-icon btn-prod-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteCita('${c.ref}')" title="Eliminar cita">
+            <button class="btn-card-action btn-card-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteCita('${c.ref}')">
               🗑️
             </button>
           </td>
@@ -2333,225 +1869,29 @@
       });
     }
 
-    function updateCitaStatus(ref, newStatus) {
+    function toggleCitaStatus(ref) {
       const citas = getStoredCitas();
       const item = citas.find(c => c.ref === ref);
       if (!item) return;
-      item.status = newStatus;
-      saveCitas(citas);
+      item.status = item.status === 'pendiente' ? 'confirmada' : 'pendiente';
+      saveStoredCitas(citas);
+      playNotificationChime();
+      showAdminToast(`Cita ${ref} actualizada a ${item.status.toUpperCase()}`);
     }
 
     function deleteCita(ref) {
-      if (!confirm(`¿Seguro que deseas eliminar la cita ${ref}?`)) return;
-      let citas = getStoredCitas();
-      citas = citas.filter(c => c.ref !== ref);
-      saveCitas(citas);
-    }
-
-    function sendDirectCitaWhatsApp(ref) {
-      const citas = getStoredCitas();
-      const c = citas.find(x => x.ref === ref);
-      if (!c) return;
-
-      const cleanPhone = (c.phone || '').replace(/\D/g, '');
-      const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
-
-      const msg = `¡Hola ${c.name}! Te escribimos desde el taller de Orero Motorcycles en Orihuela (Calle San Agustín 18).\n\n` +
-        `Te confirmamos que tenemos registrada tu cita con Ref: *${c.ref}* para tu *${c.moto}* (*${c.service}*) para el día *${c.date}* en turno *${c.slot}*.\n\n` +
-        `¿Nos confirmas tu asistencia? ¡Un saludo del equipo mecánico! 🏍️🔧`;
-
-      window.open(`https://wa.me/${phoneParam}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-
-    // ══════════════════════════════════════════════════════════
-    // MODAL DE FICHA TÉCNICA, REPROGRAMACIÓN & NOTAS DE MECÁNICO
-    // ══════════════════════════════════════════════════════════
-    let activeModalCitaRef = null;
-
-    function openCitaModal(ref) {
-      const citas = getStoredCitas();
-      const c = citas.find(x => x.ref === ref);
-      if (!c) return;
-
-      activeModalCitaRef = ref;
-      document.getElementById('modalCitaRef').value = c.ref;
-      document.getElementById('modalCitaRefTag').textContent = c.ref;
-      document.getElementById('modalCitaTitle').textContent = `Ficha de Cita · ${c.name}`;
-      document.getElementById('modalCitaName').value = c.name || '';
-      document.getElementById('modalCitaPhone').value = c.phone || '';
-      document.getElementById('modalCitaEmail').value = c.email || '';
-      document.getElementById('modalCitaMoto').value = c.moto || '';
-      document.getElementById('modalCitaService').value = c.service || 'Revisión Oficial 60 Puntos';
-      document.getElementById('modalCitaStatus').value = c.status || 'pendiente';
-      document.getElementById('modalCitaDate').value = c.date || '';
-      document.getElementById('modalCitaSlot').value = c.slot || 'Mañana (09:30 - 13:30)';
-      document.getElementById('modalCitaNotes').value = c.notes || '';
-      document.getElementById('modalCitaInternalNotes').value = c.internalNotes || '';
-
-      document.getElementById('adminModalCita').classList.add('open');
-    }
-
-    function closeAdminModal(e) {
-      if (e.target.id === 'adminModalCita') {
-        document.getElementById('adminModalCita').classList.remove('open');
-      }
-    }
-    function closeAdminModalDirect() {
-      document.getElementById('adminModalCita').classList.remove('open');
-    }
-
-    function saveModalCitaChanges(e) {
-      e.preventDefault();
-      if (!activeModalCitaRef) return;
-
-      const citas = getStoredCitas();
-      const c = citas.find(x => x.ref === activeModalCitaRef);
-      if (!c) return;
-
-      c.name = document.getElementById('modalCitaName').value.trim();
-      c.phone = document.getElementById('modalCitaPhone').value.trim();
-      c.email = document.getElementById('modalCitaEmail').value.trim();
-      c.moto = document.getElementById('modalCitaMoto').value.trim();
-      c.service = document.getElementById('modalCitaService').value;
-      c.status = document.getElementById('modalCitaStatus').value;
-      c.date = document.getElementById('modalCitaDate').value;
-      c.slot = document.getElementById('modalCitaSlot').value;
-      c.notes = document.getElementById('modalCitaNotes').value.trim();
-      c.internalNotes = document.getElementById('modalCitaInternalNotes').value.trim();
-
-      saveCitas(citas);
-      closeAdminModalDirect();
-      alert(`Ficha y reprogramación de la cita ${c.ref} guardada correctamente.`);
-    }
-
-    function sendModalClientWhatsApp() {
-      if (!activeModalCitaRef) return;
-      sendDirectCitaWhatsApp(activeModalCitaRef);
-    }
-
-    function sendModalClientEmail() {
-      const email = document.getElementById('modalCitaEmail').value.trim();
-      const name = document.getElementById('modalCitaName').value.trim();
-      const ref = activeModalCitaRef;
-      const moto = document.getElementById('modalCitaMoto').value.trim();
-      const service = document.getElementById('modalCitaService').value;
-      const date = document.getElementById('modalCitaDate').value;
-      const slot = document.getElementById('modalCitaSlot').value;
-
-      if (!email) {
-        alert('Por favor introduce un email para el cliente.');
-        return;
-      }
-
-      const subject = `Confirmación Cita Taller Orero Motorcycles - Ref: ${ref}`;
-      const body = `Estimado/a ${name},\n\nLe confirmamos su cita en el taller de Orero Motorcycles en Calle San Agustín 18, Orihuela.\n\nReferencia: ${ref}\nVehículo: ${moto}\nServicio: ${service}\nFecha: ${date}\nTurno: ${slot}\nTeléfono de recepción: 966 74 01 20\n\nQuedamos a su entera disposición.\nEquipo Orero Motorcycles`;
-      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    }
-
-    function printModalWorkOrder() {
-      const ref = activeModalCitaRef;
-      const name = document.getElementById('modalCitaName').value.trim();
-      const phone = document.getElementById('modalCitaPhone').value.trim();
-      const email = document.getElementById('modalCitaEmail').value.trim();
-      const moto = document.getElementById('modalCitaMoto').value.trim();
-      const service = document.getElementById('modalCitaService').value;
-      const date = document.getElementById('modalCitaDate').value;
-      const slot = document.getElementById('modalCitaSlot').value;
-      const notes = document.getElementById('modalCitaNotes').value.trim();
-      const internalNotes = document.getElementById('modalCitaInternalNotes').value.trim();
-
-      const printHtml = `
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-          <meta charset="utf-8">
-          <title>Orden de Trabajo Taller - ${ref}</title>
-          <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif; padding: 30px; color: #111; max-width: 780px; margin: 0 auto; background: #fff; }
-            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #ef233c; padding-bottom: 12px; margin-bottom: 20px; }
-            .brand { font-size: 22px; font-weight: 900; }
-            .brand span { color: #ef233c; }
-            .box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 8px; margin-bottom: 16px; }
-            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-            .field-label { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 2px; }
-            .field-val { font-size: 14px; font-weight: 700; }
-            .checklist { margin: 16px 0; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; }
-            .checklist-item { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; font-size: 13px; }
-            .chk { width: 16px; height: 16px; border: 2px solid #334155; display: inline-block; }
-            .sign-area { display: flex; justify-content: space-between; margin-top: 40px; }
-            .sign-box { border-top: 1px solid #94a3b8; width: 45%; text-align: center; padding-top: 8px; font-size: 12px; }
-            @media print { .btn-print { display: none; } }
-          </style>
-        </head>
-        <body>
-          <div style="text-align:right; margin-bottom:14px;" class="btn-print">
-            <button onclick="window.print()" style="background:#ef233c; color:#fff; border:none; padding:8px 16px; font-weight:700; border-radius:6px; cursor:pointer;">🖨️ Imprimir Hoja de Taller</button>
-          </div>
-          <div class="header">
-            <div>
-              <div class="brand">ORERO <span>MOTORCYCLES</span></div>
-              <div style="font-size:12px; color:#64748b;">Calle San Agustín 18, Orihuela · Tel. 966 74 01 20</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:11px; color:#64748b;">ORDEN DE TALLER</div>
-              <div style="font-size:18px; font-weight:900; color:#ef233c; font-family:monospace;">${ref}</div>
-            </div>
-          </div>
-
-          <div class="box">
-            <div class="grid">
-              <div><div class="field-label">Cliente</div><div class="field-val">${name}</div></div>
-              <div><div class="field-label">Teléfono</div><div class="field-val">${phone}</div></div>
-              <div><div class="field-label">Email</div><div class="field-val">${email || 'No facilitado'}</div></div>
-              <div><div class="field-label">Moto / Matrícula</div><div class="field-val">${moto}</div></div>
-              <div><div class="field-label">Servicio Solicitado</div><div class="field-val" style="color:#b91c1c;">${service}</div></div>
-              <div><div class="field-label">Fecha / Turno Asignado</div><div class="field-val">${date} (${slot})</div></div>
-            </div>
-          </div>
-
-          ${notes ? `<div class="box"><strong>Síntomas / Petición del Cliente:</strong><br>${notes}</div>` : ''}
-
-          <div class="box" style="background:#fef2f2; border-color:#fecaca;">
-            <strong style="color:#991b1b;">Diagnóstico & Notas Internas de Mecánica:</strong><br>
-            ${internalNotes || 'Pendiente de diagnosis técnica por mecánico receptor.'}
-          </div>
-
-          <div class="checklist">
-            <strong>Checklist de Recepción en Calle San Agustín 18:</strong>
-            <div class="checklist-item"><span class="chk"></span> Llaves del vehículo entregadas</div>
-            <div class="checklist-item"><span class="chk"></span> Ficha técnica y permiso de circulación comprobados</div>
-            <div class="checklist-item"><span class="chk"></span> Nivel de combustible y estado de carrocería verificado</div>
-            <div class="checklist-item"><span class="chk"></span> Presupuesto aceptado verbal / escrito</div>
-          </div>
-
-          <div class="sign-area">
-            <div class="sign-box">Firma del Cliente Receptor</div>
-            <div class="sign-box">Firma Mecánico Responsable (Orero)</div>
-          </div>
-        </body>
-        </html>
-      `;
-      const w = window.open('', '_blank', 'width=800,height=900');
-      if (w) {
-        w.document.write(printHtml);
-        w.document.close();
-      }
-    }
-
-    function deleteModalCita() {
-      if (!activeModalCitaRef) return;
-      if (!confirm(`¿Eliminar definitivamente la cita ${activeModalCitaRef}?`)) return;
-      deleteCita(activeModalCitaRef);
-      closeAdminModalDirect();
+      if (!confirm(`¿Eliminar la cita ${ref}?`)) return;
+      const citas = getStoredCitas().filter(c => c.ref !== ref);
+      saveStoredCitas(citas);
+      showAdminToast('Cita eliminada.');
     }
 
     function promptNewCita() {
-      const name = prompt('Nombre del cliente:');
+      const name = prompt('Nombre completo del cliente:');
       if (!name) return;
-      const phone = prompt('Teléfono del cliente:');
+      const phone = prompt('Teléfono del cliente (ej: 654 321 987):');
       if (!phone) return;
-      const email = prompt('Email del cliente (opcional):', '') || '';
-      const moto = prompt('Moto del cliente (marca, modelo y matrícula):', 'Yamaha MT-07 - 1234-LMN');
+      const moto = prompt('Moto (Marca y Modelo):', 'Yamaha MT-07');
       const service = prompt('Servicio solicitado:', 'Revisión Oficial 60 Puntos');
       const date = prompt('Fecha (AAAA-MM-DD):', new Date().toISOString().split('T')[0]);
 
@@ -2561,91 +1901,91 @@
         ref: newRef,
         name,
         phone,
-        email,
         moto,
         service,
         date,
         slot: "Mañana (09:30 - 13:30)",
-        status: "confirmada",
-        notes: "Cita concertada por teléfono.",
-        internalNotes: ""
+        status: "confirmada"
       });
-      saveCitas(citas);
-      alert(`Cita ${newRef} añadida con éxito.`);
+      saveStoredCitas(citas);
+      playNotificationChime();
+      showAdminToast(`Cita ${newRef} creada con éxito.`);
     }
 
     function exportCitasCSV() {
       const citas = getStoredCitas();
-      let csv = "Referencia,Cliente,Telefono,Email,Vehiculo,Servicio,Fecha,Franja,Estado,Observaciones,NotasTaller\n";
+      let csv = "Referencia,Cliente,Telefono,Vehiculo,Servicio,Fecha,Turno,Estado\n";
       citas.forEach(c => {
-        csv += `"${c.ref}","${c.name}","${c.phone}","${c.email || ''}","${c.moto}","${c.service}","${c.date}","${c.slot}","${c.status}","${(c.notes||'').replace(/"/g, '""')}","${(c.internalNotes||'').replace(/"/g, '""')}"\n`;
+        csv += `"${c.ref}","${c.name}","${c.phone}","${c.moto}","${c.service}","${c.date}","${c.slot}","${c.status}"\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Citas_Orero_Motorcycles_${new Date().toISOString().split('T')[0]}.csv`;
+      a.download = `Citas_Orero_${new Date().toISOString().split('T')[0]}.csv`;
       a.click();
+      showAdminToast('Archivo CSV descargado.');
     }
 
     // ══════════════════════════════════════════════════════════
-    // GESTIÓN DE TASACIONES & INTERMEDIACIÓN
+    // GESTIÓN DE TASACIONES
     // ══════════════════════════════════════════════════════════
     function getStoredTasaciones() {
-      let tas = [];
       try {
         const local = localStorage.getItem('orero_tasaciones');
-        if (local) tas = JSON.parse(local);
+        if (local) {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
       } catch (e) {}
-
-      const set = new Set(tas.map(t => t.ref));
-      DEFAULT_TASACIONES.forEach(d => {
-        if (!set.has(d.ref)) tas.push(d);
-      });
-      return tas;
+      localStorage.setItem('orero_tasaciones', JSON.stringify(DEFAULT_TASACIONES));
+      return DEFAULT_TASACIONES;
     }
 
-    function saveTasaciones(tas) {
+    function saveStoredTasaciones(tas) {
       localStorage.setItem('orero_tasaciones', JSON.stringify(tas));
       renderTasaciones();
+      updateKPICounters();
     }
 
     function renderTasaciones() {
       const tas = getStoredTasaciones();
-      const countEl = document.getElementById('tasacionesTabCount');
-      if (countEl) countEl.textContent = tas.length;
-
       const tbody = document.getElementById('tasacionesTableBody');
-      if (!tbody) return;
       tbody.innerHTML = '';
+
+      document.getElementById('tasacionesTabCount').textContent = tas.length;
 
       tas.forEach(t => {
         const tr = document.createElement('tr');
+        const cleanPhone = (t.phone || '').replace(/\D/g, '');
+        const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
+        const msg = encodeURIComponent(`Hola ${t.name}, te escribimos desde Orero Motorcycles en Orihuela. Hemos revisado los datos de tu ${t.moto} (${t.year}, ${t.km}) y nuestra valoración preliminar es de *${t.offer}*. Si te interesa, puedes traerla a Calle San Agustín 18 para revisarla y cerrar el trato. ¿Cuándo te viene bien pasar?`);
+
         tr.innerHTML = `
-          <td style="font-family:monospace; font-weight:800; color:var(--red); font-size:0.86rem;">${t.ref}</td>
+          <td style="font-family:monospace; font-weight:800; color:var(--red);">${t.ref}</td>
           <td>
-            <div style="font-weight:700; color:#fff;">${t.name}</div>
+            <strong>${t.name}</strong>
             <div style="font-size:0.8rem; color:#93c5fd;">📞 ${t.phone}</div>
           </td>
           <td>
-            <div style="font-weight:700; color:#e2e8f0;">${t.moto}</div>
-            ${t.notes ? `<div style="font-size:0.75rem; color:#94a3b8;">${t.notes}</div>` : ''}
+            <div style="font-weight:700;">${t.moto}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${t.notes || ''}</div>
           </td>
           <td>${t.year} · ${t.km}</td>
-          <td><strong style="color:#fbbf24; font-size:0.95rem;">${t.offer}</strong></td>
+          <td><strong style="color:#fbbf24; font-size:1rem;">${t.offer}</strong></td>
           <td>
-            <select class="status-select status-sel-${t.status === 'aceptada' ? 'confirmada' : (t.status === 'pendiente' ? 'pendiente' : 'finalizada')}" onchange="updateTasacionStatus('${t.ref}', this.value)">
-              <option value="pendiente" ${t.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente de Tasar</option>
+            <select class="form-select" style="padding:6px 10px; font-size:0.8rem;" onchange="updateTasacionStatus('${t.ref}', this.value)">
+              <option value="pendiente" ${t.status === 'pendiente' ? 'selected' : ''}>⏳ Pendiente</option>
               <option value="oferta_enviada" ${t.status === 'oferta_enviada' ? 'selected' : ''}>📨 Oferta Enviada</option>
               <option value="aceptada" ${t.status === 'aceptada' ? 'selected' : ''}>✅ Aceptada / En Tienda</option>
               <option value="descartada" ${t.status === 'descartada' ? 'selected' : ''}>❌ Descartada</option>
             </select>
           </td>
           <td style="text-align:right;">
-            <button class="btn-action-icon btn-action-wa" onclick="sendTasacionWhatsApp('${t.ref}')">
-              💬 Oferta WhatsApp
-            </button>
-            <button class="btn-action-icon btn-prod-delete" style="margin-left:4px;" onclick="deleteTasacion('${t.ref}')">
+            <a href="https://wa.me/${phoneParam}?text=${msg}" target="_blank" class="btn-card-action" style="background:#25D366; color:#fff; border:none; padding:7px 12px; font-weight:800;">
+              💬 Enviar Oferta WhatsApp
+            </a>
+            <button class="btn-card-action btn-card-delete" style="padding:6px 8px; margin-left:4px;" onclick="deleteTasacion('${t.ref}')">
               🗑️
             </button>
           </td>
@@ -2654,34 +1994,21 @@
       });
     }
 
-    function updateTasacionStatus(ref, newStatus) {
+    function updateTasacionStatus(ref, val) {
       const tas = getStoredTasaciones();
       const item = tas.find(t => t.ref === ref);
       if (!item) return;
-      item.status = newStatus;
-      saveTasaciones(tas);
-    }
-
-    function sendTasacionWhatsApp(ref) {
-      const tas = getStoredTasaciones();
-      const t = tas.find(x => x.ref === ref);
-      if (!t) return;
-
-      const cleanPhone = (t.phone || '').replace(/\D/g, '');
-      const phoneParam = cleanPhone.startsWith('34') ? cleanPhone : '34' + cleanPhone;
-
-      const msg = `¡Hola ${t.name}! Te escribimos desde Orero Motorcycles en Orihuela.\n\n` +
-        `En relación a tu valoración para ${t.moto} (${t.year}, ${t.km}), hemos preparado una propuesta preliminar de tasación / gestión de venta de *${t.offer}*.\n\n` +
-        `Si te encaja, puedes traerla a Calle San Agustín 18 para revisarla físicamente y cerrar el acuerdo. ¿Te viene bien pasar esta semana?`;
-
-      window.open(`https://wa.me/${phoneParam}?text=${encodeURIComponent(msg)}`, '_blank');
+      item.status = val;
+      saveStoredTasaciones(tas);
+      playNotificationChime();
+      showAdminToast(`Estado de tasación ${ref} actualizado.`);
     }
 
     function deleteTasacion(ref) {
       if (!confirm(`¿Eliminar la tasación ${ref}?`)) return;
-      let tas = getStoredTasaciones();
-      tas = tas.filter(t => t.ref !== ref);
-      saveTasaciones(tas);
+      const tas = getStoredTasaciones().filter(t => t.ref !== ref);
+      saveStoredTasaciones(tas);
+      showAdminToast('Tasación eliminada.');
     }
 
     function promptNewTasacion() {
@@ -2689,10 +2016,10 @@
       if (!name) return;
       const phone = prompt('Teléfono del cliente:');
       if (!phone) return;
-      const moto = prompt('Moto a vender / tasar (marca y modelo):', 'Honda Hornet 750');
-      const year = prompt('Año:', '2023');
-      const km = prompt('Kilómetros:', '6.500 km');
-      const offer = prompt('Valoración estimada (€):', '5.200 €');
+      const moto = prompt('Moto a valorar (Marca y Modelo):', 'Kawasaki Z900');
+      const year = prompt('Año:', '2022');
+      const km = prompt('Kilómetros:', '10.500 km');
+      const offer = prompt('Valoración estimada (€):', '6.500 €');
 
       const newRef = "ORERO-TAS-" + Math.floor(1000 + Math.random() * 9000);
       const tas = getStoredTasaciones();
@@ -2707,73 +2034,133 @@
         status: "pendiente",
         notes: "Registrada manualmente desde el panel de control."
       });
-      saveTasaciones(tas);
-      alert(`Tasación ${newRef} creada con éxito.`);
+      saveStoredTasaciones(tas);
+      playNotificationChime();
+      showAdminToast(`Tasación ${newRef} creada con éxito.`);
     }
 
     // ══════════════════════════════════════════════════════════
-    // AJUSTES, BACKUP Y RESTAURACIÓN
+    // SIMULACIÓN DE CITA EN VIVO (CON SONIDO Y BANNER)
     // ══════════════════════════════════════════════════════════
-    function saveAdminSettings() {
-      const email = document.getElementById('settingWorkshopEmail').value.trim();
-      const phone = document.getElementById('settingWorkshopPhone').value.trim();
-      localStorage.setItem('orero_workshop_email', email);
-      localStorage.setItem('orero_workshop_phone', phone);
-      alert('¡Configuración de notificaciones guardada con éxito!');
+    function simulateNewAppointment() {
+      const sampleNames = ["Antonio Martínez", "Pablo Soriano", "Raúl Menárguez", "Francisco Vegara", "Javier Alarcón"];
+      const sampleMotos = ["Kawasaki Z900", "Yamaha T-MAX 530", "Honda CB650R", "BMW F800GS", "KTM Duke 390"];
+      const randomName = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+      const randomMoto = sampleMotos[Math.floor(Math.random() * sampleMotos.length)];
+      const newRef = "ORERO-CITA-" + Math.floor(1000 + Math.random() * 9000);
+
+      const citas = getStoredCitas();
+      citas.unshift({
+        ref: newRef,
+        name: randomName,
+        phone: "654321987",
+        moto: randomMoto,
+        service: "Revisión Oficial 60 Puntos & Pre-ITV",
+        date: new Date().toISOString().split('T')[0],
+        slot: "Mañana (09:30 - 13:30)",
+        status: "pendiente"
+      });
+      saveStoredCitas(citas);
+
+      // Play Sound
+      playNotificationChime();
+
+      // Show Banner
+      const bar = document.getElementById('liveAlertBar');
+      document.getElementById('alertBarTitle').textContent = `🔔 ¡NUEVA CITA DE TALLER: ${randomName.toUpperCase()}!`;
+      document.getElementById('alertBarDesc').textContent = `Vehículo: ${randomMoto} · Revisión Oficial 60 Puntos · Calle San Agustín 18`;
+      const waMsg = encodeURIComponent(`Hola ${randomName}, hemos recibido tu petición de cita para ${randomMoto} en Orero Motorcycles Orihuela. ¿Te viene bien este horario?`);
+      document.getElementById('alertBarWaLink').href = `https://wa.me/34654321987?text=${waMsg}`;
+      bar.style.display = 'flex';
+
+      showAdminToast(`🔔 Nueva cita recibida de ${randomName} (${randomMoto})`);
     }
 
-    function backupAllDataJSON() {
-      const backup = {
-        exportedAt: new Date().toISOString(),
-        appointments: getStoredCitas(),
-        tasaciones: getStoredTasaciones(),
-        products: getAllProducts()
-      };
-      const jsonStr = JSON.stringify(backup, null, 2);
-      const blob = new Blob([jsonStr], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Backup_Orero_Motorcycles_${new Date().toISOString().split('T')[0]}.json`;
-      a.click();
+    function dismissAlertBar() {
+      document.getElementById('liveAlertBar').style.display = 'none';
     }
 
-    function resetDefaultSeedData() {
-      if (!confirm('¿Restaurar los datos de citas y tasaciones de ejemplo?')) return;
-      localStorage.setItem('orero_appointments', JSON.stringify(DEFAULT_CITAS));
-      localStorage.setItem('orero_tasaciones', JSON.stringify(DEFAULT_TASACIONES));
-      renderCitas();
-      renderTasaciones();
-      alert('Datos restaurados correctamente.');
-    }
-
-    // Navegación de pestañas
+    // ══════════════════════════════════════════════════════════
+    // TABS SWITCHING
+    // ══════════════════════════════════════════════════════════
     function switchTab(tab, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
-      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
       document.getElementById('tabStock').style.display = tab === 'stock' ? 'block' : 'none';
+      document.getElementById('tabBoutique').style.display = tab === 'boutique' ? 'block' : 'none';
+      document.getElementById('tabCitas').style.display = tab === 'citas' ? 'block' : 'none';
       document.getElementById('tabTasaciones').style.display = tab === 'tasaciones' ? 'block' : 'none';
       document.getElementById('tabTaller').style.display = tab === 'taller' ? 'block' : 'none';
       document.getElementById('tabAjustes').style.display = tab === 'ajustes' ? 'block' : 'none';
 
-      if (tab === 'tasaciones') renderTasaciones();
+      if (tab === 'stock' || tab === 'boutique') renderAllStock();
       if (tab === 'citas') renderCitas();
+      if (tab === 'tasaciones') renderTasaciones();
     }
 
-    // Comprobación de sonido guardado
-    function initSoundButton() {
-      const isMuted = localStorage.getItem('orero_admin_sound_muted') === 'true';
-      const btn = document.getElementById('btnSoundToggle');
-      if (btn) btn.textContent = isMuted ? '🔕 Sonido: OFF' : '🔔 Sonido: ON';
+    // ══════════════════════════════════════════════════════════
+    // TOAST SYSTEM
+    // ══════════════════════════════════════════════════════════
+    let _toastTimer = null;
+    function showAdminToast(msg, icon) {
+      const toast = document.getElementById('adminToast');
+      document.getElementById('toastMsg').textContent = msg;
+      if (icon) document.getElementById('toastIcon').textContent = icon;
+      toast.style.display = 'flex';
+      clearTimeout(_toastTimer);
+      _toastTimer = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
     }
 
-    // Inicialización al cargar el panel
+    // Backup & Reset
+    function backupAllDataJSON() {
+      const data = {
+        exportedAt: new Date().toISOString(),
+        inventory: getAllProducts(),
+        citas: getStoredCitas(),
+        tasaciones: getStoredTasaciones()
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Backup_Orero_Motorcycles_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      showAdminToast('Copia de seguridad descargada.');
+    }
+
+    function resetDefaultSeedData() {
+      if (!confirm('¿Restaurar el catálogo original de 18 motos y 6 productos de boutique?')) return;
+      localStorage.setItem('orero_all_inventory', JSON.stringify(CANONICAL_STOCK));
+      localStorage.setItem('orero_appointments', JSON.stringify(DEFAULT_CITAS));
+      localStorage.setItem('orero_tasaciones', JSON.stringify(DEFAULT_TASACIONES));
+      renderAllStock();
+      renderCitas();
+      renderTasaciones();
+      playNotificationChime();
+      showAdminToast('Catálogo inicial restaurado con éxito.');
+    }
+
+    // ══════════════════════════════════════════════════════════
+    // INITIALIZATION
+    // ══════════════════════════════════════════════════════════
+    initSoundState();
     checkAuth();
-    initSoundButton();
-    renderTasaciones();
-    startCitasAutoSync();
+
+    // Auto-sync appointments if new ones submitted on public site
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'orero_appointments') {
+        renderCitas();
+        playNotificationChime();
+        showAdminToast('🔔 Nueva cita sincronizada en tiempo real.');
+      }
+      if (e.key === 'orero_tasaciones') {
+        renderTasaciones();
+        playNotificationChime();
+        showAdminToast('🤝 Nueva tasación sincronizada.');
+      }
+    });
   </script>
 </body>
 </html>

@@ -6,6 +6,7 @@
     if (window.location.protocol === 'http:' && !['localhost', '127.0.0.1'].includes(window.location.hostname)) {
       window.location.replace('https://' + window.location.host + window.location.pathname + window.location.search + window.location.hash);
     }
+    
   </script>
 
   <meta charset="utf-8">
@@ -126,6 +127,7 @@
       }
     ]
   }
+    
   </script>
 
   <style>
@@ -2857,6 +2859,118 @@
       }
     }
 
+  
+    /* ══════════════════════════════════════════════════════════
+       MOTORCYCLE ENGINE ROAR & AUDIO BUTTONS
+       ══════════════════════════════════════════════════════════ */
+    .btn-hero-sound {
+      background: rgba(239, 35, 60, 0.12);
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .btn-hero-sound:hover {
+      background: rgba(239, 35, 60, 0.25);
+      border-color: #ef233c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(239, 35, 60, 0.35);
+    }
+    .btn-hero-sound.playing {
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
+      border-color: #ff4d6d;
+      box-shadow: 0 0 30px rgba(239, 35, 60, 0.6);
+      animation: pulsePlaying 1.5s infinite;
+    }
+    @keyframes pulsePlaying {
+      0%, 100% { box-shadow: 0 0 20px rgba(239, 35, 60, 0.5); }
+      50% { box-shadow: 0 0 35px rgba(239, 35, 60, 0.85); }
+    }
+    .sound-fire-icon {
+      font-size: 1.1rem;
+      filter: drop-shadow(0 0 6px #ef233c);
+    }
+    .sound-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 16px;
+    }
+    .sound-bar {
+      width: 3px;
+      background: #ffffff;
+      border-radius: 2px;
+      animation: soundBarBounce 0.75s ease-in-out infinite alternate;
+      animation-play-state: paused;
+    }
+    .btn-hero-sound.playing .sound-bar {
+      animation-play-state: running;
+    }
+    .sound-bar:nth-child(1) { height: 5px; animation-delay: 0.05s; }
+    .sound-bar:nth-child(2) { height: 14px; animation-delay: 0.25s; }
+    .sound-bar:nth-child(3) { height: 8px; animation-delay: 0.15s; }
+    .sound-bar:nth-child(4) { height: 16px; animation-delay: 0.35s; }
+    @keyframes soundBarBounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+    .btn-nav-sound {
+      background: rgba(239, 35, 60, 0.15);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      color: #ff6b6b;
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-nav-sound:hover, .btn-nav-sound.playing {
+      background: #ef233c;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(239, 35, 60, 0.5);
+    }
+    .sound-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f1420;
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(239, 35, 60, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(12px);
+    }
+    .sound-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
   </style>
 </head>
 <body>
@@ -2884,6 +2998,9 @@
       </nav>
 
       <div class="header-actions">
+        <button class="btn-nav-sound" id="btnNavSound" onclick="toggleEngineRoar()" type="button" title="Escuchar rugido del motor">
+          <span>⚡</span> Sonido Motor
+        </button>
         <a href="tel:+34966740120" class="header-phone-link" title="Llamar a Orero Motorcycles">
           <span>📞</span>
           <span>966 74 01 20</span>
@@ -2908,7 +3025,8 @@
       <a href="#contacto" onclick="closeMobileDrawer()">Contacto & Ubicación</a>
       <a href="tel:+34966740120" style="color:#fff;">📞 Llamar al 966 74 01 20</a>
       <a href="tel:+34966740120" style="color:var(--red); font-weight:700;">📞 Atención Telefónica (966 74 01 20)</a>
-    </div>
+    
+      <button class="btn-hero-sound" onclick="toggleEngineRoar(); closeMobileDrawer();" type="button" style="width:100%; margin:8px 0; justify-content:center;">⚡ Arrancar Motor (Sonido Real)</button></div>
   </header>
 
   <!-- ══════════════════════════════════════════════════════════
@@ -2943,6 +3061,16 @@
           <a href="#reservar-cita" class="btn-hero btn-hero-outline">
             <span>Pedir Cita de Taller</span>
           </a>
+          <button class="btn-hero-sound" id="btnHeroEngineRoar" onclick="toggleEngineRoar()" type="button" title="Arrancar y escuchar rugido del motor">
+            <span class="sound-fire-icon">⚡</span>
+            <span class="sound-label">Arrancar Motor (Sonido 310 CV)</span>
+            <span class="sound-bars" id="heroSoundBars">
+              <span class="sound-bar"></span>
+              <span class="sound-bar"></span>
+              <span class="sound-bar"></span>
+              <span class="sound-bar"></span>
+            </span>
+          </button>
         </div>
       </div>
 
@@ -2977,7 +3105,8 @@
           if (heroImg) heroImg.src = heroParam;
         }
       })();
-    </script>
+    
+  </script>
 </section>
 
 
@@ -5220,7 +5349,119 @@
             .no-print { margin-bottom: 20px; text-align: right; }
             .btn-print { background: #ef233c; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 14px; }
             @media print { .no-print { display: none; } body { padding: 0; } }
-          </style>
+          
+    /* ══════════════════════════════════════════════════════════
+       MOTORCYCLE ENGINE ROAR & AUDIO BUTTONS
+       ══════════════════════════════════════════════════════════ */
+    .btn-hero-sound {
+      background: rgba(239, 35, 60, 0.12);
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .btn-hero-sound:hover {
+      background: rgba(239, 35, 60, 0.25);
+      border-color: #ef233c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(239, 35, 60, 0.35);
+    }
+    .btn-hero-sound.playing {
+      background: linear-gradient(135deg, #ef233c 0%, #d90429 100%);
+      border-color: #ff4d6d;
+      box-shadow: 0 0 30px rgba(239, 35, 60, 0.6);
+      animation: pulsePlaying 1.5s infinite;
+    }
+    @keyframes pulsePlaying {
+      0%, 100% { box-shadow: 0 0 20px rgba(239, 35, 60, 0.5); }
+      50% { box-shadow: 0 0 35px rgba(239, 35, 60, 0.85); }
+    }
+    .sound-fire-icon {
+      font-size: 1.1rem;
+      filter: drop-shadow(0 0 6px #ef233c);
+    }
+    .sound-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 16px;
+    }
+    .sound-bar {
+      width: 3px;
+      background: #ffffff;
+      border-radius: 2px;
+      animation: soundBarBounce 0.75s ease-in-out infinite alternate;
+      animation-play-state: paused;
+    }
+    .btn-hero-sound.playing .sound-bar {
+      animation-play-state: running;
+    }
+    .sound-bar:nth-child(1) { height: 5px; animation-delay: 0.05s; }
+    .sound-bar:nth-child(2) { height: 14px; animation-delay: 0.25s; }
+    .sound-bar:nth-child(3) { height: 8px; animation-delay: 0.15s; }
+    .sound-bar:nth-child(4) { height: 16px; animation-delay: 0.35s; }
+    @keyframes soundBarBounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+    .btn-nav-sound {
+      background: rgba(239, 35, 60, 0.15);
+      border: 1px solid rgba(239, 35, 60, 0.35);
+      color: #ff6b6b;
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .btn-nav-sound:hover, .btn-nav-sound.playing {
+      background: #ef233c;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(239, 35, 60, 0.5);
+    }
+    .sound-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f1420;
+      border: 1px solid rgba(239, 35, 60, 0.4);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(239, 35, 60, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: blur(12px);
+    }
+    .sound-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+  </style>
         </head>
         <body>
           <div class="no-print">
@@ -5282,7 +5523,15 @@
             <div>Orero Motorcycles · C/ San Agustín 18, Orihuela · Tel. 966 74 01 20</div>
             <div>Emitido: ${new Date().toLocaleDateString('es-ES')}</div>
           </div>
-        </body>
+        
+  <!-- Engine Sound Audio Element & Live Toast -->
+  <audio id="engineAudio" preload="auto" src="assets/ninja_h2r_ignition.mp3"></audio>
+  <div class="sound-toast" id="soundToast">
+    <span style="font-size:1.2rem;">⚡</span>
+    <span id="soundToastMsg">¡Motor en marcha! Escuchando Kawasaki Ninja H2R (310 CV)</span>
+  </div>
+    
+</body>
         </html>
       `;
 
@@ -5759,6 +6008,184 @@
         checkCookieConsent();
       }, 50);
     }
+    
+  
+    // ══════════════════════════════════════════════════════════
+    // KAWASAKI NINJA H2R AUDIO ENGINE & PROCEDURAL SYNTHESIZER
+    // ══════════════════════════════════════════════════════════
+    var _engineAudioObj = null;
+    var _enginePlaying = false;
+    var _engineSynthCtx = null;
+    var _soundToastTimeout = null;
+
+    function initEngineAudio() {
+      if (!_engineAudioObj) {
+        _engineAudioObj = document.getElementById('engineAudio') || new Audio('assets/ninja_h2r_ignition.mp3');
+        _engineAudioObj.addEventListener('ended', onEngineAudioEnded);
+        _engineAudioObj.addEventListener('error', function() {
+          console.warn('Audio element error, falling back to Web Audio synthesis.');
+        });
+      }
+    }
+
+    function toggleEngineRoar() {
+      initEngineAudio();
+      if (_enginePlaying) {
+        stopEngineRoar();
+      } else {
+        startEngineRoar();
+      }
+    }
+
+    function startEngineRoar() {
+      _enginePlaying = true;
+      updateEngineUI(true);
+      showSoundToast('⚡ ¡Motor en marcha! Rugido Kawasaki Ninja H2R (310 CV)');
+
+      try {
+        if (_engineAudioObj) {
+          _engineAudioObj.currentTime = 0;
+          var p = _engineAudioObj.play();
+          if (p !== undefined) {
+            p.then(function() {}).catch(function(err) {
+              console.warn('Audio play caught:', err);
+              synthesizeEngineRoar();
+            });
+          }
+        } else {
+          synthesizeEngineRoar();
+        }
+      } catch (e) {
+        synthesizeEngineRoar();
+      }
+    }
+
+    function stopEngineRoar() {
+      _enginePlaying = false;
+      updateEngineUI(false);
+      try {
+        if (_engineAudioObj) {
+          _engineAudioObj.pause();
+          _engineAudioObj.currentTime = 0;
+        }
+      } catch (e) {}
+      showSoundToast('⏹️ Motor detenido');
+    }
+
+    function onEngineAudioEnded() {
+      _enginePlaying = false;
+      updateEngineUI(false);
+    }
+
+    function updateEngineUI(isPlaying) {
+      var btnHero = document.getElementById('btnHeroEngineRoar');
+      var btnNav = document.getElementById('btnNavSound');
+      var bars = document.querySelectorAll('.sound-bar');
+
+      if (btnHero) {
+        btnHero.classList.toggle('playing', isPlaying);
+        var label = btnHero.querySelector('.sound-label');
+        if (label) label.textContent = isPlaying ? 'Detener Motor' : 'Arrancar Motor (Sonido 310 CV)';
+      }
+      if (btnNav) {
+        btnNav.classList.toggle('playing', isPlaying);
+        btnNav.innerHTML = isPlaying ? '<span>⏹️</span> Detener' : '<span>⚡</span> Sonido Motor';
+      }
+      bars.forEach(function(b) {
+        b.style.animationPlayState = isPlaying ? 'running' : 'paused';
+      });
+    }
+
+    function showSoundToast(msg) {
+      var toast = document.getElementById('soundToast');
+      var msgEl = document.getElementById('soundToastMsg');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(_soundToastTimeout);
+      _soundToastTimeout = setTimeout(function() {
+        toast.classList.remove('show');
+      }, 4500);
+    }
+
+    function synthesizeEngineRoar() {
+      try {
+        var AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtxClass) return;
+        if (!_engineSynthCtx) _engineSynthCtx = new AudioCtxClass();
+        if (_engineSynthCtx.state === 'suspended') {
+          _engineSynthCtx.resume();
+        }
+
+        var now = _engineSynthCtx.currentTime;
+
+        var starterOsc = _engineSynthCtx.createOscillator();
+        var starterGain = _engineSynthCtx.createGain();
+        starterOsc.type = 'sawtooth';
+        starterOsc.frequency.setValueAtTime(280, now);
+        starterOsc.frequency.linearRampToValueAtTime(420, now + 0.6);
+        starterGain.gain.setValueAtTime(0.2, now);
+        starterGain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+        starterOsc.connect(starterGain);
+        starterGain.connect(_engineSynthCtx.destination);
+        starterOsc.start(now);
+        starterOsc.stop(now + 0.65);
+
+        var tRoar = now + 0.55;
+        var osc1 = _engineSynthCtx.createOscillator();
+        var osc2 = _engineSynthCtx.createOscillator();
+        var filter = _engineSynthCtx.createBiquadFilter();
+        var roarGain = _engineSynthCtx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'triangle';
+
+        osc1.frequency.setValueAtTime(140, tRoar);
+        osc2.frequency.setValueAtTime(142, tRoar);
+        osc1.frequency.exponentialRampToValueAtTime(480, tRoar + 0.8);
+        osc2.frequency.exponentialRampToValueAtTime(485, tRoar + 0.8);
+        osc1.frequency.exponentialRampToValueAtTime(220, tRoar + 1.6);
+        osc2.frequency.exponentialRampToValueAtTime(222, tRoar + 1.6);
+        osc1.frequency.exponentialRampToValueAtTime(620, tRoar + 2.5);
+        osc2.frequency.exponentialRampToValueAtTime(625, tRoar + 2.5);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(900, tRoar);
+        filter.frequency.exponentialRampToValueAtTime(5500, tRoar + 0.8);
+        filter.frequency.exponentialRampToValueAtTime(2000, tRoar + 1.6);
+        filter.frequency.exponentialRampToValueAtTime(7000, tRoar + 2.5);
+
+        roarGain.gain.setValueAtTime(0.01, tRoar);
+        roarGain.gain.linearRampToValueAtTime(0.65, tRoar + 0.3);
+        roarGain.gain.exponentialRampToValueAtTime(0.001, tRoar + 4.2);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(roarGain);
+        roarGain.connect(_engineSynthCtx.destination);
+
+        osc1.start(tRoar);
+        osc2.start(tRoar);
+        osc1.stop(tRoar + 4.3);
+        osc2.stop(tRoar + 4.3);
+
+        setTimeout(function() {
+          if (_enginePlaying) stopEngineRoar();
+        }, 4800);
+      } catch (err) {
+        console.warn('Synthesizer error:', err);
+      }
+    }
+
   </script>
+
+  <!-- Engine Sound Audio Element & Live Toast -->
+  <audio id="engineAudio" preload="auto" src="assets/ninja_h2r_ignition.mp3"></audio>
+  <div class="sound-toast" id="soundToast">
+    <span style="font-size:1.2rem;">⚡</span>
+    <span id="soundToastMsg">¡Motor en marcha! Escuchando Kawasaki Ninja H2R (310 CV)</span>
+  </div>
+    
 </body>
 </html>
