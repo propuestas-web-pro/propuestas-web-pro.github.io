@@ -2950,7 +2950,7 @@
     <div class="mobile-drawer" id="mobileDrawer">
       <a href="#inicio" onclick="closeMobileDrawer()">Inicio</a>
       <a href="#quienes-somos" onclick="closeMobileDrawer()">Quiénes Somos (Desde 2015)</a>
-      <a href="#catalogo" onclick="closeMobileDrawer()">Motos en Stock (18)</a>
+      <a href="#catalogo" onclick="closeMobileDrawer()">Motos en Stock (<span class="dyn-motos-count">18</span>)</a>
       <a href="#experiencia" onclick="closeMobileDrawer()">Compromiso & Taller</a>
       <a href="#servicios" onclick="closeMobileDrawer()">Servicios & Taller</a>
       <a href="#reservar-cita" onclick="closeMobileDrawer()" style="color:var(--red);">📅 Pedir Cita Previa</a>
@@ -2988,7 +2988,7 @@
         <p class="hero-subtitle">En el corazón de Orihuela desde diciembre de 2015. Motos de ocasión seleccionadas con revisión de 60 puntos, stock nuevo a estrenar, boutique técnica y taller mecánico multimarca en Calle San Agustín 18.</p>
         <div class="hero-ctas-row">
           <a href="#catalogo" class="btn-hero btn-hero-red">
-            <span>Ver Motos en Stock (18)</span>
+            <span>Ver Motos en Stock (<span class="dyn-motos-count">18</span>)</span>
           </a>
           <a href="#reservar-cita" class="btn-hero btn-hero-outline">
             <span>Pedir Cita de Taller</span>
@@ -4269,7 +4269,7 @@
           <span class="service-badge">Stock Multimarca Inmediato</span>
           <h3 class="service-title">Venta de Motos Nuevas & Ocasión</h3>
           <ul class="service-bullets">
-            <li><span class="check">✓</span> <span class="bullet-text">18 Motos en exposición revisadas y listas</span></li>
+            <li><span class="check">✓</span> <span class="bullet-text"><span class="dyn-motos-count">18</span> Motos en exposición revisadas y listas</span></li>
             <li><span class="check">✓</span> <span class="bullet-text">Marcas: Yamaha, Honda, Kawasaki, Suzuki, QJ Motor</span></li>
             <li><span class="check">✓</span> <span class="bullet-text">Revisión completa de 60 puntos y diagnosis técnica oficial</span></li>
           </ul>
@@ -5821,6 +5821,8 @@
 
         // Keep track of active item IDs
         const activeIds = new Set(items.map(it => it.id));
+        const totalMotosCount = items.filter(it => it.category === 'ocasion' || it.category === 'nueva').length;
+        document.querySelectorAll('.dyn-motos-count').forEach(el => el.textContent = totalMotosCount);
 
         // 1. Update status and price of existing cards
         items.forEach(item => {

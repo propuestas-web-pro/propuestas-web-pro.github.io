@@ -1147,10 +1147,10 @@
         <!-- Filter Pills -->
         <div class="filter-pills-row">
           <button class="pill-btn active" id="pillAll" onclick="filterAdminProducts('todas', this)">Todas las Motos (18)</button>
-          <button class="pill-btn" onclick="filterAdminProducts('ocasion', this)">🏍️ Motos Ocasión (12)</button>
-          <button class="pill-btn" onclick="filterAdminProducts('nueva', this)">🏍️ Motos Nuevas (6)</button>
-          <button class="pill-btn" onclick="filterAdminProducts('disponible', this)">🟢 Disponibles</button>
-          <button class="pill-btn" onclick="filterAdminProducts('vendida', this)">🔴 Vendidas</button>
+          <button class="pill-btn" id="pillOcasion" onclick="filterAdminProducts('ocasion', this)">🏍️ Motos Ocasión (12)</button>
+          <button class="pill-btn" id="pillNueva" onclick="filterAdminProducts('nueva', this)">🏍️ Motos Nuevas (6)</button>
+          <button class="pill-btn" id="pillDisp" onclick="filterAdminProducts('disponible', this)">🟢 Disponibles</button>
+          <button class="pill-btn" id="pillVendida" onclick="filterAdminProducts('vendida', this)">🔴 Vendidas</button>
         </div>
 
         <!-- Search Bar -->
@@ -2002,11 +2002,24 @@
         });
       }
 
-      // Update counters
-      document.getElementById('totalProductsCount').textContent = motos.length;
-      document.getElementById('motosTabCount').textContent = motos.length;
+      // Update counters dynamically
+      const totalMotos = motos.length;
+      document.getElementById('totalProductsCount').textContent = totalMotos;
+      document.getElementById('motosTabCount').textContent = totalMotos;
       const countEl = document.getElementById('totalBoutiqueCount');
       if (countEl) countEl.textContent = boutique.length;
+
+      // Update filter pills counters dynamically
+      const pillAll = document.getElementById('pillAll');
+      if (pillAll) pillAll.textContent = `Todas las Motos (${totalMotos})`;
+      const pillOcasion = document.getElementById('pillOcasion');
+      if (pillOcasion) pillOcasion.textContent = `🏍️ Motos Ocasión (${motos.filter(p => p.category === 'ocasion').length})`;
+      const pillNueva = document.getElementById('pillNueva');
+      if (pillNueva) pillNueva.textContent = `🏍️ Motos Nuevas (${motos.filter(p => p.category === 'nueva').length})`;
+      const pillDisp = document.getElementById('pillDisp');
+      if (pillDisp) pillDisp.textContent = `🟢 Disponibles (${motos.filter(p => p.status === 'disponible').length})`;
+      const pillVendida = document.getElementById('pillVendida');
+      if (pillVendida) pillVendida.textContent = `🔴 Vendidas (${motos.filter(p => p.status === 'vendida').length})`;
 
       updateKPICounters();
     }
