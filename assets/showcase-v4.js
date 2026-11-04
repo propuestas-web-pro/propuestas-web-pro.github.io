@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MIWEBLOCAL V6.5 — SELF-SERVICE 3D GENERATOR, 24H SHAREABLE LINK & LIFETIME UNLOCK
+   MIWEBLOCAL V7 — HERO DIRECT GENERATOR, 24H LINK, 50€/200€ LIFETIME UNLOCK
    Direct WhatsApp (Activation): +34 632 76 81 52
    ========================================================================== */
 
@@ -18,12 +18,13 @@ const SHOWCASE_MODELS = [
     story: 'Stock revisado en 60 puntos, financiación a medida y cita rápida de taller.',
     badge: 'Motor · Stock 24h',
     title: 'Concesionario y Compra-Venta',
-    painTag: 'Deja de mandar fotos sueltas una a una por WhatsApp',
+    painTag: 'Deja de mandar fotos y precios uno a uno por WhatsApp a curiosos',
     photo: 'assets/showcase/photo_motos.jpg',
     solves: [
-      'Todo tu stock con fotos y precios visible las 24 horas',
-      'Solo te escriben compradores ya interesados en un modelo concreto',
-      'Botón directo para reservar cita de taller o prueba'
+      'Catálogo de vehículos en stock con fotos, km y precios visible las 24h',
+      'Filtro de compradores serios que te escriben por un modelo concreto',
+      'Reserva de cita previa para taller, revisión o prueba dinámica',
+      'Formulario de tasación de moto/coche usado + mapa GPS directo'
     ],
     services: [
       { title: 'Naked 700cc ABS (Garantía 1 año)', meta: '6.400 km · Financiación', price: '6.890 €' },
@@ -43,12 +44,13 @@ const SHOWCASE_MODELS = [
     story: 'Puntualidad, trato cercano y reserva directa desde tu móvil en 15 segundos.',
     badge: 'Barbería · Citas Directas',
     title: 'Barbería, Peluquería y Salón',
-    painTag: 'No pares de cortar para contestar llamadas y mensajes',
+    painTag: 'No pares de cortar el pelo para contestar llamadas y mensajes',
     photo: 'assets/showcase/photo_barberia.jpg',
     solves: [
-      'El cliente ve tus tarifas claras y elige su tramo horario en segundos',
-      'Llenas huecos vacíos incluso cuando estás cerrado',
-      '0% comisiones por reserva: el cliente es 100% tuyo'
+      'Agenda de citas 24h: el cliente elige corte y hora sin llamarte',
+      'Carta de servicios y tarifas clara para evitar preguntas repetidas',
+      'Llenas huecos vacíos incluso cuando estás cerrado o cortando',
+      '0% comisiones por reserva: aviso directo a tu WhatsApp'
     ],
     services: [
       { title: 'Corte Degradado / Skin Fade', meta: '35 min · Lavado y peinado', price: '16 €' },
@@ -68,12 +70,13 @@ const SHOWCASE_MODELS = [
     story: 'Atención directa sin intermediarios. Agenda tu consulta o solicita presupuesto por WhatsApp.',
     badge: 'Nuevo Proyecto · Llave en Mano',
     title: 'Nuevo Negocio, Marca Personal o Servicio',
-    painTag: '¿Empiezas de cero y no sabes cómo montar tu web?',
+    painTag: '¿Quieres empezar un negocio por tu cuenta y no sabes hacer la web?',
     photo: 'assets/showcase/photo_personal.jpg',
     solves: [
-      'No necesitas saber informática: lo generas aquí en 10 segundos',
-      'Ideal para autónomos, asesores, coaches o cualquier proyecto nuevo',
-      'Sales al mercado viéndote serio y profesional desde el día 1'
+      'Lanzas tu propio negocio o servicio desde cero sin saber informática',
+      'Explicación clara de qué ofreces, tarifas y por qué contratarte',
+      'Captación de clientes y presupuestos directos a tu WhatsApp',
+      'Imagen de empresa grande en Ordenador + Móvil desde el primer día'
     ],
     services: [
       { title: 'Primera Consulta de Valoración', meta: '30 min · Análisis de tu caso', price: 'Gratis' },
@@ -93,12 +96,13 @@ const SHOWCASE_MODELS = [
     story: 'Coordinamos todos los gremios con materiales de primera y presupuesto sin sorpresas.',
     badge: 'Reformas · Presupuestos',
     title: 'Reformas, Construcción y Oficios',
-    painTag: 'Deja de perder obras grandes por parecer poco profesional',
+    painTag: 'Deja de perder obras grandes por no tener un catálogo serio que enseñar',
     photo: 'assets/showcase/photo_reformas.jpg',
     solves: [
-      'Enseña tus mejores trabajos en Ordenador + Móvil y genera confianza',
-      'Atrae propietarios que buscan calidad y no solo el más barato',
-      'Recibe solicitudes de presupuesto filtradas en tu WhatsApp'
+      'Solicitud de presupuesto filtrada por tipo de obra y metros cuadrados',
+      'Galería de reformas reales (cocinas, baños, vivienda completa)',
+      'Atrae propietarios que buscan calidad y evita regateadores',
+      'Contacto directo a tu WhatsApp mientras estás en la obra'
     ],
     services: [
       { title: 'Visita + Medición y Presupuesto', meta: 'En menos de 48h sin coste', price: 'Gratis' },
@@ -118,12 +122,13 @@ const SHOWCASE_MODELS = [
     story: 'Descubre nuestra colección actualizada con stock real. Compra o reserva sin comisiones.',
     badge: 'Tienda Online · Sin Comisiones',
     title: 'Tienda o Catálogo de Productos',
-    painTag: 'Vende tus artículos 24h sin depender solo de redes sociales',
+    painTag: 'Vende tus artículos las 24h sin depender solo de subir historias',
     photo: 'assets/showcase/photo_tienda.jpg',
     solves: [
-      'Tus productos ordenados con precios, fotos y disponibilidad',
-      'Pedidos directos a tu WhatsApp sin pasarelas complicadas',
-      'Sin comisiones por cada venta que hagas'
+      'Tus productos ordenados con fotos, tallas/modelos y precios 24h',
+      'Pedidos de compra o reserva para recoger directos a tu WhatsApp',
+      '0% comisiones por venta y sin pasarelas técnicas complicadas',
+      'Enlace oficial para poner en tu biografía de Instagram y TikTok'
     ],
     services: [
       { title: 'Producto Destacado de Temporada', meta: 'Unidades limitadas · Envío 24h', price: '39,90 €' },
@@ -143,12 +148,13 @@ const SHOWCASE_MODELS = [
     story: 'Consulta nuestra carta con precios y reserva mesa en terraza o salón sin comisiones.',
     badge: 'Hostelería · Carta + Mesas',
     title: 'Restaurante, Cafetería y Comida',
-    painTag: 'Que tus platos entren por los ojos antes de que elijan dónde ir',
+    painTag: 'Que tus platos entren por los ojos y reserven mesa sin pagar comisiones',
     photo: 'assets/showcase/photo_restaurante.jpg',
     solves: [
-      'Carta fotográfica apetecible que se abre al instante en el móvil',
-      'Reservas de mesa o pedidos a recoger directos a tu teléfono',
-      'Ahorra el 20–30% que se quedan las apps externas'
+      'Carta visual con fotos y precios que se abre al instante en el móvil',
+      'Reserva de mesa (terraza o salón) en 3 toques directo a tu WhatsApp',
+      'Pedidos para recoger sin colas ni esperas telefónicas',
+      'Ahorras el 20–30% de comisión que te quitan las apps de reparto'
     ],
     services: [
       { title: 'Doble Truffle Smash Burger', meta: 'Cheddar fundido y patatas caseras', price: '14,90 €' },
@@ -168,12 +174,13 @@ const SHOWCASE_MODELS = [
     story: 'Presupuesto exacto antes de tocar tu vehículo y entrega rápida garantizada.',
     badge: 'Taller · Valoración por Foto',
     title: 'Taller Mecánico, Chapa y Detailing',
-    painTag: 'Ahorra visitas en vacío valorando el coche antes por foto',
+    painTag: 'Ahorra visitas en vacío valorando la avería o el golpe antes por WhatsApp',
     photo: 'assets/showcase/photo_taller.jpg',
     solves: [
-      'El cliente te envía foto del golpe o servicio directo por WhatsApp',
-      'Muestra acabados reales para justificar tus tarifas',
-      'Ubicación GPS en 1 toque para llegar directo a tu nave'
+      'El cliente elige servicio (revisión, pre-ITV, chapa o detailing) y pide cita',
+      'Envío directo de foto del golpe o matrícula a tu WhatsApp',
+      'Muestra tus acabados reales para justificar tarifas profesionales',
+      'Botón GPS a Google Maps para llegar directo a la puerta de tu nave'
     ],
     services: [
       { title: 'Revisión Aceite Sintético + Filtros', meta: 'Mantiene garantía oficial', price: '95 €' },
@@ -193,12 +200,13 @@ const SHOWCASE_MODELS = [
     story: 'Tecnología digital avanzada y primera valoración personalizada para tu tranquilidad.',
     badge: 'Salud · Primera Cita',
     title: 'Clínica, Salud y Consultas',
-    painTag: 'Transmite la seriedad que un paciente necesita antes de pedir cita',
+    painTag: 'Transmite la máxima confianza que un paciente necesita antes de pedir cita',
     photo: 'assets/showcase/photo_clinica.jpg',
     solves: [
-      'Explica tus tratamientos y equipo de forma limpia y clara',
-      'Capta primeras visitas de alto valor desde Google',
-      'Contacto inmediato por WhatsApp o teléfono sin esperas'
+      'Presentación limpia y seria de tus tratamientos, especialidades y tarifas',
+      'Solicitud de primera visita o valoración directa al WhatsApp de recepción',
+      'Capta pacientes de tu ciudad que buscan clínica en Google',
+      'Horarios claros y ruta GPS en 1 clic hasta tu consulta'
     ],
     services: [
       { title: '1ª Visita + Diagnóstico Digital', meta: '40 min · Valoración completa', price: 'Gratis' },
@@ -218,12 +226,13 @@ const SHOWCASE_MODELS = [
     story: 'Diagnóstico personalizado, firmas de alta cosmética y cita cómoda sin esperas.',
     badge: 'Estética · Carta de Rituales',
     title: 'Estética, Uñas y Bienestar',
-    painTag: 'Evita regateos mostrando tu carta de rituales con imagen de lujo',
+    painTag: 'Evita regateos mostrando tu carta de tratamientos con imagen de lujo',
     photo: 'assets/showcase/photo_estetica.jpg',
     solves: [
-      'Presentación impecable de tratamientos y tarifas claras',
+      'Carta completa de tratamientos faciales, uñas y rituales con precios',
+      'Reserva de cita por tramo horario directo a tu WhatsApp',
       'Atrae clientela que valora tu trabajo y paga sin regatear',
-      'Reserva rápida desde Instagram o Google Maps'
+      '0% comisiones por cita: cada clienta es 100% tuya'
     ],
     services: [
       { title: 'Higiene Facial Hydraglow', meta: '55 min · Piel luminosa', price: '48 €' },
@@ -243,12 +252,13 @@ const SHOWCASE_MODELS = [
     story: 'Reserva tu valoración inicial y entrena con planificación a medida presencial u online.',
     badge: 'Fitness · Captación Alumnos',
     title: 'Entrenador Personal, Gym y Deporte',
-    painTag: 'Consigue alumnos presenciales u online todas las semanas',
+    painTag: 'Capta alumnos presenciales u online todas las semanas de forma automática',
     photo: 'assets/showcase/photo_fitness.jpg',
     solves: [
-      'Muestra horarios, planes y resultados en una sola pantalla',
-      'Botón directo para reservar clase o valoración gratuita',
-      'Funciona tanto si tienes centro físico como si entrenas por tu cuenta'
+      'Muestra tus bonos, horarios, entrenamientos y tarifas en una pantalla',
+      'Reserva directa de clase de prueba o valoración física inicial',
+      'Ideal tanto si tienes centro/box propio como si eres entrenador personal',
+      'Contacto directo a tu WhatsApp sin intermediarios'
     ],
     services: [
       { title: 'Sesión de Valoración + Prueba', meta: '45 min · Estudio inicial', price: 'Gratis' },
@@ -307,7 +317,7 @@ function contactWhatsApp(topic) {
 }
 
 /* ==========================================================================
-   1. SELF-SERVICE 10-SECOND GENERATOR & SHAREABLE 24H LINK ENGINE (#crear)
+   1. HERO DIRECT GENERATOR & SHAREABLE 24H LINK ENGINE (#crear)
    ========================================================================== */
 function buildGeneratorSectorChips() {
   const box = document.getElementById('gen-sector-chips');
@@ -339,6 +349,12 @@ function selectGeneratorSector(sectorId, scrollToGen) {
   document.querySelectorAll('.gen-sector-chip').forEach(btn => {
     btn.classList.toggle('is-active', btn.getAttribute('data-gen-sec') === model.id);
   });
+
+  // Also sync Hero 3D Coverflow if this sector is one of the 5 Hero cards
+  const heroIdx = HERO_STAGE_IDS.indexOf(model.id);
+  if (heroIdx >= 0 && heroIdx !== currentHeroIdx) {
+    setHeroStage(heroIdx, true);
+  }
 
   syncGeneratorLive(true);
 
@@ -441,20 +457,16 @@ function syncGeneratorLive(fromSectorSwitch) {
   genState.city = (cityInput && cityInput.value.trim()) ? cityInput.value.trim() : 'Madrid';
   genState.wa = (waInput && waInput.value.trim()) ? waInput.value.trim() : '600 123 456';
 
-  const imgEl = document.getElementById('gen-preview-img');
-  const sectorEl = document.getElementById('gen-preview-sector');
-  const titleEl = document.getElementById('gen-preview-title');
-  const waEl = document.getElementById('gen-preview-wa');
-  const urlInput = document.getElementById('gen-share-url');
-
-  if (imgEl && imgEl.getAttribute('src') !== model.photo) {
-    imgEl.src = model.photo;
-    imgEl.alt = model.title;
+  // Update the active 3D card in the Hero so the user sees their business name live on the 3D stage!
+  const activeHeroCard = document.querySelector('.hero-deck-card[data-pos="0"]');
+  if (activeHeroCard) {
+    const tEl = activeHeroCard.querySelector('.js-hero-card-biz');
+    const sEl = activeHeroCard.querySelector('.js-hero-card-sub');
+    if (tEl) tEl.textContent = `${genState.name} · ${genState.city}`;
+    if (sEl) sEl.textContent = `WhatsApp activo: ${genState.wa} · ${model.solves[0]}`;
   }
-  if (sectorEl) sectorEl.textContent = `${model.title} · ${genState.city}`;
-  if (titleEl) titleEl.textContent = genState.name;
-  if (waEl) waEl.textContent = `Reservas y consultas al WhatsApp: ${genState.wa}`;
 
+  const urlInput = document.getElementById('gen-share-url');
   const shareUrl = buildShareableSitioPayload();
   if (urlInput) urlInput.value = shareUrl;
 }
@@ -465,7 +477,7 @@ function triggerInstantGenerate() {
 
   const badge = document.getElementById('gen-preview-badge');
   if (badge) {
-    badge.textContent = `¡Lista! Web de ${genState.name} generada`;
+    badge.textContent = `¡Lista! Enlace de ${genState.name} creado (24h):`;
   }
 
   const resCard = document.getElementById('gen-result-card');
@@ -473,9 +485,6 @@ function triggerInstantGenerate() {
     resCard.classList.remove('is-just-generated');
     void resCard.offsetWidth;
     resCard.classList.add('is-just-generated');
-    if (window.innerWidth < 1024) {
-      resCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
   }
 }
 
@@ -527,7 +536,7 @@ function activateGeneratedWeb(planDescription) {
 }
 
 function init24hCountdownClocks() {
-  const topTimer = document.getElementById('gen-top-timer');
+  const navTimer = document.getElementById('nav-24h-timer');
   const unlockTimer = document.getElementById('gen-unlock-timer');
 
   const tick = () => {
@@ -537,7 +546,7 @@ function init24hCountdownClocks() {
     const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
     const s = String(sec % 60).padStart(2, '0');
     const str = `${h}:${m}:${s}`;
-    if (topTimer) topTimer.textContent = str;
+    if (navTimer) navTimer.textContent = str;
     if (unlockTimer) unlockTimer.textContent = str;
   };
   tick();
@@ -557,7 +566,6 @@ function buildHeroDeck() {
       <div class="hero-deck-card" data-idx="${idx}" data-id="${escapeHtml(item.id)}" data-pos="0"
            onclick="handleHeroCardClick(${idx}, '${escapeHtml(item.id)}')">
         <div class="hero-tilt-rig">
-          <!-- Base Hardware Bezel & Clipped Studio Image (translateZ(0)) -->
           <div class="hero-bezel-frame">
             <div class="hero-screen-clip">
               <img src="${escapeHtml(item.photo)}"
@@ -568,7 +576,6 @@ function buildHeroDeck() {
             </div>
           </div>
 
-          <!-- Real 3D Floating Top Chips (translateZ(42px)) -->
           <div class="hero-float-top">
             <span class="float-chip-glass px-3 py-1.5 rounded-full text-[11px] font-bold text-white inline-flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
@@ -580,14 +587,13 @@ function buildHeroDeck() {
             </span>
           </div>
 
-          <!-- Real 3D Floating Bottom Bar (translateZ(36px)) -->
           <div class="hero-float-bottom">
             <div class="min-w-0 float-chip-glass rounded-2xl px-3.5 py-2.5">
-              <div class="text-[10px] uppercase tracking-wider font-bold text-emerald-400">${escapeHtml(item.title)}</div>
-              <div class="text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-2 mt-0.5">${escapeHtml(item.solves[0])}</div>
+              <div class="js-hero-card-biz text-[10.5px] uppercase tracking-wider font-extrabold text-emerald-400">${escapeHtml(item.title)}</div>
+              <div class="js-hero-card-sub text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-2 mt-0.5">${escapeHtml(item.solves[0])}</div>
             </div>
-            <span class="shrink-0 w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-xl">
-              <i class="ph-bold ph-corners-out text-base"></i>
+            <span class="shrink-0 w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-xl" title="Ver web generada">
+              <i class="ph-bold ph-arrow-square-out text-base"></i>
             </span>
           </div>
         </div>
@@ -625,8 +631,8 @@ function updateHeroDeckPositions() {
   document.querySelectorAll('.js-hero-tab').forEach((btn, i) => {
     const active = i === currentHeroIdx;
     btn.className = active
-      ? 'js-hero-tab hero-tab-active btn-press relative overflow-hidden px-3.5 py-2 rounded-full bg-white text-slate-950 text-xs font-extrabold whitespace-nowrap shadow-md'
-      : 'js-hero-tab btn-press relative overflow-hidden px-3.5 py-2 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap';
+      ? 'js-hero-tab hero-tab-active btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white text-slate-950 text-xs font-extrabold whitespace-nowrap shadow-md'
+      : 'js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap';
 
     const prog = btn.querySelector('.hero-tab-progress');
     if (prog && active) {
@@ -639,7 +645,7 @@ function updateHeroDeckPositions() {
 
 function handleHeroCardClick(idx, id) {
   if (idx === currentHeroIdx) {
-    openCinemaModal(id);
+    openGeneratedSiteTab();
   } else {
     setHeroStage(idx, true);
   }
@@ -754,7 +760,7 @@ function build3DMarquee() {
         <img src="${escapeHtml(item.photo)}" alt="${escapeHtml(item.title)}" loading="lazy" class="marquee-mini-thumb" />
         <div class="pr-1">
           <div class="text-xs font-display font-bold text-white whitespace-nowrap">${escapeHtml(item.title)}</div>
-          <div class="text-[10.5px] font-semibold text-emerald-400 whitespace-nowrap">⚡ Generar este modelo (24h)</div>
+          <div class="text-[10.5px] font-semibold text-emerald-400 whitespace-nowrap">⚡ Generar enlace 24h</div>
         </div>
       </div>
     `).join('');
@@ -782,7 +788,7 @@ function build3DMarquee() {
 }
 
 /* ==========================================================================
-   4. UNIFIED "ORDENADOR + MÓVIL" 3D CATALOG GALLERY
+   4. UNIFIED "ORDENADOR + MÓVIL" 3D CATALOG (SHOWING ALL 4 SOLUTIONS PER CARD!)
    ========================================================================== */
 let activeFilter = 'all';
 
@@ -805,50 +811,77 @@ function renderShowcaseGrid() {
     ? SHOWCASE_MODELS
     : SHOWCASE_MODELS.filter(m => m.cat === activeFilter);
 
-  grid.innerHTML = list.map((item, idx) => `
-    <article class="showcase-card">
-      <div class="double-bezel js-tilt-card reveal-3d is-visible" style="--stagger: ${(idx % 2) * 70}ms;">
-        <!-- Multi-Plane 3D Media Wrapper -->
-        <div class="card-3d-media-shell cursor-pointer" onclick="openCinemaModal('${escapeHtml(item.id)}')">
-          <div class="double-bezel-inner">
-            <div class="relative aspect-[4/3] bg-[#080A0F] overflow-hidden">
-              <img src="${escapeHtml(item.photo)}"
-                   alt="${escapeHtml(item.title)}"
-                   loading="lazy"
-                   class="card-media-img w-full h-full object-cover object-center block" />
-              <div class="card-glare"></div>
-              <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none"></div>
+  grid.innerHTML = list.map((item, idx) => {
+    const solvesListHtml = (item.solves || []).map(s => `
+      <li class="flex items-start gap-2 text-xs text-slate-200 leading-snug">
+        <i class="ph-bold ph-check-circle text-emerald-400 text-sm shrink-0 mt-0.5"></i>
+        <span>${escapeHtml(s)}</span>
+      </li>
+    `).join('');
+
+    return `
+      <article class="showcase-card">
+        <div class="double-bezel js-tilt-card reveal-3d is-visible h-full flex flex-col justify-between" style="--stagger: ${(idx % 2) * 70}ms;">
+          <!-- Multi-Plane 3D Media Wrapper -->
+          <div class="card-3d-media-shell cursor-pointer" onclick="openCinemaModal('${escapeHtml(item.id)}')">
+            <div class="double-bezel-inner">
+              <div class="relative aspect-[4/3] bg-[#080A0F] overflow-hidden">
+                <img src="${escapeHtml(item.photo)}"
+                     alt="${escapeHtml(item.title)}"
+                     loading="lazy"
+                     class="card-media-img w-full h-full object-cover object-center block" />
+                <div class="card-glare"></div>
+                <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+
+            <!-- Floating 3D Hardware Badge & Expand Orb (translateZ(28px)) -->
+            <div class="card-3d-float-row">
+              <span class="float-chip-glass inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-xs font-semibold">
+                <i class="ph-bold ph-devices text-emerald-400"></i>
+                <span>Ordenador + Móvil · ${escapeHtml(item.badge)}</span>
+              </span>
+              <span class="w-9 h-9 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-lg" title="Ampliar diseño">
+                <i class="ph-bold ph-corners-out text-sm"></i>
+              </span>
             </div>
           </div>
 
-          <!-- Floating 3D Hardware Badge & Expand Orb (translateZ(28px)) -->
-          <div class="card-3d-float-row">
-            <span class="float-chip-glass inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-xs font-semibold">
-              <i class="ph-bold ph-devices text-emerald-400"></i>
-              <span>Ordenador + Móvil incluidos</span>
-            </span>
-            <span class="w-9 h-9 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-lg" title="Ampliar diseño">
-              <i class="ph-bold ph-corners-out text-sm"></i>
-            </span>
-          </div>
-        </div>
+          <!-- Pain Eliminated + ALL 4 Concrete Solutions + Self-Service Generator Button -->
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-4 bg-[#0D1017] rounded-b-[21px] mt-1">
+            <div class="space-y-3">
+              <div>
+                <h3 class="font-display font-extrabold text-base sm:text-xl text-white leading-snug">${escapeHtml(item.title)}</h3>
+                <div class="mt-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-semibold">
+                  <i class="ph-bold ph-warning-circle shrink-0"></i>
+                  <span>${escapeHtml(item.painTag)}</span>
+                </div>
+              </div>
 
-        <!-- Pain Solved + Instant Self-Service Generator Button -->
-        <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 bg-[#0D1017] rounded-b-[21px] mt-1">
-          <div class="min-w-0">
-            <h3 class="font-display font-bold text-base sm:text-lg text-white leading-snug">${escapeHtml(item.title)}</h3>
-            <p class="text-xs sm:text-sm text-emerald-300/95 leading-snug mt-0.5">✓ ${escapeHtml(item.painTag)}</p>
+              <ul class="space-y-1.5 pt-1 border-t border-white/[0.07]">
+                ${solvesListHtml}
+              </ul>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-2">
+              <button type="button"
+                      onclick="selectGeneratorSector('${escapeHtml(item.id)}', true)"
+                      class="btn-press flex-1 px-4 py-2.5 min-h-[44px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm inline-flex items-center justify-center gap-1.5 shadow-lg">
+                <i class="ph-bold ph-lightning text-base"></i>
+                <span>Generar mi enlace con este diseño (24h)</span>
+              </button>
+              <button type="button"
+                      onclick="openCinemaModal('${escapeHtml(item.id)}')"
+                      class="btn-press px-3.5 py-2.5 min-h-[44px] rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 text-white font-display font-bold text-xs inline-flex items-center justify-center gap-1.5">
+                <i class="ph-bold ph-corners-out text-sm"></i>
+                <span>Ampliar</span>
+              </button>
+            </div>
           </div>
-          <button type="button"
-                  onclick="selectGeneratorSector('${escapeHtml(item.id)}', true)"
-                  class="btn-press w-full sm:w-auto shrink-0 px-4 py-2.5 min-h-[44px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm inline-flex items-center justify-center gap-1.5">
-            <i class="ph-bold ph-lightning text-base"></i>
-            <span>Generar con este diseño</span>
-          </button>
         </div>
-      </div>
-    </article>
-  `).join('');
+      </article>
+    `;
+  }).join('');
 
   bindInteractiveTiltCards();
 }
@@ -1014,28 +1047,13 @@ window.addEventListener('DOMContentLoaded', () => {
   restartHeroTimer();
 
   const sentinel = document.getElementById('hero-cta-sentinel');
-  const crearSec = document.getElementById('crear');
   const mobBar = document.getElementById('mobile-wa-bar');
   if (sentinel && mobBar && 'IntersectionObserver' in window) {
-    let pastHero = false;
-    let inCrear = false;
-    const syncMobBar = () => {
-      mobBar.classList.toggle('is-hidden', !pastHero || inCrear);
-    };
     new IntersectionObserver(entries => {
       entries.forEach(en => {
-        pastHero = !en.isIntersecting && en.boundingClientRect.top < 0;
-        syncMobBar();
+        const show = !en.isIntersecting && en.boundingClientRect.top < 0;
+        mobBar.classList.toggle('is-hidden', !show);
       });
     }, { threshold: 0 }).observe(sentinel);
-
-    if (crearSec) {
-      new IntersectionObserver(entries => {
-        entries.forEach(en => {
-          inCrear = en.isIntersecting;
-          syncMobBar();
-        });
-      }, { threshold: 0.08 }).observe(crearSec);
-    }
   }
 });
