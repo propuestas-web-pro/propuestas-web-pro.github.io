@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark scroll-smooth">
 <head>
-  <!-- Auto-redirect for trailing slash consistency -->
+  <!-- Smart Auto-Redirect for sub-client URLs -->
   <script>
     (function() {
       var path = window.location.pathname;
@@ -11,1305 +11,1458 @@
     })();
   </script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Mi Web Local — Presupuesto Web a Medida para Negocios Locales</title>
-  <meta name="description" content="Calcula el presupuesto de tu página web profesional en 30 segundos. Fondo blanco limpio, diseño premium, precio cerrado sin cuotas sorpresa ni comisiones.">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Mi Web Local — Ingeniería Web, Reservas Automáticas y Sistemas para Negocios</title>
+  <meta name="description" content="Estudio experto en diseño web de alto rendimiento para negocios locales. Genera la demo interactiva de tu local en 30 segundos, explora casos reales y automatiza tus reservas 24/7." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231D4ED8'/%3E%3Cstop offset='100%25' stop-color='%232563EB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23bg)'/%3E%3Cpath d='M15 46V22L25 36L32 27L39 36L49 22V46' stroke='%23FFFFFF' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='16' r='4' fill='%2338BDF8'/%3E%3C/svg%3E">
-
-  <!-- Google Fonts: Plus Jakarta Sans (Modern, Clean, High Readability) -->
+  <!-- Premium Typography: Syne, Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Ultra-Clean Line Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Tailwind CSS v3.4 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+            serif: ['Instrument Serif', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            oled: '#050505',
+            surface: '#0A0B0E',
+            panel: '#101218',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* ==========================================================================
-       MI WEB LOCAL — 100% WHITE & ROYAL BLUE PREMIUM DESIGN SYSTEM
-       Diseño ultra limpio, fondo blanco puro, azul corporativo premium y alta legibilidad móvil
-       ========================================================================== */
-    :root {
-      --bg: #ffffff;
-      --bg-alt: #f8fafc;
-      --bg-subtle: #f1f5f9;
-      --card-bg: #ffffff;
-
-      /* Royal Premium Blue Palette */
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-navy: #0f172a;
-      --primary-light: #eff6ff;
-      --primary-border: #bfdbfe;
-      --primary-glow: rgba(37, 99, 235, 0.16);
-
-      /* Accent Statuses */
-      --emerald: #059669;
-      --emerald-light: #ecfdf5;
-      --emerald-border: #a7f3d0;
-      --amber: #d97706;
-      --amber-light: #fffbeb;
-
-      /* Typography & Neutral Slate */
-      --text-main: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-light: #94a3b8;
-
-      /* Borders & Dividers */
-      --border: #e2e8f0;
-      --border-subtle: #edf2f7;
-
-      /* Shadows */
-      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
-      --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.1);
-      --shadow-card: 0 2px 12px rgba(15, 23, 42, 0.04);
-      --shadow-card-hover: 0 10px 28px -4px rgba(37, 99, 235, 0.12);
-
-      /* WhatsApp */
-      --wa-green: #25d366;
-      --wa-dark: #128c7e;
-
-      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --radius: 16px;
-      --radius-sm: 10px;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      background: var(--bg);
-      color-scheme: light;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: var(--font);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      padding-bottom: 120px; /* Space for sticky bar */
-    }
-
-    /* Ambient Subtle Grid Pattern (Clean White) */
-    .bg-grid {
+    /* Film Grain Fixed Overlay (GPU Safe) */
+    .noise-overlay {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
-      background-image: radial-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.7;
+      z-index: 40;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Header Nav */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 20px;
+    /* Double-Bezel Machined Hardware Architecture */
+    .double-bezel {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px;
+      border-radius: 2rem;
+      transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
-    .header-inner {
-      max-width: 760px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .double-bezel:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    .logo-lockup {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text-main);
-    }
-
-    .logo-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-weight: 900;
-      font-size: 18px;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-    }
-
-    .logo-text {
-      font-weight: 800;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-    }
-
-    .logo-text span {
-      color: var(--primary);
-    }
-
-    .header-tag {
-      font-size: 12px;
-      font-weight: 700;
-      background: var(--emerald-light);
-      color: var(--emerald);
-      border: 1px solid var(--emerald-border);
-      padding: 5px 12px;
-      border-radius: 99px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .header-tag .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4);
-      animation: pulseGreen 2s infinite;
-    }
-
-    @keyframes pulseGreen {
-      0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
-      70% { box-shadow: 0 0 0 8px rgba(5, 150, 105, 0); }
-    }
-
-    /* Wrap */
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .double-bezel-inner {
+      background: #0A0B0E;
+      border-radius: calc(2rem - 7px);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
+      height: 100%;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    /* Hero */
-    .hero {
-      padding: 44px 0 24px;
-      text-align: center;
+    .spring-transition {
+      transition: all 0.65s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
-    .pill-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 16px;
-      border-radius: 99px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 18px;
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
 
-    .hero h1 {
-      font-size: clamp(28px, 6.5vw, 44px);
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: var(--text-main);
-      margin-bottom: 14px;
-    }
-
-    .hero h1 .highlight-blue {
-      color: var(--primary);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero-sub {
-      font-size: clamp(15px, 3.2vw, 17px);
-      color: var(--text-body);
-      max-width: 580px;
-      margin: 0 auto;
-      line-height: 1.55;
-    }
-
-    /* Stats Grid */
-    .stats-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 32px 0 24px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 12px;
-    }
-
-    .stat-box {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: clamp(20px, 4.5vw, 26px);
-      font-weight: 900;
-      color: var(--primary);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-
-    .stat-caption {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* Section Headings */
-    .section-header {
-      margin: 36px 0 18px;
-      text-align: left;
-    }
-
-    .section-eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: clamp(20px, 4.5vw, 24px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--text-main);
-    }
-
-    .section-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: 3px;
-    }
-
-    /* Quick Pack Selector */
-    .packs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-
-    .pack-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 14px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.25s var(--ease);
-      position: relative;
-    }
-
-    .pack-card:hover {
-      border-color: var(--primary-border);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .pack-card.active {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      box-shadow: 0 0 0 1px var(--primary), var(--shadow-md);
-    }
-
-    .pack-badge-top {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--primary);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 99px;
-      white-space: nowrap;
-    }
-
-    .pack-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 4px;
-    }
-
-    .pack-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.35;
-      margin-bottom: 10px;
-      min-height: 30px;
-    }
-
-    .pack-price-tag {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--primary-dark);
-      letter-spacing: -0.02em;
-    }
-
-    /* Cards List */
-    .card-list {
+    .animate-marquee {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      width: max-content;
+      animation: marquee 34s linear infinite;
     }
 
-    .card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 20px;
-      background: var(--card-bg);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: all 0.25s var(--ease);
-      box-shadow: var(--shadow-card);
-      user-select: none;
+    .animate-marquee:hover {
+      animation-play-state: paused;
     }
 
-    .card:hover {
-      border-color: var(--primary-border);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-card-hover);
-    }
-
-    .card:active {
-      transform: scale(0.99);
-    }
-
-    /* Selected Card State */
-    .card.on {
-      border-color: var(--primary);
-      border-width: 2px;
-      background: #f8faff;
-      box-shadow: 0 4px 20px -2px var(--primary-glow);
-    }
-
-    /* Included Base Cards */
-    .card.base {
-      cursor: default;
-      background: #fafcfb;
-      border-color: var(--emerald-border);
-    }
-
-    .card.base:hover {
-      transform: none;
-      box-shadow: var(--shadow-card);
-    }
-
-    /* Checkbox Indicator */
-    .card-check {
-      width: 26px;
-      height: 26px;
-      min-width: 26px;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s var(--ease);
-      flex-shrink: 0;
-    }
-
-    .card-check svg {
-      width: 14px;
-      height: 14px;
-      stroke: transparent;
-      stroke-width: 2.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.15s;
-    }
-
-    .card.on .card-check {
-      background: var(--primary);
-      border-color: var(--primary);
-      box-shadow: 0 2px 8px var(--primary-glow);
-    }
-
-    .card.on .card-check svg {
-      stroke: #ffffff;
-    }
-
-    .card.base .card-check {
-      background: var(--emerald);
-      border-color: var(--emerald);
-    }
-
-    .card.base .card-check svg {
-      stroke: #ffffff;
-    }
-
-    /* Card Info */
-    .card-content {
+    .portfolio-slice {
       flex: 1;
-      min-width: 0;
+      transition: flex 0.75s cubic-bezier(0.32, 0.72, 0, 1);
     }
 
-    .card-name-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 3px;
-    }
-
-    .card-emoji {
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .card-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .pill-tag {
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 99px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .tag-inc {
-      background: var(--emerald-light);
-      color: var(--emerald);
-      border: 1px solid var(--emerald-border);
-    }
-
-    .tag-fire {
-      background: #fef2f2;
-      color: #dc2626;
-      border: 1px solid #fecaca;
-    }
-
-    .tag-gem {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid var(--primary-border);
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    .card-price-col {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    .card-price {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.01em;
-    }
-
-    .card-price.green {
-      color: var(--emerald);
-      font-size: 15px;
-    }
-
-    .card-price-sub {
-      font-size: 11px;
-      color: var(--text-light);
-    }
-
-    /* Payment 50-50 Section */
-    .payment-box {
-      margin: 44px 0 20px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 20px;
-      text-align: center;
-    }
-
-    .payment-header h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .payment-header p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .payment-timeline {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .pay-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px 12px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .pay-icon {
-      font-size: 20px;
-      margin-bottom: 6px;
-    }
-
-    .pay-step-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .pay-step-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .pay-badge-amount {
-      display: inline-block;
-      margin-top: 8px;
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      font-weight: 800;
-      font-size: 14px;
-      padding: 2px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--primary-border);
-    }
-
-    /* Trust Row */
-    .trust-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px 20px;
-      padding: 24px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 36px;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    /* Sticky Bottom Conversion Bar */
-    .sticky-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border);
-      box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.08);
-      padding: 14px 20px;
-      transform: translateY(100%);
-      transition: transform 0.4s var(--ease);
-    }
-
-    .sticky-bar.visible {
-      transform: translateY(0);
-    }
-
-    .sticky-bar-inner {
-      max-width: 760px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .sticky-left-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .sticky-extras-count {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .sticky-extras-count strong {
-      color: var(--primary);
-    }
-
-    .sticky-price-display {
-      font-size: clamp(24px, 5.5vw, 32px);
-      font-weight: 900;
-      color: var(--text-main);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .sticky-payment-note {
-      font-size: 11px;
-      color: var(--emerald);
-      font-weight: 700;
-    }
-
-    .whatsapp-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 26px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-family: var(--font);
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s var(--ease);
-      box-shadow: 0 6px 20px var(--primary-glow);
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .whatsapp-btn:hover {
-      background: linear-gradient(135deg, #1d4ed8, #1e40af);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(37, 99, 235, 0.25);
-    }
-
-    .whatsapp-btn:active {
-      transform: scale(0.98);
-    }
-
-    .whatsapp-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-      flex-shrink: 0;
-    }
-
-    /* Direct Phone Call Button in Header */
-    .phone-pill-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary);
-      text-decoration: none;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      padding: 6px 14px;
-      border-radius: 99px;
-      transition: background 0.2s;
-    }
-
-    .phone-pill-btn:hover {
-      background: var(--primary-border);
-    }
-
-    /* Pop animation */
-    @keyframes popPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    .pop {
-      animation: popPulse 0.3s var(--ease);
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 600px) {
-      .hero {
-        padding: 30px 0 16px;
+    @media (min-width: 1024px) {
+      .portfolio-slice.active {
+        flex: 3.1;
       }
-      .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 14px 8px;
-      }
-      .packs-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .card {
-        padding: 14px 16px;
-        gap: 12px;
-      }
-      .card-name {
-        font-size: 14px;
-      }
-      .card-desc {
-        font-size: 12px;
-      }
-      .payment-timeline {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .sticky-bar {
-        padding: 12px 16px;
-      }
-      .sticky-bar-inner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        text-align: center;
-      }
-      .whatsapp-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 14px;
-      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e222d;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
     }
   </style>
 </head>
-<body>
+<body class="bg-oled text-[#F4F4F0] antialiased selection:bg-emerald-500 selection:text-black overflow-x-hidden">
 
-  <!-- Ambient Light Grid -->
-  <div class="bg-grid" aria-hidden="true"></div>
+  <!-- Fixed Film Grain Overlay -->
+  <div class="noise-overlay"></div>
 
-  <!-- Site Header -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="/" class="logo-lockup">
-        <div class="logo-badge">W</div>
-        <div class="logo-text">Mi Web <span>Local</span></div>
-      </a>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <span class="header-tag">
-          <span class="dot"></span> Presupuestos Abiertos
+  <!-- Ambient Radial Lighting -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-[20%] left-[15%] w-[640px] h-[640px] bg-emerald-500/10 rounded-full blur-[150px]"></div>
+    <div class="absolute top-[45%] -right-[10%] w-[560px] h-[560px] bg-amber-500/10 rounded-full blur-[150px]"></div>
+  </div>
+
+  <!-- =======================================================================
+       FLOATING FLUID ISLAND NAVIGATION
+       ======================================================================= -->
+  <header class="fixed top-4 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
+    <nav class="pointer-events-auto flex items-center justify-between gap-4 md:gap-9 px-4 py-2.5 rounded-full bg-[#0A0B0E]/85 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+      <!-- Brand Identity -->
+      <a href="#top" class="flex items-center gap-3 pl-2">
+        <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-black font-display font-extrabold text-sm tracking-tighter shadow-[0_0_20px_rgba(16,185,129,0.5)]">
+          MW
+        </div>
+        <span class="font-display font-bold tracking-tight text-sm md:text-base text-white">
+          MI WEB <span class="text-emerald-400">LOCAL</span> <span class="text-white/40 font-mono text-[10px] hidden sm:inline">STUDIO®</span>
         </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <div class="hidden lg:flex items-center gap-7 text-xs font-medium text-white/70">
+        <a href="#productos" class="hover:text-white transition-colors">Productos & Sistemas</a>
+        <a href="#casos" class="hover:text-white transition-colors">Clientes Reales</a>
+        <a href="#generador" class="hover:text-white transition-colors flex items-center gap-1.5 text-emerald-400 font-semibold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          Generador de Demo (24h)
+        </a>
+        <a href="#resenas" class="hover:text-white transition-colors">Reseñas Verificadas</a>
       </div>
-    </div>
+
+      <!-- Actions: TikTok Auto-Mode + Nested CTA Island Button -->
+      <div class="flex items-center gap-2">
+        <button onclick="triggerTikTokShowcase()" class="px-3.5 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-mono uppercase tracking-wider hover:bg-amber-500/20 spring-transition flex items-center gap-1.5" title="Ejecuta una demostración automática para grabar pantalla en TikTok">
+          <i class="ph ph-video-camera text-sm"></i>
+          <span class="hidden sm:inline">Auto-Demo</span>
+        </button>
+
+        <a href="#generador" class="group flex items-center gap-3 pl-5 pr-1.5 py-1.5 rounded-full bg-white text-black font-semibold text-xs tracking-tight active:scale-[0.98] spring-transition">
+          <span>Crear Mi Web</span>
+          <span class="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 spring-transition">
+            <i class="ph-bold ph-arrow-up-right text-xs"></i>
+          </span>
+        </a>
+      </div>
+    </nav>
   </header>
 
-  <!-- Hero Section -->
-  <header class="hero wrap">
-    <div class="pill-eyebrow">
-      <span>🚀</span> Agencia Web Local · Precios 100% Transparentes
-    </div>
-    <h1>Configura Tu Web Profesional<br><span class="highlight-blue">a Tu Medida en 30 Segundos</span></h1>
-    <p class="hero-sub">Diseño web a medida para negocios locales. Sin cuotas mensuales sorpresa, sin letra pequeña y con entrega garantizada en 2 a 7 días.</p>
+  <main id="top" class="overflow-x-hidden w-full max-w-full">
 
-    <!-- Stats -->
-    <div class="stats-container">
-      <div class="stat-box">
-        <div class="stat-value">2-7</div>
-        <div class="stat-caption">Días de entrega</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value">100+</div>
-        <div class="stat-caption">Negocios online</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value">4.9★</div>
-        <div class="stat-caption">Opiniones reales</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value">0%</div>
-        <div class="stat-caption">Comisiones</div>
-      </div>
-    </div>
-  </header>
+    <!-- =======================================================================
+         CHAPTER 1: ATTENTION — ULTRA-WIDE EDITORIAL HERO & AUTHORITY METRICS
+         ======================================================================= -->
+    <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 md:px-10 max-w-[1400px] mx-auto">
+      <div class="text-center max-w-6xl mx-auto">
+        <!-- Eyebrow Tag -->
+        <div class="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 bg-white/[0.04] border border-white/10 mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-[11px] font-mono uppercase tracking-[0.18em] text-white/80">
+            ESTUDIO DE INGENIERÍA WEB PARA NEGOCIOS LOCALES • SIN CUOTAS MENSUALES
+          </span>
+        </div>
 
-  <main class="wrap">
+        <!-- 2-3 Line Ultra-Wide Editorial Heading with Inline Pill Images -->
+        <h1 class="font-display font-bold text-[clamp(2.25rem,5vw,5rem)] leading-[1.04] tracking-[-0.03em] text-white max-w-6xl mx-auto mb-8">
+          Construimos páginas web
+          <span class="inline-block align-middle w-20 md:w-32 h-10 md:h-14 rounded-full bg-cover bg-center border border-white/20 mx-1 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=400&q=80');"></span>
+          que llenan tu negocio de
+          <span class="font-serif italic font-normal text-emerald-400 pr-2">clientes y reservas</span>
+          <span class="inline-block align-middle w-20 md:w-32 h-10 md:h-14 rounded-full bg-cover bg-center border border-white/20 mx-1 shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=400&q=80');"></span>
+          en piloto automático.
+        </h1>
 
-    <!-- 1. TU BASE INCLUIDA -->
-    <section class="section-header">
-      <div class="section-eyebrow">Paso 1 · Tu Base Incluida</div>
-      <h2 class="section-title">Siempre incluido en tu proyecto</h2>
-      <p class="section-desc">Los cimientos profesionales que todo negocio necesita. Ya van dentro del precio base.</p>
+        <p class="text-white/65 text-base md:text-xl max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+          Genera la <span class="text-white font-semibold">Demo Interactiva de tu negocio en 30 segundos</span> aquí mismo. Pruébala en vivo durante 24 horas y actívala con tu dominio oficial, panel autogestionable y reservas automáticas desde <span class="text-emerald-400 font-semibold">50 € (pago único)</span>.
+        </p>
+
+        <!-- Dual High-Contrast Island CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#generador" class="group flex items-center gap-4 pl-7 pr-2 py-2 rounded-full bg-emerald-500 text-black font-bold text-sm md:text-base tracking-tight shadow-[0_0_50px_rgba(16,185,129,0.45)] hover:bg-emerald-400 active:scale-[0.98] spring-transition">
+            <span>Generar la Demo de Mi Local Ahora</span>
+            <span class="w-10 h-10 rounded-full bg-black text-emerald-400 flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-0.5 spring-transition">
+              <i class="ph-bold ph-lightning text-base"></i>
+            </span>
+          </a>
+
+          <a href="#casos" class="group flex items-center gap-3 px-7 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 text-white font-semibold text-sm md:text-base spring-transition">
+            <span>Ver Clientes Reales Publicados</span>
+            <i class="ph ph-arrow-down-right text-lg text-white/60 group-hover:text-white"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Telemetry Bar (Double-Bezel Hardware Strip) -->
+      <div class="double-bezel max-w-5xl mx-auto mt-16">
+        <div class="double-bezel-inner px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+          <div class="pt-3 md:pt-0">
+            <div class="font-display font-bold text-2xl md:text-3xl text-white">+120</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-white/50 mt-1">Webs Locales Desplegadas</div>
+          </div>
+          <div class="pt-3 md:pt-0">
+            <div class="font-display font-bold text-2xl md:text-3xl text-emerald-400">4.9 / 5 ★</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-white/50 mt-1">Valoración Media Clientes</div>
+          </div>
+          <div class="pt-3 md:pt-0">
+            <div class="font-display font-bold text-2xl md:text-3xl text-white">24/7</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-white/50 mt-1">Reservas Sin Llamadas</div>
+          </div>
+          <div class="pt-3 md:pt-0">
+            <div class="font-display font-bold text-2xl md:text-3xl text-amber-400">0%</div>
+            <div class="text-xs font-mono uppercase tracking-wider text-white/50 mt-1">Comisiones ni Mensualidades</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div class="card-list" id="baseCards">
-      <div class="card base">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🎨</span>
-            <span class="card-name">Diseño Web Premium a Medida</span>
-            <span class="pill-tag tag-inc">Incluido</span>
-          </div>
-          <div class="card-desc">Diseño exclusivo adaptado a la imagen de tu negocio. Sin plantillas genéricas.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price green">Incluido</div>
-          <div class="card-price-sub">en la base</div>
-        </div>
-      </div>
-
-      <div class="card base">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📱</span>
-            <span class="card-name">100% Adaptada a Móviles y Tablets</span>
-            <span class="pill-tag tag-inc">Incluido</span>
-          </div>
-          <div class="card-desc">Tus clientes navegan de forma rápida y cómoda desde cualquier teléfono.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price green">Incluido</div>
-          <div class="card-price-sub">en la base</div>
-        </div>
-      </div>
-
-      <div class="card base">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">⚡</span>
-            <span class="card-name">Velocidad Ultrarrápida de Carga</span>
-            <span class="pill-tag tag-inc">Incluido</span>
-          </div>
-          <div class="card-desc">Carga instantánea en menos de 1 segundo para no perder ningún cliente impaciente.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price green">Incluido</div>
-          <div class="card-price-sub">en la base</div>
-        </div>
-      </div>
-
-      <div class="card base">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🔒</span>
-            <span class="card-name">Dominio Propio (.com / .es) + SSL</span>
-            <span class="pill-tag tag-inc">Incluido</span>
-          </div>
-          <div class="card-desc">Tu dirección web oficial con candado verde de seguridad y alta velocidad.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price green">Incluido</div>
-          <div class="card-price-sub">en la base</div>
-        </div>
+    <!-- Infinite Sectors Marquee -->
+    <div class="border-y border-white/[0.07] bg-[#08090C] py-4 overflow-hidden">
+      <div class="animate-marquee flex items-center gap-12 text-xs font-mono uppercase tracking-[0.25em] text-white/45">
+        <span class="flex items-center gap-2"><i class="ph ph-scissors text-emerald-400 text-base"></i> BARBERÍAS & PELUQUERÍAS VIP</span>
+        <span class="flex items-center gap-2"><i class="ph ph-engine text-emerald-400 text-base"></i> CONCESIONARIOS & TALLERES MECÁNICOS</span>
+        <span class="flex items-center gap-2"><i class="ph ph-ForkKnife text-emerald-400 text-base"></i> RESTAURANTES, ASADORES & CAFETERÍAS</span>
+        <span class="flex items-center gap-2"><i class="ph ph-buildings text-emerald-400 text-base"></i> EMPRESAS DE REFORMAS & CONSTRUCCIÓN</span>
+        <span class="flex items-center gap-2"><i class="ph ph-first-aid-kit text-emerald-400 text-base"></i> CLÍNICAS DE FISIOTERAPIA, DENTALES & ESTÉTICA</span>
+        <span class="flex items-center gap-2"><i class="ph ph-key text-emerald-400 text-base"></i> CERRAJEROS & SERVICIOS 24 HORAS</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="flex items-center gap-2"><i class="ph ph-scissors text-emerald-400 text-base"></i> BARBERÍAS & PELUQUERÍAS VIP</span>
+        <span class="flex items-center gap-2"><i class="ph ph-engine text-emerald-400 text-base"></i> CONCESIONARIOS & TALLERES MECÁNICOS</span>
+        <span class="flex items-center gap-2"><i class="ph ph-ForkKnife text-emerald-400 text-base"></i> RESTAURANTES, ASADORES & CAFETERÍAS</span>
+        <span class="flex items-center gap-2"><i class="ph ph-buildings text-emerald-400 text-base"></i> EMPRESAS DE REFORMAS & CONSTRUCCIÓN</span>
       </div>
     </div>
 
-    <!-- 2. PACKS RÁPIDOS PREDEFINIDOS -->
-    <section class="section-header">
-      <div class="section-eyebrow">Paso 2 · Elige un Pack o Personaliza</div>
-      <h2 class="section-title">Packs recomendados con descuento</h2>
-      <p class="section-desc">Elige un pack listo para funcionar o selecciona abajo cada extra uno a uno.</p>
+    <!-- =======================================================================
+         CHAPTER 2: INTEREST — QUÉ OFRECEMOS (GAPLESS BENTO GRID ARCHITECTURE)
+         ======================================================================= -->
+    <section id="productos" class="py-24 md:py-32 px-4 md:px-10 max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="inline-block rounded-full px-3.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+            NUESTROS PRODUCTOS Y TECNOLOGÍA
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-white max-w-2xl leading-[1.08]">
+            Ingeniería diseñada para que <span class="font-serif italic font-normal text-emerald-400">tu negocio venda solo.</span>
+          </h2>
+        </div>
+        <p class="text-white/55 text-sm md:text-base max-w-md">
+          Cada proyecto que sale de nuestro estudio integra diseño de alto impacto, reservas automatizadas, panel de control privado (`/admin`) y posicionamiento local en Google Maps.
+        </p>
+      </div>
+
+      <!-- Mathematically Interlocked 12-Col Gapless Bento Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 grid-flow-dense gap-6">
+
+        <!-- Bento Card 1 (7 Cols): Sistema de Reservas Autónomo 24/7 -->
+        <div class="lg:col-span-7 double-bezel gsap-reveal">
+          <div class="double-bezel-inner p-7 md:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[11px] uppercase tracking-wider">
+                  PRODUCTO 01 • AGENDA SIN INTERRUPCIONES
+                </span>
+                <i class="ph-light ph-calendar-check text-3xl text-emerald-400"></i>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-3">
+                Motor de Reservas Online & WhatsApp Directo 24/7
+              </h3>
+              <p class="text-white/60 text-sm md:text-base leading-relaxed mb-8 max-w-xl">
+                El teléfono deja de interrumpirte mientras trabajas. Tus clientes entran desde Google Maps o Instagram, eligen servicio, día y hora libre en tiempo real y tú recibes la reserva confirmada al instante.
+              </p>
+            </div>
+
+            <!-- Live Incoming Appointments Feed -->
+            <div class="rounded-2xl bg-[#11141D] border border-white/10 p-5">
+              <div class="flex items-center justify-between text-xs font-mono text-white/50 mb-4">
+                <span>MONITOR DE RESERVAS AUTOMÁTICAS</span>
+                <span class="text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> EN TIEMPO REAL</span>
+              </div>
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-black/60 border border-emerald-500/30">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">✓</div>
+                    <div>
+                      <div class="text-xs font-bold text-white">Cita Confirmada Online — Carlos G.</div>
+                      <div class="text-[11px] text-white/50">Corte Degradado + Ritual Barba • Hoy 17:30</div>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono font-bold text-emerald-400">CONFIRMADA</span>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-white/5">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-white/10 text-white/70 flex items-center justify-center font-bold text-xs">✓</div>
+                    <div>
+                      <div class="text-xs font-bold text-white">Revisión Taller + Pre-ITV — Sergio M.</div>
+                      <div class="text-[11px] text-white/50">Recepción de Vehículo • Mañana 09:30</div>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono font-bold text-amber-400">EN AGENDA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2 (5 Cols): Panel Admin Privado (/admin) -->
+        <div class="lg:col-span-5 double-bezel gsap-reveal">
+          <div class="double-bezel-inner p-7 md:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 font-mono text-[11px] uppercase tracking-wider">
+                  PRODUCTO 02 • AUTOGESTIÓN TOTAL
+                </span>
+                <i class="ph-light ph-sliders-horizontal text-3xl text-amber-400"></i>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-3">
+                Panel de Control Privado (`/admin`) desde tu Móvil
+              </h3>
+              <p class="text-white/60 text-sm md:text-base leading-relaxed mb-6">
+                No dependes de ningún informático. Te entregamos tu propio panel privado con contraseña para subir fotos de tus productos, cambiar precios, gestionar el stock o revisar tus citas en 10 segundos.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#0D1017] border border-white/10 space-y-2.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-white/60">Subir nuevas fotos / platos / vehículos</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-[10px]">1 CLIC</span>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-white/60">Actualizar precios y ofertas en vivo</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-mono text-[10px]">INSTANTÁNEO</span>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-white/60">Control de citas y facturas imprimibles</span>
+                <span class="px-2 py-0.5 rounded bg-amber-500/15 text-amber-400 font-mono text-[10px]">INCLUIDO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3 (5 Cols): SEO Local & Google Maps -->
+        <div class="lg:col-span-5 double-bezel gsap-reveal">
+          <div class="double-bezel-inner p-7 md:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="px-3 py-1 rounded-full bg-white/5 border border-white/15 text-white/80 font-mono text-[11px] uppercase tracking-wider">
+                  PRODUCTO 03 • POSICIONAMIENTO LOCAL
+                </span>
+                <i class="ph-light ph-map-pin-line text-3xl text-emerald-400"></i>
+              </div>
+              <h3 class="font-display font-bold text-2xl text-white mb-3">
+                Posicionamiento #1 en Google Maps en tu Ciudad
+              </h3>
+              <p class="text-white/60 text-sm leading-relaxed mb-6">
+                Cuando alguien busca en Google *"barbería cerca de mí"*, *"taller mecánico"* o *"reformas en mi zona"*, los negocios con web estructurada y reseñas integradas se llevan el 85% de los clientes.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-xl bg-red-500/5 border border-red-500/20">
+                <div class="text-[10px] font-mono text-red-400">SIN SITIO WEB</div>
+                <div class="font-display font-bold text-base text-white/50 mt-0.5">Pierdes el clic</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+                <div class="text-[10px] font-mono text-emerald-400">CON MI WEB LOCAL</div>
+                <div class="font-display font-bold text-base text-white mt-0.5">+340% Reservas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 4 (7 Cols): Demo Automática 24h + Entrega Inmediata -->
+        <div class="lg:col-span-7 double-bezel gsap-reveal">
+          <div class="double-bezel-inner p-7 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="max-w-md">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-mono text-[11px] uppercase tracking-wider mb-5">
+                PRODUCTO 04 • PRUEBA ANTES DE DECIDIR
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-3">
+                Genera tu Demo hoy. Tienes 24 horas para adquirirla.
+              </h3>
+              <p class="text-white/60 text-sm leading-relaxed">
+                Primero ves cómo queda la web de tu negocio funcionando en vivo. La reservamos en nuestro servidor durante <strong class="text-white">24 horas</strong>: si te encanta, la desbloqueas al instante y recibes todos los accesos en tu correo electrónico.
+              </p>
+            </div>
+
+            <div class="w-full md:w-64 p-5 rounded-2xl bg-[#07080C] border border-white/10 shrink-0 font-mono text-xs space-y-3">
+              <div class="flex justify-between text-white/50">
+                <span>DOMINIO + SSL</span>
+                <span class="text-emerald-400">INCLUIDO</span>
+              </div>
+              <div class="flex justify-between text-white/50">
+                <span>ENTREGA EMAIL</span>
+                <span class="text-emerald-400">AUTOMÁTICA</span>
+              </div>
+              <div class="flex justify-between text-white/50">
+                <span>COMISIONES</span>
+                <span class="text-amber-400">0,00 € / MES</span>
+              </div>
+              <div class="pt-2 border-t border-white/10">
+                <a href="#generador" class="block w-full text-center py-2.5 rounded-xl bg-emerald-500 text-black font-sans font-bold text-xs hover:bg-emerald-400 transition-colors">
+                  Crear Mi Demo Ahora →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <div class="packs-grid">
-      <div class="pack-card" onclick="selectPack('esencial')">
-        <div class="pack-title">🟢 Esencial</div>
-        <div class="pack-desc">Carta / Catálogo Digital + Reseñas de Google verificadas</div>
-        <div class="pack-price-tag" id="packPrice1">670 €</div>
+    <!-- =======================================================================
+         CHAPTER 3: DESIRE — PORTAFOLIO DE CLIENTES REALES PUBLICADOS EN MIWEBLOCAL.COM
+         ======================================================================= -->
+    <section id="casos" class="py-24 md:py-32 px-4 md:px-10 max-w-[1400px] mx-auto border-t border-white/[0.07]">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div>
+          <span class="inline-block rounded-full px-3.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] bg-amber-500/10 text-amber-400 border border-amber-500/25 mb-4">
+            CLIENTES Y PROYECTOS REALES EN PRODUCCIÓN
+          </span>
+          <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-white">
+            Inspecciona nuestras <span class="font-serif italic font-normal text-emerald-400">webs reales en vivo.</span>
+          </h2>
+        </div>
+        <p class="text-white/55 text-sm max-w-md">
+          No hablamos con promesas vacías. Abre cualquiera de los proyectos reales alojados en nuestra infraestructura o úsalos como base para tu negocio.
+        </p>
       </div>
 
-      <div class="pack-card active" onclick="selectPack('profesional')">
-        <span class="pack-badge-top">⭐ Más Popular</span>
-        <div class="pack-title">🔵 Profesional</div>
-        <div class="pack-desc">Catálogo + Reservas Directas al Móvil + SEO Local</div>
-        <div class="pack-price-tag" id="packPrice2">1.060 €</div>
+      <!-- Interactive Horizontal Expanding Portfolio Slices (With Direct Links to Real Hosted Sites) -->
+      <div class="flex flex-col lg:flex-row gap-4 min-h-[500px] mb-10">
+
+        <!-- Real Client 1: Motos Orero (Concesionario, Boutique y Taller Oficial) -->
+        <div class="portfolio-slice active double-bezel cursor-pointer group" onclick="activateSlice(this, 'Motos Orero Oficial', 'taller', 'sport')">
+          <div class="double-bezel-inner relative h-[400px] lg:h-[500px] flex flex-col justify-end p-6 md:p-8">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=85" alt="Motos Orero" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 spring-transition" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-transparent"></div>
+            <div class="relative z-10">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-red-600 text-white font-mono font-bold text-[10px] uppercase">
+                  CONCESIONARIO + TALLER + ADMIN
+                </span>
+                <span class="px-3 py-1 rounded-full bg-black/80 border border-white/15 text-emerald-400 font-mono text-[10px]">
+                  Catálogo en Tiempo Real + Citas ITV
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">Motos Orero — Calle San Agustín (Orihuela)</h3>
+              <p class="text-white/75 text-xs md:text-sm max-w-lg mb-5">
+                Ecosistema completo con exposición de motos nuevas y ocasión en tiempo real, boutique de equipamiento, reserva de cita en taller oficial y panel de administración privado con generación de facturas.
+              </p>
+              <div class="flex flex-wrap gap-2.5">
+                <a href="/motorcycle-store-orero/" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition-colors">
+                  <span>Abrir Web Real en Vivo</span>
+                  <i class="ph-bold ph-arrow-square-out"></i>
+                </a>
+                <button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 text-white border border-white/20 font-semibold text-xs hover:bg-white hover:text-black transition-colors">
+                  <span>Usar esta base para mi local</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Client 2: Barbería Jamal / Barbería Moy -->
+        <div class="portfolio-slice double-bezel cursor-pointer group" onclick="activateSlice(this, 'Barbería Jamal Gentleman', 'barberia', 'luxury')">
+          <div class="double-bezel-inner relative h-[400px] lg:h-[500px] flex flex-col justify-end p-6 md:p-8">
+            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1200&q=85" alt="Barbería Gentleman" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 spring-transition" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-transparent"></div>
+            <div class="relative z-10">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-amber-500 text-black font-mono font-bold text-[10px] uppercase">
+                  BARBERÍA & ESTÉTICA VIP
+                </span>
+                <span class="px-3 py-1 rounded-full bg-black/80 border border-white/15 text-emerald-400 font-mono text-[10px]">
+                  Agenda 24/7 sin llamadas
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">Barbería Jamal & Barbería Moy</h3>
+              <p class="text-white/75 text-xs md:text-sm max-w-lg mb-5">
+                Diseño Gentleman de lujo con carta de cortes degradados, ritual de barba y sistema de reserva rápida para que los clientes elijan hora desde Instagram sin llamar al local.
+              </p>
+              <div class="flex flex-wrap gap-2.5">
+                <a href="/cox/barberia-jamal/" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition-colors">
+                  <span>Abrir Web Real en Vivo</span>
+                  <i class="ph-bold ph-arrow-square-out"></i>
+                </a>
+                <button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 text-white border border-white/20 font-semibold text-xs hover:bg-white hover:text-black transition-colors">
+                  <span>Usar esta base para mi barbería</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Client 3: Reformas Élite Gold Guardamar -->
+        <div class="portfolio-slice double-bezel cursor-pointer group" onclick="activateSlice(this, 'Reformas Élite Gold', 'reformas', 'luxury')">
+          <div class="double-bezel-inner relative h-[400px] lg:h-[500px] flex flex-col justify-end p-6 md:p-8">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85" alt="Reformas Élite Gold" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 spring-transition" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-transparent"></div>
+            <div class="relative z-10">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-white text-black font-mono font-bold text-[10px] uppercase">
+                  REFORMAS & CONSTRUCCIÓN
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">Reformas Élite Gold (Guardamar)</h3>
+              <p class="text-white/75 text-xs md:text-sm max-w-lg mb-5">
+                Portal corporativo de alta conversión con galería de proyectos antes/después, garantías por contrato y captación automática de presupuestos cualificados.
+              </p>
+              <div class="flex flex-wrap gap-2.5">
+                <a href="/reformas-elite-gold-guardamar/" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition-colors">
+                  <span>Abrir Web Real en Vivo</span>
+                  <i class="ph-bold ph-arrow-square-out"></i>
+                </a>
+                <button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 text-white border border-white/20 font-semibold text-xs hover:bg-white hover:text-black transition-colors">
+                  <span>Usar esta base</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Client 4: Hostelería & Clínicas (La Vimacchiata / Clínica Balance) -->
+        <div class="portfolio-slice double-bezel cursor-pointer group" onclick="activateSlice(this, 'La Vimacchiata Brunch & Gastro', 'restaurante', 'neon')">
+          <div class="double-bezel-inner relative h-[400px] lg:h-[500px] flex flex-col justify-end p-6 md:p-8">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=85" alt="Hostelería y Restaurantes" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 spring-transition" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/65 to-transparent"></div>
+            <div class="relative z-10">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-emerald-500 text-black font-mono font-bold text-[10px] uppercase">
+                  HOSTELERÍA & CARTA DIGITAL
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">La Vimacchiata & Mayor 5 Café</h3>
+              <p class="text-white/75 text-xs md:text-sm max-w-lg mb-5">
+                Carta gastronómica interactiva para móvil, reserva instantánea de mesa en salón o terraza y pedidos directos sin pagar comisiones a terceros.
+              </p>
+              <div class="flex flex-wrap gap-2.5">
+                <a href="/orihuela/la-vimacchiata-brunch/" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500 text-black font-bold text-xs hover:bg-emerald-400 transition-colors">
+                  <span>Abrir Web Real en Vivo</span>
+                  <i class="ph-bold ph-arrow-square-out"></i>
+                </a>
+                <button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 text-white border border-white/20 font-semibold text-xs hover:bg-white hover:text-black transition-colors">
+                  <span>Usar esta base</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="pack-card" onclick="selectPack('premium')">
-        <div class="pack-title">💎 Total VIP</div>
-        <div class="pack-desc">Todo incluido con reservas (web y móvil), multiidioma y soporte 12 meses</div>
-        <div class="pack-price-tag" id="packPrice3">1.610 €</div>
+      <!-- Secondary Quick-Access Bar to More Real Live Client Demos -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 text-xs">
+        <span class="font-mono uppercase text-white/40 mr-2">MÁS PROYECTOS REALES EN VIVO:</span>
+        <a href="/cerrajeros-urgencias-orihuela/" target="_blank" class="px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 text-white/80 transition-colors">
+          Cerrajeros 24h Orihuela ↗
+        </a>
+        <a href="/clinica-balance-almoradi/" target="_blank" class="px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 text-white/80 transition-colors">
+          Clínica Balance Almoradí ↗
+        </a>
+        <a href="/autochrome-torrevieja/" target="_blank" class="px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 text-white/80 transition-colors">
+          AutoChrome Torrevieja ↗
+        </a>
+        <a href="/talleres-paco-santa-pola/" target="_blank" class="px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 text-white/80 transition-colors">
+          Talleres Paco Santa Pola ↗
+        </a>
+        <a href="/orihuela/gabi-tattoo-cotizador/" target="_blank" class="px-3.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/10 border border-white/10 text-white/80 transition-colors">
+          Gabi Tattoo Cotizador ↗
+        </a>
       </div>
-    </div>
-
-    <!-- 3. PERSONALIZACIÓN MÓDULO A MÓDULO -->
-    <section class="section-header">
-      <div class="section-eyebrow">Paso 3 · Personaliza a Tu Medida</div>
-      <h2 class="section-title">Funcionalidades adicionales para tu web</h2>
-      <p class="section-desc">Toca las opciones que necesites. Tu presupuesto se calcula en tiempo real.</p>
     </section>
 
-    <div class="card-list" id="modCards">
+    <!-- =======================================================================
+         CHAPTER 4: ACTION — EL GENERADOR AUTOMÁTICO EN VIVO + DEMO DE 24 HORAS
+         ======================================================================= -->
+    <section id="generador" class="py-24 md:py-32 px-4 md:px-10 max-w-[1440px] mx-auto border-t border-white/[0.07]">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-2 rounded-full px-4 py-1 text-[10px] font-mono uppercase tracking-[0.2em] bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          GENERADOR AUTOMÁTICO DE DEMO • RESERVA DE 24 HORAS
+        </span>
+        <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-white mb-4">
+          Pon el nombre de tu local y <span class="font-serif italic font-normal text-emerald-400">genera tu web en vivo.</span>
+        </h2>
+        <p class="text-white/60 text-sm md:text-base">
+          Personaliza el nombre, sector y estilo a la izquierda. Tu demo se construye al instante a la derecha y queda reservada durante <strong class="text-amber-400 font-mono">24 horas</strong> para que puedas adquirirla por <strong class="text-white">50 €</strong> y recibir los accesos automáticamente en tu Email.
+        </p>
+      </div>
 
-      <div class="card" data-id="reservas-web" data-u="120" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🌐</span>
-            <span class="card-name">Sistema de Reservas en la Web</span>
-            <span class="pill-tag tag-gem">📅 Calendario Web</span>
+      <!-- Studio Console Layout (4 Cols Controls + 8 Cols Full Live Website Viewport) -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+
+        <!-- LEFT: MACHINED HARDWARE CONFIGURATOR (4 COLS) -->
+        <div class="xl:col-span-4 double-bezel sticky top-24">
+          <div class="double-bezel-inner p-6 md:p-8 space-y-6">
+
+            <!-- 24-Hour Expiration Hardware Module -->
+            <div class="p-4 rounded-2xl bg-amber-500/[0.08] border border-amber-500/30 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold">
+                  TIEMPO LÍMITE DE TU DEMO
+                </div>
+                <div class="text-xs text-white/70 mt-0.5">Caduca y se borra en:</div>
+              </div>
+              <div id="studio-countdown" class="font-mono font-bold text-lg text-amber-400 bg-black/60 px-3 py-1.5 rounded-xl border border-amber-500/30">
+                23:59:49
+              </div>
+            </div>
+
+            <!-- 1. Business Name & Quick Presets -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
+                01 / NOMBRE DE TU NEGOCIO O LOCAL
+              </label>
+              <input
+                type="text"
+                id="studio-name"
+                value="Barbería Imperio VIP"
+                oninput="renderLiveStudio()"
+                placeholder="Escribe aquí el nombre de tu local..."
+                class="w-full px-4 py-3.5 rounded-xl bg-black border border-white/15 text-white font-semibold text-base focus:border-emerald-400 focus:outline-none transition-colors"
+              />
+              <!-- Quick Test Presets -->
+              <div class="flex flex-wrap gap-1.5 mt-2.5">
+                <button onclick="loadStudioPreset('Barbería Imperio VIP', 'barberia', 'Madrid Centro', 'luxury')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-white/75 transition-colors">
+                  Barbería
+                </button>
+                <button onclick="loadStudioPreset('Taller GT MotorSport', 'taller', 'Valencia • Av. Puerto', 'sport')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-white/75 transition-colors">
+                  Taller / Motos
+                </button>
+                <button onclick="loadStudioPreset('Brasa & Humo Smash Club', 'restaurante', 'Barcelona • Eixample', 'neon')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-white/75 transition-colors">
+                  Restaurante
+                </button>
+                <button onclick="loadStudioPreset('Reformas Élite Pro', 'reformas', 'Alicante / Murcia', 'clean')" class="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-white/75 transition-colors">
+                  Reformas
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Business Sector -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
+                02 / ELIGE TU SECTOR
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="setStudioSector('barberia')" data-sec="barberia" class="sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2">
+                  <i class="ph ph-scissors text-emerald-400"></i> Barbería / Salón
+                </button>
+                <button onclick="setStudioSector('taller')" data-sec="taller" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-semibold flex items-center gap-2">
+                  <i class="ph ph-engine text-white/50"></i> Taller / Motor
+                </button>
+                <button onclick="setStudioSector('restaurante')" data-sec="restaurante" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-semibold flex items-center gap-2">
+                  <i class="ph ph-ForkKnife text-white/50"></i> Hostelería / Bar
+                </button>
+                <button onclick="setStudioSector('reformas')" data-sec="reformas" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-semibold flex items-center gap-2">
+                  <i class="ph ph-buildings text-white/50"></i> Reformas / Clínica
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. City & WhatsApp -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1.5">
+                  CIUDAD / UBICACIÓN
+                </label>
+                <input
+                  type="text"
+                  id="studio-city"
+                  value="Madrid • Calle Serrano 42"
+                  oninput="renderLiveStudio()"
+                  class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1.5">
+                  TELÉFONO / WHATSAPP
+                </label>
+                <input
+                  type="text"
+                  id="studio-phone"
+                  value="612 890 345"
+                  oninput="renderLiveStudio()"
+                  class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <!-- 4. Design System Theme -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
+                03 / ESTILO Y ACABADO VISUAL
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="setStudioTheme('luxury')" data-thm="luxury" class="thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2.5 text-left">
+                  <span class="w-5 h-5 rounded-full bg-gradient-to-br from-black to-amber-500 border border-white/30 shrink-0"></span>
+                  <span class="text-xs font-bold text-white">Obsidian Gold</span>
+                </button>
+                <button onclick="setStudioTheme('sport')" data-thm="sport" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5 text-left">
+                  <span class="w-5 h-5 rounded-full bg-gradient-to-br from-zinc-900 to-red-500 border border-white/30 shrink-0"></span>
+                  <span class="text-xs font-bold text-white/75">Titanium Red</span>
+                </button>
+                <button onclick="setStudioTheme('neon')" data-thm="neon" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5 text-left">
+                  <span class="w-5 h-5 rounded-full bg-gradient-to-br from-slate-950 to-emerald-400 border border-white/30 shrink-0"></span>
+                  <span class="text-xs font-bold text-white/75">Emerald Cyber</span>
+                </button>
+                <button onclick="setStudioTheme('clean')" data-thm="clean" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5 text-left">
+                  <span class="w-5 h-5 rounded-full bg-gradient-to-br from-white to-zinc-800 border border-white/30 shrink-0"></span>
+                  <span class="text-xs font-bold text-white/75">Editorial Ivory</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Re-Generate / Animate Button -->
+            <button onclick="animateRebuild()" class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">
+              <i class="ph-bold ph-magic-wand text-emerald-400"></i>
+              <span>Generar y Ensamblar con IA Ahora</span>
+            </button>
+
+            <!-- Primary Purchase & Unlock CTA -->
+            <div class="pt-3 border-t border-white/10">
+              <button onclick="openStripeEmailModal()" class="group w-full flex items-center justify-between pl-6 pr-2 py-2 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm shadow-[0_0_35px_rgba(16,185,129,0.4)] spring-transition">
+                <span>Comprar y Activar Mi Web (50 €)</span>
+                <span class="w-10 h-10 rounded-full bg-black text-emerald-400 flex items-center justify-center group-hover:translate-x-0.5 spring-transition">
+                  <i class="ph-bold ph-lock-key-open text-base"></i>
+                </span>
+              </button>
+              <div class="text-center text-[11px] font-mono text-white/45 mt-2.5">
+                ACCESOS Y PANEL ENVIADOS A TU EMAIL AL INSTANTE
+              </div>
+            </div>
+
           </div>
-          <div class="card-desc">Tus clientes eligen día y hora en un calendario dentro de tu propia web con confirmación online.</div>
         </div>
-        <div class="card-price-col">
-          <div class="card-price">+120 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
 
-      <div class="card on" data-id="reservas-movil" data-u="220" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📲</span>
-            <span class="card-name">Reservas Directas a Tu Móvil / WhatsApp</span>
-            <span class="pill-tag tag-fire">🔥 Más Pedido</span>
+        <!-- RIGHT: LIVE FULL-SCALE WEBSITE VIEWPORT (8 COLS) -->
+        <div class="xl:col-span-8 double-bezel">
+          <div class="double-bezel-inner">
+
+            <!-- Browser / Viewport Top Hardware Chrome -->
+            <div class="px-5 py-3.5 bg-[#07080C] border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/70"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/70"></span>
+              </div>
+
+              <!-- Dynamic Live Domain Bar -->
+              <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black border border-white/10 text-xs font-mono text-white/80">
+                <i class="ph-fill ph-lock-key text-emerald-400"></i>
+                <span id="live-domain-url">https://barberiaimperiovip.com</span>
+                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold ml-2">
+                  DEMO 24H
+                </span>
+              </div>
+
+              <!-- Viewport Mode Switcher -->
+              <div class="flex items-center gap-1.5">
+                <button onclick="setViewportMode('desktop')" id="vp-desktop" class="px-3 py-1 rounded-lg bg-white/10 text-white text-xs font-mono flex items-center gap-1">
+                  <i class="ph ph-desktop"></i> Web
+                </button>
+                <button onclick="setViewportMode('mobile')" id="vp-mobile" class="px-3 py-1 rounded-lg bg-transparent text-white/50 hover:text-white text-xs font-mono flex items-center gap-1">
+                  <i class="ph ph-device-mobile"></i> Móvil
+                </button>
+              </div>
+            </div>
+
+            <!-- AI Building Overlay (Triggered during live generation) -->
+            <div id="ai-rebuild-overlay" class="hidden absolute inset-0 z-30 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center">
+              <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-3xl mb-5 animate-spin">
+                <i class="ph-bold ph-aperture"></i>
+              </div>
+              <div class="font-display font-bold text-2xl text-white mb-2" id="ai-rebuild-status">
+                Compilando arquitectura web a medida...
+              </div>
+              <div class="text-xs font-mono text-emerald-400 uppercase tracking-widest">
+                INYECTANDO SISTEMA DE RESERVAS 24/7 Y CATÁLOGO INTERACTIVO
+              </div>
+              <div class="w-72 h-1.5 bg-white/10 rounded-full overflow-hidden mt-6">
+                <div id="ai-rebuild-bar" class="h-full bg-emerald-400 w-0 transition-all duration-300"></div>
+              </div>
+            </div>
+
+            <!-- LIVE GENERATED CLIENT WEBSITE CANVAS -->
+            <div class="p-0 md:p-4 bg-[#050608] flex justify-center">
+              <div id="viewport-container" class="w-full transition-all duration-500 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <div id="generated-website-canvas">
+                  <!-- Dynamically populated by renderLiveStudio() -->
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div class="card-desc">Cada reserva o cita te llega al instante con todos los datos del cliente directamente a tu teléfono móvil y WhatsApp.</div>
         </div>
-        <div class="card-price-col">
-          <div class="card-price">+220 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         CHAPTER 5: SOCIAL PROOF — RESEÑAS VERIFICADAS DE DUEÑOS DE LOCALES
+         ======================================================================= -->
+    <section id="resenas" class="py-24 md:py-32 px-4 md:px-10 max-w-[1400px] mx-auto border-t border-white/[0.07]">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-block rounded-full px-3.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+          OPINIONES VERIFICADAS DE CLIENTES • 4.9 / 5 ★
+        </span>
+        <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-white">
+          Dueños de negocios que ya <span class="font-serif italic font-normal text-emerald-400">automatizaron sus ventas.</span>
+        </h2>
       </div>
 
-      <div class="card on" data-id="admin" data-u="190" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🔐</span>
-            <span class="card-name">Panel de Control / Admin Privado (/admin)</span>
-            <span class="pill-tag tag-fire">⚡ Muy Solicitado</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="double-bezel">
+          <div class="double-bezel-inner p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex text-amber-400 text-sm gap-0.5">
+                  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                </div>
+                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">+42 citas/semana</span>
+              </div>
+              <p class="text-white/80 text-sm leading-relaxed mb-6">
+                "Entré desde el enlace de TikTok, puse el nombre de mi barbería y vi mi propia demo en 20 segundos. La compré antes de que caducara las 24h, me llegó el panel al correo al instante y ya no tengo que parar ningún corte para atender llamadas."
+              </p>
+            </div>
+            <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Cliente" class="w-11 h-11 rounded-full object-cover border border-white/20" />
+              <div>
+                <div class="font-bold text-sm text-white">Adrián Morales</div>
+                <div class="text-xs text-white/50">Propietario de Barbería & Salón</div>
+              </div>
+            </div>
           </div>
-          <div class="card-desc">Acceso con contraseña para publicar productos, cambiar precios, marcar vendidos y ver citas desde tu móvil sin saber programación.</div>
         </div>
-        <div class="card-price-col">
-          <div class="card-price">+190 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
 
-      <div class="card on" data-id="catalogo" data-u="180" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📋</span>
-            <span class="card-name">Carta / Catálogo Digital Interactivo</span>
-            <span class="pill-tag tag-gem">⭐ Recomendado</span>
+        <!-- Review 2 -->
+        <div class="double-bezel">
+          <div class="double-bezel-inner p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex text-amber-400 text-sm gap-0.5">
+                  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                </div>
+                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Stock + Taller + Admin</span>
+              </div>
+              <p class="text-white/80 text-sm leading-relaxed mb-6">
+                "Tener todo nuestro catálogo de motos, equipamiento boutique, citas de taller con fecha de ITV y el panel privado `/admin` donde cambiamos el stock desde el móvil ha transformado la imagen de nuestra tienda."
+              </p>
+            </div>
+            <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Cliente" class="w-11 h-11 rounded-full object-cover border border-white/20" />
+              <div>
+                <div class="font-bold text-sm text-white">Concesionario & Taller Oficial</div>
+                <div class="text-xs text-white/50">Sector Motor • Orihuela / Alicante</div>
+              </div>
+            </div>
           </div>
-          <div class="card-desc">Muestra tus productos, platos, carta o tarifas con fotos, precios y botón de pedido.</div>
         </div>
-        <div class="card-price-col">
-          <div class="card-price">+180 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
 
-      <div class="card on" data-id="seo" data-u="150" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📍</span>
-            <span class="card-name">SEO Local + Aparición en Google Maps</span>
-            <span class="pill-tag tag-gem">💎 Clave para ventas</span>
+        <!-- Review 3 -->
+        <div class="double-bezel">
+          <div class="double-bezel-inner p-7 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex text-amber-400 text-sm gap-0.5">
+                  <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                </div>
+                <span class="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Ahorro 100% cuotas</span>
+              </div>
+              <p class="text-white/80 text-sm leading-relaxed mb-6">
+                "Un estudio tradicional nos pedía más de 1.200 € y semanas de espera. Aquí probamos la demo interactiva en directo, vimos nuestra carta y reservas funcionando, y en el mismo día teníamos la web publicada."
+              </p>
+            </div>
+            <div class="flex items-center gap-3.5 pt-4 border-t border-white/10">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Cliente" class="w-11 h-11 rounded-full object-cover border border-white/20" />
+              <div>
+                <div class="font-bold text-sm text-white">Lucía Benítez</div>
+                <div class="text-xs text-white/50">Hostelería & Brunch Gastro</div>
+              </div>
+            </div>
           </div>
-          <div class="card-desc">Para que cuando busquen tu negocio en tu ciudad o comarca, aparezcas de los primeros.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price">+150 €</div>
-          <div class="card-price-sub">pago único</div>
         </div>
       </div>
+    </section>
 
-      <div class="card" data-id="galeria" data-u="120" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📸</span>
-            <span class="card-name">Galería de Fotos Profesional y Trabajos</span>
+    <!-- =======================================================================
+         FOOTER CTA
+         ======================================================================= -->
+    <footer class="py-20 px-4 md:px-10 border-t border-white/10 bg-[#040507]">
+      <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <div class="font-display font-bold text-xl text-white flex items-center gap-2.5 mb-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-500 text-black flex items-center justify-center text-xs font-extrabold">MW</span>
+            <span>MI WEB LOCAL STUDIO®</span>
           </div>
-          <div class="card-desc">Sección visual elegante para mostrar tus mejores instalaciones, platos o trabajos realizados.</div>
+          <p class="text-xs text-white/45 font-mono">
+            MIWEBLOCAL.COM • INGENIERÍA WEB AUTOMATIZADA PARA NEGOCIOS LOCALES • TODOS LOS DERECHOS RESERVADOS 2026
+          </p>
         </div>
-        <div class="card-price-col">
-          <div class="card-price">+120 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
-
-      <div class="card on" data-id="resenas" data-u="100" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">⭐</span>
-            <span class="card-name">Muro de Reseñas de Google Integradas</span>
-          </div>
-          <div class="card-desc">Muestra automáticamente tus mejores valoraciones de clientes. Dispara la confianza al 100%.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price">+100 €</div>
-          <div class="card-price-sub">pago único</div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="https://wa.me/34865692363?text=Hola%2C%20estoy%20en%20miweblocal.com%20y%20quiero%20informaci%C3%B3n%20sobre%20mi%20web" target="_blank" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-xs flex items-center gap-2 transition-colors">
+            <i class="ph-fill ph-whatsapp-logo text-emerald-400 text-base"></i>
+            <span>Soporte Directo WhatsApp</span>
+          </a>
+          <a href="#generador" class="group flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-emerald-500 text-black font-bold text-xs spring-transition">
+            <span>Generar Mi Demo Ahora (50 €)</span>
+            <span class="w-8 h-8 rounded-full bg-black text-emerald-400 flex items-center justify-center">
+              <i class="ph-bold ph-arrow-up-right"></i>
+            </span>
+          </a>
         </div>
       </div>
-
-      <div class="card" data-id="mant" data-u="240" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🔄</span>
-            <span class="card-name">Mantenimiento y Cambios Durante 12 Meses</span>
-            <span class="pill-tag tag-gem">Tranquilidad Total</span>
-          </div>
-          <div class="card-desc">Cambios de precios, fotos, textos o novedades cuando quieras durante todo el año sin coste extra.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price">+240 €</div>
-          <div class="card-price-sub">todo el año</div>
-        </div>
-      </div>
-
-      <div class="card" data-id="idioma" data-u="150" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">🌍</span>
-            <span class="card-name">Multiidioma Completo (Español + Inglés)</span>
-          </div>
-          <div class="card-desc">Captura clientes extranjeros, residentes europeos y turistas de tu zona.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price">+150 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
-
-      <div class="card" data-id="form" data-u="120" onclick="toggleCard(this)">
-        <div class="card-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="card-content">
-          <div class="card-name-row">
-            <span class="card-emoji">📝</span>
-            <span class="card-name">Formulario Inteligente de Presupuesto Directo</span>
-          </div>
-          <div class="card-desc">Los clientes rellenan lo que necesitan y te llega ordenado directamente a tu WhatsApp.</div>
-        </div>
-        <div class="card-price-col">
-          <div class="card-price">+120 €</div>
-          <div class="card-price-sub">pago único</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- 4. FORMA DE PAGO TRANSPARENTE 50% / 50% -->
-    <div class="payment-box">
-      <div class="payment-header">
-        <h3><span>💳</span> Pago Cómodo y 100% Seguro: 50% / 50%</h3>
-        <p>Nunca pagas todo por adelantado. Tu tranquilidad es lo primero.</p>
-      </div>
-
-      <div class="payment-timeline">
-        <div class="pay-card">
-          <div class="pay-icon">1️⃣</div>
-          <div class="pay-step-title">Señal del 50%</div>
-          <div class="pay-step-desc">Se inicia el diseño y montaje de tu web</div>
-          <div class="pay-badge-amount" id="payHalf1">530 €</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-icon">⚡</div>
-          <div class="pay-step-title">2 a 7 Días</div>
-          <div class="pay-step-desc">Te mostramos tu web lista y funcionando</div>
-          <div class="pay-badge-amount" style="background:#ecfdf5; color:#059669; border-color:#a7f3d0;">Revisión</div>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-icon">2️⃣</div>
-          <div class="pay-step-title">50% Restante</div>
-          <div class="pay-step-desc">Solo cuando das el visto bueno y te encanta</div>
-          <div class="pay-badge-amount" id="payHalf2">530 €</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trust Strip -->
-    <div class="trust-strip">
-      <span class="trust-item">🔒 Pago 100% Seguro</span>
-      <span class="trust-item">⚡ Entrega en 2-7 Días</span>
-      <span class="trust-item">💬 Contacto Directo WhatsApp</span>
-      <span class="trust-item">❌ Cero Cuotas Ocultas</span>
-      <span class="trust-item">🔄 Ajustes y Revisión Incluidos</span>
-      <span class="trust-item">💳 50% Inicio + 50% Entrega</span>
-    </div>
+    </footer>
 
   </main>
 
-  <!-- Sticky Bottom Conversion Bar -->
-  <div class="sticky-bar visible" id="stickyBar">
-    <div class="sticky-bar-inner">
-      <div class="sticky-left-info">
-        <div class="sticky-extras-count"><span id="countExtras">4</span> extras seleccionados</div>
-        <div class="sticky-price-display" id="totalPrice">1.060 €</div>
-        <div class="sticky-payment-note" id="paymentNote">Señal: 530 € · Resto a la entrega: 530 €</div>
+  <!-- =======================================================================
+       MODAL: CHECKOUT AUTOMÁTICO + ENTREGA POR EMAIL INSTANTÁNEA
+       ======================================================================= -->
+  <div id="checkout-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-2xl flex items-center justify-center p-4" onclick="closeCheckoutModal()">
+    <div class="double-bezel max-w-lg w-full" onclick="event.stopPropagation()">
+      <div class="double-bezel-inner p-7 md:p-9" id="checkout-modal-body">
+        <!-- Populated dynamically -->
       </div>
-
-      <button class="whatsapp-btn" id="btnAction" onclick="enviarPresupuesto()">
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.214l-.306-.182-2.867.852.852-2.867-.182-.306A8 8 0 1112 20z"/></svg>
-        <span id="btnText">Pedir Este Presupuesto (1.060 €)</span>
-      </button>
     </div>
   </div>
 
+  <!-- =======================================================================
+       ENGINE SCRIPT: LIVE WEBSITE GENERATOR, BOOKING & AUTO-TIKTOK SHOWCASE
+       ======================================================================= -->
   <script>
-    const BASE_PRICE = 390;
-    const PHONE_WA = '34865692363';
-
-    const PACK_CONFIG = {
-      esencial: ['catalogo', 'resenas'],
-      profesional: ['catalogo', 'resenas', 'reservas-movil', 'admin', 'seo'],
-      premium: ['reservas-movil', 'reservas-web', 'admin', 'catalogo', 'seo', 'galeria', 'resenas', 'mant', 'idioma', 'form']
+    const STUDIO_CATALOG = {
+      barberia: {
+        tag: "ESTUDIO DE BARBERÍA & CUIDADO MASCULINO",
+        headline: "Precisión artesanal. Reserva tu sillón sin esperas.",
+        subhead: "Selecciona tu barbero y asegura tu hora exacta en menos de 15 segundos desde tu móvil. Confirmación inmediata sin llamadas.",
+        heroImage: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1200&q=85",
+        services: [
+          { title: "Corte Skin Fade + Styling Texturizado", desc: "Asesoramiento visagista, lavado spa y acabado premium", time: "35 min", price: "18 €" },
+          { title: "Combo Imperial: Corte + Ritual de Barba", desc: "Toalla caliente con aceites esenciales y navaja tradicional", time: "50 min", price: "26 €" },
+          { title: "Esculpido de Barba & Contornos", desc: "Perfilado milimétrico e hidratación profunda", time: "25 min", price: "14 €" },
+          { title: "Tratamiento Facial Black Mask + Vapor", desc: "Limpieza de poros y revitalización cutánea", time: "30 min", price: "19 €" }
+        ],
+        stats: ["4.9 ★ (380+ reseñas)", "Confirmación Instantánea", "Pago en el Local"]
+      },
+      taller: {
+        tag: "CONCESIONARIO, TALLER OFICIAL & DETAILING",
+        headline: "Ingeniería para tu vehículo. Pide cita en taller online.",
+        subhead: "Diagnóstico computerizado multimarca, mantenimiento oficial sin perder garantía y presupuesto cerrado antes de tocar tu vehículo.",
+        heroImage: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=85",
+        services: [
+          { title: "Mantenimiento Oficial + Aceite Sintético", desc: "Sustitución de filtros, revisión de 40 puntos y sellado de garantía", time: "60 min", price: "95 €" },
+          { title: "Diagnóstico Electrónico + Revisión Pre-ITV", desc: "Lectura de centralita OBD, frenómetro y control de emisiones", time: "45 min", price: "42 €" },
+          { title: "Cambio de Neumáticos / Kit de Frenos", desc: "Primeras marcas con equilibrado y mano de obra incluida", time: "60 min", price: "Desde 79 €" },
+          { title: "Reserva de Visita a Exposición / Prueba de Vehículo", desc: "Atención personalizada sin esperas en tienda", time: "30 min", price: "Gratis" }
+        ],
+        stats: ["Garantía Oficial Europea", "Entrega en el Día", "Cita Previa Online"]
+      },
+      restaurante: {
+        tag: "GASTRONOMÍA A LA BRASA & CARTA INTERACTIVA",
+        headline: "Sabor inconfundible. Reserva tu mesa en 2 toques.",
+        subhead: "Descubre nuestra carta interactiva actualizada hoy y asegura tu mesa en salón o terraza sin esperar al teléfono.",
+        heroImage: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=85",
+        services: [
+          { title: "Doble Smash Burger Trufada Dry-Aged", desc: "180g vaca madurada, cheddar fundido, mayo trufa y brioche tostado", time: "Top Ventas", price: "14,90 €" },
+          { title: "Costillar Ibérico Glaseado a Baja Temperatura", desc: "Ahumado 12h con madera de encina y patatas rústicas", time: "Para compartir", price: "24,50 €" },
+          { title: "Tarta de Queso Fluida Artesanal", desc: "Elaboración diaria al horno con base crujiente", time: "Postre Estrella", price: "6,80 €" },
+          { title: "Reserva de Mesa Preferente (Salón / Terraza)", desc: "Confirmación inmediata sin prepago", time: "Hoy disponible", price: "0 €" }
+        ],
+        stats: ["4.9 ★ en Google", "Cocina Ininterrumpida", "Terraza Climatizada"]
+      },
+      reformas: {
+        tag: "ESTUDIO DE ARQUITECTURA, REFORMAS E INTERIORISMO",
+        headline: "Transformamos tu vivienda o local con plazo cerrado.",
+        subhead: "Proyectos integrales llave en mano con diseño 3D previo y garantía por contrato. Solicita tu visita técnica gratuita online.",
+        heroImage: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85",
+        services: [
+          { title: "Visita Técnica + Levantamiento de Planos y Presupuesto", desc: "Medición in situ y propuesta detallada en menos de 48h", time: "Sin compromiso", price: "Gratis" },
+          { title: "Reforma Integral de Cocina o Baño de Diseño", desc: "Fontanería, electricidad, porcelánicos y mobiliario a medida", time: "Llave en mano", price: "A medida" },
+          { title: "Adecuación de Locales Comerciales + Licencias", desc: "Proyecto técnico de apertura, insonorización e iluminación LED", time: "Plazo garantizado", price: "Consultar" },
+          { title: "Servicio Técnico Urgente 24h", desc: "Intervención rápida en el mismo día", time: "Asistencia hoy", price: "Desde 49 €" }
+        ],
+        stats: ["Plazo Cerrado por Contrato", "Diseño 3D Incluido", "+120 Proyectos Entregados"]
+      }
     };
 
-    function toggleCard(card) {
-      card.classList.toggle('on');
-      // clear pack active state
-      document.querySelectorAll('.pack-card').forEach(p => p.classList.remove('active'));
-      recalculate();
-    }
-
-    function selectPack(packKey) {
-      const keys = PACK_CONFIG[packKey] || [];
-      document.querySelectorAll('#modCards .card').forEach(card => {
-        const id = card.dataset.id;
-        if (keys.includes(id)) {
-          card.classList.add('on');
-        } else {
-          card.classList.remove('on');
-        }
-      });
-
-      document.querySelectorAll('.pack-card').forEach(p => p.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-
-      recalculate();
-    }
-
-    function calculatePackTotal(packKey) {
-      let sum = BASE_PRICE;
-      const keys = PACK_CONFIG[packKey] || [];
-      keys.forEach(k => {
-        const el = document.querySelector(`[data-id="${k}"]`);
-        if (el) sum += parseInt(el.dataset.u || 0);
-      });
-      return sum;
-    }
-
-    function recalculate() {
-      const selected = document.querySelectorAll('#modCards .card.on');
-      const count = selected.length;
-      let total = BASE_PRICE;
-
-      selected.forEach(c => {
-        total += parseInt(c.dataset.u || 0);
-      });
-
-      // Update counters
-      document.getElementById('countExtras').textContent = count;
-
-      const totalEl = document.getElementById('totalPrice');
-      totalEl.classList.remove('pop');
-      void totalEl.offsetWidth;
-      totalEl.classList.add('pop');
-      totalEl.textContent = total.toLocaleString('es-ES') + ' €';
-
-      const half = Math.round(total / 2);
-      document.getElementById('payHalf1').textContent = half.toLocaleString('es-ES') + ' €';
-      document.getElementById('payHalf2').textContent = half.toLocaleString('es-ES') + ' €';
-
-      const noteEl = document.getElementById('paymentNote');
-      if (count === 0) {
-        noteEl.textContent = 'Web Base Profesional incluida (' + BASE_PRICE + ' €)';
-      } else {
-        noteEl.textContent = 'Señal: ' + half + ' € · Resto a la entrega: ' + half + ' €';
+    const DESIGN_THEMES = {
+      luxury: {
+        bg: "#090A0D",
+        surface: "#12141C",
+        text: "#F8FAFC",
+        muted: "rgba(248,250,252,0.62)",
+        accent: "#F59E0B",
+        accentText: "#050505",
+        border: "rgba(245,158,11,0.25)"
+      },
+      sport: {
+        bg: "#0B0C10",
+        surface: "#15171F",
+        text: "#FFFFFF",
+        muted: "rgba(255,255,255,0.62)",
+        accent: "#EF4444",
+        accentText: "#FFFFFF",
+        border: "rgba(239,68,68,0.28)"
+      },
+      neon: {
+        bg: "#060B0E",
+        surface: "#0D161C",
+        text: "#F0FDF4",
+        muted: "rgba(240,253,244,0.62)",
+        accent: "#10B981",
+        accentText: "#04120C",
+        border: "rgba(16,185,129,0.28)"
+      },
+      clean: {
+        bg: "#FAF8F5",
+        surface: "#FFFFFF",
+        text: "#0F172A",
+        muted: "rgba(15,23,42,0.65)",
+        accent: "#0F172A",
+        accentText: "#FFFFFF",
+        border: "rgba(15,23,42,0.12)"
       }
+    };
 
-      const btnTxt = document.getElementById('btnText');
-      btnTxt.textContent = count === 0
-        ? 'Pedir Web Base (' + BASE_PRICE + ' €)'
-        : 'Pedir Este Presupuesto (' + total.toLocaleString('es-ES') + ' €)';
+    let studioState = {
+      name: "Barbería Imperio VIP",
+      sector: "barberia",
+      city: "Madrid • Calle Serrano 42",
+      phone: "612 890 345",
+      theme: "luxury",
+      selectedTime: "17:30",
+      selectedServiceIndex: 0,
+      secondsRemaining: 24 * 3600 - 11
+    };
+
+    setInterval(() => {
+      if (studioState.secondsRemaining > 0) studioState.secondsRemaining--;
+      const h = String(Math.floor(studioState.secondsRemaining / 3600)).padStart(2, '0');
+      const m = String(Math.floor((studioState.secondsRemaining % 3600) / 60)).padStart(2, '0');
+      const s = String(studioState.secondsRemaining % 60).padStart(2, '0');
+      const str = `${h}:${m}:${s}`;
+      const el = document.getElementById('studio-countdown');
+      if (el) el.textContent = str;
+    }, 1000);
+
+    function activateSlice(sliceEl, presetName, sector, theme) {
+      document.querySelectorAll('.portfolio-slice').forEach(s => s.classList.remove('active'));
+      sliceEl.classList.add('active');
+      loadStudioPreset(presetName, sector, studioState.city, theme);
     }
 
-    function enviarPresupuesto() {
-      const selected = document.querySelectorAll('#modCards .card.on');
-      let total = BASE_PRICE;
-      const items = [];
+    function loadStudioPreset(name, sector, city, theme) {
+      document.getElementById('studio-name').value = name;
+      document.getElementById('studio-city').value = city;
+      studioState.name = name;
+      studioState.city = city;
+      setStudioSector(sector, false);
+      setStudioTheme(theme, false);
+      animateRebuild();
+    }
 
-      items.push('✅ Base Profesional (Diseño a medida + Dominio Propio (.com/.es) + SSL + 100% Responsive) — ' + BASE_PRICE + ' €');
-
-      selected.forEach(c => {
-        const name = c.querySelector('.card-name').textContent.trim();
-        const p = parseInt(c.dataset.u);
-        items.push('✅ ' + name + ' — ' + p + ' €');
-        total += p;
+    function setStudioSector(sector, triggerAnim = true) {
+      studioState.sector = sector;
+      studioState.selectedServiceIndex = 0;
+      document.querySelectorAll('.sec-btn').forEach(btn => {
+        const isCurrent = btn.getAttribute('data-sec') === sector;
+        btn.className = isCurrent
+          ? "sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2"
+          : "sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-semibold flex items-center gap-2";
       });
-
-      const half = Math.round(total / 2);
-      const text =
-        '¡Hola! He configurado mi presupuesto en Mi Web Local.\n\n' +
-        '📋 *MI PROYECTO WEB:*\n' +
-        items.join('\n') +
-        '\n\n💰 *TOTAL CERRADO: ' + total.toLocaleString('es-ES') + ' €*' +
-        '\n💳 *Señal: ' + half + ' € | Resto a la entrega (2-7 días): ' + half + ' €*\n\n' +
-        '¿Podríamos hablar para comentar los detalles y ponerlo en marcha? ¡Gracias!';
-
-      window.open('https://wa.me/' + PHONE_WA + '?text=' + encodeURIComponent(text), '_blank');
+      if (triggerAnim) animateRebuild();
+      else renderLiveStudio();
     }
 
-    // Initialize pack prices
-    document.getElementById('packPrice1').textContent = calculatePackTotal('esencial').toLocaleString('es-ES') + ' €';
-    document.getElementById('packPrice2').textContent = calculatePackTotal('profesional').toLocaleString('es-ES') + ' €';
-    document.getElementById('packPrice3').textContent = calculatePackTotal('premium').toLocaleString('es-ES') + ' €';
+    function setStudioTheme(theme, triggerAnim = false) {
+      studioState.theme = theme;
+      document.querySelectorAll('.thm-btn').forEach(btn => {
+        const isCurrent = btn.getAttribute('data-thm') === theme;
+        btn.className = isCurrent
+          ? "thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2.5 text-left"
+          : "thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5 text-left";
+      });
+      if (triggerAnim) animateRebuild();
+      else renderLiveStudio();
+    }
 
-    recalculate();
+    function setViewportMode(mode) {
+      const container = document.getElementById('viewport-container');
+      const btnD = document.getElementById('vp-desktop');
+      const btnM = document.getElementById('vp-mobile');
+      if (mode === 'mobile') {
+        container.style.maxWidth = '420px';
+        btnM.className = "px-3 py-1 rounded-lg bg-white/10 text-white text-xs font-mono flex items-center gap-1";
+        btnD.className = "px-3 py-1 rounded-lg bg-transparent text-white/50 hover:text-white text-xs font-mono flex items-center gap-1";
+      } else {
+        container.style.maxWidth = '100%';
+        btnD.className = "px-3 py-1 rounded-lg bg-white/10 text-white text-xs font-mono flex items-center gap-1";
+        btnM.className = "px-3 py-1 rounded-lg bg-transparent text-white/50 hover:text-white text-xs font-mono flex items-center gap-1";
+      }
+    }
+
+    function animateRebuild() {
+      const overlay = document.getElementById('ai-rebuild-overlay');
+      const bar = document.getElementById('ai-rebuild-bar');
+      const status = document.getElementById('ai-rebuild-status');
+      overlay.classList.remove('hidden');
+      bar.style.width = '0%';
+
+      const bizName = document.getElementById('studio-name').value || studioState.name;
+      status.textContent = `Diseñando web para ${bizName}...`;
+
+      setTimeout(() => { bar.style.width = '45%'; }, 80);
+      setTimeout(() => {
+        bar.style.width = '90%';
+        status.textContent = 'Activando agenda 24/7 y enlace temporal de 24h...';
+      }, 450);
+      setTimeout(() => {
+        bar.style.width = '100%';
+        renderLiveStudio();
+      }, 850);
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 1050);
+    }
+
+    function selectClientSlot(slot) {
+      studioState.selectedTime = slot;
+      renderLiveStudio();
+    }
+
+    function selectClientService(index) {
+      studioState.selectedServiceIndex = index;
+      renderLiveStudio();
+    }
+
+    function renderLiveStudio() {
+      studioState.name = document.getElementById('studio-name').value.trim() || "Mi Negocio Local";
+      studioState.city = document.getElementById('studio-city').value.trim() || "Madrid";
+      studioState.phone = document.getElementById('studio-phone').value.trim() || "612 890 345";
+
+      const data = STUDIO_CATALOG[studioState.sector];
+      const thm = DESIGN_THEMES[studioState.theme];
+
+      const cleanSlug = studioState.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+      document.getElementById('live-domain-url').textContent = `https://miweblocal.com/${cleanSlug || 'tunegocio'}`;
+
+      const selectedService = data.services[studioState.selectedServiceIndex] || data.services[0];
+
+      const canvas = document.getElementById('generated-website-canvas');
+      canvas.innerHTML = `
+        <div style="background:${thm.bg}; color:${thm.text}; font-family:'Plus Jakarta Sans',sans-serif;">
+
+          <!-- Top Expiration Notice inside Demo -->
+          <div style="background:${thm.accent}; color:${thm.accentText}; padding:7px 16px; font-size:11px; font-family:'JetBrains Mono',monospace; font-weight:700; display:flex; justify-content:space-between; align-items:center;">
+            <span>MODO DEMO OFICIAL (EXPIRA EN 24H) • ${studioState.name.toUpperCase()}</span>
+            <button onclick="openStripeEmailModal()" style="background:rgba(0,0,0,0.2); padding:3px 10px; border-radius:99px; font-weight:800;">
+              ACTIVAR POR 50€ →
+            </button>
+          </div>
+
+          <!-- Client Site Navbar -->
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 26px; border-bottom:1px solid ${thm.border};">
+            <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.15rem; letter-spacing:-0.02em;">
+              ${studioState.name}
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:12px; opacity:0.75;" class="hidden sm:inline">${studioState.city}</span>
+              <button onclick="simulateClientBookingModal()" style="background:${thm.accent}; color:${thm.accentText}; padding:9px 18px; border-radius:99px; font-size:12px; font-weight:800;">
+                Reservar Hora
+              </button>
+            </div>
+          </div>
+
+          <!-- Client Site Hero -->
+          <div style="position:relative; padding:56px 26px; background-image:url('${data.heroImage}'); background-size:cover; background-position:center;">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,5,5,0.45) 0%, rgba(5,5,5,0.92) 100%);"></div>
+            <div style="position:relative; z-index:2; max-width:560px;">
+              <div style="display:inline-block; padding:5px 12px; border-radius:99px; background:rgba(255,255,255,0.14); backdrop-filter:blur(8px); color:#fff; font-size:10px; font-family:'JetBrains Mono',monospace; letter-spacing:0.12em; margin-bottom:14px;">
+                ${data.tag}
+              </div>
+              <h1 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.75rem,3.2vw,2.6rem); line-height:1.08; color:#fff; margin-bottom:12px;">
+                ${data.headline}
+              </h1>
+              <p style="font-size:14px; color:rgba(255,255,255,0.82); line-height:1.55; margin-bottom:22px;">
+                ${data.subhead}
+              </p>
+              <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                <button onclick="simulateClientBookingModal()" style="background:${thm.accent}; color:${thm.accentText}; padding:13px 24px; border-radius:99px; font-weight:800; font-size:13px;">
+                  Reservar Cita Online Ahora →
+                </button>
+                <button onclick="simulateClientBookingModal()" style="background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.25); padding:13px 20px; border-radius:99px; font-weight:700; font-size:13px;">
+                  WhatsApp (${studioState.phone})
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Pills Strip -->
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid ${thm.border}; background:${thm.surface}; text-align:center; padding:12px 10px; font-size:11px; font-weight:700;">
+            ${data.stats.map(st => `<div>✓ ${st}</div>`).join('')}
+          </div>
+
+          <!-- Interactive Services & Live Booking Split inside Client Website -->
+          <div style="padding:28px 24px; display:grid; grid-template-columns:1fr; gap:24px;">
+
+            <!-- Services Catalog -->
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:14px;">
+                <div>
+                  <div style="font-size:10px; font-family:'JetBrains Mono',monospace; opacity:0.6; text-transform:uppercase; letter-spacing:0.1em;">CATÁLOGO OFICIAL</div>
+                  <h3 style="font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:800;">Selecciona tu servicio</h3>
+                </div>
+                <span style="font-size:11px; opacity:0.65;">Toca un servicio para reservarlo</span>
+              </div>
+
+              <div style="display:grid; gap:10px;">
+                ${data.services.map((srv, idx) => {
+                  const isSel = idx === studioState.selectedServiceIndex;
+                  return `
+                    <div onclick="selectClientService(${idx})" style="cursor:pointer; padding:15px 18px; border-radius:16px; background:${thm.surface}; border:1.5px solid ${isSel ? thm.accent : thm.border}; display:flex; justify-content:space-between; align-items:center; gap:12px; transition:all 0.2s;">
+                      <div>
+                        <div style="font-weight:700; font-size:14px; display:flex; align-items:center; gap:8px;">
+                          <span style="width:16px;height:16px;border-radius:50%;border:2px solid ${thm.accent};display:inline-flex;align-items:center;justify-content:center;font-size:10px;background:${isSel ? thm.accent : 'transparent'};color:${thm.accentText};">${isSel ? '✓' : ''}</span>
+                          ${srv.title}
+                        </div>
+                        <div style="font-size:12px; color:${thm.muted}; margin-top:3px;">${srv.desc} • <span style="font-family:'JetBrains Mono',monospace;">${srv.time}</span></div>
+                      </div>
+                      <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.15rem; color:${thm.accent}; shrink:0;">
+                        ${srv.price}
+                      </div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+
+            <!-- Interactive Live Booking Calendar Module -->
+            <div style="padding:22px; border-radius:20px; background:${thm.surface}; border:1.5px solid ${thm.accent};">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <div>
+                  <span style="font-size:10px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; color:${thm.accent}; font-weight:700;">AGENDA AUTOMÁTICA 24/7</span>
+                  <h4 style="font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;">Reserva instantánea sin llamadas</h4>
+                </div>
+                <span style="font-size:11px; padding:4px 10px; border-radius:99px; background:rgba(16,185,129,0.15); color:#10b981; font-weight:700;">Huecos Hoy</span>
+              </div>
+
+              <p style="font-size:12px; color:${thm.muted}; margin-bottom:12px;">
+                Servicio elegido: <strong style="color:${thm.text};">${selectedService.title} (${selectedService.price})</strong>. Elige tu hora:
+              </p>
+
+              <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:16px;">
+                ${["16:30", "17:30", "18:15", "19:30"].map(slot => {
+                  const active = studioState.selectedTime === slot;
+                  return `
+                    <button onclick="selectClientSlot('${slot}')" style="padding:10px; border-radius:12px; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; border:1px solid ${active ? thm.accent : thm.border}; background:${active ? thm.accent : 'transparent'}; color:${active ? thm.accentText : thm.text}; cursor:pointer;">
+                      ${slot}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+
+              <button onclick="simulateClientBookingModal()" style="width:100%; padding:14px; border-radius:14px; background:${thm.accent}; color:${thm.accentText}; font-weight:800; font-size:13px; cursor:pointer; border:none;">
+                Confirmar Cita para Hoy a las ${studioState.selectedTime} →
+              </button>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function simulateClientBookingModal() {
+      const modal = document.getElementById('checkout-modal');
+      const body = document.getElementById('checkout-modal-body');
+      const data = STUDIO_CATALOG[studioState.sector];
+      const srv = data.services[studioState.selectedServiceIndex] || data.services[0];
+
+      body.innerHTML = `
+        <div class="text-center">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-4">
+            <i class="ph-bold ph-check-circle"></i>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-mono text-[10px] uppercase tracking-widest">
+            PRUEBA INTERACTIVA DE TU DEMO
+          </span>
+          <h3 class="font-display font-bold text-2xl text-white mt-3 mb-2">
+            ¡Así reservan tus clientes sin llamarte!
+          </h3>
+          <p class="text-white/65 text-sm leading-relaxed mb-6">
+            Acabas de simular una reserva para <strong class="text-white">${srv.title}</strong> a las <strong class="text-emerald-400 font-mono">${studioState.selectedTime}</strong> en <strong class="text-white">${studioState.name}</strong>. Al activar tu web, estas reservas llegan automáticamente a tu móvil (<span class="font-mono text-white">${studioState.phone}</span>).
+          </p>
+          <button onclick="openStripeEmailModal()" class="w-full py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm transition-colors">
+            Desbloquear y Publicar Mi Web Ahora (50 €) →
+          </button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    function openStripeEmailModal() {
+      const modal = document.getElementById('checkout-modal');
+      const body = document.getElementById('checkout-modal-body');
+      body.innerHTML = `
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase tracking-wider">
+              ENTREGA AUTOMÁTICA • RESERVA 24H
+            </span>
+            <button onclick="closeCheckoutModal()" class="text-white/50 hover:text-white">
+              <i class="ph ph-x text-lg"></i>
+            </button>
+          </div>
+
+          <h3 class="font-display font-bold text-2xl text-white mb-2">
+            Activar la web oficial de <span class="text-emerald-400">${studioState.name}</span>
+          </h3>
+          <p class="text-white/60 text-xs leading-relaxed mb-6">
+            Al completar el pago único de <strong class="text-white">50 €</strong>, el temporizador de 24 horas se desactiva y nuestro sistema envía automáticamente a tu Email tu enlace público definitivo y las claves de tu panel privado (`/admin`).
+          </p>
+
+          <div class="space-y-4 mb-6">
+            <div>
+              <label class="block text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1.5">
+                TU EMAIL PARA RECIBIR LOS ACCESOS AL INSTANTE
+              </label>
+              <input type="email" id="buyer-email-input" value="propietario@minegocio.com" class="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-white text-sm font-medium focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-xs">
+              <span class="text-white/70">Web Completa + Panel Admin + Reservas 24/7</span>
+              <span class="font-mono font-bold text-base text-emerald-400">50,00 € (Pago único)</span>
+            </div>
+          </div>
+
+          <button onclick="completeAutomatedEmailDelivery()" class="w-full py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-colors">
+            <i class="ph-bold ph-credit-card"></i>
+            <span>Desbloquear por 50 € y Recibir Accesos en mi Email</span>
+          </button>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    function completeAutomatedEmailDelivery() {
+      const email = document.getElementById('buyer-email-input').value || "cliente@negocio.com";
+      const slug = studioState.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+      const body = document.getElementById('checkout-modal-body');
+
+      body.innerHTML = `
+        <div>
+          <div class="flex items-center gap-2 text-emerald-400 font-mono text-xs uppercase tracking-wider mb-2">
+            <i class="ph-fill ph-check-circle text-lg"></i>
+            <span>ENTREGA AUTOMÁTICA COMPLETADA</span>
+          </div>
+          <h3 class="font-display font-bold text-2xl text-white mb-2">
+            ¡Web Desbloqueada y Email Enviado!
+          </h3>
+          <p class="text-white/60 text-xs mb-5">
+            El propietario recibe automáticamente este correo en <strong class="text-white">${email}</strong> con todas sus credenciales:
+          </p>
+
+          <!-- Automated Email Preview Box -->
+          <div class="p-5 rounded-2xl bg-black border border-emerald-500/30 font-mono text-xs space-y-2.5 text-white/85 mb-6">
+            <div class="text-emerald-400 font-bold">DE: Mi Web Local &lt;acceso@miweblocal.com&gt;</div>
+            <div>ASUNTO: Tu web oficial de ${studioState.name} ya está activa</div>
+            <div class="border-t border-white/10 pt-2.5 space-y-2 text-[11px]">
+              <div>1. URL PÚBLICA OFICIAL: <span class="text-emerald-400 underline">https://miweblocal.com/${slug}</span></div>
+              <div>2. PANEL DE AUTO-EDICIÓN: <span class="text-amber-300 underline">https://miweblocal.com/${slug}/admin</span></div>
+              <div>3. CLAVE DE PROPIETARIO: <span class="bg-white/10 px-2 py-0.5 rounded text-white">MW-${Math.floor(1000 + Math.random()*9000)}</span></div>
+              <div>4. ADJUNTO: <span class="text-white/60">QR_Escaparate_${slug}.pdf</span></div>
+            </div>
+          </div>
+
+          <button onclick="closeCheckoutModal()" class="w-full py-3.5 rounded-full bg-white text-black font-bold text-xs">
+            Cerrar Vista Previa
+          </button>
+        </div>
+      `;
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
+
+    function triggerTikTokShowcase() {
+      closeCheckoutModal();
+      document.getElementById('generador').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const input = document.getElementById('studio-name');
+        input.value = "";
+        const demoName = "Motos Orero VIP";
+        let idx = 0;
+        const typer = setInterval(() => {
+          input.value += demoName[idx];
+          idx++;
+          if (idx >= demoName.length) {
+            clearInterval(typer);
+            setStudioSector('taller', false);
+            setStudioTheme('sport', false);
+            animateRebuild();
+          }
+        }, 55);
+      }, 750);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLiveStudio();
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.gsap-reveal').forEach((el) => {
+        gsap.fromTo(el,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%"
+            }
+          }
+        );
+      });
+    });
   </script>
-
-  <!-- Owner Activation Banner -->
-  <script src="/owner-banner.js" defer></script>
 </body>
 </html>
