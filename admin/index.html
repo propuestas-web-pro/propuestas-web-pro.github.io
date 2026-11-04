@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Panel Móvil de Propietario (/admin) · MiWebLocal</title>
-  <meta name="theme-color" content="#090B10" />
+  <meta name="theme-color" content="#FAFBFD" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +26,8 @@
   </script>
   <style>
     html, body {
-      background: #090B10;
-      color: #F8FAFC;
+      background: #FAFBFD;
+      color: #0F172A;
       -webkit-tap-highlight-color: transparent;
       overflow-x: hidden;
     }
@@ -38,24 +38,24 @@
 <body class="min-h-screen pb-28 antialiased">
 
   <!-- Top App Bar -->
-  <header class="sticky top-0 z-40 bg-[#090B10]/95 backdrop-blur-xl border-b border-white/10">
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200">
     <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2 min-w-0">
-        <span class="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-display font-extrabold text-sm shrink-0">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <span class="w-8 h-8 rounded-xl bg-[#4F46E5] text-white flex items-center justify-center font-display font-extrabold text-sm shrink-0 shadow-sm">
           <i class="ph-bold ph-key"></i>
         </span>
         <div class="min-w-0">
-          <span class="block text-[10px] font-mono uppercase text-amber-300 leading-none">Panel Propietario</span>
-          <strong id="adm-header-name" class="block font-display font-bold text-sm text-white truncate">Mi Negocio</strong>
+          <span class="block text-[10px] font-mono uppercase text-[#4F46E5] font-bold leading-none">Panel Propietario</span>
+          <strong id="adm-header-name" class="block font-display font-bold text-sm text-slate-900 truncate">Mi Negocio</strong>
         </div>
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
         <a id="adm-open-live-top" href="/sitio/" target="_blank"
-          class="px-3 py-1.5 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">
+          class="px-3.5 py-1.5 rounded-full bg-[#4F46E5] text-white font-display font-bold text-xs whitespace-nowrap shadow-sm">
           Ver Mi Web ↗
         </a>
-        <a href="/" class="px-2.5 py-1.5 rounded-xl bg-white/8 border border-white/12 text-slate-300 text-xs font-semibold">
+        <a href="/" class="px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
           Inicio
         </a>
       </div>
@@ -66,35 +66,35 @@
        SCREEN 1: PIN LOGIN GATE
        ===================================================================== -->
   <main id="pin-gate" class="max-w-md mx-auto px-4 pt-10">
-    <div class="rounded-3xl bg-[#111622] border border-white/15 p-6 shadow-2xl space-y-5">
-      <div class="w-12 h-12 rounded-2xl bg-amber-400/15 border border-amber-400/35 text-amber-300 flex items-center justify-center text-2xl">
+    <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-xl space-y-5">
+      <div class="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 text-[#4F46E5] flex items-center justify-center text-2xl">
         <i class="ph-bold ph-lock-key-open"></i>
       </div>
 
       <div>
-        <span class="text-[11px] font-mono uppercase text-amber-300 font-bold">Acceso Privado sin Comisiones</span>
-        <h1 class="font-display font-extrabold text-2xl text-white mt-0.5">
-          Autogestión de <span id="gate-biz-name" class="text-emerald-400">Tu Negocio</span>
+        <span class="text-[11px] font-mono uppercase text-[#4F46E5] font-bold">Acceso Privado sin Comisiones</span>
+        <h1 class="font-display font-extrabold text-2xl text-slate-900 mt-0.5">
+          Autogestión de <span id="gate-biz-name" class="text-[#4F46E5]">Tu Negocio</span>
         </h1>
-        <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
-          Desde aquí cambias precios, platos, teléfono de WhatsApp u horarios de vacaciones desde tu móvil en 10 segundos.
+        <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+          Desde aquí cambias precios, servicios, teléfono de WhatsApp u horarios de vacaciones desde tu móvil en 10 segundos.
         </p>
       </div>
 
-      <div id="demo-pin-hint" class="p-3.5 rounded-2xl bg-emerald-500/12 border border-emerald-400/30 text-xs text-emerald-200">
-        <strong>✨ Modo Prueba Gratis Activo:</strong> Tu clave temporal es <code id="hint-pin-code" class="px-1.5 py-0.5 rounded bg-slate-950 text-emerald-300 font-mono font-bold">PRO-4829</code> (ya escrita abajo para que entres con 1 toque).
+      <div id="demo-pin-hint" class="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs text-slate-700">
+        <strong class="text-[#4F46E5]">Modo Prueba Gratis Activo:</strong> Tu clave temporal es <code id="hint-pin-code" class="px-1.5 py-0.5 rounded bg-white border border-indigo-200 text-[#4F46E5] font-mono font-bold">PRO-4829</code> (ya escrita abajo para que entres con 1 toque).
       </div>
 
       <form onsubmit="verifyAdminPin(event)" class="space-y-3">
         <div>
-          <label for="pin-input" class="block text-xs font-bold uppercase text-slate-300 mb-1">Clave de Propietario (PIN)</label>
+          <label for="pin-input" class="block text-xs font-bold uppercase text-slate-600 mb-1">Clave de Propietario (PIN)</label>
           <input type="text" id="pin-input" placeholder="PRO-4829"
-            class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-white/20 text-white font-mono font-bold tracking-wider uppercase focus:border-amber-400 focus:outline-none" />
-          <p id="pin-error" class="hidden text-xs text-rose-400 font-semibold mt-1.5">Clave incorrecta. Revisa el código enviado al activar tu web.</p>
+            class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono font-bold tracking-wider uppercase focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
+          <p id="pin-error" class="hidden text-xs text-rose-600 font-semibold mt-1.5">Clave incorrecta. Revisa el código enviado al activar tu web.</p>
         </div>
 
         <button type="submit"
-          class="w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm shadow-lg">
+          class="w-full py-3.5 rounded-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-display font-bold text-sm shadow-lg">
           Entrar al Panel de Mi Negocio →
         </button>
       </form>
@@ -107,123 +107,123 @@
   <main id="owner-dashboard" class="hidden max-w-2xl mx-auto px-4 pt-6 space-y-5">
 
     <!-- Status Banner -->
-    <div id="adm-demo-banner" class="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/15 to-amber-500/15 border border-emerald-400/35 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div id="adm-demo-banner" class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div class="text-xs">
-        <strong class="text-white block">Estás probando tu Panel /admin en vivo</strong>
-        <span class="text-slate-300">Sube tus fotos o haz cualquier cambio abajo, pulsa Guardar y abre tu web para verlo al instante.</span>
+        <strong class="text-slate-900 block">Estás probando tu Panel /admin en vivo</strong>
+        <span class="text-slate-600">Sube tus fotos o haz cualquier cambio abajo, pulsa Guardar y abre tu web para verlo al instante.</span>
       </div>
-      <a href="/#opciones" class="px-3.5 py-2 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap self-start sm:self-auto">
-        Publicar · Desde 79 €
+      <a href="/#precios" class="px-4 py-2 rounded-full bg-[#4F46E5] text-white font-display font-bold text-xs whitespace-nowrap self-start sm:self-auto">
+        Contratar · Desde 79 €
       </a>
     </div>
 
     <!-- Card 0: Subir / Cambiar Fotos Reales desde el Móvil -->
-    <section class="rounded-3xl bg-[#111622] border border-emerald-400/35 p-5 space-y-3">
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3 shadow-sm">
       <div class="flex items-center justify-between gap-2">
-        <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-          <i class="ph-bold ph-camera text-emerald-400"></i> Fotos Reales de Tu Local o Trabajos
+        <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+          <i class="ph-bold ph-camera text-[#4F46E5]"></i> Fotos Reales de Tu Local o Trabajos
         </h2>
-        <button type="button" onclick="admResetPhotos()" class="px-2.5 py-1 rounded-lg bg-white/10 text-slate-300 text-xs font-semibold">
+        <button type="button" onclick="admResetPhotos()" class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
           Restaurar
         </button>
       </div>
-      <p class="text-xs text-slate-300">Sube de 1 a 4 fotos desde tu móvil u ordenador. Se optimizan solas al instante:</p>
-      <label class="w-full py-3 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm text-center cursor-pointer block">
+      <p class="text-xs text-slate-600">Sube de 1 a 4 fotos desde tu móvil u ordenador. Se optimizan solas al instante:</p>
+      <label class="w-full py-3 px-4 rounded-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-display font-bold text-xs sm:text-sm text-center cursor-pointer block shadow-sm">
         📷 Seleccionar Fotos de Mi Móvil / PC
         <input type="file" accept="image/*" multiple class="hidden" onchange="admUploadPhotos(this)" />
       </label>
-      <div id="adm-photo-status" class="text-xs font-semibold text-emerald-300"></div>
+      <div id="adm-photo-status" class="text-xs font-semibold text-[#4F46E5]"></div>
     </section>
 
     <!-- Card 1: Quick Status / Vacation Mode -->
-    <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3">
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3 shadow-sm">
       <div class="flex items-center justify-between gap-2">
-        <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-          <i class="ph-bold ph-megaphone text-amber-400"></i> 1. Aviso Rápido / Modo Vacaciones
+        <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+          <i class="ph-bold ph-megaphone text-[#4F46E5]"></i> 1. Aviso Rápido / Modo Vacaciones
         </h2>
         <button type="button" onclick="setVacationNotice()"
-          class="px-3 py-1.5 rounded-xl bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs font-bold">
+          class="px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-[#4F46E5] text-xs font-bold">
           🏖️ Poner "Vacaciones"
         </button>
       </div>
       <div>
-        <label class="block text-xs text-slate-400 mb-1">Texto destacado arriba a la derecha en tu web:</label>
+        <label class="block text-xs text-slate-600 font-semibold mb-1">Texto destacado arriba en tu web:</label>
         <input type="text" id="adm-years"
-          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
       </div>
     </section>
 
     <!-- Card 2: Datos Principales y WhatsApp -->
-    <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3.5">
-      <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-        <i class="ph-bold ph-storefront text-emerald-400"></i> 2. Datos del Local y WhatsApp
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3.5 shadow-sm">
+      <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+        <i class="ph-bold ph-storefront text-[#4F46E5]"></i> 2. Datos del Local y WhatsApp
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Nombre del negocio</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Nombre del negocio</label>
           <input type="text" id="adm-name"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white font-semibold focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-semibold focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
         <div>
-          <label class="block text-xs text-emerald-300 font-bold mb-1">WhatsApp de reservas</label>
+          <label class="block text-xs text-[#4F46E5] font-bold mb-1">WhatsApp de reservas</label>
           <input type="tel" id="adm-whatsapp"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-emerald-400/40 text-white font-bold focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-indigo-300 text-slate-900 font-bold focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Ciudad / Zona</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Ciudad / Zona</label>
           <input type="text" id="adm-city"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Dirección (Google Maps)</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Dirección (Google Maps)</label>
           <input type="text" id="adm-address"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
       </div>
 
       <div>
-        <label class="block text-xs text-slate-400 mb-1">Titular principal de bienvenida</label>
+        <label class="block text-xs text-slate-600 font-semibold mb-1">Titular principal de bienvenida</label>
         <input type="text" id="adm-tagline"
-          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
       </div>
     </section>
 
     <!-- Card 3: Horarios -->
-    <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3">
-      <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-        <i class="ph-bold ph-clock text-emerald-400"></i> 3. Horario de Apertura
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3 shadow-sm">
+      <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+        <i class="ph-bold ph-clock text-[#4F46E5]"></i> 3. Horario de Apertura
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Lunes a Viernes</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Lunes a Viernes</label>
           <input type="text" id="adm-hw"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Sábados</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Sábados</label>
           <input type="text" id="adm-hs"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
         <div>
-          <label class="block text-xs text-slate-400 mb-1">Domingos / Festivos</label>
+          <label class="block text-xs text-slate-600 font-semibold mb-1">Domingos / Festivos</label>
           <input type="text" id="adm-hd"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
         </div>
       </div>
     </section>
 
     <!-- Card 4: Precios, Servicios o Carta -->
-    <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3.5">
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3.5 shadow-sm">
       <div class="flex items-center justify-between gap-2">
-        <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-          <i class="ph-bold ph-tag text-emerald-400"></i> 4. Tus Precios y Servicios
+        <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+          <i class="ph-bold ph-tag text-[#4F46E5]"></i> 4. Tus Precios y Servicios
         </h2>
         <button type="button" onclick="admAddService()"
-          class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold">
+          class="px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-[#4F46E5] text-xs font-bold">
           + Añadir Línea
         </button>
       </div>
@@ -231,9 +231,9 @@
     </section>
 
     <!-- Card 5: Paleta Visual -->
-    <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3">
-      <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
-        <i class="ph-bold ph-palette text-emerald-400"></i> 5. Color de tu Web
+    <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3 shadow-sm">
+      <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
+        <i class="ph-bold ph-palette text-[#4F46E5]"></i> 5. Color de tu Web
       </h2>
       <div id="adm-themes-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
     </section>
@@ -241,27 +241,27 @@
   </main>
 
   <!-- Fixed Save Bar inside Dashboard -->
-  <div id="adm-save-bar" class="hidden fixed bottom-0 inset-x-0 z-40 bg-[#090B10]/95 backdrop-blur-xl border-t border-white/15 p-3">
+  <div id="adm-save-bar" class="hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-200 p-3">
     <div class="max-w-2xl mx-auto flex items-center justify-between gap-2.5">
       <button type="button" onclick="saveAdminChanges()"
-        class="flex-1 py-3.5 px-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2">
+        class="flex-1 py-3.5 px-4 rounded-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-display font-bold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2">
         <i class="ph-bold ph-check-circle text-lg"></i>
         <span>Guardar Cambios en Mi Web</span>
       </button>
       <a id="adm-open-live-bottom" href="/sitio/" target="_blank"
-        class="py-3.5 px-4 rounded-2xl bg-white/10 border border-white/15 text-white font-display font-bold text-xs sm:text-sm whitespace-nowrap">
+        class="py-3.5 px-5 rounded-full bg-slate-100 border border-slate-200 text-slate-900 font-display font-bold text-xs sm:text-sm whitespace-nowrap">
         Ver Web ↗
       </a>
     </div>
   </div>
 
   <!-- Toast Confirmation -->
-  <div id="adm-toast" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-xs shadow-2xl">
+  <div id="adm-toast" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-[#4F46E5] text-white font-display font-bold text-xs shadow-2xl">
     ✓ Cambios guardados y publicados al instante
   </div>
 
-  <script src="../assets/stripe-config.js?v=85"></script>
-  <script src="../assets/studio-engine.js?v=85"></script>
+  <script src="../assets/stripe-config.js?v=90"></script>
+  <script src="../assets/studio-engine.js?v=90"></script>
   <script>
     let admState = loadStudioState();
 
@@ -288,7 +288,7 @@
 
       if (admState.unlocked) {
         document.getElementById('adm-demo-banner').classList.add('hidden');
-        document.getElementById('demo-pin-hint').innerHTML = '<strong>✓ Web Oficial Activa:</strong> Tu clave privada de propietario es <code class="px-1.5 py-0.5 rounded bg-slate-950 text-emerald-300 font-mono font-bold">' + escapeHtml(admState.adminPin) + '</code>.';
+        document.getElementById('demo-pin-hint').innerHTML = '<strong>✓ Web Oficial Activa:</strong> Tu clave privada de propietario es <code class="px-1.5 py-0.5 rounded bg-white border border-indigo-200 text-[#4F46E5] font-mono font-bold">' + escapeHtml(admState.adminPin) + '</code>.';
       }
       refreshLiveLinks();
     })();
@@ -332,19 +332,19 @@
     function renderAdmServices() {
       const box = document.getElementById('adm-services-list');
       box.innerHTML = (admState.services || []).map((srv, idx) => `
-        <div class="p-3 rounded-2xl bg-slate-950 border border-white/10 space-y-2">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono text-emerald-400 font-bold">ÍTEM #${idx + 1}</span>
-            ${admState.services.length > 1 ? `<button type="button" onclick="admRemoveService(${idx})" class="text-xs text-rose-300 px-2 py-0.5 rounded bg-rose-500/15">Eliminar</button>` : ''}
+            <span class="text-[11px] font-mono text-[#4F46E5] font-bold">ÍTEM #${idx + 1}</span>
+            ${admState.services.length > 1 ? `<button type="button" onclick="admRemoveService(${idx})" class="text-xs text-rose-600 font-semibold px-2 py-0.5 rounded bg-rose-50">Eliminar</button>` : ''}
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
             <input type="text" value="${escapeHtml(srv.title)}" oninput="admState.services[${idx}].title = this.value"
-              class="sm:col-span-8 px-3 py-2 rounded-xl bg-[#111622] border border-white/12 text-white" />
+              class="sm:col-span-8 px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 font-semibold" />
             <input type="text" value="${escapeHtml(srv.price)}" oninput="admState.services[${idx}].price = this.value"
-              class="sm:col-span-4 px-3 py-2 rounded-xl bg-[#111622] border border-white/12 text-emerald-300 font-bold" />
+              class="sm:col-span-4 px-3 py-2 rounded-xl bg-white border border-slate-300 text-[#4F46E5] font-bold" />
           </div>
           <input type="text" value="${escapeHtml(srv.meta)}" oninput="admState.services[${idx}].meta = this.value"
-            class="w-full px-3 py-2 rounded-xl bg-[#111622] border border-white/12 text-slate-300" />
+            class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-600" />
         </div>
       `).join('');
     }
@@ -366,12 +366,12 @@
         const on = admState.theme === k;
         return `
           <button type="button" onclick="admPickTheme('${k}')"
-            class="p-3 rounded-xl border text-left flex items-center gap-3 ${on ? 'border-emerald-400 bg-emerald-500/15' : 'border-white/10 bg-slate-950'}">
-            <span class="w-7 h-7 rounded-full border border-white/20 flex overflow-hidden shrink-0">
+            class="p-3 rounded-xl border text-left flex items-center gap-3 ${on ? 'border-[#4F46E5] bg-indigo-50' : 'border-slate-200 bg-slate-50'}">
+            <span class="w-7 h-7 rounded-full border border-slate-300 flex overflow-hidden shrink-0">
               <span style="background:${t.swatch1}; width:50%; height:100%;"></span>
               <span style="background:${t.swatch2}; width:50%; height:100%;"></span>
             </span>
-            <span class="text-xs font-bold text-white truncate">${escapeHtml(t.label)}</span>
+            <span class="text-xs font-bold text-slate-900 truncate">${escapeHtml(t.label)}</span>
           </button>
         `;
       }).join('');

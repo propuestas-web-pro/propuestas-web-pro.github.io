@@ -5,35 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
   <title>Pago confirmado · Entrega Automática · MiWebLocal</title>
-  <meta name="theme-color" content="#07090E" />
+  <meta name="theme-color" content="#FAFBFD" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { min-height: 100dvh; background: #07090E; color: #F8FAFC; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; padding: 18px; }
-    .card { width: 100%; max-width: 640px; background: #0C1018; border: 1px solid rgba(52,211,153,.4); border-radius: 26px; padding: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.65); }
-    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: #34D399; color: #04130D; font-size: 12px; font-weight: 800; }
-    h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 24px; line-height: 1.15; margin: 12px 0 8px; }
-    p { color: #CBD5E1; font-size: 13.5px; line-height: 1.5; }
-    .ref { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #6EE7B7; word-break: break-all; margin-top: 10px; padding: 8px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(52,211,153,0.25); border-radius: 10px; }
-    .owner-box { margin: 14px 0; padding: 15px; border-radius: 18px; background: linear-gradient(135deg, rgba(99,91,255,0.16), rgba(16,185,129,0.12)); border: 1px solid rgba(129,140,248,0.45); display: grid; gap: 10px; }
-    .pin-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; border-radius: 12px; background: rgba(5,7,12,0.65); border: 1px solid rgba(255,255,255,0.12); font-size: 12.5px; }
-    .pin-code { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: #FCD34D; background: rgba(245,158,11,0.15); padding: 3px 9px; border-radius: 7px; }
+    body { min-height: 100dvh; background: #FAFBFD; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; padding: 18px; }
+    .card { width: 100%; max-width: 640px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 26px; padding: 26px; box-shadow: 0 28px 70px -20px rgba(15,23,42,.12); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 999px; background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE; font-size: 12px; font-weight: 800; }
+    h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.15; margin: 12px 0 8px; color: #0F172A; }
+    p { color: #475569; font-size: 14px; line-height: 1.5; }
+    .ref { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #4F46E5; word-break: break-all; margin-top: 10px; padding: 8px 12px; background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px; }
+    .owner-box { margin: 14px 0; padding: 16px; border-radius: 18px; background: #F8FAFC; border: 1.5px solid #C7D2FE; display: grid; gap: 10px; }
+    .pin-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 13px; color: #334155; font-weight: 600; }
+    .pin-code { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: #4F46E5; background: #EEF2FF; padding: 4px 10px; border-radius: 7px; border: 1px solid #C7D2FE; }
     .grid-btns { display: grid; grid-template-columns: 1fr; gap: 8px; }
     @media (min-width: 520px) { .grid-btns { grid-template-columns: 1fr 1fr; } }
-    .form-box { margin: 14px 0; display: grid; gap: 9px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 14px; }
-    .field label { display: block; font-size: 11px; font-weight: 700; color: #94A3B8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
-    .field input, .field textarea { width: 100%; padding: 9px 11px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #fff; font-family: inherit; font-size: 13.5px; outline: none; }
+    .form-box { margin: 14px 0; display: grid; gap: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 18px; padding: 16px; }
+    .field label { display: block; font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px; }
+    .field input, .field textarea { width: 100%; padding: 10px 12px; border-radius: 10px; background: #FFFFFF; border: 1px solid #CBD5E1; color: #0F172A; font-family: inherit; font-size: 14px; outline: none; }
+    .field input:focus, .field textarea:focus { border-color: #4F46E5; }
     .field textarea { resize: vertical; min-height: 54px; }
-    .btn { width: 100%; padding: 13px 16px; border-radius: 999px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 7px; text-decoration: none; }
-    .btn-wa { background: #34D399; color: #04130D; box-shadow: 0 10px 26px rgba(52,211,153,.3); }
-    .btn-admin { background: #FBBF24; color: #090D16; }
-    .btn-site { background: #635BFF; color: #fff; }
-    .btn-ghost { background: rgba(255,255,255,.07); color: #fff; border: 1px solid rgba(255,255,255,.14); margin-top: 8px; font-size: 12.5px; }
-    .muted { font-size: 11.5px; color: #94A3B8; margin-top: 12px; text-align: center; }
+    .btn { width: 100%; padding: 13px 16px; border-radius: 999px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 7px; text-decoration: none; }
+    .btn-wa { background: #4F46E5; color: #FFFFFF; box-shadow: 0 12px 28px -8px rgba(79,70,229,.45); }
+    .btn-admin { background: #EEF2FF; color: #4F46E5; border: 1.5px solid #C7D2FE; }
+    .btn-site { background: #4F46E5; color: #fff; }
+    .btn-ghost { background: #FFFFFF; color: #0F172A; border: 1px solid #CBD5E1; margin-top: 8px; font-size: 13px; }
+    .muted { font-size: 12px; color: #64748B; margin-top: 12px; text-align: center; }
   </style>
 </head>
 <body>
@@ -46,7 +47,7 @@
 
     <!-- AUTOMATIC OWNER SELF-EDIT KIT (/admin + PIN) -->
     <section class="owner-box">
-      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:15px; color:#fff;">
+      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:15px; color:#0F172A;">
         🔑 Tu Acceso Privado de Propietario (Edita fotos, precios y horarios cuando quieras)
       </div>
       <div class="pin-row">
@@ -62,21 +63,21 @@
         </a>
       </div>
       <button type="button" class="btn btn-ghost" onclick="saveMyCredentialsToWhatsApp()">
-        <i class="ph-fill ph-whatsapp-logo" style="color:#34D399;"></i> Guardarme mi Enlace + Panel /admin + PIN en mi WhatsApp
+        <i class="ph-fill ph-whatsapp-logo" style="color:#4F46E5;"></i> Guardarme mi Enlace + Panel /admin + PIN en mi WhatsApp
       </button>
     </section>
 
     <div class="form-box">
-      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff;">
+      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14.5px; color:#0F172A;">
         🌐 Confirma tu dominio oficial incluido (activación automática con SSL):
       </div>
       <div class="field">
         <label for="f-dom">Dominio oficial deseado (.es / .com)</label>
-        <input id="f-dom" type="text" placeholder="Ej. clinicasonrisas.es" />
+        <input id="f-dom" type="text" placeholder="Ej. peluquerialaura.es" />
       </div>
       <div class="field">
         <label for="f-hor">Horario y dirección exacta (opcional si ya los pusiste)</label>
-        <input id="f-hor" type="text" placeholder="Ej. Lunes a Sábado 9:30–20:00 · Calle Mayor 12, Madrid" />
+        <input id="f-hor" type="text" placeholder="Ej. Lunes a Sábado 9:30 a 20:00 · Calle Mayor 12, Madrid" />
       </div>
       <div class="field">
         <label for="f-ser">Nota opcional o servicios extra</label>
@@ -95,8 +96,8 @@
     <p class="muted">Soporte directo: WhatsApp +34 632 76 81 52.</p>
   </main>
 
-  <script src="../assets/stripe-config.js?v=85"></script>
-  <script src="../assets/studio-engine.js?v=85"></script>
+  <script src="../assets/stripe-config.js?v=90"></script>
+  <script src="../assets/studio-engine.js?v=90"></script>
   <script>
     const qs = new URLSearchParams(window.location.search);
     const sessionId = qs.get('session_id') || '';

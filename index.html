@@ -1,1373 +1,830 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Smart Auto-Redirect for existing live sub-client URLs -->
-  <script>
-    (function() {
-      var path = window.location.pathname;
-      if (path.length > 1 && !path.endsWith('/') && !path.endsWith('.html')) {
-        window.location.replace(path + '/' + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>MiWebLocal — Genera Tu Web Ordenador + Móvil Ahora (Pago Único Para Siempre)</title>
-  <meta name="description" content="Genera tu página web Ordenador + Móvil en 10 segundos, mírala en tu vista previa de 24h y contrátala desde 79 € en un único pago para siempre (0 €/mes · 0 €/año)." />
-  <meta name="theme-color" content="#050608" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MiWebLocal · Tu web profesional en 15 segundos · Pago único</title>
+  <meta name="description" content="Escribe el nombre de tu negocio y mira tu web puesta en 15 segundos. Si te gusta, es tuya con un pago único desde 79 €. Sin cuotas mensuales." />
+  <meta name="theme-color" content="#FAFBFD" />
+  <meta property="og:title" content="MiWebLocal · Tu web profesional en 15 segundos" />
+  <meta property="og:description" content="Pago único desde 79 €. Sin cuotas mensuales. Tuya para siempre." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    };
-  </script>
-  <link rel="stylesheet" href="assets/showcase-v4.css?v=85" />
+  <style>
+    :root {
+      --bg: #FAFBFD;
+      --card: #FFFFFF;
+      --tint: #F1F5FB;
+      --soft: #EEF2FF;
+      --ink: #0F172A;
+      --muted: #475569;
+      --line: rgba(15, 23, 42, 0.08);
+      --brand: #4F46E5;
+      --brand-hi: #4338CA;
+      --brand-ring: rgba(79, 70, 229, 0.18);
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      background: var(--bg); color: var(--ink);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip;
+    }
+    ::selection { background: var(--brand); color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 10px; }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; letter-spacing: -0.035em; text-wrap: balance; line-height: 1.06; }
+    .num { font-variant-numeric: tabular-nums; }
+
+    /* NAV */
+    .nav-shell { position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 14px; pointer-events: none; }
+    .nav {
+      pointer-events: auto; max-width: 1040px; margin: 0 auto; height: 62px; padding: 0 10px 0 20px;
+      background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--line); border-radius: 999px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      box-shadow: 0 10px 34px -14px rgba(15, 23, 42, 0.18);
+    }
+    .logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; letter-spacing: -0.04em; display: flex; align-items: center; gap: 9px; }
+    .logo-mark { width: 30px; height: 30px; border-radius: 9px; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 1rem; }
+    .logo b { color: var(--brand); }
+    .nav-links { display: none; gap: 26px; font-size: 14px; font-weight: 600; color: var(--muted); }
+    .nav-links a:hover { color: var(--brand); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 8px 8px 8px 24px; border-radius: 999px; border: none; cursor: pointer;
+      background: var(--brand); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15.5px;
+      box-shadow: 0 14px 30px -10px rgba(79, 70, 229, 0.55);
+      transition: transform 0.25s var(--ease), background 0.2s ease;
+    }
+    .btn-ic { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: grid; place-items: center; transition: transform 0.3s var(--ease); }
+    .btn:active { transform: scale(0.97); }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { background: var(--brand-hi); transform: translateY(-1px); }
+      .btn:hover .btn-ic { transform: translateX(3px); }
+    }
+    .btn-sm { padding: 0 20px; height: 46px; font-size: 14.5px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 20px; height: 46px;
+      border-radius: 999px; background: var(--card); color: var(--ink); border: 1px solid var(--line);
+      font-weight: 700; font-size: 14px; cursor: pointer; transition: border-color 0.2s ease, transform 0.25s var(--ease);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+    @media (hover: hover) and (pointer: fine) { .btn-ghost:hover { border-color: var(--brand); color: var(--brand); } }
+
+    /* DOUBLE BEZEL */
+    .bz { background: rgba(15, 23, 42, 0.035); border: 1px solid rgba(15, 23, 42, 0.07); padding: 7px; border-radius: 32px; }
+    .bz-in { background: var(--card); border-radius: 25px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 24px 50px -22px rgba(30, 41, 59, 0.14); }
+
+    /* HERO */
+    .hero { padding: 112px 0 76px; background: radial-gradient(800px 420px at 82% -4%, var(--soft), transparent 70%); }
+    .hero-grid { display: grid; gap: 46px; align-items: center; }
+    @media (min-width: 980px) { .hero { padding-top: 120px; } .hero-grid { grid-template-columns: 0.92fr 1.08fr; gap: 54px; } }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 20px; }
+    .pill i { color: var(--brand); font-size: 16px; }
+    h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); font-weight: 800; margin-bottom: 14px; }
+    h1 em { font-style: normal; color: var(--brand); }
+    .lead { font-size: 16.5px; color: var(--muted); max-width: 520px; margin-bottom: 22px; }
+
+    .entry { padding: 22px; }
+    .step-label { font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .step-n { width: 22px; height: 22px; border-radius: 50%; background: var(--soft); color: var(--brand); font-size: 12px; display: grid; place-items: center; font-weight: 800; }
+    .sectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
+    @media (min-width: 520px) { .sectors { grid-template-columns: repeat(3, 1fr); } }
+    .sec-btn {
+      display: flex; align-items: center; gap: 9px; padding: 12px 12px; border-radius: 16px;
+      background: var(--bg); border: 1.5px solid var(--line); color: var(--ink);
+      font-weight: 700; font-size: 13px; text-align: left; cursor: pointer; line-height: 1.2;
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease);
+    }
+    .sec-btn i { font-size: 20px; color: var(--muted); flex-shrink: 0; }
+    .sec-btn:active { transform: scale(0.97); }
+    .sec-btn[aria-pressed="true"] { border-color: var(--brand); background: var(--soft); color: var(--brand); box-shadow: 0 0 0 3px var(--brand-ring); }
+    .sec-btn[aria-pressed="true"] i { color: var(--brand); }
+    @media (hover: hover) and (pointer: fine) { .sec-btn:hover { border-color: var(--brand); } }
+
+    .field-row { display: flex; flex-direction: column; gap: 10px; }
+    @media (min-width: 560px) { .field-row { flex-direction: row; align-items: center; } }
+    .input {
+      flex: 1; min-width: 0; height: 58px; padding: 0 20px; border-radius: 999px; border: 1.5px solid var(--line);
+      background: var(--bg); color: var(--ink); font-size: 16px; font-family: inherit; outline: none;
+    }
+    .input:focus { border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-ring); background: #fff; }
+    .input::placeholder { color: #94A3B8; }
+    .more { margin-top: 14px; font-size: 13px; }
+    .more summary { cursor: pointer; font-weight: 700; color: var(--brand); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+    .more summary::-webkit-details-marker { display: none; }
+    .more-grid { display: grid; gap: 10px; margin-top: 12px; }
+    @media (min-width: 560px) { .more-grid { grid-template-columns: 1fr 1fr; } }
+    .input-sm { height: 46px; font-size: 14px; border-radius: 14px; padding: 0 14px; }
+    .upload { display: flex; align-items: center; justify-content: center; gap: 8px; height: 46px; border-radius: 14px; border: 1.5px dashed var(--brand); color: var(--brand); font-weight: 700; font-size: 13.5px; cursor: pointer; background: var(--soft); }
+    .micro { margin-top: 14px; font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 14px; }
+    .micro span { display: inline-flex; align-items: center; gap: 5px; }
+    .micro i { color: var(--brand); }
+
+    .result { margin-top: 16px; padding: 16px; border-radius: 20px; background: var(--soft); border: 1px solid var(--brand-ring); display: none; }
+    .result.on { display: block; animation: pop 0.5s var(--ease); }
+    @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+    .result h3 { font-size: 18px; margin-bottom: 4px; }
+    .result p { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+    .result .timer { font-weight: 800; color: var(--brand); }
+    .result-btns { display: grid; gap: 8px; }
+    @media (min-width: 560px) { .result-btns { grid-template-columns: 1fr 1fr; } }
+
+    /* LIVE PREVIEW */
+    .win-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+    .dots { display: flex; gap: 6px; }
+    .dots i { width: 10px; height: 10px; border-radius: 50%; background: #E2E8F0; }
+    .url { flex: 1; min-width: 0; height: 30px; border-radius: 999px; background: var(--tint); display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted); overflow: hidden; white-space: nowrap; }
+    .url i { color: #10B981; }
+    .viewport { position: relative; overflow: hidden; border-radius: 0 0 25px 25px; background: var(--tint); aspect-ratio: 16 / 10.4; }
+    .viewport iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
+    .viewport.mobile { aspect-ratio: 390 / 640; max-width: 310px; margin: 0 auto; border-radius: 0 0 25px 25px; }
+    .viewport.mobile iframe { pointer-events: none; }
+    .tap-open { position: absolute; inset: 0; z-index: 3; display: none; background: transparent; border: 0; cursor: pointer; }
+    .viewport.mobile .tap-open { display: block; }
+    .live-tag { position: absolute; z-index: 4; left: 50%; bottom: 14px; transform: translateX(-50%); padding: 7px 14px; border-radius: 999px; background: rgba(15,23,42,0.88); color: #fff; font-size: 12px; font-weight: 700; pointer-events: none; white-space: nowrap; }
+
+    /* SECTIONS */
+    section.block { padding: 96px 0; }
+    .head { max-width: 640px; margin-bottom: 44px; }
+    .tag { display: inline-block; padding: 5px 13px; border-radius: 999px; background: var(--soft); color: var(--brand); font-size: 12.5px; font-weight: 700; margin-bottom: 14px; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; margin-bottom: 12px; }
+    .sub { color: var(--muted); font-size: 16.5px; }
+
+    /* Examples */
+    .ex-grid { display: grid; gap: 16px; }
+    @media (min-width: 640px) { .ex-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px) { .ex-grid { grid-template-columns: repeat(3, 1fr); } }
+    .ex-card { display: flex; flex-direction: column; }
+    .ex-img { aspect-ratio: 4 / 3; border-radius: 25px 25px 0 0; overflow: hidden; }
+    .ex-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
+    @media (hover: hover) and (pointer: fine) { .ex-card:hover .ex-img img { transform: scale(1.04); } }
+    .ex-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .ex-body h3 { font-size: 19px; }
+    .ex-body p { font-size: 13.5px; color: var(--muted); flex: 1; }
+    .ex-body .btn-ghost { margin-top: 10px; width: 100%; }
+    .real-strip { margin-top: 34px; }
+    .real-strip h3 { font-size: 20px; margin-bottom: 14px; }
+    .real-row { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 820px) { .real-row { grid-template-columns: repeat(4, 1fr); } }
+    .real-item { display: block; }
+    .real-item img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top; border-radius: 18px 18px 0 0; display: block; }
+    .real-item span { display: block; padding: 10px 14px 12px; font-size: 13px; font-weight: 700; }
+    .real-item small { display: block; color: var(--muted); font-weight: 500; font-size: 12px; }
+
+    /* Pain bento */
+    .bento { display: grid; gap: 14px; }
+    @media (min-width: 900px) { .bento { grid-template-columns: 1.3fr 1fr; grid-template-rows: auto auto; } .bento .tall { grid-row: span 2; } }
+    .tile { padding: 30px; border-radius: 28px; border: 1px solid var(--line); background: var(--card); }
+    .tile h3 { font-size: 26px; margin-bottom: 10px; }
+    .tile p { color: var(--muted); font-size: 15px; }
+    .tile.soft { background: var(--soft); border-color: var(--brand-ring); }
+    .tile.brand { background: var(--brand); color: #fff; border-color: transparent; }
+    .tile.brand p { color: rgba(255,255,255,0.82); }
+    .big { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: clamp(3rem, 7vw, 4.8rem); letter-spacing: -0.05em; line-height: 1; margin-bottom: 8px; }
+    .compare { margin-top: 18px; display: grid; gap: 8px; font-size: 14px; }
+    .compare div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); }
+    .compare .bad { color: #B91C1C; font-weight: 700; }
+    .compare .good { color: #047857; font-weight: 700; }
+
+    /* Steps */
+    .steps { display: grid; gap: 14px; }
+    @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+    .step { padding: 30px; }
+    .step .n { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--brand); display: grid; place-items: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; margin-bottom: 18px; }
+    .step h3 { font-size: 21px; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 14.5px; }
+
+    /* Pricing */
+    .plans { display: grid; gap: 16px; align-items: stretch; }
+    @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+    .plan { padding: 32px 28px; display: flex; flex-direction: column; height: 100%; }
+    .plan.pro { background: var(--brand); color: #fff; border-radius: 25px; box-shadow: 0 30px 60px -24px rgba(79, 70, 229, 0.6); }
+    .plan .p-tag { font-size: 12.5px; font-weight: 700; color: var(--brand); background: var(--soft); padding: 4px 12px; border-radius: 999px; align-self: flex-start; margin-bottom: 16px; }
+    .plan.pro .p-tag { background: rgba(255,255,255,0.18); color: #fff; }
+    .plan h3 { font-size: 22px; margin-bottom: 6px; }
+    .plan .price { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 3.4rem; letter-spacing: -0.05em; line-height: 1; margin: 12px 0 2px; }
+    .plan .once { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .plan.pro .once { color: rgba(255,255,255,0.8); }
+    .plan ul { list-style: none; display: grid; gap: 10px; font-size: 14.5px; margin-bottom: 26px; flex: 1; }
+    .plan li { display: flex; gap: 10px; align-items: flex-start; }
+    .plan li i { color: var(--brand); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .plan.pro li i { color: #fff; }
+    .plan .btn { width: 100%; justify-content: space-between; }
+    .plan.pro .btn { background: #fff; color: var(--brand); box-shadow: none; }
+    .plan.pro .btn .btn-ic { background: var(--soft); }
+    .guarantee { margin-top: 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; font-size: 14px; font-weight: 600; color: var(--muted); }
+    .guarantee span { display: inline-flex; align-items: center; gap: 7px; }
+    .guarantee i { color: var(--brand); font-size: 19px; }
+
+    /* FAQ */
+    .faq { max-width: 780px; display: grid; gap: 10px; }
+    .faq details { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 0 22px; }
+    .faq summary { cursor: pointer; padding: 20px 0; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 14px; align-items: center; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary i { color: var(--brand); transition: transform 0.3s var(--ease); flex-shrink: 0; }
+    .faq details[open] summary i { transform: rotate(45deg); }
+    .faq p { padding: 0 0 20px; color: var(--muted); font-size: 15px; }
+
+    /* Final CTA + footer */
+    .final { padding: 56px 28px; text-align: center; background: var(--brand); border-radius: 36px; color: #fff; }
+    .final h2 { color: #fff; margin-bottom: 14px; }
+    .final p { color: rgba(255,255,255,0.84); margin-bottom: 26px; font-size: 16.5px; }
+    .final .btn { background: #fff; color: var(--brand); box-shadow: none; }
+    .final .btn .btn-ic { background: var(--soft); }
+    footer { padding: 46px 0 120px; font-size: 13.5px; color: var(--muted); }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; }
+    .foot a { font-weight: 600; }
+    .foot a:hover { color: var(--brand); }
+
+    /* Floating mobile CTA */
+    .dock { position: fixed; z-index: 45; left: 14px; right: 14px; bottom: 14px; display: none; }
+    .dock .btn { width: 100%; justify-content: space-between; }
+    @media (max-width: 859px) { .dock.on { display: block; } }
+
+    /* Checkout modal */
+    .modal { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; padding: 14px; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px); overflow-y: auto; }
+    .modal.is-open { display: flex; }
+    .m-card { width: 100%; max-width: 640px; max-height: 94dvh; overflow-y: auto; background: var(--card); border-radius: 30px; padding: 26px; box-shadow: 0 40px 90px -20px rgba(15,23,42,0.4); animation: pop 0.4s var(--ease); }
+    .m-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 18px; }
+    .m-top h3 { font-size: 24px; }
+    .m-top p { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+    .x { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font-size: 18px; flex-shrink: 0; display: grid; place-items: center; }
+    .plan-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 18px; }
+    .ptab { padding: 12px 8px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--bg); cursor: pointer; text-align: center; font-weight: 700; font-size: 12.5px; color: var(--muted); }
+    .ptab b { display: block; font-family: 'Outfit', sans-serif; font-size: 22px; color: var(--ink); letter-spacing: -0.03em; }
+    .ptab[aria-pressed="true"] { border-color: var(--brand); background: var(--soft); box-shadow: 0 0 0 3px var(--brand-ring); color: var(--brand); }
+    .ptab[aria-pressed="true"] b { color: var(--brand); }
+    .m-label { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin: 14px 0 6px; }
+    .m-card .input { height: 50px; border-radius: 14px; font-size: 15px; }
+    .dom-row { display: flex; gap: 8px; }
+    #stripe-domain-status { margin-top: 8px; font-size: 13px; min-height: 20px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .chip { padding: 3px 10px; border-radius: 999px; background: var(--soft); border: 1px solid var(--brand-ring); color: var(--brand); font-weight: 700; font-size: 12.5px; cursor: pointer; }
+    .m-note { margin: 16px 0; padding: 12px 14px; border-radius: 14px; background: var(--soft); font-size: 13px; color: var(--muted); display: flex; gap: 10px; }
+    .m-note i { color: var(--brand); font-size: 20px; flex-shrink: 0; }
+    .m-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 14px; font-size: 12.5px; color: var(--muted); }
+    .m-foot button { background: none; border: none; color: var(--brand); font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 12.5px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
-<body class="pb-28 lg:pb-0">
+<body>
 
-  <!-- =====================================================================
-       FLOATING GLASS PILL NAVBAR (Mobile + PC Native)
-       ===================================================================== -->
-  <header class="sticky top-2.5 sm:top-4 z-30 px-3 sm:px-4">
-    <div class="max-w-6xl mx-auto rounded-full bg-[#0A0D14]/90 backdrop-blur-2xl border border-white/12 px-3.5 sm:px-5 py-2.5 flex items-center justify-between gap-2 sm:gap-4 shadow-2xl">
-      <a href="#" class="flex items-center gap-2 sm:gap-2.5 shrink-0">
-        <span class="w-8 h-8 rounded-full bg-emerald-400 text-slate-950 font-display font-black text-sm flex items-center justify-center shadow-md">M</span>
-        <span class="font-display font-extrabold text-sm sm:text-lg tracking-tight text-white">MiWebLocal<span class="text-emerald-400">.</span></span>
-      </a>
-
-      <nav class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
-        <a href="#crear" class="text-emerald-300 hover:text-white font-bold transition-colors">Generador Directo (24h)</a>
-        <a href="#incluye" class="hover:text-white transition-colors">2 Semanas Incluidas</a>
-        <a href="#comparativa" class="hover:text-white transition-colors">Comparativa</a>
-        <a href="#ejemplos" class="hover:text-white transition-colors">10 Modelos 3D</a>
-        <a href="#faq" class="hover:text-white transition-colors">Preguntas</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/35 text-[11px] font-mono font-bold text-amber-300">
-          <i class="ph-bold ph-timer"></i>
-          <span id="nav-24h-timer">23:59:59</span>
-        </span>
-        <button type="button"
-                onclick="openStripeCheckout('197')"
-                class="btn-press px-3.5 sm:px-4 py-2 rounded-full stripe-btn-primary font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 whitespace-nowrap">
-          <i class="ph-bold ph-credit-card text-sm"></i>
-          <span>Contratar · Desde 79 €</span>
-        </button>
+  <!-- NAV -->
+  <div class="nav-shell">
+    <nav class="nav" aria-label="Principal">
+      <a href="#" class="logo" aria-label="MiWebLocal"><span class="logo-mark"><i class="ph-bold ph-storefront"></i></span><span>MiWeb<b>Local</b></span></a>
+      <div class="nav-links">
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#precios">Precios</a>
+        <a href="#preguntas">Preguntas</a>
       </div>
-    </div>
-  </header>
-
-  <!-- =====================================================================
-       SECTION 1: ENTRADA (HERO) — GENERADOR DIRECTO + ENLACE 24H + STRIPE 79€ / 197€ ⭐ / 297€
-       Everything visible right on entry without scrolling!
-       ===================================================================== -->
-  <section id="crear" class="hero-ambient pt-5 pb-12 sm:pt-10 sm:pb-16">
-    <!-- 3D Perspective Floor Grid + Ambient Floating Depth Orbs -->
-    <div class="hero-3d-floor-wrap" aria-hidden="true">
-      <div class="hero-3d-floor"></div>
-    </div>
-    <div class="hero-orb hero-orb-emerald" aria-hidden="true"></div>
-    <div class="hero-orb hero-orb-amber" aria-hidden="true"></div>
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
-
-      <!-- Top Conversion Headline Banner -->
-      <div class="text-center max-w-3xl mx-auto space-y-3">
-        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/12 border border-emerald-400/35">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-[11px] uppercase tracking-[0.12em] font-extrabold text-emerald-300">
-            🛡️ TODO INCLUIDO EN UN ÚNICO PAGO PARA SIEMPRE (0 €/MES · 0 €/AÑO) · PAGO DIRECTO STRIPE + GARANTÍA TOTAL
-          </span>
-        </div>
-
-        <h1 class="font-display font-black text-[1.95rem] sm:text-5xl text-white leading-[1.05] tracking-[-0.025em]">
-          Genera tu web aquí mismo, mírala en tu <span class="text-emerald-400">vista previa 24h</span> y contrátala para siempre con <span class="text-[#A5B4FC]">pago único</span>.
-        </h1>
-
-        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Sin cuotas mensuales ni presupuestos eternos: <strong>creas tu vista previa Ordenador + Móvil abajo en 10 segundos</strong> y la contratas directamente en la web con <strong>Stripe (79 € Express, 197 € Negocio Pro ⭐ con Google Maps o 297 € VIP Catálogo)</strong>. Todo incluido en <strong>un único pago para toda la vida</strong> con factura oficial y <strong>14 días de garantía</strong>.
-        </p>
-      </div>
-
-      <!-- Main 12-Col Direct Self-Service Console + 3D Coverflow Stage + 24h Unlock -->
-      <div id="hero-cta-sentinel" class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-
-        <!-- LEFT (5 Cols): DIRECT SELF-SERVICE GENERATOR -->
-        <div class="lg:col-span-5 double-bezel">
-          <div class="double-bezel-inner p-5 sm:p-6 space-y-4 bg-[#0B0E16]">
-            <div class="flex items-center justify-between gap-2 pb-2 border-b border-white/10">
-              <div class="flex items-center gap-2">
-                <span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-950 font-display font-black text-xs flex items-center justify-center">1</span>
-                <span class="font-display font-extrabold text-sm sm:text-base text-white">Genera tu vista previa ahora</span>
-              </div>
-              <span class="text-[11px] font-bold text-amber-300">Vista previa 24h</span>
-            </div>
-
-            <!-- MAGIC 1-CLICK LOCAL BUSINESS FINDER (TikTok / Mobile Ready) -->
-            <div class="rounded-2xl bg-emerald-500/[0.08] border border-emerald-400/35 p-3 space-y-2">
-              <label for="gen-smart-search" class="block text-[11px] font-extrabold uppercase tracking-wider text-emerald-300">
-                🔍 1 Clic: Busca tu negocio y ciudad (o créalo abajo si es nuevo)
-              </label>
-              <div class="flex items-center gap-1.5">
-                <input id="gen-smart-search"
-                       type="text"
-                       onkeydown="if(event.key==='Enter'){event.preventDefault();runSmartBusinessSearch(event);}"
-                       placeholder="Ej. Clínica Dental Sol Madrid"
-                       class="gen-input !py-2.5 !text-sm flex-1" />
-                <button type="button"
-                        id="gen-smart-btn"
-                        onclick="runSmartBusinessSearch(event)"
-                        class="btn-press shrink-0 px-3.5 py-2.5 min-h-[42px] rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs inline-flex items-center gap-1 shadow-md whitespace-nowrap">
-                  <i class="ph-bold ph-magnifying-glass text-sm"></i>
-                  <span>Buscar</span>
-                </button>
-              </div>
-              <div id="gen-search-results" class="hidden space-y-1.5 pt-1"></div>
-            </div>
-
-            <!-- Step 1: 10 Sector Chips -->
-            <div>
-              <label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-400 mb-2">
-                O elige tu sector (local físico, oficio o nuevo negocio):
-              </label>
-              <div id="gen-sector-chips" class="flex flex-wrap gap-1.5">
-                <!-- Populated by showcase-v4.js -->
-              </div>
-            </div>
-
-            <!-- Step 2: Business Name, City, WhatsApp -->
-            <div class="space-y-3">
-              <div>
-                <label for="gen-name" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  Nombre de tu negocio o proyecto:
-                </label>
-                <input id="gen-name"
-                       type="text"
-                       class="gen-input"
-                       placeholder="Ej. Motos Rossi / Barbería Imperial / Reformas Sol"
-                       value="Motos Veloce"
-                       oninput="syncGeneratorLive(false)" />
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                <div>
-                  <label for="gen-city" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
-                    Tu Ciudad:
-                  </label>
-                  <input id="gen-city"
-                         type="text"
-                         class="gen-input"
-                         placeholder="Ej. Madrid"
-                         value="Madrid"
-                         oninput="syncGeneratorLive(false)" />
-                </div>
-
-                <div>
-                  <label for="gen-wa" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
-                    Tu WhatsApp:
-                  </label>
-                  <input id="gen-wa"
-                         type="tel"
-                         class="gen-input"
-                         placeholder="Ej. 600 123 456"
-                         value="600 123 456"
-                         oninput="syncGeneratorLive(false)" />
-                  <span class="block text-[10px] text-slate-400 mt-1 leading-tight">
-                    🔒 Solo para activar el botón de tu vista previa (0 spam).
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Optional 1-Tap Mobile Photo Uploader (Zero Mandatory Friction!) -->
-            <div class="flex items-center justify-between gap-2 rounded-xl bg-white/[0.03] border border-white/10 px-3 py-2">
-              <span id="gen-photo-status" class="text-[11px] text-slate-300 truncate">
-                📸 ¿Quieres probar ya tus fotos? (Opcional, también puedes dentro)
-              </span>
-              <label class="btn-press shrink-0 px-2.5 py-1.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] border border-white/15 text-emerald-300 font-display font-bold text-[11px] cursor-pointer whitespace-nowrap inline-flex items-center gap-1">
-                <i class="ph-bold ph-camera"></i>
-                <span>Subir fotos</span>
-                <input type="file" accept="image/*" multiple class="hidden" onchange="handleQuickHeroMobilePhotos(this)" />
-              </label>
-            </div>
-
-            <!-- Generate & Create Link Button -->
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-              <button type="button"
-                      onclick="triggerInstantGenerate(false)"
-                      class="sm:col-span-7 btn-press w-full py-3.5 px-4 min-h-[50px] rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-black text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5">
-                <i class="ph-bold ph-lightning text-lg"></i>
-                <span>Generar Mi Web</span>
-              </button>
-              <button type="button"
-                      onclick="triggerInstantGenerate(true)"
-                      class="sm:col-span-5 btn-press w-full py-3.5 px-3 min-h-[50px] rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-display font-extrabold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 whitespace-nowrap">
-                <i class="ph-bold ph-arrow-square-out text-base"></i>
-                <span>Abrir Demo 24h</span>
-              </button>
-            </div>
-
-            <!-- Instant Shareable Link Box right inside Left Console -->
-            <div id="gen-result-card" class="rounded-2xl bg-[#06080D] border border-emerald-400/35 p-3.5 space-y-2.5">
-              <div class="flex items-center justify-between gap-2">
-                <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
-                  <i class="ph-bold ph-link"></i>
-                  <span id="gen-preview-badge">Tu enlace generado (activo 24h):</span>
-                </span>
-                <span id="gen-copy-badge" class="hidden text-[11px] font-bold text-emerald-300">✓ ¡Copiado!</span>
-              </div>
-
-              <div class="flex items-center gap-2 bg-white/[0.04] border border-white/10 rounded-xl px-3 py-2">
-                <i class="ph-bold ph-globe text-emerald-400 shrink-0"></i>
-                <input id="gen-share-url"
-                       type="text"
-                       readonly
-                       value="https://miweblocal.com/sitio/?negocio=motos-veloce"
-                       class="w-full bg-transparent text-xs font-mono text-slate-200 outline-none truncate" />
-              </div>
-
-              <div class="grid grid-cols-3 gap-1.5">
-                <button type="button"
-                        onclick="openGeneratedSiteTab()"
-                        class="btn-press py-2.5 px-2 min-h-[42px] rounded-xl bg-white text-slate-950 font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-md">
-                  <i class="ph-bold ph-eye text-sm"></i>
-                  <span>Ver Web</span>
-                </button>
-
-                <button type="button"
-                        onclick="sendGeneratedLinkToMyWhatsApp()"
-                        class="btn-press py-2.5 px-2 min-h-[42px] rounded-xl bg-emerald-400/15 hover:bg-emerald-400/25 border border-emerald-400/40 text-emerald-300 font-display font-bold text-[11.5px] inline-flex items-center justify-center gap-1">
-                  <i class="ph-fill ph-whatsapp-logo text-sm text-emerald-400"></i>
-                  <span>Enviármelo</span>
-                </button>
-
-                <button type="button"
-                        onclick="copyGeneratedLink()"
-                        class="btn-press py-2.5 px-2 min-h-[42px] rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 text-white font-display font-bold text-[11.5px] inline-flex items-center justify-center gap-1">
-                  <i class="ph-bold ph-copy text-sm"></i>
-                  <span>Copiar</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- RIGHT (7 Cols): 3D COVERFLOW "ORDENADOR + MÓVIL" + 24H PAYMENT BUTTONS (50 € vs 200 €) -->
-        <div class="lg:col-span-7 space-y-4">
-
-          <!-- 3D Coverflow Stage -->
-          <div id="hero-3d-viewport" class="hero-deck-viewport">
-            <div id="hero-deck-stage" class="hero-deck-stage">
-              <!-- Populated by showcase-v4.js with preserve-3d Ordenador + Móvil cards -->
-            </div>
-          </div>
-
-          <!-- Interactive 3D Stage Controls (All 10 Models Synchronized) -->
-          <div class="flex items-center gap-2">
-            <button type="button"
-                    onclick="stepHeroStage(-1)"
-                    aria-label="Modelo anterior"
-                    class="btn-press shrink-0 w-9 h-9 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/12 text-white flex items-center justify-center">
-              <i class="ph-bold ph-caret-left text-sm"></i>
-            </button>
-
-            <div id="hero-stage-tabs" class="flex-1 flex items-center justify-start gap-2 overflow-x-auto no-scrollbar py-1">
-              <!-- Populated dynamically with all 10 sectors by showcase-v4.js -->
-            </div>
-
-            <button type="button"
-                    onclick="stepHeroStage(1)"
-                    aria-label="Siguiente modelo"
-                    class="btn-press shrink-0 w-9 h-9 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/12 text-white flex items-center justify-center">
-              <i class="ph-bold ph-caret-right text-sm"></i>
-            </button>
-          </div>
-
-          <!-- 24-HOUR LIFETIME STRIPE UNLOCK CONSOLE (3 PLANES: 79 € / 197 € ⭐ / 297 €) RIGHT IN HERO! -->
-          <div id="gen-unlock-console" class="rounded-[24px] bg-gradient-to-br from-[#0F1522] to-[#090C13] border border-[#635BFF]/45 p-4 sm:p-5 space-y-3.5 shadow-2xl">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <div class="inline-flex items-center gap-2 text-amber-300 text-xs font-extrabold">
-                <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                <span>⏳ Vista previa activa 24h (<span id="gen-unlock-timer" class="font-mono">23:59:59</span>) · Todo incluido en un pago único</span>
-              </div>
-              <span class="px-2.5 py-0.5 rounded-full stripe-badge-pill text-[10.5px] font-extrabold inline-flex items-center gap-1">
-                <i class="ph-bold ph-shield-check"></i>
-                <span>0 €/MES · 0 €/AÑO · PARA SIEMPRE</span>
-              </span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <!-- Plan 1: 79 € Web Express -->
-              <div class="rounded-2xl bg-emerald-500/[0.07] border border-emerald-400/35 p-3 flex flex-col justify-between gap-2.5">
-                <div>
-                  <div class="flex items-center justify-between gap-1.5">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-300">Web Express</span>
-                    <span class="font-display font-black text-xl text-white whitespace-nowrap shrink-0">79 €</span>
-                  </div>
-                  <div class="text-[9.5px] font-bold text-emerald-400 uppercase">Pago único · Para siempre</div>
-                  <p class="text-[11px] text-slate-200 mt-1.5 leading-snug">
-                    Desbloquea tu web + <strong>Enlace y Hosting de por vida + SSL + Reservas WhatsApp + 14 días garantía</strong>.
-                  </p>
-                </div>
-                <button type="button"
-                        onclick="openStripeCheckout('79')"
-                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-md whitespace-nowrap">
-                  <span>Contratar · 79 €</span>
-                </button>
-              </div>
-
-              <!-- Plan 2: 197 € Negocio Pro ⭐ MÁS ELEGIDO -->
-              <div class="rounded-2xl bg-[#635BFF]/[0.16] border-2 border-[#818CF8] p-3 flex flex-col justify-between gap-2.5 shadow-xl relative">
-                <div>
-                  <div class="flex items-center justify-between gap-1.5">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-[#C7D2FE]">⭐ Negocio Pro</span>
-                    <span class="font-display font-black text-xl text-white whitespace-nowrap shrink-0">197 €</span>
-                  </div>
-                  <div class="text-[9.5px] font-bold text-emerald-300 uppercase">Más elegido · Todo incluido</div>
-                  <p class="text-[11px] text-white mt-1.5 leading-snug">
-                    <strong>Montaje por nosotros + Dominio .com/.es + Alta en Google Maps + Tus fotos + 14 días ajustes</strong>.
-                  </p>
-                </div>
-                <button type="button"
-                        onclick="openStripeCheckout('197')"
-                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full stripe-btn-primary font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-lg whitespace-nowrap">
-                  <span>Contratar Pro · 197 €</span>
-                </button>
-              </div>
-
-              <!-- Plan 3: 297 € VIP Catálogo + 3D + QR -->
-              <div class="rounded-2xl bg-amber-500/[0.08] border border-amber-400/45 p-3 flex flex-col justify-between gap-2.5">
-                <div>
-                  <div class="flex items-center justify-between gap-1.5">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-amber-300">VIP Catálogo</span>
-                    <span class="font-display font-black text-xl text-amber-300 whitespace-nowrap shrink-0">297 €</span>
-                  </div>
-                  <div class="text-[9.5px] font-bold text-amber-300 uppercase">Pago único · Llave en mano</div>
-                  <p class="text-[11px] text-slate-200 mt-1.5 leading-snug">
-                    <strong>Catálogo extenso/carta + Efectos 3D + Dominio .com + Google Maps + Placa QR imprenta</strong>.
-                  </p>
-                </div>
-                <button type="button"
-                        onclick="openStripeCheckout('297')"
-                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-md whitespace-nowrap">
-                  <span>Contratar VIP · 297 €</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Triple Guarantee Micro-Strip -->
-            <div class="rounded-xl bg-emerald-500/[0.07] border border-emerald-400/25 px-3 py-2 text-[11px] text-emerald-200 flex flex-wrap items-center justify-between gap-2">
-              <span class="inline-flex items-center gap-1.5 font-semibold"><i class="ph-bold ph-seal-check text-emerald-400 text-sm"></i> <strong>Garantía Total:</strong> Todo incluido en un único pago para siempre (0 € renovaciones) + 14 días de ajustes + Factura Stripe inmediata.</span>
-            </div>
-
-            <!-- Stripe Direct Hiring Bar + WhatsApp strictly for Doubts -->
-            <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-300">
-              <div class="flex items-center gap-1.5 text-slate-300">
-                <i class="ph-fill ph-lock-key text-[#A5B4FC] text-sm"></i>
-                <span>Contratación 100% online con <strong>Stripe</strong> (Tarjeta, Apple Pay, Google Pay)</span>
-              </div>
-              <button type="button"
-                      onclick="askWhatsAppNoCommitment('Tengo una duda antes de contratar mi web en la página')"
-                      class="text-emerald-300 hover:text-emerald-200 font-bold inline-flex items-center gap-1 underline underline-offset-4">
-                <i class="ph-fill ph-whatsapp-logo text-sm text-emerald-400"></i>
-                <span>¿Solo tienes dudas? Escríbenos por WhatsApp</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       3D ANGLED VISUAL MARQUEE RIBBON (60FPS CONTINUOUS MOTION ON MOBILE & PC)
-       ===================================================================== -->
-  <section class="marquee-3d-section border-y border-white/[0.07] bg-[#07090F]" aria-label="Galería en movimiento">
-    <div class="marquee-3d-plane space-y-3">
-      <!-- Track 1: Live Mini "Ordenador + Móvil" Showcase Strip -->
-      <div class="marquee-mask">
-        <div id="marquee-visual-track" class="marquee-track marquee-track-left"></div>
-      </div>
-
-      <!-- Track 2: Lifetime One-Time Payment & Craft Strip -->
-      <div class="marquee-mask">
-        <div id="marquee-pills-track" class="marquee-track marquee-track-right"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 2: ¿QUÉ INCLUYE ADEMÁS DEL DOMINIO Y LAS 2 SEMANAS DE CAMBIOS? (#incluye)
-       ===================================================================== -->
-  <section id="incluye" class="scroll-mt-24 py-14 sm:py-20 bg-[#06080D] border-b border-white/[0.07]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-emerald-400">Todo Incluido en Tu Pago Único con Stripe · Sin Letra Pequeña</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          ¿Qué incluye exactamente tu web y por qué <span class="text-emerald-400">no vuelves a pagar nunca más</span>?
-        </h2>
-        <p class="text-sm sm:text-base text-slate-300">
-          Las agencias que se anuncian en Google te cobran 800 € de entrada más cuotas todos los meses. Aquí haces <strong>un único pago seguro por Stripe (79 €, 197 € ⭐ o 297 €)</strong> y recibes todo incluido para toda la vida:
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-globe"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">1. Tu Dominio Propio + SSL y Textos Legales</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Quitamos el bloqueo de 24 horas y activamos tu dirección web oficial con candado de seguridad HTTPS (`SSL`) y textos legales RGPD incluidos.
-          </p>
-        </div>
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-emerald-400/30 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-calendar-check"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">2. Dos Semanas (14 Días) de Cambios y Soporte Gratis</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            <strong>Incluye 2 semanas completas de revisiones, ajustes de fotos, precios, textos y soporte directo</strong> tras activar tu web para que quede 100% a tu gusto sin pagar ni un euro extra.
-          </p>
-        </div>
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-hard-drives"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">3. Hosting de Alta Velocidad de por Vida (0 €/año)</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            El alojamiento web 24/7 los 365 días del año ya viene incluido gratis en tu pago único. <strong>No tienes que renovar nunca más (0 €/mes y 0 €/año).</strong>
-          </p>
-        </div>
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-devices"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">4. Doble Diseño: Ordenador + Móvil 3D</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Tu página se ve impresionante tanto en cualquier teléfono móvil como en pantallas grandes de ordenador, con efectos fluidos y carga en menos de 1 segundo.
-          </p>
-        </div>
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-whatsapp-logo"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">5. Citas y Pedidos a tu WhatsApp (0% Comisiones)</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            El cliente elige servicio, producto, hora o presupuesto en tu web y te llega todo listo a tu WhatsApp sin intermediarios ni comisiones por venta.
-          </p>
-        </div>
-
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-[#635BFF]/35 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-[#635BFF]/20 border border-[#635BFF]/40 text-[#A5B4FC] flex items-center justify-center text-xl">
-            <i class="ph-bold ph-shield-check"></i>
-          </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">6. Activación Automática y Garantía Stripe</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Pagas con total seguridad mediante <strong>Stripe</strong> (Tarjeta, Apple Pay o Google Pay), recibes tu factura/recibo al instante y tu web queda desbloqueada en el acto.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 2B: COMPARATIVA REAL CONTRA AGENCIAS DE GOOGLE ADS (#comparativa)
-       ===================================================================== -->
-  <section id="comparativa" class="scroll-mt-24 py-14 sm:py-20 bg-[#080B12] border-b border-white/[0.07]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-amber-300">Compara Antes de Contratar en Google</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          Agencias tradicionales de Google vs. <span class="text-emerald-400">MiWebLocal.com</span>
-        </h2>
-        <p class="text-sm sm:text-base text-slate-300">
-          Cuando buscas <em>«diseñar página web»</em> en Google, esto es lo que te cobran las agencias tradicionales frente a nuestro sistema automático con Stripe:
-        </p>
-      </div>
-
-      <div class="rounded-3xl bg-[#0C1018] border border-white/12 overflow-hidden shadow-2xl">
-        <div class="grid grid-cols-12 bg-white/[0.04] border-b border-white/10 p-4 sm:px-6 text-xs sm:text-sm font-display font-extrabold text-white">
-          <div class="col-span-5 sm:col-span-5">Qué comparamos</div>
-          <div class="col-span-3 sm:col-span-3 text-center text-rose-300">Otras Agencias</div>
-          <div class="col-span-4 sm:col-span-4 text-center text-emerald-300">MiWebLocal + Stripe</div>
-        </div>
-
-        <div class="divide-y divide-white/[0.07] text-xs sm:text-sm">
-          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
-            <div class="col-span-5 font-bold text-slate-200">Ver tu web antes de pagar</div>
-            <div class="col-span-3 text-center text-slate-400">Pagas el 50% a ciegas sin ver nada</div>
-            <div class="col-span-4 text-center font-bold text-emerald-300">La generas y pruebas 24h en 10 segundos</div>
-          </div>
-
-          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2 bg-white/[0.015]">
-            <div class="col-span-5 font-bold text-slate-200">Precio total del diseño</div>
-            <div class="col-span-3 text-center text-rose-300 font-semibold">600 € – 1.500 € + IVA</div>
-            <div class="col-span-4 text-center font-extrabold text-white">79 € · 197 € ⭐ (Pro) · 297 € (VIP)</div>
-          </div>
-
-          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
-            <div class="col-span-5 font-bold text-slate-200">Cuotas mensuales / Renovación anual</div>
-            <div class="col-span-3 text-center text-rose-300">35 €/mes o 150 €/año de hosting</div>
-            <div class="col-span-4 text-center font-bold text-emerald-300">0 €/mes y 0 €/año · Todo incluido siempre</div>
-          </div>
-
-          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2 bg-white/[0.015]">
-            <div class="col-span-5 font-bold text-slate-200">Cambios y soporte tras la entrega</div>
-            <div class="col-span-3 text-center text-slate-400">Cobran cada ajuste por hora</div>
-            <div class="col-span-4 text-center font-bold text-emerald-300">2 Semanas (14 días) de cambios incluidos gratis</div>
-          </div>
-
-          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
-            <div class="col-span-5 font-bold text-slate-200">Forma de pago y activación</div>
-            <div class="col-span-3 text-center text-slate-400">Presupuestos lentos (3–5 semanas)</div>
-            <div class="col-span-4 text-center font-bold text-[#A5B4FC]">Pago automático Stripe y activación al instante</div>
-          </div>
-        </div>
-
-        <div class="p-4 sm:px-6 bg-gradient-to-r from-emerald-500/10 via-[#635BFF]/10 to-amber-500/10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div class="text-xs sm:text-sm text-slate-200 font-medium">
-            🛡️ <strong>Todo se contrata directamente en la web en un único pago para siempre</strong> (y si tienes alguna duda previa, te respondemos por WhatsApp).
-          </div>
-          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-center">
-            <button type="button"
-                    onclick="openStripeCheckout('197')"
-                    class="btn-press px-4 py-2.5 rounded-full stripe-btn-primary font-display font-extrabold text-xs inline-flex items-center gap-1.5">
-              <i class="ph-bold ph-credit-card"></i>
-              <span>Contratar Pago Único (79 € / 197 € ⭐ / 297 €)</span>
-            </button>
-            <button type="button"
-                    onclick="askWhatsAppNoCommitment('Tengo una duda sobre la comparativa antes de contratar en la web')"
-                    class="btn-press px-4 py-2.5 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/15 text-emerald-300 font-display font-bold text-xs inline-flex items-center gap-1.5">
-              <i class="ph-fill ph-whatsapp-logo text-emerald-400"></i>
-              <span>Dudas por WhatsApp</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 3: LOS 8 DOLORES REALES QUE RESOLVEMOS (#dolores)
-       Covers local shops, trades, freelancers, and people starting from scratch!
-       ===================================================================== -->
-  <section id="dolores" class="scroll-mt-24 py-14 sm:py-20 border-b border-white/[0.07]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-
-      <div class="max-w-3xl">
-        <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-amber-300">Para Locales · Autónomos · Nuevos Proyectos</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-1 tracking-[-0.02em]">
-          Los 8 problemas reales que te quitamos de encima
-        </h2>
-        <p class="text-sm sm:text-base text-slate-300 mt-1">
-          Tanto si ya tienes un local abierto como si quieres empezar un negocio por tu cuenta y no sabes cómo montar tu web:
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-
-        <!-- Pain 1 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-warning-circle"></i>
-            <span>1. Te buscan en internet y se van a la competencia</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Hoy todo el mundo mira en el móvil antes de ir a un sitio o contratar a alguien. Si no tienes web o parece descuidada, desconfían y eligen a otro.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Damos a tu negocio imagen de empresa líder en Ordenador + Móvil.</span>
-          </div>
-        </div>
-
-        <!-- Pain 2 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-clock-countdown"></i>
-            <span>2. Pierdes horas contestando siempre lo mismo a curiosos</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Pasarte el día respondiendo precios, horarios, ubicación o mandando fotos sueltas por WhatsApp a gente que luego no compra te roba tiempo de trabajo.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Tu web filtra todo 24h y solo te escribe quien ya vio precios y quiere reservar.</span>
-          </div>
-        </div>
-
-        <!-- Pain 3 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-question"></i>
-            <span>3. Quieres lanzar un negocio nuevo y no sabes informática</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Tienes una idea, un servicio o productos para vender por tu cuenta, pero no sabes programar y no quieres complicarte con herramientas técnicas.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Generas tu enlace arriba en 10 segundos y te entregamos el dominio listo.</span>
-          </div>
-        </div>
-
-        <!-- Pain 4 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-prohibit"></i>
-            <span>4. Harto de cuotas mensuales y renovaciones cada año</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Agencias que te atan con recibos todos los meses o te cobran 200–400 € cada año con la excusa de renovar el dominio y el servidor.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Pago único para siempre (79 €, 197 € o 297 €): todo incluido, sin renovar jamás.</span>
-          </div>
-        </div>
-
-        <!-- Pain 5 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-phone-slash"></i>
-            <span>5. No puedes coger el teléfono mientras estás trabajando</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Si estás cortando pelo, en mitad de una obra, en el taller, en consulta o en la cocina, cada llamada que no coges es un cliente que llama a otro.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>El cliente elige su servicio y hora en la web sin interrumpirte.</span>
-          </div>
-        </div>
-
-        <!-- Pain 6 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-percent"></i>
-            <span>6. Apps externas que se quedan el 20–30% de tu trabajo</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Plataformas de reservas o pedidos a domicilio que te cobran comisión por cada cliente que ya era tuyo.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>0% comisiones de por vida: el 100% del dinero de cada venta es para ti.</span>
-          </div>
-        </div>
-
-        <!-- Pain 7 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-Currency-eur"></i>
-            <span>7. Te regatean el precio porque no perciben tu calidad</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Cuando pasas presupuestos solo de palabra o por mensaje suelto, el cliente solo compara por precio y te pide rebaja.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Un escaparate 3D de lujo justifica tus tarifas y atrae mejores clientes.</span>
-          </div>
-        </div>
-
-        <!-- Pain 8 -->
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C0F16] border border-white/10 p-5 space-y-2.5">
-          <div class="card-glare"></div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/25 text-rose-300 text-xs font-bold">
-            <i class="ph-bold ph-instagram-logo"></i>
-            <span>8. Tus fotos y ofertas se pierden en redes sociales</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            En Instagram o TikTok las historias duran 24h y la gente no encuentra tu catálogo completo, tus tarifas ni dónde aparcar.
-          </p>
-          <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
-            <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Todo tu catálogo, precios y mapa GPS ordenados en un único enlace oficial.</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 4: ESCAPARATE 3D "ORDENADOR + MÓVIL" (#ejemplos · 10 Models with ALL Solutions Visible)
-       ===================================================================== -->
-  <section id="ejemplos" class="scroll-mt-24 py-14 sm:py-22">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
+      <a href="#precios" class="btn btn-sm" style="padding:0 22px;">Contratar · Desde 79 €</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="crear">
+      <div class="wrap hero-grid">
         <div>
-          <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-emerald-400">Ordenador + Móvil Incluidos · Soluciones por Sector</span>
-          <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-1 tracking-[-0.02em]">
-            Qué problemas soluciona cada modelo
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1">
-            Pulsa en <strong>«Generar mi enlace con este diseño»</strong> en cualquiera de ellos para probarlo 24h con el nombre de tu negocio:
-          </p>
-        </div>
+          <div class="pill"><i class="ph-fill ph-check-circle"></i>Pago único. Sin cuotas mensuales.</div>
+          <h1>Tu negocio, con web propia en <em>15 segundos</em></h1>
+          <p class="lead">Elige tu tipo de negocio, escribe cómo se llama y mira tu web puesta ahora mismo. Si te gusta, es tuya para siempre con un solo pago.</p>
 
-        <!-- Clean Filter Bar -->
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button type="button" data-cat="all" onclick="filterShowcase('all')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-950 whitespace-nowrap shadow-sm">
-            Todos (10)
-          </button>
-          <button type="button" data-cat="emprendedor" onclick="filterShowcase('emprendedor')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Nuevos Negocios y Tiendas
-          </button>
-          <button type="button" data-cat="motor" onclick="filterShowcase('motor')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Motor y Talleres
-          </button>
-          <button type="button" data-cat="belleza" onclick="filterShowcase('belleza')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Barbería y Estética
-          </button>
-          <button type="button" data-cat="servicios" onclick="filterShowcase('servicios')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Reformas y Oficios
-          </button>
-          <button type="button" data-cat="hosteleria" onclick="filterShowcase('hosteleria')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Hostelería
-          </button>
-          <button type="button" data-cat="salud" onclick="filterShowcase('salud')"
-                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
-            Salud y Deporte
-          </button>
-        </div>
-      </div>
+          <div class="bz">
+            <div class="bz-in entry">
+              <div class="step-label"><span class="step-n">1</span>¿Qué tipo de negocio tienes?</div>
+              <div class="sectors" id="sectors" role="group" aria-label="Tipo de negocio"></div>
 
-      <!-- 2-Column Unified Ordenador + Móvil 3D Grid (Each Card Shows All 4 Solutions!) -->
-      <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"></div>
+              <div class="step-label"><span class="step-n">2</span>Escribe el nombre de tu negocio y tu ciudad</div>
+              <form class="field-row" id="gen-form" autocomplete="off">
+                <input class="input" id="gen-name" type="text" inputmode="text" placeholder="Ej. Peluquería Laura Madrid" aria-label="Nombre de tu negocio y ciudad" />
+                <button type="submit" class="btn" id="gen-btn"><span>Ver mi web gratis</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+              </form>
 
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 5: 3 PLANES DE PAGO ÚNICO PARA SIEMPRE CON STRIPE (#opciones · 79 € / 197 € ⭐ / 297 €)
-       ===================================================================== -->
-  <section id="opciones" class="scroll-mt-24 py-14 sm:py-24 border-t border-white/[0.07]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
-
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full stripe-badge-pill text-xs font-extrabold uppercase tracking-wider">
-          <i class="ph-bold ph-shield-check"></i>
-          <span>Pasarela Oficial Stripe · Todo Incluido en Un Único Pago Para Siempre</span>
-        </span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          Elige tu plan de <span class="text-[#A5B4FC]">pago único</span> y recíbela para toda la vida
-        </h2>
-        <p class="text-sm sm:text-base text-slate-300">
-          Pagas <strong>una sola vez de forma 100% online con Stripe</strong> (Tarjeta, Apple Pay o Google Pay). Todo incluido: <strong>0 €/mes · 0 €/año</strong>, factura inmediata y <strong>14 días de garantía de ajustes</strong>.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-
-        <!-- Card 1: 79 € Web Express -->
-        <div class="showcase-card">
-          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 0ms;">
-            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
-              <div class="card-glare"></div>
-              <div class="relative z-10 space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/35 text-xs font-bold text-emerald-300">
-                    Plan 1 · Rápido
-                  </span>
-                  <div class="text-right">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-white whitespace-nowrap">79 €</span>
-                    <span class="block text-[10px] uppercase tracking-wider font-bold text-emerald-400">Pago único para siempre</span>
-                  </div>
+              <details class="more" id="more">
+                <summary><i class="ph-bold ph-plus-circle"></i>Añadir mi WhatsApp o mis fotos (opcional)</summary>
+                <div class="more-grid">
+                  <input class="input input-sm" id="gen-wa" type="tel" placeholder="Tu WhatsApp (ej. 600 123 456)" aria-label="WhatsApp del negocio" />
+                  <label class="upload"><i class="ph-bold ph-camera"></i><span id="photo-msg">Subir fotos de mi móvil</span>
+                    <input type="file" id="gen-photos" accept="image/*" multiple hidden />
+                  </label>
                 </div>
+              </details>
 
-                <div>
-                  <h3 class="font-display font-extrabold text-xl text-white">Web Express</h3>
-                  <p class="text-sm text-slate-300 mt-1">
-                    Desbloquea para siempre la web que has generado arriba con tu enlace, hosting y botón de reservas a WhatsApp.
-                  </p>
-                </div>
-
-                <ul class="space-y-2.5 text-sm text-slate-200 pt-2">
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Desbloqueo definitivo</strong> (sin límite de 24h)</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Enlace web directo + Hosting de por vida</strong> incluidos</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Certificado SSL + Textos legales</strong> incluidos</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Reservas y consultas a tu WhatsApp</strong> (0% comisiones)</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-infinity text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Garantía de 14 días</strong> · 0 €/mes y 0 €/año siempre</span>
-                  </li>
-                </ul>
+              <div class="micro">
+                <span><i class="ph-bold ph-user-minus"></i>Sin registro</span>
+                <span><i class="ph-bold ph-clock"></i>Ves tu web al instante</span>
+                <span><i class="ph-bold ph-shield-check"></i>14 días de garantía</span>
               </div>
 
-              <div class="relative z-10 space-y-2.5">
-                <button type="button"
-                        onclick="openStripeCheckout('79')"
-                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
-                  <i class="ph-bold ph-credit-card text-lg"></i>
-                  <span>Contratar Express · 79 €</span>
-                </button>
-                <div class="text-center text-[11px] text-slate-400">
-                  🔒 Todo incluido en un único pago · Sin cuotas
+              <div class="result" id="result" role="status" aria-live="polite">
+                <h3 id="result-title">Tu web está lista</h3>
+                <p>Esta vista previa se guarda <span class="timer num" id="timer">24:00:00</span>. Si no la quedas, desaparece.</p>
+                <div class="result-btns">
+                  <button type="button" class="btn-ghost" id="open-full"><i class="ph-bold ph-arrows-out"></i>Abrir mi web a pantalla completa</button>
+                  <button type="button" class="btn btn-sm" id="keep-btn" style="justify-content:center;gap:8px;">Quedármela · Desde 79 €</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: 197 € Negocio Pro ⭐ MÁS ELEGIDO -->
-        <div class="showcase-card">
-          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 70ms; border-color: rgba(129, 140, 248, 0.75); background: rgba(99, 91, 255, 0.10);">
-            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
-              <div class="card-glare"></div>
-              <div class="relative z-10 space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-3 py-1 rounded-full bg-[#635BFF] text-white text-xs font-extrabold shadow-md">
-                    ⭐ MÁS ELEGIDO · PRO
-                  </span>
-                  <div class="text-right">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-white whitespace-nowrap">197 €</span>
-                    <span class="block text-[10px] uppercase tracking-wider font-bold text-[#A5B4FC]">Pago único para siempre</span>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 class="font-display font-extrabold text-xl text-white">Negocio Pro + Google Maps + Dominio</h3>
-                  <p class="text-sm text-slate-200 mt-1">
-                    Nosotros te montamos todo listo para captar clientes: tus fotos, textos, dominio <code>.com/.es</code> y alta en Google Maps.
-                  </p>
-                </div>
-
-                <ul class="space-y-2.5 text-sm text-slate-100 pt-2">
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-[#A5B4FC] text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Todo lo incluido en Web Express</strong> hecho por nuestro equipo</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Dominio oficial .com o .es incluido</strong> y configurado</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Alta y optimización en Google Maps</strong> en tu ciudad</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Subimos tus fotos reales, tarifas y textos persuasivos</strong></span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-infinity text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>14 días de ajustes incluidos</strong> · 0 €/mes y 0 €/año siempre</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="relative z-10 space-y-2.5">
-                <button type="button"
-                        onclick="openStripeCheckout('197')"
-                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full stripe-btn-primary font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-xl">
-                  <i class="ph-bold ph-credit-card text-lg"></i>
-                  <span>Contratar Negocio Pro ⭐ · 197 €</span>
-                </button>
-                <div class="text-center text-[11px] text-slate-300">
-                  🔒 El favorito de negocios locales · Factura inmediata
-                </div>
-              </div>
+        <!-- LIVE PREVIEW -->
+        <div class="bz" aria-label="Vista previa en vivo de tu web">
+          <div class="bz-in" style="overflow:hidden;">
+            <div class="win-bar">
+              <div class="dots"><i></i><i></i><i></i></div>
+              <div class="url"><i class="ph-fill ph-lock-simple"></i><span id="url-text">miweblocal.com/tu-negocio</span></div>
+            </div>
+            <div class="viewport" id="viewport">
+              <iframe id="preview" title="Vista previa de tu web" loading="eager"></iframe>
+              <button type="button" class="tap-open" id="tap-open" aria-label="Abrir la web a pantalla completa"></button>
+              
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Card 3: 297 € VIP Catálogo Completo + 3D + QR -->
-        <div class="showcase-card">
-          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 140ms; border-color: rgba(251, 191, 36, 0.45); background: rgba(251, 191, 36, 0.04);">
-            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
-              <div class="card-glare"></div>
-              <div class="relative z-10 space-y-4">
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/40 text-xs font-bold text-amber-300">
-                    Plan 3 · Catálogo VIP
-                  </span>
-                  <div class="text-right">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-amber-300 whitespace-nowrap">297 €</span>
-                    <span class="block text-[10px] uppercase tracking-wider font-bold text-amber-300">Pago único para siempre</span>
-                  </div>
-                </div>
+    <!-- EJEMPLOS -->
+    <section class="block" id="ejemplos">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="tag">Ejemplos</span>
+          <h2>Así se ve tu sector, con fotos de verdad</h2>
+          <p class="sub">Elige el tuyo y se genera con tu nombre. Sin plantillas vacías ni textos de relleno.</p>
+        </div>
+        <div class="ex-grid" id="ex-grid"></div>
 
-                <div>
-                  <h3 class="font-display font-extrabold text-xl text-white">VIP Catálogo Completo + 3D + QR</h3>
-                  <p class="text-sm text-slate-300 mt-1">
-                    Para negocios con stock o carta amplia (concesionarios, restaurantes, tiendas, clínicas o reformas completas).
-                  </p>
-                </div>
-
-                <ul class="space-y-2.5 text-sm text-slate-100 pt-2">
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Todo lo del Plan Negocio Pro (197 €)</strong> incluido</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Carga completa de catálogos o cartas extensas</strong></span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Efectos 3D exclusivos + Placa/Cartel QR</strong> listo para imprimir</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Entrega prioritaria 24h y soporte VIP directo</strong></span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <i class="ph-bold ph-infinity text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Pago único para siempre:</strong> 0 €/mes y 0 €/año</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="relative z-10 space-y-2.5">
-                <button type="button"
-                        onclick="openStripeCheckout('297')"
-                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
-                  <i class="ph-bold ph-credit-card text-lg"></i>
-                  <span>Contratar VIP Completo · 297 €</span>
-                </button>
-                <div class="text-center text-[11px] text-slate-400">
-                  🔒 Llave en mano prioritaria · Propiedad vitalicia
-                </div>
-              </div>
-            </div>
+        <div class="real-strip reveal">
+          <h3>Webs reales de clientes ya en marcha</h3>
+          <div class="real-row">
+            <a class="bz real-item" href="/orihuela/clinica-dental-artedent/" target="_blank" rel="noopener"><div class="bz-in" style="overflow:hidden"><img src="assets/portfolio/clinica_artedent.jpg" alt="Web de Clínica Dental Artedent" loading="lazy" /><span>Clínica Dental Artedent<small>Orihuela</small></span></div></a>
+            <a class="bz real-item" href="/motorcycle-store-orero/" target="_blank" rel="noopener"><div class="bz-in" style="overflow:hidden"><img src="assets/portfolio/motos_orero.jpg" alt="Web de Orero Motorcycles" loading="lazy" /><span>Orero Motorcycles<small>Orihuela</small></span></div></a>
+            <a class="bz real-item" href="/cox/barberia-jamal/" target="_blank" rel="noopener"><div class="bz-in" style="overflow:hidden"><img src="assets/portfolio/barberia_jamal.jpg" alt="Web de Barbería Jamal" loading="lazy" /><span>Barbería Jamal<small>Cox</small></span></div></a>
+            <a class="bz real-item" href="/alicante/el-lebano-cocina-libanesa/" target="_blank" rel="noopener"><div class="bz-in" style="overflow:hidden"><img src="assets/portfolio/el_lebano.jpg" alt="Web de El Líbano" loading="lazy" /><span>El Líbano<small>Alicante</small></span></div></a>
           </div>
         </div>
-
       </div>
+    </section>
 
-      <!-- Certificado de Triple Garantía Oficial -->
-      <div class="rounded-3xl bg-gradient-to-br from-emerald-500/[0.08] via-[#0C1018] to-[#635BFF]/[0.08] border border-emerald-400/35 p-5 sm:p-7 space-y-5 shadow-2xl">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3.5">
-          <div class="inline-flex items-center gap-2 text-emerald-300 font-display font-extrabold text-sm sm:text-base">
-            <i class="ph-bold ph-seal-check text-xl text-emerald-400"></i>
-            <span>Triple Garantía Oficial · Todo Incluido en Un Único Pago Para Siempre</span>
-          </div>
-          <span class="px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/35 text-[11px] font-bold text-emerald-300">
-            100% En Propiedad Para Siempre
-          </span>
+    <!-- POR QUE -->
+    <section class="block" id="por-que" style="background:var(--tint);">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="tag">Por qué una web propia</span>
+          <h2>Tus clientes ya te buscan. Que te encuentren bien.</h2>
+          <p class="sub">Una clienta busca precios a las once de la noche. Si ve tu web clara, reserva sola por WhatsApp.</p>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
-          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
-            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
-              <i class="ph-bold ph-infinity text-emerald-400 text-base"></i>
-              <span>1. Un Único Pago Para Siempre</span>
+        <div class="bento reveal">
+          <div class="tile tall">
+            <h3>Pagas una vez. Nada más.</h3>
+            <p>Las agencias cobran una cuota de alta y luego entre 250 y 400 € al año por mantenimiento y hosting. Aquí no hay renovaciones.</p>
+            <div class="compare">
+              <div><span>Agencia típica, año 1</span><span class="bad num">600 €</span></div>
+              <div><span>Agencia típica, año 2</span><span class="bad num">+300 €</span></div>
+              <div><span>MiWebLocal, para siempre</span><span class="good num">desde 79 €</span></div>
             </div>
-            <p class="text-slate-300 leading-relaxed">
-              Todo va incluido en un solo pago único desde la web. La recibes en propiedad para toda la vida sin cuotas mensuales ni renovaciones.
-            </p>
           </div>
-
-          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
-            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
-              <i class="ph-bold ph-calendar-check text-emerald-400 text-base"></i>
-              <span>2. Garantía de 14 Días de Ajustes</span>
-            </div>
-            <p class="text-slate-300 leading-relaxed">
-              Tienes 2 semanas completas tras contratar para pedir ajustes de textos, tarifas, fotos y horarios sin pagar nada extra.
-            </p>
+          <div class="tile soft">
+            <div class="big num" style="color:var(--brand)">0 %</div>
+            <h3 style="font-size:21px;">de comisión por reserva</h3>
+            <p>Las apps de reservas se quedan hasta un 25 %. Tus clientes te escriben directo al WhatsApp.</p>
           </div>
-
-          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
-            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
-              <i class="ph-bold ph-shield-check text-[#A5B4FC] text-base"></i>
-              <span>3. Compra Protegida + Factura PDF</span>
-            </div>
-            <p class="text-slate-300 leading-relaxed">
-              Transacción bancaria oficial procesada por Stripe con emisión automática de tu recibo y factura PDF en el acto.
-            </p>
+          <div class="tile brand">
+            <div class="big num">24 h</div>
+            <h3 style="font-size:21px;">abierto, aunque tú no lo estés</h3>
+            <p>Precios, horarios, fotos y botón de cita siempre disponibles en móvil y ordenador.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- WhatsApp strictly for Doubts -->
-        <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-xs sm:text-sm text-slate-300 text-center sm:text-left">
-            💬 <strong>¿Tienes alguna duda antes de contratar en la web?</strong> Nuestro WhatsApp está disponible exclusivamente para resolver tus preguntas al instante.
-          </p>
-          <button type="button"
-                  onclick="askWhatsAppNoCommitment('Tengo una duda sobre los planes o la garantía antes de contratar en la web')"
-                  class="btn-press shrink-0 px-5 py-2.5 min-h-[44px] rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/45 text-emerald-300 font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-2">
-            <i class="ph-fill ph-whatsapp-logo text-lg text-emerald-400"></i>
-            <span>Consultar dudas por WhatsApp</span>
-          </button>
+    <!-- COMO FUNCIONA -->
+    <section class="block" id="como-funciona">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="tag">Cómo funciona</span>
+          <h2>Tres pasos. El primero lleva 15 segundos.</h2>
+        </div>
+        <div class="steps">
+          <div class="bz reveal"><div class="bz-in step"><div class="n">1</div><h3>Escribes el nombre</h3><p>Eliges tu sector, escribes cómo se llama tu negocio y tu ciudad. Tu web aparece al momento, ya con servicios, precios y fotos.</p></div></div>
+          <div class="bz reveal"><div class="bz-in step"><div class="n">2</div><h3>La haces tuya</h3><p>Cambia textos y precios, y sube las fotos de tu móvil si quieres. Lo ves puesto al instante, sin pagar nada todavía.</p></div></div>
+          <div class="bz reveal"><div class="bz-in step"><div class="n">3</div><h3>Pagas una vez y listo</h3><p>Eliges tu dirección web, pagas con Stripe y recibes tu enlace, tu panel privado y tu factura. Todo automático.</p></div></div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- PRECIOS -->
+    <section class="block" id="precios" style="background:var(--tint);">
+      <div class="wrap">
+        <div class="head reveal">
+          <span class="tag">Precios</span>
+          <h2>Un pago único. Es tuya para siempre.</h2>
+          <p class="sub">Sin mensualidades ni renovaciones. Todos los planes incluyen panel privado para editar cuando quieras y 14 días de garantía.</p>
+        </div>
+        <div class="plans">
+          <div class="bz reveal"><div class="bz-in plan">
+            <span class="p-tag">Express</span>
+            <h3>Web Express</h3>
+            <div class="price num">79 €</div><div class="once">pago único</div>
+            <ul>
+              <li><i class="ph-bold ph-check"></i>Tu web publicada con enlace propio</li>
+              <li><i class="ph-bold ph-check"></i>Panel privado para editar fotos y precios</li>
+              <li><i class="ph-bold ph-check"></i>Botón de WhatsApp y cita directa</li>
+              <li><i class="ph-bold ph-check"></i>Certificado de seguridad incluido</li>
+            </ul>
+            <button type="button" class="btn" data-plan="79"><span>Quiero Express</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+          </div></div>
 
-  <!-- =====================================================================
-       SECTION 6: PREGUNTAS FRECUENTES DE COMPRADORES (#faq)
-       ===================================================================== -->
-  <section id="faq" class="scroll-mt-24 py-14 sm:py-20 bg-[#07090F] border-t border-white/[0.07]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
-      <div class="text-center space-y-2">
-        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-emerald-400">Todo Claro Antes de Contratar</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          Preguntas frecuentes sobre tu pago único en Stripe
-        </h2>
+          <div class="plan pro reveal">
+            <span class="p-tag">El más elegido</span>
+            <h3>Negocio Pro</h3>
+            <div class="price num">197 €</div><div class="once">pago único</div>
+            <ul>
+              <li><i class="ph-bold ph-check"></i>Tu dominio propio .es o .com</li>
+              <li><i class="ph-bold ph-check"></i>Alta de tu negocio en Google Maps</li>
+              <li><i class="ph-bold ph-check"></i>Panel privado de edición</li>
+              <li><i class="ph-bold ph-check"></i>Montaje completo y 14 días de ajustes</li>
+            </ul>
+            <button type="button" class="btn" data-plan="197"><span>Quiero Negocio Pro</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+          </div>
+
+          <div class="bz reveal"><div class="bz-in plan">
+            <span class="p-tag">VIP</span>
+            <h3>Catálogo + Placa QR</h3>
+            <div class="price num">297 €</div><div class="once">pago único</div>
+            <ul>
+              <li><i class="ph-bold ph-check"></i>Todo lo de Negocio Pro</li>
+              <li><i class="ph-bold ph-check"></i>Carga de catálogo o carta amplia</li>
+              <li><i class="ph-bold ph-check"></i>Placa QR para tu mostrador</li>
+              <li><i class="ph-bold ph-check"></i>Entrega prioritaria en 24 h</li>
+            </ul>
+            <button type="button" class="btn" data-plan="297"><span>Quiero VIP</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+          </div></div>
+        </div>
+        <div class="guarantee">
+          <span><i class="ph-bold ph-shield-check"></i>14 días de garantía</span>
+          <span><i class="ph-bold ph-lock-key"></i>Pago seguro con Stripe</span>
+          <span><i class="ph-bold ph-receipt"></i>Factura PDF automática</span>
+        </div>
       </div>
+    </section>
 
-      <div class="space-y-3">
-        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5" open>
-          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
-            <span>1. ¿Cómo funciona la contratación con Stripe y cuándo recibo mi web?</span>
-            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
-          </summary>
-          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            Todo el proceso se realiza directamente desde la web mediante <strong>Stripe</strong> (con tarjeta Visa/Mastercard, Apple Pay o Google Pay). En el mismo instante en que completas tu pago único de <strong>79 €</strong>, <strong>197 € ⭐</strong> o <strong>297 €</strong>, el sistema desbloquea tu web eliminando el límite de 24h, te envía tu factura PDF oficial y pasas a la ficha rápida de entrega.
-          </p>
-        </details>
-
-        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
-          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
-            <span>2. ¿Qué incluyen exactamente las 2 semanas (14 días) de garantía y ajustes?</span>
-            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
-          </summary>
-          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            En cualquiera de los 3 planes tienes incluidas <strong>2 semanas completas (14 días) de ajustes de precios, textos, horarios, fotos y soporte directo sin coste adicional</strong> para que tu página quede 100% a tu gusto.
-          </p>
-        </details>
-
-        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
-          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
-            <span>3. ¿De verdad va todo incluido en un solo pago único para siempre (0 €/mes y 0 €/año)?</span>
-            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
-          </summary>
-          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            Sí. Todo va incluido en tu único pago y recibes la web para siempre. A diferencia de las agencias tradicionales que cobran cuotas mensuales o renovaciones todos los años, nuestra infraestructura optimizada incluye el alojamiento permanente sin suscripciones ni cargos ocultos.
-          </p>
-        </details>
-
-        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
-          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
-            <span>4. ¿Cuál elegir: 79 € (Web Express), 197 € ⭐ (Negocio Pro) o 297 € (VIP Catálogo)?</span>
-            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
-          </summary>
-          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
-            Elige <strong>79 € (Web Express)</strong> si quieres desbloquear rápido tu web generada con tus tarifas principales y WhatsApp. Elige <strong>197 € ⭐ (Negocio Pro)</strong> —el más elegido— si quieres que nosotros te lo montemos todo con tus fotos, textos, dominio <code>.com/.es</code> y alta en <strong>Google Maps</strong>. Elige <strong>297 € (VIP Catálogo)</strong> si tienes una carta o stock extenso (motos/coches, restaurante, tienda o clínica) y quieres además tu cartel QR listo para imprimir y entrega prioritaria 24h.
-          </p>
-        </details>
+    <!-- FAQ -->
+    <section class="block" id="preguntas">
+      <div class="wrap">
+        <div class="head reveal"><span class="tag">Preguntas</span><h2>Lo que todo el mundo pregunta</h2></div>
+        <div class="faq reveal">
+          <details><summary>¿Hay cuotas mensuales o renovaciones?<i class="ph-bold ph-plus"></i></summary><p>No. Pagas una vez y la web es tuya. No hay mensualidades ni renovaciones anuales.</p></details>
+          <details><summary>¿Qué recibo después de pagar?<i class="ph-bold ph-plus"></i></summary><p>Al terminar el pago, la página de confirmación te da el enlace de tu web, tu panel privado con su clave y tu factura de Stripe por correo.</p></details>
+          <details><summary>¿Puedo cambiar fotos, precios y horarios?<i class="ph-bold ph-plus"></i></summary><p>Sí, tú mismo desde el móvil con tu panel privado, las veces que quieras y sin coste.</p></details>
+          <details><summary>¿Y si no me convence?<i class="ph-bold ph-plus"></i></summary><p>Tienes 14 días de garantía. Si no es lo que esperabas, te lo decimos por WhatsApp y lo resolvemos.</p></details>
+          <details><summary>¿Necesito tener ya un dominio?<i class="ph-bold ph-plus"></i></summary><p>No. En el pago escribes el nombre que quieres, por ejemplo minegocio.es, y la web te dice al instante si está libre.</p></details>
+          <details><summary>¿Y si tengo dudas antes de comprar?<i class="ph-bold ph-plus"></i></summary><p>Escríbenos por WhatsApp. Lo usamos solo para resolver dudas antes de contratar. El pago se hace siempre en la web.</p></details>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Minimal Footer -->
-  <footer class="py-10 border-t border-white/[0.06] text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-      <div>
-        <strong class="text-slate-300 font-display">MiWebLocal.com</strong> · Contratación Directa con Stripe · Pago único para siempre + Triple Garantía Oficial
+    <!-- FINAL CTA -->
+    <section class="block" style="padding-top:0;">
+      <div class="wrap">
+        <div class="final reveal">
+          <h2>Mira cómo quedaría tu web ahora</h2>
+          <p>Es gratis verla. Solo pagas si te gusta.</p>
+          <a href="#crear" class="btn"><span>Crear mi web gratis</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></a>
+        </div>
       </div>
-      <div class="flex items-center gap-4">
-        <button type="button" onclick="openStripeCheckout('197')" class="text-[#A5B4FC] hover:text-white font-bold">
-          💳 Contratar Pago Único (79 € / 197 € ⭐ / 297 €)
-        </button>
-        <button type="button" onclick="askWhatsAppNoCommitment('Duda previa a la contratación desde el pie de página')" class="text-emerald-400 hover:text-emerald-300 font-bold">
-          💬 Dudas por WhatsApp
-        </button>
-      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div><strong style="font-family:'Outfit',sans-serif;color:var(--ink);">MiWebLocal</strong> · Webs para negocios locales de España</div>
+      <a href="#" id="wa-doubt">¿Dudas antes de comprar? WhatsApp</a>
     </div>
   </footer>
 
-  <!-- =====================================================================
-       MOBILE STICKY SELF-SERVICE & STRIPE BAR (Safe-area aware)
-       ===================================================================== -->
-  <div id="mobile-wa-bar" class="mobile-wa-dock is-hidden lg:hidden fixed inset-x-3 z-30">
-    <div class="grid grid-cols-12 gap-2 bg-[#090C14]/95 backdrop-blur-xl border border-white/15 p-2 rounded-full shadow-2xl">
-      <button type="button"
-              onclick="openStripeCheckout('197')"
-              class="col-span-8 btn-press py-3 px-4 min-h-[46px] rounded-full stripe-btn-primary font-display font-extrabold text-xs flex items-center justify-center gap-1.5">
-        <i class="ph-bold ph-credit-card text-base"></i>
-        <span>Contratar · Desde 79 €</span>
-      </button>
-      <button type="button"
-              onclick="askWhatsAppNoCommitment('Tengo una duda antes de contratar en la web')"
-              class="col-span-4 btn-press py-3 px-3 min-h-[46px] rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-display font-bold text-[11px] flex items-center justify-center gap-1">
-        <i class="ph-fill ph-whatsapp-logo text-base text-emerald-400"></i>
-        <span>Dudas</span>
-      </button>
+  <div class="dock" id="dock"><a href="#precios" class="btn"><span>Contratar · Desde 79 €</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></a></div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal" id="stripe-checkout-modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <div class="m-card">
+      <div class="m-top">
+        <div>
+          <h3 id="m-title">Quedarme mi web para siempre</h3>
+          <p id="m-biz">Tu negocio</p>
+        </div>
+        <button type="button" class="x" id="m-close" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="plan-tabs" id="plan-tabs">
+        <button type="button" class="ptab" data-plan="79" aria-pressed="false"><b class="num">79 €</b>Express</button>
+        <button type="button" class="ptab" data-plan="197" aria-pressed="true"><b class="num">197 €</b>Negocio Pro</button>
+        <button type="button" class="ptab" data-plan="297" aria-pressed="false"><b class="num">297 €</b>VIP</button>
+      </div>
+      <form id="stripe-form" autocomplete="off">
+        <label class="m-label" for="stripe-domain">1. Elige tu dirección web y comprueba si está libre</label>
+        <div class="dom-row"><input class="input" id="stripe-domain" type="text" placeholder="minegocio.es" /><button type="button" class="btn-ghost" id="dom-check" style="height:50px;">Comprobar</button></div>
+        <div id="stripe-domain-status"></div>
+        <label class="m-label" for="stripe-email">2. Tu correo (para la factura y tu enlace)</label>
+        <input class="input" id="stripe-email" type="email" autocomplete="email" placeholder="tu@correo.com" />
+        <label class="m-label" for="stripe-nif">3. Titular y NIF (para la factura y el aviso legal)</label>
+        <input class="input" id="stripe-nif" type="text" placeholder="Nombre o razón social · NIF" />
+        <div class="m-note"><i class="ph-bold ph-shield-check"></i><span>Pago único procesado por Stripe. Recibes factura PDF, tu enlace privado y 14 días de garantía.</span></div>
+        <button type="submit" class="btn" id="stripe-submit-btn" style="width:100%;justify-content:space-between;"><span id="stripe-submit-label">Pagar 197 € una sola vez</span><span class="btn-ic"><i class="ph-bold ph-lock-key"></i></span></button>
+        <div class="m-foot"><span>Sin suscripciones. Sin renovaciones.</span><button type="button" id="m-doubt">¿Tienes dudas? Escríbenos por WhatsApp</button></div>
+      </form>
     </div>
   </div>
 
-  <!-- =====================================================================
-       PASARELA OFICIAL STRIPE · CONTRATACIÓN DIRECTA PAGO ÚNICO (#stripe-checkout-modal)
-       ===================================================================== -->
-  <div id="stripe-checkout-modal"
-       class="cinema-modal fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-2.5 sm:p-5"
-       onclick="if(event.target === this) closeStripeCheckout()">
-    <div class="cinema-modal-panel w-full max-w-4xl rounded-[26px] bg-[#0B0F19] border border-[#635BFF]/45 overflow-hidden shadow-2xl flex flex-col max-h-[94dvh]">
+  <script src="assets/stripe-config.js?v=90"></script>
+  <script src="assets/studio-engine.js?v=90"></script>
+  <script>
+  (function () {
+    var SECTORS = [
+      { id: 'peluqueria', label: 'Peluquería y Estética', icon: 'ph-scissors', ph: 'Ej. Peluquería Laura Madrid', img: 'assets/real/peluqueria_hero.jpg', blurb: 'Carta de mechas, color y corte con precios, y cita directa por WhatsApp.' },
+      { id: 'clinica', label: 'Clínica y Salud', icon: 'ph-heartbeat', ph: 'Ej. Clínica Dental Sonrisas Valencia', img: 'assets/real/clinica_hero.jpg', blurb: 'Confianza desde el primer vistazo y primera visita en un toque.' },
+      { id: 'restaurante', label: 'Restaurante y Bar', icon: 'ph-fork-knife', ph: 'Ej. Casa Olivo Sevilla', img: 'assets/real/restaurante_work_2.jpg', blurb: 'Carta clara en el móvil y reserva de mesa sin comisiones.' },
+      { id: 'reformas', label: 'Reformas y Oficios', icon: 'ph-house-line', ph: 'Ej. Reformas Norte Zaragoza', img: 'assets/real/reformas_work_2.jpg', blurb: 'Enseña obras terminadas y recibe presupuestos filtrados.' },
+      { id: 'taller', label: 'Motor y Taller', icon: 'ph-wrench', ph: 'Ej. Taller Precisión Alicante', img: 'assets/real/motos_hero.jpg', blurb: 'Citas de taller con matrícula y síntoma antes de que llegue el coche.' },
+      { id: 'tienda', label: 'Tienda y Otros', icon: 'ph-storefront', ph: 'Ej. Floristería Rosa Bilbao', img: 'assets/real/tienda_work_2.jpg', blurb: 'Catálogo con precios y encargos directos para recoger en tienda.' }
+    ];
 
-      <!-- Top Stripe Security Header -->
-      <div class="px-4 sm:px-6 py-3.5 bg-[#080B13] border-b border-white/10 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-2.5">
-          <span class="px-2.5 py-1 rounded-lg bg-[#635BFF] text-white font-display font-black text-xs tracking-tight flex items-center gap-1">
-            <i class="ph-bold ph-lock-key"></i>
-            <span>stripe</span>
-          </span>
-          <span class="text-xs sm:text-sm font-display font-bold text-white">Contratación Directa · Todo Incluido en Un Único Pago Para Siempre</span>
-        </div>
-        <button type="button"
-                onclick="closeStripeCheckout()"
-                aria-label="Cerrar pasarela Stripe"
-                class="btn-press w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
-          <i class="ph-bold ph-x text-sm"></i>
-        </button>
-      </div>
+    var $ = function (id) { return document.getElementById(id); };
+    var current = 'peluqueria';
+    var manualSector = false;
+    var photos = [];
+    var state = null;
+    var plan = '197';
 
-      <!-- Body: 2-Column Stripe Checkout Layout -->
-      <div class="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-12">
+    function slug(s) { return slugifyName(s); }
 
-        <!-- Left Column (5 cols): Order Summary + 3-Plan Switcher (79 € / 197 € ⭐ / 297 €) -->
-        <div class="lg:col-span-5 p-4 sm:p-6 bg-[#070A11] border-b lg:border-b-0 lg:border-r border-white/10 space-y-4">
-          <div class="space-y-1">
-            <span class="text-[10.5px] uppercase tracking-wider font-extrabold text-[#A5B4FC]">Resumen de contratación</span>
-            <h3 id="stripe-summary-biz" class="font-display font-black text-lg sm:text-xl text-white">Motos Veloce · Madrid</h3>
-            <p id="stripe-summary-url" class="text-[11px] font-mono text-emerald-400 truncate">https://miweblocal.com/sitio/?negocio=motos-veloce</p>
-          </div>
+    function buildState(sectorId, rawName) {
+      var p = SECTOR_PRESETS[sectorId];
+      var split = rawName ? miwebSplitNameAndCity(rawName) : { name: '', city: '' };
+      var nm = split.name || p.defaultName;
+      var city = split.city || 'Madrid';
+      var sl = slug(nm);
+      var wa = ($('gen-wa').value || '').trim();
+      var prevExp = 0;
+      try {
+        var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        if (saved && slugifyName(saved.name) === sl && saved.expiresAt > Date.now()) prevExp = saved.expiresAt;
+      } catch (e) {}
+      return {
+        name: nm, userEditedName: !!split.name, sector: sectorId, customSectorLabel: p.label,
+        yearsExp: p.yearsExp, tagline: p.tagline, story: p.story, bookingPolicy: 'ambos',
+        city: city, address: 'Centro de ' + city,
+        whatsapp: wa || '612 890 345', phone: wa || '', instagram: '',
+        hoursWeek: '09:30 a 20:00', hoursSat: '09:30 a 14:30', hoursSun: 'Cerrado',
+        theme: p.defaultTheme || 'royal',
+        customHeroPhoto: photos[0] || '', customGallery: photos.slice(),
+        reviews: [], services: JSON.parse(JSON.stringify(p.services)),
+        modules: { booking: true, whatsappFloat: true, services: true, about: true, scheduleMap: true, gallery: true, reviews: true, faq: true },
+        adminPin: miwebGeneratePin(sl), unlocked: false, buyerEmail: '',
+        expiresAt: prevExp || (Date.now() + 24 * 3600 * 1000)
+      };
+    }
 
-          <!-- Instant 3-Plan Selector inside Stripe Checkout -->
-          <div class="space-y-2">
-            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Elige tu plan de pago único:</div>
-            <div class="grid grid-cols-3 gap-1.5">
-              <button type="button"
-                      id="stripe-tab-79"
-                      onclick="switchStripePlan('79')"
-                      class="p-2.5 sm:p-3 rounded-2xl border text-left transition-all">
-                <div class="text-[9.5px] font-extrabold uppercase text-emerald-300">Express</div>
-                <div class="font-display font-black text-base sm:text-lg text-white">79 €</div>
-                <div class="text-[10px] font-semibold text-slate-300 leading-tight mt-0.5">Web + Hosting</div>
-              </button>
+    function siteUrl() {
+      return location.origin + '/sitio/?negocio=' + encodeURIComponent(slug(state.name)) + '&d=' + encodeSharePayload(state);
+    }
 
-              <button type="button"
-                      id="stripe-tab-197"
-                      onclick="switchStripePlan('197')"
-                      class="p-2.5 sm:p-3 rounded-2xl border-2 text-left transition-all">
-                <div class="text-[9.5px] font-extrabold uppercase text-[#C7D2FE]">⭐ Pro</div>
-                <div class="font-display font-black text-base sm:text-lg text-white">197 €</div>
-                <div class="text-[10px] font-semibold text-emerald-300 leading-tight mt-0.5">Maps + .com</div>
-              </button>
+    /* ---------- Preview scaling ---------- */
+    var iframe = $('preview'), viewport = $('viewport');
+    function fit() {
+      var mobile = window.innerWidth < 820;
+      viewport.classList.toggle('mobile', mobile);
+      var w = mobile ? 390 : 1180;
+      var h = mobile ? 640 / 310 * 390 * (310 / 390) : 0;
+      var cw = viewport.clientWidth, ch = viewport.clientHeight;
+      iframe.style.width = w + 'px';
+      iframe.style.height = (ch * (w / cw)) + 'px';
+      iframe.style.transform = 'scale(' + (cw / w) + ')';
+    }
+    function renderPreview() {
+      iframe.srcdoc = compileClientWebsiteHTML(state);
+      $('url-text').textContent = 'miweblocal.com/' + slug(state.name);
+    }
+    window.addEventListener('resize', fit);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
 
-              <button type="button"
-                      id="stripe-tab-297"
-                      onclick="switchStripePlan('297')"
-                      class="p-2.5 sm:p-3 rounded-2xl border text-left transition-all">
-                <div class="text-[9.5px] font-extrabold uppercase text-amber-300">VIP 3D</div>
-                <div class="font-display font-black text-base sm:text-lg text-amber-300">297 €</div>
-                <div class="text-[10px] font-semibold text-slate-300 leading-tight mt-0.5">Catálogo + QR</div>
-              </button>
-            </div>
-          </div>
+    /* ---------- Sectors ---------- */
+    function renderSectors() {
+      $('sectors').innerHTML = SECTORS.map(function (s) {
+        return '<button type="button" class="sec-btn" data-id="' + s.id + '" aria-pressed="' + (s.id === current) + '"><i class="ph-bold ' + s.icon + '"></i><span>' + s.label + '</span></button>';
+      }).join('');
+      $('gen-name').placeholder = (SECTORS.filter(function (s) { return s.id === current; })[0] || SECTORS[0]).ph;
+    }
+    function setSector(id, byUser) {
+      current = id;
+      if (byUser) manualSector = true;
+      renderSectors();
+      state = buildState(current, $('gen-name').value.trim());
+      renderPreview();
+    }
+    $('sectors').addEventListener('click', function (e) {
+      var b = e.target.closest('.sec-btn');
+      if (b) setSector(b.getAttribute('data-id'), true);
+    });
 
-          <!-- Detailed Line Items -->
-          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-3.5 space-y-2.5 text-xs">
-            <div class="flex items-start justify-between gap-2">
-              <span id="stripe-item-title" class="font-bold text-white">Plan 2 ⭐ Negocio Pro + Google Maps + Dominio .com/.es (Pago Único)</span>
-              <span id="stripe-item-price" class="font-mono font-bold text-white shrink-0">197,00 €</span>
-            </div>
-            <div class="flex items-center justify-between gap-2 text-slate-300">
-              <span>Hosting de alta velocidad + SSL de por vida</span>
-              <span class="text-emerald-400 font-bold">INCLUIDO (0,00 €)</span>
-            </div>
-            <div class="flex items-center justify-between gap-2 text-slate-300">
-              <span>Garantía de 14 días de cambios y soporte</span>
-              <span class="text-emerald-400 font-bold">INCLUIDA (0,00 €)</span>
-            </div>
-            <div class="flex items-center justify-between gap-2 text-slate-300">
-              <span>Cuota mensual / Renovación anual</span>
-              <span class="text-emerald-400 font-bold">0,00 € / siempre</span>
-            </div>
-            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-sm font-display font-black text-white">
-              <span>Total pago único para siempre</span>
-              <span id="stripe-total-amount" class="text-lg text-emerald-400">197,00 €</span>
-            </div>
-          </div>
+    /* ---------- Generate ---------- */
+    function generate(e) {
+      if (e) e.preventDefault();
+      var raw = $('gen-name').value.trim();
+      if (raw.length < 2) { $('gen-name').focus(); return; }
+      if (!manualSector) {
+        var g = miwebDetectSectorFromText(raw);
+        var map = { barberia: 'peluqueria', estetica: 'peluqueria', motos: 'taller', fitness: 'tienda', personal: 'tienda', otro: 'tienda' };
+        g = map[g] || g;
+        if (SECTORS.some(function (s) { return s.id === g; })) current = g;
+        renderSectors();
+      }
+      state = buildState(current, raw);
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (er) {}
+      if (typeof miwebSaveSiteVault === 'function') miwebSaveSiteVault(slug(state.name), state);
+      renderPreview();
+      $('result-title').textContent = 'La web de ' + state.name + ' está lista';
+      $('result').classList.add('on');
+      tick();
+      if (window.innerWidth < 980) setTimeout(function () { viewport.closest('.bz').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+    }
+    $('gen-form').addEventListener('submit', generate);
 
-          <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-3 text-[11.5px] text-emerald-200 leading-snug flex items-start gap-2">
-            <i class="ph-bold ph-seal-check text-emerald-400 text-base shrink-0 mt-0.5"></i>
-            <span><strong>Triple Garantía Oficial:</strong> Todo incluido en un único pago para siempre + <strong>14 días de ajustes</strong> + Factura PDF inmediata de Stripe.</span>
-          </div>
-        </div>
+    var nameTimer;
+    $('gen-name').addEventListener('input', function () {
+      clearTimeout(nameTimer);
+      nameTimer = setTimeout(function () {
+        var raw = $('gen-name').value.trim();
+        if (!manualSector && raw.length > 3) {
+          var g = miwebDetectSectorFromText(raw);
+          var map = { barberia: 'peluqueria', estetica: 'peluqueria', motos: 'taller', fitness: 'tienda', personal: 'tienda', otro: 'tienda' };
+          g = map[g] || g;
+          if (SECTORS.some(function (s) { return s.id === g; })) { current = g; renderSectors(); }
+        }
+        state = buildState(current, raw);
+        renderPreview();
+      }, 450);
+    });
 
-        <!-- Right Column (7 cols): Real Stripe Checkout redirect (card data is entered ONLY on Stripe's secure page) -->
-        <div class="lg:col-span-7 p-4 sm:p-6 bg-[#0B0F19]">
-          <form id="stripe-payment-form" onsubmit="processAutomaticStripePayment(event)" class="space-y-3.5">
-            <div class="space-y-2">
-              <label for="stripe-domain" class="block text-[11px] font-bold uppercase tracking-wider text-emerald-300">
-                1. Comprueba tu dominio .es o .com incluido en tiempo real:
-              </label>
-              <div class="flex items-center gap-2">
-                <input id="stripe-domain" type="text" placeholder="minegocio.es" oninput="scheduleStripeDomainCheck()" class="stripe-input flex-1" />
-                <button type="button" onclick="checkStripeModalDomain()"
-                        class="btn-press shrink-0 px-3.5 py-2.5 min-h-[42px] rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-display font-bold text-xs whitespace-nowrap">
-                  Verificar
-                </button>
-              </div>
-              <div id="stripe-domain-status" class="text-[11.5px] min-h-[18px] flex flex-wrap items-center gap-1.5"></div>
-            </div>
+    $('gen-photos').addEventListener('change', async function (e) {
+      var files = Array.prototype.slice.call(e.target.files || [], 0, 4);
+      if (!files.length) return;
+      $('photo-msg').textContent = 'Optimizando fotos...';
+      var out = [];
+      for (var i = 0; i < files.length; i++) { try { out.push(await miwebCompressImageFile(files[i], 1100, 0.78)); } catch (er) {} }
+      if (!out.length) return;
+      photos = out;
+      $('photo-msg').textContent = out.length + ' foto(s) puestas en tu web';
+      state = buildState(current, $('gen-name').value.trim());
+      renderPreview();
+    });
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label for="stripe-email" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  2. Tu email (Factura PDF + Enlace Propietario):
-                </label>
-                <input id="stripe-email" type="email" autocomplete="email" placeholder="tuemail@negocio.com" class="stripe-input" />
-              </div>
-              <div>
-                <label for="stripe-nif" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
-                  3. Titular / NIF (Factura y Aviso Legal):
-                </label>
-                <input id="stripe-nif" type="text" placeholder="Ej. Clínica Sol SL · B12345678" class="stripe-input" />
-              </div>
-            </div>
+    /* Timer */
+    function tick() {
+      if (!state) return;
+      var rem = Math.max(0, state.expiresAt - Date.now()), s = Math.floor(rem / 1000);
+      var f = function (n) { return String(n).padStart(2, '0'); };
+      $('timer').textContent = f(Math.floor(s / 3600)) + ':' + f(Math.floor((s % 3600) / 60)) + ':' + f(s % 60);
+    }
+    setInterval(tick, 1000);
 
-            <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-3.5 space-y-2 text-xs text-slate-300">
-              <div class="font-display font-extrabold text-white text-sm">Entrega 100% automática tras el pago en Stripe:</div>
-              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">1</span><span>Tu web queda <strong>desbloqueada para siempre</strong> sin límite de 24h y con tu Aviso Legal inyectado.</span></div>
-              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">2</span><span>Recibes al instante tu <strong>Enlace Privado de Propietario (/admin) + Clave PIN</strong> para cambiar fotos, horarios o precios tú mismo toda la vida.</span></div>
-              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">3</span><span>Activamos tu dominio oficial con SSL y recibes tu <strong>Factura PDF</strong> en el correo.</span></div>
-            </div>
+    /* Open full */
+    function openFull() {
+      if (!state) state = buildState(current, $('gen-name').value.trim());
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (er) {}
+      window.open(siteUrl(), '_blank', 'noopener');
+    }
+    $('open-full').addEventListener('click', openFull);
+    $('tap-open').addEventListener('click', openFull);
+    window.addEventListener('message', function (ev) {
+      if (ev && ev.data && ev.data.type === 'MIWEB_OPEN_EDITOR') {
+        $('more').open = true;
+        $('more').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
 
-            <button type="submit" id="stripe-submit-btn"
-                    class="btn-press w-full py-3.5 px-5 min-h-[50px] rounded-2xl stripe-btn-primary font-display font-black text-sm sm:text-base flex items-center justify-center gap-2">
-              <i class="ph-bold ph-lock-key text-lg"></i>
-              <span id="stripe-submit-label">Contratar Negocio Pro ⭐ · 197 € Pago Único</span>
-            </button>
+    /* ---------- Examples ---------- */
+    $('ex-grid').innerHTML = SECTORS.map(function (s) {
+      return '<article class="bz reveal"><div class="bz-in ex-card"><div class="ex-img"><img src="' + s.img + '" alt="' + s.label + '" loading="lazy" /></div>' +
+        '<div class="ex-body"><h3>' + s.label + '</h3><p>' + s.blurb + '</p>' +
+        '<button type="button" class="btn-ghost" data-ex="' + s.id + '">Probar con mi negocio</button></div></div></article>';
+    }).join('');
+    $('ex-grid').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-ex]');
+      if (!b) return;
+      setSector(b.getAttribute('data-ex'), true);
+      document.getElementById('crear').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(function () { $('gen-name').focus({ preventScroll: true }); }, 500);
+    });
 
-            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 pt-1">
-              <span>🔒 Compra protegida por <strong>Stripe</strong> · Pago único sin renovaciones</span>
-              <button type="button"
-                      onclick="askWhatsAppNoCommitment('Tengo una duda antes de completar la contratación en Stripe')"
-                      class="text-emerald-400 hover:underline font-bold">
-                ¿Solo tienes dudas? Escríbenos por WhatsApp
-              </button>
-            </div>
-          </form>
-        </div>
+    /* ---------- Checkout ---------- */
+    var PLAN_LABEL = { '79': 'Pagar 79 € una sola vez', '197': 'Pagar 197 € una sola vez', '297': 'Pagar 297 € una sola vez' };
+    function setPlan(p) {
+      plan = miwebNormalizePlan(p);
+      document.querySelectorAll('.ptab').forEach(function (t) { t.setAttribute('aria-pressed', String(t.getAttribute('data-plan') === plan)); });
+      $('stripe-submit-label').textContent = PLAN_LABEL[plan];
+    }
+    var domTimer;
+    async function checkDomain(custom) {
+      var di = $('stripe-domain'), st = $('stripe-domain-status');
+      if (custom) di.value = custom;
+      var raw = di.value.trim() || (slug(state.name) + '.es');
+      st.innerHTML = '<span style="color:#64748B">Comprobando ' + raw + '...</span>';
+      var r = await miwebCheckDomainLive(raw, state.name, state.city);
+      if (!r.ok) { st.innerHTML = '<span style="color:#B45309">' + r.error + '</span>'; return; }
+      di.value = r.domain;
+      if (r.available) {
+        st.innerHTML = '<span style="color:#047857;font-weight:700">' + r.domain + ' está libre para tu negocio</span>';
+      } else {
+        st.innerHTML = '<span style="color:#B45309;font-weight:700">' + r.domain + ' ya está ocupado.</span>' +
+          (r.suggestions && r.suggestions.length ? ' <span style="color:#64748B">Libres:</span> ' + r.suggestions.map(function (s) { return '<button type="button" class="chip" data-dom="' + s + '">' + s + '</button>'; }).join(' ') : '');
+      }
+    }
+    $('stripe-domain-status').addEventListener('click', function (e) {
+      var c = e.target.closest('[data-dom]'); if (c) checkDomain(c.getAttribute('data-dom'));
+    });
+    $('stripe-domain').addEventListener('input', function () { clearTimeout(domTimer); domTimer = setTimeout(function () { checkDomain(); }, 450); });
+    $('dom-check').addEventListener('click', function () { checkDomain(); });
 
-      </div>
-    </div>
-  </div>
+    function openCheckout(p) {
+      if (!state) state = buildState(current, $('gen-name').value.trim());
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (er) {}
+      setPlan(p || '197');
+      $('m-biz').textContent = state.name + ' · ' + state.city;
+      var di = $('stripe-domain');
+      if (!di.value) di.value = slug(state.name) + '.es';
+      $('stripe-checkout-modal').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () { checkDomain(); }, 120);
+    }
+    function closeCheckout() {
+      $('stripe-checkout-modal').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    $('keep-btn').addEventListener('click', function () { openCheckout('197'); });
+    document.querySelectorAll('[data-plan]').forEach(function (b) {
+      if (b.classList.contains('ptab')) b.addEventListener('click', function () { setPlan(b.getAttribute('data-plan')); });
+      else b.addEventListener('click', function () { openCheckout(b.getAttribute('data-plan')); });
+    });
+    $('m-close').addEventListener('click', closeCheckout);
+    $('stripe-checkout-modal').addEventListener('click', function (e) { if (e.target === this) closeCheckout(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCheckout(); });
 
-  <!-- =====================================================================
-       FULLSCREEN "ORDENADOR + MÓVIL" STUDIO MODAL (100% Unified + Jump to Generator)
-       ===================================================================== -->
-  <div id="cinema-modal"
-       class="cinema-modal fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-2.5 sm:p-6"
-       onclick="if(event.target === this) closeCinemaModal()">
-    <div class="cinema-modal-panel w-full max-w-4xl rounded-[26px] sm:rounded-[28px] bg-[#0B0E15] border border-white/15 overflow-hidden shadow-2xl flex flex-col max-h-[94dvh]">
+    $('stripe-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var dom = $('stripe-domain').value.trim() || (slug(state.name) + '.es');
+      miwebGoToStripe({
+        plan: plan, name: state.name, city: state.city, whatsapp: state.whatsapp, sector: state.sector,
+        slug: slug(state.name), adminPin: state.adminPin, siteUrl: siteUrl(),
+        email: $('stripe-email').value.trim(), domain: dom, legalNif: $('stripe-nif').value.trim()
+      });
+    });
 
-      <!-- Top Bar with Prev/Next Model Switcher -->
-      <div class="px-4 sm:px-6 py-3 border-b border-white/10 flex items-center justify-between gap-2">
-        <div class="min-w-0">
-          <h3 id="cinema-title" class="font-display font-bold text-sm sm:text-lg text-white truncate">Ordenador + Móvil</h3>
-          <p id="cinema-sub" class="text-xs text-emerald-300 truncate"></p>
-        </div>
+    function doubt() {
+      var msg = 'Hola, tengo una duda antes de contratar mi web en MiWebLocal.com' + (state ? ':\n\n• Negocio: ' + state.name + ' (' + state.city + ')\n• Vista previa: ' + siteUrl() + '\n\nMi duda es:' : '.');
+      window.open('https://wa.me/' + MIWEB_STRIPE.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    }
+    $('m-doubt').addEventListener('click', doubt);
+    $('wa-doubt').addEventListener('click', function (e) { e.preventDefault(); doubt(); });
 
-        <div class="flex items-center gap-1.5 shrink-0">
-          <button type="button" onclick="stepCinemaModal(-1)"
-                  aria-label="Modelo anterior"
-                  class="btn-press w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/15 text-white flex items-center justify-center">
-            <i class="ph-bold ph-caret-left text-sm"></i>
-          </button>
-          <button type="button" onclick="stepCinemaModal(1)"
-                  aria-label="Siguiente modelo"
-                  class="btn-press w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/15 text-white flex items-center justify-center">
-            <i class="ph-bold ph-caret-right text-sm"></i>
-          </button>
-          <button type="button" onclick="closeCinemaModal()"
-                  aria-label="Cerrar"
-                  class="btn-press w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center ml-1">
-            <i class="ph-bold ph-x text-sm"></i>
-          </button>
-        </div>
-      </div>
+    /* ---------- Reveal + dock ---------- */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }); }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      var heroEl = $('crear'), dock = $('dock');
+      new IntersectionObserver(function (en) { dock.classList.toggle('on', !en[0].isIntersecting); }, { threshold: 0 }).observe(heroEl);
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
 
-      <!-- Exact Same Ordenador + Móvil HD Showcase + 4 Pains Solved -->
-      <div class="flex-1 overflow-y-auto p-3.5 sm:p-6 space-y-4 sm:space-y-5 bg-[#06080C]">
-        <img id="cinema-photo" src="" alt="" class="w-full max-h-[52dvh] object-contain rounded-2xl mx-auto block" />
-
-        <div class="rounded-2xl bg-white/[0.04] border border-white/10 p-4 sm:p-5">
-          <div class="text-[11px] uppercase tracking-wider font-bold text-amber-300 mb-2.5">Qué problemas te resuelve este modelo:</div>
-          <div id="cinema-solves" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-        </div>
-      </div>
-
-      <!-- Bottom Direct CTA: Pre-selects this model in the 10-second Generator! -->
-      <div class="safe-bottom-pad px-4 sm:px-6 pt-3.5 border-t border-white/10 bg-[#0B0E15] flex items-center justify-between gap-3">
-        <span class="text-xs text-slate-400 hidden sm:inline">Genera este modelo con tu nombre en 10s · Pago único desde 79 € con Stripe.</span>
-        <button type="button" id="cinema-wa-btn"
-                class="btn-press w-full sm:w-auto px-6 py-3 min-h-[46px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2">
-          <i class="ph-bold ph-lightning text-lg"></i>
-          <span>Usar este diseño y generar mi enlace (24h)</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <script src="assets/stripe-config.js?v=85"></script>
-  <script src="assets/showcase-v4.js?v=85"></script>
+    /* ---------- Init ---------- */
+    renderSectors();
+    state = buildState(current, '');
+    renderPreview();
+    fit();
+    var q = new URLSearchParams(location.search);
+    if (q.get('plan')) setTimeout(function () { openCheckout(q.get('plan')); }, 400);
+  })();
+  </script>
 </body>
 </html>

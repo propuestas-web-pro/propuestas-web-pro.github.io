@@ -3,384 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Vista Previa 24h · MiWebLocal</title>
-  <meta name="theme-color" content="#07090E" />
+  <title>Vista previa de tu web · MiWebLocal</title>
+  <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
+    :root {
+      --bg: #FAFBFD; --card: #FFFFFF; --tint: #F1F5FB; --soft: #EEF2FF;
+      --ink: #0F172A; --muted: #475569; --line: rgba(15, 23, 42, 0.1);
+      --brand: #4F46E5; --brand-hi: #4338CA; --ring: rgba(79, 70, 229, 0.18);
+      --ease: cubic-bezier(0.23, 1, 0.32, 1);
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body {
-      width: 100%;
-      height: 100%;
-      height: 100dvh;
-      background: #07090E;
-      color: #F8FAFC;
+      width: 100%; height: 100dvh; background: var(--bg); color: var(--ink);
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      overflow: hidden; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased;
     }
+    ::selection { background: var(--brand); color: #fff; }
+    :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+    button { font-family: inherit; }
 
     #demo-top-bar {
-      background: linear-gradient(90deg, #0B0F19 0%, #111827 100%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      flex-shrink: 0;
-      z-index: 30;
+      background: rgba(255,255,255,0.94); border-bottom: 1px solid var(--line);
+      padding: 9px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      flex-shrink: 0; z-index: 30;
     }
     #demo-top-bar.hidden { display: none !important; }
+    .badge-timer { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .dot-pulse { width: 9px; height: 9px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px var(--ring); animation: pulseDot 1.8s infinite; }
+    @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+    .badge-timer strong { color: var(--brand); font-variant-numeric: tabular-nums; }
+    .actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    .badge-timer {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #FDE68A;
-      white-space: nowrap;
+    .btn-sm, .btn-edit-live, .btn-unlock, .btn-unlock-vip {
+      height: 40px; padding: 0 16px; border-radius: 999px; font-size: 13px; font-weight: 700;
+      white-space: nowrap; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+      transition: transform .2s var(--ease), border-color .2s ease, background .2s ease;
     }
-    .dot-pulse {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #F59E0B;
-      box-shadow: 0 0 10px #F59E0B;
-      animation: pulseDot 1.6s infinite;
+    .btn-sm, .btn-edit-live { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+    .btn-edit-live { border-color: var(--brand); color: var(--brand); background: var(--soft); }
+    .btn-unlock, .btn-unlock-vip {
+      font-family: 'Outfit', sans-serif; border: none; background: var(--brand); color: #fff;
+      box-shadow: 0 10px 24px -10px rgba(79,70,229,.6);
     }
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.85); }
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .btn-sm {
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
-      text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.06);
-      color: #fff;
-      cursor: pointer;
-      white-space: nowrap;
-      font-family: inherit;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .btn-edit-live {
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      border: 1px solid rgba(52, 211, 153, 0.6);
-      background: rgba(16, 185, 129, 0.18);
-      color: #6EE7B7;
-      cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .btn-unlock {
-      padding: 7px 13px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      border: none;
-      background: #34D399;
-      color: #04130D;
-      cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 4px 18px rgba(52, 211, 153, 0.35);
-    }
-
-    .btn-unlock-vip {
-      padding: 7px 13px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 800;
-      font-family: 'Outfit', sans-serif;
-      border: 1px solid rgba(251, 191, 36, 0.55);
-      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
-      color: #090D16;
-      cursor: pointer;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.3);
-    }
+    .btn-unlock-vip { background: var(--ink); box-shadow: none; }
+    .btn-sm:active, .btn-edit-live:active, .btn-unlock:active, .btn-unlock-vip:active { transform: scale(.97); }
+    @media (hover:hover) and (pointer:fine) { .btn-unlock:hover { background: var(--brand-hi); } .btn-sm:hover { border-color: var(--brand); } }
 
     @media (max-width: 640px) {
       .hide-xs { display: none !important; }
-      #demo-bottom-strip {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-      .strip-actions {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
+      #demo-top-bar { padding: 8px 10px; }
+      .btn-sm, .btn-edit-live, .btn-unlock { height: 38px; padding: 0 12px; font-size: 12px; }
+      #demo-bottom-strip { flex-direction: column; align-items: stretch !important; gap: 8px; }
+      .strip-actions { display: grid !important; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .strip-sub { display: none; }
     }
 
-    .strip-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
+    .stage-wrap { position: relative; flex: 1; display: flex; min-height: 0; }
+    #client-live-iframe { width: 100%; height: 100%; border: 0; background: #fff; display: block; }
 
-    .stage-wrap {
-      position: relative;
-      flex: 1;
-      display: flex;
-      min-height: 0;
-    }
-
-    #client-live-iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      background: #090B10;
-      display: block;
-    }
-
-    /* Slide-Over Live Mini-Editor (0% Fathi manual work!) */
+    /* Mini editor */
     #live-mini-editor {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      max-width: 410px;
-      background: #0B0F18;
-      border-left: 1px solid rgba(255, 255, 255, 0.16);
-      z-index: 80;
-      display: none;
-      flex-direction: column;
-      box-shadow: -24px 0 60px rgba(0, 0, 0, 0.75);
+      position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 420px; background: var(--bg);
+      border-left: 1px solid var(--line); z-index: 80; display: none; flex-direction: column;
+      box-shadow: -24px 0 60px rgba(15,23,42,.14);
     }
     #live-mini-editor.is-open { display: flex; }
-
-    .ed-header {
-      padding: 13px 16px;
-      background: #070A11;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .ed-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .ed-card {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .ed-label {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #6EE7B7;
-    }
+    .ed-header { padding: 14px 16px; background: var(--card); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .ed-body { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+    .ed-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 9px; }
+    .ed-label { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; color: var(--ink); }
+    .ed-help { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
     .ed-input {
-      width: 100%;
-      padding: 9px 11px;
-      border-radius: 10px;
-      background: #06090F;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-      font-family: inherit;
-      font-size: 15px;
-      outline: none;
+      width: 100%; padding: 10px 12px; border-radius: 12px; background: var(--bg); border: 1.5px solid var(--line);
+      color: var(--ink); font-family: inherit; font-size: 15px; outline: none;
     }
-    .ed-input:focus { border-color: #34D399; }
-    .ed-footer {
-      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-      background: #070A11;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      display: flex;
-      gap: 8px;
-    }
+    .ed-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); background: #fff; }
+    .ed-footer { padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--card); border-top: 1px solid var(--line); display: flex; gap: 8px; }
+    .ed-btn { flex: 1; height: 46px; border-radius: 999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; }
+    .ed-btn.pri { background: var(--brand); color: #fff; border: none; }
+    .ed-close { width: 36px; height: 36px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); color: var(--ink); cursor: pointer; font-size: 17px; }
 
     #demo-bottom-strip {
-      background: rgba(10, 14, 22, 0.96);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(52, 211, 153, 0.3);
-      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      z-index: 30;
+      background: rgba(255,255,255,0.96); border-top: 1px solid var(--line);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 30;
     }
     #demo-bottom-strip.hidden { display: none !important; }
-
     .strip-info { min-width: 0; }
-    .strip-title {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      color: #FFFFFF;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .strip-sub {
-      font-size: 11px;
-      color: #6EE7B7;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .strip-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14.5px; color: var(--ink); }
+    .strip-sub { font-size: 12.5px; color: var(--muted); }
+    .strip-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-    /* Lifetime Unlock Modal */
+    /* Modals */
     .unlock-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      background: rgba(3, 5, 9, 0.86);
-      backdrop-filter: blur(14px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-      overflow-y: auto;
+      position: fixed; inset: 0; z-index: 90; background: rgba(15,23,42,.5); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; padding: 14px; overflow-y: auto;
     }
     .unlock-modal-backdrop.is-open { display: flex; }
     .unlock-modal-card {
-      width: 100%;
-      max-width: 780px;
-      background: #0C1018;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 26px;
-      padding: 20px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-      max-height: 92dvh;
-      overflow-y: auto;
+      width: 100%; max-width: 780px; background: var(--card); border-radius: 30px; padding: 22px;
+      box-shadow: 0 40px 90px -20px rgba(15,23,42,.4); max-height: 94dvh; overflow-y: auto;
     }
-    @media (min-width: 640px) { .unlock-modal-card { padding: 26px; } }
-    .plan-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
+    @media (min-width: 640px) { .unlock-modal-card { padding: 28px; } }
+    .plan-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
     @media (min-width: 680px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
-    .plan-box {
-      border-radius: 18px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .plan-79 { background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(52, 211, 153, 0.35); }
-    .plan-197 { background: rgba(99, 91, 255, 0.16); border: 2px solid rgba(129, 140, 248, 0.75); }
-    .plan-297 { background: rgba(245, 158, 11, 0.07); border: 1px solid rgba(251, 191, 36, 0.4); }
+    .plan-box { border-radius: 20px; padding: 16px; background: var(--bg); border: 1.5px solid var(--line); display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: border-color .2s ease; }
+    .plan-box.plan-197 { background: var(--soft); border-color: var(--ring); }
+    .plan-box .pb-top { display: flex; justify-content: space-between; align-items: center; }
+    .plan-box .pb-tag { font-size: 12px; font-weight: 700; color: var(--brand); }
+    .plan-box .pb-price { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -.03em; }
+    .plan-box .pb-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; }
+    .plan-box p { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
     .plan-cta {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 999px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
+      width: 100%; height: 52px; border-radius: 999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--brand); color: #fff; box-shadow: 0 14px 30px -10px rgba(79,70,229,.55);
     }
+    .plan-cta:active { transform: scale(.98); }
+    .m-input { width: 100%; padding: 12px 14px; border-radius: 14px; background: var(--bg); border: 1.5px solid var(--line); color: var(--ink); font-size: 15px; font-family: inherit; outline: none; }
+    .m-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--ring); background: #fff; }
+    .m-label { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
 
     #expired-24h-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 85;
-      background: rgba(5, 7, 12, 0.92);
-      backdrop-filter: blur(18px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
+      position: fixed; inset: 0; z-index: 85; background: rgba(250,251,253,.94); backdrop-filter: blur(16px);
+      display: none; align-items: center; justify-content: center; padding: 20px; text-align: center;
     }
     #expired-24h-overlay.is-open { display: flex; }
-
     #copy-toast {
-      position: fixed;
-      bottom: 74px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #10B981;
-      color: #04130D;
-      font-weight: 800;
-      font-size: 12.5px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-      z-index: 100;
-      display: none;
-      white-space: nowrap;
+      position: fixed; bottom: 74px; left: 50%; transform: translateX(-50%); background: var(--ink); color: #fff;
+      font-weight: 700; font-size: 13px; padding: 10px 18px; border-radius: 999px; z-index: 100; display: none; white-space: nowrap;
     }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
 
-  <!-- Shown ONLY while in 24h Demo Mode -->
+  <!-- Barra de la vista previa (solo mientras es demo de 24h) -->
   <div id="demo-top-bar" class="hidden">
     <div class="badge-timer">
       <span class="dot-pulse"></span>
-      <span>Caduca en <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
+      <span>Vista previa · Caduca en <strong id="sitio-timer">23:59:59</strong></span>
     </div>
     <div class="actions">
       <button type="button" class="btn-edit-live" onclick="toggleLiveMiniEditor(true)">
         <i class="ph-bold ph-camera"></i>
-        <span>Mis Fotos / Editar</span>
+        <span>Mis fotos y cambios</span>
       </button>
       <button type="button" class="btn-sm hide-xs" onclick="sendDemoLinkWhatsApp()">
-        <i class="ph-fill ph-whatsapp-logo" style="color:#34D399;"></i>
+        <i class="ph-bold ph-paper-plane-tilt"></i>
         <span>Guardar enlace</span>
       </button>
-      <button type="button" class="btn-unlock" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff;" onclick="openSitioStripeModal('197')">
-        <i class="ph-bold ph-credit-card"></i>
-        <span>Publicar · Desde 79 €</span>
+      <button type="button" class="btn-unlock" onclick="openSitioStripeModal('197')">
+        <span>Contratar · Desde 79 €</span>
       </button>
     </div>
   </div>
@@ -389,230 +168,163 @@
     <iframe id="client-live-iframe" title="Página web generada del negocio"></iframe>
   </div>
 
-  <!-- =====================================================================
-       MINI-EDITOR VISUAL EN VIVO (FOTOS DESDE MÓVIL, TEXTOS, PRECIOS Y COLOR)
-       ===================================================================== -->
+  <!-- Editor rápido -->
   <aside id="live-mini-editor" aria-label="Editor rápido de tu web">
     <div class="ed-header">
       <div>
-        <div style="font-size:10px; font-weight:800; text-transform:uppercase; color:#34D399;">Autogestión Instantánea</div>
-        <strong style="font-family:'Outfit',sans-serif; font-size:15px; color:#fff;">✏️ Personaliza Tu Web en Vivo</strong>
+        <div style="font-size:12px; font-weight:700; color:var(--brand);">Edición instantánea</div>
+        <strong style="font-family:'Outfit',sans-serif; font-size:18px;">Personaliza tu web</strong>
       </div>
-      <button type="button" onclick="toggleLiveMiniEditor(false)" style="width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer;">✕</button>
+      <button type="button" class="ed-close" onclick="toggleLiveMiniEditor(false)" aria-label="Cerrar">&times;</button>
     </div>
 
     <div class="ed-body">
-      <!-- 1. Fotos reales desde el móvil -->
-      <div class="ed-card" style="border-color:rgba(52,211,153,0.4); background:rgba(16,185,129,0.07);">
-        <div class="ed-label">📸 1. Pon Fotos Reales de Tu Local o Trabajos</div>
-        <p style="font-size:11.5px; color:#CBD5E1; line-height:1.35;">Elige de 1 a 4 fotos desde tu móvil u ordenador y míralas puestas al instante:</p>
+      <div class="ed-card" style="background:var(--soft); border-color:var(--ring);">
+        <div class="ed-label">1. Pon fotos reales de tu local</div>
+        <p class="ed-help">Elige de 1 a 4 fotos desde tu móvil u ordenador y míralas puestas al momento.</p>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <label style="flex:1; padding:10px 12px; border-radius:12px; background:#34D399; color:#04130D; font-family:'Outfit',sans-serif; font-weight:800; font-size:12.5px; text-align:center; cursor:pointer;">
-            📷 Elegir Fotos de Mi Galería
+          <label style="flex:1; min-width:160px; height:46px; border-radius:999px; background:var(--brand); color:#fff; font-family:'Outfit',sans-serif; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;">
+            <i class="ph-bold ph-camera"></i> Elegir fotos
             <input type="file" accept="image/*" multiple style="display:none;" onchange="handleSitioPhotosUpload(this)" />
           </label>
-          <button type="button" onclick="resetSitioPhotos()" style="padding:10px 12px; border-radius:12px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#CBD5E1; font-size:11.5px; font-weight:700; cursor:pointer;">
-            Restaurar
-          </button>
+          <button type="button" onclick="resetSitioPhotos()" class="ed-btn" style="flex:0 0 auto; padding:0 18px; height:46px; font-size:13px;">Restaurar</button>
         </div>
-        <div id="ed-photo-msg" style="font-size:11px; color:#6EE7B7; font-weight:700;"></div>
+        <div id="ed-photo-msg" style="font-size:12.5px; color:var(--brand); font-weight:700;"></div>
       </div>
 
-      <!-- 2. Nombre, Titular y Contacto -->
       <div class="ed-card">
-        <div class="ed-label">🏪 2. Datos de Tu Negocio y WhatsApp</div>
+        <div class="ed-label">2. Datos de tu negocio y WhatsApp</div>
         <input id="ed-name" class="ed-input" type="text" placeholder="Nombre del negocio" oninput="applyLiveEditorChanges()" />
         <input id="ed-tagline" class="ed-input" type="text" placeholder="Titular principal de tu web" oninput="applyLiveEditorChanges()" />
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <input id="ed-city" class="ed-input" type="text" placeholder="Ciudad" oninput="applyLiveEditorChanges()" />
           <input id="ed-wa" class="ed-input" type="tel" placeholder="WhatsApp" oninput="applyLiveEditorChanges()" />
         </div>
         <input id="ed-address" class="ed-input" type="text" placeholder="Calle y número (para Google Maps)" oninput="applyLiveEditorChanges()" />
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <input id="ed-hw" class="ed-input" type="text" placeholder="Horario L-V" oninput="applyLiveEditorChanges()" />
-          <input id="ed-hs" class="ed-input" type="text" placeholder="Horario Sáb" oninput="applyLiveEditorChanges()" />
+          <input id="ed-hs" class="ed-input" type="text" placeholder="Horario sábado" oninput="applyLiveEditorChanges()" />
         </div>
       </div>
 
-      <!-- 3. Color del diseño -->
       <div class="ed-card">
-        <div class="ed-label">🎨 3. Estilo de Color</div>
+        <div class="ed-label">3. Estilo de color</div>
         <div id="ed-theme-pills" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;"></div>
       </div>
 
-      <!-- 4. Servicios / Carta y Precios -->
       <div class="ed-card">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div class="ed-label">🏷️ 4. Tus Servicios / Carta y Precios</div>
-          <button type="button" onclick="edAddServiceRow()" style="padding:4px 9px; border-radius:8px; background:rgba(52,211,153,0.18); border:1px solid rgba(52,211,153,0.4); color:#6EE7B7; font-size:11px; font-weight:800; cursor:pointer;">+ Añadir</button>
+          <div class="ed-label">4. Servicios y precios</div>
+          <button type="button" onclick="edAddServiceRow()" style="padding:6px 12px; border-radius:999px; background:var(--soft); border:1px solid var(--ring); color:var(--brand); font-size:12.5px; font-weight:700; cursor:pointer;">+ Añadir</button>
         </div>
         <div id="ed-services-box" style="display:flex; flex-direction:column; gap:7px;"></div>
       </div>
 
-      <!-- 5. Aviso Legal Automático -->
       <div class="ed-card">
-        <div class="ed-label">⚖️ 5. Aviso Legal Automático (Opcional)</div>
-        <input id="ed-legal-holder" class="ed-input" type="text" placeholder="Razón Social o Nombre Autónomo" oninput="applyLiveEditorChanges()" />
+        <div class="ed-label">5. Aviso legal automático (opcional)</div>
+        <input id="ed-legal-holder" class="ed-input" type="text" placeholder="Razón social o nombre de autónomo" oninput="applyLiveEditorChanges()" />
         <input id="ed-legal-nif" class="ed-input" type="text" placeholder="NIF / CIF (ej. B12345678)" oninput="applyLiveEditorChanges()" />
       </div>
     </div>
 
     <div class="ed-footer">
-      <button type="button" onclick="toggleLiveMiniEditor(false)" style="flex:1; padding:12px; border-radius:999px; background:#34D399; color:#04130D; font-family:'Outfit',sans-serif; font-weight:800; font-size:13px; border:none; cursor:pointer;">
-        ✓ Listo · Ver Mi Web
-      </button>
-      <button type="button" onclick="toggleLiveMiniEditor(false); openSitioStripeModal('197');" style="flex:1; padding:12px; border-radius:999px; background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-family:'Outfit',sans-serif; font-weight:800; font-size:13px; border:none; cursor:pointer;">
-        Publicar Ahora →
-      </button>
+      <button type="button" class="ed-btn" onclick="toggleLiveMiniEditor(false)">Ver mi web</button>
+      <button type="button" class="ed-btn pri" onclick="toggleLiveMiniEditor(false); openSitioStripeModal('197');">Contratar</button>
     </div>
   </aside>
 
-  <!-- Bottom Persistent 24h Lifetime Unlock Strip -->
+  <!-- Franja inferior -->
   <div id="demo-bottom-strip" class="hidden">
     <div class="strip-info">
-      <div class="strip-title">🔒 Todo Incluido en Un Único Pago Para Siempre (0 €/mes · 0 €/año) + Panel de Edición Propio</div>
-      <div class="strip-sub">Prueba tus fotos arriba en «Mis Fotos / Editar» y publícala hoy con Stripe (Express 79 € · Negocio Pro ⭐ 197 € · VIP 297 €)</div>
+      <div class="strip-title">Pago único, sin cuotas. Tuya para siempre.</div>
+      <div class="strip-sub">Incluye panel privado para editar cuando quieras y 14 días de garantía.</div>
     </div>
     <div class="strip-actions">
-      <button type="button" class="btn-unlock" style="padding: 10px 14px; font-size: 12px; justify-content: center;" onclick="openSitioStripeModal('79')">
-        <i class="ph-bold ph-credit-card"></i>
-        <span>Express · 79 €</span>
-      </button>
-      <button type="button" class="btn-unlock-vip" style="padding: 10px 14px; font-size: 12px; justify-content: center;" onclick="openSitioStripeModal('197')">
-        <i class="ph-bold ph-credit-card"></i>
-        <span>⭐ Negocio Pro · 197 €</span>
-      </button>
+      <button type="button" class="btn-sm" onclick="openSitioStripeModal('79')" style="justify-content:center;">Express · 79 €</button>
+      <button type="button" class="btn-unlock" onclick="openSitioStripeModal('197')" style="justify-content:center;">Negocio Pro · 197 €</button>
     </div>
   </div>
 
-  <!-- Real 24h Expiration Gate (if unpaid after 24h) -->
+  <!-- Caducada -->
   <div id="expired-24h-overlay">
-    <div style="max-width:480px; background:#0C1018; border:1px solid rgba(251,191,36,0.45); border-radius:26px; padding:26px; box-shadow:0 30px 80px rgba(0,0,0,0.85);">
-      <div style="display:inline-flex; padding:6px 12px; border-radius:999px; background:rgba(245,158,11,0.16); color:#FCD34D; font-size:11.5px; font-weight:800; margin-bottom:10px;">
-        ⏳ VISTA PREVIA DE 24 HORAS CADUCADA
-      </div>
-      <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:23px; color:#fff; margin-bottom:8px;">
-        Reactiva y publica la web de tu negocio para siempre
-      </h2>
-      <p style="font-size:13.5px; color:#CBD5E1; line-height:1.5; margin-bottom:18px;">
-        Tu diseño y tus cambios siguen guardados. Desbloquéala hoy en un único pago con Stripe (<strong>0 €/mes · 0 €/año</strong>) y recibe tu enlace privado de propietario.
+    <div style="max-width:480px; background:var(--card); border:1px solid var(--line); border-radius:30px; padding:30px; box-shadow:0 40px 90px -20px rgba(15,23,42,.3);">
+      <div style="display:inline-flex; padding:5px 13px; border-radius:999px; background:var(--soft); color:var(--brand); font-size:12.5px; font-weight:700; margin-bottom:12px;">La vista previa de 24 horas ha caducado</div>
+      <h2 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:26px; letter-spacing:-.03em; margin-bottom:10px;">Quédate tu web para siempre</h2>
+      <p style="font-size:14.5px; color:var(--muted); line-height:1.55; margin-bottom:20px;">
+        Tu diseño y tus cambios siguen guardados. Págala una sola vez con Stripe (<strong>0 €/mes</strong>) y recibe tu enlace privado.
       </p>
-      <button type="button" onclick="document.getElementById('expired-24h-overlay').classList.remove('is-open'); openSitioStripeModal('197');" class="plan-cta" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-size:14px;">
-        🔒 Desbloquear y Publicar Para Siempre →
+      <button type="button" onclick="document.getElementById('expired-24h-overlay').classList.remove('is-open'); openSitioStripeModal('197');" class="plan-cta">
+        Contratar y publicar
       </button>
     </div>
   </div>
 
-  <!-- =====================================================================
-       MODAL DE CONTRATACIÓN DIRECTA STRIPE · 3 PLANES + DOMINIO LIBRE EN VIVO
-       ===================================================================== -->
+  <!-- Contratación directa con Stripe -->
   <div id="unlock-modal" class="unlock-modal-backdrop" onclick="if(event.target === this) closeUnlockModal()">
     <div class="unlock-modal-card">
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
         <div>
-          <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:rgba(99,91,255,0.18); border:1px solid rgba(99,91,255,0.45); color:#C7D2FE; font-size:11px; font-weight:700; margin-bottom:6px;">
-            <i class="ph-bold ph-lock-key"></i>
-            <span>Contratación Directa en Web · Caduca en <strong id="modal-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
+          <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; background:var(--soft); color:var(--brand); font-size:12.5px; font-weight:700; margin-bottom:8px;">
+            <i class="ph-bold ph-clock"></i>
+            <span>Tu vista previa caduca en <strong id="modal-timer" style="font-variant-numeric:tabular-nums;">23:59:59</strong></span>
           </div>
-          <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff; line-height:1.15;">
-            Todo incluido en un único pago para siempre (0 €/mes · 0 €/año)
-          </h2>
-          <p style="font-size:12.5px; color:#94A3B8; margin-top:4px;">
-            Tras pagar en <strong>Stripe</strong> recibes al instante tu <strong>Factura PDF</strong> y tu <strong>Panel Privado de Propietario (/admin)</strong> para editar fotos, horarios y precios cuando quieras toda la vida.
+          <h2 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:25px; letter-spacing:-.03em; line-height:1.1;">Un único pago. Tuya para siempre.</h2>
+          <p style="font-size:13.5px; color:var(--muted); margin-top:6px;">
+            Tras pagar en Stripe recibes tu factura PDF y tu panel privado para editar fotos, horarios y precios cuando quieras.
           </p>
         </div>
-        <button type="button" onclick="closeUnlockModal()" style="width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#fff; cursor:pointer; flex-shrink:0;">✕</button>
+        <button type="button" onclick="closeUnlockModal()" class="ed-close" aria-label="Cerrar">&times;</button>
       </div>
 
-      <!-- 3-Plan Selector (79 € / 197 € ⭐ / 297 €) -->
       <div class="plan-grid">
-        <div id="sitio-plan-box-79" class="plan-box plan-79" style="cursor:pointer;" onclick="selectSitioStripePlan('79')">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#6EE7B7;">Plan 1 · Express</span>
-              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff;">79 €</span>
-            </div>
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
-              Web Express + Panel Propio
-            </div>
-            <p style="font-size:11px; color:#CBD5E1; line-height:1.35;">
-              Desbloqueo permanente + Enlace y Hosting de por vida + Panel /admin para editar + SSL + 14 días garantía.
-            </p>
-          </div>
+        <div id="sitio-plan-box-79" class="plan-box plan-79" onclick="selectSitioStripePlan('79')">
+          <div class="pb-top"><span class="pb-tag">Express</span><span class="pb-price">79 €</span></div>
+          <div class="pb-name">Web Express</div>
+          <p>Tu web publicada con enlace propio, panel privado, certificado de seguridad y 14 días de garantía.</p>
         </div>
-
-        <div id="sitio-plan-box-197" class="plan-box plan-197" style="cursor:pointer;" onclick="selectSitioStripePlan('197')">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#C7D2FE;">⭐ Más Elegido</span>
-              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff;">197 €</span>
-            </div>
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
-              Negocio Pro + Maps + Dominio
-            </div>
-            <p style="font-size:11px; color:#E2E8F0; line-height:1.35;">
-              Dominio oficial .es/.com incluido + Alta en Google Maps + Panel /admin + Montaje completo + 14 días ajustes.
-            </p>
-          </div>
+        <div id="sitio-plan-box-197" class="plan-box plan-197" onclick="selectSitioStripePlan('197')">
+          <div class="pb-top"><span class="pb-tag">El más elegido</span><span class="pb-price">197 €</span></div>
+          <div class="pb-name">Negocio Pro</div>
+          <p>Dominio propio .es o .com, alta en Google Maps, panel privado, montaje completo y 14 días de ajustes.</p>
         </div>
-
-        <div id="sitio-plan-box-297" class="plan-box plan-297" style="cursor:pointer;" onclick="selectSitioStripePlan('297')">
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#FCD34D;">Plan 3 · VIP 3D</span>
-              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#FCD34D;">297 €</span>
-            </div>
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
-              Catálogo Extenso + 3D + QR
-            </div>
-            <p style="font-size:11px; color:#CBD5E1; line-height:1.35;">
-              Todo lo Pro + Carga de catálogo/carta amplia + Efectos 3D + Placa QR imprenta + Entrega prioritaria 24h.
-            </p>
-          </div>
+        <div id="sitio-plan-box-297" class="plan-box plan-297" onclick="selectSitioStripePlan('297')">
+          <div class="pb-top"><span class="pb-tag">VIP</span><span class="pb-price">297 €</span></div>
+          <div class="pb-name">Catálogo + Placa QR</div>
+          <p>Todo lo de Negocio Pro, catálogo amplio, placa QR para tu mostrador y entrega prioritaria.</p>
         </div>
       </div>
 
-      <!-- Real-Time Domain Checker + Stripe Checkout -->
-      <form id="sitio-stripe-form" onsubmit="completeSitioStripePayment(event)" style="margin-top:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:14px; display:flex; flex-direction:column; gap:10px;">
+      <form id="sitio-stripe-form" onsubmit="completeSitioStripePayment(event)" style="margin-top:16px; background:var(--bg); border:1px solid var(--line); border-radius:22px; padding:16px; display:flex; flex-direction:column; gap:12px;">
         <div>
-          <label style="display:block; font-size:11px; font-weight:800; text-transform:uppercase; color:#6EE7B7; margin-bottom:5px;">
-            1. Elige tu dominio y comprueba al instante si está libre:
-          </label>
+          <label class="m-label" for="sitio-stripe-domain">1. Elige tu dirección web y comprueba si está libre</label>
           <div style="display:flex; gap:8px;">
-            <input id="sitio-stripe-domain" type="text" placeholder="minegocio.es" oninput="scheduleSitioDomainCheck()" style="flex:1; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
-            <button type="button" onclick="checkSitioDomainNow()" style="padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); color:#fff; font-weight:800; font-size:12px; cursor:pointer; white-space:nowrap;">
-              Comprobar
-            </button>
+            <input id="sitio-stripe-domain" class="m-input" type="text" placeholder="minegocio.es" oninput="scheduleSitioDomainCheck()" />
+            <button type="button" onclick="checkSitioDomainNow()" class="btn-sm" style="height:48px;">Comprobar</button>
           </div>
-          <div id="sitio-domain-status" style="font-size:11.5px; margin-top:5px; min-height:17px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;"></div>
+          <div id="sitio-domain-status" style="font-size:13px; margin-top:7px; min-height:18px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;"></div>
         </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-          <input id="sitio-stripe-email" type="email" autocomplete="email" placeholder="Tu email (Factura PDF + Enlace Admin)" style="width:100%; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
-          <input id="sitio-stripe-nif" type="text" placeholder="Titular / NIF (Factura y Aviso Legal)" style="width:100%; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
+        <div style="display:grid; grid-template-columns:1fr; gap:10px;">
+          <input id="sitio-stripe-email" class="m-input" type="email" autocomplete="email" placeholder="Tu correo (factura y enlace de tu panel)" />
+          <input id="sitio-stripe-nif" class="m-input" type="text" placeholder="Titular y NIF (factura y aviso legal)" />
         </div>
-
-        <div style="padding:9px 12px; border-radius:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(52,211,153,0.3); font-size:11.5px; color:#A7F3D0; line-height:1.35;">
-          🛡️ <strong>Entrega Automática Inmediata:</strong> Desbloqueo permanente + Enlace Privado de Propietario (<code>/admin</code>) + Factura PDF Stripe + 14 días de garantía.
-        </div>
-        <button type="submit" id="sitio-stripe-submit" class="plan-cta" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-size:14px;">
+        <button type="submit" id="sitio-stripe-submit" class="plan-cta">
           <i class="ph-bold ph-lock-key"></i>
-          <span id="sitio-stripe-submit-text">Contratar Negocio Pro ⭐ · 197 € Pago Único</span>
+          <span id="sitio-stripe-submit-text">Pagar 197 € una sola vez</span>
         </button>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:11.5px; color:#94A3B8;">
-          <span>🔒 Pago único procesado en <strong>Stripe</strong> · Sin suscripciones</span>
-          <button type="button" onclick="askSitioWhatsAppNoCommitment()" style="background:none; border:none; color:#34D399; font-weight:700; cursor:pointer; text-decoration:underline;">
-            ¿Solo tienes dudas? Escríbenos por WhatsApp
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12.5px; color:var(--muted);">
+          <span>Pago seguro con Stripe. Sin suscripciones.</span>
+          <button type="button" onclick="askSitioWhatsAppNoCommitment()" style="background:none; border:none; color:var(--brand); font-weight:700; cursor:pointer; text-decoration:underline; font-size:12.5px;">
+            ¿Tienes dudas? Escríbenos por WhatsApp
           </button>
         </div>
       </form>
     </div>
   </div>
 
-  <div id="copy-toast">✓ Enlace copiado al portapapeles</div>
+  <div id="copy-toast">Enlace copiado</div>
 
-  <script src="../assets/stripe-config.js?v=85"></script>
-  <script src="../assets/studio-engine.js?v=85"></script>
+<script src="../assets/stripe-config.js?v=90"></script>
+  <script src="../assets/studio-engine.js?v=90"></script>
   <script>
     (function initLiveSiteViewer() {
       const params = new URLSearchParams(window.location.search);
@@ -732,8 +444,8 @@
         if (!box) return;
         box.innerHTML = Object.entries(DESIGN_THEMES).map(([k, t]) => {
           const on = activeState.theme === k;
-          return `<button type="button" onclick="pickEditorTheme('${k}')" style="padding:8px 10px; border-radius:10px; border:1px solid ${on ? '#34D399' : 'rgba(255,255,255,0.12)'}; background:${on ? 'rgba(16,185,129,0.18)' : '#06090F'}; color:#fff; font-size:11.5px; font-weight:700; display:flex; align-items:center; gap:7px; cursor:pointer; text-align:left;">
-            <span style="width:16px; height:16px; border-radius:50%; background:${t.swatch2}; flex-shrink:0;"></span>
+          return `<button type="button" onclick="pickEditorTheme('${k}')" style="padding:9px 10px; border-radius:12px; border:1.5px solid ${on ? '#4F46E5' : 'rgba(15,23,42,0.1)'}; background:${on ? '#EEF2FF' : '#FFFFFF'}; color:#0F172A; font-size:12px; font-weight:700; display:flex; align-items:center; gap:7px; cursor:pointer; text-align:left;">
+            <span style="width:16px; height:16px; border-radius:50%; background:${t.swatch2}; border:1px solid rgba(15,23,42,0.15); flex-shrink:0;"></span>
             <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(t.label)}</span>
           </button>`;
         }).join('');
@@ -752,8 +464,8 @@
         box.innerHTML = (activeState.services || []).map((srv, idx) => `
           <div style="display:grid; grid-template-columns:1fr 82px 28px; gap:5px; align-items:center;">
             <input class="ed-input" style="padding:7px 9px; font-size:13px;" value="${escapeHtml(srv.title)}" oninput="edUpdateSrv(${idx},'title',this.value)" />
-            <input class="ed-input" style="padding:7px 9px; font-size:13px; color:#6EE7B7; font-weight:700;" value="${escapeHtml(srv.price)}" oninput="edUpdateSrv(${idx},'price',this.value)" />
-            <button type="button" onclick="edDeleteSrv(${idx})" style="height:32px; border-radius:8px; background:rgba(244,63,94,0.15); border:1px solid rgba(244,63,94,0.3); color:#FDA4AF; cursor:pointer;">✕</button>
+            <input class="ed-input" style="padding:7px 9px; font-size:13px; color:#4F46E5; font-weight:700;" value="${escapeHtml(srv.price)}" oninput="edUpdateSrv(${idx},'price',this.value)" />
+            <button type="button" onclick="edDeleteSrv(${idx})" style="height:32px; border-radius:8px; background:#FFF1F2; border:1px solid #FECDD3; color:#BE123C; cursor:pointer;">✕</button>
           </div>
         `).join('');
       }
@@ -856,21 +568,21 @@
         if (!domIn || !stEl || typeof miwebCheckDomainLive !== 'function') return;
         if (pickDomain) domIn.value = pickDomain;
         const raw = domIn.value.trim() || (slugifyName(activeState.name) + '.es');
-        stEl.innerHTML = `<span style="color:#94A3B8;">⏳ Comprobando <strong>${escapeHtml(raw)}</strong>...</span>`;
+        stEl.innerHTML = `<span style="color:#64748B;">Comprobando <strong>${escapeHtml(raw)}</strong>...</span>`;
         const res = await miwebCheckDomainLive(raw, activeState.name, activeState.city);
         if (!res.ok) {
-          stEl.innerHTML = `<span style="color:#FCD34D;">${escapeHtml(res.error)}</span>`;
+          stEl.innerHTML = `<span style="color:#B45309;">${escapeHtml(res.error)}</span>`;
           return;
         }
         domIn.value = res.domain;
         activeState.desiredDomain = res.domain;
         if (res.available) {
-          stEl.innerHTML = `<span style="color:#6EE7B7; font-weight:700;">✅ ¡Libre! <strong>${escapeHtml(res.domain)}</strong> está disponible para tu negocio.</span>`;
+          stEl.innerHTML = `<span style="color:#4F46E5; font-weight:700;">✅ ¡Libre! <strong>${escapeHtml(res.domain)}</strong> está disponible para tu negocio.</span>`;
         } else {
           const chips = (res.suggestions || []).map(s =>
-            `<button type="button" onclick="checkSitioDomainNow('${escapeHtml(s)}')" style="padding:2px 8px; border-radius:6px; background:rgba(52,211,153,0.18); border:1px solid rgba(52,211,153,0.45); color:#6EE7B7; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; cursor:pointer;">${escapeHtml(s)}</button>`
+            `<button type="button" onclick="checkSitioDomainNow('${escapeHtml(s)}')" style="padding:3px 10px; border-radius:999px; background:#EEF2FF; border:1px solid rgba(79,70,229,0.2); color:#4F46E5; font-size:12.5px; font-weight:700; cursor:pointer;">${escapeHtml(s)}</button>`
           ).join(' ');
-          stEl.innerHTML = `<span style="color:#FCD34D; font-weight:700;">⚠️ ${escapeHtml(res.domain)} está ocupado.</span> ${chips ? '<span>Libres en 1 clic:</span> ' + chips : ''}`;
+          stEl.innerHTML = `<span style="color:#B45309; font-weight:700;">${escapeHtml(res.domain)} ya está ocupado.</span> ${chips ? '<span style="color:#64748B;">Libres:</span> ' + chips : ''}`;
         }
       };
 
@@ -886,14 +598,14 @@
         const b297 = document.getElementById('sitio-plan-box-297');
         const btnTxt = document.getElementById('sitio-stripe-submit-text');
 
-        if (b79) b79.style.outline = selectedSitioPlan === '79' ? '2px solid #34D399' : 'none';
-        if (b197) b197.style.outline = selectedSitioPlan === '197' ? '2px solid #818CF8' : 'none';
-        if (b297) b297.style.outline = selectedSitioPlan === '297' ? '2px solid #FBBF24' : 'none';
+        if (b79) b79.style.outline = selectedSitioPlan === '79' ? '2px solid #4F46E5' : 'none';
+        if (b197) b197.style.outline = selectedSitioPlan === '197' ? '2px solid #4F46E5' : 'none';
+        if (b297) b297.style.outline = selectedSitioPlan === '297' ? '2px solid #4F46E5' : 'none';
 
         const LABELS = {
-          '79': 'Contratar Web Express · 79 € Pago Único',
-          '197': 'Contratar Negocio Pro ⭐ · 197 € Pago Único',
-          '297': 'Contratar Plan VIP · 297 € Pago Único'
+          '79': 'Pagar 79 € una sola vez',
+          '197': 'Pagar 197 € una sola vez',
+          '297': 'Pagar 297 € una sola vez'
         };
         if (btnTxt) btnTxt.textContent = LABELS[selectedSitioPlan] || LABELS['197'];
       };

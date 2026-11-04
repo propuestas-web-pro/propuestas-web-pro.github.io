@@ -192,16 +192,17 @@ async function miwebCheckDomainLive(rawDomain, bizName, city) {
    ========================================================================== */
 function miwebDetectSectorFromText(text) {
   const t = String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (/(peluquer|salon|cabello|mechas|balayage|estilis|melena|keratina|alisado|peinad|tinte)/.test(t)) return 'peluqueria';
   if (/(clinica|dental|dentista|fisio|podolog|medic|salud|psicolog|optica|veterinar|ortodon)/.test(t)) return 'clinica';
-  if (/(barber|peluquer|salon|cabello|fade)/.test(t)) return 'barberia';
-  if (/(estetic|unas|nail|pestanas|cejas|laser|belleza|spa|masaje)/.test(t)) return 'estetica';
+  if (/(estetic|unas|nail|pestanas|cejas|laser|belleza|spa|masaje|manicur)/.test(t)) return 'estetica';
+  if (/(barber|barba|fade|degradado)/.test(t)) return 'barberia';
   if (/(moto|scooter|yamaha|honda|kawasaki|ducati)/.test(t)) return 'motos';
   if (/(taller|mecanic|auto|neumatic|chapa|pintura|detail|car|coche|itv)/.test(t)) return 'taller';
   if (/(reforma|obra|construccion|fontaner|electric|pintor|carpinter|albanil|climatiz|cerrajer|mudanza)/.test(t)) return 'reformas';
-  if (/(restaurante|bar|cafeteria|brunch|pizza|kebab|burger|hamburgues|asador|tapas|taberna|meson| gastro)/.test(t)) return 'restaurante';
+  if (/(restaurante|bar|cafeteria|brunch|pizza|kebab|burger|hamburgues|asador|tapas|taberna|meson|gastro)/.test(t)) return 'restaurante';
   if (/(gym|gimnasio|fitness|pilates|crossfit|box|entrenador|yoga|padel)/.test(t)) return 'fitness';
-  if (/(tienda|shop|store|boutique|moda|ropa|florister|joyer|perfumer| Regalo|mueble|panader|pastel)/.test(t)) return 'tienda';
-  return 'personal';
+  if (/(tienda|shop|store|boutique|moda|ropa|florister|joyer|perfumer|regalo|mueble|panader|pastel|obrador)/.test(t)) return 'tienda';
+  return 'peluqueria';
 }
 
 function miwebCheckSearchQuota() {
@@ -332,18 +333,47 @@ async function miwebSearchRealBusiness(query) {
   } catch (e) {}
 
   // 4) Instant Fallback (works 100% even for brand-new businesses not yet on any map)
-  const parts = q.split(/[,·-]/).map(s => s.trim()).filter(Boolean);
+  const split = miwebSplitNameAndCity(q);
   return {
     ok: true,
     source: 'instant',
     results: [{
-      name: parts[0] || q,
-      city: parts[1] || 'Madrid',
-      address: parts[1] ? `Centro · ${parts[1]}` : 'Calle Principal',
+      name: split.name,
+      city: split.city,
+      address: `Centro, ${split.city}`,
       sector: miwebDetectSectorFromText(q),
       source: 'instant'
     }]
   };
+}
+
+function miwebSplitNameAndCity(raw) {
+  const q = String(raw || '').trim();
+  if (!q) return { name: 'Salón Aura', city: 'Madrid' };
+  const bySep = q.split(/[,·]/).map(s => s.trim()).filter(Boolean);
+  if (bySep.length >= 2) {
+    return { name: bySep[0], city: bySep[1] };
+  }
+  const cities = [
+    'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza', 'Málaga', 'Malaga', 'Murcia',
+    'Palma', 'Bilbao', 'Alicante', 'Córdoba', 'Cordoba', 'Valladolid', 'Vigo', 'Gijón', 'Gijon',
+    'Granada', 'Elche', 'Oviedo', 'Badalona', 'Cartagena', 'Terrassa', 'Jerez', 'Sabadell',
+    'Móstoles', 'Mostoles', 'Alcalá', 'Alcala', 'Pamplona', 'Almería', 'Almeria', 'San Sebastián',
+    'Donostia', 'Santander', 'Burgos', 'Albacete', 'Castellón', 'Castellon', 'Logroño', 'Badajoz',
+    'Salamanca', 'Huelva', 'Marbella', 'Lleida', 'Tarragona', 'León', 'Cadiz', 'Cádiz', 'Jaén',
+    'Ourense', 'Girona', 'Lugo', 'Cáceres', 'Santiago', 'Melilla', 'Ceuta', 'Torrevieja',
+    'Orihuela', 'Benidorm', 'Gandía', 'Gandia', 'Getafe', 'Leganés', 'Leganes', 'Fuenlabrada',
+    'Alcorcón', 'Alcorcon', 'Tenerife', 'Las Palmas', 'Ibiza', 'Toledo', 'Guadalajara'
+  ];
+  for (const c of cities) {
+    const rx = new RegExp(`\\s+(?:en\\s+)?(${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})$`, 'i');
+    const m = q.match(rx);
+    if (m && q.length > m[0].length + 2) {
+      const cleanCity = c === 'Malaga' ? 'Málaga' : c === 'Cordoba' ? 'Córdoba' : c === 'Mostoles' ? 'Móstoles' : c;
+      return { name: q.slice(0, q.length - m[0].length).trim(), city: cleanCity };
+    }
+  }
+  return { name: q, city: 'Madrid' };
 }
 
 /* ==========================================================================
