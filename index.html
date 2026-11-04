@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark scroll-smooth">
+<html lang="es" class="scroll-smooth">
 <head>
   <!-- Smart Auto-Redirect for sub-client URLs -->
   <script>
@@ -13,15 +13,15 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Mi Web Local — Diseño Web del Futuro, Efecto WOW 3D y Reservas Automáticas</title>
-  <meta name="description" content="Transformamos negocios locales con páginas web del futuro: animaciones 3D inmersivas, efecto Before/After y reservas automáticas 24/7. Prueba tu demo gratis 24h." />
-  <meta name="theme-color" content="#050505" />
+  <title>Mi Web Local — Estudio de Diseño Web, Efecto 3D y Reservas Automáticas</title>
+  <meta name="description" content="Transformamos negocios locales con páginas web de alto impacto, reservas automáticas 24/7 y panel de autogestión. Genera tu demo en 30 segundos." />
+  <meta name="theme-color" content="#090A0F" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Fonts: Syne, Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
+  <!-- Clean, Razor-Sharp Typography: Outfit + Plus Jakarta Sans + Instrument Serif + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -30,12 +30,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
-            display: ['Syne', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
             serif: ['Instrument Serif', 'serif'],
             mono: ['JetBrains Mono', 'monospace'],
           }
@@ -44,237 +43,136 @@
     }
   </script>
 
-  <!-- GSAP & ScrollTrigger -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    :root {
-      --morph-bg: #ff5500;
-      --morph-card: rgba(20, 12, 8, 0.72);
-      --morph-accent: #ffffff;
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background-color: #050505;
-      color: #f8fafc;
+      background-color: #07080C;
+      color: #F8FAFC;
       overflow-x: hidden;
     }
 
-    /* Fixed Film Grain */
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 50;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ==========================================================
-       1. PORTAL HERO ("I LIKE THIS" ARCHITECTURAL ZOOM THROUGH)
-       ========================================================== */
-    .portal-stage {
+    /* =================================================================
+       1. REF 3 (UI/UX RUSTY) & REF 1/2 STUDIO STAGE WITH COLOR MORPHING
+       ================================================================= */
+    .studio-hero-stage {
       position: relative;
-      height: 100dvh;
+      min-height: 100vh;
       width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1400px;
-    }
-
-    .portal-bg-world {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85');
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.08);
-      will-change: transform;
-      filter: brightness(0.75) contrast(1.1);
-    }
-
-    /* Architectural Door Pillars that slide open on scroll */
-    .portal-frame-outer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .portal-door-left,
-    .portal-door-right {
-      width: 24vw;
-      height: 100%;
-      background: linear-gradient(90deg, #050505 0%, #11131a 85%, #1f2430 100%);
-      border-right: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 30px 0 80px rgba(0,0,0,0.9);
-      will-change: transform;
-    }
-
-    .portal-door-right {
-      background: linear-gradient(270deg, #050505 0%, #11131a 85%, #1f2430 100%);
-      border-right: none;
-      border-left: 1px solid rgba(255,255,255,0.15);
-      box-shadow: -30px 0 80px rgba(0,0,0,0.9);
-    }
-
-    .portal-ceiling {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 14vh;
-      background: linear-gradient(180deg, #050505 0%, rgba(12,14,20,0.92) 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      z-index: 9;
-      will-change: transform;
-    }
-
-    .portal-floor {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 16vh;
-      background: linear-gradient(0deg, #050505 0%, rgba(12,14,20,0.9) 100%);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 9;
-      will-change: transform;
-    }
-
-    /* ==========================================================
-       2. BEFORE / AFTER + 3D COLOR MORPHING STAGE (REF 1, 2, 3)
-       ========================================================== */
-    .morph-section {
-      position: relative;
-      min-height: 100dvh;
-      transition: background-color 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 112px 20px 64px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 100px 20px;
-      overflow: hidden;
+      transition: background 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      background: radial-gradient(circle at 50% 42%, #FF7828 0%, #EA580C 52%, #9A3412 100%);
     }
 
-    /* Floating 3D Particles around the Web Card (Ref 1 & Ref 2) */
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-      50% { transform: translateY(-22px) rotate(8deg) scale(1.05); }
-    }
-
-    @keyframes floatReverse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(18px) rotate(-10deg); }
-    }
-
-    .particle-float-1 { animation: floatSlow 5.5s ease-in-out infinite; }
-    .particle-float-2 { animation: floatReverse 6.5s ease-in-out infinite; }
-    .particle-float-3 { animation: floatSlow 4.8s ease-in-out infinite 1.2s; }
-
-    /* Hero 3D Levitating Product Image */
-    @keyframes heroLevitate {
-      0%, 100% { transform: translateY(0px) rotate(-4deg) scale(1); filter: drop-shadow(0 35px 45px rgba(0,0,0,0.65)); }
-      50% { transform: translateY(-16px) rotate(2deg) scale(1.04); filter: drop-shadow(0 50px 60px rgba(0,0,0,0.75)); }
-    }
-
-    .levitate-3d {
-      animation: heroLevitate 4.5s ease-in-out infinite;
-      transition: all 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* Glassmorphic Showcase Card (Ref 3 Nike NOCTA + Ref 1 Futuristic) */
-    .showcase-window {
+    /* Frosted Glass Center Window (Exact Ref 3 Nike NOCTA + Ref 1 Glass Card) */
+    .glass-showcase-card {
       width: 100%;
-      max-width: 1060px;
+      max-width: 1100px;
       min-height: 540px;
       border-radius: 32px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1.5px solid rgba(255, 255, 255, 0.34);
+      box-shadow:
+        0 40px 100px -15px rgba(0, 0, 0, 0.45),
+        inset 0 1px 2px rgba(255, 255, 255, 0.45);
+      padding: 32px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: relative;
-      transition: all 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.35);
-      backdrop-filter: blur(28px);
-      border: 1.5px solid rgba(255, 255, 255, 0.22);
       overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Wireframe "BEFORE" State */
-    .wireframe-box {
-      background: #e2e8f0 !important;
-      color: #64748b !important;
-      border: 2px solid #cbd5e1 !important;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2) !important;
+    /* BEFORE Mode (Clean Grey Wireframe Skeleton like Ref 1, 2, 3) */
+    .glass-showcase-card.is-wireframe {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
     }
 
-    .skeleton-pulse {
-      background: linear-gradient(90deg, #cbd5e1 25%, #94a3b8 50%, #cbd5e1 75%);
-      background-size: 200% 100%;
-      animation: skel 2s infinite linear;
+    @keyframes float3D {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-14px) rotate(1.5deg); }
     }
 
-    @keyframes skel {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+    .floating-3d-visual {
+      animation: float3D 5s ease-in-out infinite;
     }
 
-    /* Double-Bezel Hardware Cards */
-    .double-bezel {
-      background: rgba(255, 255, 255, 0.03);
+    @keyframes shadowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.45; }
+      50% { transform: scale(0.84); opacity: 0.25; }
+    }
+
+    .floating-shadow {
+      width: 68%;
+      height: 24px;
+      margin: 18px auto 0;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(0,0,0,0.65), transparent);
+      animation: shadowPulse 5s ease-in-out infinite;
+    }
+
+    /* Hardware Section Cards */
+    .pro-card {
+      background: #0E1017;
       border: 1px solid rgba(255, 255, 255, 0.09);
-      padding: 7px;
-      border-radius: 2rem;
-      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .double-bezel-inner {
-      background: #0A0B0E;
-      border-radius: calc(2rem - 7px);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
-      height: 100%;
-      position: relative;
-      overflow: hidden;
+    .pro-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
-<body class="selection:bg-emerald-400 selection:text-black">
-
-  <div class="noise-overlay"></div>
+<body>
 
   <!-- =======================================================================
-       FLOATING GLASS ISLAND NAVBAR
+       FLOATING NAVIGATION BAR
        ======================================================================= -->
   <header class="fixed top-4 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
-    <nav class="pointer-events-auto flex items-center justify-between gap-4 md:gap-8 px-4 py-2.5 rounded-full bg-black/75 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-      <a href="#top" class="flex items-center gap-2.5 pl-2">
-        <div class="w-8 h-8 rounded-full bg-emerald-400 flex items-center justify-center text-black font-display font-extrabold text-sm">
+    <nav class="pointer-events-auto w-full max-w-[1100px] flex items-center justify-between px-5 py-3 rounded-full bg-[#090A0F]/85 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+      <a href="#top" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-display font-extrabold text-sm">
           MW
         </div>
-        <span class="font-display font-bold tracking-tight text-sm md:text-base text-white">
-          MIWEB<span class="text-emerald-400">LOCAL</span>
+        <span class="font-display font-bold text-base tracking-tight text-white">
+          MiWeb<span class="text-emerald-400">Local</span>
         </span>
       </a>
 
-      <div class="hidden lg:flex items-center gap-6 text-xs font-semibold text-white/75">
-        <a href="#before-after-stage" class="hover:text-white transition-colors">Efecto Before / After 3D</a>
+      <div class="hidden md:flex items-center gap-7 text-xs font-semibold text-white/80">
+        <a href="#top" class="hover:text-white transition-colors">Before / After 3D</a>
         <a href="#generador" class="hover:text-white transition-colors flex items-center gap-1.5 text-emerald-400">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          Crear Mi Demo (24h)
+          Generador de Demo (24h)
         </a>
-        <a href="#clientes-reales" class="hover:text-white transition-colors">Webs Reales</a>
-        <a href="#productos" class="hover:text-white transition-colors">Qué Incluye</a>
+        <a href="#clientes" class="hover:text-white transition-colors">Clientes Reales</a>
+        <a href="#incluye" class="hover:text-white transition-colors">Qué Incluye</a>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button onclick="startAutoVisualShow()" class="px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-mono uppercase tracking-wider flex items-center gap-1.5 transition-all">
-          <i class="ph-fill ph-play-circle text-emerald-400 text-sm"></i>
-          <span>Auto-Show TikTok</span>
+      <div class="flex items-center gap-2.5">
+        <button onclick="playAutoTransformation()" class="px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all">
+          <i class="ph-fill ph-play-circle text-emerald-400 text-base"></i>
+          <span class="hidden sm:inline">Ver Efecto Automático</span>
         </button>
-        <a href="#generador" class="px-5 py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-bold text-xs tracking-tight transition-all">
-          Probar Con Mi Local →
+        <a href="#generador" class="px-5 py-2 rounded-full bg-white hover:bg-slate-100 text-black font-display font-bold text-xs whitespace-nowrap transition-all shadow-md">
+          Crear Mi Web (50 €) →
         </a>
       </div>
     </nav>
@@ -283,502 +181,462 @@
   <main id="top">
 
     <!-- =======================================================================
-         SCENE 1: "I LIKE THIS" ARCHITECTURAL 3D PORTAL (REF 4 ELYPTWEBDESIGN)
-         As you scroll (or click Enter), the doors slide open & camera flies inside!
+         SECTION 1: INTERACTIVE "BEFORE / AFTER" + COLOR MORPH STUDIO (REF 3, 2, 1)
          ======================================================================= -->
-    <section id="portal-hero" class="portal-stage">
-      <!-- Background Luxury World that zooms in -->
-      <div id="portal-world" class="portal-bg-world"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/85 z-[2]"></div>
+    <section id="hero-stage" class="studio-hero-stage">
 
-      <!-- Architectural Doors & Framing that open on scroll -->
-      <div id="portal-ceiling" class="portal-ceiling"></div>
-      <div id="portal-floor" class="portal-floor"></div>
-      <div class="portal-frame-outer">
-        <div id="portal-door-l" class="portal-door-left"></div>
-        <div id="portal-door-r" class="portal-door-right"></div>
-      </div>
+      <!-- Top Bar: Before/After Pill Switcher + 4 Color World Buttons -->
+      <div class="w-full max-w-[1100px] flex flex-col md:flex-row items-center justify-between gap-4 mb-6 z-20">
 
-      <!-- Center Floating Editorial Portal Typography -->
-      <div id="portal-text-box" class="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-mono uppercase tracking-[0.25em] text-emerald-300 mb-6">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          WEB DESIGN FROM THE FUTURE • EXPERIENCIA INMERSIVA
-        </div>
-
-        <h1 class="font-serif italic text-[clamp(3.4rem,8vw,7.2rem)] leading-[0.95] text-white drop-shadow-2xl mb-6">
-          Welcome.
-        </h1>
-
-        <p class="font-display font-bold text-lg md:text-2xl text-white/95 max-w-2xl mx-auto mb-4 tracking-tight">
-          Para los negocios locales que quieren una web que deje a sus clientes sin palabras.
-        </p>
-
-        <p class="text-white/70 text-sm md:text-base max-w-xl mx-auto mb-10">
-          Desliza hacia abajo para atravesar el portal, ver la transformación <strong class="text-white">Before / After en 3D</strong> y generar la demo de tu negocio en 30 segundos.
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onclick="scrollToMorphStage()" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-display font-extrabold text-sm tracking-wide hover:scale-105 transition-all shadow-[0_0_50px_rgba(255,255,255,0.4)]">
-            <span>ATRAVESAR EL PORTAL (VER EFECTO WOW)</span>
-            <i class="ph-bold ph-arrow-down text-base group-hover:translate-y-1 transition-transform"></i>
+        <!-- Before / After Switcher (Exactly like Ref 1, 2, 3) -->
+        <div class="inline-flex items-center p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/25 shadow-xl">
+          <button id="tab-before" onclick="switchStageMode('before')" class="px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap">
+            Before (Sin Web / Gris)
           </button>
-          <a href="#generador" class="px-7 py-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/25 text-white font-bold text-sm hover:bg-white/15 transition-all">
-            Generar Mi Web en 30s (50 €)
-          </a>
-        </div>
-
-        <!-- Scroll Indicator (Exactly like Ref 4 "SCROLL") -->
-        <div class="mt-14 flex flex-col items-center gap-2 opacity-80">
-          <span class="font-mono text-[10px] tracking-[0.35em] uppercase text-white">SCROLL PARA ENTRAR</span>
-          <div class="w-12 h-[1px] bg-white/50"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         SCENE 2: INTERACTIVE "BEFORE / AFTER" + 3D COLOR MORPHING STAGE
-         (Combines Ref 1 Futuristic Rocks + Ref 2 Flying Burger + Ref 3 Nike Color Morph)
-         ======================================================================= -->
-    <section id="before-after-stage" class="morph-section" style="background-color: #ea580c;">
-
-      <!-- Ambient Radial Glow inside Morph Stage -->
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18)_0%,rgba(0,0,0,0.55)_100%)] pointer-events-none"></div>
-
-      <!-- Floating 3D Satellites Around the Web Window (Hidden in BEFORE mode) -->
-      <div id="floating-satellites" class="pointer-events-none absolute inset-0 overflow-hidden z-10 transition-opacity duration-500">
-        <div id="sat-1" class="particle-float-1 absolute top-[14%] left-[6%] md:left-[12%] w-16 h-16 md:w-24 md:h-24 rounded-3xl bg-white/15 backdrop-blur-xl border border-white/30 flex items-center justify-center text-3xl md:text-4xl shadow-2xl">
-          🔥
-        </div>
-        <div id="sat-2" class="particle-float-2 absolute bottom-[16%] right-[6%] md:right-[11%] w-20 h-20 md:w-28 md:h-28 rounded-full bg-black/40 backdrop-blur-xl border border-white/25 flex flex-col items-center justify-center text-white shadow-2xl">
-          <span class="font-mono text-[10px] uppercase opacity-70">Reservas</span>
-          <span class="font-display font-extrabold text-lg md:text-xl text-emerald-400">+340%</span>
-        </div>
-        <div id="sat-3" class="particle-float-3 absolute top-[20%] right-[8%] md:right-[14%] px-4 py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-mono text-white shadow-xl">
-          ✓ Cita Confirmada 17:30
-        </div>
-      </div>
-
-      <!-- TOP CONTROLS: BEFORE / AFTER SWITCH + SECTOR COLOR MORPH PILLS -->
-      <div class="relative z-20 flex flex-col items-center text-center mb-8 max-w-3xl">
-        <div class="inline-flex items-center p-1.5 rounded-full bg-black/65 backdrop-blur-xl border border-white/20 mb-5 shadow-2xl">
-          <button id="btn-mode-before" onclick="setBeforeAfterMode('before')" class="px-6 py-2.5 rounded-full text-xs md:text-sm font-display font-bold tracking-wide transition-all text-white/70 hover:text-white">
-            BEFORE (Sin Diseño / Gris)
-          </button>
-          <button id="btn-mode-after" onclick="setBeforeAfterMode('after')" class="px-7 py-2.5 rounded-full text-xs md:text-sm font-display font-extrabold tracking-wide transition-all bg-white text-black shadow-lg">
-            AFTER (Efecto WOW 3D)
+          <button id="tab-after" onclick="switchStageMode('after')" class="px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap">
+            After (Diseño MiWebLocal)
           </button>
         </div>
 
-        <!-- Color & Sector Morphing Selector (Like Video 3 Nike Orange -> Green -> Purple -> Dark) -->
-        <div class="flex flex-wrap items-center justify-center gap-2.5">
-          <button onclick="morphShowcase(0)" class="morph-tab px-4 py-2 rounded-full bg-black/60 hover:bg-black/80 text-white text-xs font-bold border border-white/30 flex items-center gap-2 transition-all">
-            <span class="w-3 h-3 rounded-full bg-[#ff5500]"></span>
-            <span>01. Burger & Gastro</span>
+        <!-- 4 Studio Color Morph Worlds (Like Ref 3 Nike NOCTA Orange / Green / Purple / Dark) -->
+        <div class="flex flex-wrap items-center justify-center gap-2 bg-black/35 backdrop-blur-xl p-1.5 rounded-full border border-white/20">
+          <button onclick="selectWorld(0)" id="world-btn-0" class="px-4 py-1.5 rounded-full text-xs font-display font-bold bg-white text-black transition-all flex items-center gap-2 whitespace-nowrap">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#EA580C]"></span>
+            <span>Restaurante</span>
           </button>
-          <button onclick="morphShowcase(1)" class="morph-tab px-4 py-2 rounded-full bg-black/40 hover:bg-black/80 text-white text-xs font-bold border border-white/15 flex items-center gap-2 transition-all">
-            <span class="w-3 h-3 rounded-full bg-[#65a30d]"></span>
-            <span>02. Barbería & Urbano</span>
+          <button onclick="selectWorld(1)" id="world-btn-1" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#65A30D]"></span>
+            <span>Barbería VIP</span>
           </button>
-          <button onclick="morphShowcase(2)" class="morph-tab px-4 py-2 rounded-full bg-black/40 hover:bg-black/80 text-white text-xs font-bold border border-white/15 flex items-center gap-2 transition-all">
-            <span class="w-3 h-3 rounded-full bg-[#7c3aed]"></span>
-            <span>03. Motor & Tuning VIP</span>
+          <button onclick="selectWorld(2)" id="world-btn-2" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#7C3AED]"></span>
+            <span>Taller & Motos</span>
           </button>
-          <button onclick="morphShowcase(3)" class="morph-tab px-4 py-2 rounded-full bg-black/40 hover:bg-black/80 text-white text-xs font-bold border border-white/15 flex items-center gap-2 transition-all">
-            <span class="w-3 h-3 rounded-full bg-[#0f172a]"></span>
-            <span>04. Reformas & Futuro</span>
+          <button onclick="selectWorld(3)" id="world-btn-3" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#0F172A]"></span>
+            <span>Reformas & Lujo</span>
           </button>
         </div>
       </div>
 
-      <!-- THE CENTER WEB WINDOW (Morphs between Grey Wireframe & 3D Animated Showcase) -->
-      <div id="showcase-card" class="showcase-window relative z-20 bg-black/55">
+      <!-- THE GLASSMORPHIC SHOWCASE WINDOW -->
+      <div id="glass-card" class="glass-showcase-card">
 
-        <!-- STATE A: GREY WIREFRAME ("BEFORE" - Hidden by default, shown when clicking BEFORE) -->
-        <div id="wireframe-view" class="hidden p-8 md:p-14 h-full min-h-[540px] flex flex-col justify-between bg-[#e5e7eb] text-slate-500">
-          <div class="flex items-center justify-between border-b border-slate-300 pb-5">
-            <div class="w-32 h-6 rounded-md skeleton-pulse"></div>
+        <!-- ==================== MODE A: BEFORE (GREY WIREFRAME) ==================== -->
+        <div id="view-before" class="hidden flex-1 flex flex-col justify-between text-slate-500">
+          <div class="flex items-center justify-between border-b border-slate-300 pb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-lg bg-slate-300"></div>
+              <div class="w-28 h-4 rounded bg-slate-300"></div>
+            </div>
             <div class="flex gap-3">
-              <div class="w-16 h-4 rounded skeleton-pulse"></div>
-              <div class="w-16 h-4 rounded skeleton-pulse"></div>
+              <div class="w-16 h-4 rounded bg-slate-300"></div>
+              <div class="w-16 h-4 rounded bg-slate-300"></div>
               <div class="w-24 h-8 rounded-full bg-slate-400"></div>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center my-auto py-8">
-            <div class="md:col-span-6 space-y-4">
-              <div class="inline-block px-3 py-1 rounded bg-slate-300 text-slate-600 font-mono text-xs font-bold uppercase">
-                WEB ANTIGUA / ABURRIDA (EL CLIENTE SE VA)
-              </div>
-              <div class="w-4/5 h-10 rounded-lg skeleton-pulse"></div>
-              <div class="w-3/5 h-10 rounded-lg skeleton-pulse"></div>
-              <div class="w-full h-4 rounded skeleton-pulse mt-4"></div>
-              <div class="w-2/3 h-4 rounded skeleton-pulse"></div>
-              <div class="flex gap-3 pt-4">
-                <div class="w-36 h-11 rounded-lg bg-slate-400"></div>
-                <div class="w-28 h-11 rounded-lg border-2 border-slate-300"></div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-8">
+            <div class="lg:col-span-6 space-y-4">
+              <span class="inline-block px-3 py-1 rounded-full bg-slate-200 text-slate-600 font-mono text-xs font-bold uppercase">
+                ANTES: NEGOCIO SIN WEB O CON PLANTILLA ABURRIDA
+              </span>
+              <div class="w-4/5 h-9 rounded-lg bg-slate-300"></div>
+              <div class="w-3/5 h-9 rounded-lg bg-slate-300"></div>
+              <p class="text-slate-600 text-sm pt-2 max-w-md">
+                Cuando un cliente busca tu local en Google Maps o TikTok y no tienes una web impactante con reservas directas, cierra la pantalla y se va a la competencia.
+              </p>
+              <div class="pt-3">
+                <button onclick="switchStageMode('after')" class="px-6 py-3 rounded-full bg-slate-900 text-white font-display font-bold text-xs hover:bg-black transition-all">
+                  Pulsar para ver el AFTER con Efecto WOW →
+                </button>
               </div>
             </div>
-            <div class="md:col-span-6 flex justify-center">
-              <div class="w-64 h-64 rounded-full skeleton-pulse flex items-center justify-center border-4 border-slate-300">
-                <i class="ph ph-image text-6xl text-slate-400"></i>
+
+            <div class="lg:col-span-6 flex flex-col items-center justify-center">
+              <div class="w-64 h-64 rounded-full bg-slate-200 border-4 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400">
+                <i class="ph ph-image-square text-5xl mb-2"></i>
+                <span class="font-mono text-xs uppercase">SIN DISEÑO VISUAL</span>
               </div>
             </div>
           </div>
 
           <div class="flex items-center justify-between border-t border-slate-300 pt-4 text-xs font-mono text-slate-500">
-            <span>SIN ANIMACIÓN • CERO RESERVAS AUTOMÁTICAS</span>
-            <button onclick="setBeforeAfterMode('after')" class="px-4 py-2 rounded-full bg-slate-800 text-white font-bold">
-              Pulsar para ver el AFTER 3D →
-            </button>
+            <span>ESTADO: CERO CONVERSIÓN ONLINE</span>
+            <span>TOCA "AFTER" ARRIBA PARA TRANSFORMAR</span>
           </div>
         </div>
 
-        <!-- STATE B: HYPER-VISUAL 3D "AFTER" VIEW -->
-        <div id="after-3d-view" class="p-7 md:p-12 min-h-[540px] flex flex-col justify-between relative">
-          <!-- Top Internal Web Nav -->
-          <div class="flex items-center justify-between border-b border-white/15 pb-4">
-            <div class="flex items-center gap-2.5">
-              <span id="sc-badge-icon" class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-bold text-sm">⚡</span>
-              <span id="sc-brand" class="font-display font-extrabold text-base md:text-lg tracking-tight text-white">
-                LA BRASA SMASH CLUB
-              </span>
+        <!-- ==================== MODE B: AFTER (VIBRANT 3D SHOWCASE) ==================== -->
+        <div id="view-after" class="flex-1 flex flex-col justify-between text-white">
+
+          <!-- Top Internal Glass Header (Exactly like Ref 3 Nike NOCTA Card Header) -->
+          <div class="flex items-center justify-between border-b border-white/20 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center font-display font-extrabold text-sm shadow">
+                <i id="stage-icon" class="ph-bold ph-hamburger text-base"></i>
+              </div>
+              <div>
+                <div id="stage-brand" class="font-display font-extrabold text-base md:text-lg tracking-tight leading-none">
+                  LA BRASA SMASH CLUB
+                </div>
+                <div id="stage-url" class="font-mono text-[11px] text-white/70 mt-0.5">
+                  miweblocal.com/labrasa-club
+                </div>
+              </div>
             </div>
-            <div class="hidden sm:flex items-center gap-6 text-xs font-medium text-white/75">
-              <span>Catálogo 3D</span>
-              <span>Reservas 24/7</span>
-              <span>Ubicación Maps</span>
+
+            <!-- Center Pill Switcher inside Card -->
+            <div class="hidden sm:flex items-center p-1 rounded-full bg-black/25 border border-white/20 text-xs font-semibold">
+              <span class="px-4 py-1 rounded-full bg-white text-black font-bold">Diseño 3D</span>
+              <span class="px-4 py-1 text-white/85">Reservas 24/7</span>
+              <span class="px-4 py-1 text-white/85">Panel /admin</span>
             </div>
-            <a href="#generador" class="px-4 py-2 rounded-full bg-white text-black font-bold text-xs hover:scale-105 transition-transform">
-              Usar este diseño →
+
+            <a href="#generador" class="px-4 py-2 rounded-full bg-white text-black font-display font-bold text-xs hover:scale-105 transition-transform whitespace-nowrap shadow">
+              Probar con mi nombre →
             </a>
           </div>
 
-          <!-- Center 3D Levitating Product & Kinetic Typography -->
+          <!-- Center 12-Col Showcase Content (Left Specs + Right 3D Floating Frame) -->
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-8">
-            <div class="lg:col-span-6 space-y-4 text-left z-10">
-              <div id="sc-tag" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 backdrop-blur-md text-white text-[11px] font-mono uppercase tracking-widest">
-                DISEÑO INTERACTIVO 3D • CARTA & RESERVAS
+
+            <!-- Left Column: Clean Title + Technical Specs (Ref 3 Style) -->
+            <div class="lg:col-span-6 space-y-5 text-left">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-white/25 text-[11px] font-mono uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span id="stage-badge">CARTA INTERACTIVA & RESERVAS DE MESA</span>
               </div>
-              <h2 id="sc-title" class="font-display font-extrabold text-3xl md:text-5xl text-white leading-[1.02] tracking-tight">
-                THE ULTIMATE BURGER HAVEN
-              </h2>
-              <p id="sc-desc" class="text-white/80 text-sm md:text-base leading-relaxed max-w-md">
-                Tus clientes entran desde TikTok o Google Maps, ven tus platos cobrar vida en pantalla y reservan mesa o piden por WhatsApp en 2 toques sin comisiones.
+
+              <h1 id="stage-title" class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl leading-[1.06] tracking-tight text-white">
+                La Brasa Smash Burger & Gastro
+              </h1>
+
+              <p id="stage-desc" class="text-white/85 text-sm md:text-base leading-relaxed max-w-md">
+                Tus clientes entran desde TikTok o Google Maps, ven tu carta visual interactiva y reservan mesa o piden a domicilio sin pagar comisiones.
               </p>
-              <div class="flex flex-wrap items-center gap-3 pt-2">
-                <a href="#generador" class="px-6 py-3.5 rounded-full bg-white text-black font-display font-extrabold text-xs md:text-sm shadow-xl hover:scale-105 transition-transform">
-                  Crear Mi Demo con Este Estilo (50 €)
-                </a>
-                <button onclick="nextMorphSlide()" class="px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-white font-bold text-xs flex items-center gap-2 transition-all">
-                  <span>Cambiar Color / Producto 3D</span>
-                  <i class="ph-bold ph-arrows-clockwise"></i>
-                </button>
-              </div>
-            </div>
 
-            <!-- Right 3D Floating Hero Visual + Orbiting Specs (Ref 1 + Ref 2 + Ref 3) -->
-            <div class="lg:col-span-6 relative flex items-center justify-center">
-              <!-- Glowing Back Aura -->
-              <div id="sc-glow" class="absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-white/25 blur-3xl pointer-events-none"></div>
-
-              <!-- 3D Rotating / Levitating Cutout Card -->
-              <div class="relative group cursor-pointer" onclick="nextMorphSlide()">
-                <img
-                  id="sc-img"
-                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85"
-                  alt="3D Showcase"
-                  class="levitate-3d w-64 h-64 md:w-80 md:h-80 object-cover rounded-[36px] border-2 border-white/35"
-                />
-                <!-- Floating Spec Callouts (Exactly like Ref 1 "ELEVATE YOUR SOUND" & Ref 3 Nike) -->
-                <div class="absolute -top-4 -right-6 bg-black/80 backdrop-blur-xl border border-white/25 px-4 py-2.5 rounded-2xl text-left shadow-2xl">
-                  <div class="text-[10px] font-mono text-emerald-400 uppercase">CONVERSIÓN EN VIVO</div>
-                  <div id="sc-spec-1" class="text-xs font-bold text-white">Reserva de Mesa en 10s</div>
+              <!-- 3 Clean Spec Lines (Exactly like Ref 3 "Pure Comfort / Breathability / Soft") -->
+              <div class="grid grid-cols-3 gap-4 pt-2 border-t border-white/20 max-w-md">
+                <div>
+                  <div class="text-[11px] text-white/70">Carga Web</div>
+                  <div class="font-display font-bold text-sm mt-0.5">0,4 Segundos</div>
                 </div>
-                <div class="absolute -bottom-4 -left-6 bg-white text-black px-4 py-2.5 rounded-2xl text-left shadow-2xl">
-                  <div class="text-[10px] font-mono uppercase opacity-60">WEB COMPLETA</div>
-                  <div id="sc-price" class="font-display font-extrabold text-sm">50 € Pago Único</div>
+                <div>
+                  <div class="text-[11px] text-white/70">Agenda Online</div>
+                  <div class="font-display font-bold text-sm mt-0.5">Automática 24h</div>
+                </div>
+                <div>
+                  <div class="text-[11px] text-white/70">Autogestión</div>
+                  <div class="font-display font-bold text-sm mt-0.5">Panel /admin</div>
                 </div>
               </div>
             </div>
+
+            <!-- Right Column: Floating 3D Showcase Mockup + Callout Pills -->
+            <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
+              <div id="stage-3d-wrap" class="floating-3d-visual relative w-full max-w-[400px]">
+                <!-- Main High-Impact Visual inside Sleek Frameless 3D Card -->
+                <div class="rounded-[28px] overflow-hidden border-2 border-white/40 shadow-[0_30px_60px_rgba(0,0,0,0.45)] bg-black/40 relative">
+                  <img
+                    id="stage-img"
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85"
+                    alt="Showcase"
+                    class="w-full h-[250px] sm:h-[280px] object-cover"
+                  />
+                  <div class="p-4 bg-black/75 backdrop-blur-md flex items-center justify-between">
+                    <div>
+                      <div id="stage-card-item" class="font-display font-bold text-sm text-white">Doble Smash Trufada VIP</div>
+                      <div id="stage-card-sub" class="text-[11px] text-white/70">Reserva de mesa o pedido en 1 clic</div>
+                    </div>
+                    <span id="stage-card-price" class="px-3 py-1 rounded-full bg-white text-black font-display font-extrabold text-xs">
+                      14,90 €
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Floating Callout Top-Right -->
+                <div class="hidden sm:flex items-center gap-2 absolute -top-4 -right-4 px-3.5 py-2 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/25 shadow-2xl">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span id="stage-callout" class="font-mono text-[11px] font-bold text-white">+340% Reservas Directas</span>
+                </div>
+              </div>
+
+              <!-- Soft 3D Floor Shadow underneath floating object -->
+              <div class="floating-shadow"></div>
+            </div>
+
           </div>
 
-          <!-- Bottom Thumbnail Strip + Color Switcher (Like Ref 2 Burger & Ref 3 Nike) -->
-          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-4">
+          <!-- Bottom Bar inside Glass Card (Price + Next Color Arrow + CTA like Ref 3) -->
+          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-4">
             <div class="flex items-center gap-3">
-              <span class="text-xs font-mono uppercase text-white/70">TOCA PARA TRANSFORMAR EL ESCENARIO:</span>
-              <div class="flex gap-2">
-                <button onclick="morphShowcase(0)" class="w-7 h-7 rounded-full bg-[#ea580c] border-2 border-white shadow-md hover:scale-110 transition-transform"></button>
-                <button onclick="morphShowcase(1)" class="w-7 h-7 rounded-full bg-[#65a30d] border-2 border-white/50 shadow-md hover:scale-110 transition-transform"></button>
-                <button onclick="morphShowcase(2)" class="w-7 h-7 rounded-full bg-[#7c3aed] border-2 border-white/50 shadow-md hover:scale-110 transition-transform"></button>
-                <button onclick="morphShowcase(3)" class="w-7 h-7 rounded-full bg-[#0f172a] border-2 border-white/50 shadow-md hover:scale-110 transition-transform"></button>
-              </div>
+              <span class="font-display font-extrabold text-2xl md:text-3xl text-white">50 €</span>
+              <span class="text-xs text-white/80 leading-tight">
+                Pago único • Demo gratis 24h<br>
+                <span class="text-white/60">Sin cuotas mensuales</span>
+              </span>
             </div>
-            <div class="text-xs font-mono text-white/80">
-              DEMO INTERACTIVA • <span class="underline cursor-pointer font-bold" onclick="setBeforeAfterMode('before')">VER ANTES (WIREFRAME)</span>
+
+            <div class="flex items-center gap-2.5">
+              <button onclick="prevWorld()" class="w-10 h-10 rounded-full border border-white/35 hover:bg-white/15 flex items-center justify-center text-white transition-all" title="Anterior estilo">
+                <i class="ph-bold ph-arrow-left"></i>
+              </button>
+              <button onclick="nextWorld()" class="w-10 h-10 rounded-full border border-white/35 hover:bg-white/15 flex items-center justify-center text-white transition-all" title="Siguiente estilo">
+                <i class="ph-bold ph-arrow-right"></i>
+              </button>
+              <a href="#generador" class="px-6 py-2.5 rounded-full bg-white text-black font-display font-extrabold text-xs md:text-sm hover:scale-105 transition-transform shadow-lg whitespace-nowrap">
+                Generar Mi Demo Ahora
+              </a>
             </div>
           </div>
+
         </div>
 
+      </div>
+
+      <!-- Bottom Scroll Hint -->
+      <div class="mt-6 flex items-center gap-6 text-xs font-mono text-white/80">
+        <span>TOCA LOS COLORES DE ARRIBA O LAS FLECHAS PARA CAMBIAR EL ESCENARIO 3D</span>
       </div>
     </section>
 
     <!-- =======================================================================
-         SCENE 3: EL GENERADOR AUTOMÁTICO DE DEMO (24 HORAS) CON ESTILO 3D
+         SECTION 2: EL GENERADOR DE DEMO EN VIVO (24 HORAS) + ENTREGA AL EMAIL
          ======================================================================= -->
-    <section id="generador" class="py-24 md:py-32 px-4 md:px-10 max-w-[1440px] mx-auto">
+    <section id="generador" class="py-24 px-4 md:px-8 max-w-[1320px] mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-mono uppercase tracking-[0.2em] bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 mb-4">
+        <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 mb-4">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          PRUÉBALO TÚ MISMO • DEMO AUTOMÁTICA RESERVADA 24 HORAS
+          GENERADOR AUTOMÁTICO EN VIVO • DEMO ACTIVA 24 HORAS
         </span>
         <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight text-white mb-4">
-          Escribe el nombre de tu local y <span class="font-serif italic font-normal text-emerald-400">genera tu web del futuro.</span>
+          Pon el nombre de tu local y prueba tu web ahora mismo.
         </h2>
-        <p class="text-white/60 text-sm md:text-base">
-          Cambia el nombre, elige tu sector y cambia el color en tiempo real. Si te gusta cómo queda tu demo, tienes <strong class="text-amber-400 font-mono">24 horas</strong> para desbloquearla por <strong class="text-white">50 €</strong> y recibir los accesos automáticamente en tu Email.
+        <p class="text-slate-400 text-base">
+          Escribe el nombre de tu negocio a la izquierda y mira cómo se construye tu web interactiva a la derecha. Tienes <strong class="text-amber-400">24 horas</strong> para probarla antes de decidir si te la quedas por <strong class="text-white">50 €</strong>.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-        <!-- LEFT: CONFIGURATOR CONSOLE -->
-        <div class="xl:col-span-4 double-bezel sticky top-24">
-          <div class="double-bezel-inner p-6 md:p-8 space-y-6">
+        <!-- LEFT 4 COLS: CLEAN CONFIGURATOR -->
+        <div class="lg:col-span-4 pro-card p-6 md:p-7 space-y-6 lg:sticky lg:top-24">
 
-            <!-- 24h Timer -->
-            <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
-              <div>
-                <div class="text-[10px] font-mono uppercase tracking-wider text-amber-400 font-bold">
-                  TU DEMO CADUCA EN:
-                </div>
-                <div class="text-xs text-white/70">Reserva temporal activa</div>
-              </div>
-              <div id="studio-countdown" class="font-mono font-bold text-lg text-amber-400 bg-black/70 px-3 py-1.5 rounded-xl border border-amber-500/30">
-                23:59:52
-              </div>
-            </div>
-
-            <!-- 1. Name -->
+          <!-- 24h Expiration Counter -->
+          <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
             <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
-                01 / NOMBRE DE TU NEGOCIO
-              </label>
-              <input
-                type="text"
-                id="studio-name"
-                value="Barbería Imperio VIP"
-                oninput="renderLiveStudio()"
-                placeholder="Ej: Barbería El Rey, Taller GT..."
-                class="w-full px-4 py-3.5 rounded-xl bg-black border border-white/15 text-white font-bold text-base focus:border-emerald-400 focus:outline-none"
-              />
+              <div class="text-[11px] font-mono uppercase text-amber-400 font-bold">RESERVA DE TU DEMO</div>
+              <div class="text-xs text-slate-300 mt-0.5">Se borra automáticamente en:</div>
             </div>
-
-            <!-- 2. Sector -->
-            <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
-                02 / ELIGE EL SECTOR (CAMBIA EL 3D)
-              </label>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="setStudioSector('barberia')" data-sec="barberia" class="sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-bold flex items-center gap-2">
-                  <i class="ph ph-scissors text-emerald-400"></i> Barbería VIP
-                </button>
-                <button onclick="setStudioSector('taller')" data-sec="taller" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-bold flex items-center gap-2">
-                  <i class="ph ph-engine"></i> Taller / Motor
-                </button>
-                <button onclick="setStudioSector('restaurante')" data-sec="restaurante" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-bold flex items-center gap-2">
-                  <i class="ph ph-ForkKnife"></i> Burger / Gastro
-                </button>
-                <button onclick="setStudioSector('reformas')" data-sec="reformas" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-bold flex items-center gap-2">
-                  <i class="ph ph-buildings"></i> Reformas / Villa
-                </button>
-              </div>
+            <div id="studio-countdown" class="font-mono font-bold text-lg text-amber-400 bg-black/60 px-3 py-1.5 rounded-xl border border-amber-500/30">
+              23:59:50
             </div>
-
-            <!-- 3. City & Phone -->
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1.5">CIUDAD / ZONA</label>
-                <input type="text" id="studio-city" value="Madrid Centro" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
-              </div>
-              <div>
-                <label class="block text-[10px] font-mono uppercase tracking-wider text-white/60 mb-1.5">WHATSAPP CITAS</label>
-                <input type="text" id="studio-phone" value="612 890 345" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
-              </div>
-            </div>
-
-            <!-- 4. Color Morph Atmosphere -->
-            <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-white/60 mb-2">
-                03 / ATMÓSFERA VISUAL (COLOR MORPH)
-              </label>
-              <div class="grid grid-cols-2 gap-2">
-                <button onclick="setStudioTheme('luxury')" data-thm="luxury" class="thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-gradient-to-br from-black to-amber-500 border border-white/30"></span>
-                  <span class="text-xs font-bold text-white">Obsidian Gold</span>
-                </button>
-                <button onclick="setStudioTheme('flame')" data-thm="flame" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-[#ea580c] border border-white/30"></span>
-                  <span class="text-xs font-bold text-white/75">NOCTA Orange</span>
-                </button>
-                <button onclick="setStudioTheme('neon')" data-thm="neon" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-[#65a30d] border border-white/30"></span>
-                  <span class="text-xs font-bold text-white/75">Venom Lime</span>
-                </button>
-                <button onclick="setStudioTheme('cyber')" data-thm="cyber" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5">
-                  <span class="w-5 h-5 rounded-full bg-[#7c3aed] border border-white/30"></span>
-                  <span class="text-xs font-bold text-white/75">Cyber Violet</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Unlock & Receive Email CTA -->
-            <div class="pt-3 border-t border-white/10">
-              <button onclick="openStripeEmailModal()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-[0_0_40px_rgba(16,185,129,0.45)] transition-all">
-                🔓 Desbloquear y Comprar Mi Web (50 €)
-              </button>
-              <div class="text-center text-[11px] font-mono text-white/45 mt-2">
-                RECIBES TU ENLACE Y PANEL ADMIN EN TU EMAIL AL INSTANTE
-              </div>
-            </div>
-
           </div>
+
+          <!-- Step 1: Business Name -->
+          <div>
+            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
+              1. NOMBRE DE TU NEGOCIO O LOCAL
+            </label>
+            <input
+              type="text"
+              id="studio-name"
+              value="Barbería Imperio VIP"
+              oninput="renderLiveStudio()"
+              placeholder="Ej: Barbería El Rey, Taller GT..."
+              class="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-white font-display font-bold text-base focus:border-emerald-400 focus:outline-none"
+            />
+          </div>
+
+          <!-- Step 2: Sector -->
+          <div>
+            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
+              2. ELIGE TU SECTOR
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="setStudioSector('barberia')" data-sec="barberia" class="sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-scissors text-emerald-400"></i> Barbería / Salón
+              </button>
+              <button onclick="setStudioSector('taller')" data-sec="taller" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-engine"></i> Taller / Motor
+              </button>
+              <button onclick="setStudioSector('restaurante')" data-sec="restaurante" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-hamburger"></i> Restaurante / Bar
+              </button>
+              <button onclick="setStudioSector('reformas')" data-sec="reformas" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
+                <i class="ph-bold ph-buildings"></i> Reformas / Clínica
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: City & WhatsApp -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 mb-1.5">CIUDAD</label>
+              <input type="text" id="studio-city" value="Madrid Centro" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 mb-1.5">WHATSAPP</label>
+              <input type="text" id="studio-phone" value="612 890 345" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
+            </div>
+          </div>
+
+          <!-- Step 4: Color Theme -->
+          <div>
+            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
+              3. COLOR DEL TEMA EN VIVO
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="setStudioTheme('luxury')" data-thm="luxury" class="thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-amber-500 shrink-0"></span>
+                <span class="text-xs font-bold text-white">Negro & Oro</span>
+              </button>
+              <button onclick="setStudioTheme('flame')" data-thm="flame" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-orange-600 shrink-0"></span>
+                <span class="text-xs font-bold text-slate-300">Naranja Fuego</span>
+              </button>
+              <button onclick="setStudioTheme('neon')" data-thm="neon" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-lime-500 shrink-0"></span>
+                <span class="text-xs font-bold text-slate-300">Verde Lima</span>
+              </button>
+              <button onclick="setStudioTheme('cyber')" data-thm="cyber" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
+                <span class="w-4 h-4 rounded-full bg-violet-600 shrink-0"></span>
+                <span class="text-xs font-bold text-slate-300">Violeta Pro</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Primary Purchase Button -->
+          <div class="pt-2 border-t border-white/10">
+            <button onclick="openStripeEmailModal()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-[0_10px_30px_rgba(16,185,129,0.35)] transition-all">
+              Desbloquear y Publicar Mi Web (50 €) →
+            </button>
+            <p class="text-center text-[11px] font-mono text-slate-400 mt-2">
+              ENTREGA AUTOMÁTICA A TU EMAIL AL INSTANTE
+            </p>
+          </div>
+
         </div>
 
-        <!-- RIGHT: LIVE GENERATED 3D WEBSITE PREVIEW -->
-        <div class="xl:col-span-8 double-bezel">
-          <div class="double-bezel-inner">
-            <!-- Top Browser Bar -->
-            <div class="px-5 py-3.5 bg-[#07080C] border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-              </div>
-              <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black border border-white/10 text-xs font-mono text-white/80">
-                <i class="ph-fill ph-lock-key text-emerald-400"></i>
-                <span id="live-domain-url">https://miweblocal.com/barberiaimperiovip</span>
-                <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold">DEMO 24H</span>
-              </div>
-              <div class="text-xs font-mono text-emerald-400">INTERACTIVA EN VIVO</div>
+        <!-- RIGHT 8 COLS: LIVE INTERACTIVE WEBSITE PREVIEW -->
+        <div class="lg:col-span-8 pro-card overflow-hidden">
+          <!-- Browser Top Chrome -->
+          <div class="px-5 py-3.5 bg-[#090B10] border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
             </div>
-
-            <!-- Generated Client Website Canvas -->
-            <div id="generated-website-canvas" class="transition-colors duration-700"></div>
+            <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-black border border-white/10 text-xs font-mono text-slate-300">
+              <i class="ph-fill ph-lock-key text-emerald-400"></i>
+              <span id="live-domain-url">https://miweblocal.com/barberiaimperiovip</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold">DEMO 24H</span>
+            </div>
+            <span class="text-xs font-mono text-emerald-400">VISTA PREVIA INTERACTIVA</span>
           </div>
+
+          <!-- Dynamic Client Website Canvas -->
+          <div id="generated-website-canvas"></div>
         </div>
 
       </div>
     </section>
 
     <!-- =======================================================================
-         SCENE 4: CLIENTES REALES EN VIVO ALOJADOS EN MIWEBLOCAL.COM
+         SECTION 3: PORTAFOLIO DE CLIENTES REALES EN VIVO
          ======================================================================= -->
-    <section id="clientes-reales" class="py-24 px-4 md:px-10 max-w-[1400px] mx-auto border-t border-white/10">
+    <section id="clientes" class="py-24 px-4 md:px-8 max-w-[1320px] mx-auto border-t border-white/10">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span class="inline-block rounded-full px-3.5 py-1 text-[10px] font-mono uppercase tracking-[0.2em] bg-amber-500/10 text-amber-400 border border-amber-500/25 mb-3">
-            PORTAFOLIO VERIFICADO EN VIVO
+          <span class="inline-block rounded-full px-3.5 py-1 text-xs font-mono uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/25 mb-3">
+            TRABAJOS REALES EN PRODUCCIÓN
           </span>
           <h2 class="font-display font-extrabold text-3xl md:text-5xl text-white">
-            Webs reales creadas por nuestro estudio.
+            Explora nuestras webs reales en vivo.
           </h2>
         </div>
-        <p class="text-white/60 text-sm max-w-md">
-          Toca cualquiera de estos negocios reales para abrir su web completa en una pestaña nueva.
+        <p class="text-slate-400 text-sm max-w-md">
+          Haz clic en cualquiera de nuestros clientes para abrir su página web real funcionando con catálogo, reservas y panel privado.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <a href="/motorcycle-store-orero/" target="_blank" class="double-bezel group block">
-          <div class="double-bezel-inner p-5">
-            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Motos Orero" />
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-red-600 text-white font-mono text-[10px] font-bold">CONCESIONARIO + ADMIN</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-1">Motos Orero Oficial</h3>
-            <p class="text-xs text-white/55 mb-3">Catálogo de motos en tiempo real, boutique, taller y panel privado `/admin`.</p>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">Abrir web en vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/motorcycle-store-orero/" target="_blank" class="pro-card p-5 group block">
+          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Motos Orero" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-red-600 text-white font-mono text-[10px] font-bold">CONCESIONARIO + ADMIN</span>
           </div>
+          <h3 class="font-display font-bold text-lg text-white mb-1">Motos Orero Oficial</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Exposición de motos en tiempo real, boutique, citas de taller con ITV y panel `/admin`.</p>
+          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
         </a>
 
-        <a href="/cox/barberia-jamal/" target="_blank" class="double-bezel group block">
-          <div class="double-bezel-inner p-5">
-            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Barbería Jamal" />
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-500 text-black font-mono text-[10px] font-bold">BARBERÍA VIP</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-1">Barbería Jamal Gentleman</h3>
-            <p class="text-xs text-white/55 mb-3">Estética de lujo, tarifas claras y sistema de reservas sin llamadas.</p>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">Abrir web en vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="/cox/barberia-jamal/" target="_blank" class="pro-card p-5 group block">
+          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Barbería Jamal" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-500 text-black font-mono text-[10px] font-bold">BARBERÍA VIP</span>
           </div>
+          <h3 class="font-display font-bold text-lg text-white mb-1">Barbería Jamal Gentleman</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Diseño Gentleman con precios claros y reservas de citas directas sin llamadas.</p>
+          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
         </a>
 
-        <a href="/reformas-elite-gold-guardamar/" target="_blank" class="double-bezel group block">
-          <div class="double-bezel-inner p-5">
-            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Reformas Élite Gold" />
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white text-black font-mono text-[10px] font-bold">ARQUITECTURA & REFORMAS</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-1">Reformas Élite Gold</h3>
-            <p class="text-xs text-white/55 mb-3">Proyectos integrales llave en mano y captación de presupuestos 24/7.</p>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">Abrir web en vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="/reformas-elite-gold-guardamar/" target="_blank" class="pro-card p-5 group block">
+          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Reformas Élite Gold" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white text-black font-mono text-[10px] font-bold">ARQUITECTURA & REFORMAS</span>
           </div>
+          <h3 class="font-display font-bold text-lg text-white mb-1">Reformas Élite Gold</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Proyectos integrales llave en mano con captación de presupuestos cualificados.</p>
+          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
         </a>
 
-        <a href="/orihuela/la-vimacchiata-brunch/" target="_blank" class="double-bezel group block">
-          <div class="double-bezel-inner p-5">
-            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-              <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="La Vimacchiata" />
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-400 text-black font-mono text-[10px] font-bold">HOSTELERÍA & BRUNCH</span>
-            </div>
-            <h3 class="font-display font-bold text-lg text-white mb-1">La Vimacchiata Gastro</h3>
-            <p class="text-xs text-white/55 mb-3">Carta interactiva visual, reserva de mesa y pedidos sin comisiones.</p>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">Abrir web en vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="/orihuela/la-vimacchiata-brunch/" target="_blank" class="pro-card p-5 group block">
+          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="La Vimacchiata" />
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-400 text-black font-mono text-[10px] font-bold">HOSTELERÍA & BRUNCH</span>
           </div>
+          <h3 class="font-display font-bold text-lg text-white mb-1">La Vimacchiata Gastro</h3>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Carta digital interactiva, reservas de mesa y pedidos directos sin comisiones.</p>
+          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
         </a>
       </div>
     </section>
 
     <!-- =======================================================================
-         SCENE 5: QUÉ INCLUYE TU WEB DE 50 € + RESEÑAS VERIFICADAS
+         SECTION 4: QUÉ INCLUYE Y RESEÑAS DE CLIENTES
          ======================================================================= -->
-    <section id="productos" class="py-20 px-4 md:px-10 max-w-[1400px] mx-auto border-t border-white/10">
+    <section id="incluye" class="py-20 px-4 md:px-8 max-w-[1320px] mx-auto border-t border-white/10">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="double-bezel">
-          <div class="double-bezel-inner p-7">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-4">
-              <i class="ph-bold ph-cube"></i>
-            </div>
-            <h3 class="font-display font-bold text-xl text-white mb-2">1. Diseño 3D del Futuro</h3>
-            <p class="text-sm text-white/60 leading-relaxed">
-              Animaciones fluidas, estética de estudio internacional y adaptación 100% perfecta a móviles para que tu negocio destaque por encima de toda tu competencia.
-            </p>
+        <div class="pro-card p-7">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-4">
+            <i class="ph-bold ph-calendar-check"></i>
           </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">1. Reservas 24/7 Sin Llamadas</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Tus clientes eligen servicio y hora desde su móvil sin interrumpirte mientras trabajas. Todo llega confirmado al instante.
+          </p>
         </div>
 
-        <div class="double-bezel">
-          <div class="double-bezel-inner p-7">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-2xl mb-4">
-              <i class="ph-bold ph-calendar-check"></i>
-            </div>
-            <h3 class="font-display font-bold text-xl text-white mb-2">2. Reservas 24/7 Sin Llamadas</h3>
-            <p class="text-sm text-white/60 leading-relaxed">
-              Tus clientes eligen servicio y hora desde su móvil en 15 segundos. Recibes la cita confirmada al instante sin tener que dejar de trabajar para contestar el teléfono.
-            </p>
+        <div class="pro-card p-7">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-2xl mb-4">
+            <i class="ph-bold ph-sliders-horizontal"></i>
           </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">2. Panel Privado (`/admin`)</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Cambia precios, sube fotos nuevas o actualiza tus servicios desde el móvil en 10 segundos sin depender de informáticos.
+          </p>
         </div>
 
-        <div class="double-bezel">
-          <div class="double-bezel-inner p-7">
-            <div class="w-12 h-12 rounded-2xl bg-purple-500/15 text-purple-400 flex items-center justify-center text-2xl mb-4">
-              <i class="ph-bold ph-paper-plane-tilt"></i>
-            </div>
-            <h3 class="font-display font-bold text-xl text-white mb-2">3. Entrega Automática al Email</h3>
-            <p class="text-sm text-white/60 leading-relaxed">
-              Generas tu demo hoy, tienes 24 horas para probarla y al activarla por 50 € recibes automáticamente en tu correo tu enlace oficial y tu panel privado (`/admin`).
-            </p>
+        <div class="pro-card p-7">
+          <div class="w-12 h-12 rounded-2xl bg-violet-500/15 text-violet-400 flex items-center justify-center text-2xl mb-4">
+            <i class="ph-bold ph-paper-plane-tilt"></i>
           </div>
+          <h3 class="font-display font-bold text-xl text-white mb-2">3. Entrega Automática al Email</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Pruebas tu demo durante 24 horas. Si decides quedártela por 50 €, recibes tus enlaces y claves en tu correo al segundo.
+          </p>
         </div>
       </div>
     </section>
@@ -786,168 +644,159 @@
   </main>
 
   <!-- MODAL: CHECKOUT AUTOMÁTICO + ENTREGA POR EMAIL -->
-  <div id="checkout-modal" class="hidden fixed inset-0 z-50 bg-black/85 backdrop-blur-2xl flex items-center justify-center p-4" onclick="closeCheckoutModal()">
-    <div class="double-bezel max-w-lg w-full" onclick="event.stopPropagation()">
-      <div class="double-bezel-inner p-7 md:p-9" id="checkout-modal-body"></div>
-    </div>
+  <div id="checkout-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4" onclick="closeCheckoutModal()">
+    <div class="pro-card max-w-lg w-full p-7 md:p-8 border border-emerald-500/40" onclick="event.stopPropagation()" id="checkout-modal-body"></div>
   </div>
 
   <script>
     // =========================================================================
-    // 1. GSAP PORTAL SCROLL CHOREOGRAPHY ("I LIKE THIS" ZOOM-THROUGH EFFECT)
+    // 1. STUDIO COLOR MORPHING & BEFORE/AFTER ENGINE (REF 3 NIKE + REF 2 BURGER)
     // =========================================================================
-    gsap.registerPlugin(ScrollTrigger);
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#portal-hero",
-          start: "top top",
-          end: "+=90%",
-          scrub: 1,
-          pin: true
-        }
-      });
-
-      tl.to("#portal-door-l", { xPercent: -105, ease: "power2.inOut" }, 0)
-        .to("#portal-door-r", { xPercent: 105, ease: "power2.inOut" }, 0)
-        .to("#portal-ceiling", { yPercent: -105, ease: "power2.inOut" }, 0)
-        .to("#portal-floor", { yPercent: 105, ease: "power2.inOut" }, 0)
-        .to("#portal-world", { scale: 1.45, filter: "brightness(1.05)", ease: "none" }, 0)
-        .to("#portal-text-box", { scale: 1.25, opacity: 0, ease: "power2.in" }, 0);
-
-      renderLiveStudio();
-    });
-
-    function scrollToMorphStage() {
-      document.getElementById('before-after-stage').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // =========================================================================
-    // 2. BEFORE / AFTER & 3D COLOR MORPHING STAGE (REF 1, 2, 3, 4)
-    // =========================================================================
-    const MORPH_SLIDES = [
+    const WORLDS = [
       {
-        bg: "#ea580c", // NOCTA Flame Orange (Ref 3 + Ref 2 Burger)
+        bg: "radial-gradient(circle at 50% 42%, #FF7828 0%, #EA580C 52%, #9A3412 100%)",
+        icon: "ph-bold ph-hamburger",
         brand: "LA BRASA SMASH CLUB",
-        tag: "DISEÑO 3D GASTRONÓMICO • CARTA & MESAS",
-        title: "THE ULTIMATE BURGER HAVEN",
-        desc: "Tus platos levitan en pantalla con una estética irresistible. Tus clientes piden o reservan mesa en 2 toques sin comisiones.",
+        url: "miweblocal.com/labrasa-club",
+        badge: "CARTA INTERACTIVA & RESERVAS DE MESA",
+        title: "La Brasa Smash Burger & Gastro",
+        desc: "Tus clientes entran desde TikTok o Google Maps, ven tu carta visual interactiva y reservan mesa o piden a domicilio sin pagar comisiones.",
         img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
-        spec: "Pedidos y Mesas en 10s",
-        emoji: "🍔"
+        cardItem: "Doble Smash Trufada VIP",
+        cardSub: "Reserva de mesa o pedido en 1 clic",
+        cardPrice: "14,90 €",
+        callout: "+340% Reservas Directas"
       },
       {
-        bg: "#4d7c0f", // Electric Lime Green (Ref 3 Nike Green)
+        bg: "radial-gradient(circle at 50% 42%, #84CC16 0%, #4D7C0F 55%, #1A2E05 100%)",
+        icon: "ph-bold ph-scissors",
         brand: "KRONOS BARBER STUDIO",
-        tag: "ESTÉTICA DEL FUTURO • RESERVAS 24/7",
-        title: "ELEVATE YOUR STYLE EXPERIENCE",
-        desc: "Olvídate de parar un corte de pelo para contestar el teléfono. Tu web agenda a tus clientes sola las 24 horas.",
+        url: "miweblocal.com/kronos-barber",
+        badge: "AGENDA AUTOMÁTICA DE CITAS 24/7",
+        title: "Kronos Barber & Grooming VIP",
+        desc: "Olvídate de parar un corte de pelo para contestar el teléfono. Tus clientes eligen barbero, corte y hora solos desde su móvil.",
         img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=85",
-        spec: "+185 Citas Online / Mes",
-        emoji: "💈"
+        cardItem: "Corte Skin Fade + Ritual Barba",
+        cardSub: "Confirmación inmediata por WhatsApp",
+        cardPrice: "22,00 €",
+        callout: "+185 Citas Online / Mes"
       },
       {
-        bg: "#6d28d9", // Cyber Purple (Ref 3 Nike Purple)
+        bg: "radial-gradient(circle at 50% 42%, #8B5CF6 0%, #6D28D9 52%, #2E1065 100%)",
+        icon: "ph-bold ph-engine",
         brand: "MOTOS ORERO & APEX MOTOR",
-        tag: "CONCESIONARIO, TALLER & PANEL ADMIN",
-        title: "HIGH PERFORMANCE MOTOR SHOWROOM",
-        desc: "Catálogo de vehículos en tiempo real, recepción de taller con fecha ITV y panel privado /admin desde tu móvil.",
+        url: "miweblocal.com/motorcycle-store-orero",
+        badge: "CONCESIONARIO, TALLER OFICIAL & ADMIN",
+        title: "High Performance Motor Showroom",
+        desc: "Exposición de vehículos en tiempo real, recepción de taller con fecha ITV y panel privado /admin para gestionar stock desde el móvil.",
         img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85",
-        spec: "Stock + Taller Conectado",
-        emoji: "🏎️"
+        cardItem: "Revisión Oficial + Diagnóstico",
+        cardSub: "Cita previa en taller sin esperas",
+        cardPrice: "89,00 €",
+        callout: "Stock + Taller en Tiempo Real"
       },
       {
-        bg: "#0f172a", // Futuristic Obsidian (Ref 1 & Ref 4 Luxury Villa)
-        brand: "VANGUARDIA ARQUITECTURA & REFORMAS",
-        tag: "PORTAL INMERSIVO • PRESUPUESTOS 24H",
-        title: "FOR THE FEW WHO NOTICE QUALITY",
-        desc: "Transmite autoridad absoluta con una web que parece un estudio de arquitectura de millón de euros.",
+        bg: "radial-gradient(circle at 50% 42%, #334155 0%, #0F172A 55%, #020617 100%)",
+        icon: "ph-bold ph-buildings",
+        brand: "REFORMAS ÉLITE GOLD",
+        url: "miweblocal.com/reformas-elite",
+        badge: "ARQUITECTURA, INTERIORISMO & REFORMAS",
+        title: "For The Few Who Notice Quality",
+        desc: "Transmite autoridad absoluta con una web que muestra tus proyectos antes/después y capta presupuestos cualificados las 24 horas.",
         img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85",
-        spec: "Presupuestos VIP Directos",
-        emoji: "🏛️"
+        cardItem: "Visita Técnica + Proyecto 3D",
+        cardSub: "Plazo cerrado por contrato",
+        cardPrice: "Gratis",
+        callout: "Presupuestos VIP 24/7"
       }
     ];
 
-    let currentMorphIndex = 0;
+    let currentWorld = 0;
 
-    function setBeforeAfterMode(mode) {
-      const wf = document.getElementById('wireframe-view');
-      const af = document.getElementById('after-3d-view');
-      const card = document.getElementById('showcase-card');
-      const sats = document.getElementById('floating-satellites');
-      const section = document.getElementById('before-after-stage');
-      const btnB = document.getElementById('btn-mode-before');
-      const btnA = document.getElementById('btn-mode-after');
+    function switchStageMode(mode) {
+      const card = document.getElementById('glass-card');
+      const vBefore = document.getElementById('view-before');
+      const vAfter = document.getElementById('view-after');
+      const tBefore = document.getElementById('tab-before');
+      const tAfter = document.getElementById('tab-after');
+      const stage = document.getElementById('hero-stage');
 
       if (mode === 'before') {
-        wf.classList.remove('hidden');
-        af.classList.add('hidden');
-        card.classList.add('wireframe-box');
-        sats.style.opacity = '0';
-        section.style.backgroundColor = '#334155';
-        btnB.className = "px-7 py-2.5 rounded-full text-xs md:text-sm font-display font-extrabold tracking-wide transition-all bg-white text-black shadow-lg";
-        btnA.className = "px-6 py-2.5 rounded-full text-xs md:text-sm font-display font-bold tracking-wide transition-all text-white/70 hover:text-white";
+        card.classList.add('is-wireframe');
+        vBefore.classList.remove('hidden');
+        vAfter.classList.add('hidden');
+        stage.style.background = "radial-gradient(circle at 50% 42%, #475569 0%, #1E293B 100%)";
+        tBefore.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap";
+        tAfter.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap";
       } else {
-        wf.classList.add('hidden');
-        af.classList.remove('hidden');
-        card.classList.remove('wireframe-box');
-        sats.style.opacity = '1';
-        section.style.backgroundColor = MORPH_SLIDES[currentMorphIndex].bg;
-        btnA.className = "px-7 py-2.5 rounded-full text-xs md:text-sm font-display font-extrabold tracking-wide transition-all bg-white text-black shadow-lg";
-        btnB.className = "px-6 py-2.5 rounded-full text-xs md:text-sm font-display font-bold tracking-wide transition-all text-white/70 hover:text-white";
+        card.classList.remove('is-wireframe');
+        vBefore.classList.add('hidden');
+        vAfter.classList.remove('hidden');
+        stage.style.background = WORLDS[currentWorld].bg;
+        tAfter.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap";
+        tBefore.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap";
       }
     }
 
-    function morphShowcase(index) {
-      setBeforeAfterMode('after');
-      currentMorphIndex = index;
-      const slide = MORPH_SLIDES[index];
-      const section = document.getElementById('before-after-stage');
-      const img = document.getElementById('sc-img');
+    function selectWorld(index) {
+      switchStageMode('after');
+      currentWorld = index;
+      const w = WORLDS[index];
 
-      section.style.backgroundColor = slide.bg;
+      // Update active pill styling
+      [0, 1, 2, 3].forEach(i => {
+        const btn = document.getElementById(`world-btn-${i}`);
+        if (i === index) {
+          btn.className = "px-4 py-1.5 rounded-full text-xs font-display font-bold bg-white text-black transition-all flex items-center gap-2 whitespace-nowrap shadow";
+        } else {
+          btn.className = "px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap";
+        }
+      });
 
-      // Animate 3D rotation & scale transition like Nike NOCTA video
-      gsap.fromTo(img,
-        { scale: 0.72, rotation: -14, opacity: 0.2 },
-        { scale: 1, rotation: -4, opacity: 1, duration: 0.65, ease: "back.out(1.6)" }
+      document.getElementById('hero-stage').style.background = w.bg;
+      document.getElementById('stage-icon').className = `${w.icon} text-base`;
+      document.getElementById('stage-brand').textContent = w.brand;
+      document.getElementById('stage-url').textContent = w.url;
+      document.getElementById('stage-badge').textContent = w.badge;
+      document.getElementById('stage-title').textContent = w.title;
+      document.getElementById('stage-desc').textContent = w.desc;
+      document.getElementById('stage-img').src = w.img;
+      document.getElementById('stage-card-item').textContent = w.cardItem;
+      document.getElementById('stage-card-sub').textContent = w.cardSub;
+      document.getElementById('stage-card-price').textContent = w.cardPrice;
+      document.getElementById('stage-callout').textContent = w.callout;
+
+      gsap.fromTo("#stage-3d-wrap",
+        { scale: 0.82, rotation: -8, opacity: 0.3 },
+        { scale: 1, rotation: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }
       );
-
-      document.getElementById('sc-brand').textContent = slide.brand;
-      document.getElementById('sc-tag').textContent = slide.tag;
-      document.getElementById('sc-title').textContent = slide.title;
-      document.getElementById('sc-desc').textContent = slide.desc;
-      img.src = slide.img;
-      document.getElementById('sc-spec-1').textContent = slide.spec;
-      document.getElementById('sat-1').textContent = slide.emoji;
     }
 
-    function nextMorphSlide() {
-      const next = (currentMorphIndex + 1) % MORPH_SLIDES.length;
-      morphShowcase(next);
+    function nextWorld() {
+      selectWorld((currentWorld + 1) % WORLDS.length);
     }
 
-    // Auto-Show Choreography for TikTok Screen Recording
-    function startAutoVisualShow() {
-      scrollToMorphStage();
-      setTimeout(() => setBeforeAfterMode('before'), 500);
-      setTimeout(() => morphShowcase(0), 1800);
-      setTimeout(() => morphShowcase(1), 3200);
-      setTimeout(() => morphShowcase(2), 4600);
-      setTimeout(() => {
-        document.getElementById('generador').scrollIntoView({ behavior: 'smooth' });
-      }, 6200);
+    function prevWorld() {
+      selectWorld((currentWorld - 1 + WORLDS.length) % WORLDS.length);
+    }
+
+    function playAutoTransformation() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      switchStageMode('before');
+      setTimeout(() => selectWorld(0), 1400);
+      setTimeout(() => selectWorld(1), 2800);
+      setTimeout(() => selectWorld(2), 4200);
+      setTimeout(() => selectWorld(3), 5600);
     }
 
     // =========================================================================
-    // 3. LIVE 24H GENERATOR ENGINE (WITH 3D FLOATING VISUAL STYLE)
+    // 2. LIVE 24H GENERATOR ENGINE
     // =========================================================================
     const STUDIO_CATALOG = {
       barberia: {
-        tag: "BARBERÍA DEL FUTURO • RESERVAS 24/7",
-        headline: "ELEVATE YOUR STYLE EXPERIENCE",
-        subhead: "Reserva tu sillón en 15 segundos sin llamadas ni esperas. Confirmación inmediata en WhatsApp.",
+        tag: "BARBERÍA & GROOMING VIP • RESERVAS 24/7",
+        headline: "Cortes de precisión. Reserva tu hora en 15 segundos.",
+        subhead: "Selecciona tu servicio y asegura tu cita desde el móvil sin llamadas ni esperas.",
         heroImage: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1000&q=85",
         services: [
           { title: "Corte Skin Fade + Styling VIP", time: "35 min", price: "18 €" },
@@ -956,9 +805,9 @@
         ]
       },
       taller: {
-        tag: "HIGH PERFORMANCE MOTOR & TALLER",
-        headline: "INGENIERÍA Y CITA PREVIA ONLINE",
-        subhead: "Mantenimiento oficial, diagnóstico electrónico, neumáticos y exposición de vehículos en tiempo real.",
+        tag: "CONCESIONARIO, TALLER OFICIAL & DETAILING",
+        headline: "Mecánica avanzada y cita previa online sin esperas.",
+        subhead: "Mantenimiento oficial, diagnóstico electrónico, neumáticos y exposición de vehículos.",
         heroImage: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85",
         services: [
           { title: "Revisión Oficial + Cambio de Aceite", time: "60 min", price: "95 €" },
@@ -967,9 +816,9 @@
         ]
       },
       restaurante: {
-        tag: "GASTRONOMÍA 3D • CARTA & MESAS",
-        headline: "THE ULTIMATE BURGER & GASTRO CLUB",
-        subhead: "Explora nuestra carta interactiva y asegura tu mesa o pedido directo sin comisiones.",
+        tag: "GASTRONOMÍA A LA BRASA & CARTA DIGITAL",
+        headline: "Sabor brutal. Reserva tu mesa o pide en 2 toques.",
+        subhead: "Explora nuestra carta interactiva y asegura tu mesa en salón o terraza sin comisiones.",
         heroImage: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85",
         services: [
           { title: "Doble Smash Burger Trufada Dry-Aged", time: "Top Ventas", price: "14,90 €" },
@@ -979,8 +828,8 @@
       },
       reformas: {
         tag: "ARQUITECTURA, INTERIORISMO & REFORMAS",
-        headline: "FOR THE FEW WHO NOTICE QUALITY",
-        subhead: "Transformamos tu vivienda o local comercial con diseño 3D previo y plazo cerrado por contrato.",
+        headline: "Reformamos tu vivienda o local con plazo cerrado.",
+        subhead: "Proyectos integrales llave en mano con diseño 3D previo y garantía por contrato.",
         heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
         services: [
           { title: "Visita Técnica + Presupuesto Detallado", time: "En 48 horas", price: "Gratis" },
@@ -991,8 +840,8 @@
     };
 
     const STUDIO_THEMES = {
-      luxury: { bg: "linear-gradient(135deg, #090A0F 0%, #1E1B18 100%)", accent: "#F59E0B", text: "#000" },
-      flame:  { bg: "linear-gradient(135deg, #9A3412 0%, #EA580C 100%)", accent: "#FFFFFF", text: "#000" },
+      luxury: { bg: "linear-gradient(135deg, #090A0F 0%, #1C1917 100%)", accent: "#F59E0B", text: "#000" },
+      flame:  { bg: "linear-gradient(135deg, #7C2D12 0%, #EA580C 100%)", accent: "#FFFFFF", text: "#000" },
       neon:   { bg: "linear-gradient(135deg, #1A2E05 0%, #4D7C0F 100%)", accent: "#ECFCCB", text: "#000" },
       cyber:  { bg: "linear-gradient(135deg, #2E1065 0%, #6D28D9 100%)", accent: "#FFFFFF", text: "#000" }
     };
@@ -1004,7 +853,7 @@
       phone: "612 890 345",
       theme: "luxury",
       slot: "17:30",
-      secondsRemaining: 24 * 3600 - 8
+      secondsRemaining: 24 * 3600 - 10
     };
 
     setInterval(() => {
@@ -1021,8 +870,8 @@
       document.querySelectorAll('.sec-btn').forEach(b => {
         const active = b.getAttribute('data-sec') === sec;
         b.className = active
-          ? "sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-bold flex items-center gap-2"
-          : "sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-white/70 text-xs font-bold flex items-center gap-2";
+          ? "sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2"
+          : "sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2";
       });
       renderLiveStudio();
     }
@@ -1032,8 +881,8 @@
       document.querySelectorAll('.thm-btn').forEach(b => {
         const active = b.getAttribute('data-thm') === thm;
         b.className = active
-          ? "thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2.5"
-          : "thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2.5";
+          ? "thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2"
+          : "thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2";
       });
       renderLiveStudio();
     }
@@ -1055,43 +904,43 @@
 
       const canvas = document.getElementById('generated-website-canvas');
       canvas.innerHTML = `
-        <div style="background:${thm.bg}; color:#fff; padding:28px; min-height:560px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div style="background:${thm.bg}; color:#fff; padding:28px; min-height:540px; display:flex; flex-direction:column; justify-content:space-between;">
 
-          <!-- Client Top Bar -->
+          <!-- Client Top Header -->
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:16px;">
-            <div style="font-family:'Syne',sans-serif; font-weight:800; font-size:1.25rem;">
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.25rem;">
               ${studioState.name}
             </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="font-size:12px; opacity:0.8;">📍 ${studioState.city}</span>
-              <button onclick="openStripeEmailModal()" style="background:${thm.accent}; color:${thm.text}; padding:8px 16px; border-radius:99px; font-weight:800; font-size:11px;">
-                Activar Web (50€)
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span style="font-size:12px; opacity:0.85;">📍 ${studioState.city}</span>
+              <button onclick="openStripeEmailModal()" style="background:${thm.accent}; color:${thm.text}; padding:8px 16px; border-radius:99px; font-weight:800; font-size:12px;">
+                Activar Web (50 €)
               </button>
             </div>
           </div>
 
-          <!-- 3D Floating Hero Inside Generated Website -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center py-8">
-            <div class="lg:col-span-7 space-y-3">
+          <!-- Hero Inside Generated Site -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-6">
+            <div class="md:col-span-7 space-y-3">
               <span style="display:inline-block; padding:4px 12px; border-radius:99px; background:rgba(255,255,255,0.15); font-family:'JetBrains Mono',monospace; font-size:10px;">
                 ${data.tag}
               </span>
-              <h1 style="font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); line-height:1.05;">
+              <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(1.7rem,2.8vw,2.4rem); line-height:1.08;">
                 ${data.headline}
-              </h1>
-              <p style="font-size:13px; opacity:0.85; line-height:1.5; max-width:460px;">
+              </h3>
+              <p style="font-size:13px; opacity:0.85; line-height:1.5; max-width:440px;">
                 ${data.subhead}
               </p>
             </div>
-            <div class="lg:col-span-5 flex justify-center">
-              <img src="${data.heroImage}" class="levitate-3d w-52 h-52 object-cover rounded-[28px] border-2 border-white/30" />
+            <div class="md:col-span-5 flex justify-center">
+              <img src="${data.heroImage}" class="w-full max-w-[240px] h-48 object-cover rounded-2xl border-2 border-white/30 shadow-2xl" />
             </div>
           </div>
 
           <!-- Services + Instant 24/7 Booking Module -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/45 backdrop-blur-xl p-5 rounded-2xl border border-white/15">
             <div class="space-y-2">
-              <div class="text-[10px] font-mono uppercase opacity-70">CATÁLOGO INTERACTIVO</div>
+              <div class="text-[10px] font-mono uppercase opacity-70">CATÁLOGO DE SERVICIOS Y PRECIOS</div>
               ${data.services.map(s => `
                 <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs">
                   <div>
@@ -1105,7 +954,7 @@
 
             <div class="flex flex-col justify-between p-4 rounded-xl bg-white/5 border border-white/15">
               <div>
-                <div class="text-[10px] font-mono uppercase text-emerald-400 font-bold">RESERVA ONLINE 24/7 SIN LLAMADAS</div>
+                <div class="text-[10px] font-mono uppercase text-emerald-400 font-bold">AGENDA ONLINE 24/7 SIN LLAMADAS</div>
                 <div class="text-xs font-bold mt-1 mb-2">Selecciona hora disponible hoy:</div>
                 <div class="grid grid-cols-4 gap-1.5 mb-3">
                   ${["16:30", "17:30", "18:15", "19:30"].map(t => `
@@ -1139,15 +988,15 @@
           <h3 class="font-display font-bold text-2xl text-white mb-2">
             Activar la web de <span class="text-emerald-400">${studioState.name}</span>
           </h3>
-          <p class="text-white/60 text-xs leading-relaxed mb-5">
+          <p class="text-slate-300 text-xs leading-relaxed mb-5">
             Al desbloquear tu web por <strong class="text-white">50 € (pago único)</strong>, la demo deja de caducar y recibes automáticamente en tu Email tu enlace definitivo y las claves de tu panel privado (`/admin`).
           </p>
           <div class="mb-5">
-            <label class="block text-[10px] font-mono uppercase text-white/60 mb-1.5">TU EMAIL PARA RECIBIR LOS ACCESOS AL INSTANTE</label>
+            <label class="block text-[10px] font-mono uppercase text-slate-400 mb-1.5">TU EMAIL PARA RECIBIR LOS ACCESOS AL INSTANTE</label>
             <input type="email" id="buyer-email-input" value="propietario@minegocio.com" class="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-white text-sm font-medium focus:border-emerald-400 focus:outline-none" />
           </div>
-          <button onclick="completeAutomatedEmailDelivery()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-[0_0_40px_rgba(16,185,129,0.4)]">
-            💳 Pagar 50 € y Recibir Mi Web en el Email Ahora
+          <button onclick="completeAutomatedEmailDelivery()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-lg">
+            Pagar 50 € y Recibir Mi Web en el Email Ahora →
           </button>
         </div>
       `;
@@ -1163,8 +1012,8 @@
         <div>
           <div class="text-emerald-400 font-mono text-xs uppercase font-bold mb-2">✓ SISTEMA AUTOMÁTICO COMPLETADO</div>
           <h3 class="font-display font-bold text-2xl text-white mb-2">¡Web Publicada y Email Enviado!</h3>
-          <p class="text-white/60 text-xs mb-4">Correo enviado automáticamente a <strong class="text-white">${email}</strong>:</p>
-          <div class="p-4 rounded-2xl bg-black border border-emerald-500/30 font-mono text-xs space-y-2 text-white/85 mb-5">
+          <p class="text-slate-300 text-xs mb-4">Correo enviado automáticamente a <strong class="text-white">${email}</strong>:</p>
+          <div class="p-4 rounded-2xl bg-black border border-emerald-500/30 font-mono text-xs space-y-2 text-white/90 mb-5">
             <div class="text-emerald-400 font-bold">DE: Mi Web Local &lt;entrega@miweblocal.com&gt;</div>
             <div>1. WEB OFICIAL: <span class="text-emerald-400 underline">https://miweblocal.com/${slug}</span></div>
             <div>2. PANEL ADMIN: <span class="text-amber-300 underline">https://miweblocal.com/${slug}/admin</span></div>
@@ -1178,6 +1027,10 @@
     function closeCheckoutModal() {
       document.getElementById('checkout-modal').classList.add('hidden');
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLiveStudio();
+    });
   </script>
 </body>
 </html>
