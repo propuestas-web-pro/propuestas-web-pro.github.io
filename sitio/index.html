@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Web en Vivo · MiWebLocal</title>
-  <meta name="theme-color" content="#090B10" />
+  <title>Vista Previa 24h · MiWebLocal</title>
+  <meta name="theme-color" content="#07090E" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
     html, body {
       width: 100%;
       height: 100%;
       height: 100dvh;
-      background: #090B10;
+      background: #07090E;
       color: #F8FAFC;
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
+
+    /* Top 24h Trial Bar */
     #demo-top-bar {
-      background: #0E121B;
+      background: linear-gradient(90deg, #0B0F19 0%, #111827 100%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       padding: 8px 12px;
       display: flex;
@@ -34,44 +37,56 @@
       z-index: 30;
     }
     #demo-top-bar.hidden { display: none !important; }
+
     .badge-timer {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       font-size: 11.5px;
       font-weight: 700;
       color: #FDE68A;
       white-space: nowrap;
     }
-    .dot {
-      width: 7px;
-      height: 7px;
+    .dot-pulse {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
+      background: #F59E0B;
+      box-shadow: 0 0 10px #F59E0B;
+      animation: pulseDot 1.6s infinite;
     }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
     .actions {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-shrink: 0;
     }
+
     .btn-sm {
       padding: 7px 11px;
-      border-radius: 9px;
+      border-radius: 999px;
       font-size: 11.5px;
       font-weight: 700;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       background: rgba(255, 255, 255, 0.06);
       color: #fff;
       cursor: pointer;
       white-space: nowrap;
       font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
+
     .btn-unlock {
-      padding: 7px 12px;
-      border-radius: 9px;
+      padding: 7px 13px;
+      border-radius: 999px;
       font-size: 11.5px;
       font-weight: 800;
       font-family: 'Outfit', sans-serif;
@@ -80,8 +95,12 @@
       color: #04130D;
       cursor: pointer;
       white-space: nowrap;
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 18px rgba(52, 211, 153, 0.35);
     }
+
     #client-live-iframe {
       width: 100%;
       flex: 1;
@@ -89,9 +108,134 @@
       background: #090B10;
       display: block;
     }
+
+    /* Bottom Floating 24h Lifetime Unlock Strip */
+    #demo-bottom-strip {
+      background: rgba(10, 14, 22, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 30;
+    }
+    #demo-bottom-strip.hidden { display: none !important; }
+
+    .strip-info {
+      min-width: 0;
+    }
+    .strip-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .strip-sub {
+      font-size: 11px;
+      color: #6EE7B7;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Lifetime Unlock Modal */
+    .unlock-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(3, 5, 9, 0.86);
+      backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      overflow-y: auto;
+    }
+    .unlock-modal-backdrop.is-open {
+      display: flex;
+    }
+    .unlock-modal-card {
+      width: 100%;
+      max-width: 680px;
+      background: #0C1018;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 26px;
+      padding: 20px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      max-height: 92dvh;
+      overflow-y: auto;
+    }
+    @media (min-width: 640px) {
+      .unlock-modal-card { padding: 26px; }
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    @media (min-width: 560px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .benefit-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.35;
+    }
+    .plan-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (min-width: 580px) {
+      .plan-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .plan-box {
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .plan-50 {
+      background: rgba(16, 185, 129, 0.07);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+    .plan-200 {
+      background: rgba(245, 158, 11, 0.07);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .plan-cta {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
     #copy-toast {
       position: fixed;
-      bottom: 20px;
+      bottom: 74px;
       left: 50%;
       transform: translateX(-50%);
       background: #10B981;
@@ -103,25 +247,142 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.5);
       z-index: 100;
       display: none;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
-  <!-- Shown ONLY while in 24h Demo Mode; automatically disappears once unlocked! -->
+  <!-- Shown ONLY while in 24h Demo Mode -->
   <div id="demo-top-bar" class="hidden">
     <div class="badge-timer">
-      <span class="dot"></span>
-      <span>Demo 24h · <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:12</strong></span>
+      <span class="dot-pulse"></span>
+      <span>Prueba 24h · Caduca en <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
     </div>
     <div class="actions">
-      <button type="button" class="btn-sm" onclick="shareDemoLink()">Compartir</button>
-      <a href="/admin/" id="sitio-admin-link" class="btn-sm" style="color:#FCD34D; border-color:rgba(252,211,77,0.35);">/admin</a>
-      <a href="/#generador" class="btn-unlock">Activar · 50 €</a>
+      <button type="button" class="btn-sm" onclick="sendDemoLinkWhatsApp()">
+        <i class="ph-fill ph-whatsapp-logo" style="color:#34D399;"></i>
+        <span>Mandarme enlace</span>
+      </button>
+      <button type="button" class="btn-sm" onclick="shareDemoLink()">
+        <i class="ph-bold ph-copy"></i>
+        <span class="hide-xs">Copiar</span>
+      </button>
+      <button type="button" class="btn-unlock" onclick="openUnlockModal()">
+        <i class="ph-bold ph-lock-key-open"></i>
+        <span>Activar · 50 €</span>
+      </button>
     </div>
   </div>
 
-  <iframe id="client-live-iframe" title="Página web del negocio"></iframe>
+  <iframe id="client-live-iframe" title="Página web generada del negocio"></iframe>
+
+  <!-- Bottom Persistent 24h Lifetime Unlock Strip -->
+  <div id="demo-bottom-strip" class="hidden">
+    <div class="strip-info">
+      <div class="strip-title">♾️ Pago Único Para Siempre · Sin Renovar Nunca Más</div>
+      <div class="strip-sub">Incluye Dominio + Hosting de por vida + Ordenador y Móvil + WhatsApp</div>
+    </div>
+    <button type="button" class="btn-unlock" style="padding: 10px 16px; font-size: 12.5px;" onclick="openUnlockModal()">
+      <span>Quedármela · Desde 50 €</span>
+      <i class="ph-bold ph-arrow-right"></i>
+    </button>
+  </div>
+
+  <!-- =====================================================================
+       MODAL DE ACTIVACIÓN DEFINITIVA (50 € EMPEZAR vs 200 € PRO COMPLETA)
+       ===================================================================== -->
+  <div id="unlock-modal" class="unlock-modal-backdrop" onclick="if(event.target === this) closeUnlockModal()">
+    <div class="unlock-modal-card">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+        <div>
+          <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:rgba(245,158,11,0.14); border:1px solid rgba(245,158,11,0.35); color:#FDE68A; font-size:11px; font-weight:700; margin-bottom:6px;">
+            <i class="ph-bold ph-clock-countdown"></i>
+            <span>Tu enlace de prueba se desactiva en <strong id="modal-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
+          </div>
+          <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:22px; color:#fff; line-height:1.15;">
+            Activa tu web para siempre (Pago único, sin renovaciones)
+          </h2>
+          <p style="font-size:13px; color:#94A3B8; margin-top:4px;">
+            Pagas <strong>una sola vez</strong> y es 100% tuya para toda la vida. <strong>No tienes que renovar nunca más</strong> (0 € al mes y 0 € al año).
+          </p>
+        </div>
+        <button type="button" onclick="closeUnlockModal()" style="width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#fff; cursor:pointer; flex-shrink:0;">✕</button>
+      </div>
+
+      <!-- 6 Everything-Included Items (Answers "¿Dominio y qué más?") -->
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <i class="ph-bold ph-globe" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>1. Tu Dominio Propio Incluido</strong><br><span style="color:#94A3B8;">Quitamos el límite de 24h y activamos tu dirección web oficial.</span></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ph-bold ph-infinity" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>2. Pago Único Para Siempre</strong><br><span style="color:#94A3B8;">No tienes que renovar nunca más. 0 € cuotas mensuales ni anuales.</span></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ph-bold ph-hard-drives" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>3. Hosting Rápido de por Vida</strong><br><span style="color:#94A3B8;">Alojamiento web 24/7 incluido gratis para siempre en el pago único.</span></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ph-bold ph-devices" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>4. Ordenador + Móvil Listos</strong><br><span style="color:#94A3B8;">Adaptada perfectamente a cualquier teléfono y pantalla de PC.</span></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ph-bold ph-whatsapp-logo" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>5. Clientes Directos a tu WhatsApp</strong><br><span style="color:#94A3B8;">Sistema de citas/pedidos directo a tu móvil con 0% comisiones.</span></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ph-bold ph-map-pin-line" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
+          <div><strong>6. Botón GPS Google Maps y Precios</strong><br><span style="color:#94A3B8;">Tus horarios, tarifas y ruta directa hasta tu puerta o negocio.</span></div>
+        </div>
+      </div>
+
+      <!-- 2 Clear Activation Options: 50 € vs 200 € -->
+      <div class="plan-grid">
+        <!-- Plan 50 € -->
+        <div class="plan-box plan-50">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:11px; font-weight:800; text-transform:uppercase; color:#6EE7B7;">Para empezar hoy</span>
+              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:24px; color:#fff;">50 €</span>
+            </div>
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#fff; margin-bottom:4px;">
+              Activar Web + Dominio
+            </div>
+            <p style="font-size:12px; color:#CBD5E1; line-height:1.4;">
+              Deja activa para siempre la web que acabas de generar, recibe tu dominio propio y empieza a recibir clientes hoy mismo. <strong>Pago único sin renovar nunca más.</strong>
+            </p>
+          </div>
+          <button type="button" class="plan-cta" style="background:#34D399; color:#04130D;" onclick="activateViaWhatsApp('50 € (Activar Web Generada + Dominio · Pago único para siempre)')">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size:17px;"></i>
+            <span>Activar por 50 € · Pago Único</span>
+          </button>
+        </div>
+
+        <!-- Plan 200 € -->
+        <div class="plan-box plan-200">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:11px; font-weight:800; text-transform:uppercase; color:#FCD34D;">Proyecto Completo VIP</span>
+              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:24px; color:#FCD34D;">200 €</span>
+            </div>
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#fff; margin-bottom:4px;">
+              Web Completa A Medida + Dominio .com
+            </div>
+            <p style="font-size:12px; color:#CBD5E1; line-height:1.4;">
+              Nosotros te montamos todo tu catálogo completo, tus fotos, textos profesionales, efectos 3D exclusivos y alta en Google Maps. <strong>Pago único sin renovar nunca más.</strong>
+            </p>
+          </div>
+          <button type="button" class="plan-cta" style="background:#FBBF24; color:#090D16;" onclick="activateViaWhatsApp('200 € (Web Completa A Medida VIP + Dominio .com · Pago único para siempre)')">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size:17px;"></i>
+            <span>Pedir Completa · 200 € Pago Único</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="copy-toast">✓ Enlace copiado para enviar por WhatsApp</div>
 
   <script src="../assets/studio-engine.js"></script>
@@ -129,7 +390,6 @@
     (function initLiveSiteViewer() {
       const params = new URLSearchParams(window.location.search);
       const encoded = params.get('d');
-      const slugParam = params.get('negocio');
       const hasLocal = !!localStorage.getItem(STORAGE_KEY);
       const localSt = loadStudioState();
 
@@ -137,8 +397,6 @@
       if (encoded) {
         const decoded = decodeSharePayload(encoded);
         if (decoded) {
-          // Prefer localStorage ONLY if user edited this exact same business locally very recently;
-          // otherwise use the shared URL payload so links opened on other phones render accurately.
           if (hasLocal && slugifyName(localSt.name) === slugifyName(decoded.name)) {
             activeState = Object.assign({}, decoded, localSt, {
               unlocked: !!(localSt.unlocked || decoded.unlocked)
@@ -152,21 +410,23 @@
       document.title = activeState.name + ' · ' + (activeState.city || 'Web Oficial');
 
       const topBar = document.getElementById('demo-top-bar');
-      const adminLink = document.getElementById('sitio-admin-link');
-      if (adminLink) {
-        adminLink.href = '/admin/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
-      }
+      const bottomStrip = document.getElementById('demo-bottom-strip');
 
-      if (!activeState.unlocked && topBar) {
-        topBar.classList.remove('hidden');
+      if (!activeState.unlocked) {
+        if (topBar) topBar.classList.remove('hidden');
+        if (bottomStrip) bottomStrip.classList.remove('hidden');
+
         const timerEl = document.getElementById('sitio-timer');
+        const modalTimerEl = document.getElementById('modal-timer');
         const updateClock = () => {
           const rem = Math.max(0, (activeState.expiresAt || (Date.now() + 86000000)) - Date.now());
           const sec = Math.floor(rem / 1000);
           const h = String(Math.floor(sec / 3600)).padStart(2, '0');
           const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
           const s = String(sec % 60).padStart(2, '0');
-          if (timerEl) timerEl.textContent = h + ':' + m + ':' + s;
+          const formatted = h + ':' + m + ':' + s;
+          if (timerEl) timerEl.textContent = formatted;
+          if (modalTimerEl) modalTimerEl.textContent = formatted;
         };
         updateClock();
         setInterval(updateClock, 1000);
@@ -177,11 +437,13 @@
         iframe.srcdoc = compileClientWebsiteHTML(activeState);
       }
 
+      function getShareUrl() {
+        return window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
+      }
+
       window.shareDemoLink = function() {
-        const shareUrl = window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
-        if (navigator.share) {
-          navigator.share({ title: activeState.name, url: shareUrl }).catch(() => {});
-        } else if (navigator.clipboard) {
+        const shareUrl = getShareUrl();
+        if (navigator.clipboard) {
           navigator.clipboard.writeText(shareUrl).then(() => {
             const t = document.getElementById('copy-toast');
             if (t) {
@@ -191,8 +453,34 @@
           });
         }
       };
+
+      window.sendDemoLinkWhatsApp = function() {
+        const shareUrl = getShareUrl();
+        const msg = `Aquí está el enlace de la web generada para *${activeState.name}* (${activeState.city}) activa durante 24h:\n${shareUrl}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      };
+
+      window.openUnlockModal = function() {
+        const m = document.getElementById('unlock-modal');
+        if (m) m.classList.add('is-open');
+      };
+
+      window.closeUnlockModal = function() {
+        const m = document.getElementById('unlock-modal');
+        if (m) m.classList.remove('is-open');
+      };
+
+      window.activateViaWhatsApp = function(planLabel) {
+        const shareUrl = getShareUrl();
+        const msg =
+          `Hola, acabo de generar mi web en miweblocal.com y quiero activarla antes de que pasen las 24h:\n` +
+          `• Negocio: *${activeState.name}* (${activeState.city})\n` +
+          `• Opción elegida: *${planLabel}*\n` +
+          `• Enlace de mi web generada: ${shareUrl}\n` +
+          `¿Me indicas cómo hacer el pago único para dejarla activa para siempre con mi dominio?`;
+        window.open(`https://wa.me/34632768152?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      };
     })();
   </script>
 </body>
 </html>
-

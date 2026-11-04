@@ -608,6 +608,64 @@ button, a, .cursor-pointer, .filter-pill, .js-hero-tab {
   padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
 }
 
+/* ==========================================================================
+   SELF-SERVICE 3D GENERATOR & 24H LIFETIME UNLOCK CONSOLE (#crear)
+   ========================================================================== */
+.gen-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  color: #FFFFFF;
+  font-size: 16px; /* >=16px prevents iOS Safari auto-zoom on focus! */
+  font-family: inherit;
+  outline: none;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.gen-input::placeholder {
+  color: #64748B;
+}
+
+.gen-input:focus {
+  border-color: #34D399;
+  background: rgba(16, 185, 129, 0.06);
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.16);
+}
+
+.gen-sector-chip {
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out), background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.gen-sector-chip.is-active {
+  background: #34D399;
+  border-color: #34D399;
+  color: #04130D;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(52, 211, 153, 0.28);
+}
+
+@keyframes flashHighlight {
+  0%   { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+  100% { box-shadow: 0 0 0 18px rgba(52, 211, 153, 0); }
+}
+
+.is-just-generated {
+  animation: flashHighlight 900ms var(--ease-out);
+}
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 

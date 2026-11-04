@@ -271,6 +271,72 @@ const SECTOR_PRESETS = {
       { title: 'Entrenador Personal 1 a 1', meta: 'Objetivos garantizados', price: '35 €' }
     ]
   },
+  fitness: {
+    label: 'Fitness y Deporte',
+    icon: 'ph-barbell',
+    actionType: 'citas',
+    defaultTheme: 'emerald',
+    defaultName: 'Kinetic Fitness Club',
+    yearsExp: 'Entrenamiento Élite',
+    tagline: 'Entrenamiento personal, fuerza y transformación física garantizada.',
+    story: 'Reserva tu valoración inicial y entrena con planificación a medida presencial u online.',
+    heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Sesión de Valoración + Prueba', meta: '45 min · Estudio corporal', price: 'Gratis' },
+      { title: 'Plan Entrenamiento Personal 1 a 1', meta: 'Seguimiento semanal + Nutrición', price: '120 €/mes' },
+      { title: 'Grupos Reducidos Fuerza & HIIT', meta: 'Máx. 8 personas por turno', price: '69 €/mes' },
+      { title: 'Preparación Online Personalizada', meta: 'App + Contacto directo WhatsApp', price: '59 €/mes' }
+    ]
+  },
+  personal: {
+    label: 'Nuevo Negocio / Servicios',
+    icon: 'ph-briefcase',
+    actionType: 'citas',
+    defaultTheme: 'gold',
+    defaultName: 'Nexo Consultoría & Marca',
+    yearsExp: 'Atención Personalizada',
+    tagline: 'Soluciones profesionales a medida con resultados claros desde el primer día.',
+    story: 'Asesoramiento directo sin intermediarios. Agenda tu consulta o solicita presupuesto por WhatsApp.',
+    heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Primera Consulta de Valoración', meta: '30 min · Análisis de tu caso', price: 'Gratis' },
+      { title: 'Servicio Profesional Completo', meta: 'Entrega rápida y garantizada', price: 'A medida' },
+      { title: 'Pack Integral para Particulares / Empresas', meta: 'Todo incluido llave en mano', price: 'Consultar' },
+      { title: 'Atención Preferente por WhatsApp', meta: 'Respuesta en el mismo día', price: 'Directo' }
+    ]
+  },
+  tienda: {
+    label: 'Tienda y Catálogo 24h',
+    icon: 'ph-shopping-bag',
+    actionType: 'citas',
+    defaultTheme: 'copper',
+    defaultName: 'Atelier Store Oficial',
+    yearsExp: 'Envío 24/48h o Recogida',
+    tagline: 'Catálogo exclusivo disponible las 24 horas con pedido directo por WhatsApp.',
+    story: 'Descubre nuestra colección actualizada con stock real. Compra o reserva en un toque sin comisiones.',
+    heroImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Producto Destacado de Temporada', meta: 'Unidades limitadas · Envío 24h', price: '39,90 €' },
+      { title: 'Pack Ahorro Colección Completa', meta: 'El más vendido · Envío gratis', price: '69,00 €' },
+      { title: 'Edición Especial / Personalizada', meta: 'Reserva directa por WhatsApp', price: '49,00 €' },
+      { title: 'Recogida en Tienda sin Esperas', meta: 'Listo en 1 hora', price: '0 €' }
+    ]
+  },
   otro: {
     label: '+ Otro Negocio',
     icon: 'ph-plus-circle',
@@ -358,7 +424,8 @@ function encodeSharePayload(st) {
       a: st.address, w: st.whatsapp, p: st.phone, ig: st.instagram,
       hw: st.hoursWeek, hs: st.hoursSat, hd: st.hoursSun, th: st.theme,
       sv: (st.services || []).slice(0, 12), md: st.modules,
-      un: !!st.unlocked, pin: st.adminPin || 'PRO-4829'
+      un: !!st.unlocked, pin: st.adminPin || 'PRO-4829',
+      ex: st.expiresAt || (Date.now() + 24 * 3600 * 1000)
     };
     return btoa(unescape(encodeURIComponent(JSON.stringify(slim))))
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -388,7 +455,7 @@ function decodeSharePayload(b64) {
         scheduleMap: true, gallery: true, reviews: true, faq: true
       }, slim.md || {}),
       unlocked: !!slim.un, adminPin: slim.pin || 'PRO-4829',
-      expiresAt: Date.now() + 24 * 3600 * 1000
+      expiresAt: slim.ex || (Date.now() + 24 * 3600 * 1000)
     };
   } catch (e) { return null; }
 }
@@ -587,7 +654,25 @@ function compileClientWebsiteHTML(st) {
   const preset = SECTOR_PRESETS[st.sector] || SECTOR_PRESETS.barberia;
   const thm = DESIGN_THEMES[st.theme] || DESIGN_THEMES.copper;
   const sectorBadge = st.sector === 'otro' ? (st.customSectorLabel || 'Negocio Verificado') : preset.label;
-  const heroImg = st.customHeroPhoto || preset.heroImage;
+  const STUDIO_MAP = {
+    motos: '/assets/showcase/photo_motos.jpg',
+    barberia: '/assets/showcase/photo_barberia.jpg',
+    personal: '/assets/showcase/photo_personal.jpg',
+    reformas: '/assets/showcase/photo_reformas.jpg',
+    tienda: '/assets/showcase/photo_tienda.jpg',
+    restaurante: '/assets/showcase/photo_restaurante.jpg',
+    cafeteria: '/assets/showcase/photo_restaurante.jpg',
+    pizzeria: '/assets/showcase/photo_restaurante.jpg',
+    taller: '/assets/showcase/photo_taller.jpg',
+    clinica: '/assets/showcase/photo_clinica.jpg',
+    estetica: '/assets/showcase/photo_estetica.jpg',
+    tattoo: '/assets/showcase/photo_barberia.jpg',
+    fitness: '/assets/showcase/photo_fitness.jpg',
+    gimnasio: '/assets/showcase/photo_fitness.jpg',
+    urgencias: '/assets/showcase/photo_reformas.jpg',
+    otro: '/assets/showcase/photo_personal.jpg'
+  };
+  const heroImg = st.customHeroPhoto || STUDIO_MAP[st.sector] || preset.heroImage;
   const galleryPhotos = (st.customGallery && st.customGallery.length > 0) ? st.customGallery : preset.gallery;
 
   const cleanWa = String(st.whatsapp || '600000000').replace(/[^0-9]/g, '');
