@@ -1,19 +1,21 @@
 /* ==========================================================================
-   MI WEB LOCAL — V2 CORE ENGINE, COMPILER, SHAREABLE ROUTER & /ADMIN ENGINE
+   MI WEB LOCAL — V3 VISUAL ENGINE, SECTOR SOLVERS, 2-TIER LADDER & COMPILER
    ========================================================================== */
 
 const STORAGE_KEY = 'miweblocal_platform_v5';
+const FATHI_WHATSAPP = '34631093807';
 
-// 13 Crisp, Non-Truncating Sector Presets (+ Unrestricted Custom Business)
+// 13 Crisp Sector Presets with Sector-Specific Action Modes
 const SECTOR_PRESETS = {
   barberia: {
     label: 'Barbería',
     icon: 'ph-scissors',
+    actionType: 'citas',
     defaultTheme: 'copper',
     defaultName: 'Barbería Martínez',
-    yearsExp: '12 años en el barrio',
-    tagline: 'Corte clásico, degradado al milímetro y afeitado tradicional a navaja.',
-    story: 'Más de 12 años cuidando tu imagen con puntualidad, trato cercano y productos de primera línea. Reserva online en 15 segundos o consulta hueco hoy.',
+    yearsExp: '12 años de oficio',
+    tagline: 'Degradado al milímetro y afeitado clásico a navaja.',
+    story: 'Puntualidad, trato cercano y reserva directa desde tu móvil en 15 segundos.',
     heroImage: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80',
@@ -21,20 +23,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Corte Degradado / Skin Fade', meta: '35 min · Lavado y peinado incluido', price: '16 €' },
-      { title: 'Combo Completo: Corte + Barba a Navaja', meta: '50 min · Toalla caliente y aceites', price: '24 €' },
-      { title: 'Perfilado y Arreglo de Barba', meta: '25 min · Hidratación profunda', price: '12 €' },
+      { title: 'Corte Degradado / Skin Fade', meta: '35 min · Lavado y peinado', price: '16 €' },
+      { title: 'Combo Corte + Barba a Navaja', meta: '50 min · Toalla caliente', price: '24 €' },
+      { title: 'Perfilado y Arreglo de Barba', meta: '25 min · Aceites esenciales', price: '12 €' },
       { title: 'Corte Clásico / Infantil', meta: '30 min · Acabado limpio', price: '13 €' }
     ]
   },
   estetica: {
     label: 'Estética y Uñas',
     icon: 'ph-sparkle',
+    actionType: 'citas',
     defaultTheme: 'cream',
-    defaultName: 'Atelier Lumière Belleza',
+    defaultName: 'Atelier Lumière',
     yearsExp: 'Centro especializado',
-    tagline: 'Coloración orgánica, manicura rusa y tratamientos faciales de autor.',
-    story: 'Un espacio diseñado para cuidar de ti con diagnóstico personalizado, firmas de alta cosmética y reserva cómoda desde el móvil.',
+    tagline: 'Coloración orgánica, manicura rusa y estética facial.',
+    story: 'Diagnóstico personalizado, firmas de alta cosmética y cita cómoda sin esperas.',
     heroImage: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80',
@@ -42,41 +45,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Balayage Orgánico + Matiz + Peinado', meta: '120 min · Diagnóstico capilar incluido', price: '75 €' },
-      { title: 'Manicura Rusa con Nivelación', meta: '60 min · Esmaltado larga duración', price: '28 €' },
-      { title: 'Higiene Facial Hydraglow Vitaminas', meta: '55 min · Piel luminosa al instante', price: '48 €' },
-      { title: 'Lifting de Pestañas + Diseño Cejas', meta: '45 min · Mirada natural', price: '40 €' }
-    ]
-  },
-  taller: {
-    label: 'Taller y Coches',
-    icon: 'ph-wrench',
-    defaultTheme: 'crimson',
-    defaultName: 'Talleres MotorPro',
-    yearsExp: '18 años en mecánica',
-    tagline: 'Mecánica multimarca, diagnosis electrónica y pre-ITV con precio cerrado.',
-    story: 'Te damos presupuesto exacto antes de tocar tu coche, recambios de primeras marcas y entrega en el día para que no pares tu rutina.',
-    heroImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=700&q=80'
-    ],
-    services: [
-      { title: 'Revisión Oficial + Aceite Sintético y Filtros', meta: '60 min · Mantiene garantía oficial', price: '95 €' },
-      { title: 'Diagnosis Electrónica + Revisión Pre-ITV', meta: '45 min · Informe completo 40 puntos', price: '39 €' },
-      { title: 'Recarga Aire Acondicionado Climatizador', meta: '40 min · Comprobación de estanqueidad', price: '59 €' },
-      { title: 'Pulido de Carrocería Espejo + Cerámico', meta: 'Acabado de exposición garantizado', price: '220 €' }
+      { title: 'Balayage Orgánico + Peinado', meta: '120 min · Diagnóstico incluido', price: '75 €' },
+      { title: 'Manicura Rusa con Nivelación', meta: '60 min · Larga duración', price: '28 €' },
+      { title: 'Higiene Facial Hydraglow', meta: '55 min · Piel luminosa', price: '48 €' },
+      { title: 'Lifting de Pestañas + Cejas', meta: '45 min · Mirada natural', price: '40 €' }
     ]
   },
   motos: {
     label: 'Motos y Stock',
     icon: 'ph-motorcycle',
+    actionType: 'motor',
     defaultTheme: 'crimson',
-    defaultName: 'Orero Motor Store',
-    yearsExp: 'Concesionario y Taller',
-    tagline: 'Motos nuevas y de ocasión revisadas en 60 puntos con garantía.',
-    story: 'Exposición física, financiación flexible, boutique técnica de cascos y taller oficial multimarca en el centro de tu ciudad.',
+    defaultName: 'Motor Store Pro',
+    yearsExp: 'Concesionario & Taller',
+    tagline: 'Motos revisadas con garantía y taller multimarca.',
+    story: 'Stock revisado en 60 puntos, financiación a medida y cita rápida de taller.',
     heroImage: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80',
@@ -84,83 +67,43 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Naked 700cc ABS · Revisada (1 año garantía)', meta: '6.400 km · Financiación a medida', price: '6.890 €' },
-      { title: 'Scooter Urbano 125cc Nuevo a Estrenar', meta: 'Seguro y casco incluidos en promoción', price: '3.290 €' },
-      { title: 'Cita Rápida de Taller y Neumáticos', meta: 'Entrega en el mismo día con cita', price: 'Desde 65 €' },
-      { title: 'Compramos o Tasamos Tu Moto Actual', meta: 'Valoración en 15 minutos sin compromiso', price: 'Gratis' }
+      { title: 'Naked 700cc ABS (Garantía 1 año)', meta: '6.400 km · Financiación', price: '6.890 €' },
+      { title: 'Scooter Urbano 125cc Nuevo', meta: 'Seguro y casco incluidos', price: '3.290 €' },
+      { title: 'Revisión Oficial + Neumáticos', meta: 'Entrega en el mismo día', price: 'Desde 65 €' },
+      { title: 'Tasación de Tu Moto Actual', meta: 'En 15 min sin compromiso', price: 'Gratis' }
     ]
   },
-  restaurante: {
-    label: 'Restaurante',
-    icon: 'ph-hamburger',
-    defaultTheme: 'copper',
-    defaultName: 'La Brasa Smash Club',
-    yearsExp: 'Cocina de leña y brasa',
-    tagline: 'Carnes maduradas al fuego y smash burgers artesanas hechas al momento.',
-    story: 'Producto fresco diario, pan brioche de obrador y brasas de encina. Consulta nuestra carta con precios y reserva mesa sin comisiones.',
-    heroImage: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80'
-    ],
-    services: [
-      { title: 'Doble Truffle Smash Burger Dry-Aged', meta: 'Doble cheddar, mayo trufada y patatas caseras', price: '14,90 €' },
-      { title: 'Costillar Ibérico a Baja Temperatura', meta: 'Glaseado a la brasa · Ración completa', price: '22,50 €' },
-      { title: 'Chuletón de Vaca Madurada (por kg)', meta: '45 días de maduración + guarnición', price: '48,00 €' },
-      { title: 'Tarta de Queso Cremosa Casera', meta: 'Horneada a diario en nuestra cocina', price: '6,50 €' }
-    ]
-  },
-  cafeteria: {
-    label: 'Cafetería Brunch',
-    icon: 'ph-coffee',
-    defaultTheme: 'cream',
-    defaultName: 'La Vimacchiata Brunch',
-    yearsExp: 'Café de especialidad',
-    tagline: 'El arte de desayunar con calma: café 100% arábica y masa madre.',
-    story: 'Tostamos café de origen, horneamos repostería artesana cada mañana y te esperamos en nuestra terraza soleada.',
-    heroImage: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80'
-    ],
-    services: [
-      { title: 'Menú Brunch Completo Artesano', meta: 'Café especialidad + Zumo + Tosta + Bowl', price: '15,90 €' },
-      { title: 'Tosta Masa Madre Aguacate y Huevo Poché', meta: 'Semillas tostadas y AOVE virgen extra', price: '7,80 €' },
-      { title: 'Iced Pistachio Latte / Flat White', meta: 'Doble espresso 100% arábica', price: '3,60 €' },
-      { title: 'Pancakes Esponjosos Frutos Rojos', meta: 'Hechos al momento', price: '8,20 €' }
-    ]
-  },
-  pizzeria: {
-    label: 'Pizzería y Kebab',
-    icon: 'ph-pizza',
+  taller: {
+    label: 'Taller y Coches',
+    icon: 'ph-wrench',
+    actionType: 'motor',
     defaultTheme: 'crimson',
-    defaultName: 'Forno Napolitano',
-    yearsExp: 'Pedidos sin comisiones',
-    tagline: 'Masa artesana de 72 horas y pedidos rápidos para recoger o envío.',
-    story: 'Pide directamente desde nuestra web o WhatsApp sin recargos de aplicaciones externas y recógelo recién salido del horno.',
-    heroImage: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85',
+    defaultName: 'Talleres MotorPro',
+    yearsExp: '18 años en mecánica',
+    tagline: 'Mecánica, chapa al horno y pre-ITV con precio cerrado.',
+    story: 'Presupuesto exacto antes de tocar tu vehículo y entrega rápida garantizada.',
+    heroImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1000&q=85',
     gallery: [
-      'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80'
+      'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Pizza Diavola Trufada al Horno de Piedra', meta: 'Mozzarella fresca y spianata italiana', price: '12,90 €' },
-      { title: 'Menú Dürüm / Kebab XL + Patatas + Bebida', meta: 'Pan artesano recién horneado', price: '8,90 €' },
-      { title: 'Pack Pareja: 2 Pizzas + Entrante Casero', meta: 'Recogida sin colas o envío a domicilio', price: '22,50 €' },
-      { title: 'Calzone Relleno 4 Quesos Fundidos', meta: 'Receta tradicional', price: '11,50 €' }
+      { title: 'Revisión Aceite Sintético + Filtros', meta: 'Mantiene garantía oficial', price: '95 €' },
+      { title: 'Diagnosis Electrónica + Pre-ITV', meta: 'Informe completo 40 puntos', price: '39 €' },
+      { title: 'Carga Aire Acondicionado', meta: 'Test de fugas incluido', price: '59 €' },
+      { title: 'Pintura / Pulido Espejo', meta: ' Envía foto por WhatsApp', price: 'Valorar' }
     ]
   },
   reformas: {
     label: 'Reformas y Obra',
     icon: 'ph-house-line',
+    actionType: 'reformas',
     defaultTheme: 'gold',
-    defaultName: 'Reformas Élite Gold',
+    defaultName: 'Reformas Élite',
     yearsExp: '+180 obras entregadas',
-    tagline: 'Reformas integrales de viviendas, cocinas y baños con plazo cerrado.',
-    story: 'Coordinamos todos los gremios con contrato de fin de obra garantizado, materiales nobles y presupuesto detallado sin sorpresas.',
+    tagline: 'Reformas integrales, cocinas y baños con plazo cerrado.',
+    story: 'Coordinamos todos los gremios con materiales de primera y presupuesto sin sorpresas.',
     heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=80',
@@ -168,20 +111,87 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Visita Técnica + Medición y Presupuesto', meta: 'Entrega en menos de 48h sin compromiso', price: 'Gratis' },
-      { title: 'Cambio de Bañera por Plato de Ducha', meta: 'Terminado en 24-48h mampara incluida', price: '1.190 €' },
-      { title: 'Reforma Completa de Cocina con Diseño 3D', meta: 'Mobiliario, encimera e instalaciones', price: 'A medida' },
-      { title: 'Reforma Integral Llave en Mano', meta: 'Plazo cerrado garantizado por escrito', price: 'Consultar' }
+      { title: 'Visita + Medición y Presupuesto', meta: 'En menos de 48h sin coste', price: 'Gratis' },
+      { title: 'Cambio Bañera por Plato de Ducha', meta: 'Listo en 24h con mampara', price: '1.190 €' },
+      { title: 'Reforma Completa de Cocina', meta: 'Diseño funcional llave en mano', price: 'A medida' },
+      { title: 'Reforma Integral de Vivienda', meta: 'Plazo garantizado por contrato', price: 'Consultar' }
+    ]
+  },
+  restaurante: {
+    label: 'Restaurante',
+    icon: 'ph-hamburger',
+    actionType: 'mesa',
+    defaultTheme: 'copper',
+    defaultName: 'La Brasa Club',
+    yearsExp: 'Brasa y cocina viva',
+    tagline: 'Carnes maduradas al fuego y smash burgers artesanas.',
+    story: 'Consulta nuestra carta con precios y reserva mesa en terraza o salón sin comisiones.',
+    heroImage: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Doble Truffle Smash Burger', meta: 'Cheddar fundido y patatas caseras', price: '14,90 €' },
+      { title: 'Costillar Ibérico a la Brasa', meta: 'Baja temperatura · Ración entera', price: '22,50 €' },
+      { title: 'Chuletón Vaca Madurada (kg)', meta: '45 días de maduración', price: '48,00 €' },
+      { title: 'Tarta de Queso Cremosa', meta: 'Horneada cada mañana', price: '6,50 €' }
+    ]
+  },
+  cafeteria: {
+    label: 'Cafetería Brunch',
+    icon: 'ph-coffee',
+    actionType: 'mesa',
+    defaultTheme: 'cream',
+    defaultName: 'La Vimacchiata',
+    yearsExp: 'Specialty Coffee',
+    tagline: 'Café 100% arábica, brunch artesano y terraza soleada.',
+    story: 'Repostería recién horneada y tostadas de masa madre hechas al momento.',
+    heroImage: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Menú Brunch Completo', meta: 'Café + Zumo + Tosta + Bowl', price: '15,90 €' },
+      { title: 'Tosta Aguacate y Huevo Poché', meta: 'Pan de masa madre ecológico', price: '7,80 €' },
+      { title: 'Iced Pistachio Latte', meta: 'Doble shot arábica origen', price: '3,60 €' },
+      { title: 'Pancakes Frutos Rojos', meta: 'Esponjosos al momento', price: '8,20 €' }
+    ]
+  },
+  pizzeria: {
+    label: 'Pizzería y Kebab',
+    icon: 'ph-pizza',
+    actionType: 'mesa',
+    defaultTheme: 'crimson',
+    defaultName: 'Forno Napolitano',
+    yearsExp: 'Pedidos 0% comisión',
+    tagline: 'Masa de 72 horas al horno de piedra para recoger o envío.',
+    story: 'Haz tu pedido directo por WhatsApp sin recargos de plataformas externas.',
+    heroImage: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85',
+    gallery: [
+      'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=700&q=80',
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80'
+    ],
+    services: [
+      { title: 'Pizza Diavola Trufada', meta: 'Mozzarella fresca al horno', price: '12,90 €' },
+      { title: 'Menú Dürüm XL + Patatas + Bebida', meta: 'Pan recién horneado', price: '8,90 €' },
+      { title: 'Oferta 2 Pizzas + Entrante', meta: 'Recogida rápida o domicilio', price: '22,50 €' },
+      { title: 'Calzone 4 Quesos Italianos', meta: 'Receta tradicional', price: '11,50 €' }
     ]
   },
   clinica: {
     label: 'Clínica y Salud',
     icon: 'ph-heartbeat',
+    actionType: 'citas',
     defaultTheme: 'emerald',
-    defaultName: 'Clínica Dental Balance',
-    yearsExp: 'Especialistas colegiados',
-    tagline: 'Odontología avanzada, fisioterapia y trato cercano sin esperas.',
-    story: 'Equipamiento digital de última generación y atención honesta para cuidar la salud de toda tu familia con máxima comodidad.',
+    defaultName: 'Clínica Balance',
+    yearsExp: 'Equipo colegiado',
+    tagline: 'Odontología, fisioterapia y salud integral sin esperas.',
+    story: 'Tecnología digital avanzada y primera valoración personalizada para tu tranquilidad.',
     heroImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80',
@@ -189,20 +199,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Primera Visita + Diagnóstico Digital Completo', meta: '40 min · Valoración médica detallada', price: 'Gratis' },
-      { title: 'Sesión de Fisioterapia Manual Individual', meta: '50 min · Tratamiento personalizado', price: '38 €' },
-      { title: 'Limpieza Dental Avanzada Ultrasonidos', meta: '45 min · Revisión anual incluida', price: '45 €' },
-      { title: 'Blanqueamiento Clínico LED', meta: 'Resultados seguros desde la 1ª cita', price: '190 €' }
+      { title: '1ª Visita + Diagnóstico Digital', meta: '40 min · Valoración completa', price: 'Gratis' },
+      { title: 'Sesión Fisioterapia Manual', meta: '50 min · Individual', price: '38 €' },
+      { title: 'Higiene Dental Ultrasonidos', meta: '45 min · Revisión incluida', price: '45 €' },
+      { title: 'Blanqueamiento Clínico LED', meta: 'Seguro y visible en 1 sesión', price: '190 €' }
     ]
   },
   tattoo: {
     label: 'Estudio Tattoo',
     icon: 'ph-pen-nib',
+    actionType: 'citas',
     defaultTheme: 'copper',
     defaultName: 'Gabi Tattoo Studio',
-    yearsExp: 'Arte irrepetible en piel',
-    tagline: 'Diseños exclusivos proyectados a medida con máxima higiene.',
-    story: 'Cabinas privadas homologadas, especialistas en realismo, micro-realismo y fine line. Cuéntanos tu idea y recibe valoración directa.',
+    yearsExp: 'Arte en piel',
+    tagline: 'Realismo, micro-realismo y fine line con diseño único.',
+    story: 'Cabinas privadas homologadas. Cuéntanos tu idea y reserva tu sesión.',
     heroImage: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=700&q=80',
@@ -210,20 +221,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1590246814883-57c511e7691c?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Tatuaje Minimalista / Fine Line', meta: 'Material 100% estéril y retoque incluido', price: 'Desde 60 €' },
-      { title: 'Pieza Mediana de Autor (10–18 cm)', meta: 'Incluye diseño digital previo exclusivo', price: 'Desde 150 €' },
-      { title: 'Sesión Completa Realismo / Manga', meta: 'Jornada reservada con artista especialista', price: 'Consultar' },
-      { title: 'Asesoramiento y Boceto en Estudio', meta: '20 min · Se descuenta del tatuaje', price: 'Gratis' }
+      { title: 'Fine Line / Minimalista', meta: 'Material 100% estéril', price: 'Desde 60 €' },
+      { title: 'Pieza de Autor (10–18 cm)', meta: 'Boceto previo incluido', price: 'Desde 150 €' },
+      { title: 'Sesión Realismo / Manga', meta: 'Día completo reservado', price: 'Consultar' },
+      { title: 'Asesoramiento en Estudio', meta: '20 min · Sin compromiso', price: 'Gratis' }
     ]
   },
   urgencias: {
     label: 'Cerrajero 24h',
     icon: 'ph-key',
+    actionType: 'urgencia',
     defaultTheme: 'gold',
-    defaultName: 'Cerrajeros Urgencias 24h',
-    yearsExp: 'Llegada en 20 minutos',
-    tagline: 'Apertura de puertas sin romper y cambio de cerraduras las 24 horas.',
-    story: 'Técnicos locales directos sin intermediarios. Te confirmamos el precio cerrado por teléfono o WhatsApp antes de desplazarnos.',
+    defaultName: 'Cerrajeros 24h Express',
+    yearsExp: 'Llegada en 20 min',
+    tagline: 'Aperturas sin romper y urgencias 24 horas los 365 días.',
+    story: 'Técnicos directos de tu zona con precio cerrado por WhatsApp antes de salir.',
     heroImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=700&q=80',
@@ -231,20 +243,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Apertura Limpia sin Daños (Llaves puestas)', meta: 'Llegada urgente en 20 min', price: 'Desde 59 €' },
-      { title: 'Cambio a Bombín Alta Seguridad Antibumping', meta: 'Incluye 5 llaves incopiables', price: '125 €' },
-      { title: ' Motores y Persianas Comerciales', meta: 'Reparación en el mismo día', price: 'Presupuesto' },
-      { title: 'Servicio Nocturno y Festivos 365 Días', meta: 'Precio cerrado antes de salir', price: '24 Horas' }
+      { title: 'Apertura Limpia sin Daños', meta: 'Llegada en 20 minutos', price: 'Desde 59 €' },
+      { title: 'Bombín Antibumping Seguridad', meta: '5 llaves incopiables', price: '125 €' },
+      { title: 'Persianas de Local Comercial', meta: 'Motorización y arreglo hoy', price: 'Valorar' },
+      { title: 'Urgencia Nocturna y Festivos', meta: 'Atención inmediata 24h', price: '24 Horas' }
     ]
   },
   gimnasio: {
     label: 'Fitness / Pilates',
     icon: 'ph-barbell',
+    actionType: 'citas',
     defaultTheme: 'emerald',
-    defaultName: 'Arco Pilates & Fitness',
+    defaultName: 'Arco Pilates & Gym',
     yearsExp: 'Grupos reducidos',
-    tagline: 'Pilates Reformer y entrenamiento personal adaptado a tu ritmo.',
-    story: 'Entrena sin agobios en grupos reducidos con seguimiento de entrenadores titulados y reserva tus horarios desde el móvil.',
+    tagline: 'Pilates Reformer y entrenamiento personal a tu medida.',
+    story: 'Reserva tu clase de prueba y entrena con seguimiento de entrenadores titulados.',
     heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80',
@@ -252,20 +265,21 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Clase de Prueba + Valoración Postural', meta: '55 min · Conoce nuestro estudio', price: '10 €' },
-      { title: 'Bono Mensual Pilates Máquina (2 días/sem)', meta: 'Máximo 6 alumnos por clase', price: '75 €/mes' },
-      { title: 'Entrenamiento Funcional Fuerza y Salud', meta: 'Horarios de mañana y tarde', price: '65 €/mes' },
-      { title: 'Entrenador Personal Individual 1 a 1', meta: 'Plan a medida de objetivos', price: '35 €' }
+      { title: 'Clase de Prueba + Valoración', meta: '55 min · Conoce el centro', price: '10 €' },
+      { title: 'Bono Pilates Máquina (2/sem)', meta: 'Máx. 6 personas por grupo', price: '75 €/mes' },
+      { title: 'Entrenamiento Funcional', meta: 'Mañanas y tardes', price: '65 €/mes' },
+      { title: 'Entrenador Personal 1 a 1', meta: 'Objetivos garantizados', price: '35 €' }
     ]
   },
   otro: {
     label: '+ Otro Negocio',
     icon: 'ph-plus-circle',
+    actionType: 'presupuesto',
     defaultTheme: 'gold',
-    defaultName: 'Mi Negocio Local',
-    yearsExp: 'Atención de confianza',
-    tagline: 'Servicio profesional, cercano y con respuesta inmediata en tu ciudad.',
-    story: 'Atendemos a cada cliente de forma personalizada con precios transparentes y contacto directo por WhatsApp o cita previa.',
+    defaultName: 'Mi Negocio Profesional',
+    yearsExp: 'Atención directa',
+    tagline: 'Calidad, confianza y respuesta inmediata en tu ciudad.',
+    story: 'Consulta tarifas claras y escríbenos por WhatsApp sin esperas.',
     heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
     gallery: [
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=700&q=80',
@@ -273,243 +287,131 @@ const SECTOR_PRESETS = {
       'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=700&q=80'
     ],
     services: [
-      { title: 'Consulta / Servicio Principal Personalizado', meta: 'Atención directa sin esperas', price: 'Consultar' },
-      { title: 'Servicio Completo Más Solicitado', meta: 'Calidad garantizada y precio cerrado', price: '49 €' },
-      { title: 'Atención Rápida en el Día', meta: 'Reserva online o por WhatsApp', price: '29 €' }
+      { title: 'Servicio / Producto Destacado #1', meta: 'Atención personalizada', price: 'Consultar' },
+      { title: 'Pack Completo Más Solicitado', meta: 'Garantía incluida', price: '49 €' },
+      { title: 'Consulta o Reserva Preferente', meta: 'Respuesta en el día', price: 'Gratis' }
     ]
   }
 };
 
 const DESIGN_THEMES = {
   copper: {
-    label: 'Cobre & Grafito',
-    sub: 'Serif Clásico + Cobre',
-    swatch1: '#0D0C0B',
-    swatch2: '#C88A4B',
-    bg: '#0C0B0A',
-    surface: '#161412',
-    card: '#1D1A17',
-    text: '#F7F3EE',
-    muted: '#A89F95',
-    border: 'rgba(200, 138, 75, 0.22)',
-    accent: '#C88A4B',
-    accentHi: '#DF9F5E',
-    accentInk: '#0D0B09',
-    headingFont: "'Instrument Serif', Georgia, serif",
-    headingWeight: '400',
-    isLight: false
+    label: 'Cobre & Grafito', sub: 'Serif Clásico + Cobre',
+    swatch1: '#0D0C0B', swatch2: '#C88A4B',
+    bg: '#0C0B0A', surface: '#161412', card: '#1D1A17',
+    text: '#F7F3EE', muted: '#A89F95', border: 'rgba(200, 138, 75, 0.22)',
+    accent: '#C88A4B', accentHi: '#DF9F5E', accentInk: '#0D0B09',
+    headingFont: "'Instrument Serif', Georgia, serif", headingWeight: '400', isLight: false
   },
   crimson: {
-    label: 'Rojo Motorsport',
-    sub: 'Carbono + Rojo Vivo',
-    swatch1: '#090A0F',
-    swatch2: '#E11D48',
-    bg: '#08090E',
-    surface: '#11131C',
-    card: '#171A26',
-    text: '#F8FAFC',
-    muted: '#94A3B8',
-    border: 'rgba(225, 29, 72, 0.24)',
-    accent: '#E11D48',
-    accentHi: '#F43F5E',
-    accentInk: '#FFFFFF',
-    headingFont: "'Outfit', sans-serif",
-    headingWeight: '800',
-    isLight: false
+    label: 'Rojo Motorsport', sub: 'Carbono + Rojo Vivo',
+    swatch1: '#090A0F', swatch2: '#E11D48',
+    bg: '#08090E', surface: '#11131C', card: '#171A26',
+    text: '#F8FAFC', muted: '#94A3B8', border: 'rgba(225, 29, 72, 0.24)',
+    accent: '#E11D48', accentHi: '#F43F5E', accentInk: '#FFFFFF',
+    headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: false
   },
   cream: {
-    label: 'Crema Editorial',
-    sub: 'Luminoso + Terracota',
-    swatch1: '#FAF6F0',
-    swatch2: '#9A3412',
-    bg: '#FAF6F0',
-    surface: '#F2ECE1',
-    card: '#FFFFFF',
-    text: '#1C1613',
-    muted: '#6B5E55',
-    border: 'rgba(28, 22, 19, 0.12)',
-    accent: '#9A3412',
-    accentHi: '#B45309',
-    accentInk: '#FFFFFF',
-    headingFont: "'Instrument Serif', Georgia, serif",
-    headingWeight: '400',
-    isLight: true
+    label: 'Crema Editorial', sub: 'Luminoso + Terracota',
+    swatch1: '#FAF6F0', swatch2: '#9A3412',
+    bg: '#FAF6F0', surface: '#F2ECE1', card: '#FFFFFF',
+    text: '#1C1613', muted: '#6B5E55', border: 'rgba(28, 22, 19, 0.12)',
+    accent: '#9A3412', accentHi: '#B45309', accentInk: '#FFFFFF',
+    headingFont: "'Instrument Serif', Georgia, serif", headingWeight: '400', isLight: true
   },
   gold: {
-    label: 'Oro Imperial',
-    sub: 'Azul Noche + Dorado',
-    swatch1: '#070C18',
-    swatch2: '#F59E0B',
-    bg: '#070C18',
-    surface: '#0F172A',
-    card: '#162038',
-    text: '#F8FAFC',
-    muted: '#94A3B8',
-    border: 'rgba(245, 158, 11, 0.24)',
-    accent: '#F59E0B',
-    accentHi: '#FBBF24',
-    accentInk: '#090D16',
-    headingFont: "'Outfit', sans-serif",
-    headingWeight: '800',
-    isLight: false
+    label: 'Oro Imperial', sub: 'Azul Noche + Dorado',
+    swatch1: '#070C18', swatch2: '#F59E0B',
+    bg: '#070C18', surface: '#0F172A', card: '#162038',
+    text: '#F8FAFC', muted: '#94A3B8', border: 'rgba(245, 158, 11, 0.24)',
+    accent: '#F59E0B', accentHi: '#FBBF24', accentInk: '#090D16',
+    headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: false
   },
   emerald: {
-    label: 'Clínica Esmeralda',
-    sub: 'Blanco Puro + Salud',
-    swatch1: '#F8FAFC',
-    swatch2: '#059669',
-    bg: '#F8FAFC',
-    surface: '#EEF2F6',
-    card: '#FFFFFF',
-    text: '#0F172A',
-    muted: '#475669',
-    border: 'rgba(15, 23, 42, 0.10)',
-    accent: '#059669',
-    accentHi: '#10B981',
-    accentInk: '#FFFFFF',
-    headingFont: "'Outfit', sans-serif",
-    headingWeight: '800',
-    isLight: true
+    label: 'Clínica Esmeralda', sub: 'Blanco Puro + Salud',
+    swatch1: '#F8FAFC', swatch2: '#059669',
+    bg: '#F8FAFC', surface: '#EEF2F6', card: '#FFFFFF',
+    text: '#0F172A', muted: '#475669', border: 'rgba(15, 23, 42, 0.10)',
+    accent: '#059669', accentHi: '#10B981', accentInk: '#FFFFFF',
+    headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
   }
 };
 
 function escapeHtml(str) {
   return String(str || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function slugifyName(name) {
   const s = String(name || 'minegocio')
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   return s || 'minegocio';
 }
 
-// Encode compact shareable payload so /sitio/?d=... works on ANY phone
 function encodeSharePayload(st) {
   try {
     const slim = {
-      n: st.name,
-      s: st.sector,
-      cs: st.customSectorLabel,
-      y: st.yearsExp,
-      tg: st.tagline,
-      st: st.story,
-      bp: st.bookingPolicy,
-      c: st.city,
-      a: st.address,
-      w: st.whatsapp,
-      p: st.phone,
-      ig: st.instagram,
-      hw: st.hoursWeek,
-      hs: st.hoursSat,
-      hd: st.hoursSun,
-      th: st.theme,
-      sv: (st.services || []).slice(0, 12),
-      md: st.modules,
-      un: !!st.unlocked,
-      pin: st.adminPin || 'PRO-2026'
+      n: st.name, s: st.sector, cs: st.customSectorLabel, y: st.yearsExp,
+      tg: st.tagline, st: st.story, bp: st.bookingPolicy, c: st.city,
+      a: st.address, w: st.whatsapp, p: st.phone, ig: st.instagram,
+      hw: st.hoursWeek, hs: st.hoursSat, hd: st.hoursSun, th: st.theme,
+      sv: (st.services || []).slice(0, 12), md: st.modules,
+      un: !!st.unlocked, pin: st.adminPin || 'PRO-4829'
     };
-    const json = JSON.stringify(slim);
-    return btoa(unescape(encodeURIComponent(json)))
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=+$/, '');
-  } catch (e) {
-    return '';
-  }
+    return btoa(unescape(encodeURIComponent(JSON.stringify(slim))))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  } catch (e) { return ''; }
 }
 
 function decodeSharePayload(b64) {
   try {
     let norm = String(b64).replace(/-/g, '+').replace(/_/g, '/');
     while (norm.length % 4) norm += '=';
-    const json = decodeURIComponent(escape(atob(norm)));
-    const slim = JSON.parse(json);
+    const slim = JSON.parse(decodeURIComponent(escape(atob(norm))));
     if (!slim || !slim.n) return null;
     const def = SECTOR_PRESETS[slim.s] || SECTOR_PRESETS.barberia;
     return {
-      name: slim.n,
-      userEditedName: true,
-      sector: slim.s || 'barberia',
-      customSectorLabel: slim.cs || 'Negocio Local',
-      yearsExp: slim.y || def.yearsExp,
-      tagline: slim.tg || def.tagline,
-      story: slim.st || def.story,
-      bookingPolicy: slim.bp || 'ambos',
-      city: slim.c || 'Madrid',
-      address: slim.a || 'Calle Principal 12',
-      whatsapp: slim.w || '612 890 345',
-      phone: slim.p || '',
-      instagram: slim.ig || '',
-      hoursWeek: slim.hw || '09:30 – 20:00',
-      hoursSat: slim.hs || '09:30 – 14:30',
-      hoursSun: slim.hd || 'Cerrado',
-      theme: slim.th || def.defaultTheme,
-      customHeroPhoto: '',
-      customGallery: [],
+      name: slim.n, userEditedName: true, sector: slim.s || 'barberia',
+      customSectorLabel: slim.cs || 'Negocio Local', yearsExp: slim.y || def.yearsExp,
+      tagline: slim.tg || def.tagline, story: slim.st || def.story,
+      bookingPolicy: slim.bp || 'ambos', city: slim.c || 'Madrid',
+      address: slim.a || 'Calle Mayor 12', whatsapp: slim.w || '612 890 345',
+      phone: slim.p || '', instagram: slim.ig || '',
+      hoursWeek: slim.hw || '09:30 – 20:00', hoursSat: slim.hs || '09:30 – 14:30',
+      hoursSun: slim.hd || 'Cerrado', theme: slim.th || def.defaultTheme,
+      customHeroPhoto: '', customGallery: [],
       services: Array.isArray(slim.sv) && slim.sv.length ? slim.sv : JSON.parse(JSON.stringify(def.services)),
       modules: Object.assign({
         booking: true, whatsappFloat: true, services: true, about: true,
         scheduleMap: true, gallery: true, reviews: true, faq: true
       }, slim.md || {}),
-      unlocked: !!slim.un,
-      adminPin: slim.pin || 'PRO-2026',
+      unlocked: !!slim.un, adminPin: slim.pin || 'PRO-4829',
       expiresAt: Date.now() + 24 * 3600 * 1000
     };
-  } catch (e) {
-    return null;
-  }
+  } catch (e) { return null; }
 }
 
 function loadStudioState() {
   const def = SECTOR_PRESETS.barberia;
   const fallback = {
-    name: def.defaultName,
-    userEditedName: false,
-    sector: 'barberia',
+    name: def.defaultName, userEditedName: false, sector: 'barberia',
     customSectorLabel: 'Comercio / Servicio Profesional',
-    yearsExp: def.yearsExp,
-    tagline: def.tagline,
-    story: def.story,
-    bookingPolicy: 'ambos',
-    city: 'Madrid Centro',
-    address: 'Calle Mayor 24, Local Bajo',
-    whatsapp: '612 890 345',
-    phone: '910 234 567',
-    instagram: '@barberiamartinez',
-    hoursWeek: '09:30 – 20:30',
-    hoursSat: '09:30 – 15:00',
-    hoursSun: 'Cerrado',
-    theme: 'copper',
-    customHeroPhoto: '',
-    customGallery: [],
+    yearsExp: def.yearsExp, tagline: def.tagline, story: def.story,
+    bookingPolicy: 'ambos', city: 'Madrid Centro', address: 'Calle Mayor 24, Bajo',
+    whatsapp: '612 890 345', phone: '910 234 567', instagram: '@barberiamartinez',
+    hoursWeek: '09:30 – 20:30', hoursSat: '09:30 – 15:00', hoursSun: 'Cerrado',
+    theme: 'copper', customHeroPhoto: '', customGallery: [],
     services: JSON.parse(JSON.stringify(def.services)),
     modules: {
-      booking: true,
-      whatsappFloat: true,
-      services: true,
-      about: true,
-      scheduleMap: true,
-      gallery: true,
-      reviews: true,
-      faq: true
+      booking: true, whatsappFloat: true, services: true, about: true,
+      scheduleMap: true, gallery: true, reviews: true, faq: true
     },
-    unlocked: false,
-    adminPin: 'PRO-4829',
-    buyerEmail: '',
-    previewDevice: 'mobile',
-    activeStep: 1,
+    unlocked: false, adminPin: 'PRO-4829', buyerEmail: '',
+    previewDevice: 'mobile', activeStep: 1,
     expiresAt: Date.now() + (24 * 3600 * 1000) - 9000
   };
-
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
@@ -528,55 +430,174 @@ let studioState = loadStudioState();
 let compileTimer = null;
 
 function saveStudioState() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(studioState));
-  } catch (e) {}
-}
-
-function detectSectorFromName(inputStr) {
-  const s = String(inputStr || '').toLowerCase();
-  if (/barber|peluquería caballero|fade/.test(s)) return 'barberia';
-  if (/uñas|estetica|estética|belleza|salon|salón|peluquer/.test(s)) return 'estetica';
-  if (/moto|scooter|yamaha|kawasaki|honda/.test(s)) return 'motos';
-  if (/taller|mecan|mecán|neumatic|detail|carrocer|auto/.test(s)) return 'taller';
-  if (/cafe|café|brunch|panader|pasteler/.test(s)) return 'cafeteria';
-  if (/pizz|kebab|durum|burger|smash/.test(s)) return s.includes('burger') || s.includes('brasa') ? 'restaurante' : 'pizzeria';
-  if (/restauran|asador|brasa|bar |meson|mesón|arrocer|tapas/.test(s)) return 'restaurante';
-  if (/reform|obra|construc|pintor|fontaner|instalac/.test(s)) return 'reformas';
-  if (/clinic|clínic|dental|dentist|fisio|salud|medic|médic|podol/.test(s)) return 'clinica';
-  if (/tattoo|tatuaj|piercing|ink/.test(s)) return 'tattoo';
-  if (/cerraj|urgencia|24h|electricist/.test(s)) return 'urgencias';
-  if (/gym|gimnasio|pilates|crossfit|box|entrenad/.test(s)) return 'gimnasio';
-  return null;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(studioState)); } catch (e) {}
 }
 
 // ==========================================================================
-// BESPOKE SINGLE-FILE HTML WEBSITE COMPILER
+// SECTOR-ADAPTIVE COMPILER (Generates Tailored Action Module per Business!)
 // ==========================================================================
+function buildSectorActionWidgetHTML(st, preset, fullWa) {
+  const mode = preset.actionType || 'citas';
+  const srvOpts = (st.services || []).map(srv =>
+    `<option value="${escapeHtml(srv.title)} (${escapeHtml(srv.price)})">${escapeHtml(srv.title)} — ${escapeHtml(srv.price)}</option>`
+  ).join('');
+
+  if (mode === 'reformas') {
+    return `
+      <div class="sec-tag">Presupuesto Rápido Sin Compromiso</div>
+      <h2>Calcula o solicita presupuesto de tu reforma</h2>
+      <div class="book-card">
+        <div class="form-grid">
+          <div>
+            <label>1. Tipo de trabajo</label>
+            <select id="bk-service">${srvOpts}</select>
+          </div>
+          <div>
+            <label>2. Tamaño / Metros aprox.</label>
+            <select id="bk-extra">
+              <option value="Estancia pequeña (< 10 m²)">Estancia / Baño (&lt; 10 m²)</option>
+              <option value="Cocina / Salón (15 - 35 m²)">Cocina o Salón (15–35 m²)</option>
+              <option value="Vivienda completa (+70 m²)">Vivienda completa (+70 m²)</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label>3. Tu nombre y teléfono</label>
+          <input type="text" id="bk-client" placeholder="Ej. Javier · 600 123 456" />
+        </div>
+        <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="sendSectorWhatsApp('reforma')">
+          Solicitar Visita y Presupuesto por WhatsApp →
+        </button>
+        <div class="book-ok" id="bk-ok"></div>
+      </div>`;
+  }
+
+  if (mode === 'motor') {
+    return `
+      <div class="sec-tag">Taller & Vehículos</div>
+      <h2>Reserva cita de taller o consulta un vehículo</h2>
+      <div class="book-card">
+        <div class="form-grid">
+          <div>
+            <label>1. Vehículo o servicio</label>
+            <select id="bk-service">${srvOpts}</select>
+          </div>
+          <div>
+            <label>2. Modelo / Matrícula</label>
+            <input type="text" id="bk-extra" placeholder="Ej. Yamaha MT-07 / Seat León" />
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label>3. Tu nombre y móvil</label>
+          <input type="text" id="bk-client" placeholder="Ej. Marcos · 600 123 456" />
+        </div>
+        <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="sendSectorWhatsApp('motor')">
+          Confirmar Consulta / Cita por WhatsApp →
+        </button>
+        <div class="book-ok" id="bk-ok"></div>
+      </div>`;
+  }
+
+  if (mode === 'mesa') {
+    return `
+      <div class="sec-tag">Reservas y Pedidos Directos (0% Comisión)</div>
+      <h2>Reserva tu mesa o pide para recoger</h2>
+      <div class="book-card">
+        <div class="form-grid">
+          <div>
+            <label>1. ¿Qué prefieres?</label>
+            <select id="bk-extra">
+              <option value="Mesa para 2 personas · Terraza">Mesa 2 personas · Terraza</option>
+              <option value="Mesa para 4 personas · Salón">Mesa 4 personas · Salón</option>
+              <option value="Grupo (+6 personas)">Mesa Grupo (+6 personas)</option>
+              <option value="Pedido para recoger en local">Pedido para recoger sin colas</option>
+            </select>
+          </div>
+          <div>
+            <label>2. Plato / Menú favorito</label>
+            <select id="bk-service">${srvOpts}</select>
+          </div>
+        </div>
+        <label>3. Hora aproximada</label>
+        <div class="slots">
+          <button type="button" class="slot-btn" onclick="pickSlot(this,'13:30')">13:30</button>
+          <button type="button" class="slot-btn active" onclick="pickSlot(this,'14:30')">14:30</button>
+          <button type="button" class="slot-btn" onclick="pickSlot(this,'21:00')">21:00</button>
+          <button type="button" class="slot-btn" onclick="pickSlot(this,'22:00')">22:00</button>
+        </div>
+        <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="sendSectorWhatsApp('mesa')">
+          Confirmar Mesa / Pedido al Instante →
+        </button>
+        <div class="book-ok" id="bk-ok"></div>
+      </div>`;
+  }
+
+  if (mode === 'urgencia') {
+    return `
+      <div class="sec-tag">Asistencia Rápida 24 Horas</div>
+      <h2>Solicita técnico urgente ahora mismo</h2>
+      <div class="book-card">
+        <div class="form-grid">
+          <div>
+            <label>1. Tipo de urgencia</label>
+            <select id="bk-service">${srvOpts}</select>
+          </div>
+          <div>
+            <label>2. Tu calle / zona</label>
+            <input type="text" id="bk-extra" placeholder="Ej. Av. Libertad 14" />
+          </div>
+        </div>
+        <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="sendSectorWhatsApp('urgencia')">
+          🚨 Avisar Técnico Urgente por WhatsApp →
+        </button>
+        <div class="book-ok" id="bk-ok"></div>
+      </div>`;
+  }
+
+  // Default: citas / presupuesto
+  return `
+    <div class="sec-tag">Agenda Online 24/7</div>
+    <h2>Reserva tu hora en 15 segundos</h2>
+    <div class="book-card">
+      <div class="form-grid">
+        <div>
+          <label>1. Servicio elegido</label>
+          <select id="bk-service">${srvOpts}</select>
+        </div>
+        <div>
+          <label>2. Tu nombre y móvil</label>
+          <input type="text" id="bk-client" placeholder="Ej. Carlos · 600 123 456" />
+        </div>
+      </div>
+      <label>3. Tramo disponible</label>
+      <div class="slots">
+        <button type="button" class="slot-btn" onclick="pickSlot(this,'10:30')">10:30</button>
+        <button type="button" class="slot-btn active" onclick="pickSlot(this,'12:00')">12:00</button>
+        <button type="button" class="slot-btn" onclick="pickSlot(this,'17:30')">17:30</button>
+        <button type="button" class="slot-btn" onclick="pickSlot(this,'19:00')">19:00</button>
+      </div>
+      <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="sendSectorWhatsApp('citas')">
+        Confirmar en ${escapeHtml(st.name)} →
+      </button>
+      <div class="book-ok" id="bk-ok"></div>
+    </div>`;
+}
+
 function compileClientWebsiteHTML(st) {
   const preset = SECTOR_PRESETS[st.sector] || SECTOR_PRESETS.barberia;
   const thm = DESIGN_THEMES[st.theme] || DESIGN_THEMES.copper;
-  const sectorBadge = st.sector === 'otro'
-    ? (st.customSectorLabel || 'Negocio Verificado')
-    : preset.label;
-
+  const sectorBadge = st.sector === 'otro' ? (st.customSectorLabel || 'Negocio Verificado') : preset.label;
   const heroImg = st.customHeroPhoto || preset.heroImage;
-  const galleryPhotos = (st.customGallery && st.customGallery.length > 0)
-    ? st.customGallery
-    : preset.gallery;
+  const galleryPhotos = (st.customGallery && st.customGallery.length > 0) ? st.customGallery : preset.gallery;
 
   const cleanWa = String(st.whatsapp || '600000000').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
 
-  let policyText = 'Atendemos con cita previa online y también sin cita por orden de llegada';
-  let policyPill = 'CON Y SIN CITA PREVIA';
-  if (st.bookingPolicy === 'cita') {
-    policyText = 'Atención con cita previa para garantizarte cero esperas';
-    policyPill = 'CON CITA PREVIA';
-  } else if (st.bookingPolicy === 'sincita') {
-    policyText = 'Entrada libre sin cita previa en nuestro horario habitual';
-    policyPill = 'SIN CITA PREVIA';
-  }
+  const actionBtnLabel = preset.actionType === 'reformas' ? 'Pedir Presupuesto'
+    : preset.actionType === 'mesa' ? 'Reservar Mesa'
+    : preset.actionType === 'motor' ? 'Taller / Stock'
+    : preset.actionType === 'urgencia' ? 'Urgencias 24h'
+    : 'Reservar Cita';
 
   const servicesHtml = (st.services || []).map(srv => `
     <div class="srv-card" onclick="selectServiceForBooking('${escapeHtml(srv.title)}')">
@@ -586,20 +607,18 @@ function compileClientWebsiteHTML(st) {
       </div>
       <div class="srv-right">
         <span class="srv-price">${escapeHtml(srv.price)}</span>
-        <span class="srv-arrow">Reservar →</span>
+        <span class="srv-arrow">Elegir →</span>
       </div>
     </div>
   `).join('');
 
   const galleryHtml = (galleryPhotos || []).map((src, idx) => `
     <div class="gal-item">
-      <img src="${escapeHtml(src)}" alt="Trabajo ${idx + 1} de ${escapeHtml(st.name)}" loading="lazy" />
+      <img src="${escapeHtml(src)}" alt="${escapeHtml(st.name)} ${idx + 1}" loading="lazy" />
     </div>
   `).join('');
 
-  const serviceOptionsHtml = (st.services || []).map(srv =>
-    `<option value="${escapeHtml(srv.title)} (${escapeHtml(srv.price)})">${escapeHtml(srv.title)} — ${escapeHtml(srv.price)}</option>`
-  ).join('');
+  const widgetHtml = buildSectorActionWidgetHTML(st, preset, fullWa);
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -612,176 +631,67 @@ function compileClientWebsiteHTML(st) {
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: ${thm.bg};
-    --surface: ${thm.surface};
-    --card: ${thm.card};
-    --ink: ${thm.text};
-    --muted: ${thm.muted};
-    --border: ${thm.border};
-    --accent: ${thm.accent};
-    --accent-hi: ${thm.accentHi};
-    --accent-ink: ${thm.accentInk};
-    --font-head: ${thm.headingFont};
-    --weight-head: ${thm.headingWeight};
+    --bg:${thm.bg}; --surface:${thm.surface}; --card:${thm.card};
+    --ink:${thm.text}; --muted:${thm.muted}; --border:${thm.border};
+    --accent:${thm.accent}; --accent-hi:${thm.accentHi}; --accent-ink:${thm.accentInk};
+    --font-head:${thm.headingFont}; --weight-head:${thm.headingWeight};
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    line-height: 1.55;
-    overflow-x: hidden;
-    padding-bottom: 84px;
-  }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 18px; }
-  .top-strip {
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    padding: 8px 16px; font-size: 11.5px;
-    display: flex; justify-content: space-between; align-items: center; gap: 8px;
-  }
-  .open-dot {
-    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-    background: #10B981; box-shadow: 0 0 8px #10B981; margin-right: 6px;
-  }
-  .nav {
-    position: sticky; top: 0; z-index: 40;
-    background: ${thm.isLight ? 'rgba(250,246,240,0.92)' : 'rgba(12,11,10,0.90)'};
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 980px; margin: 0 auto; padding: 13px 18px;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  }
-  .brand {
-    font-family: var(--font-head); font-weight: var(--weight-head);
-    font-size: ${thm.headingFont.includes('Instrument') ? '1.55rem' : '1.2rem'};
-    letter-spacing: -0.02em; line-height: 1.05;
-  }
-  .brand span { color: var(--accent); }
-  .nav-cta {
-    background: var(--accent); color: var(--accent-ink);
-    padding: 9px 15px; border-radius: 999px; font-size: 12px; font-weight: 700;
-    white-space: nowrap; border: none; cursor: pointer;
-  }
-  .hero {
-    padding: 32px 0 36px;
-    background: radial-gradient(650px 380px at 85% 10%, ${thm.accent}22, transparent 65%);
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center; }
-  @media (min-width: 720px) {
-    .hero { padding: 52px 0 56px; }
-    .hero-grid { grid-template-columns: 1.15fr 0.85fr; gap: 36px; }
-  }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border);
-    background: var(--surface); color: var(--accent);
-    font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em;
-    text-transform: uppercase; margin-bottom: 12px;
-  }
-  h1 {
-    font-family: var(--font-head); font-weight: var(--weight-head);
-    font-size: ${thm.headingFont.includes('Instrument') ? 'clamp(2.15rem, 6vw, 3.5rem)' : 'clamp(1.8rem, 5vw, 2.9rem)'};
-    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 12px;
-  }
-  .hero-p { color: var(--muted); font-size: 14px; max-width: 520px; margin-bottom: 16px; }
-  .clarity-box {
-    display: flex; align-items: center; gap: 9px; padding: 10px 13px; border-radius: 12px;
-    background: var(--surface); border: 1px solid var(--border); font-size: 12.5px; margin-bottom: 18px;
-  }
-  .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn-main {
-    background: var(--accent); color: var(--accent-ink);
-    padding: 13px 20px; border-radius: 12px; font-weight: 700; font-size: 13.5px;
-    border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
-  }
-  .btn-sec {
-    background: var(--surface); color: var(--ink); border: 1px solid var(--border);
-    padding: 13px 18px; border-radius: 12px; font-weight: 600; font-size: 13.5px;
-    display: inline-flex; align-items: center; gap: 7px;
-  }
-  .hero-img-card {
-    position: relative; border-radius: 20px; overflow: hidden;
-    border: 1px solid var(--border); box-shadow: 0 20px 45px rgba(0,0,0,0.28);
-  }
-  .hero-img-card img { width: 100%; height: 260px; object-fit: cover; display: block; }
-  @media (min-width: 720px) { .hero-img-card img { height: 340px; } }
-  .hero-img-badge {
-    position: absolute; bottom: 12px; left: 12px; right: 12px;
-    background: rgba(12, 12, 14, 0.85); backdrop-filter: blur(10px);
-    color: #fff; padding: 10px 13px; border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.14);
-    display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px;
-  }
-  section { padding: 36px 0; border-bottom: 1px solid var(--border); }
-  .sec-tag {
-    color: var(--accent); font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 6px;
-  }
-  h2 {
-    font-family: var(--font-head); font-weight: var(--weight-head);
-    font-size: ${thm.headingFont.includes('Instrument') ? 'clamp(1.8rem, 4.5vw, 2.5rem)' : 'clamp(1.4rem, 3.8vw, 2rem)'};
-    line-height: 1.1; margin-bottom: 16px;
-  }
-  .srv-list { display: grid; grid-template-columns: 1fr; gap: 11px; }
-  @media (min-width: 680px) { .srv-list { grid-template-columns: 1fr 1fr; } }
-  .srv-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 15px; padding: 15px;
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    cursor: pointer; transition: transform 0.18s ease, border-color 0.18s ease;
-  }
-  .srv-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .srv-title { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
-  .srv-meta { color: var(--muted); font-size: 12px; }
-  .srv-right { text-align: right; flex-shrink: 0; }
-  .srv-price { display: block; color: var(--accent); font-weight: 800; font-size: 15px; white-space: nowrap; }
-  .srv-arrow { font-size: 11px; color: var(--muted); font-weight: 600; }
-  .book-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
-  .form-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 14px; }
-  @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
-  label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-  input, select {
-    width: 100%; padding: 11px 13px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--surface); color: var(--ink);
-    font-size: 16px; font-family: inherit;
-  }
-  .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 8px 0 16px; }
-  .slot-btn {
-    padding: 9px 4px; border-radius: 9px; border: 1px solid var(--border);
-    background: var(--surface); color: var(--ink); font-weight: 700; font-size: 12.5px; cursor: pointer;
-  }
-  .slot-btn.active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-  .book-ok {
-    display: none; margin-top: 12px; padding: 13px; border-radius: 12px;
-    background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.4);
-    color: #10B981; font-size: 13px; font-weight: 600;
-  }
-  .sched-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 680px) { .sched-grid { grid-template-columns: 1fr 1fr; } }
-  .sched-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
-  .day-row {
-    display: flex; justify-content: space-between; padding: 8px 10px;
-    border-radius: 8px; font-size: 13px; border-bottom: 1px dashed var(--border);
-  }
-  .day-row:last-child { border-bottom: none; }
-  .day-row.today { background: ${thm.accent}1F; color: var(--accent); font-weight: 700; border-bottom: none; }
-  .gal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-  .gal-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1 / 1; border: 1px solid var(--border); }
-  .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .rev-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-  @media (min-width: 680px) { .rev-grid { grid-template-columns: 1fr 1fr; } }
-  .rev-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 15px; font-size: 13px; }
-  .stars { color: #F59E0B; letter-spacing: 2px; font-size: 13px; margin-bottom: 6px; }
-  .wa-float {
-    position: fixed; bottom: 16px; right: 16px; z-index: 60;
-    background: #25D366; color: #052E16; padding: 12px 18px; border-radius: 999px;
-    font-weight: 800; font-size: 13px; box-shadow: 0 10px 26px rgba(37, 211, 102, 0.42);
-    display: inline-flex; align-items: center; gap: 8px;
-  }
+  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; line-height:1.5; overflow-x:clip; padding-bottom:82px; }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 18px; }
+  .top-strip { background:var(--surface); border-bottom:1px solid var(--border); padding:8px 16px; font-size:11.5px; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .open-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:#10B981; box-shadow:0 0 8px #10B981; margin-right:6px; }
+  .nav { position:sticky; top:0; z-index:40; background:${thm.isLight ? 'rgba(250,246,240,0.92)' : 'rgba(12,11,10,0.90)'}; backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
+  .nav-inner { max-width:960px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .brand { font-family:var(--font-head); font-weight:var(--weight-head); font-size:${thm.headingFont.includes('Instrument') ? '1.5rem' : '1.18rem'}; line-height:1.05; cursor:pointer; }
+  .brand span { color:var(--accent); }
+  .nav-cta { background:var(--accent); color:var(--accent-ink); padding:9px 15px; border-radius:999px; font-size:12px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; }
+  .hero { padding:28px 0 32px; background:radial-gradient(600px 360px at 85% 10%, ${thm.accent}22, transparent 65%); border-bottom:1px solid var(--border); }
+  .hero-grid { display:grid; grid-template-columns:1fr; gap:20px; align-items:center; }
+  @media (min-width:720px) { .hero { padding:46px 0 50px; } .hero-grid { grid-template-columns:1.1fr 0.9fr; gap:32px; } }
+  .eyebrow { display:inline-flex; align-items:center; gap:7px; padding:5px 12px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--accent); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
+  h1 { font-family:var(--font-head); font-weight:var(--weight-head); font-size:${thm.headingFont.includes('Instrument') ? 'clamp(2.05rem,5.5vw,3.3rem)' : 'clamp(1.75rem,4.8vw,2.75rem)'}; line-height:1.06; margin-bottom:10px; }
+  .hero-p { color:var(--muted); font-size:14px; max-width:500px; margin-bottom:16px; }
+  .hero-btns { display:flex; flex-wrap:wrap; gap:10px; }
+  .btn-main { background:var(--accent); color:var(--accent-ink); padding:13px 20px; border-radius:12px; font-weight:700; font-size:13.5px; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:7px; }
+  .btn-sec { background:var(--surface); color:var(--ink); border:1px solid var(--border); padding:13px 18px; border-radius:12px; font-weight:600; font-size:13.5px; display:inline-flex; align-items:center; gap:7px; cursor:pointer; }
+  .hero-img-card { position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:0 20px 45px rgba(0,0,0,0.28); }
+  .hero-img-card img { width:100%; height:250px; object-fit:cover; display:block; }
+  @media (min-width:720px) { .hero-img-card img { height:320px; } }
+  .hero-img-badge { position:absolute; bottom:10px; left:10px; right:10px; background:rgba(12,12,14,0.86); backdrop-filter:blur(10px); color:#fff; padding:9px 12px; border-radius:12px; border:1px solid rgba(255,255,255,0.14); display:flex; justify-content:space-between; align-items:center; font-size:12px; }
+  section { padding:32px 0; border-bottom:1px solid var(--border); }
+  .sec-tag { color:var(--accent); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px; }
+  h2 { font-family:var(--font-head); font-weight:var(--weight-head); font-size:${thm.headingFont.includes('Instrument') ? 'clamp(1.7rem,4vw,2.35rem)' : 'clamp(1.35rem,3.5vw,1.9rem)'}; line-height:1.1; margin-bottom:14px; }
+  .srv-list { display:grid; grid-template-columns:1fr; gap:10px; }
+  @media (min-width:680px) { .srv-list { grid-template-columns:1fr 1fr; } }
+  .srv-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; justify-content:space-between; align-items:center; gap:10px; cursor:pointer; transition:transform 0.16s ease, border-color 0.16s ease; }
+  .srv-card:hover { transform:translateY(-2px); border-color:var(--accent); }
+  .srv-title { font-weight:700; font-size:14px; margin-bottom:2px; }
+  .srv-meta { color:var(--muted); font-size:12px; }
+  .srv-right { text-align:right; flex-shrink:0; }
+  .srv-price { display:block; color:var(--accent); font-weight:800; font-size:15px; white-space:nowrap; }
+  .srv-arrow { font-size:11px; color:var(--muted); font-weight:600; }
+  .book-card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:18px; }
+  .form-grid { display:grid; grid-template-columns:1fr; gap:11px; margin-bottom:12px; }
+  @media (min-width:640px) { .form-grid { grid-template-columns:1fr 1fr; } }
+  label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  input, select { width:100%; padding:11px 12px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font-size:16px; font-family:inherit; }
+  .slots { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:6px 0 14px; }
+  .slot-btn { padding:9px 4px; border-radius:9px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font-weight:700; font-size:12.5px; cursor:pointer; }
+  .slot-btn.active { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+  .book-ok { display:none; margin-top:12px; padding:12px; border-radius:11px; background:rgba(16,185,129,0.14); border:1px solid rgba(16,185,129,0.4); color:#10B981; font-size:13px; font-weight:600; }
+  .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+  .gal-item { border-radius:12px; overflow:hidden; aspect-ratio:1/1; border:1px solid var(--border); }
+  .gal-item img { width:100%; height:100%; object-fit:cover; display:block; }
+  .sched-grid { display:grid; grid-template-columns:1fr; gap:14px; }
+  @media (min-width:680px) { .sched-grid { grid-template-columns:1fr 1fr; } }
+  .sched-box { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; }
+  .day-row { display:flex; justify-content:space-between; padding:7px 9px; border-radius:8px; font-size:13px; border-bottom:1px dashed var(--border); }
+  .day-row:last-child { border-bottom:none; }
+  .day-row.today { background:${thm.accent}1F; color:var(--accent); font-weight:700; border-bottom:none; }
+  .wa-float { position:fixed; bottom:16px; right:16px; z-index:60; background:#25D366; color:#052E16; padding:12px 18px; border-radius:999px; font-weight:800; font-size:13px; box-shadow:0 10px 26px rgba(37,211,102,0.42); display:inline-flex; align-items:center; gap:7px; }
 </style>
 </head>
 <body>
@@ -791,27 +701,21 @@ function compileClientWebsiteHTML(st) {
   </div>
   <header class="nav">
     <div class="nav-inner">
-      <a href="#" class="brand">${escapeHtml(st.name)}<span>.</span></a>
-      <a href="${st.modules.booking ? '#reservar' : ('https://wa.me/' + fullWa)}" class="nav-cta">
-        ${st.modules.booking ? 'Reservar Cita' : 'WhatsApp Directo'}
-      </a>
+      <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">${escapeHtml(st.name)}<span>.</span></div>
+      <button type="button" class="nav-cta" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)}</button>
     </div>
   </header>
   <main>
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">${escapeHtml(sectorBadge)} · ${escapeHtml(policyPill)}</div>
+          <div class="eyebrow">${escapeHtml(sectorBadge)} · ${escapeHtml(st.city)}</div>
           <h1>${escapeHtml(st.tagline)}</h1>
           <p class="hero-p">${escapeHtml(st.story)}</p>
-          <div class="clarity-box">
-            <span style="color:var(--accent); font-weight:800;">✓</span>
-            <span>${escapeHtml(policyText)}</span>
-          </div>
           <div class="hero-btns">
-            ${st.modules.booking ? `<a href="#reservar" class="btn-main">Reservar Hora Online →</a>` : ''}
-            <a href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', quería consultar disponibilidad.')}" target="_blank" class="btn-sec">
-              WhatsApp · ${escapeHtml(st.whatsapp)}
+            ${st.modules.booking ? `<button type="button" class="btn-main" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)} →</button>` : ''}
+            <a href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', os escribo desde vuestra web.')}" target="_blank" class="btn-sec">
+              💬 WhatsApp · ${escapeHtml(st.whatsapp)}
             </a>
           </div>
         </div>
@@ -825,163 +729,64 @@ function compileClientWebsiteHTML(st) {
       </div>
     </section>
 
-    ${st.modules.about ? `
-    <section id="nosotros">
-      <div class="wrap">
-        <div class="sec-tag">Quiénes Somos</div>
-        <h2>${escapeHtml(st.name)} en ${escapeHtml(st.city)}</h2>
-        <p style="color:var(--muted); font-size:14px; margin-bottom:18px;">${escapeHtml(st.story)}</p>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;">
-          <div style="background:var(--card); border:1px solid var(--border); padding:13px 8px; border-radius:13px;">
-            <div style="font-weight:800; font-size:14px; color:var(--accent);">${escapeHtml(st.yearsExp)}</div>
-            <div style="font-size:11px; color:var(--muted);">Experiencia</div>
-          </div>
-          <div style="background:var(--card); border:1px solid var(--border); padding:13px 8px; border-radius:13px;">
-            <div style="font-weight:800; font-size:14px; color:var(--accent);">4,9 / 5 ★</div>
-            <div style="font-size:11px; color:var(--muted);">Valoración</div>
-          </div>
-          <div style="background:var(--card); border:1px solid var(--border); padding:13px 8px; border-radius:13px;">
-            <div style="font-weight:800; font-size:14px; color:var(--accent);">Directo</div>
-            <div style="font-size:11px; color:var(--muted);">Sin comisiones</div>
-          </div>
-        </div>
-      </div>
-    </section>` : ''}
-
     ${st.modules.services ? `
     <section id="servicios">
       <div class="wrap">
-        <div class="sec-tag">Tarifas Claras y Servicios</div>
-        <h2>Nuestros Servicios y Precios</h2>
+        <div class="sec-tag">Catálogo y Tarifas</div>
+        <h2>Servicios y Precios</h2>
         <div class="srv-list">${servicesHtml}</div>
       </div>
     </section>` : ''}
 
     ${st.modules.booking ? `
-    <section id="reservar">
-      <div class="wrap">
-        <div class="sec-tag">Agenda Online 24/7</div>
-        <h2>Reserva tu hora en 15 segundos</h2>
-        <div class="book-card">
-          <div class="form-grid">
-            <div>
-              <label>1. Servicio deseado</label>
-              <select id="bk-service">${serviceOptionsHtml}</select>
-            </div>
-            <div>
-              <label>2. Tu nombre y móvil</label>
-              <input type="text" id="bk-client" placeholder="Ej. Carlos · 600 123 456" />
-            </div>
-          </div>
-          <label>3. Elige tramo disponible</label>
-          <div class="slots">
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'10:30')">10:30</button>
-            <button type="button" class="slot-btn active" onclick="pickSlot(this,'12:00')">12:00</button>
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'17:30')">17:30</button>
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'19:00')">19:00</button>
-          </div>
-          <button type="button" class="btn-main" style="width:100%; justify-content:center;" onclick="confirmDemoBooking()">
-            Confirmar Reserva en ${escapeHtml(st.name)} →
-          </button>
-          <div class="book-ok" id="bk-ok"></div>
-        </div>
-      </div>
+    <section id="accion">
+      <div class="wrap">${widgetHtml}</div>
     </section>` : ''}
 
     ${st.modules.gallery ? `
     <section id="galeria">
       <div class="wrap">
-        <div class="sec-tag">Nuestro Trabajo</div>
+        <div class="sec-tag">Imágenes</div>
         <h2>Galería de ${escapeHtml(st.name)}</h2>
         <div class="gal-grid">${galleryHtml}</div>
       </div>
     </section>` : ''}
 
     ${st.modules.scheduleMap ? `
-    <section id="ubicacion">
+    <section id="ubicacion" style="border-bottom:none;">
       <div class="wrap sched-grid">
         <div class="sched-box">
-          <div class="sec-tag">Horario Semanal</div>
-          <h3 style="font-size:18px; margin-bottom:12px;">Horario de apertura</h3>
-          <div class="day-row" data-day="1"><span>Lunes</span><span>${escapeHtml(st.hoursWeek)}</span></div>
-          <div class="day-row" data-day="2"><span>Martes</span><span>${escapeHtml(st.hoursWeek)}</span></div>
-          <div class="day-row" data-day="3"><span>Miércoles</span><span>${escapeHtml(st.hoursWeek)}</span></div>
-          <div class="day-row" data-day="4"><span>Jueves</span><span>${escapeHtml(st.hoursWeek)}</span></div>
-          <div class="day-row" data-day="5"><span>Viernes</span><span>${escapeHtml(st.hoursWeek)}</span></div>
-          <div class="day-row" data-day="6"><span>Sábado</span><span>${escapeHtml(st.hoursSat)}</span></div>
-          <div class="day-row" data-day="0"><span>Domingo</span><span>${escapeHtml(st.hoursSun)}</span></div>
+          <div class="sec-tag">Horario</div>
+          <div class="day-row" data-day="1"><span>Lunes – Viernes</span><span>${escapeHtml(st.hoursWeek)}</span></div>
+          <div class="day-row" data-day="6"><span>Sábados</span><span>${escapeHtml(st.hoursSat)}</span></div>
+          <div class="day-row" data-day="0"><span>Domingos</span><span>${escapeHtml(st.hoursSun)}</span></div>
         </div>
-        <div class="sched-box" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="sched-box" style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
           <div>
-            <div class="sec-tag">Ubicación Exacta</div>
-            <h3 style="font-size:18px; margin-bottom:8px;">${escapeHtml(st.address)}</h3>
-            <p style="color:var(--muted); font-size:13.5px; margin-bottom:14px;">${escapeHtml(st.city)} · Tel: ${escapeHtml(st.phone || st.whatsapp)} ${st.instagram ? ('· ' + escapeHtml(st.instagram)) : ''}</p>
-            <div style="border-radius:12px; padding:15px; background:var(--surface); border:1px solid var(--border); font-size:12.5px; margin-bottom:14px;">
-              <strong style="display:block; margin-bottom:4px; color:var(--accent);">📍 Cómo llegar fácilmente</strong>
-              Pulsa el botón inferior para abrir la ubicación directa en Google Maps desde tu móvil.
-            </div>
+            <div class="sec-tag">Dónde Estamos</div>
+            <strong style="font-size:16px; display:block; margin-bottom:4px;">${escapeHtml(st.address)}</strong>
+            <span style="color:var(--muted); font-size:13px;">${escapeHtml(st.city)} · Tel: ${escapeHtml(st.phone || st.whatsapp)}</span>
           </div>
           <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(st.name + ' ' + st.address + ' ' + st.city)}" target="_blank" class="btn-sec" style="justify-content:center; width:100%;">
-            Cómo Llegar en Google Maps ↗
+            📍 Abrir Ruta en Google Maps ↗
           </a>
         </div>
       </div>
     </section>` : ''}
-
-    ${st.modules.reviews ? `
-    <section id="resenas">
-      <div class="wrap">
-        <div class="sec-tag">Clientes Reales</div>
-        <h2>Reseñas Destacadas</h2>
-        <div class="rev-grid">
-          <div class="rev-card">
-            <div class="stars">★★★★★</div>
-            <p style="margin-bottom:8px;">"Trato excelente y súper puntual. Poder ver los precios claros y reservar cita desde el móvil en 20 segundos es comodísimo."</p>
-            <strong style="font-size:12px; color:var(--accent);">— Javier M. · Cliente verificado</strong>
-          </div>
-          <div class="rev-card">
-            <div class="stars">★★★★★</div>
-            <p style="margin-bottom:8px;">"Totalmente recomendables en ${escapeHtml(st.city)}. Atención muy profesional desde el primer momento."</p>
-            <strong style="font-size:12px; color:var(--accent);">— Laura G. · Reseña en Google</strong>
-          </div>
-        </div>
-      </div>
-    </section>` : ''}
-
-    ${st.modules.faq ? `
-    <section id="preguntas" style="border-bottom:none;">
-      <div class="wrap">
-        <div class="sec-tag">Información Útil</div>
-        <h2>Preguntas Frecuentes</h2>
-        <div style="display:grid; gap:10px;">
-          <details style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:13px 15px;">
-            <summary style="font-weight:700; font-size:13.5px; cursor:pointer;">¿Cómo puedo pedir cita o consultar disponibilidad?</summary>
-            <p style="color:var(--muted); font-size:13px; margin-top:8px;">${escapeHtml(policyText)}. También atendemos al instante por WhatsApp en el ${escapeHtml(st.whatsapp)}.</p>
-          </details>
-          <details style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:13px 15px;">
-            <summary style="font-weight:700; font-size:13.5px; cursor:pointer;">¿Dónde estáis y cuál es vuestro horario?</summary>
-            <p style="color:var(--muted); font-size:13px; margin-top:8px;">Estamos en ${escapeHtml(st.address)}, ${escapeHtml(st.city)}. Abiertos ${escapeHtml(st.hoursWeek)} (Sábados: ${escapeHtml(st.hoursSat)}).</p>
-          </details>
-        </div>
-      </div>
-    </section>` : ''}
   </main>
-  <footer style="padding:24px 18px; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--border);">
-    © ${new Date().getFullYear()} ${escapeHtml(st.name)} · ${escapeHtml(st.address)}, ${escapeHtml(st.city)}
+  <footer style="padding:20px 18px; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--border);">
+    © ${new Date().getFullYear()} ${escapeHtml(st.name)} · ${escapeHtml(st.city)}
   </footer>
   ${st.modules.whatsappFloat ? `
-  <a class="wa-float" href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', os escribo desde vuestra página web.')}" target="_blank">
+  <a class="wa-float" href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', quería consultar disponibilidad.')}" target="_blank">
     <span>💬 WhatsApp</span>
   </a>` : ''}
   <script>
     let chosenSlot = '12:00';
-    const todayIdx = new Date().getDay();
-    document.querySelectorAll('.day-row').forEach(r => {
-      if (Number(r.getAttribute('data-day')) === todayIdx) {
-        r.classList.add('today');
-        r.firstElementChild.textContent += ' (Hoy)';
-      }
-    });
+    function jumpSec(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
     function pickSlot(btn, slot) {
       chosenSlot = slot;
       document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
@@ -993,16 +798,17 @@ function compileClientWebsiteHTML(st) {
         for (let i = 0; i < sel.options.length; i++) {
           if (sel.options[i].value.includes(title)) { sel.selectedIndex = i; break; }
         }
-        document.getElementById('reservar')?.scrollIntoView({ behavior: 'smooth' });
+        jumpSec('accion');
       }
     }
-    function confirmDemoBooking() {
-      const srv = document.getElementById('bk-service')?.value || 'Servicio';
-      const cli = document.getElementById('bk-client')?.value || 'Cliente';
+    function sendSectorWhatsApp(kind) {
+      const srv = document.getElementById('bk-service')?.value || '';
+      const ext = document.getElementById('bk-extra')?.value || '';
+      const cli = document.getElementById('bk-client')?.value || '';
       const ok = document.getElementById('bk-ok');
       if (ok) {
         ok.style.display = 'block';
-        ok.textContent = '✓ Reserva registrada: ' + srv + ' a las ' + chosenSlot + ' (' + cli + ').';
+        ok.textContent = '✓ Solicitud lista: ' + srv + (ext ? ' · ' + ext : '') + (cli ? ' (' + cli + ')' : '');
       }
     }
   <\/script>
@@ -1011,97 +817,147 @@ function compileClientWebsiteHTML(st) {
 }
 
 // ==========================================================================
-// LANDING PAGE INTERACTIONS (Hero Generator, Before/After, Studio, Modals)
+// VISUAL SECTOR SOLUTIONS SHOWCASE (Interactive Visual Demos on Landing Page!)
 // ==========================================================================
+function switchVisualSolution(solKey) {
+  document.querySelectorAll('.sol-tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-sol') === solKey);
+  });
+  document.querySelectorAll('.sol-stage-pane').forEach(pane => {
+    pane.classList.toggle('hidden', pane.getAttribute('data-sol-pane') !== solKey);
+  });
+}
 
-// Owner.com-style Before (Google Maps Loss) vs After (Live Converting Site)
-function switchHeroComparison(mode) {
-  const beforePane = document.getElementById('hero-pane-before');
-  const afterPane = document.getElementById('hero-pane-after');
-  const btnB = document.getElementById('hero-tab-before');
-  const btnA = document.getElementById('hero-tab-after');
-  if (!beforePane || !afterPane) return;
+function demoPickChip(btn) {
+  const group = btn.parentElement;
+  if (!group) return;
+  group.querySelectorAll('button').forEach(b => {
+    b.classList.remove('bg-emerald-400', 'text-slate-950', 'border-emerald-400');
+    b.classList.add('bg-white/5', 'text-slate-200', 'border-white/10');
+  });
+  btn.classList.remove('bg-white/5', 'text-slate-200', 'border-white/10');
+  btn.classList.add('bg-emerald-400', 'text-slate-950', 'border-emerald-400');
 
-  if (mode === 'before') {
-    beforePane.classList.remove('hidden');
-    afterPane.classList.add('hidden');
-    btnB.className = 'w-1/2 px-3 py-2 rounded-xl text-xs font-extrabold bg-rose-500 text-white shadow whitespace-nowrap';
-    btnA.className = 'w-1/2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white whitespace-nowrap';
-  } else {
-    beforePane.classList.add('hidden');
-    afterPane.classList.remove('hidden');
-    btnB.className = 'w-1/2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white whitespace-nowrap';
-    btnA.className = 'w-1/2 px-3 py-2 rounded-xl text-xs font-extrabold bg-emerald-400 text-slate-950 shadow whitespace-nowrap';
+  const feedback = btn.closest('.sol-stage-pane')?.querySelector('.js-sol-feedback');
+  if (feedback) {
+    feedback.textContent = '✓ Seleccionado: ' + btn.innerText.trim() + ' — Directo al WhatsApp del dueño';
+    feedback.classList.remove('hidden');
   }
 }
 
-// Mixo.io + Durable.co Instant Hero Magic Generator
-function startHeroInstantGenerator(e) {
+function jumpGeneratorWithSector(sectorKey) {
+  selectStudioSector(sectorKey);
+  const gen = document.getElementById('generador');
+  if (gen) gen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ==========================================================================
+// INTERACTIVE BEFORE / AFTER IMAGE SLIDERS (Mouse + Touch Drag)
+// ==========================================================================
+function initBeforeAfterSliders() {
+  document.querySelectorAll('.ba-slider').forEach(slider => {
+    let dragging = false;
+    const setPos = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      if (!rect.width) return;
+      const pct = Math.max(6, Math.min(94, ((clientX - rect.left) / rect.width) * 100));
+      slider.style.setProperty('--pos', pct.toFixed(1) + '%');
+    };
+    slider.addEventListener('mousedown', (e) => { dragging = true; setPos(e.clientX); });
+    window.addEventListener('mousemove', (e) => { if (dragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    slider.addEventListener('touchstart', (e) => {
+      if (e.touches[0]) setPos(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchmove', (e) => {
+      if (e.touches[0]) setPos(e.touches[0].clientX);
+    }, { passive: true });
+  });
+}
+
+// ==========================================================================
+// VIP CUSTOM HIGH-TICKET PROJECT CONFIGURATOR MODAL (400€ – 900€+ Leads!)
+// ==========================================================================
+let vipState = {
+  sector: 'Motos / Taller / Concesionario',
+  extras: ['Diseño Exclusivo 100% A Medida', 'Catálogo / Reservas Avanzadas'],
+  refSite: ''
+};
+
+function openVipCustomModal(preSector, refSiteName) {
+  closeLiveClientModal();
+  if (preSector) vipState.sector = preSector;
+  vipState.refSite = refSiteName || '';
+
+  const modal = document.getElementById('vip-custom-modal');
+  const refBadge = document.getElementById('vip-ref-badge');
+  const refText = document.getElementById('vip-ref-text');
+  if (!modal) return;
+
+  if (vipState.refSite && refBadge && refText) {
+    refText.textContent = 'Inspirado en: ' + vipState.refSite;
+    refBadge.classList.remove('hidden');
+  } else if (refBadge) {
+    refBadge.classList.add('hidden');
+  }
+
+  document.querySelectorAll('.vip-sec-btn').forEach(btn => {
+    const on = btn.getAttribute('data-vsec') === vipState.sector;
+    btn.className = on
+      ? 'vip-sec-btn p-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-white font-bold text-xs text-left flex items-center gap-2'
+      : 'vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2';
+  });
+
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVipCustomModal() {
+  const modal = document.getElementById('vip-custom-modal');
+  if (modal) modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function pickVipSector(btn, secLabel) {
+  vipState.sector = secLabel;
+  document.querySelectorAll('.vip-sec-btn').forEach(b => {
+    b.className = b === btn
+      ? 'vip-sec-btn p-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-white font-bold text-xs text-left flex items-center gap-2'
+      : 'vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2';
+  });
+}
+
+function toggleVipExtra(btn, label) {
+  const idx = vipState.extras.indexOf(label);
+  if (idx >= 0) vipState.extras.splice(idx, 1);
+  else vipState.extras.push(label);
+  const on = vipState.extras.includes(label);
+  btn.className = on
+    ? 'vip-ext-btn px-3 py-2 rounded-xl border border-emerald-400 bg-emerald-500/15 text-emerald-200 font-bold text-xs text-left flex items-center justify-between gap-2'
+    : 'vip-ext-btn px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-medium text-xs text-left flex items-center justify-between gap-2';
+}
+
+function sendVipProposalWhatsApp(e) {
   if (e) e.preventDefault();
-  const heroNameEl = document.getElementById('hero-quick-name');
-  const heroSectorEl = document.getElementById('hero-quick-sector');
+  const biz = document.getElementById('vip-biz-name')?.value.trim() || 'Mi Negocio';
+  const city = document.getElementById('vip-biz-city')?.value.trim() || '';
+  const refLine = vipState.refSite ? `\n• Referencia que me gustó: ${vipState.refSite}` : '';
+  const extrasLine = vipState.extras.length ? vipState.extras.join(', ') : 'Proyecto completo a medida';
 
-  const typedName = heroNameEl ? heroNameEl.value.trim() : '';
-  let chosenSector = heroSectorEl ? heroSectorEl.value : 'auto';
+  const msg = `Hola Fathi, quiero presupuesto para una *WEB ÉLITE A MEDIDA* (Proyecto Exclusivo):\n` +
+    `• Negocio: *${biz}* ${city ? '(' + city + ')' : ''}\n` +
+    `• Sector: ${vipState.sector}\n` +
+    `• Funciones clave: ${extrasLine}${refLine}\n` +
+    `¿Podemos ver una propuesta personalizada para mi local?`;
 
-  if (chosenSector === 'auto') {
-    chosenSector = detectSectorFromName(typedName) || studioState.sector || 'barberia';
-  }
-
-  const preset = SECTOR_PRESETS[chosenSector] || SECTOR_PRESETS.barberia;
-  studioState.sector = chosenSector;
-  if (typedName) {
-    studioState.name = typedName;
-    studioState.userEditedName = true;
-  } else if (!studioState.userEditedName) {
-    studioState.name = preset.defaultName;
-  }
-  studioState.yearsExp = preset.yearsExp;
-  studioState.tagline = preset.tagline;
-  studioState.story = preset.story;
-  studioState.theme = preset.defaultTheme;
-  studioState.services = JSON.parse(JSON.stringify(preset.services));
-
-  syncInputsFromState();
-  renderSectorSelector();
-  renderServicesEditor();
-  renderThemeSelector();
-  updateStudioPreview(true);
-
-  // Show fast 1.6s Mixo-style AI compilation overlay then scroll cleanly to live preview
-  const buildModal = document.getElementById('ai-build-overlay');
-  const buildTitle = document.getElementById('ai-build-name');
-  const buildBar = document.getElementById('ai-build-progress');
-  const buildStep = document.getElementById('ai-build-step');
-
-  if (buildModal && buildBar && buildStep) {
-    if (buildTitle) buildTitle.textContent = studioState.name;
-    buildBar.style.width = '18%';
-    buildStep.textContent = '1/3 · Adaptando diseño móvil y tipografía del sector...';
-    buildModal.classList.remove('hidden');
-
-    setTimeout(() => {
-      buildBar.style.width = '64%';
-      buildStep.textContent = '2/3 · Integrando catálogo de precios, horarios y WhatsApp...';
-    }, 520);
-
-    setTimeout(() => {
-      buildBar.style.width = '100%';
-      buildStep.textContent = '3/3 · ¡Demo 24 horas compilada y lista!';
-    }, 1050);
-
-    setTimeout(() => {
-      buildModal.classList.add('hidden');
-      const target = window.innerWidth < 1024
-        ? document.getElementById('live-preview-anchor')
-        : document.getElementById('generador');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 1500);
-  } else {
-    document.getElementById('generador')?.scrollIntoView({ behavior: 'smooth' });
-  }
+  window.open(`https://wa.me/${FATHI_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  closeVipCustomModal();
 }
 
+// ==========================================================================
+// 50€ BASIC SELF-SERVE STUDIO LOGIC
+// ==========================================================================
 function renderSectorSelector() {
   const container = document.getElementById('sector-chips-grid');
   if (!container) return;
@@ -1121,7 +977,6 @@ function renderSectorSelector() {
   if (customWrap) customWrap.classList.toggle('hidden', studioState.sector !== 'otro');
 }
 
-// FIXED: Never wipe out user's typed business name when switching sectors!
 function selectStudioSector(sectorKey) {
   const preset = SECTOR_PRESETS[sectorKey];
   if (!preset) return;
@@ -1134,9 +989,7 @@ function selectStudioSector(sectorKey) {
   }
 
   studioState.sector = sectorKey;
-  if (!studioState.userEditedName) {
-    studioState.name = preset.defaultName;
-  }
+  if (!studioState.userEditedName) studioState.name = preset.defaultName;
   studioState.yearsExp = preset.yearsExp;
   studioState.tagline = preset.tagline;
   studioState.story = preset.story;
@@ -1160,26 +1013,20 @@ function onNameInputManual(val) {
 function renderServicesEditor() {
   const list = document.getElementById('services-editor-list');
   if (!list) return;
-
   list.innerHTML = studioState.services.map((srv, idx) => `
     <div class="p-3 rounded-xl bg-slate-900/90 border border-white/10 space-y-2">
       <div class="flex items-center justify-between gap-2">
-        <span class="text-[11px] font-mono uppercase text-emerald-400 font-bold">Servicio / Plato #${idx + 1}</span>
+        <span class="text-[11px] font-mono uppercase text-emerald-400 font-bold">Ítem #${idx + 1}</span>
         ${studioState.services.length > 1 ? `
-          <button type="button" onclick="removeServiceItem(${idx})" class="text-xs text-rose-300 px-2 py-0.5 rounded bg-rose-500/15 font-semibold">
-            Quitar
-          </button>` : ''}
+          <button type="button" onclick="removeServiceItem(${idx})" class="text-xs text-rose-300 px-2 py-0.5 rounded bg-rose-500/15 font-semibold">Quitar</button>` : ''}
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
         <input type="text" value="${escapeHtml(srv.title)}" oninput="editServiceField(${idx}, 'title', this.value)"
-          placeholder="Nombre del servicio o producto"
           class="sm:col-span-8 desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-white focus:border-emerald-400 focus:outline-none" />
         <input type="text" value="${escapeHtml(srv.price)}" oninput="editServiceField(${idx}, 'price', this.value)"
-          placeholder="Precio"
           class="sm:col-span-4 desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-emerald-300 font-bold focus:border-emerald-400 focus:outline-none" />
       </div>
       <input type="text" value="${escapeHtml(srv.meta)}" oninput="editServiceField(${idx}, 'meta', this.value)"
-        placeholder="Descripción breve o duración (ej. 35 min)"
         class="w-full desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-slate-300 focus:border-emerald-400 focus:outline-none" />
     </div>
   `).join('');
@@ -1192,11 +1039,7 @@ function editServiceField(idx, field, val) {
 }
 
 function addServiceItem() {
-  studioState.services.push({
-    title: 'Nuevo Servicio Destacado',
-    meta: 'Atención profesional · Consulta o reserva',
-    price: '20 €'
-  });
+  studioState.services.push({ title: 'Nuevo Servicio / Producto', meta: 'Atención directa', price: '20 €' });
   renderServicesEditor();
   updateStudioPreview(true);
 }
@@ -1212,10 +1055,10 @@ function handleHeroPhotoUpload(input) {
   const file = input.files && input.files[0];
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = function(ev) {
+  reader.onload = ev => {
     studioState.customHeroPhoto = ev.target.result;
     const status = document.getElementById('hero-photo-status');
-    if (status) status.textContent = '✓ Tu foto está puesta en portada';
+    if (status) status.textContent = '✓ Foto cargada en portada';
     updateStudioPreview(true);
   };
   reader.readAsDataURL(file);
@@ -1228,13 +1071,13 @@ function handleGalleryUpload(input) {
   let done = 0;
   files.forEach(file => {
     const reader = new FileReader();
-    reader.onload = function(ev) {
+    reader.onload = ev => {
       loaded.push(ev.target.result);
       done++;
       if (done === files.length) {
         studioState.customGallery = loaded;
         const status = document.getElementById('gallery-photo-status');
-        if (status) status.textContent = `✓ ${loaded.length} foto(s) cargadas`;
+        if (status) status.textContent = `✓ ${loaded.length} foto(s) listas`;
         updateStudioPreview(true);
       }
     };
@@ -1247,7 +1090,7 @@ function resetUploadedPhotos() {
   studioState.customGallery = [];
   const s1 = document.getElementById('hero-photo-status');
   const s2 = document.getElementById('gallery-photo-status');
-  if (s1) s1.textContent = 'Foto profesional automática';
+  if (s1) s1.textContent = 'Foto automática del sector';
   if (s2) s2.textContent = '3 fotos de muestra';
   updateStudioPreview(true);
 }
@@ -1255,7 +1098,6 @@ function resetUploadedPhotos() {
 function renderThemeSelector() {
   const wrap = document.getElementById('theme-selector-grid');
   if (!wrap) return;
-
   wrap.innerHTML = Object.entries(DESIGN_THEMES).map(([key, t]) => {
     const active = studioState.theme === key;
     return `
@@ -1281,20 +1123,16 @@ function selectStudioTheme(themeKey) {
 }
 
 const MODULE_LIST = [
-  { key: 'booking', label: 'Agenda de Citas y Reservas 24/7' },
+  { key: 'booking', label: 'Módulo Interactivo del Sector (Citas / Presupuesto / Mesa)' },
   { key: 'whatsappFloat', label: 'Botón Flotante de WhatsApp Directo' },
-  { key: 'services', label: 'Catálogo de Servicios / Carta con Precios' },
-  { key: 'about', label: 'Historia del Local y Años de Experiencia' },
-  { key: 'scheduleMap', label: 'Horario Semanal + Botón Google Maps' },
-  { key: 'gallery', label: 'Galería Fotográfica de Trabajos' },
-  { key: 'reviews', label: 'Muro de Reseñas 5,0 ★' },
-  { key: 'faq', label: 'Preguntas Frecuentes (FAQ)' }
+  { key: 'services', label: 'Listado de Servicios / Carta con Precios' },
+  { key: 'gallery', label: 'Galería Fotográfica Visual' },
+  { key: 'scheduleMap', label: 'Horario + Ruta Google Maps' }
 ];
 
 function renderModulesSelector() {
   const wrap = document.getElementById('modules-toggle-grid');
   if (!wrap) return;
-
   wrap.innerHTML = MODULE_LIST.map(m => {
     const on = !!studioState.modules[m.key];
     return `
@@ -1316,10 +1154,8 @@ function toggleStudioModule(modKey) {
 function switchStudioStep(stepNum) {
   studioState.activeStep = stepNum;
   for (let i = 1; i <= 4; i++) {
-    const panel = document.getElementById(`studio-step-${i}`);
-    const tab = document.getElementById(`studio-tab-${i}`);
-    if (panel) panel.classList.toggle('hidden', i !== stepNum);
-    if (tab) tab.classList.toggle('active', i === stepNum);
+    document.getElementById(`studio-step-${i}`)?.classList.toggle('hidden', i !== stepNum);
+    document.getElementById(`studio-tab-${i}`)?.classList.toggle('active', i === stepNum);
   }
 }
 
@@ -1330,12 +1166,10 @@ function syncInputsFromState() {
     'inp-years': studioState.yearsExp,
     'inp-tagline': studioState.tagline,
     'inp-story': studioState.story,
-    'inp-policy': studioState.bookingPolicy,
     'inp-city': studioState.city,
     'inp-address': studioState.address,
     'inp-whatsapp': studioState.whatsapp,
     'inp-phone': studioState.phone,
-    'inp-instagram': studioState.instagram,
     'inp-hours-week': studioState.hoursWeek,
     'inp-hours-sat': studioState.hoursSat,
     'inp-hours-sun': studioState.hoursSun
@@ -1347,24 +1181,22 @@ function syncInputsFromState() {
 }
 
 function readInputsIntoState() {
-  const elVal = id => {
+  const v = id => {
     const el = document.getElementById(id);
     return el ? el.value : null;
   };
-  if (elVal('inp-name') !== null) studioState.name = elVal('inp-name').trim() || 'Mi Negocio Local';
-  if (elVal('inp-custom-sector') !== null) studioState.customSectorLabel = elVal('inp-custom-sector').trim() || 'Negocio Profesional';
-  if (elVal('inp-years') !== null) studioState.yearsExp = elVal('inp-years').trim() || 'Atención Profesional';
-  if (elVal('inp-tagline') !== null) studioState.tagline = elVal('inp-tagline').trim() || 'Calidad y atención directa.';
-  if (elVal('inp-story') !== null) studioState.story = elVal('inp-story').trim() || 'Reserva online en segundos.';
-  if (elVal('inp-policy') !== null) studioState.bookingPolicy = elVal('inp-policy') || 'ambos';
-  if (elVal('inp-city') !== null) studioState.city = elVal('inp-city').trim() || 'Madrid';
-  if (elVal('inp-address') !== null) studioState.address = elVal('inp-address').trim() || 'Calle Mayor 12';
-  if (elVal('inp-whatsapp') !== null) studioState.whatsapp = elVal('inp-whatsapp').trim() || '612 890 345';
-  if (elVal('inp-phone') !== null) studioState.phone = elVal('inp-phone').trim();
-  if (elVal('inp-instagram') !== null) studioState.instagram = elVal('inp-instagram').trim();
-  if (elVal('inp-hours-week') !== null) studioState.hoursWeek = elVal('inp-hours-week').trim() || '09:30 – 20:00';
-  if (elVal('inp-hours-sat') !== null) studioState.hoursSat = elVal('inp-hours-sat').trim() || '09:30 – 14:30';
-  if (elVal('inp-hours-sun') !== null) studioState.hoursSun = elVal('inp-hours-sun').trim() || 'Cerrado';
+  if (v('inp-name') !== null) studioState.name = v('inp-name').trim() || 'Mi Negocio';
+  if (v('inp-custom-sector') !== null) studioState.customSectorLabel = v('inp-custom-sector').trim() || 'Negocio Local';
+  if (v('inp-years') !== null) studioState.yearsExp = v('inp-years').trim() || 'Atención Directa';
+  if (v('inp-tagline') !== null) studioState.tagline = v('inp-tagline').trim() || 'Calidad profesional.';
+  if (v('inp-story') !== null) studioState.story = v('inp-story').trim() || 'Contacto directo.';
+  if (v('inp-city') !== null) studioState.city = v('inp-city').trim() || 'Madrid';
+  if (v('inp-address') !== null) studioState.address = v('inp-address').trim() || 'Calle Principal 12';
+  if (v('inp-whatsapp') !== null) studioState.whatsapp = v('inp-whatsapp').trim() || '612 890 345';
+  if (v('inp-phone') !== null) studioState.phone = v('inp-phone').trim();
+  if (v('inp-hours-week') !== null) studioState.hoursWeek = v('inp-hours-week').trim() || '09:30 – 20:00';
+  if (v('inp-hours-sat') !== null) studioState.hoursSat = v('inp-hours-sat').trim() || '09:30 – 14:30';
+  if (v('inp-hours-sun') !== null) studioState.hoursSun = v('inp-hours-sun').trim() || 'Cerrado';
 }
 
 function schedulePreviewRefresh() {
@@ -1372,19 +1204,17 @@ function schedulePreviewRefresh() {
   compileTimer = setTimeout(() => {
     readInputsIntoState();
     updateStudioPreview(true);
-  }, 160);
+  }, 180);
 }
 
 function getLiveShareableSiteUrl() {
   const slug = slugifyName(studioState.name);
-  const d = encodeSharePayload(studioState);
-  return `/sitio/?negocio=${encodeURIComponent(slug)}&d=${d}`;
+  return `/sitio/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(studioState)}`;
 }
 
 function getLiveAdminPanelUrl() {
   const slug = slugifyName(studioState.name);
-  const d = encodeSharePayload(studioState);
-  return `/admin/?negocio=${encodeURIComponent(slug)}&d=${d}`;
+  return `/admin/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(studioState)}`;
 }
 
 function updateStudioPreview(skipRead) {
@@ -1404,25 +1234,17 @@ function updateStudioPreview(skipRead) {
   const html = compileClientWebsiteHTML(studioState);
   const iframe = document.getElementById('studio-preview-iframe');
   if (iframe) iframe.srcdoc = html;
-
-  const fullIframe = document.getElementById('fullscreen-demo-iframe');
-  const fullModal = document.getElementById('fullscreen-demo-modal');
-  if (fullIframe && fullModal && !fullModal.classList.contains('hidden')) {
-    fullIframe.srcdoc = html;
-  }
 }
 
-// Toggle mobile touch inside inline iframe so scrolling page never traps user
 let mobileInlineUnlocked = false;
 function toggleInlineIframeTouch() {
   mobileInlineUnlocked = !mobileInlineUnlocked;
   const guard = document.getElementById('iframe-touch-guard');
   const btn = document.getElementById('btn-unlock-inline-touch');
   if (!guard || !btn) return;
-
   if (mobileInlineUnlocked) {
     guard.classList.remove('locked-scroll');
-    btn.innerHTML = '<i class="ph-bold ph-lock-simple"></i><span>Bloquear Scroll</span>';
+    btn.innerHTML = '<i class="ph-bold ph-lock-simple"></i><span>Fijar Scroll</span>';
     btn.className = 'px-3.5 py-2 rounded-full bg-amber-400 text-slate-950 font-display font-extrabold text-xs shadow-lg flex items-center gap-1.5 whitespace-nowrap';
   } else {
     guard.classList.add('locked-scroll');
@@ -1442,11 +1264,11 @@ function setPreviewDevice(mode) {
   }
   if (btnMob && btnDesk) {
     btnMob.className = mode === 'mobile'
-      ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-950'
-      : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
+      ? 'px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-950'
+      : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
     btnDesk.className = mode === 'desktop'
-      ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-950'
-      : 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
+      ? 'px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-950'
+      : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
   }
 }
 
@@ -1455,37 +1277,27 @@ function openFullscreenGeneratedDemo() {
   saveStudioState();
   const modal = document.getElementById('fullscreen-demo-modal');
   const iframe = document.getElementById('fullscreen-demo-iframe');
-  const urlEl = document.getElementById('fullscreen-demo-url');
   if (!modal || !iframe) return;
-
-  if (urlEl) urlEl.textContent = `miweblocal.com/${slugifyName(studioState.name)}`;
   iframe.srcdoc = compileClientWebsiteHTML(studioState);
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
 function closeFullscreenGeneratedDemo() {
-  const modal = document.getElementById('fullscreen-demo-modal');
-  if (modal) modal.classList.add('hidden');
+  document.getElementById('fullscreen-demo-modal')?.classList.add('hidden');
   document.body.style.overflow = '';
 }
 
-// ==========================================================================
-// 24H TIMER + VALIDATED 50€ ACTIVATION + REAL WORKING /SITIO/ & /ADMIN/ LINKS
-// ==========================================================================
 function tickCountdownTimers() {
   const remMs = Math.max(0, (studioState.expiresAt || (Date.now() + 86000000)) - Date.now());
   const totalSec = Math.floor(remMs / 1000);
   const h = String(Math.floor(totalSec / 3600)).padStart(2, '0');
   const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
   const s = String(totalSec % 60).padStart(2, '0');
-  const str = `${h}:${m}:${s}`;
-  document.querySelectorAll('.js-countdown-24h').forEach(el => { el.textContent = str; });
+  document.querySelectorAll('.js-countdown-24h').forEach(el => { el.textContent = `${h}:${m}:${s}`; });
 }
 
-let selectedPayMethod = 'card';
 function pickPayMethod(m) {
-  selectedPayMethod = m;
   document.querySelectorAll('.pay-method-btn').forEach(btn => {
     const on = btn.getAttribute('data-pm') === m;
     btn.className = on
@@ -1507,61 +1319,57 @@ function openAutomatedCheckoutModal() {
     <div>
       <div class="flex items-center justify-between gap-2 mb-3">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] font-bold">
-          ● PUBLICACIÓN AUTOMÁTICA 24/7
+          ⚡ PLAN BÁSICO AUTOMÁTICO · 50 €
         </span>
         <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
       </div>
 
-      <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white mb-1">
-        Activar web de <span class="text-emerald-400">${escapeHtml(studioState.name)}</span>
+      <h3 class="font-display font-extrabold text-xl text-white mb-1">
+        Activar web básica de <span class="text-emerald-400">${escapeHtml(studioState.name)}</span>
       </h3>
-      <p class="text-slate-300 text-xs leading-relaxed mb-4">
-        Tu demo gratuita caduca en <strong class="text-amber-300 font-mono tabular-nums js-countdown-24h">23:59:10</strong>. Desbloquéala para siempre y recibe tu panel de propietario <code class="text-amber-300">/admin</code>.
-      </p>
 
-      <div class="p-3.5 rounded-2xl bg-slate-950 border border-white/10 space-y-2 mb-4 text-xs">
+      <div class="p-3.5 rounded-2xl bg-slate-950 border border-white/10 space-y-2 my-3 text-xs">
         <div class="flex justify-between items-center gap-2">
-          <span class="text-slate-400">Web pública:</span>
+          <span class="text-slate-400">Enlace público:</span>
           <strong class="text-emerald-300 font-mono truncate">miweblocal.com/${escapeHtml(slug)}</strong>
         </div>
         <div class="flex justify-between items-center gap-2">
-          <span class="text-slate-400">Panel móvil propietario:</span>
+          <span class="text-slate-400">Autogestión básica:</span>
           <strong class="text-amber-300 font-mono truncate">miweblocal.com/${escapeHtml(slug)}/admin</strong>
         </div>
         <div class="flex justify-between items-center pt-2 border-t border-white/10">
-          <span class="text-white font-bold">Pago único (sin cuotas):</span>
-          <strong class="text-xl font-display font-extrabold text-white">50 € <span class="text-[11px] font-normal text-slate-400">IVA incl.</span></strong>
+          <span class="text-white font-bold">Pago único total:</span>
+          <strong class="text-xl font-display font-extrabold text-white">50 €</strong>
         </div>
       </div>
 
       <div class="space-y-3 mb-4">
         <div>
-          <label class="block text-[11px] font-mono uppercase text-slate-300 font-semibold mb-1">1. Tu Email (para enviarte enlaces y clave)</label>
+          <label class="block text-[11px] font-mono uppercase text-slate-300 font-semibold mb-1">Tu Email (para enviarte enlaces y PIN)</label>
           <input type="email" id="buyer-email" value="${escapeHtml(studioState.buyerEmail || '')}" placeholder="ejemplo@tunegocio.com"
             class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-          <div id="buyer-email-err" class="hidden text-rose-400 text-xs font-semibold mt-1">Por favor, introduce un email válido con @ para recibir tus accesos.</div>
+          <div id="buyer-email-err" class="hidden text-rose-400 text-xs font-semibold mt-1">Introduce un email válido con @</div>
         </div>
-
-        <div>
-          <label class="block text-[11px] font-mono uppercase text-slate-300 font-semibold mb-1">2. Método de pago seguro</label>
-          <div class="grid grid-cols-3 gap-2">
-            <button type="button" data-pm="card" onclick="pickPayMethod('card')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-emerald-400 bg-emerald-500/15 text-white font-bold text-xs text-center">Tarjeta</button>
-            <button type="button" data-pm="bizum" onclick="pickPayMethod('bizum')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Bizum</button>
-            <button type="button" data-pm="apple" onclick="pickPayMethod('apple')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Apple / GPay</button>
-          </div>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-pm="card" onclick="pickPayMethod('card')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-emerald-400 bg-emerald-500/15 text-white font-bold text-xs text-center">Tarjeta</button>
+          <button type="button" data-pm="bizum" onclick="pickPayMethod('bizum')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Bizum</button>
+          <button type="button" data-pm="apple" onclick="pickPayMethod('apple')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Apple / GPay</button>
         </div>
       </div>
 
       <button type="button" onclick="completeAutomatedDelivery()"
-        class="w-full py-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm shadow-lg shadow-emerald-500/20">
-        Confirmar 50 € y Desbloquear Web + Panel /admin →
+        class="w-full py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm shadow-lg mb-2.5">
+        Desbloquear Web Básica · 50 € →
+      </button>
+
+      <button type="button" onclick="closeCheckoutModal(); openVipCustomModal('${escapeHtml(studioState.sector)}', '')"
+        class="w-full py-2.5 px-3 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold">
+        💎 ¿Prefieres una Web Élite A Medida hecha por nosotros? Consultar
       </button>
     </div>
   `;
-
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
-  tickCountdownTimers();
 }
 
 function completeAutomatedDelivery() {
@@ -1571,18 +1379,13 @@ function completeAutomatedDelivery() {
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     if (errEl) errEl.classList.remove('hidden');
-    if (emailEl) {
-      emailEl.classList.add('border-rose-500');
-      emailEl.focus();
-    }
+    emailEl?.focus();
     return;
   }
 
   studioState.buyerEmail = email;
   studioState.unlocked = true;
-  if (!studioState.adminPin) {
-    studioState.adminPin = 'PRO-' + String(Math.floor(1000 + Math.random() * 9000));
-  }
+  if (!studioState.adminPin) studioState.adminPin = 'PRO-' + String(Math.floor(1000 + Math.random() * 9000));
   saveStudioState();
 
   const siteUrl = getLiveShareableSiteUrl();
@@ -1593,128 +1396,106 @@ function completeAutomatedDelivery() {
   content.innerHTML = `
     <div>
       <div class="flex items-center justify-between mb-3">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
-          ✓ WEB PUBLICADA Y PANEL /ADMIN ACTIVO
+        <span class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
+          ✓ WEB ACTIVA + PANEL /ADMIN
         </span>
         <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
       </div>
-
-      <h3 class="font-display font-extrabold text-xl text-white mb-1.5">
-        ¡Todo listo, ${escapeHtml(studioState.name)}!
-      </h3>
-      <p class="text-slate-300 text-xs leading-relaxed mb-4">
-        Copia enviada a <strong class="text-white">${escapeHtml(email)}</strong>. Ya puedes abrir tu web pública o entrar a tu panel privado móvil con tu clave:
-      </p>
-
-      <div class="p-4 rounded-2xl bg-slate-950 border border-emerald-500/35 space-y-2.5 text-xs mb-4">
-        <div class="flex items-center justify-between gap-2">
-          <span class="text-slate-400">Clave de propietario:</span>
+      <h3 class="font-display font-extrabold text-xl text-white mb-2">¡Lista, ${escapeHtml(studioState.name)}!</h3>
+      <div class="p-4 rounded-2xl bg-slate-950 border border-emerald-500/35 space-y-2.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-400">PIN Propietario:</span>
           <strong class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-sm">${escapeHtml(studioState.adminPin)}</strong>
         </div>
-        <div class="pt-2 border-t border-white/10 grid grid-cols-1 gap-2">
-          <a href="${siteUrl}" target="_blank"
-            class="btn-tap py-3 px-4 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-center block">
-            1. Abrir Mi Web Pública Ahora ↗
-          </a>
-          <a href="${adminUrl}" target="_blank"
-            class="btn-tap py-3 px-4 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-center block">
-            2. Entrar a Mi Panel Móvil (/admin) ↗
-          </a>
-          <button type="button" onclick="downloadStandaloneClientHTML()"
-            class="py-2.5 px-4 rounded-xl bg-white/10 border border-white/15 text-white font-semibold text-center">
-            Descargar Archivo .HTML Completo
-          </button>
-        </div>
+        <a href="${siteUrl}" target="_blank" class="btn-tap py-3 px-4 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-center block">
+          1. Abrir Mi Web Pública ↗
+        </a>
+        <a href="${adminUrl}" target="_blank" class="btn-tap py-3 px-4 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-center block">
+          2. Entrar a Mi Panel (/admin) ↗
+        </a>
       </div>
     </div>
   `;
 }
 
-function downloadStandaloneClientHTML() {
-  readInputsIntoState();
-  const html = compileClientWebsiteHTML(studioState);
-  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${slugifyName(studioState.name)}-web-oficial.html`;
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 300);
-}
-
 function closeCheckoutModal() {
-  const modal = document.getElementById('checkout-modal');
-  if (modal) modal.classList.add('hidden');
+  document.getElementById('checkout-modal')?.classList.add('hidden');
   document.body.style.overflow = '';
 }
 
+function openLiveAdminPreview() {
+  readInputsIntoState();
+  saveStudioState();
+  window.open(getLiveAdminPanelUrl(), '_blank');
+}
+
 // ==========================================================================
-// REAL LIVE CLIENT PORTFOLIO + SAME-ORIGIN BANNER/COOKIE CLEANER
+// 8 REAL ELITE CUSTOM PROJECTS PORTFOLIO (High-Ticket Showcase + Mouse Drag)
 // ==========================================================================
 const REAL_PORTFOLIO = [
   {
-    id: 'orero',
-    category: 'motor',
-    name: 'Orero Motorcycles',
-    city: 'Orihuela (Alicante)',
-    sectorTag: 'Concesionario & Taller Oficial',
-    metric: '18 motos en stock vivo + citas taller',
+    id: 'orero', category: 'motor',
+    name: 'Orero Motorcycles', city: 'Orihuela',
+    badge: 'ÉLITE A MEDIDA · MOTOR',
+    visualTags: ['18 Motos en Stock', 'Sonido 310 CV', 'Cita Taller'],
     screenshot: 'assets/portfolio/motos_orero.jpg',
     route: '/motorcycle-store-orero/'
   },
   {
-    id: 'jamal',
-    category: 'barberia',
-    name: 'Barbería Jamal',
-    city: 'Cox (Alicante)',
-    sectorTag: 'Barbería & Degradados',
-    metric: '+45 citas semanales en 30 seg',
-    screenshot: 'assets/portfolio/barberia_jamal.jpg',
-    route: '/cox/barberia-jamal/'
-  },
-  {
-    id: 'vimacchiata',
-    category: 'hosteleria',
-    name: 'La Vimacchiata Brunch',
-    city: 'Orihuela Centro',
-    sectorTag: 'Specialty Coffee & Brunch',
-    metric: 'Reservas de terraza + carta digital',
-    screenshot: 'assets/portfolio/vimacchiata_brunch.jpg',
-    route: '/orihuela/la-vimacchiata-brunch/'
-  },
-  {
-    id: 'elite',
-    category: 'reformas',
-    name: 'Reformas Elite Gold',
-    city: 'Guardamar del Segura',
-    sectorTag: 'Reformas Integrales & Villas',
-    metric: '5,0 ★ en Google · Presupuestos WhatsApp',
+    id: 'elite', category: 'reformas',
+    name: 'Reformas Elite Gold', city: 'Guardamar',
+    badge: 'ÉLITE A MEDIDA · OBRAS',
+    visualTags: ['Villas de Lujo', 'Presupuesto WhatsApp', '5,0 ★ Google'],
     screenshot: 'assets/portfolio/reformas_elite.jpg',
     route: '/reformas-elite-gold-guardamar/'
   },
   {
-    id: 'gabi',
-    category: 'barberia',
-    name: 'Gabi Tattoo Studio',
-    city: 'Orihuela',
-    sectorTag: 'Estudio de Tatuajes de Autor',
-    metric: 'Cotizador de piezas + agenda privada',
-    screenshot: 'assets/portfolio/gabi_tattoo.jpg',
-    route: '/orihuela/gabi-tattoo-studio/'
-  },
-  {
-    id: 'autolomas',
-    category: 'motor',
-    name: 'Auto Lomas Carrocería',
-    city: 'Torrevieja',
-    sectorTag: 'Chapa, Pintura al Horno & Detailing',
-    metric: 'Comparador Antes/Después + Foto WhatsApp',
+    id: 'autolomas', category: 'motor',
+    name: 'Auto Lomas Chapa', city: 'Torrevieja',
+    badge: 'ÉLITE A MEDIDA · TALLER',
+    visualTags: ['Slider Antes/Después', 'Foto Daño WhatsApp', 'Cabina Horno'],
     screenshot: 'assets/portfolio/autochrome.jpg',
     route: '/autochrome-torrevieja/'
+  },
+  {
+    id: 'vimacchiata', category: 'hosteleria',
+    name: 'La Vimacchiata Brunch', city: 'Orihuela',
+    badge: 'ÉLITE A MEDIDA · BRUNCH',
+    visualTags: ['Carta Interactiva', 'Reserva Terraza', 'Specialty Coffee'],
+    screenshot: 'assets/portfolio/vimacchiata_brunch.jpg',
+    route: '/orihuela/la-vimacchiata-brunch/'
+  },
+  {
+    id: 'jamal', category: 'barberia',
+    name: 'Barbería Jamal', city: 'Cox',
+    badge: 'ÉLITE A MEDIDA · BARBER',
+    visualTags: ['Agenda 30 seg', 'Galería Cortes', '+45 Citas/sem'],
+    screenshot: 'assets/portfolio/barberia_jamal.jpg',
+    route: '/cox/barberia-jamal/'
+  },
+  {
+    id: 'artedent', category: 'salud',
+    name: 'Clínica Dental Artedent', city: 'Orihuela',
+    badge: 'ÉLITE A MEDIDA · SALUD',
+    visualTags: ['Cita Médica Online', 'Especialidades', 'Confianza Clínica'],
+    screenshot: 'assets/portfolio/clinica_artedent.jpg',
+    route: '/orihuela/clinica-dental-artedent/'
+  },
+  {
+    id: 'lebano', category: 'hosteleria',
+    name: 'El Lebano Restaurante', city: 'Alicante',
+    badge: 'ÉLITE A MEDIDA · CARTA',
+    visualTags: ['Reserva de Mesa', 'Carta Visual', '0% Comisiones'],
+    screenshot: 'assets/portfolio/el_lebano.jpg',
+    route: '/alicante/el-lebano-cocina-libanesa/'
+  },
+  {
+    id: 'gabi', category: 'barberia',
+    name: 'Gabi Tattoo Studio', city: 'Orihuela',
+    badge: 'ÉLITE A MEDIDA · TATTOO',
+    visualTags: ['Cotizador Tatuaje', 'Portafolio Piel', 'Cita Privada'],
+    screenshot: 'assets/portfolio/gabi_tattoo.jpg',
+    route: '/orihuela/gabi-tattoo-studio/'
   }
 ];
 
@@ -1725,84 +1506,103 @@ function renderPortfolioCards(filterCat = 'all') {
   document.querySelectorAll('.pf-filter-btn').forEach(btn => {
     const active = btn.getAttribute('data-cat') === filterCat;
     btn.className = active
-      ? 'pf-filter-btn px-4 py-2 rounded-full text-xs font-extrabold bg-white text-slate-950 whitespace-nowrap'
-      : 'pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap';
+      ? 'pf-filter-btn px-4 py-2 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950 whitespace-nowrap'
+      : 'pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 hover:text-white whitespace-nowrap';
   });
 
-  const items = filterCat === 'all'
-    ? REAL_PORTFOLIO
-    : REAL_PORTFOLIO.filter(p => p.category === filterCat);
+  const items = filterCat === 'all' ? REAL_PORTFOLIO : REAL_PORTFOLIO.filter(p => p.category === filterCat);
 
   grid.innerHTML = items.map(item => `
-    <article class="pf-card pf-slide w-[84vw] max-w-[332px] rounded-3xl bg-slate-950 border border-white/12 p-5 flex flex-col justify-between transition-all duration-300">
+    <article class="pf-card pf-slide w-[80vw] max-w-[300px] rounded-3xl bg-[#10141F] border border-white/12 p-4 flex flex-col justify-between transition-all duration-300">
       <div>
-        <div class="flex items-center justify-between gap-2 mb-4">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/12 border border-emerald-500/25 text-emerald-300 text-[11px] font-mono font-bold">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> EN VIVO
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <span class="px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/35 text-amber-300 text-[10px] font-mono font-extrabold">
+            💎 ${escapeHtml(item.badge)}
           </span>
-          <span class="text-[11px] text-slate-400 font-medium truncate">${escapeHtml(item.city)}</span>
+          <span class="text-[11px] text-slate-400 truncate">${escapeHtml(item.city)}</span>
         </div>
 
-        <div class="my-1 cursor-pointer" onclick="openLiveClientModal('${escapeHtml(item.route)}', '${escapeHtml(item.name)}')">
+        <div class="cursor-pointer" onclick="openLiveClientModal('${escapeHtml(item.route)}', '${escapeHtml(item.name)}')">
           <div class="iphone-mockup">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <img src="${escapeHtml(item.screenshot)}" alt="Web real de ${escapeHtml(item.name)}" loading="lazy" />
+              <img src="${escapeHtml(item.screenshot)}" alt="${escapeHtml(item.name)}" loading="lazy" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-5 pt-4 border-t border-white/10">
-        <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-0.5">${escapeHtml(item.sectorTag)}</div>
-        <h3 class="font-display font-bold text-lg text-white mb-1">${escapeHtml(item.name)}</h3>
-        <p class="text-xs text-emerald-300 font-semibold mb-4">✓ ${escapeHtml(item.metric)}</p>
-
-        <div class="grid grid-cols-2 gap-2">
+      <div class="mt-4 pt-3.5 border-t border-white/10 space-y-2.5">
+        <h3 class="font-display font-extrabold text-base text-white truncate">${escapeHtml(item.name)}</h3>
+        <div class="flex flex-wrap gap-1">
+          ${item.visualTags.map(t => `<span class="px-2 py-0.5 rounded-md bg-white/[0.06] text-[10.5px] font-semibold text-emerald-300">${escapeHtml(t)}</span>`).join('')}
+        </div>
+        <div class="grid grid-cols-2 gap-1.5 pt-1">
           <button type="button" onclick="openLiveClientModal('${escapeHtml(item.route)}', '${escapeHtml(item.name)}')"
-            class="py-2.5 px-3 rounded-xl bg-white text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">
-            Probar Aquí
+            class="py-2.5 px-2 rounded-xl bg-white text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">
+            Ver en Vivo
           </button>
-          <a href="${escapeHtml(item.route)}" target="_blank" rel="noopener"
-            class="btn-tap py-2.5 px-3 rounded-xl bg-white/5 border border-white/15 text-white font-semibold text-xs text-center whitespace-nowrap">
-            Abrir Web ↗
-          </a>
+          <button type="button" onclick="openVipCustomModal('', '${escapeHtml(item.name)}')"
+            class="py-2.5 px-2 rounded-xl bg-amber-400/15 border border-amber-400/35 text-amber-300 font-display font-bold text-xs whitespace-nowrap">
+            Pedir Igual
+          </button>
         </div>
       </div>
     </article>
   `).join('');
 }
 
-// Same-Origin Cleaner: hides cookie banners & owner sales banners inside live preview modal
-function cleanPortfolioIframe(iframe) {
-  try {
-    const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-    if (!doc) return;
-    const hideExtras = () => {
-      try {
-        const curDoc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-        if (!curDoc || !curDoc.defaultView) return;
-        curDoc.querySelectorAll('#owner-activation-banner, #owner-floating-pill, [id*="cookie"], [class*="cookie"]').forEach(el => {
-          el.style.display = 'none';
-        });
-        curDoc.querySelectorAll('div, aside, section').forEach(el => {
-          if (el.innerText && el.innerText.length < 700 && (el.innerText.includes('Aviso de Cookies') || el.innerText.includes('Aceptar todas')) && curDoc.defaultView.getComputedStyle(el).position === 'fixed') {
-            el.style.display = 'none';
-          }
-        });
-        if (curDoc.body) {
-          curDoc.body.style.paddingTop = '0px';
-          curDoc.body.style.marginTop = '0px';
-        }
-      } catch (err) {}
-    };
-    hideExtras();
-    setTimeout(hideExtras, 700);
-    setTimeout(hideExtras, 1800);
-  } catch (e) {}
+function scrollPortfolioCarousel(dir) {
+  const el = document.getElementById('portfolio-cards-container');
+  if (el) el.scrollBy({ left: dir * 320, behavior: 'smooth' });
 }
 
+function initMouseDragCarousels() {
+  document.querySelectorAll('.pf-carousel').forEach(box => {
+    let isDown = false, startX = 0, scrollL = 0;
+    box.addEventListener('mousedown', e => {
+      if (window.innerWidth >= 1100) return;
+      isDown = true;
+      startX = e.pageX - box.offsetLeft;
+      scrollL = box.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => { isDown = false; });
+    box.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - box.offsetLeft;
+      box.scrollLeft = scrollL - (x - startX) * 1.4;
+    });
+  });
+}
+
+function cleanPortfolioIframe(iframe) {
+  const hideExtras = () => {
+    try {
+      const curDoc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+      if (!curDoc || !curDoc.defaultView) return;
+      curDoc.querySelectorAll('#owner-activation-banner, #owner-floating-pill, [id*="cookie"], [class*="cookie"]').forEach(el => {
+        el.style.display = 'none';
+      });
+      curDoc.querySelectorAll('div, aside, section').forEach(el => {
+        if (el.innerText && el.innerText.length < 700 && (el.innerText.includes('Aviso de Cookies') || el.innerText.includes('Aceptar todas')) && curDoc.defaultView.getComputedStyle(el).position === 'fixed') {
+          el.style.display = 'none';
+        }
+      });
+      if (curDoc.body) {
+        curDoc.body.style.paddingTop = '0px';
+        curDoc.body.style.marginTop = '0px';
+      }
+    } catch (err) {}
+  };
+  hideExtras();
+  setTimeout(hideExtras, 650);
+  setTimeout(hideExtras, 1700);
+}
+
+let currentModalClientName = '';
 function openLiveClientModal(route, name) {
+  currentModalClientName = name || 'Proyecto Élite';
   const modal = document.getElementById('live-client-modal');
   const iframe = document.getElementById('live-client-iframe');
   const title = document.getElementById('live-client-title');
@@ -1815,6 +1615,10 @@ function openLiveClientModal(route, name) {
   iframe.src = route;
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
+}
+
+function requestLikeCurrentModalClient() {
+  openVipCustomModal('', currentModalClientName);
 }
 
 function closeLiveClientModal() {
@@ -1832,19 +1636,12 @@ function toggleMobileNav(open) {
   document.body.style.overflow = open ? 'hidden' : '';
 }
 
-function openLiveAdminPreview() {
-  readInputsIntoState();
-  saveStudioState();
-  window.open(getLiveAdminPanelUrl(), '_blank');
-}
-
 // ==========================================================================
-// INITIALIZATION (Only runs landing bindings when on main index.html)
+// INITIALIZATION
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('generador')) return;
 
-  // Sync studio state & render clean components
   syncInputsFromState();
   renderSectorSelector();
   renderServicesEditor();
@@ -1855,22 +1652,33 @@ window.addEventListener('DOMContentLoaded', () => {
   updateStudioPreview(true);
   renderPortfolioCards('all');
 
+  initBeforeAfterSliders();
+  initMouseDragCarousels();
+
   tickCountdownTimers();
   setInterval(tickCountdownTimers, 1000);
 
-  // Smart Mobile Bottom Bar: ONLY show when NOT in Hero AND NOT inside #generador!
-  // That way it NEVER covers form inputs, preview buttons, or Hero CTAs!
-  const heroEl = document.getElementById('hero-section');
-  const genEl = document.getElementById('generador');
-  const smartBar = document.getElementById('smart-bottom-bar');
-  if (heroEl && genEl && smartBar && 'IntersectionObserver' in window) {
-    let heroVisible = true;
-    let genVisible = false;
-    const updateBar = () => {
-      const shouldHide = heroVisible || genVisible;
-      smartBar.classList.toggle('bar-hidden', shouldHide);
-    };
-    new IntersectionObserver(e => { heroVisible = e[0].isIntersecting; updateBar(); }, { threshold: 0.1 }).observe(heroEl);
-    new IntersectionObserver(e => { genVisible = e[0].isIntersecting; updateBar(); }, { threshold: 0.05 }).observe(genEl);
+  // Scroll-Reveal Observer
+  if ('IntersectionObserver' in window) {
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-visible');
+          revObs.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal-up').forEach(el => revObs.observe(el));
+
+    // Smart Bottom Bar visibility
+    const heroEl = document.getElementById('hero-section');
+    const genEl = document.getElementById('generador');
+    const smartBar = document.getElementById('smart-bottom-bar');
+    if (heroEl && genEl && smartBar) {
+      let heroVis = true, genVis = false;
+      const syncBar = () => smartBar.classList.toggle('bar-hidden', heroVis || genVis);
+      new IntersectionObserver(e => { heroVis = e[0].isIntersecting; syncBar(); }, { threshold: 0.1 }).observe(heroEl);
+      new IntersectionObserver(e => { genVis = e[0].isIntersecting; syncBar(); }, { threshold: 0.05 }).observe(genEl);
+    }
   }
 });
