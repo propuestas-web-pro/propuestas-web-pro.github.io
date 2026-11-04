@@ -13,14 +13,14 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Mi Web Local — Webs Visuales para Negocios · Básica 50 € o Proyecto Élite A Medida</title>
-  <meta name="description" content="Diseño web visual de alto impacto para negocios locales. Elige tu Web Básica Automática por 50 € o solicita un Proyecto Élite A Medida exclusivo para tu sector." />
-  <meta name="theme-color" content="#07090E" />
+  <title>MiWebLocal — Diseño Web Visual para Negocios Locales</title>
+  <meta name="description" content="Webs modernas y visuales que llenan tu negocio. Mira nuestros ejemplos en vídeo y pide la tuya directamente por WhatsApp al +34 632 76 81 52." />
+  <meta name="theme-color" content="#050608" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,1092 +31,373 @@
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
             display: ['Outfit', 'sans-serif'],
-            serif: ['Instrument Serif', 'serif'],
-            mono: ['JetBrains Mono', 'monospace'],
           }
         }
       }
-    }
+    };
   </script>
-
-  <link rel="stylesheet" href="assets/studio-styles.css" />
+  <link rel="stylesheet" href="assets/showcase-v4.css" />
 </head>
-<body class="antialiased selection:bg-emerald-400 selection:text-slate-950">
+<body class="pb-24 lg:pb-0">
 
   <!-- =====================================================================
-       SLIM STICKY TOP NAVBAR (Mouse + Touch Friendly)
+       FLOATING GLASS PILL NAVBAR (Minimal, Direct, Zero Clutter)
        ===================================================================== -->
-  <header class="sticky top-0 z-50 bg-[#07090E]/90 backdrop-blur-xl border-b border-white/10">
-    <nav class="max-w-7xl mx-auto px-3.5 sm:px-6 h-14 flex items-center justify-between gap-2">
-      <a href="#" class="flex items-center gap-2 shrink-0">
-        <span class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-slate-950 flex items-center justify-center font-display font-black text-sm shadow-md shadow-emerald-500/20">
-          M
-        </span>
-        <span class="font-display font-extrabold text-base tracking-tight text-white">
-          MiWebLocal<span class="text-emerald-400">.</span>
-        </span>
+  <header class="sticky top-3 sm:top-5 z-30 px-4">
+    <div class="max-w-5xl mx-auto rounded-full bg-[#0B0E15]/85 backdrop-blur-2xl border border-white/10 px-4 sm:px-5 py-2.5 flex items-center justify-between gap-4 shadow-2xl">
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-full bg-emerald-400 text-slate-950 font-display font-black text-sm flex items-center justify-center">M</span>
+        <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-white">MiWebLocal<span class="text-emerald-400">.</span></span>
       </a>
 
-      <div class="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-300">
-        <a href="#soluciones" class="hover:text-white transition-colors">Por Sectores</a>
-        <a href="#portafolio" class="hover:text-white transition-colors">Webs Élite (+70)</a>
-        <a href="#planes" class="hover:text-white transition-colors">50 € vs A Medida</a>
-        <a href="#generador" class="hover:text-white transition-colors">Generador Básico</a>
-      </div>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#ejemplos" class="hover:text-white transition-colors">Diseños</a>
+        <a href="#opciones" class="hover:text-white transition-colors">Precios</a>
+      </nav>
 
-      <div class="flex items-center gap-2 shrink-0">
-        <button type="button" onclick="openVipCustomModal()"
-          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-400/15 hover:bg-amber-400/25 border border-amber-400/40 text-amber-300 font-display font-extrabold text-xs whitespace-nowrap">
-          <i class="ph-fill ph-crown"></i> Web Élite A Medida
-        </button>
-        <a href="#generador"
-          class="btn-tap px-3.5 py-2 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap shadow-md shadow-emerald-500/20">
-          Básica · 50 €
-        </a>
-        <button type="button" onclick="toggleMobileNav(true)" aria-label="Menú"
-          class="lg:hidden w-9 h-9 rounded-xl bg-white/8 border border-white/12 text-white flex items-center justify-center">
-          <i class="ph-bold ph-list text-lg"></i>
-        </button>
-      </div>
-    </nav>
+      <button type="button"
+              onclick="contactWhatsApp('Información sobre diseño web')"
+              class="btn-press px-4 py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-2">
+        <i class="ph-fill ph-whatsapp-logo text-base"></i>
+        <span>632 76 81 52</span>
+      </button>
+    </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div id="mobile-nav-sheet" class="fixed inset-0 z-[70] modal-backdrop hidden flex flex-col justify-end sm:justify-center p-3">
-    <div class="w-full max-w-md mx-auto rounded-3xl bg-[#101522] border border-white/15 p-5 shadow-2xl space-y-3">
-      <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <span class="font-display font-extrabold text-base text-white">MiWebLocal</span>
-        <button type="button" onclick="toggleMobileNav(false)" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
-      </div>
-      <div class="grid gap-2 text-sm font-bold">
-        <button type="button" onclick="toggleMobileNav(false); openVipCustomModal()"
-          class="p-3.5 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-between">
-          <span>💎 Pedir Web Élite A Medida (Exclusiva)</span>
-          <i class="ph-bold ph-arrow-right"></i>
-        </button>
-        <a href="#soluciones" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
-          <span>🎯 Ver Soluciones por Sector</span>
-          <i class="ph-bold ph-caret-right"></i>
-        </a>
-        <a href="#portafolio" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
-          <span>📱 Portafolio Real en Vivo (+70)</span>
-          <i class="ph-bold ph-caret-right"></i>
-        </a>
-        <a href="#generador" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 flex items-center justify-between">
-          <span>⚡ Generador Básico Automático · 50 €</span>
-          <i class="ph-bold ph-arrow-right"></i>
-        </a>
-        <a href="/admin/" onclick="toggleMobileNav(false)" class="p-3 rounded-2xl bg-white/5 text-slate-300 text-xs flex items-center justify-between">
-          <span>🔑 Acceso Propietarios (/admin)</span>
-          <i class="ph-bold ph-arrow-up-right"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <!-- =====================================================================
-       SECTION 1: ULTRA-VISUAL ANIMATED HERO (Minimal Text · Moving Mockups)
+       SECTION 1: CINEMATIC VIDEO HERO (Pure Visual Desire, Minimal Copy)
        ===================================================================== -->
-  <section id="hero-section" class="pt-6 pb-10 sm:pt-10 sm:pb-16 border-b border-white/10 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+  <section class="hero-ambient pt-10 pb-16 sm:pt-16 sm:pb-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
 
-        <!-- Left: Ultra-Clean Headline + 2 Visual Doors (50€ Basic vs Elite Custom) -->
-        <div class="lg:col-span-6 space-y-5 z-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] border border-white/12 text-xs font-bold text-emerald-300">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>+70 WEBS REALES FUNCIONANDO EN VIVO</span>
+        <!-- Left: Concise, Direct Statement + Single Clear Action -->
+        <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="text-[11px] uppercase tracking-[0.18em] font-semibold text-slate-300">Diseño Web para Negocios</span>
           </div>
 
-          <h1 class="font-display font-black text-[2.2rem] leading-[1.04] sm:text-5xl lg:text-[3.55rem] tracking-tight text-white">
-            Webs visuales que <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-amber-300">llenan tu negocio.</span>
+          <h1 class="font-display font-black text-4xl sm:text-6xl text-white leading-[1.03] tracking-tight">
+            Tu negocio merece una web <span class="text-emerald-400">así.</span>
           </h1>
 
-          <!-- Two Clear Visual Product Cards Right in Hero -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <!-- Door 1: 50€ Self-Serve Basic -->
-            <a href="#generador"
-              class="btn-tap group p-4 rounded-2xl bg-[#111726] hover:bg-[#151D30] border border-emerald-400/35 flex flex-col justify-between gap-3 shadow-xl">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="px-2 py-0.5 rounded-md bg-emerald-400/20 text-emerald-300 font-mono text-[10px] font-bold">OPCIÓN 1 · EXPRESS</span>
-                  <strong class="font-display font-black text-xl text-white">50 €</strong>
-                </div>
-                <div class="font-display font-extrabold text-base text-white">Web Básica Automática</div>
-                <div class="text-xs text-slate-400 mt-0.5">Plantilla sencilla lista en 60s hecha por ti.</div>
-              </div>
-              <div class="py-2.5 px-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs text-center flex items-center justify-center gap-1.5">
-                <span>Crear Básica en 60s</span>
-                <i class="ph-bold ph-lightning"></i>
-              </div>
-            </a>
+          <p class="text-base sm:text-lg text-slate-400 max-w-md mx-auto lg:mx-0 leading-relaxed">
+            Elige el modelo que encaje con tu local y te la entregamos lista para recibir clientes por WhatsApp.
+          </p>
 
-            <!-- Door 2: High-Ticket Custom Elite -->
-            <button type="button" onclick="openVipCustomModal()"
-              class="group p-4 rounded-2xl bg-gradient-to-br from-amber-500/20 via-[#151824] to-[#111520] hover:from-amber-500/30 border-2 border-amber-400/60 flex flex-col justify-between gap-3 text-left shadow-xl">
-              <div>
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="px-2 py-0.5 rounded-md bg-amber-400 text-slate-950 font-mono text-[10px] font-extrabold">OPCIÓN 2 · VIP</span>
-                  <span class="text-xs font-mono font-bold text-amber-300">A MEDIDA</span>
-                </div>
-                <div class="font-display font-extrabold text-base text-white">Proyecto Élite Exclusivo</div>
-                <div class="text-xs text-slate-300 mt-0.5">Diseño único + Stock + Reservas Pro hecho por nosotros.</div>
-              </div>
-              <div class="w-full py-2.5 px-3 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-xs text-center flex items-center justify-center gap-1.5">
-                <i class="ph-fill ph-crown"></i>
-                <span>Pedir Propuesta Élite</span>
-              </div>
+          <div id="hero-cta-sentinel" class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
+            <button type="button"
+                    onclick="contactWhatsApp('Quiero pedir una web para mi negocio')"
+                    class="btn-press btn-island w-full sm:w-auto pl-6 pr-2.5 py-2.5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm sm:text-base inline-flex items-center justify-between sm:justify-center gap-4 shadow-xl">
+              <span>Pedir por WhatsApp</span>
+              <span class="btn-island-circle w-9 h-9 rounded-full bg-slate-950/15 flex items-center justify-center">
+                <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+              </span>
             </button>
-          </div>
 
-          <!-- Quick Visual Sector Jump Chips -->
-          <div class="flex flex-wrap items-center gap-1.5 pt-1">
-            <a href="#soluciones" onclick="switchVisualSolution('barberia')" class="px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200">✂️ Barbería</a>
-            <a href="#soluciones" onclick="switchVisualSolution('motor')" class="px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200">🏍️ Motos & Taller</a>
-            <a href="#soluciones" onclick="switchVisualSolution('reformas')" class="px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200">🏠 Reformas</a>
-            <a href="#soluciones" onclick="switchVisualSolution('hosteleria')" class="px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200">🍔 Hostelería</a>
-            <a href="#soluciones" onclick="switchVisualSolution('salud')" class="px-3 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200">🦷 Clínicas</a>
+            <a href="#ejemplos"
+               class="btn-press w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/[0.06] hover:bg-white/[0.11] border border-white/10 text-white font-display font-bold text-sm text-center">
+              Ver diseños
+            </a>
           </div>
         </div>
 
-        <!-- Right (Desktop): Dual Vertical Animated Phone Columns + Floating Live Badges -->
-        <div class="hidden lg:block lg:col-span-6 relative h-[520px] overflow-hidden rounded-3xl border border-white/10 bg-[#0B0E17]/80 p-4 marquee-pause-hover">
-          <!-- Top & Bottom Fade Masks -->
-          <div class="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#090C14] to-transparent z-20"></div>
-          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#090C14] to-transparent z-20"></div>
-
-          <!-- Floating Live Conversion Pills -->
-          <div class="float-pill-1 absolute top-6 left-4 z-30 px-3.5 py-2 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-emerald-400/40 shadow-2xl flex items-center gap-2.5 pointer-events-none">
-            <span class="w-7 h-7 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center text-sm"><i class="ph-fill ph-calendar-check"></i></span>
-            <div class="text-xs">
-              <strong class="block text-white leading-tight">Nueva cita reservada</strong>
-              <span class="text-[10px] text-emerald-300">Corte + Barba · 17:30h</span>
-            </div>
-          </div>
-
-          <div class="float-pill-2 absolute bottom-6 right-4 z-30 px-3.5 py-2 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-amber-400/40 shadow-2xl flex items-center gap-2.5 pointer-events-none">
-            <span class="w-7 h-7 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-sm"><i class="ph-fill ph-motorcycle"></i></span>
-            <div class="text-xs">
-              <strong class="block text-white leading-tight">Reserva Moto en Stock</strong>
-              <span class="text-[10px] text-amber-300">Orero Motor · WhatsApp</span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 justify-items-center">
-            <!-- Column 1 Moving UP -->
-            <div class="anim-marquee-up space-y-4">
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/motorcycle-store-orero/', 'Orero Motorcycles')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/motos_orero.jpg" alt="Orero Motorcycles" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/cox/barberia-jamal/', 'Barbería Jamal')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/barberia_jamal.jpg" alt="Barbería Jamal" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/orihuela/clinica-dental-artedent/', 'Clínica Dental Artedent')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/clinica_artedent.jpg" alt="Clínica Artedent" /></div>
-              </div>
-              <!-- Duplicate for seamless loop -->
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/motorcycle-store-orero/', 'Orero Motorcycles')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/motos_orero.jpg" alt="Orero Motorcycles" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/cox/barberia-jamal/', 'Barbería Jamal')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/barberia_jamal.jpg" alt="Barbería Jamal" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/orihuela/clinica-dental-artedent/', 'Clínica Dental Artedent')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/clinica_artedent.jpg" alt="Clínica Artedent" /></div>
+        <!-- Right: 3 Titanium Phones Playing Smooth Real Website Videos -->
+        <div class="lg:col-span-6">
+          <div class="hero-trio">
+            <!-- Left Phone: Reformas -->
+            <div class="titanium-phone hero-phone-side hero-phone-left cursor-pointer"
+                 onclick="openCinemaModal('reformas')"
+                 title="Ver ejemplo Reformas">
+              <div class="titanium-phone-screen">
+                <video class="js-hero-vid" src="assets/showcase/vid_reformas.mp4" poster="assets/showcase/vid_reformas_poster.jpg" autoplay loop muted playsinline preload="auto"></video>
               </div>
             </div>
 
-            <!-- Column 2 Moving DOWN -->
-            <div class="anim-marquee-down space-y-4">
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/reformas-elite-gold-guardamar/', 'Reformas Elite Gold')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/reformas_elite.jpg" alt="Reformas Elite" /></div>
+            <!-- Center Phone: Motos & Concesionario -->
+            <div class="titanium-phone hero-phone-center cursor-pointer"
+                 onclick="openCinemaModal('motos')"
+                 title="Ver ejemplo Concesionario de Motos">
+              <div class="titanium-phone-screen">
+                <video class="js-hero-vid" src="assets/showcase/vid_orero.mp4" poster="assets/showcase/vid_orero_poster.jpg" autoplay loop muted playsinline preload="auto"></video>
               </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/orihuela/la-vimacchiata-brunch/', 'La Vimacchiata Brunch')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/vimacchiata_brunch.jpg" alt="La Vimacchiata" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/autochrome-torrevieja/', 'Auto Lomas Chapa')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/autochrome.jpg" alt="Auto Lomas" /></div>
-              </div>
-              <!-- Duplicate for seamless loop -->
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/reformas-elite-gold-guardamar/', 'Reformas Elite Gold')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/reformas_elite.jpg" alt="Reformas Elite" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/orihuela/la-vimacchiata-brunch/', 'La Vimacchiata Brunch')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/vimacchiata_brunch.jpg" alt="La Vimacchiata" /></div>
-              </div>
-              <div class="hero-mini-phone" onclick="openLiveClientModal('/autochrome-torrevieja/', 'Auto Lomas Chapa')">
-                <div class="hero-mini-screen"><img src="assets/portfolio/autochrome.jpg" alt="Auto Lomas" /></div>
+            </div>
+
+            <!-- Right Phone: Cafetería & Brunch -->
+            <div class="titanium-phone hero-phone-side hero-phone-right cursor-pointer"
+                 onclick="openCinemaModal('brunch')"
+                 title="Ver ejemplo Hostelería">
+              <div class="titanium-phone-screen">
+                <video class="js-hero-vid" src="assets/showcase/vid_vimacchiata.mp4" poster="assets/showcase/vid_vimacchiata_poster.jpg" autoplay loop muted playsinline preload="auto"></video>
               </div>
             </div>
           </div>
+          <p class="text-center text-xs text-slate-500 mt-3">Toca cualquier pantalla para verla en grande</p>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Mobile Infinite Moving Phone Strip (Pure Visual Motion right in Hero!) -->
-    <div class="lg:hidden mt-7 overflow-hidden marquee-pause-hover">
-      <div class="anim-marquee-left gap-3.5 px-3">
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/motorcycle-store-orero/', 'Orero Motorcycles')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/motos_orero.jpg" alt="Orero Motorcycles" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/reformas-elite-gold-guardamar/', 'Reformas Elite Gold')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/reformas_elite.jpg" alt="Reformas Elite" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/cox/barberia-jamal/', 'Barbería Jamal')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/barberia_jamal.jpg" alt="Barbería Jamal" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/autochrome-torrevieja/', 'Auto Lomas Chapa')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/autochrome.jpg" alt="Auto Lomas" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/orihuela/la-vimacchiata-brunch/', 'La Vimacchiata Brunch')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/vimacchiata_brunch.jpg" alt="La Vimacchiata" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/alicante/el-lebano-cocina-libanesa/', 'El Lebano')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/el_lebano.jpg" alt="El Lebano" /></div>
-        </div>
-        <!-- Seamless loop repeat -->
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/motorcycle-store-orero/', 'Orero Motorcycles')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/motos_orero.jpg" alt="Orero Motorcycles" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/reformas-elite-gold-guardamar/', 'Reformas Elite Gold')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/reformas_elite.jpg" alt="Reformas Elite" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/cox/barberia-jamal/', 'Barbería Jamal')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/barberia_jamal.jpg" alt="Barbería Jamal" /></div>
-        </div>
-        <div class="hero-mini-phone" onclick="openLiveClientModal('/autochrome-torrevieja/', 'Auto Lomas Chapa')">
-          <div class="hero-mini-screen"><img src="assets/portfolio/autochrome.jpg" alt="Auto Lomas" /></div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- =====================================================================
-       SECTION 2: VISUAL INTERACTIVE SECTOR PROBLEM-SOLVER (#soluciones)
-       Each sector solves its REAL specific problem with interactive visuals!
+       SECTION 2: VISUAL SHOWCASE GALLERY (#ejemplos · Photo + Moving Video)
        ===================================================================== -->
-  <section id="soluciones" class="py-12 sm:py-18 bg-[#0B0F18] border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
+  <section id="ejemplos" class="scroll-mt-24 py-16 sm:py-24 border-t border-white/[0.07]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
 
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
         <div>
-          <span class="text-emerald-400 font-mono text-xs font-bold uppercase">🎯 Adaptado a cada oficio</span>
-          <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-0.5">
-            Toca tu sector y pruébalo en vivo
-          </h2>
-        </div>
-      </div>
-
-      <!-- 6 Visual Sector Tabs -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-        <button type="button" data-sol="barberia" onclick="switchVisualSolution('barberia')"
-          class="sol-tab-btn active p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">✂️</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">Barbería & Belleza</span>
-        </button>
-        <button type="button" data-sol="motor" onclick="switchVisualSolution('motor')"
-          class="sol-tab-btn p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">🏍️</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">Motos & Talleres</span>
-        </button>
-        <button type="button" data-sol="reformas" onclick="switchVisualSolution('reformas')"
-          class="sol-tab-btn p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">🏠</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">Reformas & Obra</span>
-        </button>
-        <button type="button" data-sol="hosteleria" onclick="switchVisualSolution('hosteleria')"
-          class="sol-tab-btn p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">🍔</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">Restaurante & Café</span>
-        </button>
-        <button type="button" data-sol="salud" onclick="switchVisualSolution('salud')"
-          class="sol-tab-btn p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">🦷</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">Clínica & Fitness</span>
-        </button>
-        <button type="button" data-sol="urgencias" onclick="switchVisualSolution('urgencias')"
-          class="sol-tab-btn p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left flex items-center gap-2.5">
-          <span class="text-xl">⚡</span>
-          <span class="font-display font-bold text-xs text-white leading-tight">24h & Comercios</span>
-        </button>
-      </div>
-
-      <!-- STAGE 1: BARBERÍA, ESTÉTICA & TATTOO -->
-      <div data-sol-pane="barberia" class="sol-stage-pane rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 grid grid-cols-2 gap-3">
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Corte degradado" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-emerald-300 text-[11px] font-bold">Skin Fade · 16 €</span>
-            </div>
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Estética y Salón" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-amber-300 text-[11px] font-bold">Agenda 24/7 sin llamadas</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Selección de Barbero</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Huecos Reales</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Aviso a WhatsApp</span>
-            </div>
-
-            <!-- Interactive Live Booking Card -->
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="text-xs font-bold text-slate-300">Toca un hueco libre para probar cómo reservan tus clientes:</div>
-              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">Hoy 11:30</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">Hoy 16:45</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">Hoy 18:15</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">Mañana 10:00</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Cita sin interrumpirte mientras cortas</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="jumpGeneratorWithSector('barberia')" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs">
-                ⚡ Probar Básica · 50 €
-              </button>
-              <button type="button" onclick="openVipCustomModal('Barbería / Peluquería / Estética', 'Barbería Jamal')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite Barbería →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 2: MOTOS, COCHES & TALLERES (Interactive Before/After Slider + Stock!) -->
-      <div data-sol-pane="motor" class="sol-stage-pane hidden rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 space-y-2">
-            <div class="ba-slider">
-              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85" alt="Después Taller y Stock" />
-              <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1000&q=85" alt="Antes Taller" class="ba-before-layer" />
-              <div class="ba-divider"></div>
-              <div class="ba-knob">↔</div>
-              <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-lg bg-black/80 text-xs font-bold text-slate-200 pointer-events-none">ANTES</span>
-              <span class="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-lg bg-rose-600 text-xs font-bold text-white pointer-events-none">ACABADO PRO</span>
-            </div>
-            <p class="text-[11px] text-center text-slate-400">↔ Arrastra con el ratón o el dedo</p>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold">✓ Stock Vivo de Motos / Coches</span>
-              <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold">✓ Cita por Matrícula</span>
-              <span class="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold">✓ Foto Golpe WhatsApp</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">🏍️ Ver Stock (18)</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🔧 Revisión / ITV</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">📸 Tasar Mi Moto</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Como Orero Motorcycles (700 € Élite A Medida)</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="openLiveClientModal('/motorcycle-store-orero/', 'Orero Motorcycles')" class="py-3 px-4 rounded-xl bg-white text-slate-950 font-display font-extrabold text-xs">
-                🏍️ Ver Web Real de Motos
-              </button>
-              <button type="button" onclick="openVipCustomModal('Concesionario Motos / Coches / Taller', 'Orero Motorcycles')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite Motor →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 3: REFORMAS, COCINAS & CONSTRUCCIÓN (Interactive Before/After Obra Slider!) -->
-      <div data-sol-pane="reformas" class="sol-stage-pane hidden rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 space-y-2">
-            <div class="ba-slider">
-              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85" alt="Después Reforma Integral" />
-              <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1000&q=85" alt="Antes Obra" class="ba-before-layer" />
-              <div class="ba-divider"></div>
-              <div class="ba-knob">↔</div>
-              <span class="absolute top-3 left-3 z-20 px-2.5 py-1 rounded-lg bg-black/80 text-xs font-bold text-slate-200 pointer-events-none">OBRA ANTES</span>
-              <span class="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-lg bg-amber-400 text-xs font-extrabold text-slate-950 pointer-events-none">REFORMA ENTREGADA</span>
-            </div>
-            <p class="text-[11px] text-center text-slate-400">↔ Desliza para ver el Antes y Después de tus obras</p>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Comparador Antes / Después</span>
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Calculadora m²</span>
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Galería de Villas</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="text-xs font-bold text-slate-300">El propietario de vivienda elige qué quiere reformar:</div>
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">🚿 Baño 24h</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🍳 Cocina 3D</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🏡 Integral</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Recibes metros, zona y teléfono en tu WhatsApp</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="jumpGeneratorWithSector('reformas')" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs">
-                ⚡ Probar Básica · 50 €
-              </button>
-              <button type="button" onclick="openVipCustomModal('Reformas / Construcción / Inmobiliaria', 'Reformas Elite Gold')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite Reformas →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 4: RESTAURANTES, CAFETERÍAS & PIZZERÍAS -->
-      <div data-sol-pane="hosteleria" class="sol-stage-pane hidden rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 grid grid-cols-2 gap-3">
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Carta Visual" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-amber-300 text-[11px] font-bold">Carta QR con Fotos</span>
-            </div>
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Brunch y Terraza" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-emerald-300 text-[11px] font-bold">0% Comisión Apps</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Carta Visual con Fotos</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Reserva de Mesa</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Pedidos Recoger / Envío</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">☀️ Terraza · 4p</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🍽️ Salón · 21:30</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🥡 Para Llevar</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Reservas directas sin pagar comisiones por cubierto</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="jumpGeneratorWithSector('restaurante')" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs">
-                ⚡ Probar Básica · 50 €
-              </button>
-              <button type="button" onclick="openVipCustomModal('Restaurante / Cafetería / Pizzería', 'La Vimacchiata Brunch')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite Hostelería →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 5: CLÍNICAS, SALUD & FITNESS -->
-      <div data-sol-pane="salud" class="sol-stage-pane hidden rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 grid grid-cols-2 gap-3">
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Clínica Dental" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-emerald-300 text-[11px] font-bold">1ª Valoración Gratis</span>
-            </div>
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Fitness y Pilates" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-amber-300 text-[11px] font-bold">Bonos y Horarios</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Especialidades Médicas</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Cita Preferente</span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold">✓ Reseñas Pacientes</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">🦷 1ª Visita</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">💆‍♂️ Fisioterapia</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🏋️ Clase Prueba</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Imagen limpia y máxima confianza para tus pacientes</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="jumpGeneratorWithSector('clinica')" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs">
-                ⚡ Probar Básica · 50 €
-              </button>
-              <button type="button" onclick="openVipCustomModal('Clínica / Salud / Centro Deportivo', 'Clínica Dental Artedent')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite Salud →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- STAGE 6: URGENCIAS 24H, TIENDAS & CUALQUIER OTRO SECTOR -->
-      <div data-sol-pane="urgencias" class="sol-stage-pane hidden rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-6 grid grid-cols-2 gap-3">
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80" alt="Servicio Técnico 24h" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 text-[11px] font-extrabold">Llegada 20 min</span>
-            </div>
-            <div class="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-white/10">
-              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Comercios y Despachos" class="w-full h-full object-cover" />
-              <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 text-emerald-300 text-[11px] font-bold">Tiendas & Servicios</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 space-y-4">
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Cerrajeros / Fontaneros 24h</span>
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Tiendas y Catálogo</span>
-              <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">✓ Abogados / Inmobiliarias</span>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-slate-950 border border-white/10 space-y-3">
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-emerald-400 text-slate-950 border-emerald-400 font-bold text-xs">🚨 Urgencia 24h</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">🛍️ Catálogo Tienda</button>
-                <button type="button" onclick="demoPickChip(this)" class="py-2.5 px-2 rounded-xl border bg-white/5 text-slate-200 border-white/10 font-bold text-xs">💼 Despacho</button>
-              </div>
-              <div class="js-sol-feedback text-xs font-bold text-emerald-400">✓ Adaptamos la web a cualquier oficio o negocio</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button type="button" onclick="jumpGeneratorWithSector('otro')" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs">
-                ⚡ Probar Básica · 50 €
-              </button>
-              <button type="button" onclick="openVipCustomModal('Mi Sector Personalizado', '')" class="py-3 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs">
-                💎 Pedir Web Élite A Medida →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =====================================================================
-       SECTION 3: REAL ELITE CUSTOM PORTFOLIO (#portafolio · 8 Live Sites)
-       Clearly branded as High-Ticket Custom Builds so 50€ never undercuts 700€!
-       ===================================================================== -->
-  <section id="portafolio" class="py-12 sm:py-18 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-6">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
-        <div>
-          <span class="inline-flex items-center gap-1.5 text-amber-300 font-mono text-xs font-extrabold uppercase">
-            <i class="ph-fill ph-crown"></i> Proyectos Élite A Medida en Producción
-          </span>
-          <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-0.5">
-            Explora nuestras webs hechas a medida
+          <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-emerald-400">Catálogo Visual</span>
+          <h2 class="font-display font-black text-3xl sm:text-4xl text-white mt-1">
+            Mira cómo se verá tu negocio
           </h2>
         </div>
 
+        <!-- Clean Filter Bar (Zero Emojis) -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button type="button" data-cat="all" onclick="renderPortfolioCards('all')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950 whitespace-nowrap">
-            Todas (8)
+          <button type="button" data-cat="all" onclick="filterShowcase('all')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-white text-slate-950 whitespace-nowrap shadow-sm">
+            Todos
           </button>
-          <button type="button" data-cat="motor" onclick="renderPortfolioCards('motor')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">
-            🏍️ Motor
+          <button type="button" data-cat="motor" onclick="filterShowcase('motor')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
+            Motos y Talleres
           </button>
-          <button type="button" data-cat="reformas" onclick="renderPortfolioCards('reformas')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">
-            🏠 Reformas
+          <button type="button" data-cat="belleza" onclick="filterShowcase('belleza')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
+            Barbería y Tattoo
           </button>
-          <button type="button" data-cat="hosteleria" onclick="renderPortfolioCards('hosteleria')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">
-            🍔 Hostelería
+          <button type="button" data-cat="reformas" onclick="filterShowcase('reformas')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
+            Reformas
           </button>
-          <button type="button" data-cat="barberia" onclick="renderPortfolioCards('barberia')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">
-            ✂️ Barber & Tattoo
+          <button type="button" data-cat="hosteleria" onclick="filterShowcase('hosteleria')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
+            Hostelería
           </button>
-          <button type="button" data-cat="salud" onclick="renderPortfolioCards('salud')"
-            class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">
-            🦷 Salud
+          <button type="button" data-cat="salud" onclick="filterShowcase('salud')"
+                  class="filter-pill btn-press px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/[0.05] text-slate-300 border border-white/10 hover:bg-white/[0.1] hover:text-white whitespace-nowrap">
+            Clínicas
           </button>
-
-          <!-- Mouse Arrows for Medium Screens -->
-          <div class="hidden sm:flex xl:hidden items-center gap-1 pl-2">
-            <button type="button" onclick="scrollPortfolioCarousel(-1)" aria-label="Anterior" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center">←</button>
-            <button type="button" onclick="scrollPortfolioCarousel(1)" aria-label="Siguiente" class="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center">→</button>
-          </div>
         </div>
       </div>
 
-      <!-- 8 iPhone 15 Pro Live Custom Showcases -->
-      <div id="portfolio-cards-container" class="pf-carousel"></div>
+      <!-- 2-Column Visual Showcase Grid -->
+      <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"></div>
+
     </div>
   </section>
 
   <!-- =====================================================================
-       SECTION 4: VISUAL 2-TIER COMPARISON (#planes · 50 € Básica vs Élite VIP)
+       SECTION 3: TWO SIMPLE, CLEAR OPTIONS (#opciones · Express vs A Medida)
        ===================================================================== -->
-  <section id="planes" class="py-12 sm:py-18 bg-[#0B0F18] border-b border-white/10">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-7 reveal-up">
-      <div class="text-center">
-        <span class="text-emerald-400 font-mono text-xs font-bold uppercase">Dos niveles claros</span>
-        <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-1">
-          Elige el nivel que necesita tu negocio
+  <section id="opciones" class="scroll-mt-24 py-16 sm:py-24 border-t border-white/[0.07]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
+
+      <div class="text-center max-w-xl mx-auto">
+        <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-amber-300">Dos Opciones Simples</span>
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-white mt-1">
+          Elige cómo empezar
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- TIER 1: 50€ BASIC SELF-SERVE -->
-        <div class="rounded-3xl bg-[#111623] border border-white/12 p-6 flex flex-col justify-between gap-6">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 font-mono text-xs font-bold">⚡ NIVEL 1 · AUTOMÁTICA</span>
-              <div class="text-right">
-                <strong class="font-display font-black text-3xl text-white">50 €</strong>
-                <span class="block text-[10px] font-mono text-slate-400 uppercase">Pago Único</span>
+        <!-- Card 1: Web Básica Express (Desde 50 €) -->
+        <div class="double-bezel reveal-item">
+          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between gap-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-xs font-semibold text-slate-300">
+                  Opción Básica
+                </span>
+                <span class="font-display font-black text-2xl sm:text-3xl text-white">50 €</span>
               </div>
+
+              <div>
+                <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">Web Express Estándar</h3>
+                <p class="text-sm text-slate-400 mt-1">
+                  Una presentación sencilla de 1 página para tener presencia rápida en internet sin cuotas mensuales.
+                </p>
+              </div>
+
+              <ul class="space-y-2.5 text-sm text-slate-300 pt-2">
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-emerald-400"></i>
+                  <span>Diseño estándar limpio adaptado a móvil</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-emerald-400"></i>
+                  <span>Tus servicios, horario y mapa de ubicación</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-emerald-400"></i>
+                  <span>Botón directo a tu WhatsApp y llamadas</span>
+                </li>
+              </ul>
             </div>
 
-            <div>
-              <h3 class="font-display font-extrabold text-xl text-white">Web Básica Estándar</h3>
-              <p class="text-xs text-slate-400 mt-1">La generas tú mismo abajo en 60 segundos con nuestra plantilla rápida.</p>
-            </div>
-
-            <div class="space-y-2 text-xs font-semibold text-slate-200 pt-2 border-t border-white/10">
-              <div class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400 text-base"></i> Plantilla limpia de 1 página</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400 text-base"></i> Tus precios, horario y mapa</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400 text-base"></i> Botón directo a tu WhatsApp</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-400 text-base"></i> Panel <code class="text-amber-300">/admin</code> para editar textos</div>
-              <div class="flex items-center gap-2 text-slate-500"><i class="ph-bold ph-minus-circle text-base"></i> Sin catálogo avanzado ni diseño exclusivo</div>
-            </div>
+            <button type="button"
+                    onclick="contactWhatsApp('Web Express Estándar (50 €)')"
+                    class="btn-press w-full py-3.5 px-5 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white font-display font-bold text-sm inline-flex items-center justify-center gap-2">
+              <i class="ph-fill ph-whatsapp-logo text-lg text-emerald-400"></i>
+              <span>Pedir Web Express</span>
+            </button>
           </div>
-
-          <a href="#generador"
-            class="btn-tap w-full py-3.5 px-5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm text-center shadow-lg">
-            Usar Generador Básico · 50 € →
-          </a>
         </div>
 
-        <!-- TIER 2: HIGH-TICKET ELITE CUSTOM PROJECT -->
-        <div class="rounded-3xl bg-gradient-to-br from-amber-500/20 via-[#151928] to-[#101420] border-2 border-amber-400 p-6 flex flex-col justify-between gap-6 shadow-2xl relative">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between gap-2">
-              <span class="px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-mono text-xs font-extrabold">💎 NIVEL 2 · PROYECTO ÉLITE</span>
-              <span class="font-display font-extrabold text-sm text-amber-300">Presupuesto A Medida</span>
+        <!-- Card 2: Proyecto Exclusivo A Medida (High-Ticket Custom) -->
+        <div class="double-bezel reveal-item" style="border-color: rgba(251, 191, 36, 0.35); background: rgba(251, 191, 36, 0.04);">
+          <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between gap-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-3">
+                <span class="px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/35 text-xs font-bold text-amber-300">
+                  Más Solicitado · VIP
+                </span>
+                <span class="font-display font-extrabold text-lg sm:text-xl text-amber-300">A Medida</span>
+              </div>
+
+              <div>
+                <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">Proyecto Exclusivo A Medida</h3>
+                <p class="text-sm text-slate-400 mt-1">
+                  Diseño único de alto impacto como las webs de nuestro catálogo, hecho 100% para tu marca.
+                </p>
+              </div>
+
+              <ul class="space-y-2.5 text-sm text-slate-200 pt-2">
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-amber-300"></i>
+                  <span>Catálogo de motos/coches, carta visual o galería de obras</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-amber-300"></i>
+                  <span>Sistema de citas, presupuestos y efectos visuales exclusivos</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <i class="ph-bold ph-check text-amber-300"></i>
+                  <span>Dominio propio (.com / .es) y alta en Google Maps</span>
+                </li>
+              </ul>
             </div>
 
-            <div>
-              <h3 class="font-display font-extrabold text-xl text-white">Sistema Web Exclusivo A Medida</h3>
-              <p class="text-xs text-slate-300 mt-1">Creada desde cero por nuestro estudio para liderar tu ciudad (como Orero Motorcycles o Reformas Elite).</p>
-            </div>
-
-            <!-- Mini Visual Strip of Elite Features -->
-            <div class="grid grid-cols-3 gap-2 pt-1">
-              <img src="assets/portfolio/motos_orero.jpg" alt="Stock Pro" class="h-20 w-full object-cover object-top rounded-xl border border-white/15" />
-              <img src="assets/portfolio/reformas_elite.jpg" alt="Reformas VIP" class="h-20 w-full object-cover object-top rounded-xl border border-white/15" />
-              <img src="assets/portfolio/autochrome.jpg" alt="Antes y Después" class="h-20 w-full object-cover object-top rounded-xl border border-white/15" />
-            </div>
-
-            <div class="space-y-2 text-xs font-semibold text-white pt-2 border-t border-white/10">
-              <div class="flex items-center gap-2"><i class="ph-fill ph-star text-amber-400 text-base"></i> Diseño 100% único de alta gama hecho por nosotros</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-star text-amber-400 text-base"></i> Catálogo de Stock (motos, coches, platos, inmuebles)</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-star text-amber-400 text-base"></i> Sliders Antes/Después, efectos y calculadoras</div>
-              <div class="flex items-center gap-2"><i class="ph-fill ph-star text-amber-400 text-base"></i> Dominio propio (.com / .es) + SEO Google Maps</div>
-            </div>
+            <button type="button"
+                    onclick="contactWhatsApp('Proyecto Exclusivo A Medida para mi negocio')"
+                    class="btn-press w-full py-3.5 px-5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
+              <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+              <span>Pedir Presupuesto A Medida</span>
+            </button>
           </div>
-
-          <button type="button" onclick="openVipCustomModal()"
-            class="w-full py-4 px-5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-black text-sm shadow-xl flex items-center justify-center gap-2">
-            <i class="ph-fill ph-whatsapp-logo text-lg"></i>
-            <span>Pedir Propuesta Élite A Medida →</span>
-          </button>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <!-- =====================================================================
-       SECTION 5: EXPRESS 50€ BASIC GENERATOR STUDIO (#generador)
-       ===================================================================== -->
-  <section id="generador" class="py-12 sm:py-18 border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
+      <!-- Any Other Sector Direct Strip -->
+      <div class="rounded-3xl bg-white/[0.03] border border-white/10 p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
         <div>
-          <span class="inline-flex items-center gap-1.5 text-emerald-400 font-mono text-xs font-bold uppercase">
-            ⚡ Creador Automático · Nivel Básico (50 €)
-          </span>
-          <h2 class="font-display font-black text-2xl sm:text-4xl text-white mt-0.5">
-            Prueba tu Web Básica gratis 24h
-          </h2>
+          <h4 class="font-display font-bold text-base sm:text-lg text-white">¿Tienes otro tipo de negocio?</h4>
+          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Tienda, inmobiliaria, gimnasio, fontanería, despacho... Escríbenos y te mostramos ideas para tu sector.</p>
         </div>
-
-        <button type="button" onclick="openLiveAdminPreview()"
-          class="self-start sm:self-auto px-3.5 py-2 rounded-xl bg-white/8 hover:bg-white/12 border border-white/15 text-amber-300 text-xs font-bold flex items-center gap-1.5">
-          <i class="ph-bold ph-key"></i> Probar Panel /admin ↗
+        <button type="button"
+                onclick="contactWhatsApp('Tengo otro tipo de negocio y quiero ver ejemplos')"
+                class="btn-press shrink-0 px-5 py-3 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-2">
+          <i class="ph-fill ph-whatsapp-logo text-base"></i>
+          <span>Escribir al +34 632 76 81 52</span>
         </button>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-
-        <!-- Left: 4-Step Compact Visual Editor -->
-        <div class="lg:col-span-6 rounded-3xl bg-[#111623] border border-white/12 p-4 sm:p-6 shadow-2xl">
-
-          <div class="grid grid-cols-4 gap-1.5 p-1 rounded-2xl bg-slate-950 border border-white/10 mb-5">
-            <button type="button" id="studio-tab-1" onclick="switchStudioStep(1)" class="step-tab-btn active py-2.5 px-1 rounded-xl text-xs font-bold text-center">1. Local</button>
-            <button type="button" id="studio-tab-2" onclick="switchStudioStep(2)" class="step-tab-btn py-2.5 px-1 rounded-xl text-xs font-semibold text-slate-300 text-center">2. Datos</button>
-            <button type="button" id="studio-tab-3" onclick="switchStudioStep(3)" class="step-tab-btn py-2.5 px-1 rounded-xl text-xs font-semibold text-slate-300 text-center">3. Precios</button>
-            <button type="button" id="studio-tab-4" onclick="switchStudioStep(4)" class="step-tab-btn py-2.5 px-1 rounded-xl text-xs font-semibold text-slate-300 text-center">4. Color</button>
-          </div>
-
-          <!-- STEP 1 -->
-          <div id="studio-step-1" class="space-y-4">
-            <div>
-              <label for="inp-name" class="block text-xs font-bold text-white uppercase mb-1.5">Nombre de tu negocio</label>
-              <input type="text" id="inp-name" oninput="onNameInputManual(this.value)"
-                placeholder="Ej. Peluquería Fathi, Reformas Levante..."
-                class="w-full px-3.5 py-3 rounded-xl bg-slate-950 border border-white/15 text-white font-semibold focus:border-emerald-400 focus:outline-none" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-white uppercase mb-2">Tu sector (adapta reservas / presupuesto / carta)</label>
-              <div id="sector-chips-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
-            </div>
-
-            <div id="custom-sector-wrap" class="hidden p-3 rounded-2xl bg-emerald-500/10 border border-emerald-400/30">
-              <label for="inp-custom-sector" class="block text-xs font-bold text-emerald-300 mb-1">¿Qué actividad tienes?</label>
-              <input type="text" id="inp-custom-sector" oninput="schedulePreviewRefresh()"
-                placeholder="Ej. Abogado, Tienda de Ropa, Fontanero..."
-                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label for="inp-years" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">Sello superior</label>
-                <input type="text" id="inp-years" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-              </div>
-              <div>
-                <label for="inp-tagline" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">Frase principal</label>
-                <input type="text" id="inp-tagline" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-              </div>
-            </div>
-
-            <div>
-              <label for="inp-story" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">Subtítulo breve</label>
-              <input type="text" id="inp-story" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-slate-200 focus:border-emerald-400 focus:outline-none" />
-            </div>
-
-            <button type="button" onclick="switchStudioStep(2)"
-              class="w-full py-3.5 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm">
-              Siguiente: WhatsApp y Ubicación →
-            </button>
-          </div>
-
-          <!-- STEP 2 -->
-          <div id="studio-step-2" class="hidden space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label for="inp-whatsapp" class="block text-xs font-bold text-emerald-300 uppercase mb-1">💬 WhatsApp</label>
-                <input type="tel" id="inp-whatsapp" oninput="schedulePreviewRefresh()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-emerald-400/40 text-white font-bold focus:border-emerald-400 focus:outline-none" />
-              </div>
-              <div>
-                <label for="inp-city" class="block text-xs font-bold text-white uppercase mb-1">📍 Ciudad</label>
-                <input type="text" id="inp-city" oninput="schedulePreviewRefresh()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label for="inp-address" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">Dirección (Maps)</label>
-                <input type="text" id="inp-address" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-              </div>
-              <div>
-                <label for="inp-phone" class="block text-[11px] font-mono uppercase text-slate-400 mb-1">Teléfono secundario</label>
-                <input type="tel" id="inp-phone" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-2">
-              <div>
-                <label for="inp-hours-week" class="block text-[11px] text-slate-400 mb-1">Lunes–Viernes</label>
-                <input type="text" id="inp-hours-week" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-2.5 py-2 rounded-lg bg-slate-950 border border-white/12 text-white" />
-              </div>
-              <div>
-                <label for="inp-hours-sat" class="block text-[11px] text-slate-400 mb-1">Sábados</label>
-                <input type="text" id="inp-hours-sat" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-2.5 py-2 rounded-lg bg-slate-950 border border-white/12 text-white" />
-              </div>
-              <div>
-                <label for="inp-hours-sun" class="block text-[11px] text-slate-400 mb-1">Domingos</label>
-                <input type="text" id="inp-hours-sun" oninput="schedulePreviewRefresh()" class="w-full desk-sm px-2.5 py-2 rounded-lg bg-slate-950 border border-white/12 text-white" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2.5 pt-1">
-              <button type="button" onclick="switchStudioStep(1)" class="py-3 rounded-xl bg-white/8 text-white font-semibold text-xs">← Atrás</button>
-              <button type="button" onclick="switchStudioStep(3)" class="py-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs">3. Precios y Fotos →</button>
-            </div>
-          </div>
-
-          <!-- STEP 3 -->
-          <div id="studio-step-3" class="hidden space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-white uppercase">Servicios / Tarifas</span>
-              <button type="button" onclick="addServiceItem()" class="px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold">+ Añadir</button>
-            </div>
-
-            <div id="services-editor-list" class="space-y-2.5"></div>
-
-            <div class="p-3.5 rounded-2xl bg-slate-950 border border-white/12 space-y-2.5">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-white">📸 Tus propias fotos</span>
-                <button type="button" onclick="resetUploadedPhotos()" class="text-[11px] text-slate-400 underline">Restaurar</button>
-              </div>
-              <div class="grid grid-cols-2 gap-2">
-                <label class="cursor-pointer p-3 rounded-xl bg-white/[0.04] border border-dashed border-white/20 block">
-                  <span class="block text-xs font-bold text-emerald-300">Foto Portada</span>
-                  <span id="hero-photo-status" class="block text-[10px] text-slate-400 truncate">Foto automática</span>
-                  <input type="file" accept="image/*" onchange="handleHeroPhotoUpload(this)" class="hidden" />
-                </label>
-                <label class="cursor-pointer p-3 rounded-xl bg-white/[0.04] border border-dashed border-white/20 block">
-                  <span class="block text-xs font-bold text-emerald-300">Galería (x4)</span>
-                  <span id="gallery-photo-status" class="block text-[10px] text-slate-400 truncate">3 fotos muestra</span>
-                  <input type="file" accept="image/*" multiple onchange="handleGalleryUpload(this)" class="hidden" />
-                </label>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2.5">
-              <button type="button" onclick="switchStudioStep(2)" class="py-3 rounded-xl bg-white/8 text-white font-semibold text-xs">← Atrás</button>
-              <button type="button" onclick="switchStudioStep(4)" class="py-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs">4. Colores →</button>
-            </div>
-          </div>
-
-          <!-- STEP 4 -->
-          <div id="studio-step-4" class="hidden space-y-4">
-            <div>
-              <label class="block text-xs font-bold text-white uppercase mb-2">Paleta de color</label>
-              <div id="theme-selector-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-white uppercase mb-2">Módulos visibles</label>
-              <div id="modules-toggle-grid" class="grid grid-cols-1 gap-2"></div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2.5 pt-1">
-              <button type="button" onclick="switchStudioStep(3)" class="py-3 rounded-xl bg-white/8 text-white font-semibold text-xs">← Atrás</button>
-              <button type="button" onclick="openAutomatedCheckoutModal()" class="py-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs">Activar · 50 € →</button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Right: Live Interactive Preview (100% Mouse Friendly + Touch Safe!) -->
-        <div id="live-preview-anchor" class="lg:col-span-6 lg:sticky lg:top-20 space-y-4">
-
-          <div class="flex items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-[#111623] border border-white/12">
-            <div class="flex items-center gap-2 text-xs">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="text-slate-300">Demo 24h:</span>
-              <strong class="font-mono text-amber-300 tabular-nums js-countdown-24h">23:59:45</strong>
-            </div>
-            <div class="hidden sm:flex items-center bg-slate-950 p-1 rounded-xl border border-white/10">
-              <button type="button" id="btn-dev-mobile" onclick="setPreviewDevice('mobile')" class="px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-950">Móvil</button>
-              <button type="button" id="btn-dev-desktop" onclick="setPreviewDevice('desktop')" class="px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white">PC</button>
-            </div>
-          </div>
-
-          <div id="preview-frame-shell" class="preview-shell is-mobile-width rounded-3xl overflow-hidden bg-slate-950 border-2 border-white/15 shadow-2xl">
-            <div class="px-3.5 py-2.5 bg-[#141926] border-b border-white/10 flex items-center justify-between gap-2">
-              <div class="flex items-center gap-2 min-w-0 bg-slate-950 px-3 py-1.5 rounded-xl border border-white/10 flex-1">
-                <i class="ph-fill ph-lock-key text-emerald-400 text-xs shrink-0"></i>
-                <span id="preview-live-url" class="font-mono text-xs text-slate-200 truncate">miweblocal.com/demo</span>
-              </div>
-              <div class="flex items-center gap-1.5 shrink-0">
-                <a id="open-real-demo-tab" href="/sitio/" target="_blank" rel="noopener"
-                  class="btn-tap px-2.5 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold whitespace-nowrap">
-                  Abrir ↗
-                </a>
-                <button type="button" onclick="openFullscreenGeneratedDemo()"
-                  class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold whitespace-nowrap">
-                  Ampliar
-                </button>
-              </div>
-            </div>
-
-            <div id="iframe-touch-guard" class="iframe-touch-guard locked-scroll bg-slate-950">
-              <iframe id="studio-preview-iframe" title="Vista previa en vivo" class="w-full h-[500px] sm:h-[540px] border-0 block bg-slate-950"></iframe>
-
-              <!-- Shown ONLY on coarse touch devices; completely invisible on mouse PCs! -->
-              <div class="iframe-guard-overlay absolute bottom-3 inset-x-3 flex items-center justify-center gap-2 z-20 pointer-events-auto">
-                <button type="button" id="btn-unlock-inline-touch" onclick="toggleInlineIframeTouch()"
-                  class="px-3.5 py-2 rounded-full bg-slate-900/95 border border-white/20 text-white font-display font-bold text-xs shadow-lg flex items-center gap-1.5 whitespace-nowrap">
-                  <i class="ph-bold ph-hand-tap text-emerald-400"></i>
-                  <span>Tocar Demo</span>
-                </button>
-                <button type="button" onclick="openFullscreenGeneratedDemo()"
-                  class="px-3.5 py-2 rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-xs shadow-lg flex items-center gap-1 whitespace-nowrap">
-                  <i class="ph-bold ph-corners-out"></i>
-                  <span>Pantalla Completa</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Dual Action Box: 50€ Basic OR Upgrade to Elite Custom Build -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <button type="button" onclick="openAutomatedCheckoutModal()"
-              class="py-3.5 px-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-1.5">
-              <span>⚡ Activar Básica · 50 €</span>
-              <i class="ph-bold ph-arrow-right"></i>
-            </button>
-            <button type="button" onclick="openVipCustomModal()"
-              class="py-3.5 px-4 rounded-2xl bg-amber-400/15 hover:bg-amber-400/25 border border-amber-400/45 text-amber-300 font-display font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5">
-              <i class="ph-fill ph-crown"></i>
-              <span>Pedir Élite A Medida</span>
-            </button>
-          </div>
-
-        </div>
-
-      </div>
     </div>
   </section>
 
-  <!-- Minimal Clean Footer -->
-  <footer class="py-10 pb-24 lg:pb-10 text-xs text-slate-400">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="w-6 h-6 rounded-lg bg-emerald-400 text-slate-950 font-display font-black text-xs flex items-center justify-center">M</span>
-        <strong class="text-white font-display">MiWebLocal.com</strong>
-        <span>· Webs Básicas 50 € y Proyectos Élite A Medida</span>
+  <!-- Minimal Footer -->
+  <footer class="py-10 border-t border-white/[0.06] text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        <strong class="text-slate-300 font-display">MiWebLocal.com</strong> · Diseño web visual para negocios
       </div>
-      <div class="flex flex-wrap items-center gap-4">
-        <button type="button" onclick="openVipCustomModal()" class="text-amber-300 font-bold hover:underline">💎 Pedir Web A Medida</button>
-        <a href="/sitio/" class="hover:text-white">Demo Activa</a>
-        <a href="/admin/" class="hover:text-white">Panel /admin</a>
-      </div>
+      <a href="https://wa.me/34632768152" target="_blank" rel="noopener" class="text-slate-300 hover:text-emerald-400 font-medium">
+        WhatsApp directo: +34 632 76 81 52
+      </a>
     </div>
   </footer>
 
-  <!-- Smart Mobile Bottom Bar -->
-  <div id="smart-bottom-bar" class="bar-hidden lg:hidden fixed bottom-0 inset-x-0 z-40 bg-[#07090E]/95 backdrop-blur-xl border-t border-white/15 px-3 pt-2.5">
-    <div class="max-w-md mx-auto grid grid-cols-2 gap-2">
-      <a href="#generador"
-        class="btn-tap py-2.5 px-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs text-center whitespace-nowrap">
-        ⚡ Básica · 50 €
-      </a>
-      <button type="button" onclick="openVipCustomModal()"
-        class="py-2.5 px-3 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-xs text-center whitespace-nowrap">
-        💎 Élite A Medida
-      </button>
-    </div>
+  <!-- =====================================================================
+       MOBILE STICKY WHATSAPP BAR (1 Thumb Tap Anywhere)
+       ===================================================================== -->
+  <div id="mobile-wa-bar" class="lg:hidden fixed bottom-3 inset-x-3 z-30 translate-y-24 opacity-0 pointer-events-none transition-all duration-300">
+    <button type="button"
+            onclick="contactWhatsApp('Quiero información para la web de mi negocio')"
+            class="btn-press w-full py-3.5 px-5 rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-sm shadow-2xl flex items-center justify-center gap-2">
+      <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+      <span>Hablar por WhatsApp · 632 76 81 52</span>
+    </button>
   </div>
 
   <!-- =====================================================================
-       MODALS: VIP CUSTOM PROJECT, FULLSCREEN DEMO, LIVE PORTFOLIO & 50€ CHECKOUT
+       CINEMA VIDEO & STUDIO PHOTO MODAL (#cinema-modal)
        ===================================================================== -->
+  <div id="cinema-modal"
+       class="cinema-modal fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
+       onclick="if(event.target === this) closeCinemaModal()">
+    <div class="cinema-modal-panel w-full max-w-3xl rounded-[28px] bg-[#0B0E15] border border-white/15 overflow-hidden shadow-2xl flex flex-col max-h-[92dvh]">
 
-  <!-- 1. VIP High-Ticket Custom Project Modal (Sells 400€ – 900€+ Custom Builds!) -->
-  <div id="vip-custom-modal" class="hidden fixed inset-0 z-[90] modal-backdrop flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
-    <div class="w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-[#111623] border-2 border-amber-400/50 p-5 sm:p-6 shadow-2xl max-h-[94dvh] overflow-y-auto space-y-4">
-      <div class="flex items-center justify-between gap-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-slate-950 font-mono text-[11px] font-extrabold">
-          💎 PROYECTO ÉLITE 100% A MEDIDA
-        </span>
-        <button type="button" onclick="closeVipCustomModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
-      </div>
+      <!-- Top Bar -->
+      <div class="px-4 sm:px-6 py-3.5 border-b border-white/10 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <h3 id="cinema-title" class="font-display font-bold text-sm sm:text-base text-white truncate">Vista Previa</h3>
+          <p id="cinema-sub" class="text-xs text-slate-400 truncate hidden sm:block"></p>
+        </div>
 
-      <div>
-        <h3 class="font-display font-black text-xl sm:text-2xl text-white">
-          Creamos la Web Élite exclusiva de tu negocio
-        </h3>
-        <div id="vip-ref-badge" class="hidden mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold">
-          <i class="ph-fill ph-sparkle"></i> <span id="vip-ref-text"></span>
+        <div class="flex items-center gap-2 shrink-0">
+          <div class="p-1 rounded-full bg-white/[0.06] border border-white/10 flex items-center gap-1">
+            <button type="button" id="btn-cinema-vid" onclick="setCinemaView('video')"
+                    class="btn-press px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-950">
+              Vídeo Móvil
+            </button>
+            <button type="button" id="btn-cinema-img" onclick="setCinemaView('photo')"
+                    class="btn-press px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white">
+              Ordenador + Móvil
+            </button>
+          </div>
+
+          <button type="button" onclick="closeCinemaModal()"
+                  aria-label="Cerrar"
+                  class="btn-press w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+            <i class="ph-bold ph-x text-sm"></i>
+          </button>
         </div>
       </div>
 
-      <form onsubmit="sendVipProposalWhatsApp(event)" class="space-y-4">
-        <div>
-          <label class="block text-[11px] font-mono uppercase text-amber-300 font-bold mb-1.5">1. Tu tipo de negocio</label>
-          <div class="grid grid-cols-2 gap-2">
-            <button type="button" data-vsec="Motos / Taller / Concesionario" onclick="pickVipSector(this, 'Motos / Taller / Concesionario')" class="vip-sec-btn p-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-white font-bold text-xs text-left flex items-center gap-2">🏍️ Motos / Coches / Taller</button>
-            <button type="button" data-vsec="Reformas / Construcción / Villas" onclick="pickVipSector(this, 'Reformas / Construcción / Villas')" class="vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2">🏠 Reformas / Obra</button>
-            <button type="button" data-vsec="Barbería / Estética / Tattoo" onclick="pickVipSector(this, 'Barbería / Estética / Tattoo')" class="vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2">✂️ Barbería / Belleza</button>
-            <button type="button" data-vsec="Restaurante / Brunch / Hostelería" onclick="pickVipSector(this, 'Restaurante / Brunch / Hostelería')" class="vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2">🍔 Restaurante / Café</button>
-            <button type="button" data-vsec="Clínica / Salud / Fitness" onclick="pickVipSector(this, 'Clínica / Salud / Fitness')" class="vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2">🦷 Clínica / Fitness</button>
-            <button type="button" data-vsec="Tienda / Empresa / Otro Sector" onclick="pickVipSector(this, 'Tienda / Empresa / Otro Sector')" class="vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2">💼 Tienda / Empresa</button>
+      <!-- Visual Body (Video or Studio Photo) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 flex items-center justify-center bg-[#06080C]">
+        <!-- Smooth Video Inside Titanium Phone -->
+        <div id="cinema-video-wrap" class="flex justify-center">
+          <div class="titanium-phone w-[230px] sm:w-[265px]">
+            <div class="titanium-phone-screen">
+              <video id="cinema-video" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+            </div>
           </div>
         </div>
 
-        <div>
-          <label class="block text-[11px] font-mono uppercase text-slate-300 font-bold mb-1.5">2. ¿Qué quieres incluir? (Toca varios)</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <button type="button" onclick="toggleVipExtra(this, 'Diseño Exclusivo 100% A Medida')" class="vip-ext-btn px-3 py-2 rounded-xl border border-emerald-400 bg-emerald-500/15 text-emerald-200 font-bold text-xs text-left flex items-center justify-between gap-2"><span>✨ Diseño Único VIP</span><span>✓</span></button>
-            <button type="button" onclick="toggleVipExtra(this, 'Catálogo / Reservas Avanzadas')" class="vip-ext-btn px-3 py-2 rounded-xl border border-emerald-400 bg-emerald-500/15 text-emerald-200 font-bold text-xs text-left flex items-center justify-between gap-2"><span>📦 Stock / Reservas Pro</span><span>✓</span></button>
-            <button type="button" onclick="toggleVipExtra(this, 'Comparador Antes/Después y Efectos')" class="vip-ext-btn px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-medium text-xs text-left flex items-center justify-between gap-2"><span>↔️ Slider Antes/Después</span><span>+</span></button>
-            <button type="button" onclick="toggleVipExtra(this, 'Dominio .com + SEO Google Maps')" class="vip-ext-btn px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-medium text-xs text-left flex items-center justify-between gap-2"><span>📍 Dominio + Google #1</span><span>+</span></button>
-          </div>
+        <!-- Studio Desktop + Mobile Photo -->
+        <div id="cinema-photo-wrap" class="hidden w-full">
+          <img id="cinema-photo" src="" alt="" class="w-full max-h-[62dvh] object-contain rounded-2xl mx-auto block" />
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <input type="text" id="vip-biz-name" required placeholder="Nombre de tu negocio"
-            class="px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-amber-400 focus:outline-none" />
-          <input type="text" id="vip-biz-city" placeholder="Ciudad / Localidad"
-            class="px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-amber-400 focus:outline-none" />
-        </div>
-
-        <button type="submit"
-          class="w-full py-4 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-black text-sm shadow-xl flex items-center justify-center gap-2">
+      <!-- Bottom Direct CTA -->
+      <div class="px-4 sm:px-6 py-3.5 border-t border-white/10 bg-[#0B0E15] flex items-center justify-between gap-3">
+        <span class="text-xs text-slate-400 hidden sm:inline">Te adaptamos este estilo con tus fotos, logo y colores.</span>
+        <button type="button" id="cinema-wa-btn"
+                class="btn-press w-full sm:w-auto px-6 py-3 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2">
           <i class="ph-fill ph-whatsapp-logo text-lg"></i>
-          <span>Hablar con Fathi y Ver Propuesta A Medida →</span>
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 2. Fullscreen Generated Basic Demo Modal -->
-  <div id="fullscreen-demo-modal" class="hidden fixed inset-0 z-[80] bg-[#07090E] flex flex-col" style="height: 100dvh;">
-    <div class="px-3.5 py-2.5 bg-[#111623] border-b border-white/12 flex items-center justify-between gap-2 shrink-0">
-      <button type="button" onclick="closeFullscreenGeneratedDemo()" class="px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-bold">← Volver</button>
-      <span id="fullscreen-demo-url" class="font-mono text-xs text-slate-300 truncate">miweblocal.com/demo</span>
-      <button type="button" onclick="openAutomatedCheckoutModal()" class="px-3.5 py-1.5 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">Activar · 50 €</button>
-    </div>
-    <iframe id="fullscreen-demo-iframe" title="Demo pantalla completa" class="w-full flex-1 border-0 bg-slate-950"></iframe>
-  </div>
-
-  <!-- 3. Real Elite Client Modal (Links to High-Ticket VIP Request!) -->
-  <div id="live-client-modal" class="hidden fixed inset-0 z-[80] bg-[#07090E] flex flex-col" style="height: 100dvh;">
-    <div class="px-3.5 py-2.5 bg-[#111623] border-b border-white/12 flex items-center justify-between gap-2 shrink-0">
-      <button type="button" onclick="closeLiveClientModal()" class="px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-bold">✕ Cerrar</button>
-      <div class="min-w-0 text-center">
-        <span class="block text-[10px] font-mono uppercase text-amber-300 font-bold">💎 Proyecto Élite A Medida</span>
-        <strong id="live-client-title" class="block text-xs text-white truncate">Cliente Real</strong>
-      </div>
-      <div class="flex items-center gap-1.5 shrink-0">
-        <a id="live-client-external" href="/" target="_blank" rel="noopener" class="px-2.5 py-1.5 rounded-xl bg-white/10 text-white text-xs font-semibold">↗</a>
-        <button type="button" onclick="requestLikeCurrentModalClient()"
-          class="px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">
-          💎 Quiero una Igual
+          <span>Quiero una web así · WhatsApp</span>
         </button>
       </div>
-    </div>
-    <iframe id="live-client-iframe" title="Proyecto Élite en Vivo" class="w-full flex-1 border-0 bg-slate-950"></iframe>
-  </div>
 
-  <!-- 4. 50€ Basic Checkout Modal -->
-  <div id="checkout-modal" class="hidden fixed inset-0 z-[85] modal-backdrop flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
-    <div id="checkout-modal-body" class="w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-[#111623] border border-white/15 p-5 sm:p-6 shadow-2xl max-h-[94dvh] overflow-y-auto">
     </div>
   </div>
 
-  <script src="assets/studio-engine.js"></script>
+  <script src="assets/showcase-v4.js"></script>
 </body>
 </html>

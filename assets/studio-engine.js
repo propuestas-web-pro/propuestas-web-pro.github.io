@@ -3,7 +3,7 @@
    ========================================================================== */
 
 const STORAGE_KEY = 'miweblocal_platform_v5';
-const FATHI_WHATSAPP = '34631093807';
+const FATHI_WHATSAPP = '34632768152';
 
 // 13 Crisp Sector Presets with Sector-Specific Action Modes
 const SECTOR_PRESETS = {
