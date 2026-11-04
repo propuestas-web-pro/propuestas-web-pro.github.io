@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>Web en Vivo · MiWebLocal</title>
+  <meta name="theme-color" content="#090B10" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      background: #090B10;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #demo-top-bar {
+      background: #0E121B;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+      z-index: 30;
+    }
+    #demo-top-bar.hidden { display: none !important; }
+    .badge-timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #FDE68A;
+      white-space: nowrap;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .btn-sm {
+      padding: 7px 11px;
+      border-radius: 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .btn-unlock {
+      padding: 7px 12px;
+      border-radius: 9px;
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      border: none;
+      background: #34D399;
+      color: #04130D;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    #client-live-iframe {
+      width: 100%;
+      flex: 1;
+      border: 0;
+      background: #090B10;
+      display: block;
+    }
+    #copy-toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10B981;
+      color: #04130D;
+      font-weight: 800;
+      font-size: 12.5px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      z-index: 100;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shown ONLY while in 24h Demo Mode; automatically disappears once unlocked! -->
+  <div id="demo-top-bar" class="hidden">
+    <div class="badge-timer">
+      <span class="dot"></span>
+      <span>Demo 24h · <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:12</strong></span>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn-sm" onclick="shareDemoLink()">Compartir</button>
+      <a href="/admin/" id="sitio-admin-link" class="btn-sm" style="color:#FCD34D; border-color:rgba(252,211,77,0.35);">/admin</a>
+      <a href="/#generador" class="btn-unlock">Activar · 50 €</a>
+    </div>
+  </div>
+
+  <iframe id="client-live-iframe" title="Página web del negocio"></iframe>
+  <div id="copy-toast">✓ Enlace copiado para enviar por WhatsApp</div>
+
+  <script src="../assets/studio-engine.js"></script>
+  <script>
+    (function initLiveSiteViewer() {
+      const params = new URLSearchParams(window.location.search);
+      const encoded = params.get('d');
+      const slugParam = params.get('negocio');
+      const hasLocal = !!localStorage.getItem(STORAGE_KEY);
+      const localSt = loadStudioState();
+
+      let activeState = localSt;
+      if (encoded) {
+        const decoded = decodeSharePayload(encoded);
+        if (decoded) {
+          // Prefer localStorage ONLY if user edited this exact same business locally very recently;
+          // otherwise use the shared URL payload so links opened on other phones render accurately.
+          if (hasLocal && slugifyName(localSt.name) === slugifyName(decoded.name)) {
+            activeState = Object.assign({}, decoded, localSt, {
+              unlocked: !!(localSt.unlocked || decoded.unlocked)
+            });
+          } else {
+            activeState = decoded;
+          }
+        }
+      }
+
+      document.title = activeState.name + ' · ' + (activeState.city || 'Web Oficial');
+
+      const topBar = document.getElementById('demo-top-bar');
+      const adminLink = document.getElementById('sitio-admin-link');
+      if (adminLink) {
+        adminLink.href = '/admin/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
+      }
+
+      if (!activeState.unlocked && topBar) {
+        topBar.classList.remove('hidden');
+        const timerEl = document.getElementById('sitio-timer');
+        const updateClock = () => {
+          const rem = Math.max(0, (activeState.expiresAt || (Date.now() + 86000000)) - Date.now());
+          const sec = Math.floor(rem / 1000);
+          const h = String(Math.floor(sec / 3600)).padStart(2, '0');
+          const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+          const s = String(sec % 60).padStart(2, '0');
+          if (timerEl) timerEl.textContent = h + ':' + m + ':' + s;
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+      }
+
+      const iframe = document.getElementById('client-live-iframe');
+      if (iframe) {
+        iframe.srcdoc = compileClientWebsiteHTML(activeState);
+      }
+
+      window.shareDemoLink = function() {
+        const shareUrl = window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
+        if (navigator.share) {
+          navigator.share({ title: activeState.name, url: shareUrl }).catch(() => {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(shareUrl).then(() => {
+            const t = document.getElementById('copy-toast');
+            if (t) {
+              t.style.display = 'block';
+              setTimeout(() => { t.style.display = 'none'; }, 2600);
+            }
+          });
+        }
+      };
+    })();
+  </script>
+</body>
+</html>

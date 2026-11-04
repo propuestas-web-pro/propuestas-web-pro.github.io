@@ -1,22 +1,19 @@
 /* ==========================================================================
-   MI WEB LOCAL — ELITE MOBILE-FIRST DESIGN SYSTEM & MOTION ENGINE
-   Crafted with mobile-native, emil-design-eng & frontend-design principles
+   MI WEB LOCAL — V2 BENCHMARKED SYSTEM (Owner.com + Mixo + UENI Architecture)
+   100% Mobile-First (360px / 390px), Zero Scroll Traps, Zero Clipped Text
    ========================================================================== */
 
 :root {
-  --bg-obsidian: #07080C;
-  --bg-surface: #0E1017;
-  --bg-elevated: #141722;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-  --accent-emerald: #10B981;
-  --accent-copper: #D49154;
-  --accent-amber: #F59E0B;
-  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --bg-main: #090B10;
+  --bg-alt: #0E1118;
+  --bg-card: #131722;
+  --bg-light: #F8FAFC;
+  --border-dim: rgba(255, 255, 255, 0.09);
+  --border-mid: rgba(255, 255, 255, 0.16);
+  --emerald: #10B981;
+  --emerald-bright: #34D399;
+  --amber: #F59E0B;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
@@ -30,241 +27,52 @@ html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  background-color: var(--bg-obsidian);
-  color: var(--text-primary);
+  background-color: var(--bg-main);
+  color: #F8FAFC;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-obsidian);
-  color: var(--text-primary);
+  background-color: var(--bg-main);
+  color: #F8FAFC;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   overscroll-behavior-y: none;
 }
 
-section[id], #live-preview-anchor {
-  scroll-margin-top: 80px;
+/* Offset anchor jumps for slim 58px top bar */
+section[id], #generador, #live-preview-anchor {
+  scroll-margin-top: 68px;
 }
 
-/* Prevent iOS Safari auto-zoom on form focus (strict 16px floor on mobile) */
+/* Strict 16px input font-size on mobile so iOS Safari never auto-zooms */
 input, select, textarea {
   font-size: 16px !important;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 @media (min-width: 768px) {
-  input.desktop-sm, select.desktop-sm, textarea.desktop-sm {
+  input.desk-sm, select.desk-sm, textarea.desk-sm {
     font-size: 14px !important;
   }
 }
 
-/* Tactile button physics (Emil Kowalski principle) */
-button, a.btn-press, .pressable {
+button, a.btn-tap {
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
-  transition: transform 160ms var(--ease-out-strong), background-color 180ms ease, border-color 180ms ease, opacity 180ms ease, box-shadow 200ms ease;
+  transition: transform 150ms var(--ease-out), background-color 180ms ease, border-color 180ms ease, opacity 180ms ease;
 }
 
-button:active, a.btn-press:active, .pressable:active {
+button:active, a.btn-tap:active {
   transform: scale(0.97);
 }
 
-/* Tabular numbers for timers, prices & metrics */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* ==========================================================================
-   HERO MORPHING STAGE & BEFORE/AFTER WIREFRAME CARD
-   ========================================================================== */
-#hero-stage {
-  position: relative;
-  min-height: 100svh;
-  transition: background 750ms var(--ease-out-strong);
-  overflow: hidden;
-}
-
-.hero-ambient-orb {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  pointer-events: none;
-  opacity: 0.45;
-  transition: background 800ms var(--ease-out-strong), transform 900ms var(--ease-out-strong);
-}
-
-.hero-showcase-shell {
-  position: relative;
-  border-radius: 24px;
-  background: rgba(14, 16, 24, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 28px 70px -20px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  transition: background 500ms var(--ease-out-strong), border-color 500ms var(--ease-out-strong), transform 500ms var(--ease-out-strong);
-}
-
-/* BEFORE MODE: Sad/Outdated Business Without Web ("Sin Web / Antes") */
-.hero-showcase-shell.is-before {
-  background: #E2E5EC !important;
-  border: 2px dashed #94A3B8 !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
-  color: #1E293B !important;
-}
-
-.hero-showcase-shell.is-before .wf-ink {
-  color: #0F172A !important;
-}
-
-.hero-showcase-shell.is-before .wf-muted {
-  color: #475569 !important;
-}
-
-.hero-showcase-shell.is-before .wf-pill {
-  background: #CBD5E1 !important;
-  border-color: #94A3B8 !important;
-  color: #334155 !important;
-}
-
-.hero-showcase-shell.is-before .wf-cta {
-  background: #94A3B8 !important;
-  color: #1E293B !important;
-  box-shadow: none !important;
-}
-
-.hero-showcase-shell.is-before .wf-photo-wrap {
-  filter: grayscale(100%) contrast(0.75) opacity(0.55);
-}
-
-.hero-showcase-shell .before-warning-ribbon {
-  display: none;
-}
-
-.hero-showcase-shell.is-before .before-warning-ribbon {
-  display: flex;
-}
-
-.hero-showcase-shell.is-before .after-live-floating {
-  opacity: 0;
-  transform: translateY(8px) scale(0.95);
-  pointer-events: none;
-}
-
-.after-live-floating {
-  transition: opacity 320ms var(--ease-out-strong), transform 320ms var(--ease-out-strong);
-}
-
-/* Floating subtle 3D motion on hero card image */
-@keyframes floatGentle {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-.float-gentle {
-  animation: floatGentle 4.8s ease-in-out infinite;
-}
-
-/* ==========================================================================
-    TITANIUM IPHONE 15 PRO PORTFOLIO FRAME (REAL SCREENSHOTS)
-   ========================================================================== */
-.iphone-frame {
-  position: relative;
-  width: 248px;
-  height: 492px;
-  margin: 0 auto;
-  border-radius: 38px;
-  padding: 9px;
-  background: linear-gradient(145deg, #3A3F4B 0%, #181A20 45%, #2B303C 100%);
-  box-shadow:
-    0 24px 50px -12px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.14),
-    inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  flex-shrink: 0;
-}
-
-.iphone-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
-  overflow: hidden;
-  background: #050608;
-  padding-top: 22px;
-}
-
-.iphone-notch {
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 62px;
-  height: 13px;
-  border-radius: 999px;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  z-index: 10;
-}
-
-.iphone-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  transition: transform 500ms var(--ease-out-strong);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .portfolio-card:hover .iphone-screen img {
-    transform: scale(1.03);
-  }
-  .portfolio-card:hover {
-    border-color: rgba(255, 255, 255, 0.24);
-    transform: translateY(-4px);
-  }
-  .hover-lift:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-}
-
-/* Native Horizontal Touch Snap Carousel on Mobile */
-.snap-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  gap: 16px;
-}
-
-.snap-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.snap-item {
-  scroll-snap-align: center;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-  .snap-carousel.lg-grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    overflow-x: visible;
-    gap: 24px;
-  }
-  .snap-carousel.lg-grid-3 .snap-item {
-    width: 100% !important;
-  }
-}
-
-/* ==========================================================================
-   LIVE STUDIO CONFIGURATOR & IFRAME PREVIEW SHELL
-   ========================================================================== */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -273,72 +81,213 @@ button:active, a.btn-press:active, .pressable:active {
   scrollbar-width: none;
 }
 
-.studio-step-tab {
+/* ==========================================================================
+   HERO RADIAL STAGE & OWNER.COM-STYLE BEFORE / AFTER GOOGLE MAPS CARD
+   ========================================================================== */
+#hero-section {
   position: relative;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.16) 0%, rgba(9, 11, 16, 0) 60%), var(--bg-main);
+  transition: background 600ms var(--ease-out);
 }
 
-.studio-step-tab.active {
-  background: rgba(16, 185, 129, 0.14);
-  border-color: rgba(16, 185, 129, 0.55);
-  color: #FFFFFF;
+.hero-prompt-shell {
+  background: #FFFFFF;
+  color: #0F172A;
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(255, 255, 255, 0.08);
 }
 
-.sector-chip {
-  transition: transform 150ms var(--ease-out-strong), background-color 180ms ease, border-color 180ms ease;
+.hero-prompt-shell input,
+.hero-prompt-shell select {
+  color: #0F172A !important;
+  background: transparent;
 }
 
-.sector-chip.active {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.08));
+/* Before / After Phone Comparison Card */
+.ba-phone-card {
+  border-radius: 26px;
+  background: #121621;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  transition: border-color 350ms ease, background-color 350ms ease;
+}
+
+/* ==========================================================================
+   STUDIO TABS, SECTOR CHIPS & SCROLL-SAFE MOBILE IFRAME
+   ========================================================================== */
+.step-tab-btn {
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  white-space: nowrap;
+}
+
+.step-tab-btn.active {
+  background: #10B981;
+  color: #04130D;
+  font-weight: 800;
+  border-color: #10B981;
+}
+
+.sector-btn {
+  transition: background-color 150ms ease, border-color 150ms ease, transform 140ms var(--ease-out);
+}
+
+.sector-btn.active {
+  background: rgba(16, 185, 129, 0.16);
   border-color: #10B981;
   color: #FFFFFF;
-  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.4);
 }
 
-.module-toggle.active {
+.mod-switch.active {
   background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.45);
+  border-color: rgba(16, 185, 129, 0.48);
 }
 
-.preview-device-wrapper {
-  transition: max-width 380ms var(--ease-out-strong);
-  margin: 0 auto;
+.preview-shell {
   width: 100%;
+  margin: 0 auto;
+  transition: max-width 350ms var(--ease-out);
 }
 
-.preview-device-wrapper.mode-mobile {
-  max-width: 390px;
+.preview-shell.is-mobile-width {
+  max-width: 392px;
 }
 
-.preview-device-wrapper.mode-desktop {
+.preview-shell.is-desktop-width {
   max-width: 100%;
 }
 
-/* Modal & Sheet backdrop transitions */
-.sheet-backdrop {
-  background: rgba(3, 4, 8, 0.84);
+/* Scroll-safe iframe shield on mobile: prevents accidental scroll trapping! */
+.iframe-touch-guard {
+  position: relative;
+}
+
+.iframe-touch-guard.locked-scroll iframe {
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .iframe-touch-guard.locked-scroll iframe {
+    pointer-events: auto;
+  }
+  .iframe-guard-overlay {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   REAL CLIENT PORTFOLIO IPHONE 15 PRO FRAME (Zero Notch Overlap)
+   ========================================================================== */
+.iphone-mockup {
+  position: relative;
+  width: 244px;
+  height: 484px;
+  margin: 0 auto;
+  border-radius: 38px;
+  padding: 9px;
+  background: linear-gradient(145deg, #3B404E 0%, #171A21 50%, #2C313D 100%);
+  box-shadow:
+    0 22px 48px -12px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.iphone-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #06070A;
+  padding-top: 22px;
+}
+
+.iphone-island {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 12px;
+  border-radius: 999px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 5;
+}
+
+.iphone-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 450ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pf-card:hover .iphone-inner img {
+    transform: scale(1.03);
+  }
+  .pf-card:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+  }
+}
+
+/* Horizontal snap carousel on mobile -> 3-col grid on desktop */
+.pf-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 16px;
+}
+.pf-carousel::-webkit-scrollbar {
+  display: none;
+}
+.pf-slide {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .pf-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: visible;
+    gap: 24px;
+  }
+  .pf-slide {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+/* Modals & Backdrops */
+.modal-backdrop {
+  background: rgba(4, 6, 11, 0.86);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
 
-/* Mobile bottom sticky action bar */
-#mobile-sticky-bar {
+/* Smart Mobile Bottom Bar (Hidden on Hero & Hidden inside #generador so it NEVER blocks buttons!) */
+#smart-bottom-bar {
   padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-  transition: transform 280ms var(--ease-drawer), opacity 240ms ease;
+  transition: transform 260ms var(--ease-drawer), opacity 220ms ease;
 }
 
-#mobile-sticky-bar.hidden-bar {
+#smart-bottom-bar.bar-hidden {
   transform: translateY(120%);
   opacity: 0;
   pointer-events: none;
 }
 
-/* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.12s !important;
+    transition-duration: 0.1s !important;
   }
 }
-
