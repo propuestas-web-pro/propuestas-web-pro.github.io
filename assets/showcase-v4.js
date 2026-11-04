@@ -12,71 +12,71 @@ const SHOWCASE_MODELS = [
     title: 'Concesionario y Taller de Motos',
     subtitle: 'Catálogo en stock · Precios · Cita de taller',
     photo: 'assets/showcase/photo_motos.jpg',
-    video: 'assets/showcase/vid_orero.mp4',
-    poster: 'assets/showcase/vid_orero_poster.jpg'
+    video: 'assets/showcase/vid_motos.mp4',
+    poster: 'assets/showcase/vid_motos_poster.jpg'
   },
   {
     id: 'barberia',
     cat: 'belleza',
-    title: 'Barbería y Grooming Studio',
-    subtitle: 'Reserva de hora en 30s · Cortes y tarifas',
+    title: 'Barbería y Grooming Club',
+    subtitle: 'Reserva de hora en 15s · Cortes y tarifas',
     photo: 'assets/showcase/photo_barberia.jpg',
-    video: 'assets/showcase/vid_jamal.mp4',
-    poster: 'assets/showcase/vid_jamal_poster.jpg'
+    video: 'assets/showcase/vid_barberia.mp4',
+    poster: 'assets/showcase/vid_barberia_poster.jpg'
   },
   {
     id: 'reformas',
     cat: 'reformas',
     title: 'Reformas Integrales y Villas',
-    subtitle: 'Galería de obras · Solicitud de presupuesto',
+    subtitle: 'Proyectos de lujo · Solicitud de presupuesto',
     photo: 'assets/showcase/photo_reformas.jpg',
     video: 'assets/showcase/vid_reformas.mp4',
     poster: 'assets/showcase/vid_reformas_poster.jpg'
   },
   {
-    id: 'brunch',
+    id: 'restaurante',
     cat: 'hosteleria',
-    title: 'Cafetería, Brunch y Terraza',
-    subtitle: 'Carta fotográfica · Reserva de mesa directa',
+    title: 'Restaurante, Brasas y Alta Cocina',
+    subtitle: 'Carta gastronómica · Reserva de mesa directa',
     photo: 'assets/showcase/photo_restaurante.jpg',
-    video: 'assets/showcase/vid_vimacchiata.mp4',
-    poster: 'assets/showcase/vid_vimacchiata_poster.jpg'
+    video: 'assets/showcase/vid_restaurante.mp4',
+    poster: 'assets/showcase/vid_restaurante_poster.jpg'
   },
   {
     id: 'clinica',
     cat: 'salud',
-    title: 'Clínica Dental y Estética',
-    subtitle: 'Especialidades médicas · Cita online y WhatsApp',
+    title: 'Clínica Dental y Estética Médica',
+    subtitle: 'Diseño de sonrisa · Cita previa online',
     photo: 'assets/showcase/photo_clinica.jpg',
-    video: 'assets/showcase/vid_artedent.mp4',
-    poster: 'assets/showcase/vid_artedent_poster.jpg'
+    video: 'assets/showcase/vid_clinica.mp4',
+    poster: 'assets/showcase/vid_clinica_poster.jpg'
   },
   {
     id: 'taller',
     cat: 'motor',
-    title: 'Taller de Chapa, Pintura y Detailing',
-    subtitle: 'Antes y Después · Valoración por foto WhatsApp',
+    title: 'Detailing, PPF y Taller Carrocería',
+    subtitle: 'Acabado espejo · Valoración por WhatsApp',
     photo: 'assets/showcase/photo_taller.jpg',
-    video: 'assets/showcase/vid_autolomas.mp4',
-    poster: 'assets/showcase/vid_autolomas_poster.jpg'
+    video: 'assets/showcase/vid_taller.mp4',
+    poster: 'assets/showcase/vid_taller_poster.jpg'
   },
   {
-    id: 'restaurante',
-    cat: 'hosteleria',
-    title: 'Restaurante y Carta Digital',
-    subtitle: 'Platos destacados · Reservas sin comisiones',
-    photo: 'assets/showcase/photo_libanes.jpg',
-    video: 'assets/showcase/vid_lebano.mp4',
-    poster: 'assets/showcase/vid_lebano_poster.jpg'
-  },
-  {
-    id: 'tattoo',
+    id: 'estetica',
     cat: 'belleza',
-    title: 'Estudio de Tatuajes y Arte',
-    subtitle: 'Portafolio visual · Cita privada por WhatsApp',
-    photo: 'assets/showcase/photo_tattoo.jpg',
-    video: 'assets/showcase/vid_tattoo.mp4',
-    poster: 'assets/showcase/vid_tattoo_poster.jpg'
+    title: 'Centro de Estética, Spa y Uñas',
+    subtitle: 'Carta de rituales · Agenda online abierta',
+    photo: 'assets/showcase/photo_estetica.jpg',
+    video: 'assets/showcase/vid_estetica.mp4',
+    poster: 'assets/showcase/vid_estetica_poster.jpg'
+  },
+  {
+    id: 'fitness',
+    cat: 'salud',
+    title: 'Gimnasio Boutique y Pilates Studio',
+    subtitle: 'Horarios de clases · Prueba gratuita',
+    photo: 'assets/showcase/photo_fitness.jpg',
+    video: 'assets/showcase/vid_fitness.mp4',
+    poster: 'assets/showcase/vid_fitness_poster.jpg'
   }
 ];
 
