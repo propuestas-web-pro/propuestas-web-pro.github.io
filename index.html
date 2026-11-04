@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-  <!-- Smart Auto-Redirect for sub-client URLs -->
+  <!-- Smart Auto-Redirect for existing live sub-client URLs -->
   <script>
     (function() {
       var path = window.location.pathname;
@@ -13,12 +13,12 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-  <title>Mi Web Local — Estudio de Diseño Web, Efecto 3D y Reservas Automáticas</title>
-  <meta name="description" content="Transformamos negocios locales con páginas web de alto impacto, reservas automáticas 24/7 y panel de autogestión. Genera tu demo en 30 segundos." />
-  <meta name="theme-color" content="#090A0F" />
+  <title>Mi Web Local — Crea la Web Profesional de Tu Negocio en 60s · 50 € Pago Único</title>
+  <meta name="description" content="Plataforma automática de diseño web de élite para negocios locales. Personaliza tus servicios, WhatsApp, horarios y fotos, prueba tu demo 24 horas y actívala por 50 € pago único." />
+  <meta name="theme-color" content="#07080C" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Clean, Razor-Sharp Typography: Outfit + Plus Jakarta Sans + Instrument Serif + JetBrains Mono -->
+  <!-- Editorial & Geometric Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -43,994 +43,1073 @@
     }
   </script>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      background-color: #07080C;
-      color: #F8FAFC;
-      overflow-x: hidden;
-    }
-
-    /* =================================================================
-       1. REF 3 (UI/UX RUSTY) & REF 1/2 STUDIO STAGE WITH COLOR MORPHING
-       ================================================================= */
-    .studio-hero-stage {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      padding: 112px 20px 64px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-      background: radial-gradient(circle at 50% 42%, #FF7828 0%, #EA580C 52%, #9A3412 100%);
-    }
-
-    /* Frosted Glass Center Window (Exact Ref 3 Nike NOCTA + Ref 1 Glass Card) */
-    .glass-showcase-card {
-      width: 100%;
-      max-width: 1100px;
-      min-height: 540px;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.14);
-      backdrop-filter: blur(32px);
-      -webkit-backdrop-filter: blur(32px);
-      border: 1.5px solid rgba(255, 255, 255, 0.34);
-      box-shadow:
-        0 40px 100px -15px rgba(0, 0, 0, 0.45),
-        inset 0 1px 2px rgba(255, 255, 255, 0.45);
-      padding: 32px 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* BEFORE Mode (Clean Grey Wireframe Skeleton like Ref 1, 2, 3) */
-    .glass-showcase-card.is-wireframe {
-      background: #F1F5F9;
-      border-color: #CBD5E1;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
-    }
-
-    @keyframes float3D {
-      0%, 100% { transform: translateY(0px) rotate(-2deg); }
-      50% { transform: translateY(-14px) rotate(1.5deg); }
-    }
-
-    .floating-3d-visual {
-      animation: float3D 5s ease-in-out infinite;
-    }
-
-    @keyframes shadowPulse {
-      0%, 100% { transform: scale(1); opacity: 0.45; }
-      50% { transform: scale(0.84); opacity: 0.25; }
-    }
-
-    .floating-shadow {
-      width: 68%;
-      height: 24px;
-      margin: 18px auto 0;
-      border-radius: 50%;
-      background: radial-gradient(closest-side, rgba(0,0,0,0.65), transparent);
-      animation: shadowPulse 5s ease-in-out infinite;
-    }
-
-    /* Hardware Section Cards */
-    .pro-card {
-      background: #0E1017;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .pro-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-  </style>
+  <!-- Custom Design System & Mobile-Native Rules -->
+  <link rel="stylesheet" href="assets/studio-styles.css" />
 </head>
-<body>
+<body class="antialiased selection:bg-emerald-400 selection:text-slate-950">
 
-  <!-- =======================================================================
-       FLOATING NAVIGATION BAR
-       ======================================================================= -->
-  <header class="fixed top-4 left-0 right-0 z-50 px-4 flex justify-center pointer-events-none">
-    <nav class="pointer-events-auto w-full max-w-[1100px] flex items-center justify-between px-5 py-3 rounded-full bg-[#090A0F]/85 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-      <a href="#top" class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center font-display font-extrabold text-sm">
-          MW
-        </div>
-        <span class="font-display font-bold text-base tracking-tight text-white">
-          MiWeb<span class="text-emerald-400">Local</span>
+  <!-- =====================================================================
+       TOP FLOATING NAVBAR (Zero-Overflow Mobile-First Architecture)
+       ===================================================================== -->
+  <header class="fixed top-0 inset-x-0 z-50 px-3 sm:px-5 pt-3 pointer-events-none">
+    <nav class="max-w-6xl mx-auto pointer-events-auto rounded-full bg-slate-950/85 backdrop-blur-xl border border-white/12 px-3.5 sm:px-5 py-2.5 flex items-center justify-between gap-2 shadow-2xl">
+      <!-- Brand -->
+      <a href="#" class="flex items-center gap-2 min-w-0 shrink-0">
+        <span class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-slate-950 flex items-center justify-center font-display font-extrabold text-sm shadow-md shadow-emerald-500/20 shrink-0">
+          M
+        </span>
+        <span class="font-display font-extrabold text-sm sm:text-base tracking-tight text-white whitespace-nowrap">
+          MiWebLocal<span class="text-emerald-400">.</span>
         </span>
       </a>
 
-      <div class="hidden md:flex items-center gap-7 text-xs font-semibold text-white/80">
-        <a href="#top" class="hover:text-white transition-colors">Before / After 3D</a>
-        <a href="#generador" class="hover:text-white transition-colors flex items-center gap-1.5 text-emerald-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          Generador de Demo (24h)
-        </a>
-        <a href="#clientes" class="hover:text-white transition-colors">Clientes Reales</a>
-        <a href="#incluye" class="hover:text-white transition-colors">Qué Incluye</a>
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-300">
+        <a href="#generador" class="hover:text-white transition-colors">Crear Demo 24h</a>
+        <a href="#portafolio" class="hover:text-white transition-colors">Webs en Vivo (+70)</a>
+        <a href="#productos" class="hover:text-white transition-colors">Qué Incluye</a>
+        <a href="#comparativa" class="hover:text-white transition-colors">50 € vs Agencia</a>
+        <a href="#resenas" class="hover:text-white transition-colors">Reseñas 4,9★</a>
+        <a href="#faq" class="hover:text-white transition-colors">Preguntas</a>
       </div>
 
-      <div class="flex items-center gap-2.5">
-        <button onclick="playAutoTransformation()" class="px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold flex items-center gap-1.5 whitespace-nowrap transition-all">
-          <i class="ph-fill ph-play-circle text-emerald-400 text-base"></i>
-          <span class="hidden sm:inline">Ver Efecto Automático</span>
-        </button>
-        <a href="#generador" class="px-5 py-2 rounded-full bg-white hover:bg-slate-100 text-black font-display font-bold text-xs whitespace-nowrap transition-all shadow-md">
-          Crear Mi Web (50 €) →
+      <!-- Right Actions (Fits 360px/390px cleanly without clipping) -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="#generador" class="btn-press px-3.5 sm:px-4 py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap shadow-md shadow-emerald-500/20">
+          Crear Mi Web · 50 €
         </a>
+        <button type="button" onclick="toggleMobileNav(true)" aria-label="Abrir menú"
+          class="lg:hidden w-9 h-9 rounded-full bg-white/10 border border-white/10 text-white flex items-center justify-center shrink-0">
+          <i class="ph-bold ph-list text-base"></i>
+        </button>
       </div>
     </nav>
   </header>
 
-  <main id="top">
-
-    <!-- =======================================================================
-         SECTION 1: INTERACTIVE "BEFORE / AFTER" + COLOR MORPH STUDIO (REF 3, 2, 1)
-         ======================================================================= -->
-    <section id="hero-stage" class="studio-hero-stage">
-
-      <!-- Top Bar: Before/After Pill Switcher + 4 Color World Buttons -->
-      <div class="w-full max-w-[1100px] flex flex-col md:flex-row items-center justify-between gap-4 mb-6 z-20">
-
-        <!-- Before / After Switcher (Exactly like Ref 1, 2, 3) -->
-        <div class="inline-flex items-center p-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/25 shadow-xl">
-          <button id="tab-before" onclick="switchStageMode('before')" class="px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap">
-            Before (Sin Web / Gris)
-          </button>
-          <button id="tab-after" onclick="switchStageMode('after')" class="px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap">
-            After (Diseño MiWebLocal)
-          </button>
-        </div>
-
-        <!-- 4 Studio Color Morph Worlds (Like Ref 3 Nike NOCTA Orange / Green / Purple / Dark) -->
-        <div class="flex flex-wrap items-center justify-center gap-2 bg-black/35 backdrop-blur-xl p-1.5 rounded-full border border-white/20">
-          <button onclick="selectWorld(0)" id="world-btn-0" class="px-4 py-1.5 rounded-full text-xs font-display font-bold bg-white text-black transition-all flex items-center gap-2 whitespace-nowrap">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#EA580C]"></span>
-            <span>Restaurante</span>
-          </button>
-          <button onclick="selectWorld(1)" id="world-btn-1" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#65A30D]"></span>
-            <span>Barbería VIP</span>
-          </button>
-          <button onclick="selectWorld(2)" id="world-btn-2" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#7C3AED]"></span>
-            <span>Taller & Motos</span>
-          </button>
-          <button onclick="selectWorld(3)" id="world-btn-3" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#0F172A]"></span>
-            <span>Reformas & Lujo</span>
-          </button>
-        </div>
+  <!-- Mobile Navigation Drawer Sheet -->
+  <div id="mobile-nav-sheet" class="fixed inset-0 z-[70] sheet-backdrop hidden flex flex-col justify-end sm:justify-center p-3">
+    <div class="w-full max-w-md mx-auto rounded-3xl bg-slate-900 border border-white/15 p-5 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="font-display font-extrabold text-base text-white">Menú · MiWebLocal</span>
+        <button type="button" onclick="toggleMobileNav(false)" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">
+          <i class="ph-bold ph-x text-base"></i>
+        </button>
       </div>
-
-      <!-- THE GLASSMORPHIC SHOWCASE WINDOW -->
-      <div id="glass-card" class="glass-showcase-card">
-
-        <!-- ==================== MODE A: BEFORE (GREY WIREFRAME) ==================== -->
-        <div id="view-before" class="hidden flex-1 flex flex-col justify-between text-slate-500">
-          <div class="flex items-center justify-between border-b border-slate-300 pb-4">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-lg bg-slate-300"></div>
-              <div class="w-28 h-4 rounded bg-slate-300"></div>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-16 h-4 rounded bg-slate-300"></div>
-              <div class="w-16 h-4 rounded bg-slate-300"></div>
-              <div class="w-24 h-8 rounded-full bg-slate-400"></div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-8">
-            <div class="lg:col-span-6 space-y-4">
-              <span class="inline-block px-3 py-1 rounded-full bg-slate-200 text-slate-600 font-mono text-xs font-bold uppercase">
-                ANTES: NEGOCIO SIN WEB O CON PLANTILLA ABURRIDA
-              </span>
-              <div class="w-4/5 h-9 rounded-lg bg-slate-300"></div>
-              <div class="w-3/5 h-9 rounded-lg bg-slate-300"></div>
-              <p class="text-slate-600 text-sm pt-2 max-w-md">
-                Cuando un cliente busca tu local en Google Maps o TikTok y no tienes una web impactante con reservas directas, cierra la pantalla y se va a la competencia.
-              </p>
-              <div class="pt-3">
-                <button onclick="switchStageMode('after')" class="px-6 py-3 rounded-full bg-slate-900 text-white font-display font-bold text-xs hover:bg-black transition-all">
-                  Pulsar para ver el AFTER con Efecto WOW →
-                </button>
-              </div>
-            </div>
-
-            <div class="lg:col-span-6 flex flex-col items-center justify-center">
-              <div class="w-64 h-64 rounded-full bg-slate-200 border-4 border-dashed border-slate-300 flex flex-col items-center justify-center text-slate-400">
-                <i class="ph ph-image-square text-5xl mb-2"></i>
-                <span class="font-mono text-xs uppercase">SIN DISEÑO VISUAL</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-slate-300 pt-4 text-xs font-mono text-slate-500">
-            <span>ESTADO: CERO CONVERSIÓN ONLINE</span>
-            <span>TOCA "AFTER" ARRIBA PARA TRANSFORMAR</span>
-          </div>
-        </div>
-
-        <!-- ==================== MODE B: AFTER (VIBRANT 3D SHOWCASE) ==================== -->
-        <div id="view-after" class="flex-1 flex flex-col justify-between text-white">
-
-          <!-- Top Internal Glass Header (Exactly like Ref 3 Nike NOCTA Card Header) -->
-          <div class="flex items-center justify-between border-b border-white/20 pb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center font-display font-extrabold text-sm shadow">
-                <i id="stage-icon" class="ph-bold ph-hamburger text-base"></i>
-              </div>
-              <div>
-                <div id="stage-brand" class="font-display font-extrabold text-base md:text-lg tracking-tight leading-none">
-                  LA BRASA SMASH CLUB
-                </div>
-                <div id="stage-url" class="font-mono text-[11px] text-white/70 mt-0.5">
-                  miweblocal.com/labrasa-club
-                </div>
-              </div>
-            </div>
-
-            <!-- Center Pill Switcher inside Card -->
-            <div class="hidden sm:flex items-center p-1 rounded-full bg-black/25 border border-white/20 text-xs font-semibold">
-              <span class="px-4 py-1 rounded-full bg-white text-black font-bold">Diseño 3D</span>
-              <span class="px-4 py-1 text-white/85">Reservas 24/7</span>
-              <span class="px-4 py-1 text-white/85">Panel /admin</span>
-            </div>
-
-            <a href="#generador" class="px-4 py-2 rounded-full bg-white text-black font-display font-bold text-xs hover:scale-105 transition-transform whitespace-nowrap shadow">
-              Probar con mi nombre →
-            </a>
-          </div>
-
-          <!-- Center 12-Col Showcase Content (Left Specs + Right 3D Floating Frame) -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-8">
-
-            <!-- Left Column: Clean Title + Technical Specs (Ref 3 Style) -->
-            <div class="lg:col-span-6 space-y-5 text-left">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/30 border border-white/25 text-[11px] font-mono uppercase tracking-wider">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span id="stage-badge">CARTA INTERACTIVA & RESERVAS DE MESA</span>
-              </div>
-
-              <h1 id="stage-title" class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl leading-[1.06] tracking-tight text-white">
-                La Brasa Smash Burger & Gastro
-              </h1>
-
-              <p id="stage-desc" class="text-white/85 text-sm md:text-base leading-relaxed max-w-md">
-                Tus clientes entran desde TikTok o Google Maps, ven tu carta visual interactiva y reservan mesa o piden a domicilio sin pagar comisiones.
-              </p>
-
-              <!-- 3 Clean Spec Lines (Exactly like Ref 3 "Pure Comfort / Breathability / Soft") -->
-              <div class="grid grid-cols-3 gap-4 pt-2 border-t border-white/20 max-w-md">
-                <div>
-                  <div class="text-[11px] text-white/70">Carga Web</div>
-                  <div class="font-display font-bold text-sm mt-0.5">0,4 Segundos</div>
-                </div>
-                <div>
-                  <div class="text-[11px] text-white/70">Agenda Online</div>
-                  <div class="font-display font-bold text-sm mt-0.5">Automática 24h</div>
-                </div>
-                <div>
-                  <div class="text-[11px] text-white/70">Autogestión</div>
-                  <div class="font-display font-bold text-sm mt-0.5">Panel /admin</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Column: Floating 3D Showcase Mockup + Callout Pills -->
-            <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
-              <div id="stage-3d-wrap" class="floating-3d-visual relative w-full max-w-[400px]">
-                <!-- Main High-Impact Visual inside Sleek Frameless 3D Card -->
-                <div class="rounded-[28px] overflow-hidden border-2 border-white/40 shadow-[0_30px_60px_rgba(0,0,0,0.45)] bg-black/40 relative">
-                  <img
-                    id="stage-img"
-                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85"
-                    alt="Showcase"
-                    class="w-full h-[250px] sm:h-[280px] object-cover"
-                  />
-                  <div class="p-4 bg-black/75 backdrop-blur-md flex items-center justify-between">
-                    <div>
-                      <div id="stage-card-item" class="font-display font-bold text-sm text-white">Doble Smash Trufada VIP</div>
-                      <div id="stage-card-sub" class="text-[11px] text-white/70">Reserva de mesa o pedido en 1 clic</div>
-                    </div>
-                    <span id="stage-card-price" class="px-3 py-1 rounded-full bg-white text-black font-display font-extrabold text-xs">
-                      14,90 €
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Floating Callout Top-Right -->
-                <div class="hidden sm:flex items-center gap-2 absolute -top-4 -right-4 px-3.5 py-2 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/25 shadow-2xl">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  <span id="stage-callout" class="font-mono text-[11px] font-bold text-white">+340% Reservas Directas</span>
-                </div>
-              </div>
-
-              <!-- Soft 3D Floor Shadow underneath floating object -->
-              <div class="floating-shadow"></div>
-            </div>
-
-          </div>
-
-          <!-- Bottom Bar inside Glass Card (Price + Next Color Arrow + CTA like Ref 3) -->
-          <div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-4">
-            <div class="flex items-center gap-3">
-              <span class="font-display font-extrabold text-2xl md:text-3xl text-white">50 €</span>
-              <span class="text-xs text-white/80 leading-tight">
-                Pago único • Demo gratis 24h<br>
-                <span class="text-white/60">Sin cuotas mensuales</span>
-              </span>
-            </div>
-
-            <div class="flex items-center gap-2.5">
-              <button onclick="prevWorld()" class="w-10 h-10 rounded-full border border-white/35 hover:bg-white/15 flex items-center justify-center text-white transition-all" title="Anterior estilo">
-                <i class="ph-bold ph-arrow-left"></i>
-              </button>
-              <button onclick="nextWorld()" class="w-10 h-10 rounded-full border border-white/35 hover:bg-white/15 flex items-center justify-center text-white transition-all" title="Siguiente estilo">
-                <i class="ph-bold ph-arrow-right"></i>
-              </button>
-              <a href="#generador" class="px-6 py-2.5 rounded-full bg-white text-black font-display font-extrabold text-xs md:text-sm hover:scale-105 transition-transform shadow-lg whitespace-nowrap">
-                Generar Mi Demo Ahora
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Bottom Scroll Hint -->
-      <div class="mt-6 flex items-center gap-6 text-xs font-mono text-white/80">
-        <span>TOCA LOS COLORES DE ARRIBA O LAS FLECHAS PARA CAMBIAR EL ESCENARIO 3D</span>
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         SECTION 2: EL GENERADOR DE DEMO EN VIVO (24 HORAS) + ENTREGA AL EMAIL
-         ======================================================================= -->
-    <section id="generador" class="py-24 px-4 md:px-8 max-w-[1320px] mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 mb-4">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          GENERADOR AUTOMÁTICO EN VIVO • DEMO ACTIVA 24 HORAS
-        </span>
-        <h2 class="font-display font-extrabold text-3xl md:text-5xl tracking-tight text-white mb-4">
-          Pon el nombre de tu local y prueba tu web ahora mismo.
-        </h2>
-        <p class="text-slate-400 text-base">
-          Escribe el nombre de tu negocio a la izquierda y mira cómo se construye tu web interactiva a la derecha. Tienes <strong class="text-amber-400">24 horas</strong> para probarla antes de decidir si te la quedas por <strong class="text-white">50 €</strong>.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- LEFT 4 COLS: CLEAN CONFIGURATOR -->
-        <div class="lg:col-span-4 pro-card p-6 md:p-7 space-y-6 lg:sticky lg:top-24">
-
-          <!-- 24h Expiration Counter -->
-          <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
-            <div>
-              <div class="text-[11px] font-mono uppercase text-amber-400 font-bold">RESERVA DE TU DEMO</div>
-              <div class="text-xs text-slate-300 mt-0.5">Se borra automáticamente en:</div>
-            </div>
-            <div id="studio-countdown" class="font-mono font-bold text-lg text-amber-400 bg-black/60 px-3 py-1.5 rounded-xl border border-amber-500/30">
-              23:59:50
-            </div>
-          </div>
-
-          <!-- Step 1: Business Name -->
-          <div>
-            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
-              1. NOMBRE DE TU NEGOCIO O LOCAL
-            </label>
-            <input
-              type="text"
-              id="studio-name"
-              value="Barbería Imperio VIP"
-              oninput="renderLiveStudio()"
-              placeholder="Ej: Barbería El Rey, Taller GT..."
-              class="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-white font-display font-bold text-base focus:border-emerald-400 focus:outline-none"
-            />
-          </div>
-
-          <!-- Step 2: Sector -->
-          <div>
-            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
-              2. ELIGE TU SECTOR
-            </label>
-            <div class="grid grid-cols-2 gap-2">
-              <button onclick="setStudioSector('barberia')" data-sec="barberia" class="sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2">
-                <i class="ph-bold ph-scissors text-emerald-400"></i> Barbería / Salón
-              </button>
-              <button onclick="setStudioSector('taller')" data-sec="taller" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
-                <i class="ph-bold ph-engine"></i> Taller / Motor
-              </button>
-              <button onclick="setStudioSector('restaurante')" data-sec="restaurante" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
-                <i class="ph-bold ph-hamburger"></i> Restaurante / Bar
-              </button>
-              <button onclick="setStudioSector('reformas')" data-sec="reformas" class="sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2">
-                <i class="ph-bold ph-buildings"></i> Reformas / Clínica
-              </button>
-            </div>
-          </div>
-
-          <!-- Step 3: City & WhatsApp -->
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-slate-400 mb-1.5">CIUDAD</label>
-              <input type="text" id="studio-city" value="Madrid Centro" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-mono uppercase text-slate-400 mb-1.5">WHATSAPP</label>
-              <input type="text" id="studio-phone" value="612 890 345" oninput="renderLiveStudio()" class="w-full px-3 py-2.5 rounded-xl bg-black border border-white/15 text-white text-xs font-medium focus:border-emerald-400 focus:outline-none" />
-            </div>
-          </div>
-
-          <!-- Step 4: Color Theme -->
-          <div>
-            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
-              3. COLOR DEL TEMA EN VIVO
-            </label>
-            <div class="grid grid-cols-2 gap-2">
-              <button onclick="setStudioTheme('luxury')" data-thm="luxury" class="thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2">
-                <span class="w-4 h-4 rounded-full bg-amber-500 shrink-0"></span>
-                <span class="text-xs font-bold text-white">Negro & Oro</span>
-              </button>
-              <button onclick="setStudioTheme('flame')" data-thm="flame" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
-                <span class="w-4 h-4 rounded-full bg-orange-600 shrink-0"></span>
-                <span class="text-xs font-bold text-slate-300">Naranja Fuego</span>
-              </button>
-              <button onclick="setStudioTheme('neon')" data-thm="neon" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
-                <span class="w-4 h-4 rounded-full bg-lime-500 shrink-0"></span>
-                <span class="text-xs font-bold text-slate-300">Verde Lima</span>
-              </button>
-              <button onclick="setStudioTheme('cyber')" data-thm="cyber" class="thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2">
-                <span class="w-4 h-4 rounded-full bg-violet-600 shrink-0"></span>
-                <span class="text-xs font-bold text-slate-300">Violeta Pro</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Primary Purchase Button -->
-          <div class="pt-2 border-t border-white/10">
-            <button onclick="openStripeEmailModal()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-[0_10px_30px_rgba(16,185,129,0.35)] transition-all">
-              Desbloquear y Publicar Mi Web (50 €) →
-            </button>
-            <p class="text-center text-[11px] font-mono text-slate-400 mt-2">
-              ENTREGA AUTOMÁTICA A TU EMAIL AL INSTANTE
-            </p>
-          </div>
-
-        </div>
-
-        <!-- RIGHT 8 COLS: LIVE INTERACTIVE WEBSITE PREVIEW -->
-        <div class="lg:col-span-8 pro-card overflow-hidden">
-          <!-- Browser Top Chrome -->
-          <div class="px-5 py-3.5 bg-[#090B10] border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-            </div>
-            <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-black border border-white/10 text-xs font-mono text-slate-300">
-              <i class="ph-fill ph-lock-key text-emerald-400"></i>
-              <span id="live-domain-url">https://miweblocal.com/barberiaimperiovip</span>
-              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold">DEMO 24H</span>
-            </div>
-            <span class="text-xs font-mono text-emerald-400">VISTA PREVIA INTERACTIVA</span>
-          </div>
-
-          <!-- Dynamic Client Website Canvas -->
-          <div id="generated-website-canvas"></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =======================================================================
-         SECTION 3: PORTAFOLIO DE CLIENTES REALES EN VIVO
-         ======================================================================= -->
-    <section id="clientes" class="py-24 px-4 md:px-8 max-w-[1320px] mx-auto border-t border-white/10">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div>
-          <span class="inline-block rounded-full px-3.5 py-1 text-xs font-mono uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/25 mb-3">
-            TRABAJOS REALES EN PRODUCCIÓN
-          </span>
-          <h2 class="font-display font-extrabold text-3xl md:text-5xl text-white">
-            Explora nuestras webs reales en vivo.
-          </h2>
-        </div>
-        <p class="text-slate-400 text-sm max-w-md">
-          Haz clic en cualquiera de nuestros clientes para abrir su página web real funcionando con catálogo, reservas y panel privado.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="/motorcycle-store-orero/" target="_blank" class="pro-card p-5 group block">
-          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Motos Orero" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-red-600 text-white font-mono text-[10px] font-bold">CONCESIONARIO + ADMIN</span>
-          </div>
-          <h3 class="font-display font-bold text-lg text-white mb-1">Motos Orero Oficial</h3>
-          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Exposición de motos en tiempo real, boutique, citas de taller con ITV y panel `/admin`.</p>
-          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+      <div class="grid gap-2 text-sm font-semibold">
+        <a href="#generador" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 flex items-center justify-between">
+          <span>⚡ Generador de Web en Vivo (Demo 24h)</span>
+          <i class="ph-bold ph-arrow-right"></i>
         </a>
-
-        <a href="/cox/barberia-jamal/" target="_blank" class="pro-card p-5 group block">
-          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Barbería Jamal" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-500 text-black font-mono text-[10px] font-bold">BARBERÍA VIP</span>
-          </div>
-          <h3 class="font-display font-bold text-lg text-white mb-1">Barbería Jamal Gentleman</h3>
-          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Diseño Gentleman con precios claros y reservas de citas directas sin llamadas.</p>
-          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="#portafolio" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
+          <span>Webs Reales de Clientes (+70 activas)</span>
+          <i class="ph-bold ph-caret-right text-slate-400"></i>
         </a>
-
-        <a href="/reformas-elite-gold-guardamar/" target="_blank" class="pro-card p-5 group block">
-          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Reformas Élite Gold" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white text-black font-mono text-[10px] font-bold">ARQUITECTURA & REFORMAS</span>
-          </div>
-          <h3 class="font-display font-bold text-lg text-white mb-1">Reformas Élite Gold</h3>
-          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Proyectos integrales llave en mano con captación de presupuestos cualificados.</p>
-          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="#productos" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
+          <span>Productos y Módulos Incluidos</span>
+          <i class="ph-bold ph-caret-right text-slate-400"></i>
         </a>
-
-        <a href="/orihuela/la-vimacchiata-brunch/" target="_blank" class="pro-card p-5 group block">
-          <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
-            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="La Vimacchiata" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-400 text-black font-mono text-[10px] font-bold">HOSTELERÍA & BRUNCH</span>
-          </div>
-          <h3 class="font-display font-bold text-lg text-white mb-1">La Vimacchiata Gastro</h3>
-          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Carta digital interactiva, reservas de mesa y pedidos directos sin comisiones.</p>
-          <span class="text-xs font-display font-bold text-emerald-400 flex items-center gap-1">Ver Web Real en Vivo <i class="ph-bold ph-arrow-up-right"></i></span>
+        <a href="#comparativa" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
+          <span>Comparativa: 50 € vs 1.500 € Agencia</span>
+          <i class="ph-bold ph-caret-right text-slate-400"></i>
+        </a>
+        <a href="#resenas" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
+          <span>Opiniones Verificadas (4,9 / 5 ★)</span>
+          <i class="ph-bold ph-caret-right text-slate-400"></i>
+        </a>
+        <a href="#faq" onclick="toggleMobileNav(false)" class="p-3.5 rounded-2xl bg-white/5 text-white flex items-center justify-between">
+          <span>Preguntas Frecuentes</span>
+          <i class="ph-bold ph-caret-right text-slate-400"></i>
         </a>
       </div>
-    </section>
-
-    <!-- =======================================================================
-         SECTION 4: QUÉ INCLUYE Y RESEÑAS DE CLIENTES
-         ======================================================================= -->
-    <section id="incluye" class="py-20 px-4 md:px-8 max-w-[1320px] mx-auto border-t border-white/10">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="pro-card p-7">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-2xl mb-4">
-            <i class="ph-bold ph-calendar-check"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">1. Reservas 24/7 Sin Llamadas</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Tus clientes eligen servicio y hora desde su móvil sin interrumpirte mientras trabajas. Todo llega confirmado al instante.
-          </p>
-        </div>
-
-        <div class="pro-card p-7">
-          <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-2xl mb-4">
-            <i class="ph-bold ph-sliders-horizontal"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">2. Panel Privado (`/admin`)</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Cambia precios, sube fotos nuevas o actualiza tus servicios desde el móvil en 10 segundos sin depender de informáticos.
-          </p>
-        </div>
-
-        <div class="pro-card p-7">
-          <div class="w-12 h-12 rounded-2xl bg-violet-500/15 text-violet-400 flex items-center justify-center text-2xl mb-4">
-            <i class="ph-bold ph-paper-plane-tilt"></i>
-          </div>
-          <h3 class="font-display font-bold text-xl text-white mb-2">3. Entrega Automática al Email</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Pruebas tu demo durante 24 horas. Si decides quedártela por 50 €, recibes tus enlaces y claves en tu correo al segundo.
-          </p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- MODAL: CHECKOUT AUTOMÁTICO + ENTREGA POR EMAIL -->
-  <div id="checkout-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-xl flex items-center justify-center p-4" onclick="closeCheckoutModal()">
-    <div class="pro-card max-w-lg w-full p-7 md:p-8 border border-emerald-500/40" onclick="event.stopPropagation()" id="checkout-modal-body"></div>
+    </div>
   </div>
 
-  <script>
-    // =========================================================================
-    // 1. STUDIO COLOR MORPHING & BEFORE/AFTER ENGINE (REF 3 NIKE + REF 2 BURGER)
-    // =========================================================================
-    const WORLDS = [
-      {
-        bg: "radial-gradient(circle at 50% 42%, #FF7828 0%, #EA580C 52%, #9A3412 100%)",
-        icon: "ph-bold ph-hamburger",
-        brand: "LA BRASA SMASH CLUB",
-        url: "miweblocal.com/labrasa-club",
-        badge: "CARTA INTERACTIVA & RESERVAS DE MESA",
-        title: "La Brasa Smash Burger & Gastro",
-        desc: "Tus clientes entran desde TikTok o Google Maps, ven tu carta visual interactiva y reservan mesa o piden a domicilio sin pagar comisiones.",
-        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
-        cardItem: "Doble Smash Trufada VIP",
-        cardSub: "Reserva de mesa o pedido en 1 clic",
-        cardPrice: "14,90 €",
-        callout: "+340% Reservas Directas"
-      },
-      {
-        bg: "radial-gradient(circle at 50% 42%, #84CC16 0%, #4D7C0F 55%, #1A2E05 100%)",
-        icon: "ph-bold ph-scissors",
-        brand: "KRONOS BARBER STUDIO",
-        url: "miweblocal.com/kronos-barber",
-        badge: "AGENDA AUTOMÁTICA DE CITAS 24/7",
-        title: "Kronos Barber & Grooming VIP",
-        desc: "Olvídate de parar un corte de pelo para contestar el teléfono. Tus clientes eligen barbero, corte y hora solos desde su móvil.",
-        img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=85",
-        cardItem: "Corte Skin Fade + Ritual Barba",
-        cardSub: "Confirmación inmediata por WhatsApp",
-        cardPrice: "22,00 €",
-        callout: "+185 Citas Online / Mes"
-      },
-      {
-        bg: "radial-gradient(circle at 50% 42%, #8B5CF6 0%, #6D28D9 52%, #2E1065 100%)",
-        icon: "ph-bold ph-engine",
-        brand: "MOTOS ORERO & APEX MOTOR",
-        url: "miweblocal.com/motorcycle-store-orero",
-        badge: "CONCESIONARIO, TALLER OFICIAL & ADMIN",
-        title: "High Performance Motor Showroom",
-        desc: "Exposición de vehículos en tiempo real, recepción de taller con fecha ITV y panel privado /admin para gestionar stock desde el móvil.",
-        img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85",
-        cardItem: "Revisión Oficial + Diagnóstico",
-        cardSub: "Cita previa en taller sin esperas",
-        cardPrice: "89,00 €",
-        callout: "Stock + Taller en Tiempo Real"
-      },
-      {
-        bg: "radial-gradient(circle at 50% 42%, #334155 0%, #0F172A 55%, #020617 100%)",
-        icon: "ph-bold ph-buildings",
-        brand: "REFORMAS ÉLITE GOLD",
-        url: "miweblocal.com/reformas-elite",
-        badge: "ARQUITECTURA, INTERIORISMO & REFORMAS",
-        title: "For The Few Who Notice Quality",
-        desc: "Transmite autoridad absoluta con una web que muestra tus proyectos antes/después y capta presupuestos cualificados las 24 horas.",
-        img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85",
-        cardItem: "Visita Técnica + Proyecto 3D",
-        cardSub: "Plazo cerrado por contrato",
-        cardPrice: "Gratis",
-        callout: "Presupuestos VIP 24/7"
-      }
-    ];
+  <!-- =====================================================================
+       1. ANIMATED VISUAL HERO (Before -> After + 4 Live Color Worlds)
+       ===================================================================== -->
+  <section id="hero-stage" class="pt-20 pb-12 sm:pt-28 sm:pb-20 px-4 sm:px-6 flex flex-col justify-center">
+    <div class="max-w-6xl mx-auto w-full">
 
-    let currentWorld = 0;
-
-    function switchStageMode(mode) {
-      const card = document.getElementById('glass-card');
-      const vBefore = document.getElementById('view-before');
-      const vAfter = document.getElementById('view-after');
-      const tBefore = document.getElementById('tab-before');
-      const tAfter = document.getElementById('tab-after');
-      const stage = document.getElementById('hero-stage');
-
-      if (mode === 'before') {
-        card.classList.add('is-wireframe');
-        vBefore.classList.remove('hidden');
-        vAfter.classList.add('hidden');
-        stage.style.background = "radial-gradient(circle at 50% 42%, #475569 0%, #1E293B 100%)";
-        tBefore.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap";
-        tAfter.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap";
-      } else {
-        card.classList.remove('is-wireframe');
-        vBefore.classList.add('hidden');
-        vAfter.classList.remove('hidden');
-        stage.style.background = WORLDS[currentWorld].bg;
-        tAfter.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm bg-white text-black shadow-md transition-all whitespace-nowrap";
-        tBefore.className = "px-6 py-2 rounded-full font-display font-bold text-xs md:text-sm text-white/80 hover:text-white transition-all whitespace-nowrap";
-      }
-    }
-
-    function selectWorld(index) {
-      switchStageMode('after');
-      currentWorld = index;
-      const w = WORLDS[index];
-
-      // Update active pill styling
-      [0, 1, 2, 3].forEach(i => {
-        const btn = document.getElementById(`world-btn-${i}`);
-        if (i === index) {
-          btn.className = "px-4 py-1.5 rounded-full text-xs font-display font-bold bg-white text-black transition-all flex items-center gap-2 whitespace-nowrap shadow";
-        } else {
-          btn.className = "px-4 py-1.5 rounded-full text-xs font-display font-bold text-white hover:bg-white/10 transition-all flex items-center gap-2 whitespace-nowrap";
-        }
-      });
-
-      document.getElementById('hero-stage').style.background = w.bg;
-      document.getElementById('stage-icon').className = `${w.icon} text-base`;
-      document.getElementById('stage-brand').textContent = w.brand;
-      document.getElementById('stage-url').textContent = w.url;
-      document.getElementById('stage-badge').textContent = w.badge;
-      document.getElementById('stage-title').textContent = w.title;
-      document.getElementById('stage-desc').textContent = w.desc;
-      document.getElementById('stage-img').src = w.img;
-      document.getElementById('stage-card-item').textContent = w.cardItem;
-      document.getElementById('stage-card-sub').textContent = w.cardSub;
-      document.getElementById('stage-card-price').textContent = w.cardPrice;
-      document.getElementById('stage-callout').textContent = w.callout;
-
-      gsap.fromTo("#stage-3d-wrap",
-        { scale: 0.82, rotation: -8, opacity: 0.3 },
-        { scale: 1, rotation: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }
-      );
-    }
-
-    function nextWorld() {
-      selectWorld((currentWorld + 1) % WORLDS.length);
-    }
-
-    function prevWorld() {
-      selectWorld((currentWorld - 1 + WORLDS.length) % WORLDS.length);
-    }
-
-    function playAutoTransformation() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      switchStageMode('before');
-      setTimeout(() => selectWorld(0), 1400);
-      setTimeout(() => selectWorld(1), 2800);
-      setTimeout(() => selectWorld(2), 4200);
-      setTimeout(() => selectWorld(3), 5600);
-    }
-
-    // =========================================================================
-    // 2. LIVE 24H GENERATOR ENGINE
-    // =========================================================================
-    const STUDIO_CATALOG = {
-      barberia: {
-        tag: "BARBERÍA & GROOMING VIP • RESERVAS 24/7",
-        headline: "Cortes de precisión. Reserva tu hora en 15 segundos.",
-        subhead: "Selecciona tu servicio y asegura tu cita desde el móvil sin llamadas ni esperas.",
-        heroImage: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1000&q=85",
-        services: [
-          { title: "Corte Skin Fade + Styling VIP", time: "35 min", price: "18 €" },
-          { title: "Combo Imperial: Corte + Ritual Barba", time: "50 min", price: "26 €" },
-          { title: "Perfilado Milimétrico & Contornos", time: "25 min", price: "14 €" }
-        ]
-      },
-      taller: {
-        tag: "CONCESIONARIO, TALLER OFICIAL & DETAILING",
-        headline: "Mecánica avanzada y cita previa online sin esperas.",
-        subhead: "Mantenimiento oficial, diagnóstico electrónico, neumáticos y exposición de vehículos.",
-        heroImage: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85",
-        services: [
-          { title: "Revisión Oficial + Cambio de Aceite", time: "60 min", price: "95 €" },
-          { title: "Diagnóstico Computerizado + Pre-ITV", time: "45 min", price: "42 €" },
-          { title: "Reserva de Cita en Taller / Exposición", time: "Sin esperas", price: "Gratis" }
-        ]
-      },
-      restaurante: {
-        tag: "GASTRONOMÍA A LA BRASA & CARTA DIGITAL",
-        headline: "Sabor brutal. Reserva tu mesa o pide en 2 toques.",
-        subhead: "Explora nuestra carta interactiva y asegura tu mesa en salón o terraza sin comisiones.",
-        heroImage: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85",
-        services: [
-          { title: "Doble Smash Burger Trufada Dry-Aged", time: "Top Ventas", price: "14,90 €" },
-          { title: "Costillar Ibérico a Baja Temperatura", time: "Para compartir", price: "24,50 €" },
-          { title: "Reserva de Mesa VIP (Terraza / Salón)", time: "Confirmación hoy", price: "0 €" }
-        ]
-      },
-      reformas: {
-        tag: "ARQUITECTURA, INTERIORISMO & REFORMAS",
-        headline: "Reformamos tu vivienda o local con plazo cerrado.",
-        subhead: "Proyectos integrales llave en mano con diseño 3D previo y garantía por contrato.",
-        heroImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
-        services: [
-          { title: "Visita Técnica + Presupuesto Detallado", time: "En 48 horas", price: "Gratis" },
-          { title: "Reforma Integral Llave en Mano", time: "Plazo cerrado", price: "A medida" },
-          { title: "Urgencias e Instalaciones Técnicas", time: "Asistencia hoy", price: "Desde 49 €" }
-        ]
-      }
-    };
-
-    const STUDIO_THEMES = {
-      luxury: { bg: "linear-gradient(135deg, #090A0F 0%, #1C1917 100%)", accent: "#F59E0B", text: "#000" },
-      flame:  { bg: "linear-gradient(135deg, #7C2D12 0%, #EA580C 100%)", accent: "#FFFFFF", text: "#000" },
-      neon:   { bg: "linear-gradient(135deg, #1A2E05 0%, #4D7C0F 100%)", accent: "#ECFCCB", text: "#000" },
-      cyber:  { bg: "linear-gradient(135deg, #2E1065 0%, #6D28D9 100%)", accent: "#FFFFFF", text: "#000" }
-    };
-
-    let studioState = {
-      name: "Barbería Imperio VIP",
-      sector: "barberia",
-      city: "Madrid Centro",
-      phone: "612 890 345",
-      theme: "luxury",
-      slot: "17:30",
-      secondsRemaining: 24 * 3600 - 10
-    };
-
-    setInterval(() => {
-      if (studioState.secondsRemaining > 0) studioState.secondsRemaining--;
-      const h = String(Math.floor(studioState.secondsRemaining / 3600)).padStart(2, '0');
-      const m = String(Math.floor((studioState.secondsRemaining % 3600) / 60)).padStart(2, '0');
-      const s = String(studioState.secondsRemaining % 60).padStart(2, '0');
-      const el = document.getElementById('studio-countdown');
-      if (el) el.textContent = `${h}:${m}:${s}`;
-    }, 1000);
-
-    function setStudioSector(sec) {
-      studioState.sector = sec;
-      document.querySelectorAll('.sec-btn').forEach(b => {
-        const active = b.getAttribute('data-sec') === sec;
-        b.className = active
-          ? "sec-btn px-3 py-2.5 rounded-xl border border-emerald-500 bg-emerald-500/15 text-white text-xs font-semibold flex items-center gap-2"
-          : "sec-btn px-3 py-2.5 rounded-xl border border-white/10 bg-black text-slate-300 text-xs font-semibold flex items-center gap-2";
-      });
-      renderLiveStudio();
-    }
-
-    function setStudioTheme(thm) {
-      studioState.theme = thm;
-      document.querySelectorAll('.thm-btn').forEach(b => {
-        const active = b.getAttribute('data-thm') === thm;
-        b.className = active
-          ? "thm-btn p-2.5 rounded-xl border border-emerald-500 bg-emerald-500/10 flex items-center gap-2"
-          : "thm-btn p-2.5 rounded-xl border border-white/10 bg-black flex items-center gap-2";
-      });
-      renderLiveStudio();
-    }
-
-    function pickDemoSlot(slot) {
-      studioState.slot = slot;
-      renderLiveStudio();
-    }
-
-    function renderLiveStudio() {
-      studioState.name = document.getElementById('studio-name').value.trim() || "Mi Negocio VIP";
-      studioState.city = document.getElementById('studio-city').value.trim() || "Madrid";
-      studioState.phone = document.getElementById('studio-phone').value.trim() || "612 890 345";
-
-      const data = STUDIO_CATALOG[studioState.sector];
-      const thm = STUDIO_THEMES[studioState.theme];
-      const slug = studioState.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
-      document.getElementById('live-domain-url').textContent = `https://miweblocal.com/${slug || 'minegocio'}`;
-
-      const canvas = document.getElementById('generated-website-canvas');
-      canvas.innerHTML = `
-        <div style="background:${thm.bg}; color:#fff; padding:28px; min-height:540px; display:flex; flex-direction:column; justify-content:space-between;">
-
-          <!-- Client Top Header -->
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:16px;">
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.25rem;">
-              ${studioState.name}
-            </div>
-            <div style="display:flex; align-items:center; gap:12px;">
-              <span style="font-size:12px; opacity:0.85;">📍 ${studioState.city}</span>
-              <button onclick="openStripeEmailModal()" style="background:${thm.accent}; color:${thm.text}; padding:8px 16px; border-radius:99px; font-weight:800; font-size:12px;">
-                Activar Web (50 €)
-              </button>
-            </div>
-          </div>
-
-          <!-- Hero Inside Generated Site -->
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-6">
-            <div class="md:col-span-7 space-y-3">
-              <span style="display:inline-block; padding:4px 12px; border-radius:99px; background:rgba(255,255,255,0.15); font-family:'JetBrains Mono',monospace; font-size:10px;">
-                ${data.tag}
-              </span>
-              <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(1.7rem,2.8vw,2.4rem); line-height:1.08;">
-                ${data.headline}
-              </h3>
-              <p style="font-size:13px; opacity:0.85; line-height:1.5; max-width:440px;">
-                ${data.subhead}
-              </p>
-            </div>
-            <div class="md:col-span-5 flex justify-center">
-              <img src="${data.heroImage}" class="w-full max-w-[240px] h-48 object-cover rounded-2xl border-2 border-white/30 shadow-2xl" />
-            </div>
-          </div>
-
-          <!-- Services + Instant 24/7 Booking Module -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-black/45 backdrop-blur-xl p-5 rounded-2xl border border-white/15">
-            <div class="space-y-2">
-              <div class="text-[10px] font-mono uppercase opacity-70">CATÁLOGO DE SERVICIOS Y PRECIOS</div>
-              ${data.services.map(s => `
-                <div class="flex justify-between items-center p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs">
-                  <div>
-                    <div class="font-bold">${s.title}</div>
-                    <div class="text-[10px] opacity-65">${s.time}</div>
-                  </div>
-                  <span class="font-display font-extrabold text-sm" style="color:${thm.accent}">${s.price}</span>
-                </div>
-              `).join('')}
-            </div>
-
-            <div class="flex flex-col justify-between p-4 rounded-xl bg-white/5 border border-white/15">
-              <div>
-                <div class="text-[10px] font-mono uppercase text-emerald-400 font-bold">AGENDA ONLINE 24/7 SIN LLAMADAS</div>
-                <div class="text-xs font-bold mt-1 mb-2">Selecciona hora disponible hoy:</div>
-                <div class="grid grid-cols-4 gap-1.5 mb-3">
-                  ${["16:30", "17:30", "18:15", "19:30"].map(t => `
-                    <button onclick="pickDemoSlot('${t}')" style="padding:7px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:${studioState.slot === t ? thm.accent : 'rgba(255,255,255,0.08)'}; color:${studioState.slot === t ? thm.text : '#fff'};">
-                      ${t}
-                    </button>
-                  `).join('')}
-                </div>
-              </div>
-              <button onclick="openStripeEmailModal()" style="width:100%; padding:12px; border-radius:12px; background:${thm.accent}; color:${thm.text}; font-weight:800; font-size:12px;">
-                ✓ Confirmar Cita a las ${studioState.slot} (Probar Demo)
-              </button>
-            </div>
-          </div>
-
+      <!-- Authority Top Pill -->
+      <div class="flex justify-center mb-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/12 text-[11px] sm:text-xs font-medium text-slate-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+          <span>+74 negocios activos en España · <strong class="text-white">Pago único 50 €</strong></span>
         </div>
-      `;
-    }
+      </div>
 
-    function openStripeEmailModal() {
-      const modal = document.getElementById('checkout-modal');
-      const body = document.getElementById('checkout-modal-body');
-      body.innerHTML = `
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase">
-              ENTREGA AUTOMÁTICA AL EMAIL • DEMO 24H
-            </span>
-            <button onclick="closeCheckoutModal()" class="text-white/50 hover:text-white"><i class="ph ph-x text-lg"></i></button>
-          </div>
-          <h3 class="font-display font-bold text-2xl text-white mb-2">
-            Activar la web de <span class="text-emerald-400">${studioState.name}</span>
-          </h3>
-          <p class="text-slate-300 text-xs leading-relaxed mb-5">
-            Al desbloquear tu web por <strong class="text-white">50 € (pago único)</strong>, la demo deja de caducar y recibes automáticamente en tu Email tu enlace definitivo y las claves de tu panel privado (`/admin`).
-          </p>
-          <div class="mb-5">
-            <label class="block text-[10px] font-mono uppercase text-slate-400 mb-1.5">TU EMAIL PARA RECIBIR LOS ACCESOS AL INSTANTE</label>
-            <input type="email" id="buyer-email-input" value="propietario@minegocio.com" class="w-full px-4 py-3 rounded-xl bg-black border border-white/15 text-white text-sm font-medium focus:border-emerald-400 focus:outline-none" />
-          </div>
-          <button onclick="completeAutomatedEmailDelivery()" class="w-full py-4 rounded-full bg-emerald-400 hover:bg-emerald-300 text-black font-display font-extrabold text-sm shadow-lg">
-            Pagar 50 € y Recibir Mi Web en el Email Ahora →
+      <!-- Headline & Subhead -->
+      <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+        <h1 class="font-display font-extrabold text-[1.95rem] leading-[1.08] sm:text-5xl lg:text-[3.55rem] tracking-tight text-white mb-3">
+          Tu negocio local merece una web de <span class="font-serif italic font-normal text-amber-300">1.500 €</span>. Actívala hoy por <span class="text-emerald-400">50 €</span>.
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+          Pon tu nombre, WhatsApp, horarios, servicios y fotos. Genera tu web completa en 60 segundos, pruébala gratis 24 horas y recibe tu panel privado al instante.
+        </p>
+      </div>
+
+      <!-- Interactive Before / After + Sector World Switcher Bar -->
+      <div class="max-w-4xl mx-auto mb-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+        <!-- Before / After Toggle -->
+        <div class="inline-flex items-center p-1 rounded-full bg-slate-950/90 border border-white/12 gap-1">
+          <button type="button" id="btn-mode-before" onclick="setHeroMode('before')"
+            class="px-3 py-1.5 rounded-full text-xs font-semibold text-slate-400 whitespace-nowrap">
+            1. Sin Web (Antes)
+          </button>
+          <button type="button" id="btn-mode-after" onclick="setHeroMode('after')"
+            class="px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-400 text-slate-950 shadow-sm whitespace-nowrap">
+            2. Web Pro (Después)
+          </button>
+          <button type="button" onclick="replayHeroSequence()" title="Repetir transformación"
+            class="w-7 h-7 rounded-full bg-white/10 text-white flex items-center justify-center text-xs shrink-0">
+            <i class="ph-bold ph-arrows-clockwise"></i>
           </button>
         </div>
-      `;
-      modal.classList.remove('hidden');
-    }
 
-    function completeAutomatedEmailDelivery() {
-      const email = document.getElementById('buyer-email-input').value || "cliente@negocio.com";
-      const slug = studioState.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
-      const body = document.getElementById('checkout-modal-body');
-
-      body.innerHTML = `
-        <div>
-          <div class="text-emerald-400 font-mono text-xs uppercase font-bold mb-2">✓ SISTEMA AUTOMÁTICO COMPLETADO</div>
-          <h3 class="font-display font-bold text-2xl text-white mb-2">¡Web Publicada y Email Enviado!</h3>
-          <p class="text-slate-300 text-xs mb-4">Correo enviado automáticamente a <strong class="text-white">${email}</strong>:</p>
-          <div class="p-4 rounded-2xl bg-black border border-emerald-500/30 font-mono text-xs space-y-2 text-white/90 mb-5">
-            <div class="text-emerald-400 font-bold">DE: Mi Web Local &lt;entrega@miweblocal.com&gt;</div>
-            <div>1. WEB OFICIAL: <span class="text-emerald-400 underline">https://miweblocal.com/${slug}</span></div>
-            <div>2. PANEL ADMIN: <span class="text-amber-300 underline">https://miweblocal.com/${slug}/admin</span></div>
-            <div>3. CONTRASEÑA: <span class="bg-white/10 px-2 py-0.5 rounded">VIP-2026</span></div>
-          </div>
-          <button onclick="closeCheckoutModal()" class="w-full py-3.5 rounded-full bg-white text-black font-bold text-xs">Cerrar</button>
+        <!-- 4 Color Worlds Pills (Scrollable cleanly on narrow screens) -->
+        <div id="hero-world-pills" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar max-w-full py-0.5 transition-opacity">
+          <button type="button" onclick="applyHeroWorld(0)" class="hero-world-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-950 shadow whitespace-nowrap">Barbería</button>
+          <button type="button" onclick="applyHeroWorld(1)" class="hero-world-btn px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-white/5 border border-white/10 whitespace-nowrap">Motor / Taller</button>
+          <button type="button" onclick="applyHeroWorld(2)" class="hero-world-btn px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-white/5 border border-white/10 whitespace-nowrap">Restaurante</button>
+          <button type="button" onclick="applyHeroWorld(3)" class="hero-world-btn px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-white/5 border border-white/10 whitespace-nowrap">Clínica</button>
         </div>
-      `;
-    }
+      </div>
 
-    function closeCheckoutModal() {
-      document.getElementById('checkout-modal').classList.add('hidden');
-    }
+      <!-- MORPHING GLASS SHOWCASE CARD (Zero clipping on 390px) -->
+      <div id="hero-card-shell" class="hero-showcase-shell max-w-4xl mx-auto p-4 sm:p-7">
 
-    window.addEventListener('DOMContentLoaded', () => {
-      renderLiveStudio();
-    });
-  </script>
+        <!-- Warning Ribbon shown ONLY in "Antes / Sin Web" state -->
+        <div class="before-warning-ribbon items-center gap-2 px-3 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold mb-3">
+          <i class="ph-bold ph-warning-circle text-base shrink-0"></i>
+          <span>SIN PÁGINA WEB: El cliente no ve tus precios ni horarios y acaba reservando en otro local.</span>
+        </div>
+
+        <!-- Mini Client Header inside Showcase -->
+        <div class="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-white/12">
+          <div class="min-w-0">
+            <div id="hw-brand" class="wf-ink font-display font-extrabold text-base sm:text-lg text-white truncate">Barbería Martínez</div>
+            <div id="hw-city" class="wf-muted text-[11px] text-slate-300 truncate">Madrid · 12 años</div>
+          </div>
+          <a href="#generador" id="hw-cta-pill"
+            class="wf-cta px-3.5 py-2 rounded-full font-display font-extrabold text-xs whitespace-nowrap shrink-0"
+            style="background-color:#E09F5A; color:#09090B;">
+            Probar con mi nombre →
+          </a>
+        </div>
+
+        <!-- Responsive Showcase Body (Image visible immediately on mobile!) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+          <!-- Visual Showcase Photo + Floating Live Stat -->
+          <div class="md:col-span-5 order-1 md:order-2 relative">
+            <div class="wf-photo-wrap relative rounded-2xl overflow-hidden border border-white/15 aspect-[16/10] md:aspect-[4/3] shadow-xl">
+              <img id="hw-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85"
+                alt="Vista previa diseño web local" class="w-full h-full object-cover" />
+              <div class="after-live-floating absolute bottom-2.5 left-2.5 right-2.5 px-3 py-2 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/15 flex items-center justify-between gap-2">
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-300 truncate">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+                  <span id="hw-float-stat" class="truncate">+38 citas online esta semana</span>
+                </span>
+                <span class="text-[10px] font-mono text-white/75 whitespace-nowrap">24/7</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Copy + Interactive Service Preview Row -->
+          <div class="md:col-span-7 order-2 md:order-1 space-y-3">
+            <span id="hw-badge" class="wf-pill inline-block px-2.5 py-1 rounded-full bg-white/10 border border-white/15 font-mono text-[10px] uppercase tracking-wider text-amber-200">
+              CON Y SIN CITA PREVIA · RESERVA EN 15s
+            </span>
+            <h2 id="hw-title" class="wf-ink font-display font-extrabold text-xl sm:text-3xl text-white leading-tight">
+              Corte clásico y degradado a navaja.
+            </h2>
+            <p id="hw-desc" class="wf-muted text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Elige tu barbero, consulta precios claros y reserva hueco desde el móvil sin esperar llamadas.
+            </p>
+
+            <!-- Featured Service Card (tabular-nums & whitespace-nowrap so price NEVER breaks!) -->
+            <div class="p-3 rounded-xl bg-black/40 border border-white/12 flex items-center justify-between gap-3">
+              <div class="min-w-0">
+                <div id="hw-item-title" class="wf-ink text-xs sm:text-sm font-bold text-white truncate">Corte Degradado + Ritual Barba</div>
+                <div id="hw-item-sub" class="wf-muted text-[11px] text-slate-400 truncate">45 min · Toalla caliente</div>
+              </div>
+              <span id="hw-item-price" class="font-display font-extrabold text-base sm:text-lg tabular-nums whitespace-nowrap shrink-0" style="color:#E09F5A;">
+                24 €
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Above-the-Fold Conversion CTAs -->
+      <div class="max-w-xl mx-auto mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <a href="#generador" class="btn-press py-4 px-5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm sm:text-base text-center shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 whitespace-nowrap">
+          <span>Crear Mi Demo Gratis</span>
+          <i class="ph-bold ph-arrow-right"></i>
+        </a>
+        <a href="#portafolio" class="btn-press py-4 px-5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.10] border border-white/15 text-white font-display font-bold text-sm sm:text-base text-center flex items-center justify-center gap-2 whitespace-nowrap">
+          <i class="ph-bold ph-device-mobile text-emerald-400"></i>
+          <span>Ver +70 Webs en Vivo</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       2. UNRESTRICTED LIVE WEBSITE GENERATOR ("Pon Todo lo de Tu Negocio")
+       ===================================================================== -->
+  <section id="generador" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10 bg-[#0A0C12]">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Heading -->
+      <div class="max-w-3xl mb-8 sm:mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] uppercase font-semibold mb-3">
+          <i class="ph-bold ph-magic-wand"></i>
+          <span>ESTUDIO INTERACTIVO EN VIVO · SIN LÍMITES</span>
+        </div>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-3">
+          Configura <span class="text-emerald-400">absolutamente todo</span> lo que tiene tu negocio.
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Elige tu gremio (o escribe cualquier profesión), pon tu WhatsApp, dirección, horario visual, edita o añade todos tus servicios con precios y sube fotos desde tu móvil. Tu demo real dura <strong class="text-amber-300">24 horas activa</strong>.
+        </p>
+      </div>
+
+      <!-- Main Studio 12-Col Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+
+        <!-- LEFT: 4-STEP FULL CUSTOMIZATION PANEL (lg:col-span-5) -->
+        <div class="lg:col-span-5 rounded-3xl bg-slate-950 border border-white/12 p-4 sm:p-6 shadow-2xl">
+
+          <!-- 4 Clean Step Tabs -->
+          <div class="grid grid-cols-4 gap-1.5 mb-5 p-1 rounded-2xl bg-white/[0.03] border border-white/8">
+            <button type="button" id="studio-tab-1" onclick="switchStudioStep(1)"
+              class="studio-step-tab active rounded-xl py-2.5 px-1 text-center border border-transparent text-[11px] sm:text-xs font-bold text-slate-300">
+              1. Negocio
+            </button>
+            <button type="button" id="studio-tab-2" onclick="switchStudioStep(2)"
+              class="studio-step-tab rounded-xl py-2.5 px-1 text-center border border-transparent text-[11px] sm:text-xs font-bold text-slate-300">
+              2. Contacto
+            </button>
+            <button type="button" id="studio-tab-3" onclick="switchStudioStep(3)"
+              class="studio-step-tab rounded-xl py-2.5 px-1 text-center border border-transparent text-[11px] sm:text-xs font-bold text-slate-300">
+              3. Tarifas
+            </button>
+            <button type="button" id="studio-tab-4" onclick="switchStudioStep(4)"
+              class="studio-step-tab rounded-xl py-2.5 px-1 text-center border border-transparent text-[11px] sm:text-xs font-bold text-slate-300">
+              4. Diseño
+            </button>
+          </div>
+
+          <!-- STEP 1: IDENTIDAD, SECTOR Y MODALIDAD -->
+          <div id="studio-step-1" class="space-y-4">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Nombre de tu negocio</label>
+              <input type="text" id="inp-name" oninput="schedulePreviewRefresh()" placeholder="Ej. Barbería Martínez"
+                class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white font-semibold focus:border-emerald-400 focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-2">¿Qué tipo de negocio tienes? (13 opciones)</label>
+              <div id="sector-chips-grid" class="grid grid-cols-2 gap-2 max-h-[250px] overflow-y-auto pr-1"></div>
+            </div>
+
+            <!-- Custom sector input when "Otro Negocio" is chosen -->
+            <div id="custom-sector-wrap" class="hidden">
+              <label class="block text-[11px] font-mono uppercase text-emerald-400 font-semibold mb-1.5">Escribe tu profesión o tipo de comercio exacto</label>
+              <input type="text" id="inp-custom-sector" oninput="schedulePreviewRefresh()" placeholder="Ej. Floristería, Abogado, Veterinario, Inmobiliaria..."
+                class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/40 text-white focus:border-emerald-400 focus:outline-none" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Experiencia / Sello</label>
+                <input type="text" id="inp-years" oninput="schedulePreviewRefresh()" placeholder="Ej. 12 años en el barrio"
+                  class="w-full desktop-sm px-3 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">¿Cómo atendéis?</label>
+                <select id="inp-policy" onchange="schedulePreviewRefresh()"
+                  class="w-full desktop-sm px-3 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none">
+                  <option value="ambos">Con cita y sin cita</option>
+                  <option value="cita">Solo con cita previa</option>
+                  <option value="sincita">Entrada libre sin cita</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Titular principal de portada</label>
+              <input type="text" id="inp-tagline" oninput="schedulePreviewRefresh()"
+                class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Descripción / Historia de tu local</label>
+              <textarea id="inp-story" rows="2" oninput="schedulePreviewRefresh()"
+                class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-slate-200 focus:border-emerald-400 focus:outline-none"></textarea>
+            </div>
+
+            <button type="button" onclick="switchStudioStep(2)"
+              class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs flex items-center justify-center gap-2">
+              <span>Siguiente: Ciudad, WhatsApp y Horario</span>
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- STEP 2: UBICACIÓN, WHATSAPP Y HORARIO VISUAL -->
+          <div id="studio-step-2" class="hidden space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Ciudad o Barrio</label>
+                <input type="text" id="inp-city" oninput="schedulePreviewRefresh()" placeholder="Ej. Alicante Centro"
+                  class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-emerald-400 font-semibold mb-1.5">WhatsApp Directo</label>
+                <input type="tel" id="inp-whatsapp" oninput="schedulePreviewRefresh()" placeholder="Ej. 612 890 345"
+                  class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-emerald-500/40 text-white font-semibold focus:border-emerald-400 focus:outline-none" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Dirección exacta (para ruta Google Maps)</label>
+              <input type="text" id="inp-address" oninput="schedulePreviewRefresh()" placeholder="Ej. Calle Mayor 24, Bajo"
+                class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Teléfono secundario</label>
+                <input type="tel" id="inp-phone" oninput="schedulePreviewRefresh()" placeholder="Opcional"
+                  class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-1.5">Instagram / Red Social</label>
+                <input type="text" id="inp-instagram" oninput="schedulePreviewRefresh()" placeholder="@tunegocio"
+                  class="w-full desktop-sm px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+              <div class="text-[11px] font-mono uppercase text-amber-300 font-semibold">Horario Visual Semanal</div>
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Lunes a Viernes</label>
+                <input type="text" id="inp-hours-week" oninput="schedulePreviewRefresh()" placeholder="09:30 – 20:30"
+                  class="w-full desktop-sm px-3 py-2 rounded-lg bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">Sábados</label>
+                  <input type="text" id="inp-hours-sat" oninput="schedulePreviewRefresh()" placeholder="09:30 – 15:00"
+                    class="w-full desktop-sm px-3 py-2 rounded-lg bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+                </div>
+                <div>
+                  <label class="block text-[11px] text-slate-400 mb-1">Domingos</label>
+                  <input type="text" id="inp-hours-sun" oninput="schedulePreviewRefresh()" placeholder="Cerrado"
+                    class="w-full desktop-sm px-3 py-2 rounded-lg bg-slate-900 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <button type="button" onclick="switchStudioStep(3)"
+              class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs flex items-center justify-center gap-2">
+              <span>Siguiente: Servicios, Precios y Fotos</span>
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- STEP 3: SERVICIOS ILIMITADOS Y SUBIDA DE FOTOS REALES -->
+          <div id="studio-step-3" class="hidden space-y-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[11px] font-mono uppercase text-slate-300 font-semibold">Tus Servicios, Carta o Tarifas</span>
+              <button type="button" onclick="addServiceItem()"
+                class="px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 font-display font-extrabold text-xs">
+                + Añadir Ítem
+              </button>
+            </div>
+
+            <div id="services-editor-list" class="space-y-2.5 max-h-[300px] overflow-y-auto pr-1"></div>
+
+            <!-- Real Phone Camera / Gallery Photo Upload -->
+            <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono uppercase text-amber-300 font-semibold">Sube Fotos de Tu Móvil (Opcional)</span>
+                <button type="button" onclick="resetUploadedPhotos()" class="text-[11px] text-slate-400 underline">Restaurar</button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <label class="cursor-pointer p-3 rounded-xl bg-slate-900 border border-dashed border-white/20 hover:border-emerald-400 text-center block">
+                  <i class="ph-bold ph-camera text-emerald-400 text-lg block mb-1"></i>
+                  <span class="text-xs font-bold text-white block">Foto Portada</span>
+                  <span id="hero-photo-status" class="text-[10px] text-slate-400 block mt-0.5">Usando foto del sector</span>
+                  <input type="file" accept="image/*" onchange="handleHeroPhotoUpload(this)" class="hidden" />
+                </label>
+                <label class="cursor-pointer p-3 rounded-xl bg-slate-900 border border-dashed border-white/20 hover:border-emerald-400 text-center block">
+                  <i class="ph-bold ph-images text-amber-300 text-lg block mb-1"></i>
+                  <span class="text-xs font-bold text-white block">Fotos Galería (hasta 4)</span>
+                  <span id="gallery-photo-status" class="text-[10px] text-slate-400 block mt-0.5">3 fotos de muestra</span>
+                  <input type="file" accept="image/*" multiple onchange="handleGalleryUpload(this)" class="hidden" />
+                </label>
+              </div>
+            </div>
+
+            <button type="button" onclick="switchStudioStep(4)"
+              class="w-full py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-display font-bold text-xs flex items-center justify-center gap-2">
+              <span>Siguiente: Colores y Secciones</span>
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- STEP 4: PALETA DE COLORES Y QUÉ SECCIONES INCLUIR -->
+          <div id="studio-step-4" class="hidden space-y-4">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-2">Paleta de Color y Tipografía</label>
+              <div id="theme-selector-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-slate-400 font-semibold mb-2">Elige qué secciones lleva tu web</label>
+              <div id="modules-toggle-grid" class="grid grid-cols-1 gap-2 max-h-[260px] overflow-y-auto pr-1"></div>
+            </div>
+          </div>
+
+          <!-- Persistent Studio Action Buttons -->
+          <div class="mt-5 pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <button type="button" onclick="openFullscreenGeneratedDemo()"
+              class="py-3.5 px-4 rounded-xl bg-white text-slate-950 font-display font-extrabold text-xs flex items-center justify-center gap-2">
+              <i class="ph-bold ph-arrows-out-simple"></i>
+              <span>Ver a Pantalla Completa</span>
+            </button>
+            <button type="button" onclick="scrollToPreviewOnMobile()"
+              class="lg:hidden py-3.5 px-4 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-display font-bold text-xs flex items-center justify-center gap-2">
+              <span>Ver Vista Previa Abajo</span>
+              <i class="ph-bold ph-arrow-down"></i>
+            </button>
+            <button type="button" onclick="openAutomatedCheckoutModal()"
+              class="hidden lg:flex py-3.5 px-4 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs items-center justify-center gap-1.5">
+              <span>Publicar por 50 €</span>
+              <i class="ph-bold ph-arrow-right"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: LIVE COMPILED MULTI-SECTION WEBSITE PREVIEW (lg:col-span-7) -->
+        <div id="live-preview-anchor" class="lg:col-span-7 space-y-4">
+
+          <!-- Live 24h Status + Viewport Switcher Header -->
+          <div class="rounded-2xl bg-slate-950 border border-white/12 p-3 sm:p-4 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold tabular-nums">
+                ⏱ Caduca en <span class="js-countdown-24h">23:59:50</span>
+              </span>
+              <span class="hidden sm:inline text-xs text-slate-400">Demo interactiva real</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <div class="hidden sm:inline-flex p-1 rounded-xl bg-white/5 border border-white/10">
+                <button type="button" id="btn-dev-mobile" onclick="setPreviewDevice('mobile')" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400">Móvil</button>
+                <button type="button" id="btn-dev-desktop" onclick="setPreviewDevice('desktop')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-950">Ordenador</button>
+              </div>
+              <button type="button" onclick="openFullscreenGeneratedDemo()"
+                class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold flex items-center gap-1.5 whitespace-nowrap">
+                <i class="ph-bold ph-corners-out"></i>
+                <span>Pantalla Completa</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Browser / Device Frame Hosting the Isolated Compiled Website -->
+          <div id="preview-frame-shell" class="preview-device-wrapper mode-desktop rounded-3xl overflow-hidden border border-white/15 bg-slate-950 shadow-2xl">
+            <!-- Clean Truncated URL Bar (Zero overflow on 390px!) -->
+            <div class="px-3.5 py-2.5 bg-slate-900 border-b border-white/10 flex items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+              </div>
+              <div class="flex-1 min-w-0 px-3 py-1 rounded-lg bg-black/50 border border-white/8 text-center font-mono text-[11px] text-emerald-300 truncate">
+                https://<span id="preview-live-url">miweblocal.com/barberia-martinez</span>
+              </div>
+              <button type="button" onclick="openAutomatedCheckoutModal()"
+                class="px-2.5 py-1 rounded-lg bg-emerald-400 text-slate-950 font-display font-extrabold text-[11px] whitespace-nowrap shrink-0">
+                Activar · 50 €
+              </button>
+            </div>
+
+            <!-- True Responsive Multi-Section Single-File Website -->
+            <iframe id="studio-preview-iframe" title="Vista previa en vivo de tu web"
+              class="w-full h-[560px] sm:h-[630px] bg-black block border-0"></iframe>
+          </div>
+
+          <!-- Instant Unlock Banner Underneath Preview -->
+          <div class="rounded-2xl bg-gradient-to-r from-emerald-500/15 via-slate-900 to-amber-500/10 border border-emerald-500/30 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="font-display font-extrabold text-base sm:text-lg text-white">
+                ¿Lista para tus clientes? Desbloquéala para siempre por 50 €.
+              </div>
+              <p class="text-xs text-slate-300 mt-0.5">
+                Sin mensualidades obligatorias. Recibes al instante en tu Email tu enlace público y las claves de tu panel privado <code class="text-amber-300">/admin</code>.
+              </p>
+            </div>
+            <button type="button" onclick="openAutomatedCheckoutModal()"
+              class="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm whitespace-nowrap shrink-0 shadow-lg shadow-emerald-500/20">
+              Activar Mi Web Ahora (50 €) →
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. REAL LIVE CLIENT WEBSITES SHOWCASE ("Webs Reales en Vivo")
+       ===================================================================== -->
+  <section id="portafolio" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Header + Metrics -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/12 text-amber-300 font-mono text-[11px] uppercase font-semibold mb-3">
+            <i class="ph-bold ph-seal-check"></i>
+            <span>PORTAFOLIO VERIFICADO EN PRODUCCIÓN</span>
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-2.5">
+            Explora nuestras <span class="text-emerald-400">webs reales en vivo</span>.
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Nada de plantillas vacías: toca cualquier teléfono para probar webs reales de concesionarios, barberías, cafeterías, clínicas y empresas de reformas que ya captan clientes a diario.
+          </p>
+        </div>
+
+        <!-- Category Filters (Clean horizontal scroll on mobile) -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+          <button type="button" data-cat="all" onclick="renderPortfolioCards('all')" class="pf-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-slate-950 whitespace-nowrap">Todas (6)</button>
+          <button type="button" data-cat="motor" onclick="renderPortfolioCards('motor')" class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">Motor y Taller</button>
+          <button type="button" data-cat="barberia" onclick="renderPortfolioCards('barberia')" class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">Barbería y Tattoo</button>
+          <button type="button" data-cat="hosteleria" onclick="renderPortfolioCards('hosteleria')" class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">Hostelería</button>
+          <button type="button" data-cat="reformas" onclick="renderPortfolioCards('reformas')" class="pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 whitespace-nowrap">Reformas</button>
+        </div>
+      </div>
+
+      <!-- Mobile Swipe Hint -->
+      <div class="lg:hidden flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
+        <span>Desliza para ver más clientes reales →</span>
+        <span class="font-mono text-emerald-400">+70 activas</span>
+      </div>
+
+      <!-- Real iPhone 15 Pro Showcase Cards (Touch Snap Carousel on Mobile / 3-Col Grid on Desktop) -->
+      <div id="portfolio-cards-container" class="snap-carousel lg-grid-3 pb-2"></div>
+
+      <!-- Verified Stats Strip -->
+      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-white tabular-nums">+74</div>
+          <div class="text-xs text-slate-400 mt-1">Negocios locales publicados en España</div>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-emerald-400 tabular-nums">0,6 s</div>
+          <div class="text-xs text-slate-400 mt-1">Carga ultrarrápida optimizada para móvil</div>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-amber-300 tabular-nums">0 €</div>
+          <div class="text-xs text-slate-400 mt-1">Comisiones por reserva o pedido recibido</div>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="font-display font-extrabold text-2xl sm:text-3xl text-white tabular-nums">24/7</div>
+          <div class="text-xs text-slate-400 mt-1">Captación automática incluso cerrado</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       4. PRODUCTS & EXPERT MODULES ("Qué ofrecemos e incluye tu web")
+       ===================================================================== -->
+  <section id="productos" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10 bg-[#0A0C12]">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="max-w-3xl mb-10 sm:mb-14">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] uppercase font-semibold mb-3">
+          <i class="ph-bold ph-cpu"></i>
+          <span>INGENIERÍA COMPLETA PARA NEGOCIOS LOCALES</span>
+        </div>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-3">
+          Todo lo que incluye tu plataforma por <span class="text-emerald-400">50 € pago único</span>.
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          No hacemos tarjetas de visita vacías. Entregamos una herramienta comercial completa pensada para convertir visitas de TikTok, Instagram y Google Maps en clientes reales.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-calendar-check"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">1. Motor de Citas y Reservas 24/7</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Tus clientes eligen servicio, día y hora libre en 15 segundos desde el móvil sin interrumpirte mientras trabajas.
+          </p>
+        </div>
+
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-whatsapp-logo"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">2. WhatsApp Directo Inteligente</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Botón flotante siempre visible que abre conversación directa contigo con el servicio o consulta ya escrito.
+          </p>
+        </div>
+
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-sliders-horizontal"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">3. Panel Privado Móvil (/admin)</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Cambia precios, añade platos o servicios, sube fotos nuevas o pon horario de vacaciones tú mismo en 10 segundos.
+          </p>
+        </div>
+
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-map-pin-line"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">4. Horario Visual + Ruta Google Maps</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Tabla horaria que resalta el día actual automáticamente y botón directo "Cómo llegar" para atraer tráfico a pie de calle.
+          </p>
+        </div>
+
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-300 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-device-mobile-camera"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">5. Diseño Mobile-First Anti-Plantilla</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Más del 92% de tus clientes entran desde el móvil. Tipografía editorial, botones táctiles amplios y carga instantánea.
+          </p>
+        </div>
+
+        <div class="hover-lift p-6 rounded-3xl bg-slate-950 border border-white/10 transition-all">
+          <div class="w-11 h-11 rounded-2xl bg-sky-500/15 border border-sky-500/30 text-sky-300 flex items-center justify-center text-xl mb-4">
+            <i class="ph-bold ph-shield-check"></i>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mb-2">6. Hosting Cloud SSL + Entrega al Email</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Certificado seguro HTTPS incluido y activación 100% automatizada: pagas 50 € una sola vez y recibes tus claves al instante.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. 3-STEP AUTOMATION + COMPARISON (50 € vs 1.500 € Agencia)
+       ===================================================================== -->
+  <section id="comparativa" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- 3 Automated Steps -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-3">
+          ¿Cómo funciona nuestro sistema automático?
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          Cero reuniones eternas, cero presupuestos inflados y cero esperas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-14">
+        <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 relative">
+          <span class="font-mono text-xs font-bold text-emerald-400">PASO 01 · 60 SEGUNDOS</span>
+          <h3 class="font-display font-bold text-lg text-white mt-2 mb-2">Rellenas los datos de tu local</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Pones tu nombre, sector, WhatsApp, horarios, precios y fotos en el generador superior y ves tu web real al instante.
+          </p>
+        </div>
+        <div class="p-6 rounded-3xl bg-white/[0.03] border border-white/10 relative">
+          <span class="font-mono text-xs font-bold text-amber-300">PASO 02 · 24 HORAS DE PRUEBA</span>
+          <h3 class="font-display font-bold text-lg text-white mt-2 mb-2">La pruebas en tu propio móvil</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Tu demo permanece activa durante 24 horas gratis. Si no la activas, desaparece automáticamente sin cobrarte nada.
+          </p>
+        </div>
+        <div class="p-6 rounded-3xl bg-emerald-500/10 border border-emerald-500/30 relative">
+          <span class="font-mono text-xs font-bold text-emerald-300">PASO 03 · ENTREGA AL EMAIL</span>
+          <h3 class="font-display font-bold text-lg text-white mt-2 mb-2">Activas por 50 € y recibes claves</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Con un único pago de 50 €, la demo deja de caducar y recibes automáticamente tu URL oficial + tu panel <code class="text-amber-300">/admin</code>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mobile-Safe Comparison Card Grid -->
+      <div class="rounded-3xl bg-slate-950 border border-white/12 overflow-hidden shadow-2xl">
+        <div class="p-5 sm:p-7 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h3 class="font-display font-extrabold text-lg sm:text-2xl text-white">Agencia Tradicional vs. Mi Web Local</h3>
+          <span class="text-xs font-mono text-emerald-400 font-semibold">Ahorras más de 1.400 € desde el día 1</span>
+        </div>
+
+        <div class="divide-y divide-white/10 text-xs sm:text-sm">
+          <div class="grid grid-cols-12 p-4 sm:px-7 bg-white/[0.02] font-mono text-[11px] uppercase text-slate-400 font-semibold">
+            <div class="col-span-5 sm:col-span-6">Característica</div>
+            <div class="col-span-3 sm:col-span-3 text-center">Agencia</div>
+            <div class="col-span-4 sm:col-span-3 text-right text-emerald-400">MiWebLocal</div>
+          </div>
+
+          <div class="grid grid-cols-12 p-4 sm:px-7 items-center gap-2">
+            <div class="col-span-5 sm:col-span-6 font-semibold text-white">Precio total de creación</div>
+            <div class="col-span-3 text-center text-rose-400 font-mono">1.200–2.500€</div>
+            <div class="col-span-4 sm:col-span-3 text-right font-display font-extrabold text-emerald-400 text-sm sm:text-base">50 € único</div>
+          </div>
+
+          <div class="grid grid-cols-12 p-4 sm:px-7 items-center gap-2">
+            <div class="col-span-5 sm:col-span-6 font-semibold text-white">Tiempo de entrega</div>
+            <div class="col-span-3 text-center text-slate-400">4 a 6 semanas</div>
+            <div class="col-span-4 sm:col-span-3 text-right font-bold text-white">60 segundos</div>
+          </div>
+
+          <div class="grid grid-cols-12 p-4 sm:px-7 items-center gap-2">
+            <div class="col-span-5 sm:col-span-6 font-semibold text-white">Cuota mensual obligatoria</div>
+            <div class="col-span-3 text-center text-rose-400">39–90 €/mes</div>
+            <div class="col-span-4 sm:col-span-3 text-right font-bold text-emerald-400">0 € / mes</div>
+          </div>
+
+          <div class="grid grid-cols-12 p-4 sm:px-7 items-center gap-2">
+            <div class="col-span-5 sm:col-span-6 font-semibold text-white">Cambiar precios o fotos</div>
+            <div class="col-span-3 text-center text-slate-400">Pagar técnico</div>
+            <div class="col-span-4 sm:col-span-3 text-right font-bold text-white">Gratis (/admin)</div>
+          </div>
+
+          <div class="grid grid-cols-12 p-4 sm:px-7 items-center gap-2">
+            <div class="col-span-5 sm:col-span-6 font-semibold text-white">Agenda 24/7 + WhatsApp</div>
+            <div class="col-span-3 text-center text-slate-400">Extra aparte</div>
+            <div class="col-span-4 sm:col-span-3 text-right font-bold text-emerald-400">✓ Incluido</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. VERIFIED CLIENT REVIEWS WALL ("Nuestras Reseñas Reales")
+       ===================================================================== -->
+  <section id="resenas" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10 bg-[#0A0C12]">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Aggregate Rating Banner -->
+      <div class="rounded-3xl bg-slate-950 border border-white/12 p-6 sm:p-8 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[11px] font-bold mb-2">
+            ★ VALORACIÓN MEDIA VERIFICADA
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
+            Lo que opinan dueños de negocios como el tuyo.
+          </h2>
+        </div>
+
+        <div class="flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/10 shrink-0">
+          <div class="font-display font-extrabold text-4xl text-white tabular-nums">4,9</div>
+          <div>
+            <div class="text-amber-400 text-sm tracking-widest">★★★★★</div>
+            <div class="text-xs text-slate-300 font-medium">+74 negocios verificados</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Authentic Reviews Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/cox/barberia-jamal/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "Antes me sonaba el móvil 25 veces mientras estaba haciendo un degradado. Ahora mis clientes entran desde Instagram, ven los huecos libres y reservan en 30 segundos."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-300 font-display font-bold text-xs flex items-center justify-center shrink-0">BJ</div>
+            <div>
+              <div class="text-xs font-bold text-white">Jamal · Barbería Jamal</div>
+              <div class="text-[11px] text-slate-400">Cox (Alicante)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/motorcycle-store-orero/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "Tener nuestras motos de ocasión con ficha completa y la cita de taller conectada a WhatsApp nos dio una imagen de concesionario oficial brutal desde el primer día."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-rose-500/20 text-rose-300 font-display font-bold text-xs flex items-center justify-center shrink-0">OM</div>
+            <div>
+              <div class="text-xs font-bold text-white">Dirección · Orero Motorcycles</div>
+              <div class="text-[11px] text-slate-400">Orihuela</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/orihuela/la-vimacchiata-brunch/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "En el móvil se ve preciosa, limpia y súper rápida. Los fines de semana llenamos las mesas de brunch sin pagar comisiones por comensal a ninguna plataforma."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-orange-500/20 text-orange-300 font-display font-bold text-xs flex items-center justify-center shrink-0">LV</div>
+            <div>
+              <div class="text-xs font-bold text-white">Equipo · La Vimacchiata Brunch</div>
+              <div class="text-[11px] text-slate-400">Orihuela Centro</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/reformas-elite-gold-guardamar/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "Una agencia nos pedía 1.800 € y dos meses. Aquí probamos la demo, vimos nuestros acabados puestos y por 50 € ya nos entran presupuestos de reformas de cocina y baños."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-300 font-display font-bold text-xs flex items-center justify-center shrink-0">EG</div>
+            <div>
+              <div class="text-xs font-bold text-white">Gerencia · Reformas Elite Gold</div>
+              <div class="text-[11px] text-slate-400">Guardamar del Segura</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/orihuela/gabi-tattoo-studio/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "El diseño oscuro encaja clavado con nuestro estudio. La gente nos manda la idea del tatuaje, zona y centímetros directamente ordenada al WhatsApp."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-rose-500/20 text-rose-300 font-display font-bold text-xs flex items-center justify-center shrink-0">GT</div>
+            <div>
+              <div class="text-xs font-bold text-white">Gabi · Gabi Tattoo Studio</div>
+              <div class="text-[11px] text-slate-400">Orihuela</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 sm:p-6 rounded-3xl bg-slate-950 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
+              <a href="/autochrome-torrevieja/" target="_blank" class="text-[11px] font-mono text-emerald-400 hover:underline">Ver su web ↗</a>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
+              "El comparador Antes y Después de pintura al horno convence al cliente en 5 segundos y nos mandan foto del golpe por WhatsApp para valorar al momento."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-white/10 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-sky-500/20 text-sky-300 font-display font-bold text-xs flex items-center justify-center shrink-0">AL</div>
+            <div>
+              <div class="text-xs font-bold text-white">Taller · Auto Lomas Carrocería</div>
+              <div class="text-[11px] text-slate-400">Torrevieja</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       7. INTERACTIVE FAQ ACCORDION & FINAL CTA
+       ===================================================================== -->
+  <section id="faq" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-white/10">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="text-center mb-10">
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-2">
+          Preguntas frecuentes antes de activar tu web
+        </h2>
+        <p class="text-slate-400 text-sm">Todo claro y sin letra pequeña.</p>
+      </div>
+
+      <div class="space-y-3">
+        <details class="group rounded-2xl bg-slate-950 border border-white/10 p-4 sm:p-5" open>
+          <summary class="font-display font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between gap-3">
+            <span>¿De verdad son solo 50 € en pago único o hay cuotas mensuales?</span>
+            <i class="ph-bold ph-caret-down text-emerald-400 transition-transform group-open:rotate-180 shrink-0"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+            Son <strong>50 € pago único</strong>. Nuestro generador compila y despliega tu web de forma automatizada, por eso podemos ofrecer por 50 € lo que una agencia tradicional cobra a 1.500 €, sin obligarte a pagar mantenimiento mensual.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl bg-slate-950 border border-white/10 p-4 sm:p-5">
+          <summary class="font-display font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between gap-3">
+            <span>¿Puedo cambiar mis precios, horarios, WhatsApp o fotos después de pagar?</span>
+            <i class="ph-bold ph-caret-down text-emerald-400 transition-transform group-open:rotate-180 shrink-0"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+            Sí, todas las veces que quieras y gratis. Al activar tu web recibes en tu Email la clave de tu panel privado móvil (<code class="text-amber-300">/admin</code>) para editar textos, precios, servicios, fotos o festivos en segundos.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl bg-slate-950 border border-white/10 p-4 sm:p-5">
+          <summary class="font-display font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between gap-3">
+            <span>¿Sirve para cualquier negocio aunque no esté en la lista?</span>
+            <i class="ph-bold ph-caret-down text-emerald-400 transition-transform group-open:rotate-180 shrink-0"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+            Totalmente. En el Paso 1 puedes marcar <strong>"Otro Negocio (Libre)"</strong> y escribir exactamente tu actividad (abogado, floristería, inmobiliaria, fontanero, academia, clínica veterinaria...) y añadir tus propios servicios.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl bg-slate-950 border border-white/10 p-4 sm:p-5">
+          <summary class="font-display font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between gap-3">
+            <span>¿Qué ocurre si creo la demo y decido no activarla en 24 horas?</span>
+            <i class="ph-bold ph-caret-down text-emerald-400 transition-transform group-open:rotate-180 shrink-0"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+            Absolutamente nada. No pedimos tarjeta para crear y probar tu demo durante 24 horas. Si pasan las 24h sin activarse, el enlace temporal caduca solo sin coste alguno.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl bg-slate-950 border border-white/10 p-4 sm:p-5">
+          <summary class="font-display font-bold text-sm sm:text-base text-white cursor-pointer list-none flex items-center justify-between gap-3">
+            <span>¿Puedo poner el enlace en mi perfil de Instagram, TikTok y Google Maps?</span>
+            <i class="ph-bold ph-caret-down text-emerald-400 transition-transform group-open:rotate-180 shrink-0"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+            Sí, desde el primer minuto tendrás tu URL segura HTTPS lista para pegar en tu ficha de Google Maps (Perfil de Empresa), biografía de Instagram, TikTok y estado de WhatsApp Business.
+          </p>
+        </details>
+      </div>
+
+      <!-- Final High-Impact CTA Box -->
+      <div class="mt-12 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-slate-950 to-amber-500/15 border border-emerald-400/35 p-7 sm:p-10 text-center">
+        <h3 class="font-display font-extrabold text-2xl sm:text-4xl text-white mb-3">
+          Haz la prueba ahora con el nombre de tu negocio.
+        </h3>
+        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-6">
+          Tardas menos de 1 minuto en ver cómo luce tu local con una web profesional adaptada al móvil.
+        </p>
+        <a href="#generador" class="btn-press inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm sm:text-base shadow-xl shadow-emerald-500/25">
+          <span>Diseñar Mi Demo 24h Gratis</span>
+          <i class="ph-bold ph-arrow-up-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-10 pb-28 lg:pb-12 px-4 sm:px-6 text-center text-xs text-slate-400">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-xs flex items-center justify-center">M</span>
+        <span class="font-display font-bold text-white">MiWebLocal.com</span>
+        <span>· Sistema Automático de Webs para Negocios Locales</span>
+      </div>
+      <div>© 2026 Mi Web Local · Entrega Instantánea 24/7</div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MOBILE THUMB-ZONE STICKY BOTTOM BAR (Appears after scrolling past Hero)
+       ===================================================================== -->
+  <div id="mobile-sticky-bar" class="hidden-bar lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pt-2.5 bg-slate-950/92 backdrop-blur-xl border-t border-white/12">
+    <div class="grid grid-cols-12 gap-2 max-w-md mx-auto">
+      <a href="#generador" class="btn-press col-span-7 py-3 px-3 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs text-center flex items-center justify-center gap-1.5 whitespace-nowrap">
+        <i class="ph-bold ph-magic-wand"></i>
+        <span>Personalizar Mi Web</span>
+      </a>
+      <button type="button" onclick="openAutomatedCheckoutModal()"
+        class="col-span-5 py-3 px-3 rounded-xl bg-white/10 border border-white/15 text-white font-display font-bold text-xs text-center whitespace-nowrap">
+        Activar · 50 €
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 1: FULL-SCREEN GENERATED WEBSITE DEMO VIEWER
+       ===================================================================== -->
+  <div id="fullscreen-demo-modal" style="height: 100dvh;" class="fixed inset-0 z-[80] bg-slate-950 hidden flex flex-col">
+    <div class="px-3 sm:px-5 py-2.5 bg-slate-950 border-b border-white/15 flex items-center justify-between gap-2 shrink-0">
+      <button type="button" onclick="closeFullscreenGeneratedDemo()"
+        class="px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-bold flex items-center gap-1.5 whitespace-nowrap">
+        <i class="ph-bold ph-arrow-left"></i>
+        <span>Editar Datos</span>
+      </button>
+      <div class="min-w-0 text-center">
+        <div id="fullscreen-demo-url" class="font-mono text-[11px] text-emerald-300 truncate">miweblocal.com/minegocio</div>
+        <div class="text-[10px] text-amber-300 font-mono tabular-nums">Caduca en <span class="js-countdown-24h">23:59:00</span></div>
+      </div>
+      <button type="button" onclick="openAutomatedCheckoutModal()"
+        class="px-3.5 py-2 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap shrink-0">
+        Activar · 50 €
+      </button>
+    </div>
+    <iframe id="fullscreen-demo-iframe" title="Demo completa a pantalla completa" style="height: calc(100dvh - 56px);" class="w-full flex-1 border-0 bg-black block"></iframe>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: REAL LIVE PORTFOLIO CLIENT INTERACTIVE VIEWER
+       ===================================================================== -->
+  <div id="live-client-modal" style="height: 100dvh;" class="fixed inset-0 z-[80] sheet-backdrop hidden flex flex-col p-0 sm:p-5">
+    <div class="w-full max-w-5xl mx-auto flex-1 flex flex-col rounded-none sm:rounded-3xl overflow-hidden bg-slate-950 border border-white/15 shadow-2xl min-h-0">
+      <div class="px-4 py-3 bg-slate-900 border-b border-white/10 flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+          <strong id="live-client-title" class="font-display font-bold text-sm text-white truncate">Cliente en Vivo</strong>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="live-client-external" href="#" target="_blank" rel="noopener"
+            class="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-semibold whitespace-nowrap">
+            Nueva pestaña ↗
+          </a>
+          <button type="button" onclick="closeLiveClientModal()"
+            class="w-8 h-8 rounded-lg bg-white/10 text-white flex items-center justify-center">✕</button>
+        </div>
+      </div>
+      <iframe id="live-client-iframe" title="Web real de cliente en vivo" class="w-full flex-1 min-h-0 border-0 bg-black block"></iframe>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: 100% AUTOMATED 50 € CHECKOUT & INSTANT EMAIL CREDENTIALS
+       ===================================================================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-[90] sheet-backdrop hidden flex items-end sm:items-center justify-center p-3 sm:p-4">
+    <div id="checkout-modal-body" class="w-full max-w-lg rounded-3xl bg-slate-900 border border-white/15 p-5 sm:p-7 shadow-2xl max-h-[92vh] overflow-y-auto"></div>
+  </div>
+
+  <!-- Studio & Compiler Engine -->
+  <script src="assets/studio-engine.js"></script>
 </body>
 </html>
