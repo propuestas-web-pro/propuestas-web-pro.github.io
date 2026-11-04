@@ -1,22 +1,23 @@
 /* ==========================================================================
-   MIWEBLOCAL V5 — ORDENADOR + MÓVIL STUDIO SHOWCASE & PAIN-FIRST ARCHITECTURE
-   Zero iframes · Zero mismatched screens · 100% Unified Desktop+Mobile Luxury
+   MIWEBLOCAL V6 — TRUE MULTI-PLANE 3D, FLUID MOTION & MOBILE/PC NATIVE ENGINE
+   Zero iframes · Zero scroll locks · 60fps GPU Transforms · Real preserve-3d
    ========================================================================== */
 
 :root {
   --bg-void: #050608;
   --bg-elevated: #0B0D13;
-  --bg-card: #0F121A;
+  --bg-card: #0E1119;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Keep html free of overflow-x:hidden so Windows Chromium mouse wheel is 100% native */
+/* CRITICAL: Never put overflow-x:hidden on html (preserves Windows mouse wheel) */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -32,162 +33,622 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Subtle studio micro-grain dot matrix */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.025;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 0);
+  opacity: 0.024;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.85) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-.hero-ambient {
-  background:
-    radial-gradient(760px 500px at 75% 24%, rgba(16, 185, 129, 0.13), transparent 68%),
-    radial-gradient(600px 420px at 18% 15%, rgba(245, 158, 11, 0.09), transparent 65%);
+/* Mobile-native interactive hygiene: zero 300ms tap delay, no accidental text highlight */
+button, a, .cursor-pointer, .filter-pill, .js-hero-tab {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* Machined Double-Bezel Hardware */
+.btn-press {
+  transition:
+    transform 140ms var(--ease-out),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms var(--ease-out);
+}
+
+.btn-press:active {
+  transform: scale(0.965);
+}
+
+.btn-island-circle {
+  transition: transform 220ms var(--ease-out);
+}
+
+/* ==========================================================================
+   1. HERO 3D ARCHITECTURAL PERSPECTIVE GRID & AMBIENT DEPTH ORBS
+   ========================================================================== */
+.hero-ambient {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(820px 540px at 74% 26%, rgba(16, 185, 129, 0.15), transparent 68%),
+    radial-gradient(620px 440px at 18% 16%, rgba(245, 158, 11, 0.095), transparent 65%);
+}
+
+.hero-3d-floor-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  perspective: 680px;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 55% 58%, #000 18%, transparent 76%);
+  mask-image: radial-gradient(ellipse 85% 70% at 55% 58%, #000 18%, transparent 76%);
+}
+
+.hero-3d-floor {
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  bottom: -38%;
+  height: 125%;
+  transform-origin: center center;
+  transform: rotateX(64deg) translate3d(0, 0, 0);
+  background-image:
+    linear-gradient(to right, rgba(52, 211, 153, 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  animation: floorGlide 14s linear infinite;
+  will-change: transform;
+}
+
+@keyframes floorGlide {
+  from { transform: rotateX(64deg) translate3d(0, 0, 0); }
+  to   { transform: rotateX(64deg) translate3d(0, 56px, 0); }
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(60px);
+  will-change: transform;
+}
+
+.hero-orb-emerald {
+  width: 340px;
+  height: 340px;
+  right: 4%;
+  top: 8%;
+  background: rgba(16, 185, 129, 0.16);
+  animation: orbFloatA 9s ease-in-out infinite alternate;
+}
+
+.hero-orb-amber {
+  width: 260px;
+  height: 260px;
+  left: 6%;
+  bottom: 6%;
+  background: rgba(251, 191, 36, 0.11);
+  animation: orbFloatB 11s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloatA {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-22px, 18px, 0) scale(1.08); }
+}
+
+@keyframes orbFloatB {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(20px, -16px, 0) scale(1.06); }
+}
+
+/* ==========================================================================
+   2. HERO 3D COVERFLOW DECK + MULTI-PLANE preserve-3d PARALLAX RIG
+   ========================================================================== */
+.hero-deck-viewport {
+  position: relative;
+  perspective: 1350px;
+  padding: 14px 10px 18px;
+  touch-action: pan-y;
+}
+
+@media (min-width: 640px) {
+  .hero-deck-viewport {
+    padding: 18px 28px 22px;
+  }
+}
+
+.hero-deck-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  transform-style: preserve-3d;
+}
+
+/* Individual 3D Coverflow Card Slot */
+.hero-deck-card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition:
+    transform 560ms var(--ease-fluid),
+    opacity 440ms var(--ease-out);
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.hero-deck-card[data-pos="0"] {
+  z-index: 5;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
+}
+
+.hero-deck-card[data-pos="-1"] {
+  z-index: 3;
+  opacity: 0.46;
+  transform: translate3d(-6.5%, 8px, -95px) rotateY(15deg) scale(0.91);
+}
+
+.hero-deck-card[data-pos="1"] {
+  z-index: 3;
+  opacity: 0.46;
+  transform: translate3d(6.5%, 8px, -95px) rotateY(-15deg) scale(0.91);
+}
+
+@media (min-width: 640px) {
+  .hero-deck-card[data-pos="-1"] {
+    opacity: 0.54;
+    transform: translate3d(-11.5%, 10px, -120px) rotateY(17deg) scale(0.89);
+  }
+  .hero-deck-card[data-pos="1"] {
+    opacity: 0.54;
+    transform: translate3d(11.5%, 10px, -120px) rotateY(-17deg) scale(0.89);
+  }
+}
+
+.hero-deck-card[data-pos="-2"] {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-16%, 18px, -210px) rotateY(22deg) scale(0.82);
+}
+
+.hero-deck-card[data-pos="2"] {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(16%, 18px, -210px) rotateY(-22deg) scale(0.82);
+}
+
+/* Inner tilt rig on the active card: NO overflow:hidden here so translateZ works! */
+.hero-tilt-rig {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Autonomous subtle 3D float on touch devices so mobile immediately sees 3D depth! */
+@media (hover: none) and (pointer: coarse) {
+  .hero-deck-card[data-pos="0"] .hero-tilt-rig {
+    animation: mobile3dFloat 6.2s ease-in-out infinite;
+  }
+}
+
+@keyframes mobile3dFloat {
+  0%, 100% { transform: rotateX(2.2deg) rotateY(-3.4deg) translate3d(0, 0, 0); }
+  50%      { transform: rotateX(-2.2deg) rotateY(3.4deg) translate3d(0, -5px, 0); }
+}
+
+/* Base hardware bezel & clipped screen (translateZ(0)) */
+.hero-bezel-frame {
+  position: absolute;
+  inset: 0;
+  padding: 7px;
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.025));
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, 0.78),
+    0 0 0 1px rgba(16, 185, 129, 0.08);
+  transform: translate3d(0, 0, 0);
+}
+
+@media (min-width: 640px) {
+  .hero-bezel-frame {
+    padding: 8px;
+    border-radius: 30px;
+  }
+}
+
+.hero-screen-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #080A0F;
+}
+
+@media (min-width: 640px) {
+  .hero-screen-clip {
+    border-radius: 22px;
+  }
+}
+
+.hero-deck-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 4400ms linear;
+}
+
+.hero-deck-card[data-pos="0"] .hero-deck-img {
+  transform: scale(1.065);
+}
+
+/* Dynamic specular glare overlay */
+.hero-glare {
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 28%, transparent 60%);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-out);
+  will-change: transform, opacity;
+}
+
+/* Real 3D Floating Planes hovering IN FRONT of the screen (translateZ > 0) */
+.hero-float-top {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 42px);
+  opacity: 0;
+  transition: opacity 320ms var(--ease-out);
+}
+
+@media (min-width: 640px) {
+  .hero-float-top {
+    top: -12px;
+    left: 18px;
+    right: 18px;
+  }
+}
+
+.hero-deck-card[data-pos="0"] .hero-float-top,
+.hero-deck-card[data-pos="0"] .hero-float-bottom {
+  opacity: 1;
+}
+
+.hero-float-bottom {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 36px);
+  opacity: 0;
+  transition: opacity 320ms var(--ease-out);
+}
+
+@media (min-width: 640px) {
+  .hero-float-bottom {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+}
+
+.float-chip-glass {
+  background: rgba(7, 10, 16, 0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+}
+
+/* Progress bar inside active Hero tab */
+@keyframes heroTabFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.hero-tab-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.5px;
+  background: #10B981;
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+.hero-tab-active .hero-tab-progress {
+  animation: heroTabFill 4.4s linear forwards;
+}
+
+/* ==========================================================================
+   3. DUAL-DIRECTION 3D PERSPECTIVE MARQUEE RIBBON (60FPS GPU OFF-MAIN-THREAD)
+   ========================================================================== */
+.marquee-3d-section {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0 24px;
+  perspective: 950px;
+}
+
+.marquee-3d-plane {
+  transform: rotateX(7deg) rotateZ(-0.9deg);
+  transform-origin: center center;
+}
+
+.marquee-mask {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  will-change: transform;
+}
+
+.marquee-track-left {
+  animation: marqueeLeft 38s linear infinite;
+}
+
+.marquee-track-right {
+  animation: marqueeRight 34s linear infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marquee-mask:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marqueeLeft {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+.marquee-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  border-radius: 9999px;
+  background: rgba(15, 19, 28, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 180ms var(--ease-out), border-color 180ms ease;
+}
+
+.marquee-mini-thumb {
+  width: 52px;
+  height: 36px;
+  border-radius: 9999px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================================
+   4. 3D INTERACTIVE CATALOG CARDS, PAIN CARDS & PRICING HARDWARE
+   ========================================================================== */
+.showcase-card {
+  perspective: 1100px;
+}
+
 .double-bezel {
+  position: relative;
   padding: 7px;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.032);
-  border: 1px solid rgba(255, 255, 255, 0.095);
-  transition: transform 360ms var(--ease-out), border-color 360ms var(--ease-out);
+  background: rgba(255, 255, 255, 0.034);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition:
+    transform 340ms var(--ease-out),
+    border-color 300ms var(--ease-out),
+    box-shadow 340ms var(--ease-out);
+  will-change: transform;
+}
+
+.double-bezel.is-tilting,
+.pain-card.is-tilting {
+  transition: border-color 220ms ease, box-shadow 260ms var(--ease-out);
 }
 
 .double-bezel-inner {
+  position: relative;
   border-radius: 21px;
   background: var(--bg-card);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.11);
   overflow: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .showcase-card:hover .double-bezel {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.24);
-  }
-  .showcase-card:hover .card-media-img {
-    transform: scale(1.03);
-  }
-  .pain-card:hover {
-    border-color: rgba(52, 211, 153, 0.32);
-    transform: translateY(-2px);
-  }
-  .btn-island:hover .btn-island-circle {
-    transform: translate(2px, -2px) scale(1.05);
-  }
+/* Floating 3D layer over catalog card media (sibling to overflow:hidden!) */
+.card-3d-media-shell {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-3d-float-row {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 28px);
+  z-index: 3;
+}
+
+.card-glare {
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.18) 0%, rgba(52, 211, 153, 0.06) 26%, transparent 58%);
+  opacity: 0;
+  transition: opacity 240ms var(--ease-out);
+  will-change: transform, opacity;
 }
 
 .card-media-img {
-  transition: transform 650ms var(--ease-fluid);
+  transition: transform 620ms var(--ease-fluid);
   will-change: transform;
 }
 
 .pain-card {
-  transition: transform 300ms var(--ease-out), border-color 300ms var(--ease-out);
-}
-
-.btn-press {
-  transition: transform 150ms var(--ease-out), background-color 200ms ease, border-color 200ms ease;
-}
-.btn-press:active {
-  transform: scale(0.97);
-}
-
-.btn-island-circle {
-  transition: transform 240ms var(--ease-out);
-}
-
-/* Hero Live "Ordenador + Móvil" Stage */
-.hero-stage-shell {
-  padding: 8px;
-  border-radius: 32px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.75);
-}
-
-.hero-stage-screen {
   position: relative;
-  border-radius: 24px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: #080A0F;
+  transition:
+    transform 300ms var(--ease-out),
+    border-color 280ms var(--ease-out),
+    box-shadow 300ms var(--ease-out);
+  will-change: transform;
 }
 
-.hero-stage-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.01);
-  transition: opacity 420ms var(--ease-out), transform 4200ms linear;
+/* Pointer-gated hover enhancements for Desktop PC */
+@media (hover: hover) and (pointer: fine) {
+  .showcase-card:hover .double-bezel {
+    border-color: rgba(52, 211, 153, 0.36);
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.65), 0 0 32px rgba(16, 185, 129, 0.09);
+  }
+  .showcase-card:hover .card-media-img {
+    transform: scale(1.04);
+  }
+  .pain-card:hover {
+    border-color: rgba(52, 211, 153, 0.35);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+  }
+  .marquee-mini-card:hover {
+    transform: translate3d(0, -2px, 0) scale(1.03);
+    border-color: rgba(52, 211, 153, 0.45);
+  }
+  .btn-island:hover .btn-island-circle {
+    transform: translate3d(2px, -2px, 0) scale(1.06);
+  }
 }
 
-.hero-stage-img.is-zooming {
-  transform: scale(1.055);
-}
-
-.hero-stage-img.is-fading {
-  opacity: 0.15;
-  filter: blur(2px);
-}
-
-/* Progress bar for auto-rotating Hero stage */
-@keyframes heroProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.hero-tab-active .hero-tab-bar {
-  transform-origin: left center;
-  animation: heroProgress 4.2s linear forwards;
-}
-
-/* Scroll Entry Reveal */
-.reveal-item {
+/* ==========================================================================
+   5. SCROLL-DRIVEN 3D SPATIAL ENTRANCE & MOBILE SAFE AREAS
+   ========================================================================== */
+.reveal-3d {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 600ms var(--ease-fluid), transform 600ms var(--ease-fluid);
+  transform: perspective(1050px) rotateX(11deg) translate3d(0, 30px, -24px) scale(0.965);
+  transform-origin: center top;
+  transition:
+    opacity 580ms var(--ease-out),
+    transform 640ms var(--ease-out);
+  transition-delay: var(--stagger, 0ms);
 }
 
-.reveal-item.is-visible {
+.reveal-3d.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(1050px) rotateX(0deg) translate3d(0, 0, 0) scale(1);
+}
+
+/* Mobile sticky WhatsApp bar — explicit GPU properties + iOS home-indicator safe area */
+.mobile-wa-dock {
+  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  transition:
+    transform 260ms var(--ease-out),
+    opacity 220ms var(--ease-out);
+}
+
+.mobile-wa-dock.is-hidden {
+  transform: translate3d(0, 120%, 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.safe-bottom-pad {
+  padding-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Lightbox Modal */
+/* Fullscreen HD Ordenador + Móvil Lightbox */
 .cinema-modal {
   opacity: 0;
   pointer-events: none;
   transition: opacity 220ms var(--ease-out);
 }
+
 .cinema-modal.is-open {
   opacity: 1;
   pointer-events: auto;
 }
+
 .cinema-modal-panel {
-  transform: scale(0.96) translateY(10px);
+  transform: perspective(1100px) rotateX(5deg) scale(0.95) translate3d(0, 12px, 0);
   transition: transform 260ms var(--ease-out);
 }
+
 .cinema-modal.is-open .cinema-modal-panel {
-  transform: scale(1) translateY(0);
+  transform: perspective(1100px) rotateX(0deg) scale(1) translate3d(0, 0, 0);
 }
 
+/* ==========================================================================
+   6. REDUCED MOTION ACCESSIBILITY FALLBACK
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-item {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-3d-floor,
+  .hero-orb,
+  .marquee-track,
+  .hero-deck-card[data-pos="0"] .hero-tilt-rig,
+  .hero-tab-active .hero-tab-progress {
+    animation: none !important;
+  }
+  .reveal-3d {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
-  .hero-stage-img {
+  .hero-deck-img,
+  .card-media-img {
     transition: none !important;
     transform: none !important;
   }
