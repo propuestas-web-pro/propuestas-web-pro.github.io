@@ -110,12 +110,30 @@
     <div id="adm-demo-banner" class="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/15 to-amber-500/15 border border-emerald-400/35 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div class="text-xs">
         <strong class="text-white block">Estás probando tu Panel /admin en vivo</strong>
-        <span class="text-slate-300">Haz cualquier cambio abajo, pulsa Guardar y abre tu web para verlo aplicado al instante.</span>
+        <span class="text-slate-300">Sube tus fotos o haz cualquier cambio abajo, pulsa Guardar y abre tu web para verlo al instante.</span>
       </div>
-      <a href="/#generador" class="px-3.5 py-2 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap self-start sm:self-auto">
-        Activar Definitiva · 50 €
+      <a href="/#opciones" class="px-3.5 py-2 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-xs whitespace-nowrap self-start sm:self-auto">
+        Publicar · Desde 79 €
       </a>
     </div>
+
+    <!-- Card 0: Subir / Cambiar Fotos Reales desde el Móvil -->
+    <section class="rounded-3xl bg-[#111622] border border-emerald-400/35 p-5 space-y-3">
+      <div class="flex items-center justify-between gap-2">
+        <h2 class="font-display font-bold text-base text-white flex items-center gap-2">
+          <i class="ph-bold ph-camera text-emerald-400"></i> Fotos Reales de Tu Local o Trabajos
+        </h2>
+        <button type="button" onclick="admResetPhotos()" class="px-2.5 py-1 rounded-lg bg-white/10 text-slate-300 text-xs font-semibold">
+          Restaurar
+        </button>
+      </div>
+      <p class="text-xs text-slate-300">Sube de 1 a 4 fotos desde tu móvil u ordenador. Se optimizan solas al instante:</p>
+      <label class="w-full py-3 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm text-center cursor-pointer block">
+        📷 Seleccionar Fotos de Mi Móvil / PC
+        <input type="file" accept="image/*" multiple class="hidden" onchange="admUploadPhotos(this)" />
+      </label>
+      <div id="adm-photo-status" class="text-xs font-semibold text-emerald-300"></div>
+    </section>
 
     <!-- Card 1: Quick Status / Vacation Mode -->
     <section class="rounded-3xl bg-[#111622] border border-white/12 p-5 space-y-3">
@@ -242,7 +260,8 @@
     ✓ Cambios guardados y publicados al instante
   </div>
 
-  <script src="../assets/studio-engine.js"></script>
+  <script src="../assets/stripe-config.js?v=85"></script>
+  <script src="../assets/studio-engine.js?v=85"></script>
   <script>
     let admState = loadStudioState();
 
@@ -368,6 +387,30 @@
       saveAdminChanges();
     }
 
+    async function admUploadPhotos(input) {
+      const files = Array.from((input && input.files) || []).slice(0, 4);
+      if (!files.length || typeof miwebCompressImageFile !== 'function') return;
+      const st = document.getElementById('adm-photo-status');
+      if (st) st.textContent = 'Optimizando fotos...';
+      const arr = [];
+      for (const f of files) {
+        try { arr.push(await miwebCompressImageFile(f, 1100, 0.78)); } catch (e) {}
+      }
+      if (!arr.length) return;
+      admState.customHeroPhoto = arr[0];
+      admState.customGallery = arr;
+      if (st) st.textContent = '✓ ' + arr.length + ' foto(s) cargadas. Pulsa Guardar abajo.';
+      saveAdminChanges();
+    }
+
+    function admResetPhotos() {
+      admState.customHeroPhoto = '';
+      admState.customGallery = [];
+      const st = document.getElementById('adm-photo-status');
+      if (st) st.textContent = 'Fotos por defecto restauradas.';
+      saveAdminChanges();
+    }
+
     function saveAdminChanges() {
       admState.yearsExp = document.getElementById('adm-years').value.trim() || 'Atención Profesional';
       admState.name = document.getElementById('adm-name').value.trim() || admState.name;
@@ -383,6 +426,9 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(admState));
       } catch (e) {}
+      if (typeof miwebSaveSiteVault === 'function') {
+        miwebSaveSiteVault(slugifyName(admState.name), admState);
+      }
 
       document.getElementById('adm-header-name').textContent = admState.name;
       refreshLiveLinks();

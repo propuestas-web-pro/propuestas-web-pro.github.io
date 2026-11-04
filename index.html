@@ -14,7 +14,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>MiWebLocal — Genera Tu Web Ordenador + Móvil Ahora (Pago Único Para Siempre)</title>
-  <meta name="description" content="Genera tu página web Ordenador + Móvil aquí mismo, recibe tu enlace para verla durante 24h y actívala con dominio desde 50 € en un único pago para siempre sin renovar nunca más." />
+  <meta name="description" content="Genera tu página web Ordenador + Móvil en 10 segundos, mírala en tu vista previa de 24h y contrátala desde 79 € en un único pago para siempre (0 €/mes · 0 €/año)." />
   <meta name="theme-color" content="#050608" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -37,7 +37,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="assets/showcase-v4.css?v=70" />
+  <link rel="stylesheet" href="assets/showcase-v4.css?v=85" />
 </head>
 <body class="pb-28 lg:pb-0">
 
@@ -51,11 +51,12 @@
         <span class="font-display font-extrabold text-sm sm:text-lg tracking-tight text-white">MiWebLocal<span class="text-emerald-400">.</span></span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+      <nav class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-300">
         <a href="#crear" class="text-emerald-300 hover:text-white font-bold transition-colors">Generador Directo (24h)</a>
-        <a href="#incluye" class="hover:text-white transition-colors">Dominio + Pago Único</a>
-        <a href="#dolores" class="hover:text-white transition-colors">8 Dolores Resueltos</a>
+        <a href="#incluye" class="hover:text-white transition-colors">2 Semanas Incluidas</a>
+        <a href="#comparativa" class="hover:text-white transition-colors">Comparativa</a>
         <a href="#ejemplos" class="hover:text-white transition-colors">10 Modelos 3D</a>
+        <a href="#faq" class="hover:text-white transition-colors">Preguntas</a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -63,17 +64,18 @@
           <i class="ph-bold ph-timer"></i>
           <span id="nav-24h-timer">23:59:59</span>
         </span>
-        <a href="#crear"
-           class="btn-press px-3.5 sm:px-4 py-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 shadow-lg">
-          <i class="ph-bold ph-lightning text-sm"></i>
-          <span>Generar Mi Web</span>
-        </a>
+        <button type="button"
+                onclick="openStripeCheckout('197')"
+                class="btn-press px-3.5 sm:px-4 py-2 rounded-full stripe-btn-primary font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 whitespace-nowrap">
+          <i class="ph-bold ph-credit-card text-sm"></i>
+          <span>Contratar · Desde 79 €</span>
+        </button>
       </div>
     </div>
   </header>
 
   <!-- =====================================================================
-       SECTION 1: ENTRADA (HERO) — GENERADOR DIRECTO + ENLACE 24H + BOTÓN 50€/200€
+       SECTION 1: ENTRADA (HERO) — GENERADOR DIRECTO + ENLACE 24H + STRIPE 79€ / 197€ ⭐ / 297€
        Everything visible right on entry without scrolling!
        ===================================================================== -->
   <section id="crear" class="hero-ambient pt-5 pb-12 sm:pt-10 sm:pb-16">
@@ -90,17 +92,17 @@
       <div class="text-center max-w-3xl mx-auto space-y-3">
         <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/12 border border-emerald-400/35">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-[11px] uppercase tracking-[0.13em] font-extrabold text-emerald-300">
-            ♾️ PAGO ÚNICO PARA SIEMPRE · NO RENUEVAS NUNCA MÁS (0 €/MES · 0 €/AÑO)
+          <span class="text-[11px] uppercase tracking-[0.12em] font-extrabold text-emerald-300">
+            🛡️ TODO INCLUIDO EN UN ÚNICO PAGO PARA SIEMPRE (0 €/MES · 0 €/AÑO) · PAGO DIRECTO STRIPE + GARANTÍA TOTAL
           </span>
         </div>
 
         <h1 class="font-display font-black text-[1.95rem] sm:text-5xl text-white leading-[1.05] tracking-[-0.025em]">
-          Genera tu web aquí mismo, recibe <span class="text-emerald-400">tu enlace por 24h</span> y quédatela para siempre.
+          Genera tu web aquí mismo, mírala en tu <span class="text-emerald-400">vista previa 24h</span> y contrátala para siempre con <span class="text-[#A5B4FC]">pago único</span>.
         </h1>
 
         <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Sin hablar con nadie primero: <strong>creas tu web Ordenador + Móvil abajo en 10 segundos</strong>, te mandas el enlace a tu WhatsApp para verla funcionando y tienes <strong>24 horas</strong> para activarla con <strong>tu dominio + hosting de por vida desde 50 € (pago único sin renovar jamás)</strong>.
+          Sin cuotas mensuales ni presupuestos eternos: <strong>creas tu vista previa Ordenador + Móvil abajo en 10 segundos</strong> y la contratas directamente en la web con <strong>Stripe (79 € Express, 197 € Negocio Pro ⭐ con Google Maps o 297 € VIP Catálogo)</strong>. Todo incluido en <strong>un único pago para toda la vida</strong> con factura oficial y <strong>14 días de garantía</strong>.
         </p>
       </div>
 
@@ -113,15 +115,37 @@
             <div class="flex items-center justify-between gap-2 pb-2 border-b border-white/10">
               <div class="flex items-center gap-2">
                 <span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-950 font-display font-black text-xs flex items-center justify-center">1</span>
-                <span class="font-display font-extrabold text-sm sm:text-base text-white">Genera tu página ahora</span>
+                <span class="font-display font-extrabold text-sm sm:text-base text-white">Genera tu vista previa ahora</span>
               </div>
-              <span class="text-[11px] font-bold text-emerald-400">Gratis 24h</span>
+              <span class="text-[11px] font-bold text-amber-300">Vista previa 24h</span>
+            </div>
+
+            <!-- MAGIC 1-CLICK LOCAL BUSINESS FINDER (TikTok / Mobile Ready) -->
+            <div class="rounded-2xl bg-emerald-500/[0.08] border border-emerald-400/35 p-3 space-y-2">
+              <label for="gen-smart-search" class="block text-[11px] font-extrabold uppercase tracking-wider text-emerald-300">
+                🔍 1 Clic: Busca tu negocio y ciudad (o créalo abajo si es nuevo)
+              </label>
+              <div class="flex items-center gap-1.5">
+                <input id="gen-smart-search"
+                       type="text"
+                       onkeydown="if(event.key==='Enter'){event.preventDefault();runSmartBusinessSearch(event);}"
+                       placeholder="Ej. Clínica Dental Sol Madrid"
+                       class="gen-input !py-2.5 !text-sm flex-1" />
+                <button type="button"
+                        id="gen-smart-btn"
+                        onclick="runSmartBusinessSearch(event)"
+                        class="btn-press shrink-0 px-3.5 py-2.5 min-h-[42px] rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs inline-flex items-center gap-1 shadow-md whitespace-nowrap">
+                  <i class="ph-bold ph-magnifying-glass text-sm"></i>
+                  <span>Buscar</span>
+                </button>
+              </div>
+              <div id="gen-search-results" class="hidden space-y-1.5 pt-1"></div>
             </div>
 
             <!-- Step 1: 10 Sector Chips -->
             <div>
               <label class="block text-[11px] font-bold uppercase tracking-wider text-emerald-400 mb-2">
-                Elige tu sector (local físico, oficio o nuevo negocio):
+                O elige tu sector (local físico, oficio o nuevo negocio):
               </label>
               <div id="gen-sector-chips" class="flex flex-wrap gap-1.5">
                 <!-- Populated by showcase-v4.js -->
@@ -165,17 +189,40 @@
                          placeholder="Ej. 600 123 456"
                          value="600 123 456"
                          oninput="syncGeneratorLive(false)" />
+                  <span class="block text-[10px] text-slate-400 mt-1 leading-tight">
+                    🔒 Solo para activar el botón de tu vista previa (0 spam).
+                  </span>
                 </div>
               </div>
             </div>
 
+            <!-- Optional 1-Tap Mobile Photo Uploader (Zero Mandatory Friction!) -->
+            <div class="flex items-center justify-between gap-2 rounded-xl bg-white/[0.03] border border-white/10 px-3 py-2">
+              <span id="gen-photo-status" class="text-[11px] text-slate-300 truncate">
+                📸 ¿Quieres probar ya tus fotos? (Opcional, también puedes dentro)
+              </span>
+              <label class="btn-press shrink-0 px-2.5 py-1.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] border border-white/15 text-emerald-300 font-display font-bold text-[11px] cursor-pointer whitespace-nowrap inline-flex items-center gap-1">
+                <i class="ph-bold ph-camera"></i>
+                <span>Subir fotos</span>
+                <input type="file" accept="image/*" multiple class="hidden" onchange="handleQuickHeroMobilePhotos(this)" />
+              </label>
+            </div>
+
             <!-- Generate & Create Link Button -->
-            <button type="button"
-                    onclick="triggerInstantGenerate()"
-                    class="btn-press w-full py-3.5 px-5 min-h-[52px] rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-black text-sm sm:text-base shadow-xl flex items-center justify-center gap-2">
-              <i class="ph-bold ph-lightning text-xl"></i>
-              <span>Generar Mi Web y Sacar Mi Enlace</span>
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+              <button type="button"
+                      onclick="triggerInstantGenerate(false)"
+                      class="sm:col-span-7 btn-press w-full py-3.5 px-4 min-h-[50px] rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-black text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5">
+                <i class="ph-bold ph-lightning text-lg"></i>
+                <span>Generar Mi Web</span>
+              </button>
+              <button type="button"
+                      onclick="triggerInstantGenerate(true)"
+                      class="sm:col-span-5 btn-press w-full py-3.5 px-3 min-h-[50px] rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-display font-extrabold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 whitespace-nowrap">
+                <i class="ph-bold ph-arrow-square-out text-base"></i>
+                <span>Abrir Demo 24h</span>
+              </button>
+            </div>
 
             <!-- Instant Shareable Link Box right inside Left Console -->
             <div id="gen-result-card" class="rounded-2xl bg-[#06080D] border border-emerald-400/35 p-3.5 space-y-2.5">
@@ -233,7 +280,7 @@
             </div>
           </div>
 
-          <!-- Interactive 3D Stage Controls -->
+          <!-- Interactive 3D Stage Controls (All 10 Models Synchronized) -->
           <div class="flex items-center gap-2">
             <button type="button"
                     onclick="stepHeroStage(-1)"
@@ -242,32 +289,8 @@
               <i class="ph-bold ph-caret-left text-sm"></i>
             </button>
 
-            <div class="flex-1 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1">
-              <button type="button" onclick="setHeroStage(0, true)"
-                      class="js-hero-tab hero-tab-active btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white text-slate-950 text-xs font-extrabold whitespace-nowrap shadow-md">
-                <span>Motor y Stock</span>
-                <span class="hero-tab-progress"></span>
-              </button>
-              <button type="button" onclick="setHeroStage(1, true)"
-                      class="js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap">
-                <span>Barbería y Citas</span>
-                <span class="hero-tab-progress"></span>
-              </button>
-              <button type="button" onclick="setHeroStage(2, true)"
-                      class="js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap">
-                <span>Nuevo Negocio</span>
-                <span class="hero-tab-progress"></span>
-              </button>
-              <button type="button" onclick="setHeroStage(3, true)"
-                      class="js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap">
-                <span>Reformas y Oficios</span>
-                <span class="hero-tab-progress"></span>
-              </button>
-              <button type="button" onclick="setHeroStage(4, true)"
-                      class="js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap">
-                <span>Tienda 24h</span>
-                <span class="hero-tab-progress"></span>
-              </button>
+            <div id="hero-stage-tabs" class="flex-1 flex items-center justify-start gap-2 overflow-x-auto no-scrollbar py-1">
+              <!-- Populated dynamically with all 10 sectors by showcase-v4.js -->
             </div>
 
             <button type="button"
@@ -278,56 +301,95 @@
             </button>
           </div>
 
-          <!-- 24-HOUR LIFETIME UNLOCK CONSOLE (50 € Empezar + Dominio vs 200 € Completa) RIGHT IN HERO! -->
-          <div class="rounded-[24px] bg-gradient-to-br from-[#0F1522] to-[#090C13] border border-amber-400/40 p-4 sm:p-5 space-y-3.5 shadow-2xl">
+          <!-- 24-HOUR LIFETIME STRIPE UNLOCK CONSOLE (3 PLANES: 79 € / 197 € ⭐ / 297 €) RIGHT IN HERO! -->
+          <div id="gen-unlock-console" class="rounded-[24px] bg-gradient-to-br from-[#0F1522] to-[#090C13] border border-[#635BFF]/45 p-4 sm:p-5 space-y-3.5 shadow-2xl">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div class="inline-flex items-center gap-2 text-amber-300 text-xs font-extrabold">
                 <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-                <span>⏳ Tienes 24h (<span id="gen-unlock-timer" class="font-mono">23:59:59</span>) para activarla antes de que caduque el enlace</span>
+                <span>⏳ Vista previa activa 24h (<span id="gen-unlock-timer" class="font-mono">23:59:59</span>) · Todo incluido en un pago único</span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full bg-emerald-400/15 border border-emerald-400/35 text-[10.5px] font-extrabold text-emerald-300">
-                PAGO ÚNICO PARA SIEMPRE · SIN RENOVAR NUNCA
+              <span class="px-2.5 py-0.5 rounded-full stripe-badge-pill text-[10.5px] font-extrabold inline-flex items-center gap-1">
+                <i class="ph-bold ph-shield-check"></i>
+                <span>0 €/MES · 0 €/AÑO · PARA SIEMPRE</span>
               </span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <!-- Button 1: 50 € Para empezar + Dominio -->
-              <div class="rounded-2xl bg-emerald-500/[0.08] border border-emerald-400/40 p-3.5 flex flex-col justify-between gap-2.5">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <!-- Plan 1: 79 € Web Express -->
+              <div class="rounded-2xl bg-emerald-500/[0.07] border border-emerald-400/35 p-3 flex flex-col justify-between gap-2.5">
                 <div>
-                  <div class="flex items-center justify-between gap-2">
-                    <span class="text-[10.5px] uppercase tracking-wider font-extrabold text-emerald-300">Para empezar + Dominio</span>
-                    <span class="font-display font-black text-2xl text-white">50 €</span>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-300">Web Express</span>
+                    <span class="font-display font-black text-xl text-white whitespace-nowrap shrink-0">79 €</span>
                   </div>
-                  <p class="text-[11.5px] text-slate-200 mt-1 leading-snug">
-                    Recibes <strong>tu dominio propio + hosting de por vida</strong> y dejas activa la web que has generado. <strong>Pago único: no renuevas nunca más.</strong>
+                  <div class="text-[9.5px] font-bold text-emerald-400 uppercase">Pago único · Para siempre</div>
+                  <p class="text-[11px] text-slate-200 mt-1.5 leading-snug">
+                    Desbloquea tu web + <strong>Enlace y Hosting de por vida + SSL + Reservas WhatsApp + 14 días garantía</strong>.
                   </p>
                 </div>
                 <button type="button"
-                        onclick="activateGeneratedWeb('50 € — Activar Web + Dominio (Pago único para siempre, sin renovaciones)')"
-                        class="btn-press w-full py-2.5 px-4 min-h-[44px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-xs inline-flex items-center justify-center gap-1.5 shadow-lg">
-                  <i class="ph-bold ph-lock-key-open text-sm"></i>
-                  <span>Activar Web + Dominio · 50 € Único</span>
+                        onclick="openStripeCheckout('79')"
+                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-md whitespace-nowrap">
+                  <span>Contratar · 79 €</span>
                 </button>
               </div>
 
-              <!-- Button 2: 200 € Proyecto Completo VIP -->
-              <div class="rounded-2xl bg-amber-500/[0.08] border border-amber-400/45 p-3.5 flex flex-col justify-between gap-2.5">
+              <!-- Plan 2: 197 € Negocio Pro ⭐ MÁS ELEGIDO -->
+              <div class="rounded-2xl bg-[#635BFF]/[0.16] border-2 border-[#818CF8] p-3 flex flex-col justify-between gap-2.5 shadow-xl relative">
                 <div>
-                  <div class="flex items-center justify-between gap-2">
-                    <span class="text-[10.5px] uppercase tracking-wider font-extrabold text-amber-300">Web Completa A Medida VIP</span>
-                    <span class="font-display font-black text-2xl text-amber-300">200 €</span>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-[#C7D2FE]">⭐ Negocio Pro</span>
+                    <span class="font-display font-black text-xl text-white whitespace-nowrap shrink-0">197 €</span>
                   </div>
-                  <p class="text-[11.5px] text-slate-200 mt-1 leading-snug">
-                    Nosotros metemos <strong>todo tu catálogo, fotos, textos, efectos 3D exclusivos y dominio .com</strong>. <strong>Pago único: no renuevas nunca más.</strong>
+                  <div class="text-[9.5px] font-bold text-emerald-300 uppercase">Más elegido · Todo incluido</div>
+                  <p class="text-[11px] text-white mt-1.5 leading-snug">
+                    <strong>Montaje por nosotros + Dominio .com/.es + Alta en Google Maps + Tus fotos + 14 días ajustes</strong>.
                   </p>
                 </div>
                 <button type="button"
-                        onclick="activateGeneratedWeb('200 € — Web Completa A Medida VIP + Dominio .com (Pago único para siempre, sin renovaciones)')"
-                        class="btn-press w-full py-2.5 px-4 min-h-[44px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-xs inline-flex items-center justify-center gap-1.5 shadow-lg">
-                  <i class="ph-fill ph-crown text-sm"></i>
-                  <span>Pedir Completa VIP · 200 € Único</span>
+                        onclick="openStripeCheckout('197')"
+                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full stripe-btn-primary font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-lg whitespace-nowrap">
+                  <span>Contratar Pro · 197 €</span>
                 </button>
               </div>
+
+              <!-- Plan 3: 297 € VIP Catálogo + 3D + QR -->
+              <div class="rounded-2xl bg-amber-500/[0.08] border border-amber-400/45 p-3 flex flex-col justify-between gap-2.5">
+                <div>
+                  <div class="flex items-center justify-between gap-1.5">
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-amber-300">VIP Catálogo</span>
+                    <span class="font-display font-black text-xl text-amber-300 whitespace-nowrap shrink-0">297 €</span>
+                  </div>
+                  <div class="text-[9.5px] font-bold text-amber-300 uppercase">Pago único · Llave en mano</div>
+                  <p class="text-[11px] text-slate-200 mt-1.5 leading-snug">
+                    <strong>Catálogo extenso/carta + Efectos 3D + Dominio .com + Google Maps + Placa QR imprenta</strong>.
+                  </p>
+                </div>
+                <button type="button"
+                        onclick="openStripeCheckout('297')"
+                        class="btn-press w-full py-2 px-3 min-h-[40px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-[11.5px] inline-flex items-center justify-center gap-1 shadow-md whitespace-nowrap">
+                  <span>Contratar VIP · 297 €</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Triple Guarantee Micro-Strip -->
+            <div class="rounded-xl bg-emerald-500/[0.07] border border-emerald-400/25 px-3 py-2 text-[11px] text-emerald-200 flex flex-wrap items-center justify-between gap-2">
+              <span class="inline-flex items-center gap-1.5 font-semibold"><i class="ph-bold ph-seal-check text-emerald-400 text-sm"></i> <strong>Garantía Total:</strong> Todo incluido en un único pago para siempre (0 € renovaciones) + 14 días de ajustes + Factura Stripe inmediata.</span>
+            </div>
+
+            <!-- Stripe Direct Hiring Bar + WhatsApp strictly for Doubts -->
+            <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-300">
+              <div class="flex items-center gap-1.5 text-slate-300">
+                <i class="ph-fill ph-lock-key text-[#A5B4FC] text-sm"></i>
+                <span>Contratación 100% online con <strong>Stripe</strong> (Tarjeta, Apple Pay, Google Pay)</span>
+              </div>
+              <button type="button"
+                      onclick="askWhatsAppNoCommitment('Tengo una duda antes de contratar mi web en la página')"
+                      class="text-emerald-300 hover:text-emerald-200 font-bold inline-flex items-center gap-1 underline underline-offset-4">
+                <i class="ph-fill ph-whatsapp-logo text-sm text-emerald-400"></i>
+                <span>¿Solo tienes dudas? Escríbenos por WhatsApp</span>
+              </button>
             </div>
           </div>
 
@@ -355,18 +417,18 @@
   </section>
 
   <!-- =====================================================================
-       SECTION 2: ¿QUÉ INCLUYE ADEMÁS DEL DOMINIO Y POR QUÉ ES PAGO ÚNICO PARA SIEMPRE? (#incluye)
+       SECTION 2: ¿QUÉ INCLUYE ADEMÁS DEL DOMINIO Y LAS 2 SEMANAS DE CAMBIOS? (#incluye)
        ===================================================================== -->
   <section id="incluye" class="scroll-mt-24 py-14 sm:py-20 bg-[#06080D] border-b border-white/[0.07]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
 
       <div class="text-center max-w-3xl mx-auto space-y-2">
-        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-emerald-400">Transparencia Total · Sin Letra Pequeña</span>
+        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-emerald-400">Todo Incluido en Tu Pago Único con Stripe · Sin Letra Pequeña</span>
         <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          ¿Qué recibes exactamente y por qué <span class="text-emerald-400">no vuelves a pagar nunca más</span>?
+          ¿Qué incluye exactamente tu web y por qué <span class="text-emerald-400">no vuelves a pagar nunca más</span>?
         </h2>
         <p class="text-sm sm:text-base text-slate-300">
-          La mayoría de agencias te cobran todos los meses o te piden dinero cada año por renovar. Con nosotros haces <strong>un único pago en tu vida (50 € para empezar o 200 € completa a medida)</strong> y recibes todo esto incluido para siempre:
+          Las agencias que se anuncian en Google te cobran 800 € de entrada más cuotas todos los meses. Aquí haces <strong>un único pago seguro por Stripe (79 €, 197 € ⭐ o 297 €)</strong> y recibes todo incluido para toda la vida:
         </p>
       </div>
 
@@ -377,20 +439,20 @@
           <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
             <i class="ph-bold ph-globe"></i>
           </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">1. Tu Dominio Propio Incluido</h3>
+          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">1. Tu Dominio Propio + SSL y Textos Legales</h3>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Quitamos el bloqueo de 24 horas y te entregamos tu dirección web oficial con el nombre de tu negocio para compartirla en Google, Instagram y tarjetas.
+            Quitamos el bloqueo de 24 horas y activamos tu dirección web oficial con candado de seguridad HTTPS (`SSL`) y textos legales RGPD incluidos.
           </p>
         </div>
 
         <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-emerald-400/30 p-5 space-y-2.5">
           <div class="card-glare"></div>
           <div class="w-10 h-10 rounded-2xl bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-infinity"></i>
+            <i class="ph-bold ph-calendar-check"></i>
           </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">2. Pago Único · 0 € Renovaciones</h3>
+          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">2. Dos Semanas (14 Días) de Cambios y Soporte Gratis</h3>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            <strong>No tienes que renovar nunca más.</strong> Pagas una sola vez hoy y te olvidas para siempre de cuotas mensuales, anuales o mantenimientos obligatorios.
+            <strong>Incluye 2 semanas completas de revisiones, ajustes de fotos, precios, textos y soporte directo</strong> tras activar tu web para que quede 100% a tu gusto sin pagar ni un euro extra.
           </p>
         </div>
 
@@ -399,9 +461,9 @@
           <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
             <i class="ph-bold ph-hard-drives"></i>
           </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">3. Hosting / Servidor de por Vida</h3>
+          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">3. Hosting de Alta Velocidad de por Vida (0 €/año)</h3>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            El alojamiento de alta velocidad para que tu web esté encendida las 24 horas los 365 días del año ya viene incluido gratis para toda la vida.
+            El alojamiento web 24/7 los 365 días del año ya viene incluido gratis en tu pago único. <strong>No tienes que renovar nunca más (0 €/mes y 0 €/año).</strong>
           </p>
         </div>
 
@@ -421,23 +483,100 @@
           <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
             <i class="ph-bold ph-whatsapp-logo"></i>
           </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">5. Citas y Pedidos a tu WhatsApp</h3>
+          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">5. Citas y Pedidos a tu WhatsApp (0% Comisiones)</h3>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            El cliente elige servicio, producto, hora o presupuesto en tu web y te llega todo listo a tu WhatsApp con <strong>0% comisiones para siempre</strong>.
+            El cliente elige servicio, producto, hora o presupuesto en tu web y te llega todo listo a tu WhatsApp sin intermediarios ni comisiones por venta.
           </p>
         </div>
 
-        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-white/10 p-5 space-y-2.5">
+        <div class="pain-card js-tilt-card reveal-3d rounded-3xl bg-[#0C1018] border border-[#635BFF]/35 p-5 space-y-2.5">
           <div class="card-glare"></div>
-          <div class="w-10 h-10 rounded-2xl bg-emerald-400/15 border border-emerald-400/30 text-emerald-400 flex items-center justify-center text-xl">
-            <i class="ph-bold ph-map-pin-line"></i>
+          <div class="w-10 h-10 rounded-2xl bg-[#635BFF]/20 border border-[#635BFF]/40 text-[#A5B4FC] flex items-center justify-center text-xl">
+            <i class="ph-bold ph-shield-check"></i>
           </div>
-          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">6. Catálogo, Precios y GPS Google Maps</h3>
+          <h3 class="font-display font-extrabold text-base sm:text-lg text-white">6. Activación Automática y Garantía Stripe</h3>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Tus servicios con precios claros, galería visual, horarios de apertura y botón directo para que el GPS lleve al cliente hasta tu puerta.
+            Pagas con total seguridad mediante <strong>Stripe</strong> (Tarjeta, Apple Pay o Google Pay), recibes tu factura/recibo al instante y tu web queda desbloqueada en el acto.
           </p>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SECTION 2B: COMPARATIVA REAL CONTRA AGENCIAS DE GOOGLE ADS (#comparativa)
+       ===================================================================== -->
+  <section id="comparativa" class="scroll-mt-24 py-14 sm:py-20 bg-[#080B12] border-b border-white/[0.07]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-amber-300">Compara Antes de Contratar en Google</span>
+        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
+          Agencias tradicionales de Google vs. <span class="text-emerald-400">MiWebLocal.com</span>
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300">
+          Cuando buscas <em>«diseñar página web»</em> en Google, esto es lo que te cobran las agencias tradicionales frente a nuestro sistema automático con Stripe:
+        </p>
+      </div>
+
+      <div class="rounded-3xl bg-[#0C1018] border border-white/12 overflow-hidden shadow-2xl">
+        <div class="grid grid-cols-12 bg-white/[0.04] border-b border-white/10 p-4 sm:px-6 text-xs sm:text-sm font-display font-extrabold text-white">
+          <div class="col-span-5 sm:col-span-5">Qué comparamos</div>
+          <div class="col-span-3 sm:col-span-3 text-center text-rose-300">Otras Agencias</div>
+          <div class="col-span-4 sm:col-span-4 text-center text-emerald-300">MiWebLocal + Stripe</div>
+        </div>
+
+        <div class="divide-y divide-white/[0.07] text-xs sm:text-sm">
+          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
+            <div class="col-span-5 font-bold text-slate-200">Ver tu web antes de pagar</div>
+            <div class="col-span-3 text-center text-slate-400">Pagas el 50% a ciegas sin ver nada</div>
+            <div class="col-span-4 text-center font-bold text-emerald-300">La generas y pruebas 24h en 10 segundos</div>
+          </div>
+
+          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2 bg-white/[0.015]">
+            <div class="col-span-5 font-bold text-slate-200">Precio total del diseño</div>
+            <div class="col-span-3 text-center text-rose-300 font-semibold">600 € – 1.500 € + IVA</div>
+            <div class="col-span-4 text-center font-extrabold text-white">79 € · 197 € ⭐ (Pro) · 297 € (VIP)</div>
+          </div>
+
+          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
+            <div class="col-span-5 font-bold text-slate-200">Cuotas mensuales / Renovación anual</div>
+            <div class="col-span-3 text-center text-rose-300">35 €/mes o 150 €/año de hosting</div>
+            <div class="col-span-4 text-center font-bold text-emerald-300">0 €/mes y 0 €/año · Todo incluido siempre</div>
+          </div>
+
+          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2 bg-white/[0.015]">
+            <div class="col-span-5 font-bold text-slate-200">Cambios y soporte tras la entrega</div>
+            <div class="col-span-3 text-center text-slate-400">Cobran cada ajuste por hora</div>
+            <div class="col-span-4 text-center font-bold text-emerald-300">2 Semanas (14 días) de cambios incluidos gratis</div>
+          </div>
+
+          <div class="grid grid-cols-12 items-center p-4 sm:px-6 gap-2">
+            <div class="col-span-5 font-bold text-slate-200">Forma de pago y activación</div>
+            <div class="col-span-3 text-center text-slate-400">Presupuestos lentos (3–5 semanas)</div>
+            <div class="col-span-4 text-center font-bold text-[#A5B4FC]">Pago automático Stripe y activación al instante</div>
+          </div>
+        </div>
+
+        <div class="p-4 sm:px-6 bg-gradient-to-r from-emerald-500/10 via-[#635BFF]/10 to-amber-500/10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="text-xs sm:text-sm text-slate-200 font-medium">
+            🛡️ <strong>Todo se contrata directamente en la web en un único pago para siempre</strong> (y si tienes alguna duda previa, te respondemos por WhatsApp).
+          </div>
+          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-center">
+            <button type="button"
+                    onclick="openStripeCheckout('197')"
+                    class="btn-press px-4 py-2.5 rounded-full stripe-btn-primary font-display font-extrabold text-xs inline-flex items-center gap-1.5">
+              <i class="ph-bold ph-credit-card"></i>
+              <span>Contratar Pago Único (79 € / 197 € ⭐ / 297 €)</span>
+            </button>
+            <button type="button"
+                    onclick="askWhatsAppNoCommitment('Tengo una duda sobre la comparativa antes de contratar en la web')"
+                    class="btn-press px-4 py-2.5 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/15 text-emerald-300 font-display font-bold text-xs inline-flex items-center gap-1.5">
+              <i class="ph-fill ph-whatsapp-logo text-emerald-400"></i>
+              <span>Dudas por WhatsApp</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -521,7 +660,7 @@
           </p>
           <div class="pt-2 border-t border-white/[0.07] flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-300">
             <i class="ph-bold ph-check-circle text-base shrink-0"></i>
-            <span>Pago único para siempre (50 € o 200 €): no vuelves a renovar nunca más.</span>
+            <span>Pago único para siempre (79 €, 197 € o 297 €): todo incluido, sin renovar jamás.</span>
           </div>
         </div>
 
@@ -650,142 +789,328 @@
   </section>
 
   <!-- =====================================================================
-       SECTION 5: PRECIOS PAGO ÚNICO PARA SIEMPRE (#opciones · 50 € vs 200 €)
+       SECTION 5: 3 PLANES DE PAGO ÚNICO PARA SIEMPRE CON STRIPE (#opciones · 79 € / 197 € ⭐ / 297 €)
        ===================================================================== -->
   <section id="opciones" class="scroll-mt-24 py-14 sm:py-24 border-t border-white/[0.07]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
 
       <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30 text-xs font-extrabold uppercase tracking-wider text-emerald-300">
-          <i class="ph-bold ph-infinity"></i>
-          <span>Pago Único Para Siempre · Sin Renovaciones Nunca Más</span>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full stripe-badge-pill text-xs font-extrabold uppercase tracking-wider">
+          <i class="ph-bold ph-shield-check"></i>
+          <span>Pasarela Oficial Stripe · Todo Incluido en Un Único Pago Para Siempre</span>
         </span>
         <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
-          Activa tu web antes de 24h y es tuya de por vida
+          Elige tu plan de <span class="text-[#A5B4FC]">pago único</span> y recíbela para toda la vida
         </h2>
         <p class="text-sm sm:text-base text-slate-300">
-          Pagas <strong>una sola vez</strong>. Incluye el dominio, el alojamiento web (hosting) para siempre y el sistema de clientes por WhatsApp. <strong>Nunca más tendrás que pagar renovaciones.</strong>
+          Pagas <strong>una sola vez de forma 100% online con Stripe</strong> (Tarjeta, Apple Pay o Google Pay). Todo incluido: <strong>0 €/mes · 0 €/año</strong>, factura inmediata y <strong>14 días de garantía de ajustes</strong>.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
 
-        <!-- Card 1: 50 € Para Empezar + Dominio -->
+        <!-- Card 1: 79 € Web Express -->
         <div class="showcase-card">
           <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 0ms;">
-            <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between gap-6">
+            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
               <div class="card-glare"></div>
               <div class="relative z-10 space-y-4">
-                <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center justify-between gap-2">
                   <span class="px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/35 text-xs font-bold text-emerald-300">
-                    Para empezar y recibir el dominio
+                    Plan 1 · Rápido
                   </span>
                   <div class="text-right">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-white">50 €</span>
+                    <span class="font-display font-black text-3xl sm:text-4xl text-white whitespace-nowrap">79 €</span>
                     <span class="block text-[10px] uppercase tracking-wider font-bold text-emerald-400">Pago único para siempre</span>
                   </div>
                 </div>
 
                 <div>
-                  <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">Activar Web Generada + Dominio</h3>
+                  <h3 class="font-display font-extrabold text-xl text-white">Web Express</h3>
                   <p class="text-sm text-slate-300 mt-1">
-                    Ideal para activar hoy mismo la web que acabas de generar arriba, quitar el límite de 24 horas y comprobar cómo funciona con tus clientes.
+                    Desbloquea para siempre la web que has generado arriba con tu enlace, hosting y botón de reservas a WhatsApp.
                   </p>
                 </div>
 
                 <ul class="space-y-2.5 text-sm text-slate-200 pt-2">
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Tu Dominio propio incluido</strong> (sin caducidad de 24h)</span>
+                    <span><strong>Desbloqueo definitivo</strong> (sin límite de 24h)</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Hosting / Alojamiento incluido de por vida</strong></span>
+                    <span><strong>Enlace web directo + Hosting de por vida</strong> incluidos</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Adaptada a Ordenador + Móvil</strong> con tus precios y mapa GPS</span>
+                    <span><strong>Certificado SSL + Textos legales</strong> incluidos</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Reservas y consultas directas a tu WhatsApp</strong> (0% comisiones)</span>
+                    <span><strong>Reservas y consultas a tu WhatsApp</strong> (0% comisiones)</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-infinity text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>No tienes que renovar nunca más</strong> (0 €/mes · 0 €/año)</span>
+                    <span><strong>Garantía de 14 días</strong> · 0 €/mes y 0 €/año siempre</span>
                   </li>
                 </ul>
               </div>
 
-              <button type="button"
-                      onclick="activateGeneratedWeb('50 € — Activar Web + Dominio (Pago único para siempre, sin renovaciones)')"
-                      class="relative z-10 btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
-                <i class="ph-bold ph-lock-key-open text-lg"></i>
-                <span>Activar Mi Web + Dominio · 50 € Único</span>
-              </button>
+              <div class="relative z-10 space-y-2.5">
+                <button type="button"
+                        onclick="openStripeCheckout('79')"
+                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
+                  <i class="ph-bold ph-credit-card text-lg"></i>
+                  <span>Contratar Express · 79 €</span>
+                </button>
+                <div class="text-center text-[11px] text-slate-400">
+                  🔒 Todo incluido en un único pago · Sin cuotas
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: 200 € Proyecto Completo A Medida VIP -->
+        <!-- Card 2: 197 € Negocio Pro ⭐ MÁS ELEGIDO -->
         <div class="showcase-card">
-          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 90ms; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.04);">
-            <div class="double-bezel-inner p-6 sm:p-8 h-full flex flex-col justify-between gap-6">
+          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 70ms; border-color: rgba(129, 140, 248, 0.75); background: rgba(99, 91, 255, 0.10);">
+            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
               <div class="card-glare"></div>
               <div class="relative z-10 space-y-4">
-                <div class="flex items-center justify-between gap-3">
-                  <span class="px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/40 text-xs font-bold text-amber-300">
-                    Todo Hecho por Nosotros · VIP
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#635BFF] text-white text-xs font-extrabold shadow-md">
+                    ⭐ MÁS ELEGIDO · PRO
                   </span>
                   <div class="text-right">
-                    <span class="font-display font-black text-3xl sm:text-4xl text-amber-300">200 €</span>
+                    <span class="font-display font-black text-3xl sm:text-4xl text-white whitespace-nowrap">197 €</span>
+                    <span class="block text-[10px] uppercase tracking-wider font-bold text-[#A5B4FC]">Pago único para siempre</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="font-display font-extrabold text-xl text-white">Negocio Pro + Google Maps + Dominio</h3>
+                  <p class="text-sm text-slate-200 mt-1">
+                    Nosotros te montamos todo listo para captar clientes: tus fotos, textos, dominio <code>.com/.es</code> y alta en Google Maps.
+                  </p>
+                </div>
+
+                <ul class="space-y-2.5 text-sm text-slate-100 pt-2">
+                  <li class="flex items-start gap-2.5">
+                    <i class="ph-bold ph-check-circle text-[#A5B4FC] text-base shrink-0 mt-0.5"></i>
+                    <span><strong>Todo lo incluido en Web Express</strong> hecho por nuestro equipo</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                    <span><strong>Dominio oficial .com o .es incluido</strong> y configurado</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                    <span><strong>Alta y optimización en Google Maps</strong> en tu ciudad</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <i class="ph-bold ph-check-circle text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                    <span><strong>Subimos tus fotos reales, tarifas y textos persuasivos</strong></span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <i class="ph-bold ph-infinity text-emerald-400 text-base shrink-0 mt-0.5"></i>
+                    <span><strong>14 días de ajustes incluidos</strong> · 0 €/mes y 0 €/año siempre</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="relative z-10 space-y-2.5">
+                <button type="button"
+                        onclick="openStripeCheckout('197')"
+                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full stripe-btn-primary font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-xl">
+                  <i class="ph-bold ph-credit-card text-lg"></i>
+                  <span>Contratar Negocio Pro ⭐ · 197 €</span>
+                </button>
+                <div class="text-center text-[11px] text-slate-300">
+                  🔒 El favorito de negocios locales · Factura inmediata
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: 297 € VIP Catálogo Completo + 3D + QR -->
+        <div class="showcase-card">
+          <div class="double-bezel js-tilt-card reveal-3d h-full" style="--stagger: 140ms; border-color: rgba(251, 191, 36, 0.45); background: rgba(251, 191, 36, 0.04);">
+            <div class="double-bezel-inner p-6 sm:p-7 h-full flex flex-col justify-between gap-6">
+              <div class="card-glare"></div>
+              <div class="relative z-10 space-y-4">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/40 text-xs font-bold text-amber-300">
+                    Plan 3 · Catálogo VIP
+                  </span>
+                  <div class="text-right">
+                    <span class="font-display font-black text-3xl sm:text-4xl text-amber-300 whitespace-nowrap">297 €</span>
                     <span class="block text-[10px] uppercase tracking-wider font-bold text-amber-300">Pago único para siempre</span>
                   </div>
                 </div>
 
                 <div>
-                  <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">Proyecto Completo A Medida + Dominio .com</h3>
+                  <h3 class="font-display font-extrabold text-xl text-white">VIP Catálogo Completo + 3D + QR</h3>
                   <p class="text-sm text-slate-300 mt-1">
-                    Si quieres que nuestro equipo monte todo tu catálogo completo, fotos reales, efectos 3D exclusivos y presencia en Google llave en mano.
+                    Para negocios con stock o carta amplia (concesionarios, restaurantes, tiendas, clínicas o reformas completas).
                   </p>
                 </div>
 
                 <ul class="space-y-2.5 text-sm text-slate-100 pt-2">
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Todo lo incluido en el plan de 50 €</strong> + Dominio oficial <strong>.com / .es</strong></span>
+                    <span><strong>Todo lo del Plan Negocio Pro (197 €)</strong> incluido</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Cargamos todo tu catálogo completo</strong> (motos, carta, tienda, servicios o reformas)</span>
+                    <span><strong>Carga completa de catálogos o cartas extensas</strong></span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Diseño 3D personalizado a medida</strong> con tus colores, logo y fotos</span>
+                    <span><strong>Efectos 3D exclusivos + Placa/Cartel QR</strong> listo para imprimir</span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-check-circle text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Optimización para salir en Google y Google Maps</strong> en tu ciudad</span>
+                    <span><strong>Entrega prioritaria 24h y soporte VIP directo</strong></span>
                   </li>
                   <li class="flex items-start gap-2.5">
                     <i class="ph-bold ph-infinity text-amber-300 text-base shrink-0 mt-0.5"></i>
-                    <span><strong>Pago único para siempre: no tienes que renovar nunca más</strong></span>
+                    <span><strong>Pago único para siempre:</strong> 0 €/mes y 0 €/año</span>
                   </li>
                 </ul>
               </div>
 
-              <button type="button"
-                      onclick="activateGeneratedWeb('200 € — Proyecto Completo A Medida VIP + Dominio .com (Pago único para siempre, sin renovaciones)')"
-                      class="relative z-10 btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
-                <i class="ph-fill ph-crown text-lg"></i>
-                <span>Pedir Proyecto Completo · 200 € Único</span>
-              </button>
+              <div class="relative z-10 space-y-2.5">
+                <button type="button"
+                        onclick="openStripeCheckout('297')"
+                        class="btn-press w-full py-3.5 px-5 min-h-[48px] rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2 shadow-lg">
+                  <i class="ph-bold ph-credit-card text-lg"></i>
+                  <span>Contratar VIP Completo · 297 €</span>
+                </button>
+                <div class="text-center text-[11px] text-slate-400">
+                  🔒 Llave en mano prioritaria · Propiedad vitalicia
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
 
+      <!-- Certificado de Triple Garantía Oficial -->
+      <div class="rounded-3xl bg-gradient-to-br from-emerald-500/[0.08] via-[#0C1018] to-[#635BFF]/[0.08] border border-emerald-400/35 p-5 sm:p-7 space-y-5 shadow-2xl">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3.5">
+          <div class="inline-flex items-center gap-2 text-emerald-300 font-display font-extrabold text-sm sm:text-base">
+            <i class="ph-bold ph-seal-check text-xl text-emerald-400"></i>
+            <span>Triple Garantía Oficial · Todo Incluido en Un Único Pago Para Siempre</span>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/35 text-[11px] font-bold text-emerald-300">
+            100% En Propiedad Para Siempre
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
+            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
+              <i class="ph-bold ph-infinity text-emerald-400 text-base"></i>
+              <span>1. Un Único Pago Para Siempre</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Todo va incluido en un solo pago único desde la web. La recibes en propiedad para toda la vida sin cuotas mensuales ni renovaciones.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
+            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
+              <i class="ph-bold ph-calendar-check text-emerald-400 text-base"></i>
+              <span>2. Garantía de 14 Días de Ajustes</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Tienes 2 semanas completas tras contratar para pedir ajustes de textos, tarifas, fotos y horarios sin pagar nada extra.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-black/30 border border-white/10 p-4 space-y-1.5">
+            <div class="font-display font-extrabold text-white flex items-center gap-1.5">
+              <i class="ph-bold ph-shield-check text-[#A5B4FC] text-base"></i>
+              <span>3. Compra Protegida + Factura PDF</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+              Transacción bancaria oficial procesada por Stripe con emisión automática de tu recibo y factura PDF en el acto.
+            </p>
+          </div>
+        </div>
+
+        <!-- WhatsApp strictly for Doubts -->
+        <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs sm:text-sm text-slate-300 text-center sm:text-left">
+            💬 <strong>¿Tienes alguna duda antes de contratar en la web?</strong> Nuestro WhatsApp está disponible exclusivamente para resolver tus preguntas al instante.
+          </p>
+          <button type="button"
+                  onclick="askWhatsAppNoCommitment('Tengo una duda sobre los planes o la garantía antes de contratar en la web')"
+                  class="btn-press shrink-0 px-5 py-2.5 min-h-[44px] rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/45 text-emerald-300 font-display font-extrabold text-xs sm:text-sm inline-flex items-center gap-2">
+            <i class="ph-fill ph-whatsapp-logo text-lg text-emerald-400"></i>
+            <span>Consultar dudas por WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SECTION 6: PREGUNTAS FRECUENTES DE COMPRADORES (#faq)
+       ===================================================================== -->
+  <section id="faq" class="scroll-mt-24 py-14 sm:py-20 bg-[#07090F] border-t border-white/[0.07]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="text-center space-y-2">
+        <span class="text-[11px] uppercase tracking-[0.2em] font-extrabold text-emerald-400">Todo Claro Antes de Contratar</span>
+        <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-[-0.02em]">
+          Preguntas frecuentes sobre tu pago único en Stripe
+        </h2>
+      </div>
+
+      <div class="space-y-3">
+        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5" open>
+          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
+            <span>1. ¿Cómo funciona la contratación con Stripe y cuándo recibo mi web?</span>
+            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+            Todo el proceso se realiza directamente desde la web mediante <strong>Stripe</strong> (con tarjeta Visa/Mastercard, Apple Pay o Google Pay). En el mismo instante en que completas tu pago único de <strong>79 €</strong>, <strong>197 € ⭐</strong> o <strong>297 €</strong>, el sistema desbloquea tu web eliminando el límite de 24h, te envía tu factura PDF oficial y pasas a la ficha rápida de entrega.
+          </p>
+        </details>
+
+        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
+          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
+            <span>2. ¿Qué incluyen exactamente las 2 semanas (14 días) de garantía y ajustes?</span>
+            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+            En cualquiera de los 3 planes tienes incluidas <strong>2 semanas completas (14 días) de ajustes de precios, textos, horarios, fotos y soporte directo sin coste adicional</strong> para que tu página quede 100% a tu gusto.
+          </p>
+        </details>
+
+        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
+          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
+            <span>3. ¿De verdad va todo incluido en un solo pago único para siempre (0 €/mes y 0 €/año)?</span>
+            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+            Sí. Todo va incluido en tu único pago y recibes la web para siempre. A diferencia de las agencias tradicionales que cobran cuotas mensuales o renovaciones todos los años, nuestra infraestructura optimizada incluye el alojamiento permanente sin suscripciones ni cargos ocultos.
+          </p>
+        </details>
+
+        <details class="faq-item group rounded-2xl bg-[#0C1018] border border-white/10 p-4 sm:p-5">
+          <summary class="flex items-center justify-between gap-3 cursor-pointer list-none font-display font-bold text-sm sm:text-base text-white">
+            <span>4. ¿Cuál elegir: 79 € (Web Express), 197 € ⭐ (Negocio Pro) o 297 € (VIP Catálogo)?</span>
+            <i class="ph-bold ph-caret-down faq-chevron text-emerald-400 transition-transform"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+            Elige <strong>79 € (Web Express)</strong> si quieres desbloquear rápido tu web generada con tus tarifas principales y WhatsApp. Elige <strong>197 € ⭐ (Negocio Pro)</strong> —el más elegido— si quieres que nosotros te lo montemos todo con tus fotos, textos, dominio <code>.com/.es</code> y alta en <strong>Google Maps</strong>. Elige <strong>297 € (VIP Catálogo)</strong> si tienes una carta o stock extenso (motos/coches, restaurante, tienda o clínica) y quieres además tu cartel QR listo para imprimir y entrega prioritaria 24h.
+          </p>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -793,23 +1118,196 @@
   <footer class="py-10 border-t border-white/[0.06] text-xs text-slate-500">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
       <div>
-        <strong class="text-slate-300 font-display">MiWebLocal.com</strong> · Genera tu web Ordenador + Móvil · Pago único para siempre sin renovaciones
+        <strong class="text-slate-300 font-display">MiWebLocal.com</strong> · Contratación Directa con Stripe · Pago único para siempre + Triple Garantía Oficial
       </div>
-      <a href="#crear" class="text-emerald-400 hover:text-emerald-300 font-bold">
-        ⚡ Subir al generador directo (24h) →
-      </a>
+      <div class="flex items-center gap-4">
+        <button type="button" onclick="openStripeCheckout('197')" class="text-[#A5B4FC] hover:text-white font-bold">
+          💳 Contratar Pago Único (79 € / 197 € ⭐ / 297 €)
+        </button>
+        <button type="button" onclick="askWhatsAppNoCommitment('Duda previa a la contratación desde el pie de página')" class="text-emerald-400 hover:text-emerald-300 font-bold">
+          💬 Dudas por WhatsApp
+        </button>
+      </div>
     </div>
   </footer>
 
   <!-- =====================================================================
-       MOBILE STICKY SELF-SERVICE GENERATOR BAR (Safe-area aware)
+       MOBILE STICKY SELF-SERVICE & STRIPE BAR (Safe-area aware)
        ===================================================================== -->
   <div id="mobile-wa-bar" class="mobile-wa-dock is-hidden lg:hidden fixed inset-x-3 z-30">
-    <a href="#crear"
-       class="btn-press w-full py-3.5 px-5 min-h-[50px] rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-sm shadow-2xl flex items-center justify-center gap-2">
-      <i class="ph-bold ph-lightning text-lg"></i>
-      <span>Generar Mi Web (24h) · 50 € Pago Único</span>
-    </a>
+    <div class="grid grid-cols-12 gap-2 bg-[#090C14]/95 backdrop-blur-xl border border-white/15 p-2 rounded-full shadow-2xl">
+      <button type="button"
+              onclick="openStripeCheckout('197')"
+              class="col-span-8 btn-press py-3 px-4 min-h-[46px] rounded-full stripe-btn-primary font-display font-extrabold text-xs flex items-center justify-center gap-1.5">
+        <i class="ph-bold ph-credit-card text-base"></i>
+        <span>Contratar · Desde 79 €</span>
+      </button>
+      <button type="button"
+              onclick="askWhatsAppNoCommitment('Tengo una duda antes de contratar en la web')"
+              class="col-span-4 btn-press py-3 px-3 min-h-[46px] rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-display font-bold text-[11px] flex items-center justify-center gap-1">
+        <i class="ph-fill ph-whatsapp-logo text-base text-emerald-400"></i>
+        <span>Dudas</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       PASARELA OFICIAL STRIPE · CONTRATACIÓN DIRECTA PAGO ÚNICO (#stripe-checkout-modal)
+       ===================================================================== -->
+  <div id="stripe-checkout-modal"
+       class="cinema-modal fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-2.5 sm:p-5"
+       onclick="if(event.target === this) closeStripeCheckout()">
+    <div class="cinema-modal-panel w-full max-w-4xl rounded-[26px] bg-[#0B0F19] border border-[#635BFF]/45 overflow-hidden shadow-2xl flex flex-col max-h-[94dvh]">
+
+      <!-- Top Stripe Security Header -->
+      <div class="px-4 sm:px-6 py-3.5 bg-[#080B13] border-b border-white/10 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="px-2.5 py-1 rounded-lg bg-[#635BFF] text-white font-display font-black text-xs tracking-tight flex items-center gap-1">
+            <i class="ph-bold ph-lock-key"></i>
+            <span>stripe</span>
+          </span>
+          <span class="text-xs sm:text-sm font-display font-bold text-white">Contratación Directa · Todo Incluido en Un Único Pago Para Siempre</span>
+        </div>
+        <button type="button"
+                onclick="closeStripeCheckout()"
+                aria-label="Cerrar pasarela Stripe"
+                class="btn-press w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+          <i class="ph-bold ph-x text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Body: 2-Column Stripe Checkout Layout -->
+      <div class="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-12">
+
+        <!-- Left Column (5 cols): Order Summary + 3-Plan Switcher (79 € / 197 € ⭐ / 297 €) -->
+        <div class="lg:col-span-5 p-4 sm:p-6 bg-[#070A11] border-b lg:border-b-0 lg:border-r border-white/10 space-y-4">
+          <div class="space-y-1">
+            <span class="text-[10.5px] uppercase tracking-wider font-extrabold text-[#A5B4FC]">Resumen de contratación</span>
+            <h3 id="stripe-summary-biz" class="font-display font-black text-lg sm:text-xl text-white">Motos Veloce · Madrid</h3>
+            <p id="stripe-summary-url" class="text-[11px] font-mono text-emerald-400 truncate">https://miweblocal.com/sitio/?negocio=motos-veloce</p>
+          </div>
+
+          <!-- Instant 3-Plan Selector inside Stripe Checkout -->
+          <div class="space-y-2">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Elige tu plan de pago único:</div>
+            <div class="grid grid-cols-3 gap-1.5">
+              <button type="button"
+                      id="stripe-tab-79"
+                      onclick="switchStripePlan('79')"
+                      class="p-2.5 sm:p-3 rounded-2xl border text-left transition-all">
+                <div class="text-[9.5px] font-extrabold uppercase text-emerald-300">Express</div>
+                <div class="font-display font-black text-base sm:text-lg text-white">79 €</div>
+                <div class="text-[10px] font-semibold text-slate-300 leading-tight mt-0.5">Web + Hosting</div>
+              </button>
+
+              <button type="button"
+                      id="stripe-tab-197"
+                      onclick="switchStripePlan('197')"
+                      class="p-2.5 sm:p-3 rounded-2xl border-2 text-left transition-all">
+                <div class="text-[9.5px] font-extrabold uppercase text-[#C7D2FE]">⭐ Pro</div>
+                <div class="font-display font-black text-base sm:text-lg text-white">197 €</div>
+                <div class="text-[10px] font-semibold text-emerald-300 leading-tight mt-0.5">Maps + .com</div>
+              </button>
+
+              <button type="button"
+                      id="stripe-tab-297"
+                      onclick="switchStripePlan('297')"
+                      class="p-2.5 sm:p-3 rounded-2xl border text-left transition-all">
+                <div class="text-[9.5px] font-extrabold uppercase text-amber-300">VIP 3D</div>
+                <div class="font-display font-black text-base sm:text-lg text-amber-300">297 €</div>
+                <div class="text-[10px] font-semibold text-slate-300 leading-tight mt-0.5">Catálogo + QR</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Detailed Line Items -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-3.5 space-y-2.5 text-xs">
+            <div class="flex items-start justify-between gap-2">
+              <span id="stripe-item-title" class="font-bold text-white">Plan 2 ⭐ Negocio Pro + Google Maps + Dominio .com/.es (Pago Único)</span>
+              <span id="stripe-item-price" class="font-mono font-bold text-white shrink-0">197,00 €</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 text-slate-300">
+              <span>Hosting de alta velocidad + SSL de por vida</span>
+              <span class="text-emerald-400 font-bold">INCLUIDO (0,00 €)</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 text-slate-300">
+              <span>Garantía de 14 días de cambios y soporte</span>
+              <span class="text-emerald-400 font-bold">INCLUIDA (0,00 €)</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 text-slate-300">
+              <span>Cuota mensual / Renovación anual</span>
+              <span class="text-emerald-400 font-bold">0,00 € / siempre</span>
+            </div>
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between text-sm font-display font-black text-white">
+              <span>Total pago único para siempre</span>
+              <span id="stripe-total-amount" class="text-lg text-emerald-400">197,00 €</span>
+            </div>
+          </div>
+
+          <div class="rounded-xl bg-emerald-500/10 border border-emerald-400/30 p-3 text-[11.5px] text-emerald-200 leading-snug flex items-start gap-2">
+            <i class="ph-bold ph-seal-check text-emerald-400 text-base shrink-0 mt-0.5"></i>
+            <span><strong>Triple Garantía Oficial:</strong> Todo incluido en un único pago para siempre + <strong>14 días de ajustes</strong> + Factura PDF inmediata de Stripe.</span>
+          </div>
+        </div>
+
+        <!-- Right Column (7 cols): Real Stripe Checkout redirect (card data is entered ONLY on Stripe's secure page) -->
+        <div class="lg:col-span-7 p-4 sm:p-6 bg-[#0B0F19]">
+          <form id="stripe-payment-form" onsubmit="processAutomaticStripePayment(event)" class="space-y-3.5">
+            <div class="space-y-2">
+              <label for="stripe-domain" class="block text-[11px] font-bold uppercase tracking-wider text-emerald-300">
+                1. Comprueba tu dominio .es o .com incluido en tiempo real:
+              </label>
+              <div class="flex items-center gap-2">
+                <input id="stripe-domain" type="text" placeholder="minegocio.es" oninput="scheduleStripeDomainCheck()" class="stripe-input flex-1" />
+                <button type="button" onclick="checkStripeModalDomain()"
+                        class="btn-press shrink-0 px-3.5 py-2.5 min-h-[42px] rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-display font-bold text-xs whitespace-nowrap">
+                  Verificar
+                </button>
+              </div>
+              <div id="stripe-domain-status" class="text-[11.5px] min-h-[18px] flex flex-wrap items-center gap-1.5"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="stripe-email" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  2. Tu email (Factura PDF + Enlace Propietario):
+                </label>
+                <input id="stripe-email" type="email" autocomplete="email" placeholder="tuemail@negocio.com" class="stripe-input" />
+              </div>
+              <div>
+                <label for="stripe-nif" class="block text-[11px] font-bold uppercase tracking-wider text-slate-300 mb-1">
+                  3. Titular / NIF (Factura y Aviso Legal):
+                </label>
+                <input id="stripe-nif" type="text" placeholder="Ej. Clínica Sol SL · B12345678" class="stripe-input" />
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-3.5 space-y-2 text-xs text-slate-300">
+              <div class="font-display font-extrabold text-white text-sm">Entrega 100% automática tras el pago en Stripe:</div>
+              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">1</span><span>Tu web queda <strong>desbloqueada para siempre</strong> sin límite de 24h y con tu Aviso Legal inyectado.</span></div>
+              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">2</span><span>Recibes al instante tu <strong>Enlace Privado de Propietario (/admin) + Clave PIN</strong> para cambiar fotos, horarios o precios tú mismo toda la vida.</span></div>
+              <div class="flex items-start gap-2"><span class="w-5 h-5 shrink-0 rounded-full bg-[#635BFF] text-white text-[11px] font-black flex items-center justify-center">3</span><span>Activamos tu dominio oficial con SSL y recibes tu <strong>Factura PDF</strong> en el correo.</span></div>
+            </div>
+
+            <button type="submit" id="stripe-submit-btn"
+                    class="btn-press w-full py-3.5 px-5 min-h-[50px] rounded-2xl stripe-btn-primary font-display font-black text-sm sm:text-base flex items-center justify-center gap-2">
+              <i class="ph-bold ph-lock-key text-lg"></i>
+              <span id="stripe-submit-label">Contratar Negocio Pro ⭐ · 197 € Pago Único</span>
+            </button>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 pt-1">
+              <span>🔒 Compra protegida por <strong>Stripe</strong> · Pago único sin renovaciones</span>
+              <button type="button"
+                      onclick="askWhatsAppNoCommitment('Tengo una duda antes de completar la contratación en Stripe')"
+                      class="text-emerald-400 hover:underline font-bold">
+                ¿Solo tienes dudas? Escríbenos por WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- =====================================================================
@@ -858,7 +1356,7 @@
 
       <!-- Bottom Direct CTA: Pre-selects this model in the 10-second Generator! -->
       <div class="safe-bottom-pad px-4 sm:px-6 pt-3.5 border-t border-white/10 bg-[#0B0E15] flex items-center justify-between gap-3">
-        <span class="text-xs text-slate-400 hidden sm:inline">Genera este modelo con tu nombre en 10s · Pago único 50 € para siempre.</span>
+        <span class="text-xs text-slate-400 hidden sm:inline">Genera este modelo con tu nombre en 10s · Pago único desde 79 € con Stripe.</span>
         <button type="button" id="cinema-wa-btn"
                 class="btn-press w-full sm:w-auto px-6 py-3 min-h-[46px] rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm inline-flex items-center justify-center gap-2">
           <i class="ph-bold ph-lightning text-lg"></i>
@@ -869,6 +1367,7 @@
     </div>
   </div>
 
-  <script src="assets/showcase-v4.js?v=70"></script>
+  <script src="assets/stripe-config.js?v=85"></script>
+  <script src="assets/showcase-v4.js?v=85"></script>
 </body>
 </html>

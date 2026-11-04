@@ -5,23 +5,26 @@
 const STORAGE_KEY = 'miweblocal_platform_v5';
 const FATHI_WHATSAPP = '34632768152';
 
-// 13 Crisp Sector Presets with Sector-Specific Action Modes
+// 13 Crisp Sector Presets with Unified Studio "Ordenador + Móvil" Assets & 4 Pain Solutions
 const SECTOR_PRESETS = {
   barberia: {
-    label: 'Barbería',
+    label: 'Barbería / Salón',
     icon: 'ph-scissors',
     actionType: 'citas',
     defaultTheme: 'copper',
-    defaultName: 'Barbería Martínez',
-    yearsExp: '12 años de oficio',
+    defaultName: 'Barber Studio',
+    yearsExp: 'Barbería · Citas Directas',
     tagline: 'Degradado al milímetro y afeitado clásico a navaja.',
     story: 'Puntualidad, trato cercano y reserva directa desde tu móvil en 15 segundos.',
-    heroImage: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80'
+    painTag: 'No pares de cortar el pelo para contestar llamadas y mensajes',
+    solves: [
+      'Agenda de citas 24h: el cliente elige corte y hora sin llamarte',
+      'Carta de servicios y tarifas clara para evitar preguntas repetidas',
+      'Llenas huecos vacíos incluso cuando estás cerrado o cortando',
+      '0% comisiones por reserva: aviso directo a tu WhatsApp'
     ],
+    heroImage: '../assets/showcase/photo_barberia.jpg',
+    gallery: ['../assets/showcase/photo_barberia.jpg'],
     services: [
       { title: 'Corte Degradado / Skin Fade', meta: '35 min · Lavado y peinado', price: '16 €' },
       { title: 'Combo Corte + Barba a Navaja', meta: '50 min · Toalla caliente', price: '24 €' },
@@ -30,42 +33,48 @@ const SECTOR_PRESETS = {
     ]
   },
   estetica: {
-    label: 'Estética y Uñas',
+    label: 'Estética / Uñas',
     icon: 'ph-sparkle',
     actionType: 'citas',
     defaultTheme: 'cream',
-    defaultName: 'Atelier Lumière',
-    yearsExp: 'Centro especializado',
-    tagline: 'Coloración orgánica, manicura rusa y estética facial.',
+    defaultName: 'Maison Lumière',
+    yearsExp: 'Estética · Carta de Rituales',
+    tagline: 'Estética facial avanzada, manicura rusa y rituales de autor.',
     story: 'Diagnóstico personalizado, firmas de alta cosmética y cita cómoda sin esperas.',
-    heroImage: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Evita regateos mostrando tu carta de tratamientos con imagen de lujo',
+    solves: [
+      'Carta completa de tratamientos faciales, uñas y rituales con precios',
+      'Reserva de cita por tramo horario directo a tu WhatsApp',
+      'Atrae clientela que valora tu trabajo y paga sin regatear',
+      '0% comisiones por cita: cada clienta es 100% tuya'
     ],
+    heroImage: '../assets/showcase/photo_estetica.jpg',
+    gallery: ['../assets/showcase/photo_estetica.jpg'],
     services: [
-      { title: 'Balayage Orgánico + Peinado', meta: '120 min · Diagnóstico incluido', price: '75 €' },
-      { title: 'Manicura Rusa con Nivelación', meta: '60 min · Larga duración', price: '28 €' },
       { title: 'Higiene Facial Hydraglow', meta: '55 min · Piel luminosa', price: '48 €' },
-      { title: 'Lifting de Pestañas + Cejas', meta: '45 min · Mirada natural', price: '40 €' }
+      { title: 'Manicura Rusa con Nivelación', meta: '60 min · Larga duración', price: '28 €' },
+      { title: 'Lifting de Pestañas + Diseño Cejas', meta: '45 min · Mirada natural', price: '40 €' },
+      { title: 'Ritual Corporal Relajante', meta: '60 min · Cabina privada', price: '55 €' }
     ]
   },
   motos: {
-    label: 'Motos y Stock',
+    label: 'Motos / Concesionario',
     icon: 'ph-motorcycle',
     actionType: 'motor',
     defaultTheme: 'crimson',
-    defaultName: 'Motor Store Pro',
-    yearsExp: 'Concesionario & Taller',
+    defaultName: 'Motos Veloce',
+    yearsExp: 'Motor · Stock 24h',
     tagline: 'Motos revisadas con garantía y taller multimarca.',
     story: 'Stock revisado en 60 puntos, financiación a medida y cita rápida de taller.',
-    heroImage: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Deja de mandar fotos y precios uno a uno por WhatsApp a curiosos',
+    solves: [
+      'Catálogo de vehículos en stock con fotos, km y precios visible las 24h',
+      'Filtro de compradores serios que te escriben por un modelo concreto',
+      'Reserva de cita previa para taller, revisión o prueba dinámica',
+      'Formulario de tasación de moto/coche usado + mapa GPS directo'
     ],
+    heroImage: '../assets/showcase/photo_motos.jpg',
+    gallery: ['../assets/showcase/photo_motos.jpg'],
     services: [
       { title: 'Naked 700cc ABS (Garantía 1 año)', meta: '6.400 km · Financiación', price: '6.890 €' },
       { title: 'Scooter Urbano 125cc Nuevo', meta: 'Seguro y casco incluidos', price: '3.290 €' },
@@ -74,42 +83,48 @@ const SECTOR_PRESETS = {
     ]
   },
   taller: {
-    label: 'Taller y Coches',
+    label: 'Taller Mecánico',
     icon: 'ph-wrench',
     actionType: 'motor',
     defaultTheme: 'crimson',
-    defaultName: 'Talleres MotorPro',
-    yearsExp: '18 años en mecánica',
-    tagline: 'Mecánica, chapa al horno y pre-ITV con precio cerrado.',
+    defaultName: 'Apex Auto Detail',
+    yearsExp: 'Taller · Valoración por Foto',
+    tagline: 'Mecánica, chapa, pintura y detailing con presupuesto cerrado.',
     story: 'Presupuesto exacto antes de tocar tu vehículo y entrega rápida garantizada.',
-    heroImage: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Ahorra visitas en vacío valorando la avería o el golpe antes por WhatsApp',
+    solves: [
+      'El cliente elige servicio (revisión, pre-ITV, chapa o detailing) y pide cita',
+      'Envío directo de foto del golpe o matrícula a tu WhatsApp',
+      'Muestra tus acabados reales para justificar tarifas profesionales',
+      'Botón GPS a Google Maps para llegar directo a la puerta de tu nave'
     ],
+    heroImage: '../assets/showcase/photo_taller.jpg',
+    gallery: ['../assets/showcase/photo_taller.jpg'],
     services: [
       { title: 'Revisión Aceite Sintético + Filtros', meta: 'Mantiene garantía oficial', price: '95 €' },
       { title: 'Diagnosis Electrónica + Pre-ITV', meta: 'Informe completo 40 puntos', price: '39 €' },
-      { title: 'Carga Aire Acondicionado', meta: 'Test de fugas incluido', price: '59 €' },
-      { title: 'Pintura / Pulido Espejo', meta: ' Envía foto por WhatsApp', price: 'Valorar' }
+      { title: 'Tratamiento Cerámico / Pulido', meta: 'Brillo espejo garantizado', price: '180 €' },
+      { title: 'Valoración de Chapa por Foto', meta: 'Envía foto por WhatsApp', price: 'Gratis' }
     ]
   },
   reformas: {
-    label: 'Reformas y Obra',
+    label: 'Reformas / Oficios',
     icon: 'ph-house-line',
     actionType: 'reformas',
     defaultTheme: 'gold',
-    defaultName: 'Reformas Élite',
-    yearsExp: '+180 obras entregadas',
+    defaultName: 'Villa & Reformas',
+    yearsExp: 'Reformas · Presupuestos',
     tagline: 'Reformas integrales, cocinas y baños con plazo cerrado.',
     story: 'Coordinamos todos los gremios con materiales de primera y presupuesto sin sorpresas.',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Deja de perder obras grandes por no tener un catálogo serio que enseñar',
+    solves: [
+      'Solicitud de presupuesto filtrada por tipo de obra y metros cuadrados',
+      'Galería de reformas reales (cocinas, baños, vivienda completa)',
+      'Atrae propietarios que buscan calidad y evita regateadores',
+      'Contacto directo a tu WhatsApp mientras estás en la obra'
     ],
+    heroImage: '../assets/showcase/photo_reformas.jpg',
+    gallery: ['../assets/showcase/photo_reformas.jpg'],
     services: [
       { title: 'Visita + Medición y Presupuesto', meta: 'En menos de 48h sin coste', price: 'Gratis' },
       { title: 'Cambio Bañera por Plato de Ducha', meta: 'Listo en 24h con mampara', price: '1.190 €' },
@@ -118,20 +133,23 @@ const SECTOR_PRESETS = {
     ]
   },
   restaurante: {
-    label: 'Restaurante',
+    label: 'Restaurante / Bar',
     icon: 'ph-hamburger',
     actionType: 'mesa',
     defaultTheme: 'copper',
-    defaultName: 'La Brasa Club',
-    yearsExp: 'Brasa y cocina viva',
-    tagline: 'Carnes maduradas al fuego y smash burgers artesanas.',
+    defaultName: 'Brasa & Origen',
+    yearsExp: 'Hostelería · Carta + Mesas',
+    tagline: 'Carnes maduradas al fuego y cocina artesana en vivo.',
     story: 'Consulta nuestra carta con precios y reserva mesa en terraza o salón sin comisiones.',
-    heroImage: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Que tus platos entren por los ojos y reserven mesa sin pagar comisiones',
+    solves: [
+      'Carta visual con fotos y precios que se abre al instante en el móvil',
+      'Reserva de mesa (terraza o salón) en 3 toques directo a tu WhatsApp',
+      'Pedidos para recoger sin colas ni esperas telefónicas',
+      'Ahorras el 20–30% de comisión que te quitan las apps de reparto'
     ],
+    heroImage: '../assets/showcase/photo_restaurante.jpg',
+    gallery: ['../assets/showcase/photo_restaurante.jpg'],
     services: [
       { title: 'Doble Truffle Smash Burger', meta: 'Cheddar fundido y patatas caseras', price: '14,90 €' },
       { title: 'Costillar Ibérico a la Brasa', meta: 'Baja temperatura · Ración entera', price: '22,50 €' },
@@ -148,12 +166,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Specialty Coffee',
     tagline: 'Café 100% arábica, brunch artesano y terraza soleada.',
     story: 'Repostería recién horneada y tostadas de masa madre hechas al momento.',
-    heroImage: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Que tu carta de brunch y café se vea al segundo en el móvil sin PDFs lentos',
+    solves: [
+      'Carta digital instantánea con precios y alérgenos claros',
+      'Reserva de mesa en terraza o salón directa a tu WhatsApp',
+      'Pedidos para llevar listos sin esperas en barra',
+      '0% comisiones por pedido: el 100% del margen es para tu local'
     ],
+    heroImage: '../assets/showcase/photo_restaurante.jpg',
+    gallery: ['../assets/showcase/photo_restaurante.jpg'],
     services: [
       { title: 'Menú Brunch Completo', meta: 'Café + Zumo + Tosta + Bowl', price: '15,90 €' },
       { title: 'Tosta Aguacate y Huevo Poché', meta: 'Pan de masa madre ecológico', price: '7,80 €' },
@@ -170,12 +191,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Pedidos 0% comisión',
     tagline: 'Masa de 72 horas al horno de piedra para recoger o envío.',
     story: 'Haz tu pedido directo por WhatsApp sin recargos de plataformas externas.',
-    heroImage: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Ahorra el 30% de comisión de las apps recibiendo pedidos directos en tu WhatsApp',
+    solves: [
+      'Carta interactiva con menús, ofertas y precios siempre al día',
+      'Pedidos para recoger o domicilio directos a tu WhatsApp',
+      'Reserva de mesa rápida en 3 toques desde el móvil',
+      '0% comisiones por pedido para toda la vida'
     ],
+    heroImage: '../assets/showcase/photo_restaurante.jpg',
+    gallery: ['../assets/showcase/photo_restaurante.jpg'],
     services: [
       { title: 'Pizza Diavola Trufada', meta: 'Mozzarella fresca al horno', price: '12,90 €' },
       { title: 'Menú Dürüm XL + Patatas + Bebida', meta: 'Pan recién horneado', price: '8,90 €' },
@@ -184,25 +208,28 @@ const SECTOR_PRESETS = {
     ]
   },
   clinica: {
-    label: 'Clínica y Salud',
+    label: 'Clínica / Salud',
     icon: 'ph-heartbeat',
     actionType: 'citas',
     defaultTheme: 'emerald',
-    defaultName: 'Clínica Balance',
-    yearsExp: 'Equipo colegiado',
-    tagline: 'Odontología, fisioterapia y salud integral sin esperas.',
+    defaultName: 'Clínica Aura',
+    yearsExp: 'Salud · Primera Cita',
+    tagline: 'Odontología avanzada, fisioterapia y salud integral sin esperas.',
     story: 'Tecnología digital avanzada y primera valoración personalizada para tu tranquilidad.',
-    heroImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Transmite la máxima confianza que un paciente necesita antes de pedir cita',
+    solves: [
+      'Presentación limpia y seria de tus tratamientos, especialidades y tarifas',
+      'Solicitud de primera visita o valoración directa al WhatsApp de recepción',
+      'Capta pacientes de tu ciudad que buscan clínica en Google',
+      'Horarios claros y ruta GPS en 1 clic hasta tu consulta'
     ],
+    heroImage: '../assets/showcase/photo_clinica.jpg',
+    gallery: ['../assets/showcase/photo_clinica.jpg'],
     services: [
       { title: '1ª Visita + Diagnóstico Digital', meta: '40 min · Valoración completa', price: 'Gratis' },
-      { title: 'Sesión Fisioterapia Manual', meta: '50 min · Individual', price: '38 €' },
+      { title: 'Sesión Fisioterapia / Consulta', meta: '50 min · Individual', price: '38 €' },
       { title: 'Higiene Dental Ultrasonidos', meta: '45 min · Revisión incluida', price: '45 €' },
-      { title: 'Blanqueamiento Clínico LED', meta: 'Seguro y visible en 1 sesión', price: '190 €' }
+      { title: 'Blanqueamiento Clínico LED', meta: 'Resultado visible en 1 sesión', price: '190 €' }
     ]
   },
   tattoo: {
@@ -214,12 +241,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Arte en piel',
     tagline: 'Realismo, micro-realismo y fine line con diseño único.',
     story: 'Cabinas privadas homologadas. Cuéntanos tu idea y reserva tu sesión.',
-    heroImage: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1590246814883-57c511e7691c?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Filtra clientes serios mostrando tus estilos y tarifas base antes de agendar',
+    solves: [
+      'Catálogo de estilos y tarifas mínimas claro las 24 horas',
+      'Reserva de sesión o valoración de boceto directa a tu WhatsApp',
+      'Imagen de estudio premium en Ordenador + Móvil',
+      '0% comisiones por cita: trato directo con cada cliente'
     ],
+    heroImage: '../assets/showcase/photo_barberia.jpg',
+    gallery: ['../assets/showcase/photo_barberia.jpg'],
     services: [
       { title: 'Fine Line / Minimalista', meta: 'Material 100% estéril', price: 'Desde 60 €' },
       { title: 'Pieza de Autor (10–18 cm)', meta: 'Boceto previo incluido', price: 'Desde 150 €' },
@@ -228,7 +258,7 @@ const SECTOR_PRESETS = {
     ]
   },
   urgencias: {
-    label: 'Cerrajero 24h',
+    label: 'Cerrajero / Urgencias 24h',
     icon: 'ph-key',
     actionType: 'urgencia',
     defaultTheme: 'gold',
@@ -236,12 +266,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Llegada en 20 min',
     tagline: 'Aperturas sin romper y urgencias 24 horas los 365 días.',
     story: 'Técnicos directos de tu zona con precio cerrado por WhatsApp antes de salir.',
-    heroImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Capta avisos urgentes en tu ciudad con botón directo a tu WhatsApp 24h',
+    solves: [
+      'Botón de aviso urgente en 1 toque con ubicación del cliente',
+      'Tarifas orientativas claras que generan confianza inmediata',
+      'Sin intermediarios ni comisiones por aviso recibido',
+      'Diseño ultrarrápido en Móvil y Ordenador PC'
     ],
+    heroImage: '../assets/showcase/photo_reformas.jpg',
+    gallery: ['../assets/showcase/photo_reformas.jpg'],
     services: [
       { title: 'Apertura Limpia sin Daños', meta: 'Llegada en 20 minutos', price: 'Desde 59 €' },
       { title: 'Bombín Antibumping Seguridad', meta: '5 llaves incopiables', price: '125 €' },
@@ -258,12 +291,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Grupos reducidos',
     tagline: 'Pilates Reformer y entrenamiento personal a tu medida.',
     story: 'Reserva tu clase de prueba y entrena con seguimiento de entrenadores titulados.',
-    heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Capta alumnos presenciales u online todas las semanas de forma automática',
+    solves: [
+      'Muestra tus bonos, horarios, entrenamientos y tarifas en una pantalla',
+      'Reserva directa de clase de prueba o valoración física inicial',
+      'Ideal tanto si tienes centro/box propio como si eres entrenador personal',
+      'Contacto directo a tu WhatsApp sin intermediarios'
     ],
+    heroImage: '../assets/showcase/photo_fitness.jpg',
+    gallery: ['../assets/showcase/photo_fitness.jpg'],
     services: [
       { title: 'Clase de Prueba + Valoración', meta: '55 min · Conoce el centro', price: '10 €' },
       { title: 'Bono Pilates Máquina (2/sem)', meta: 'Máx. 6 personas por grupo', price: '75 €/mes' },
@@ -272,69 +308,78 @@ const SECTOR_PRESETS = {
     ]
   },
   fitness: {
-    label: 'Fitness y Deporte',
+    label: 'Fitness / Gym',
     icon: 'ph-barbell',
     actionType: 'citas',
     defaultTheme: 'emerald',
-    defaultName: 'Kinetic Fitness Club',
-    yearsExp: 'Entrenamiento Élite',
-    tagline: 'Entrenamiento personal, fuerza y transformación física garantizada.',
+    defaultName: 'Kinetic Club',
+    yearsExp: 'Fitness · Captación Alumnos',
+    tagline: 'Entrenamiento personal, fuerza y transformación física.',
     story: 'Reserva tu valoración inicial y entrena con planificación a medida presencial u online.',
-    heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Capta alumnos presenciales u online todas las semanas de forma automática',
+    solves: [
+      'Muestra tus bonos, horarios, entrenamientos y tarifas en una pantalla',
+      'Reserva directa de clase de prueba o valoración física inicial',
+      'Ideal tanto si tienes centro/box propio como si eres entrenador personal',
+      'Contacto directo a tu WhatsApp sin intermediarios'
     ],
+    heroImage: '../assets/showcase/photo_fitness.jpg',
+    gallery: ['../assets/showcase/photo_fitness.jpg'],
     services: [
-      { title: 'Sesión de Valoración + Prueba', meta: '45 min · Estudio corporal', price: 'Gratis' },
-      { title: 'Plan Entrenamiento Personal 1 a 1', meta: 'Seguimiento semanal + Nutrición', price: '120 €/mes' },
+      { title: 'Sesión de Valoración + Prueba', meta: '45 min · Estudio inicial', price: 'Gratis' },
+      { title: 'Entrenamiento Personal 1 a 1', meta: 'Seguimiento + Nutrición', price: '120 €/mes' },
       { title: 'Grupos Reducidos Fuerza & HIIT', meta: 'Máx. 8 personas por turno', price: '69 €/mes' },
-      { title: 'Preparación Online Personalizada', meta: 'App + Contacto directo WhatsApp', price: '59 €/mes' }
+      { title: 'Preparación Online Personalizada', meta: 'Contacto directo WhatsApp', price: '59 €/mes' }
     ]
   },
   personal: {
-    label: 'Nuevo Negocio / Servicios',
+    label: 'Nuevo Negocio / Marca',
     icon: 'ph-briefcase',
     actionType: 'citas',
     defaultTheme: 'gold',
-    defaultName: 'Nexo Consultoría & Marca',
-    yearsExp: 'Atención Personalizada',
-    tagline: 'Soluciones profesionales a medida con resultados claros desde el primer día.',
-    story: 'Asesoramiento directo sin intermediarios. Agenda tu consulta o solicita presupuesto por WhatsApp.',
-    heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=700&q=80'
+    defaultName: 'Nexo Consultoría',
+    yearsExp: 'Nuevo Proyecto · Llave en Mano',
+    tagline: 'Soluciones profesionales a medida con resultados desde el primer día.',
+    story: 'Atención directa sin intermediarios. Agenda tu consulta o solicita presupuesto por WhatsApp.',
+    painTag: '¿Quieres empezar un negocio por tu cuenta y no sabes hacer la web?',
+    solves: [
+      'Lanzas tu propio negocio o servicio desde cero sin saber informática',
+      'Explicación clara de qué ofreces, tarifas y por qué contratarte',
+      'Captación de clientes y presupuestos directos a tu WhatsApp',
+      'Imagen de empresa grande en Ordenador + Móvil desde el primer día'
     ],
+    heroImage: '../assets/showcase/photo_personal.jpg',
+    gallery: ['../assets/showcase/photo_personal.jpg'],
     services: [
       { title: 'Primera Consulta de Valoración', meta: '30 min · Análisis de tu caso', price: 'Gratis' },
       { title: 'Servicio Profesional Completo', meta: 'Entrega rápida y garantizada', price: 'A medida' },
-      { title: 'Pack Integral para Particulares / Empresas', meta: 'Todo incluido llave en mano', price: 'Consultar' },
-      { title: 'Atención Preferente por WhatsApp', meta: 'Respuesta en el mismo día', price: 'Directo' }
+      { title: 'Pack Integral para Clientes', meta: 'Todo incluido llave en mano', price: 'Consultar' },
+      { title: 'Atención Preferente por WhatsApp', meta: 'Respuesta en el día', price: 'Directo' }
     ]
   },
   tienda: {
-    label: 'Tienda y Catálogo 24h',
+    label: 'Tienda 24h',
     icon: 'ph-shopping-bag',
     actionType: 'citas',
     defaultTheme: 'copper',
-    defaultName: 'Atelier Store Oficial',
-    yearsExp: 'Envío 24/48h o Recogida',
-    tagline: 'Catálogo exclusivo disponible las 24 horas con pedido directo por WhatsApp.',
-    story: 'Descubre nuestra colección actualizada con stock real. Compra o reserva en un toque sin comisiones.',
-    heroImage: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80'
+    defaultName: 'Atelier Store',
+    yearsExp: 'Tienda Online · Sin Comisiones',
+    tagline: 'Catálogo exclusivo disponible las 24 horas con pedido por WhatsApp.',
+    story: 'Descubre nuestra colección actualizada con stock real. Compra o reserva sin comisiones.',
+    painTag: 'Vende tus artículos las 24h sin depender solo de subir historias',
+    solves: [
+      'Tus productos ordenados con fotos, tallas/modelos y precios 24h',
+      'Pedidos de compra o reserva para recoger directos a tu WhatsApp',
+      '0% comisiones por venta y sin pasarelas técnicas complicadas',
+      'Enlace oficial para poner en tu biografía de Instagram y TikTok'
     ],
+    heroImage: '../assets/showcase/photo_tienda.jpg',
+    gallery: ['../assets/showcase/photo_tienda.jpg'],
     services: [
       { title: 'Producto Destacado de Temporada', meta: 'Unidades limitadas · Envío 24h', price: '39,90 €' },
       { title: 'Pack Ahorro Colección Completa', meta: 'El más vendido · Envío gratis', price: '69,00 €' },
       { title: 'Edición Especial / Personalizada', meta: 'Reserva directa por WhatsApp', price: '49,00 €' },
-      { title: 'Recogida en Tienda sin Esperas', meta: 'Listo en 1 hora', price: '0 €' }
+      { title: 'Recogida en Local sin Esperas', meta: 'Listo en 1 hora', price: '0 €' }
     ]
   },
   otro: {
@@ -346,12 +391,15 @@ const SECTOR_PRESETS = {
     yearsExp: 'Atención directa',
     tagline: 'Calidad, confianza y respuesta inmediata en tu ciudad.',
     story: 'Consulta tarifas claras y escríbenos por WhatsApp sin esperas.',
-    heroImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=85',
-    gallery: [
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80',
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=700&q=80'
+    painTag: 'Ten tu propio escaparate profesional 24h sin depender de intermediarios',
+    solves: [
+      'Lanzas tu web profesional en Ordenador + Móvil sin saber informática',
+      'Catálogo claro de servicios y precios para evitar curiosos',
+      'Reservas y presupuestos directos a tu WhatsApp con 0% comisión',
+      'Dominio + Hosting incluidos de por vida en un pago único'
     ],
+    heroImage: '../assets/showcase/photo_personal.jpg',
+    gallery: ['../assets/showcase/photo_personal.jpg'],
     services: [
       { title: 'Servicio / Producto Destacado #1', meta: 'Atención personalizada', price: 'Consultar' },
       { title: 'Pack Completo Más Solicitado', meta: 'Garantía incluida', price: '49 €' },
@@ -418,11 +466,18 @@ function slugifyName(name) {
 
 function encodeSharePayload(st) {
   try {
+    const httpHero = (st.customHeroPhoto && /^https?:\/\//.test(st.customHeroPhoto)) ? st.customHeroPhoto : '';
+    const httpGal = Array.isArray(st.customGallery)
+      ? st.customGallery.filter(u => typeof u === 'string' && /^https?:\/\//.test(u)).slice(0, 4)
+      : [];
     const slim = {
       n: st.name, s: st.sector, cs: st.customSectorLabel, y: st.yearsExp,
       tg: st.tagline, st: st.story, bp: st.bookingPolicy, c: st.city,
       a: st.address, w: st.whatsapp, p: st.phone, ig: st.instagram,
       hw: st.hoursWeek, hs: st.hoursSat, hd: st.hoursSun, th: st.theme,
+      hp: httpHero, gp: httpGal,
+      rv: Array.isArray(st.reviews) ? st.reviews.slice(0, 3) : [],
+      lh: st.legalHolder || '', ln: st.legalNif || '', dm: st.desiredDomain || '',
       sv: (st.services || []).slice(0, 12), md: st.modules,
       un: !!st.unlocked, pin: st.adminPin || 'PRO-4829',
       ex: st.expiresAt || (Date.now() + 24 * 3600 * 1000)
@@ -448,7 +503,9 @@ function decodeSharePayload(b64) {
       phone: slim.p || '', instagram: slim.ig || '',
       hoursWeek: slim.hw || '09:30 – 20:00', hoursSat: slim.hs || '09:30 – 14:30',
       hoursSun: slim.hd || 'Cerrado', theme: slim.th || def.defaultTheme,
-      customHeroPhoto: '', customGallery: [],
+      customHeroPhoto: slim.hp || '', customGallery: Array.isArray(slim.gp) ? slim.gp : [],
+      reviews: Array.isArray(slim.rv) ? slim.rv : [],
+      legalHolder: slim.lh || '', legalNif: slim.ln || '', desiredDomain: slim.dm || '',
       services: Array.isArray(slim.sv) && slim.sv.length ? slim.sv : JSON.parse(JSON.stringify(def.services)),
       modules: Object.assign({
         booking: true, whatsappFloat: true, services: true, about: true,
@@ -655,25 +712,31 @@ function compileClientWebsiteHTML(st) {
   const thm = DESIGN_THEMES[st.theme] || DESIGN_THEMES.copper;
   const sectorBadge = st.sector === 'otro' ? (st.customSectorLabel || 'Negocio Verificado') : preset.label;
   const STUDIO_MAP = {
-    motos: '/assets/showcase/photo_motos.jpg',
-    barberia: '/assets/showcase/photo_barberia.jpg',
-    personal: '/assets/showcase/photo_personal.jpg',
-    reformas: '/assets/showcase/photo_reformas.jpg',
-    tienda: '/assets/showcase/photo_tienda.jpg',
-    restaurante: '/assets/showcase/photo_restaurante.jpg',
-    cafeteria: '/assets/showcase/photo_restaurante.jpg',
-    pizzeria: '/assets/showcase/photo_restaurante.jpg',
-    taller: '/assets/showcase/photo_taller.jpg',
-    clinica: '/assets/showcase/photo_clinica.jpg',
-    estetica: '/assets/showcase/photo_estetica.jpg',
-    tattoo: '/assets/showcase/photo_barberia.jpg',
-    fitness: '/assets/showcase/photo_fitness.jpg',
-    gimnasio: '/assets/showcase/photo_fitness.jpg',
-    urgencias: '/assets/showcase/photo_reformas.jpg',
-    otro: '/assets/showcase/photo_personal.jpg'
+    motos: '../assets/showcase/photo_motos.jpg',
+    barberia: '../assets/showcase/photo_barberia.jpg',
+    personal: '../assets/showcase/photo_personal.jpg',
+    reformas: '../assets/showcase/photo_reformas.jpg',
+    tienda: '../assets/showcase/photo_tienda.jpg',
+    restaurante: '../assets/showcase/photo_restaurante.jpg',
+    cafeteria: '../assets/showcase/photo_restaurante.jpg',
+    pizzeria: '../assets/showcase/photo_restaurante.jpg',
+    taller: '../assets/showcase/photo_taller.jpg',
+    clinica: '../assets/showcase/photo_clinica.jpg',
+    estetica: '../assets/showcase/photo_estetica.jpg',
+    tattoo: '../assets/showcase/photo_barberia.jpg',
+    fitness: '../assets/showcase/photo_fitness.jpg',
+    gimnasio: '../assets/showcase/photo_fitness.jpg',
+    urgencias: '../assets/showcase/photo_reformas.jpg',
+    otro: '../assets/showcase/photo_personal.jpg'
   };
   const heroImg = st.customHeroPhoto || STUDIO_MAP[st.sector] || preset.heroImage;
-  const galleryPhotos = (st.customGallery && st.customGallery.length > 0) ? st.customGallery : preset.gallery;
+  const solvesList = preset.solves || [
+    'Escaparate Ordenador + Móvil disponible las 24 horas',
+    'Catálogo de precios claro para evitar preguntas repetidas',
+    'Reservas y presupuestos directos a tu WhatsApp (0% comisiones)',
+    'Dominio propio + Hosting de por vida en un único pago'
+  ];
+  const painHeadline = preset.painTag || 'Tu negocio abierto las 24 horas en Ordenador y Móvil sin comisiones';
 
   const cleanWa = String(st.whatsapp || '600000000').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
@@ -697,11 +760,49 @@ function compileClientWebsiteHTML(st) {
     </div>
   `).join('');
 
-  const galleryHtml = (galleryPhotos || []).map((src, idx) => `
-    <div class="gal-item">
-      <img src="${escapeHtml(src)}" alt="${escapeHtml(st.name)} ${idx + 1}" loading="lazy" />
+  const solvesHtml = solvesList.map(item => `
+    <div class="solve-pill">
+      <span class="solve-check">✓</span>
+      <span>${escapeHtml(item)}</span>
     </div>
   `).join('');
+
+  const customPhotos = Array.isArray(st.customGallery) ? st.customGallery.filter(Boolean) : [];
+  const galleryPhotosHtml = customPhotos.length
+    ? `<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin-bottom:18px;">
+        ${customPhotos.map((ph, idx) => `
+          <div style="border-radius:16px; overflow:hidden; border:1px solid var(--border); background:var(--card);">
+            <img src="${escapeHtml(ph)}" alt="Foto ${idx + 1} de ${escapeHtml(st.name)}" style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;" />
+          </div>
+        `).join('')}
+       </div>`
+    : '';
+
+  const defaultReviews = [
+    { author: 'Marta G.', rating: 5, text: `Trato de 10 en ${st.name}. Súper puntuales, muy profesionales y reservar por WhatsApp fue comodísimo.` },
+    { author: 'David R.', rating: 5, text: `El mejor sitio de ${st.city}. Precios claros desde el primer momento y calidad impecable.` },
+    { author: 'Laura S.', rating: 5, text: 'Totalmente recomendados. Atención cercana, instalaciones impecables y cero esperas.' }
+  ];
+  const activeReviews = (Array.isArray(st.reviews) && st.reviews.length) ? st.reviews : defaultReviews;
+  const reviewsHtml = activeReviews.slice(0, 3).map(rv => `
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:15px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+      <div>
+        <div style="color:#FBBF24; font-size:13px; letter-spacing:2px; margin-bottom:6px;">★★★★★</div>
+        <p style="font-size:13px; color:var(--ink); line-height:1.45;">“${escapeHtml(rv.text)}”</p>
+      </div>
+      <div style="font-size:11.5px; font-weight:700; color:var(--muted);">✓ ${escapeHtml(rv.author || 'Cliente verificado')}</div>
+    </div>
+  `).join('');
+
+  const editPhotoOverlayBtn = !st.unlocked
+    ? `<button type="button" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}"
+         style="position:absolute; top:10px; right:10px; z-index:5; background:rgba(16,185,129,0.95); color:#04130D; border:none; border-radius:999px; padding:7px 12px; font-size:11.5px; font-weight:800; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.45);">
+         📸 Poner fotos de mi local
+       </button>`
+    : '';
+
+  const legalHolderName = st.legalHolder || st.name;
+  const legalNifText = st.legalNif ? ` · NIF/CIF: ${st.legalNif}` : '';
 
   const widgetHtml = buildSectorActionWidgetHTML(st, preset, fullWa);
 
@@ -735,17 +836,16 @@ function compileClientWebsiteHTML(st) {
   .nav-cta { background:var(--accent); color:var(--accent-ink); padding:9px 15px; border-radius:999px; font-size:12px; font-weight:700; border:none; cursor:pointer; white-space:nowrap; }
   .hero { padding:28px 0 32px; background:radial-gradient(600px 360px at 85% 10%, ${thm.accent}22, transparent 65%); border-bottom:1px solid var(--border); }
   .hero-grid { display:grid; grid-template-columns:1fr; gap:20px; align-items:center; }
-  @media (min-width:720px) { .hero { padding:46px 0 50px; } .hero-grid { grid-template-columns:1.1fr 0.9fr; gap:32px; } }
+  @media (min-width:720px) { .hero { padding:46px 0 50px; } .hero-grid { grid-template-columns:1.05fr 0.95fr; gap:32px; } }
   .eyebrow { display:inline-flex; align-items:center; gap:7px; padding:5px 12px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--accent); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
   h1 { font-family:var(--font-head); font-weight:var(--weight-head); font-size:${thm.headingFont.includes('Instrument') ? 'clamp(2.05rem,5.5vw,3.3rem)' : 'clamp(1.75rem,4.8vw,2.75rem)'}; line-height:1.06; margin-bottom:10px; }
   .hero-p { color:var(--muted); font-size:14px; max-width:500px; margin-bottom:16px; }
   .hero-btns { display:flex; flex-wrap:wrap; gap:10px; }
   .btn-main { background:var(--accent); color:var(--accent-ink); padding:13px 20px; border-radius:12px; font-weight:700; font-size:13.5px; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:7px; }
   .btn-sec { background:var(--surface); color:var(--ink); border:1px solid var(--border); padding:13px 18px; border-radius:12px; font-weight:600; font-size:13.5px; display:inline-flex; align-items:center; gap:7px; cursor:pointer; }
-  .hero-img-card { position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:0 20px 45px rgba(0,0,0,0.28); }
-  .hero-img-card img { width:100%; height:250px; object-fit:cover; display:block; }
-  @media (min-width:720px) { .hero-img-card img { height:320px; } }
-  .hero-img-badge { position:absolute; bottom:10px; left:10px; right:10px; background:rgba(12,12,14,0.86); backdrop-filter:blur(10px); color:#fff; padding:9px 12px; border-radius:12px; border:1px solid rgba(255,255,255,0.14); display:flex; justify-content:space-between; align-items:center; font-size:12px; }
+  .hero-img-card { position:relative; border-radius:22px; overflow:hidden; border:1px solid var(--border); box-shadow:0 24px 55px rgba(0,0,0,0.38); transform-style:preserve-3d; transition:transform 0.25s ease; }
+  .hero-img-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .hero-img-badge { position:absolute; bottom:10px; left:10px; right:10px; background:rgba(12,12,14,0.88); backdrop-filter:blur(10px); color:#fff; padding:9px 12px; border-radius:12px; border:1px solid rgba(255,255,255,0.16); display:flex; justify-content:space-between; align-items:center; font-size:11.5px; }
   section { padding:32px 0; border-bottom:1px solid var(--border); }
   .sec-tag { color:var(--accent); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px; }
   h2 { font-family:var(--font-head); font-weight:var(--weight-head); font-size:${thm.headingFont.includes('Instrument') ? 'clamp(1.7rem,4vw,2.35rem)' : 'clamp(1.35rem,3.5vw,1.9rem)'}; line-height:1.1; margin-bottom:14px; }
@@ -767,9 +867,13 @@ function compileClientWebsiteHTML(st) {
   .slot-btn { padding:9px 4px; border-radius:9px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font-weight:700; font-size:12.5px; cursor:pointer; }
   .slot-btn.active { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
   .book-ok { display:none; margin-top:12px; padding:12px; border-radius:11px; background:rgba(16,185,129,0.14); border:1px solid rgba(16,185,129,0.4); color:#10B981; font-size:13px; font-weight:600; }
-  .gal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
-  .gal-item { border-radius:12px; overflow:hidden; aspect-ratio:1/1; border:1px solid var(--border); }
-  .gal-item img { width:100%; height:100%; object-fit:cover; display:block; }
+  .studio-showcase-box { display:grid; grid-template-columns:1fr; gap:18px; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:18px; align-items:center; }
+  @media (min-width:720px) { .studio-showcase-box { grid-template-columns:0.95fr 1.05fr; padding:22px; } }
+  .studio-showcase-img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:14px; border:1px solid var(--border); display:block; }
+  .pain-banner { display:inline-flex; align-items:center; gap:6px; padding:6px 11px; border-radius:10px; background:rgba(244,63,94,0.12); border:1px solid rgba(244,63,94,0.3); color:#FB7185; font-size:12px; font-weight:700; margin-bottom:10px; }
+  .solves-grid { display:grid; grid-template-columns:1fr; gap:8px; margin-bottom:14px; }
+  .solve-pill { display:flex; align-items:flex-start; gap:8px; font-size:13px; background:var(--surface); border:1px solid var(--border); padding:9px 12px; border-radius:11px; }
+  .solve-check { color:#10B981; font-weight:900; flex-shrink:0; }
   .sched-grid { display:grid; grid-template-columns:1fr; gap:14px; }
   @media (min-width:680px) { .sched-grid { grid-template-columns:1fr 1fr; } }
   .sched-box { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; }
@@ -805,9 +909,10 @@ function compileClientWebsiteHTML(st) {
           </div>
         </div>
         <div class="hero-img-card">
-          <img src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)}" />
+          ${editPhotoOverlayBtn}
+          <img src="${escapeHtml(heroImg)}" alt="Imagen principal de ${escapeHtml(st.name)}" />
           <div class="hero-img-badge">
-            <span>★ 4,9 en ${escapeHtml(st.city)}</span>
+            <span>📍 ${escapeHtml(st.city)} · Atención Directa</span>
             <strong style="color:${thm.accentHi}; white-space:nowrap;">${escapeHtml(st.hoursWeek)}</strong>
           </div>
         </div>
@@ -817,8 +922,8 @@ function compileClientWebsiteHTML(st) {
     ${st.modules.services ? `
     <section id="servicios">
       <div class="wrap">
-        <div class="sec-tag">Catálogo y Tarifas</div>
-        <h2>Servicios y Precios</h2>
+        <div class="sec-tag">Catálogo y Tarifas 24h</div>
+        <h2>Servicios y Precios de ${escapeHtml(st.name)}</h2>
         <div class="srv-list">${servicesHtml}</div>
       </div>
     </section>` : ''}
@@ -831,11 +936,33 @@ function compileClientWebsiteHTML(st) {
     ${st.modules.gallery ? `
     <section id="galeria">
       <div class="wrap">
-        <div class="sec-tag">Imágenes</div>
-        <h2>Galería de ${escapeHtml(st.name)}</h2>
-        <div class="gal-grid">${galleryHtml}</div>
+        <div class="sec-tag">${customPhotos.length ? 'Instalaciones y Trabajos Reales' : 'Por Qué Elegirnos'}</div>
+        <h2>${customPhotos.length ? 'Fotos de ' + escapeHtml(st.name) : 'Qué te ofrece ' + escapeHtml(st.name)}</h2>
+        ${galleryPhotosHtml}
+        <div class="studio-showcase-box">
+          <div>
+            <img src="${escapeHtml(customPhotos[0] || heroImg)}" alt="Imagen destacada ${escapeHtml(st.name)}" class="studio-showcase-img" />
+          </div>
+          <div>
+            <div class="pain-banner">⚡ ${escapeHtml(painHeadline)}</div>
+            <div class="solves-grid">${solvesHtml}</div>
+            ${!st.unlocked ? `<div style="font-size:12px; color:var(--muted);">
+              ♾️ <strong>Pago único para siempre (0 €/mes · 0 €/año):</strong> Personaliza tus fotos y textos con el botón superior y actívala desde <strong>79 €</strong> o con Dominio + Google Maps por <strong>197 € ⭐</strong>.
+            </div>` : ''}
+          </div>
+        </div>
       </div>
     </section>` : ''}
+
+    <section id="opiniones">
+      <div class="wrap">
+        <div class="sec-tag">Valoración Media 5,0 ★</div>
+        <h2>Lo que opinan los clientes de ${escapeHtml(st.name)}</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;">
+          ${reviewsHtml}
+        </div>
+      </div>
+    </section>
 
     ${st.modules.scheduleMap ? `
     <section id="ubicacion" style="border-bottom:none;">
@@ -859,9 +986,24 @@ function compileClientWebsiteHTML(st) {
       </div>
     </section>` : ''}
   </main>
-  <footer style="padding:20px 18px; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--border);">
-    © ${new Date().getFullYear()} ${escapeHtml(st.name)} · ${escapeHtml(st.city)}
+  <footer style="padding:22px 18px; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--border); display:flex; flex-direction:column; gap:6px; align-items:center;">
+    <div>© ${new Date().getFullYear()} ${escapeHtml(st.name)} · ${escapeHtml(st.city)}</div>
+    <button type="button" onclick="document.getElementById('legal-modal').style.display='flex'" style="background:none; border:none; color:var(--muted); text-decoration:underline; font-size:11.5px; cursor:pointer;">
+      Aviso Legal y Política de Privacidad (RGPD)
+    </button>
   </footer>
+  <div id="legal-modal" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; z-index:90; background:rgba(0,0,0,0.8); align-items:center; justify-content:center; padding:16px;">
+    <div style="background:var(--card); color:var(--ink); border:1px solid var(--border); border-radius:18px; max-width:560px; width:100%; padding:20px; max-height:82vh; overflow-y:auto; font-size:12.5px; line-height:1.55;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong style="font-size:15px;">Aviso Legal y Privacidad (LSSI-CE / RGPD)</strong>
+        <button type="button" onclick="document.getElementById('legal-modal').style.display='none'" style="background:var(--surface); color:var(--ink); border:1px solid var(--border); border-radius:50%; width:28px; height:28px; cursor:pointer;">✕</button>
+      </div>
+      <p style="margin-bottom:8px;"><strong>Titular:</strong> ${escapeHtml(legalHolderName)}${escapeHtml(legalNifText)}</p>
+      <p style="margin-bottom:8px;"><strong>Domicilio / Ubicación:</strong> ${escapeHtml(st.address)}, ${escapeHtml(st.city)} · Contacto: ${escapeHtml(st.phone || st.whatsapp)}</p>
+      <p style="margin-bottom:8px;"><strong>Protección de Datos (RGPD):</strong> Los datos facilitados mediante contacto directo o WhatsApp se utilizan únicamente para atender su cita, reserva o presupuesto solicitado, sin cesión a terceros ni envíos comerciales no solicitados.</p>
+      <p style="color:var(--muted); font-size:11.5px;">Sitio sin cookies publicitarias ni rastreadores de terceros.</p>
+    </div>
+  </div>
   ${st.modules.whatsappFloat ? `
   <a class="wa-float" href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', quería consultar disponibilidad.')}" target="_blank">
     <span>💬 WhatsApp</span>
@@ -893,7 +1035,7 @@ function compileClientWebsiteHTML(st) {
       const ok = document.getElementById('bk-ok');
       if (ok) {
         ok.style.display = 'block';
-        ok.textContent = '✓ Solicitud lista: ' + srv + (ext ? ' · ' + ext : '') + (cli ? ' (' + cli + ')' : '');
+        ok.textContent = '✓ Solicitud lista para enviar al WhatsApp (' + ${JSON.stringify(st.whatsapp)} + '): ' + srv + (ext ? ' · ' + ext : '') + (cli ? ' (' + cli + ')' : '');
       }
     }
   <\/script>
@@ -1404,7 +1546,7 @@ function openAutomatedCheckoutModal() {
     <div>
       <div class="flex items-center justify-between gap-2 mb-3">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] font-bold">
-          ⚡ PLAN BÁSICO AUTOMÁTICO · 50 €
+          ⚡ PLAN WEB EXPRESS · 79 €
         </span>
         <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
       </div>
@@ -1424,7 +1566,7 @@ function openAutomatedCheckoutModal() {
         </div>
         <div class="flex justify-between items-center pt-2 border-t border-white/10">
           <span class="text-white font-bold">Pago único total:</span>
-          <strong class="text-xl font-display font-extrabold text-white">50 €</strong>
+          <strong class="text-xl font-display font-extrabold text-white">79 €</strong>
         </div>
       </div>
 
@@ -1444,7 +1586,7 @@ function openAutomatedCheckoutModal() {
 
       <button type="button" onclick="completeAutomatedDelivery()"
         class="w-full py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm shadow-lg mb-2.5">
-        Desbloquear Web Básica · 50 € →
+        Desbloquear Web Express · 79 € →
       </button>
 
       <button type="button" onclick="closeCheckoutModal(); openVipCustomModal('${escapeHtml(studioState.sector)}', '')"

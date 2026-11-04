@@ -6,18 +6,21 @@
 const FATHI_WA = '34632768152';
 const STORAGE_KEY = 'miweblocal_platform_v5';
 
+/* Pagos: la configuración de Stripe vive en assets/stripe-config.js (MIWEB_STRIPE) */
+let currentStripePlan = '197';
+
 const SHOWCASE_MODELS = [
   {
     id: 'motos',
     cat: 'motor',
-    shortLabel: 'Motor y Stock',
+    shortLabel: 'Motos / Concesionario',
     icon: 'ph-motorcycle',
     theme: 'crimson',
     defaultBizName: 'Motos Veloce',
     tagline: 'Motos revisadas con garantía y taller multimarca.',
     story: 'Stock revisado en 60 puntos, financiación a medida y cita rápida de taller.',
     badge: 'Motor · Stock 24h',
-    title: 'Concesionario y Compra-Venta',
+    title: 'Motos y Concesionario Compra-Venta',
     painTag: 'Deja de mandar fotos y precios uno a uno por WhatsApp a curiosos',
     photo: 'assets/showcase/photo_motos.jpg',
     solves: [
@@ -36,7 +39,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'barberia',
     cat: 'belleza',
-    shortLabel: 'Barbería y Salón',
+    shortLabel: 'Barbería / Salón',
     icon: 'ph-scissors',
     theme: 'copper',
     defaultBizName: 'Barber Studio',
@@ -62,7 +65,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'personal',
     cat: 'emprendedor',
-    shortLabel: 'Nuevo Negocio',
+    shortLabel: 'Nuevo Negocio / Marca',
     icon: 'ph-briefcase',
     theme: 'gold',
     defaultBizName: 'Nexo Consultoría',
@@ -88,7 +91,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'reformas',
     cat: 'servicios',
-    shortLabel: 'Reformas y Obra',
+    shortLabel: 'Reformas / Oficios',
     icon: 'ph-house-line',
     theme: 'gold',
     defaultBizName: 'Villa & Reformas',
@@ -121,7 +124,7 @@ const SHOWCASE_MODELS = [
     tagline: 'Catálogo exclusivo disponible las 24 horas con pedido por WhatsApp.',
     story: 'Descubre nuestra colección actualizada con stock real. Compra o reserva sin comisiones.',
     badge: 'Tienda Online · Sin Comisiones',
-    title: 'Tienda o Catálogo de Productos',
+    title: 'Tienda 24h o Catálogo de Productos',
     painTag: 'Vende tus artículos las 24h sin depender solo de subir historias',
     photo: 'assets/showcase/photo_tienda.jpg',
     solves: [
@@ -140,14 +143,14 @@ const SHOWCASE_MODELS = [
   {
     id: 'restaurante',
     cat: 'hosteleria',
-    shortLabel: 'Restaurante y Bar',
+    shortLabel: 'Restaurante / Bar',
     icon: 'ph-hamburger',
     theme: 'copper',
     defaultBizName: 'Brasa & Origen',
     tagline: 'Carnes maduradas al fuego y cocina artesana en vivo.',
     story: 'Consulta nuestra carta con precios y reserva mesa en terraza o salón sin comisiones.',
     badge: 'Hostelería · Carta + Mesas',
-    title: 'Restaurante, Cafetería y Comida',
+    title: 'Restaurante, Bar y Hostelería',
     painTag: 'Que tus platos entren por los ojos y reserven mesa sin pagar comisiones',
     photo: 'assets/showcase/photo_restaurante.jpg',
     solves: [
@@ -166,7 +169,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'taller',
     cat: 'motor',
-    shortLabel: 'Taller y Detailing',
+    shortLabel: 'Taller Mecánico',
     icon: 'ph-wrench',
     theme: 'crimson',
     defaultBizName: 'Apex Auto Detail',
@@ -192,7 +195,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'clinica',
     cat: 'salud',
-    shortLabel: 'Clínica y Salud',
+    shortLabel: 'Clínica / Salud',
     icon: 'ph-heartbeat',
     theme: 'emerald',
     defaultBizName: 'Clínica Aura',
@@ -218,7 +221,7 @@ const SHOWCASE_MODELS = [
   {
     id: 'estetica',
     cat: 'belleza',
-    shortLabel: 'Estética y Uñas',
+    shortLabel: 'Estética / Uñas',
     icon: 'ph-sparkle',
     theme: 'cream',
     defaultBizName: 'Maison Lumière',
@@ -244,14 +247,14 @@ const SHOWCASE_MODELS = [
   {
     id: 'fitness',
     cat: 'salud',
-    shortLabel: 'Fitness y Gym',
+    shortLabel: 'Fitness / Gym',
     icon: 'ph-barbell',
     theme: 'emerald',
     defaultBizName: 'Kinetic Club',
     tagline: 'Entrenamiento personal, fuerza y transformación física.',
     story: 'Reserva tu valoración inicial y entrena con planificación a medida presencial u online.',
     badge: 'Fitness · Captación Alumnos',
-    title: 'Entrenador Personal, Gym y Deporte',
+    title: 'Fitness, Gym y Entrenador Personal',
     painTag: 'Capta alumnos presenciales u online todas las semanas de forma automática',
     photo: 'assets/showcase/photo_fitness.jpg',
     solves: [
@@ -269,9 +272,10 @@ const SHOWCASE_MODELS = [
   }
 ];
 
-const HERO_STAGE_IDS = ['motos', 'barberia', 'personal', 'reformas', 'tienda'];
+const HERO_STAGE_IDS = SHOWCASE_MODELS.map(m => m.id);
 let currentHeroIdx = 0;
 let heroTimer = null;
+let userInteractedWithGenerator = false;
 let currentModalId = 'motos';
 
 /* Generator State */
@@ -280,9 +284,17 @@ let genState = {
   name: 'Motos Veloce',
   city: 'Madrid',
   wa: '600 123 456',
+  address: '',
+  hoursWeek: '',
+  hoursSat: '',
+  hoursSun: '',
+  customHeroPhoto: '',
+  customGallery: [],
+  reviews: [],
   userTypedName: false,
   expiresAt: Date.now() + 24 * 3600 * 1000 - 4000
 };
+let lastSmartSearchResults = [];
 
 const canHoverFine = () =>
   window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -337,23 +349,40 @@ function buildGeneratorSectorChips() {
   }).join('');
 }
 
-function selectGeneratorSector(sectorId, scrollToGen) {
+function stopHeroAutoTimer() {
+  userInteractedWithGenerator = true;
+  if (heroTimer) {
+    clearInterval(heroTimer);
+    heroTimer = null;
+  }
+}
+
+function selectGeneratorSector(sectorId, scrollToGen, fromStage) {
   const model = SHOWCASE_MODELS.find(m => m.id === sectorId) || SHOWCASE_MODELS[0];
   genState.sectorId = model.id;
 
+  if (!fromStage) {
+    stopHeroAutoTimer();
+  }
+
   const nameInput = document.getElementById('gen-name');
-  if (nameInput && !genState.userTypedName) {
-    nameInput.value = model.defaultBizName;
+  if (nameInput) {
+    const curVal = nameInput.value.trim();
+    const isSomeDefault = SHOWCASE_MODELS.some(m => m.defaultBizName === curVal);
+    if (!genState.userTypedName || isSomeDefault || !curVal) {
+      nameInput.value = model.defaultBizName;
+      genState.userTypedName = false;
+    }
   }
 
   document.querySelectorAll('.gen-sector-chip').forEach(btn => {
     btn.classList.toggle('is-active', btn.getAttribute('data-gen-sec') === model.id);
   });
 
-  // Also sync Hero 3D Coverflow if this sector is one of the 5 Hero cards
+  // Sync Hero 3D Coverflow across ALL 10 models
   const heroIdx = HERO_STAGE_IDS.indexOf(model.id);
-  if (heroIdx >= 0 && heroIdx !== currentHeroIdx) {
-    setHeroStage(heroIdx, true);
+  if (!fromStage && heroIdx >= 0 && heroIdx !== currentHeroIdx) {
+    setHeroStage(heroIdx, true, true);
   }
 
   syncGeneratorLive(true);
@@ -367,6 +396,8 @@ function selectGeneratorSector(sectorId, scrollToGen) {
 
 function buildShareableSitioPayload() {
   const model = SHOWCASE_MODELS.find(m => m.id === genState.sectorId) || SHOWCASE_MODELS[0];
+  const slug = slugifyName(genState.name || model.defaultBizName);
+  const pin = typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slug) : 'PRO-4829';
   const fullState = {
     name: genState.name || model.defaultBizName,
     userEditedName: true,
@@ -377,14 +408,17 @@ function buildShareableSitioPayload() {
     story: model.story,
     bookingPolicy: 'ambos',
     city: genState.city || 'Madrid',
-    address: `Centro · ${genState.city || 'Madrid'}`,
+    address: genState.address || `Centro · ${genState.city || 'Madrid'}`,
     whatsapp: genState.wa || '600 123 456',
     phone: genState.wa || '600 123 456',
-    instagram: '@' + slugifyName(genState.name || model.defaultBizName),
-    hoursWeek: '09:30 – 20:30',
-    hoursSat: '10:00 – 14:30',
-    hoursSun: 'Cerrado',
+    instagram: '@' + slug,
+    hoursWeek: genState.hoursWeek || '09:30 – 20:30',
+    hoursSat: genState.hoursSat || '10:00 – 14:30',
+    hoursSun: genState.hoursSun || 'Cerrado',
     theme: model.theme || 'copper',
+    customHeroPhoto: genState.customHeroPhoto || '',
+    customGallery: Array.isArray(genState.customGallery) ? genState.customGallery : [],
+    reviews: Array.isArray(genState.reviews) ? genState.reviews : [],
     services: model.services,
     modules: {
       booking: true,
@@ -394,13 +428,21 @@ function buildShareableSitioPayload() {
       scheduleMap: true,
       gallery: true
     },
-    unlocked: false,
+    adminPin: pin,
+    unlocked: !!genState.unlocked,
     expiresAt: genState.expiresAt
   };
 
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(fullState));
   } catch (e) {}
+
+  if (typeof miwebSaveSiteVault === 'function' && (fullState.customHeroPhoto || (fullState.customGallery && fullState.customGallery.length))) {
+    miwebSaveSiteVault(slug, fullState);
+  }
+
+  const httpHero = (fullState.customHeroPhoto && /^https?:\/\//.test(fullState.customHeroPhoto)) ? fullState.customHeroPhoto : '';
+  const httpGal = (fullState.customGallery || []).filter(u => typeof u === 'string' && /^https?:\/\//.test(u)).slice(0, 4);
 
   const slim = {
     n: fullState.name,
@@ -419,9 +461,13 @@ function buildShareableSitioPayload() {
     hs: fullState.hoursSat,
     hd: fullState.hoursSun,
     th: fullState.theme,
+    hp: httpHero,
+    gp: httpGal,
+    rv: (fullState.reviews || []).slice(0, 3),
     sv: fullState.services,
     md: fullState.modules,
-    un: false,
+    pin: fullState.adminPin,
+    un: !!genState.unlocked,
     ex: fullState.expiresAt
   };
 
@@ -436,7 +482,6 @@ function buildShareableSitioPayload() {
   const origin = (window.location.origin && window.location.origin.startsWith('http'))
     ? window.location.origin
     : 'https://miweblocal.com';
-  const slug = slugifyName(fullState.name);
   return `${origin}/sitio/?negocio=${encodeURIComponent(slug)}&d=${encoded}`;
 }
 
@@ -445,10 +490,14 @@ function syncGeneratorLive(fromSectorSwitch) {
   const cityInput = document.getElementById('gen-city');
   const waInput = document.getElementById('gen-wa');
 
-  if (!fromSectorSwitch && nameInput) {
-    const model = SHOWCASE_MODELS.find(m => m.id === genState.sectorId) || SHOWCASE_MODELS[0];
-    if (nameInput.value.trim() && nameInput.value.trim() !== model.defaultBizName) {
-      genState.userTypedName = true;
+  if (!fromSectorSwitch) {
+    stopHeroAutoTimer();
+    if (nameInput) {
+      const curVal = nameInput.value.trim();
+      const isSomeDefault = SHOWCASE_MODELS.some(m => m.defaultBizName === curVal);
+      if (curVal && !isSomeDefault) {
+        genState.userTypedName = true;
+      }
     }
   }
 
@@ -462,8 +511,10 @@ function syncGeneratorLive(fromSectorSwitch) {
   if (activeHeroCard) {
     const tEl = activeHeroCard.querySelector('.js-hero-card-biz');
     const sEl = activeHeroCard.querySelector('.js-hero-card-sub');
+    const bEl = activeHeroCard.querySelector('.js-hero-card-topbadge');
     if (tEl) tEl.textContent = `${genState.name} · ${genState.city}`;
-    if (sEl) sEl.textContent = `WhatsApp activo: ${genState.wa} · ${model.solves[0]}`;
+    if (sEl) sEl.textContent = `WhatsApp: ${genState.wa} · ${model.solves[0]}`;
+    if (bEl) bEl.textContent = `Ordenador + Móvil · ${model.badge}`;
   }
 
   const urlInput = document.getElementById('gen-share-url');
@@ -471,13 +522,22 @@ function syncGeneratorLive(fromSectorSwitch) {
   if (urlInput) urlInput.value = shareUrl;
 }
 
-function triggerInstantGenerate() {
+function triggerInstantGenerate(openPreviewWindow) {
+  stopHeroAutoTimer();
   genState.expiresAt = Date.now() + 24 * 3600 * 1000;
+  // Auto-detect sector if user typed a recognizable business name (e.g. Clínica / Barbería / Taller) without clicking chips
+  const nameVal = (document.getElementById('gen-name')?.value || '').trim();
+  if (nameVal && typeof miwebDetectSectorFromText === 'function') {
+    const guessed = miwebDetectSectorFromText(nameVal);
+    if (guessed && guessed !== 'personal' && genState.sectorId === 'motos' && !/moto/i.test(nameVal)) {
+      selectGeneratorSector(guessed, false, false);
+    }
+  }
   syncGeneratorLive(false);
 
   const badge = document.getElementById('gen-preview-badge');
   if (badge) {
-    badge.textContent = `¡Lista! Enlace de ${genState.name} creado (24h):`;
+    badge.textContent = `✓ ¡Lista! Enlace 24h de ${genState.name}:`;
   }
 
   const resCard = document.getElementById('gen-result-card');
@@ -486,6 +546,157 @@ function triggerInstantGenerate() {
     void resCard.offsetWidth;
     resCard.classList.add('is-just-generated');
   }
+
+  const unlockBox = document.getElementById('gen-unlock-console');
+  if (unlockBox) {
+    unlockBox.classList.remove('is-just-generated');
+    void unlockBox.offsetWidth;
+    unlockBox.classList.add('is-just-generated');
+  }
+
+  const activeHeroCard = document.querySelector('.hero-deck-card[data-pos="0"] .hero-bezel-frame');
+  if (activeHeroCard) {
+    activeHeroCard.classList.remove('is-just-generated');
+    void activeHeroCard.offsetWidth;
+    activeHeroCard.classList.add('is-just-generated');
+  }
+
+  if (openPreviewWindow) {
+    openGeneratedSiteTab();
+  }
+}
+
+/* Buscador Inteligente de 1 Clic (Google Maps / Directorio España + Escudo Anti-Curiosos) */
+async function runSmartBusinessSearch(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  stopHeroAutoTimer();
+  const inp = document.getElementById('gen-smart-search');
+  const box = document.getElementById('gen-search-results');
+  const btn = document.getElementById('gen-smart-btn');
+  if (!inp || !box) return;
+
+  const q = inp.value.trim();
+  if (q.length < 2) {
+    inp.focus();
+    return;
+  }
+
+  if (btn) btn.disabled = true;
+  box.classList.remove('hidden');
+  box.innerHTML = `<div class="p-3 text-xs text-emerald-300 flex items-center gap-2"><i class="ph-bold ph-spinner animate-spin"></i><span>Buscando datos de «${escapeHtml(q)}»...</span></div>`;
+
+  try {
+    const res = typeof miwebSearchRealBusiness === 'function'
+      ? await miwebSearchRealBusiness(q)
+      : { ok: true, results: [{ name: q, city: 'Madrid', address: 'Centro', sector: 'personal', source: 'instant' }] };
+
+    lastSmartSearchResults = res.results || [];
+    if (!lastSmartSearchResults.length) {
+      lastSmartSearchResults = [{ name: q, city: 'Madrid', address: 'Centro', sector: 'personal', source: 'instant' }];
+    }
+
+    box.innerHTML = lastSmartSearchResults.map((item, idx) => {
+      const mod = SHOWCASE_MODELS.find(m => m.id === item.sector) || SHOWCASE_MODELS[0];
+      const tag = item.source === 'google'
+        ? '★ Fotos + Reseñas Google Maps'
+        : (item.source === 'directory' ? '📍 Local encontrado en España' : '⚡ Creación instantánea');
+      return `
+        <button type="button"
+                onclick="applySmartSearchResult(${idx}, true)"
+                class="w-full text-left p-2.5 hover:bg-emerald-500/15 rounded-xl border border-white/10 hover:border-emerald-400/50 transition-all flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="text-xs font-extrabold text-white truncate">${escapeHtml(item.name)} · <span class="text-emerald-300">${escapeHtml(item.city)}</span></div>
+            <div class="text-[10.5px] text-slate-400 truncate">${escapeHtml(item.address || mod.shortLabel)} · <span class="text-amber-300">${tag}</span></div>
+          </div>
+          <span class="shrink-0 px-2.5 py-1 rounded-full bg-emerald-400 text-slate-950 font-display font-extrabold text-[10.5px] whitespace-nowrap">
+            Ver Mi Web ↗
+          </span>
+        </button>
+      `;
+    }).join('');
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function applySmartSearchResult(idx, openWindowNow) {
+  const item = lastSmartSearchResults[idx];
+  if (!item) return;
+
+  genState.userTypedName = true;
+  genState.address = item.address || '';
+  genState.hoursWeek = item.hoursWeek || '';
+  genState.hoursSat = item.hoursSat || '';
+  genState.hoursSun = item.hoursSun || '';
+  genState.reviews = Array.isArray(item.reviews) ? item.reviews : [];
+  if (Array.isArray(item.photos) && item.photos.length) {
+    genState.customHeroPhoto = item.photos[0];
+    genState.customGallery = item.photos.slice(0, 4);
+  }
+
+  const nameIn = document.getElementById('gen-name');
+  const cityIn = document.getElementById('gen-city');
+  const waIn = document.getElementById('gen-wa');
+  if (nameIn) nameIn.value = item.name || 'Mi Negocio';
+  if (cityIn) cityIn.value = item.city || 'Madrid';
+  if (waIn && item.phone) waIn.value = item.phone;
+
+  selectGeneratorSector(item.sector || 'personal', false, false);
+
+  if (genState.customHeroPhoto) {
+    const activeImg = document.querySelector('.hero-deck-card[data-pos="0"] .hero-deck-img');
+    if (activeImg) activeImg.src = genState.customHeroPhoto;
+  }
+
+  const box = document.getElementById('gen-search-results');
+  if (box) {
+    box.innerHTML = `<div class="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-xs text-emerald-200 font-bold flex items-center justify-between gap-2">
+      <span>✓ Web de ${escapeHtml(genState.name)} generada (${escapeHtml(genState.city)})</span>
+      <button type="button" onclick="openGeneratedSiteTab()" class="px-2.5 py-1 rounded-lg bg-emerald-400 text-slate-950 font-extrabold text-[11px]">Abrir ↗</button>
+    </div>`;
+  }
+
+  const shareUrl = buildShareableSitioPayload();
+  const slug = slugifyName(genState.name);
+  if (typeof miwebSaveSiteVault === 'function') {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      await miwebSaveSiteVault(slug, saved);
+    } catch (e) {}
+  }
+
+  triggerInstantGenerate(false);
+  if (openWindowNow) {
+    window.open(shareUrl, '_blank', 'noopener');
+  }
+}
+
+async function handleQuickHeroMobilePhotos(input) {
+  const files = Array.from((input && input.files) || []).slice(0, 4);
+  if (!files.length || typeof miwebCompressImageFile !== 'function') return;
+  stopHeroAutoTimer();
+  const badge = document.getElementById('gen-photo-status');
+  if (badge) badge.textContent = 'Optimizando fotos...';
+
+  const compressed = [];
+  for (const f of files) {
+    try {
+      compressed.push(await miwebCompressImageFile(f, 1100, 0.78));
+    } catch (e) {}
+  }
+  if (!compressed.length) return;
+
+  genState.customHeroPhoto = compressed[0];
+  genState.customGallery = compressed;
+
+  const activeImg = document.querySelector('.hero-deck-card[data-pos="0"] .hero-deck-img');
+  if (activeImg) activeImg.src = compressed[0];
+
+  if (badge) {
+    badge.textContent = `✓ ${compressed.length} foto(s) de tu local aplicadas`;
+    badge.classList.add('text-emerald-300');
+  }
+  triggerInstantGenerate(false);
 }
 
 function openGeneratedSiteTab() {
@@ -513,7 +724,7 @@ function sendGeneratedLinkToMyWhatsApp() {
   const targetPhone = isCustomPhone ? (rawPhone.startsWith('34') ? rawPhone : '34' + rawPhone) : '';
 
   const msg =
-    `Aquí tienes el enlace de la web generada para *${genState.name}* (${genState.city}), activa en modo prueba durante 24 horas:\n` +
+    `Aquí tienes el enlace de la web Ordenador + Móvil generada para *${genState.name}* (${genState.city}), activa en modo prueba durante 24 horas:\n` +
     `${shareUrl}`;
 
   const waUrl = targetPhone
@@ -522,17 +733,167 @@ function sendGeneratedLinkToMyWhatsApp() {
   window.open(waUrl, '_blank', 'noopener');
 }
 
-function activateGeneratedWeb(planDescription) {
+/* ==========================================================================
+   PASARELA STRIPE REAL · 3 PLANES DE PAGO ÚNICO PARA SIEMPRE (79€ / 197€ ⭐ / 297€)
+   (WhatsApp reservado exclusivamente para dudas previas a la contratación)
+   ========================================================================== */
+function switchStripePlan(plan) {
+  currentStripePlan = typeof miwebNormalizePlan === 'function'
+    ? miwebNormalizePlan(plan)
+    : (String(plan).includes('297') ? '297' : (String(plan).includes('79') ? '79' : '197'));
+
+  const tab79 = document.getElementById('stripe-tab-79');
+  const tab197 = document.getElementById('stripe-tab-197');
+  const tab297 = document.getElementById('stripe-tab-297');
+
+  const offCls = 'p-2.5 sm:p-3 rounded-2xl border border-white/10 bg-white/[0.03] text-left transition-all opacity-75 hover:opacity-100';
+  if (tab79) {
+    tab79.className = currentStripePlan === '79'
+      ? 'p-2.5 sm:p-3 rounded-2xl border border-emerald-400 bg-emerald-500/15 text-left transition-all shadow-lg'
+      : offCls;
+  }
+  if (tab197) {
+    tab197.className = currentStripePlan === '197'
+      ? 'p-2.5 sm:p-3 rounded-2xl border-2 border-[#818CF8] bg-[#635BFF]/20 text-left transition-all shadow-lg'
+      : offCls;
+  }
+  if (tab297) {
+    tab297.className = currentStripePlan === '297'
+      ? 'p-2.5 sm:p-3 rounded-2xl border border-amber-400 bg-amber-500/15 text-left transition-all shadow-lg'
+      : offCls;
+  }
+
+  const PLAN_META = {
+    '79': {
+      price: '79,00 €',
+      title: 'Plan 1 · Web Express + Enlace y Hosting Para Siempre (Pago Único)',
+      cta: 'Contratar Web Express · 79 € Pago Único'
+    },
+    '197': {
+      price: '197,00 €',
+      title: 'Plan 2 ⭐ Negocio Pro + Google Maps + Dominio .com/.es (Pago Único)',
+      cta: 'Contratar Negocio Pro ⭐ · 197 € Pago Único'
+    },
+    '297': {
+      price: '297,00 €',
+      title: 'Plan 3 · VIP Catálogo Completo + 3D + Placa QR + Dominio (Pago Único)',
+      cta: 'Contratar Plan VIP · 297 € Pago Único'
+    }
+  };
+
+  const meta = PLAN_META[currentStripePlan] || PLAN_META['197'];
+  const itemTitle = document.getElementById('stripe-item-title');
+  const itemPrice = document.getElementById('stripe-item-price');
+  const totalAmount = document.getElementById('stripe-total-amount');
+  const submitLabel = document.getElementById('stripe-submit-label');
+
+  if (itemTitle) itemTitle.textContent = meta.title;
+  if (itemPrice) itemPrice.textContent = meta.price;
+  if (totalAmount) totalAmount.textContent = meta.price;
+  if (submitLabel) submitLabel.textContent = meta.cta;
+}
+
+function buildCurrentOrder() {
+  const slug = slugifyName(genState.name);
+  const emailInput = document.getElementById('stripe-email');
+  const domainInput = document.getElementById('stripe-domain');
+  const nifInput = document.getElementById('stripe-nif');
+  const cleanDom = (domainInput && domainInput.value.trim())
+    ? domainInput.value.trim()
+    : `${slug}.es`;
+  return {
+    plan: currentStripePlan,
+    name: genState.name,
+    city: genState.city,
+    whatsapp: genState.wa,
+    sector: genState.sectorId,
+    slug,
+    siteUrl: buildShareableSitioPayload(),
+    email: emailInput ? emailInput.value.trim() : '',
+    domain: cleanDom,
+    legalNif: nifInput ? nifInput.value.trim() : ''
+  };
+}
+
+let domainCheckTimer = null;
+async function checkStripeModalDomain(customVal) {
+  const domainInput = document.getElementById('stripe-domain');
+  const statusEl = document.getElementById('stripe-domain-status');
+  if (!domainInput || !statusEl || typeof miwebCheckDomainLive !== 'function') return;
+
+  if (customVal) domainInput.value = customVal;
+  const raw = domainInput.value.trim() || (slugifyName(genState.name) + '.es');
+  statusEl.innerHTML = `<span class="text-slate-400">⏳ Comprobando disponibilidad de <strong>${escapeHtml(raw)}</strong>...</span>`;
+
+  const res = await miwebCheckDomainLive(raw, genState.name, genState.city);
+  if (!res.ok) {
+    statusEl.innerHTML = `<span class="text-amber-300">${escapeHtml(res.error)}</span>`;
+    return;
+  }
+  domainInput.value = res.domain;
+  if (res.available) {
+    statusEl.innerHTML = `<span class="text-emerald-300 font-bold">✅ ¡Disponible! <strong>${escapeHtml(res.domain)}</strong> está libre hoy para tu negocio.</span>`;
+  } else {
+    const chips = (res.suggestions || []).map(s =>
+      `<button type="button" onclick="checkStripeModalDomain('${escapeHtml(s)}')" class="px-2 py-0.5 rounded-md bg-emerald-400/20 border border-emerald-400/40 text-emerald-300 font-mono font-bold hover:bg-emerald-400/30">${escapeHtml(s)}</button>`
+    ).join(' ');
+    statusEl.innerHTML = `<span class="text-amber-300 font-semibold">⚠️ ${escapeHtml(res.domain)} ya está ocupado.</span> ${chips ? '<span class="text-slate-300">Libres en 1 clic:</span> ' + chips : ''}`;
+  }
+}
+
+function scheduleStripeDomainCheck() {
+  if (domainCheckTimer) clearTimeout(domainCheckTimer);
+  domainCheckTimer = setTimeout(() => checkStripeModalDomain(), 420);
+}
+
+function openStripeCheckout(plan) {
+  syncGeneratorLive(true);
+  switchStripePlan(plan || '197');
+
+  const slug = slugifyName(genState.name);
+  const bizEl = document.getElementById('stripe-summary-biz');
+  const urlEl = document.getElementById('stripe-summary-url');
+  const domainInput = document.getElementById('stripe-domain');
+
+  if (bizEl) bizEl.textContent = `${genState.name} · ${genState.city}`;
+  if (urlEl) urlEl.textContent = buildShareableSitioPayload();
+  if (domainInput && !domainInput.value) domainInput.value = `${slug}.es`;
+
+  const modal = document.getElementById('stripe-checkout-modal');
+  if (modal) {
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  setTimeout(() => checkStripeModalDomain(), 120);
+}
+
+function closeStripeCheckout() {
+  const modal = document.getElementById('stripe-checkout-modal');
+  if (modal) modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* Contratación 100% directa online mediante pasarela oficial Stripe (Pago Único) */
+function processAutomaticStripePayment(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const order = buildCurrentOrder();
+  miwebGoToStripe(order);
+}
+
+/* WhatsApp exclusivamente para resolver dudas antes de contratar en la web */
+function askWhatsAppNoCommitment(contextNote) {
   const shareUrl = buildShareableSitioPayload();
   const model = SHOWCASE_MODELS.find(m => m.id === genState.sectorId) || SHOWCASE_MODELS[0];
   const msg =
-    `Hola, acabo de generar mi web en miweblocal.com y quiero activarla antes de que caduquen las 24 horas:\n` +
-    `• Negocio: *${genState.name}* (${genState.city})\n` +
-    `• Sector: ${model.title}\n` +
-    `• Opción elegida: *${planDescription}*\n` +
-    `• Enlace de mi web generada: ${shareUrl}\n` +
-    `¿Me indicas cómo hacer el pago único para recibir el dominio y dejarla activa para siempre?`;
+    `Hola, tengo una duda antes de contratar mi web en MiWebLocal.com:\n\n` +
+    `• *Duda:* ${contextNote || 'Consulta rápida antes de contratar en la web'}\n` +
+    `• *Negocio / Sector:* ${genState.name} (${model.title} · ${genState.city})\n` +
+    `• *Vista previa generada:* ${shareUrl}`;
   window.open(`https://wa.me/${FATHI_WA}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+}
+
+function activateGeneratedWeb(planDescription) {
+  openStripeCheckout(planDescription || '197');
 }
 
 function init24hCountdownClocks() {
@@ -579,20 +940,20 @@ function buildHeroDeck() {
           <div class="hero-float-top">
             <span class="float-chip-glass px-3 py-1.5 rounded-full text-[11px] font-bold text-white inline-flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span>${escapeHtml(item.badge)}</span>
+              <span class="js-hero-card-topbadge">Ordenador + Móvil · ${escapeHtml(item.badge)}</span>
             </span>
             <span class="float-chip-glass hidden sm:inline-flex px-3 py-1.5 rounded-full text-[11px] font-semibold text-emerald-300 items-center gap-1.5">
               <i class="ph-bold ph-infinity"></i>
-              <span>50 € Pago Único · Sin Renovar</span>
+              <span>Pago Único · Todo Incluido Para Siempre</span>
             </span>
           </div>
 
           <div class="hero-float-bottom">
             <div class="min-w-0 float-chip-glass rounded-2xl px-3.5 py-2.5">
-              <div class="js-hero-card-biz text-[10.5px] uppercase tracking-wider font-extrabold text-emerald-400">${escapeHtml(item.title)}</div>
+              <div class="js-hero-card-biz text-[10.5px] uppercase tracking-wider font-extrabold text-emerald-400">${escapeHtml(item.defaultBizName)} · Madrid</div>
               <div class="js-hero-card-sub text-xs sm:text-sm font-semibold text-white leading-snug line-clamp-2 mt-0.5">${escapeHtml(item.solves[0])}</div>
             </div>
-            <span class="shrink-0 w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-xl" title="Ver web generada">
+            <span class="shrink-0 w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center shadow-xl" title="Abrir mi web generada">
               <i class="ph-bold ph-arrow-square-out text-base"></i>
             </span>
           </div>
@@ -600,6 +961,21 @@ function buildHeroDeck() {
       </div>
     `;
   }).join('');
+
+  const tabsBox = document.getElementById('hero-stage-tabs');
+  if (tabsBox) {
+    tabsBox.innerHTML = HERO_STAGE_IDS.map((id, idx) => {
+      const item = SHOWCASE_MODELS.find(m => m.id === id) || SHOWCASE_MODELS[0];
+      const active = idx === currentHeroIdx;
+      return `
+        <button type="button" onclick="setHeroStage(${idx}, true)"
+                class="js-hero-tab ${active ? 'hero-tab-active bg-white text-slate-950 font-extrabold shadow-md' : 'bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white font-semibold'} btn-press relative overflow-hidden px-3 py-1.5 rounded-full text-xs whitespace-nowrap">
+          <span>${escapeHtml(item.shortLabel)}</span>
+          <span class="hero-tab-progress"></span>
+        </button>
+      `;
+    }).join('');
+  }
 
   updateHeroDeckPositions();
   initHero3DInteractions();
@@ -631,8 +1007,8 @@ function updateHeroDeckPositions() {
   document.querySelectorAll('.js-hero-tab').forEach((btn, i) => {
     const active = i === currentHeroIdx;
     btn.className = active
-      ? 'js-hero-tab hero-tab-active btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white text-slate-950 text-xs font-extrabold whitespace-nowrap shadow-md'
-      : 'js-hero-tab btn-press relative overflow-hidden px-3.5 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap';
+      ? 'js-hero-tab hero-tab-active btn-press relative overflow-hidden px-3 py-1.5 rounded-full bg-white text-slate-950 text-xs font-extrabold whitespace-nowrap shadow-md'
+      : 'js-hero-tab btn-press relative overflow-hidden px-3 py-1.5 rounded-full bg-white/[0.06] text-slate-300 border border-white/10 hover:text-white text-xs font-semibold whitespace-nowrap';
 
     const prog = btn.querySelector('.hero-tab-progress');
     if (prog && active) {
@@ -647,25 +1023,40 @@ function handleHeroCardClick(idx, id) {
   if (idx === currentHeroIdx) {
     openGeneratedSiteTab();
   } else {
-    setHeroStage(idx, true);
+    setHeroStage(idx, true, false);
   }
 }
 
-function setHeroStage(idx, manual) {
+function setHeroStage(idx, manual, fromGenerator) {
   currentHeroIdx = (idx + HERO_STAGE_IDS.length) % HERO_STAGE_IDS.length;
   updateHeroDeckPositions();
-  if (manual) restartHeroTimer();
+
+  const stageSectorId = HERO_STAGE_IDS[currentHeroIdx];
+  if (!fromGenerator && stageSectorId) {
+    if (manual) {
+      stopHeroAutoTimer();
+    }
+    selectGeneratorSector(stageSectorId, false, true);
+  } else {
+    syncGeneratorLive(true);
+  }
 }
 
 function stepHeroStage(delta) {
-  setHeroStage(currentHeroIdx + delta, true);
+  setHeroStage(currentHeroIdx + delta, true, false);
 }
 
 function restartHeroTimer() {
   if (heroTimer) clearInterval(heroTimer);
+  if (userInteractedWithGenerator) return;
   heroTimer = setInterval(() => {
-    setHeroStage(currentHeroIdx + 1, false);
-  }, 4400);
+    if (userInteractedWithGenerator) {
+      clearInterval(heroTimer);
+      heroTimer = null;
+      return;
+    }
+    setHeroStage(currentHeroIdx + 1, false, false);
+  }, 4600);
 }
 
 function initHero3DInteractions() {
@@ -774,7 +1165,7 @@ function build3DMarquee() {
       { icon: 'ph-lightning', text: 'Genera Tu Enlace en 10 Segundos (Prueba 24h)' },
       { icon: 'ph-devices', text: 'Adaptado 100% a Móvil y Ordenador PC con 3D' },
       { icon: 'ph-whatsapp-logo', text: 'Clientes Directos a tu WhatsApp · 0% Comisiones' },
-      { icon: 'ph-currency-eur', text: '50 € Para Empezar · 200 € Proyecto Completo VIP' },
+      { icon: 'ph-currency-eur', text: '79 € Web Express · 197 € Negocio Pro ⭐ · 297 € VIP Catálogo' },
       { icon: 'ph-shield-check', text: '0 € al Mes · 0 € al Año · Sin Cuotas Ocultas' }
     ];
     const pillsHtml = capabilities.map(c => `

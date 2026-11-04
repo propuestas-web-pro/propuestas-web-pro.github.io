@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <title>Pago confirmado · Entrega Automática · MiWebLocal</title>
+  <meta name="theme-color" content="#07090E" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100dvh; background: #07090E; color: #F8FAFC; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; padding: 18px; }
+    .card { width: 100%; max-width: 640px; background: #0C1018; border: 1px solid rgba(52,211,153,.4); border-radius: 26px; padding: 26px; box-shadow: 0 30px 80px rgba(0,0,0,.65); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: #34D399; color: #04130D; font-size: 12px; font-weight: 800; }
+    h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 24px; line-height: 1.15; margin: 12px 0 8px; }
+    p { color: #CBD5E1; font-size: 13.5px; line-height: 1.5; }
+    .ref { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #6EE7B7; word-break: break-all; margin-top: 10px; padding: 8px 12px; background: rgba(16,185,129,0.08); border: 1px solid rgba(52,211,153,0.25); border-radius: 10px; }
+    .owner-box { margin: 14px 0; padding: 15px; border-radius: 18px; background: linear-gradient(135deg, rgba(99,91,255,0.16), rgba(16,185,129,0.12)); border: 1px solid rgba(129,140,248,0.45); display: grid; gap: 10px; }
+    .pin-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; border-radius: 12px; background: rgba(5,7,12,0.65); border: 1px solid rgba(255,255,255,0.12); font-size: 12.5px; }
+    .pin-code { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: #FCD34D; background: rgba(245,158,11,0.15); padding: 3px 9px; border-radius: 7px; }
+    .grid-btns { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 520px) { .grid-btns { grid-template-columns: 1fr 1fr; } }
+    .form-box { margin: 14px 0; display: grid; gap: 9px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; padding: 14px; }
+    .field label { display: block; font-size: 11px; font-weight: 700; color: #94A3B8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .field input, .field textarea { width: 100%; padding: 9px 11px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #fff; font-family: inherit; font-size: 13.5px; outline: none; }
+    .field textarea { resize: vertical; min-height: 54px; }
+    .btn { width: 100%; padding: 13px 16px; border-radius: 999px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 7px; text-decoration: none; }
+    .btn-wa { background: #34D399; color: #04130D; box-shadow: 0 10px 26px rgba(52,211,153,.3); }
+    .btn-admin { background: #FBBF24; color: #090D16; }
+    .btn-site { background: #635BFF; color: #fff; }
+    .btn-ghost { background: rgba(255,255,255,.07); color: #fff; border: 1px solid rgba(255,255,255,.14); margin-top: 8px; font-size: 12.5px; }
+    .muted { font-size: 11.5px; color: #94A3B8; margin-top: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <span class="badge"><i class="ph-bold ph-check-circle"></i> Pago único confirmado · Web desbloqueada</span>
+    <h1 id="ty-title">¡Gracias! Tu web ya es tuya para siempre.</h1>
+    <p id="ty-sub">Stripe ha enviado tu recibo y factura PDF a tu correo. Todo incluido en este único pago: <strong>0 €/mes y 0 €/año</strong> + <strong>14 días de garantía</strong>.</p>
+
+    <div class="ref" id="ty-ref"></div>
+
+    <!-- AUTOMATIC OWNER SELF-EDIT KIT (/admin + PIN) -->
+    <section class="owner-box">
+      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:15px; color:#fff;">
+        🔑 Tu Acceso Privado de Propietario (Edita fotos, precios y horarios cuando quieras)
+      </div>
+      <div class="pin-row">
+        <span>Clave privada (PIN) de propietario:</span>
+        <span class="pin-code" id="ty-pin">PRO-4829</span>
+      </div>
+      <div class="grid-btns">
+        <a id="ty-site" class="btn btn-site" href="/sitio/" target="_blank" rel="noopener">
+          <i class="ph-bold ph-globe"></i> Abrir Mi Web Pública ↗
+        </a>
+        <a id="ty-admin" class="btn btn-admin" href="/admin/" target="_blank" rel="noopener">
+          <i class="ph-bold ph-pencil-simple"></i> Editar Mi Web (/admin) ↗
+        </a>
+      </div>
+      <button type="button" class="btn btn-ghost" onclick="saveMyCredentialsToWhatsApp()">
+        <i class="ph-fill ph-whatsapp-logo" style="color:#34D399;"></i> Guardarme mi Enlace + Panel /admin + PIN en mi WhatsApp
+      </button>
+    </section>
+
+    <div class="form-box">
+      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff;">
+        🌐 Confirma tu dominio oficial incluido (activación automática con SSL):
+      </div>
+      <div class="field">
+        <label for="f-dom">Dominio oficial deseado (.es / .com)</label>
+        <input id="f-dom" type="text" placeholder="Ej. clinicasonrisas.es" />
+      </div>
+      <div class="field">
+        <label for="f-hor">Horario y dirección exacta (opcional si ya los pusiste)</label>
+        <input id="f-hor" type="text" placeholder="Ej. Lunes a Sábado 9:30–20:00 · Calle Mayor 12, Madrid" />
+      </div>
+      <div class="field">
+        <label for="f-ser">Nota opcional o servicios extra</label>
+        <textarea id="f-ser" placeholder="Opcional: escribe aquí cualquier detalle extra si elegiste montaje Pro/VIP..."></textarea>
+      </div>
+      <div class="field">
+        <label for="f-leg">Titular / NIF para tu Aviso Legal y Factura</label>
+        <input id="f-leg" type="text" placeholder="Ej. Autónomo / SL + NIF" />
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-wa" onclick="sendDeliveryData()">
+      <i class="ph-bold ph-paper-plane-tilt"></i> Confirmar Dominio y Datos de Activación en 1 toque
+    </button>
+
+    <p class="muted">Soporte directo: WhatsApp +34 632 76 81 52.</p>
+  </main>
+
+  <script src="../assets/stripe-config.js?v=85"></script>
+  <script src="../assets/studio-engine.js?v=85"></script>
+  <script>
+    const qs = new URLSearchParams(window.location.search);
+    const sessionId = qs.get('session_id') || '';
+    const rawPlan = qs.get('plan') || '';
+
+    let order = {};
+    try { order = JSON.parse(localStorage.getItem(MIWEB_PENDING_KEY) || '{}') || {}; } catch (e) {}
+    const plan = miwebNormalizePlan(rawPlan || order.plan || '197');
+
+    const PLAN_NAMES = {
+      '79': '79 € · Plan Web Express (Pago Único Para Siempre)',
+      '197': '197 € · Plan Negocio Pro + Google Maps + Dominio (Pago Único Para Siempre)',
+      '297': '297 € · Plan VIP Catálogo Completo + 3D + Placa QR (Pago Único Para Siempre)'
+    };
+    const planName = PLAN_NAMES[plan] || PLAN_NAMES['197'];
+
+    // Unlock website automatically upon returning from Stripe Checkout
+    let stObj = loadStudioState();
+    if (/^cs_(live|test)_/.test(sessionId) || sessionId) {
+      stObj.unlocked = true;
+    }
+    if (order.name) stObj.name = order.name;
+    if (order.city) stObj.city = order.city;
+    if (order.whatsapp) stObj.whatsapp = order.whatsapp;
+    if (order.domain) stObj.desiredDomain = order.domain;
+    if (order.legalNif) stObj.legalNif = order.legalNif;
+    const ownerPin = order.adminPin || stObj.adminPin || (typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slugifyName(stObj.name)) : 'PRO-4829');
+    stObj.adminPin = ownerPin;
+
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(stObj)); } catch (e) {}
+    if (typeof miwebSaveSiteVault === 'function') {
+      miwebSaveSiteVault(slugifyName(stObj.name), stObj);
+    }
+
+    const slug = slugifyName(stObj.name);
+    const encodedUnlocked = encodeSharePayload(stObj);
+    const permanentSiteUrl = window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slug) + '&d=' + encodedUnlocked;
+    const permanentAdminUrl = window.location.origin + '/admin/?negocio=' + encodeURIComponent(slug) + '&d=' + encodedUnlocked;
+
+    if (order.name || stObj.name) {
+      document.getElementById('ty-title').textContent = `¡Gracias! La web de ${order.name || stObj.name} ya es tuya para siempre.`;
+    }
+    document.getElementById('ty-pin').textContent = ownerPin;
+    document.getElementById('ty-site').href = permanentSiteUrl;
+    document.getElementById('ty-admin').href = permanentAdminUrl;
+
+    if (order.domain || stObj.desiredDomain) {
+      document.getElementById('f-dom').value = order.domain || stObj.desiredDomain;
+    }
+    if (order.legalNif || stObj.legalNif) {
+      document.getElementById('f-leg').value = order.legalNif || stObj.legalNif;
+    }
+    document.getElementById('ty-ref').textContent =
+      `Plan contratado: ${planName}` + (sessionId ? ` · Ref. Stripe: ${sessionId}` : '');
+
+    function saveMyCredentialsToWhatsApp() {
+      const rawDigits = String(stObj.whatsapp || order.whatsapp || '').replace(/\D+/g, '');
+      const hasPhone = rawDigits.length >= 9 && rawDigits !== '600123456';
+      const target = hasPhone ? (rawDigits.startsWith('34') ? rawDigits : '34' + rawDigits) : '';
+      const msg =
+        `🔑 *ACCESO DE PROPIETARIO · ${(stObj.name || 'MI WEB').toUpperCase()}*\n\n` +
+        `🌐 *Mi Web Pública Definitiva:*\n${permanentSiteUrl}\n\n` +
+        `✏️ *Mi Panel Privado de Edición (/admin):*\n${permanentAdminUrl}\n\n` +
+        `🔐 *Mi Clave PIN:* ${ownerPin}`;
+      const url = target ? `https://wa.me/${target}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    function sendDeliveryData() {
+      const domVal = document.getElementById('f-dom').value.trim() || order.domain || '';
+      const horVal = document.getElementById('f-hor').value.trim();
+      const serVal = document.getElementById('f-ser').value.trim();
+      const legVal = document.getElementById('f-leg').value.trim();
+
+      if (legVal) stObj.legalNif = legVal;
+      if (domVal) stObj.desiredDomain = domVal;
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(stObj)); } catch (e) {}
+      if (typeof miwebSaveSiteVault === 'function') miwebSaveSiteVault(slug, stObj);
+
+      const msg =
+        `✅ *CONTRATACIÓN PAGADA EN STRIPE (ACTIVACIÓN DE DOMINIO)*\n\n` +
+        `• *Plan:* ${planName}\n` +
+        (sessionId ? `• *Ref. Stripe:* ${sessionId}\n` : '') +
+        `• *Negocio:* ${stObj.name} (${stObj.city || ''})\n` +
+        `• *Dominio oficial a activar:* ${domVal || (slug + '.es')}\n` +
+        (stObj.whatsapp ? `• *WhatsApp del negocio:* ${stObj.whatsapp}\n` : '') +
+        (order.email ? `• *Email factura:* ${order.email}\n` : '') +
+        (horVal ? `• *Horario y dirección:* ${horVal}\n` : '') +
+        (serVal ? `• *Notas / Servicios:* ${serVal}\n` : '') +
+        (legVal ? `• *Datos Aviso Legal:* ${legVal}\n` : '') +
+        `• *Web desbloqueada:* ${permanentSiteUrl}`;
+      window.open(`https://wa.me/${MIWEB_STRIPE.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    }
+  </script>
+</body>
+</html>

@@ -24,7 +24,6 @@
       flex-direction: column;
     }
 
-    /* Top 24h Trial Bar */
     #demo-top-bar {
       background: linear-gradient(90deg, #0B0F19 0%, #111827 100%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
@@ -84,6 +83,22 @@
       gap: 5px;
     }
 
+    .btn-edit-live {
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      border: 1px solid rgba(52, 211, 153, 0.6);
+      background: rgba(16, 185, 129, 0.18);
+      color: #6EE7B7;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     .btn-unlock {
       padding: 7px 13px;
       border-radius: 999px;
@@ -101,15 +116,129 @@
       box-shadow: 0 4px 18px rgba(52, 211, 153, 0.35);
     }
 
+    .btn-unlock-vip {
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      border: 1px solid rgba(251, 191, 36, 0.55);
+      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+      color: #090D16;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .hide-xs { display: none !important; }
+      #demo-bottom-strip {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .strip-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+    }
+
+    .strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .stage-wrap {
+      position: relative;
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
     #client-live-iframe {
       width: 100%;
-      flex: 1;
+      height: 100%;
       border: 0;
       background: #090B10;
       display: block;
     }
 
-    /* Bottom Floating 24h Lifetime Unlock Strip */
+    /* Slide-Over Live Mini-Editor (0% Fathi manual work!) */
+    #live-mini-editor {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 410px;
+      background: #0B0F18;
+      border-left: 1px solid rgba(255, 255, 255, 0.16);
+      z-index: 80;
+      display: none;
+      flex-direction: column;
+      box-shadow: -24px 0 60px rgba(0, 0, 0, 0.75);
+    }
+    #live-mini-editor.is-open { display: flex; }
+
+    .ed-header {
+      padding: 13px 16px;
+      background: #070A11;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .ed-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ed-card {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ed-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6EE7B7;
+    }
+    .ed-input {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 10px;
+      background: #06090F;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+    .ed-input:focus { border-color: #34D399; }
+    .ed-footer {
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      background: #070A11;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      gap: 8px;
+    }
+
     #demo-bottom-strip {
       background: rgba(10, 14, 22, 0.96);
       backdrop-filter: blur(16px);
@@ -123,9 +252,7 @@
     }
     #demo-bottom-strip.hidden { display: none !important; }
 
-    .strip-info {
-      min-width: 0;
-    }
+    .strip-info { min-width: 0; }
     .strip-title {
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
@@ -156,12 +283,10 @@
       padding: 14px;
       overflow-y: auto;
     }
-    .unlock-modal-backdrop.is-open {
-      display: flex;
-    }
+    .unlock-modal-backdrop.is-open { display: flex; }
     .unlock-modal-card {
       width: 100%;
-      max-width: 680px;
+      max-width: 780px;
       background: #0C1018;
       border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 26px;
@@ -170,54 +295,25 @@
       max-height: 92dvh;
       overflow-y: auto;
     }
-    @media (min-width: 640px) {
-      .unlock-modal-card { padding: 26px; }
-    }
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      margin: 14px 0;
-    }
-    @media (min-width: 560px) {
-      .benefits-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .benefit-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-size: 12px;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      line-height: 1.35;
-    }
+    @media (min-width: 640px) { .unlock-modal-card { padding: 26px; } }
     .plan-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 10px;
       margin-top: 14px;
     }
-    @media (min-width: 580px) {
-      .plan-grid { grid-template-columns: 1fr 1fr; }
-    }
+    @media (min-width: 680px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
     .plan-box {
-      border-radius: 20px;
-      padding: 16px;
+      border-radius: 18px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
-    .plan-50 {
-      background: rgba(16, 185, 129, 0.07);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-    }
-    .plan-200 {
-      background: rgba(245, 158, 11, 0.07);
-      border: 1px solid rgba(251, 191, 36, 0.4);
-    }
+    .plan-79 { background: rgba(16, 185, 129, 0.07); border: 1px solid rgba(52, 211, 153, 0.35); }
+    .plan-197 { background: rgba(99, 91, 255, 0.16); border: 2px solid rgba(129, 140, 248, 0.75); }
+    .plan-297 { background: rgba(245, 158, 11, 0.07); border: 1px solid rgba(251, 191, 36, 0.4); }
     .plan-cta {
       width: 100%;
       padding: 12px 14px;
@@ -232,6 +328,20 @@
       justify-content: center;
       gap: 7px;
     }
+
+    #expired-24h-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 85;
+      background: rgba(5, 7, 12, 0.92);
+      backdrop-filter: blur(18px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    #expired-24h-overlay.is-open { display: flex; }
 
     #copy-toast {
       position: fixed;
@@ -257,139 +367,257 @@
   <div id="demo-top-bar" class="hidden">
     <div class="badge-timer">
       <span class="dot-pulse"></span>
-      <span>Prueba 24h · Caduca en <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
+      <span>Caduca en <strong id="sitio-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
     </div>
     <div class="actions">
-      <button type="button" class="btn-sm" onclick="sendDemoLinkWhatsApp()">
+      <button type="button" class="btn-edit-live" onclick="toggleLiveMiniEditor(true)">
+        <i class="ph-bold ph-camera"></i>
+        <span>Mis Fotos / Editar</span>
+      </button>
+      <button type="button" class="btn-sm hide-xs" onclick="sendDemoLinkWhatsApp()">
         <i class="ph-fill ph-whatsapp-logo" style="color:#34D399;"></i>
-        <span>Mandarme enlace</span>
+        <span>Guardar enlace</span>
       </button>
-      <button type="button" class="btn-sm" onclick="shareDemoLink()">
-        <i class="ph-bold ph-copy"></i>
-        <span class="hide-xs">Copiar</span>
-      </button>
-      <button type="button" class="btn-unlock" onclick="openUnlockModal()">
-        <i class="ph-bold ph-lock-key-open"></i>
-        <span>Activar · 50 €</span>
+      <button type="button" class="btn-unlock" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff;" onclick="openSitioStripeModal('197')">
+        <i class="ph-bold ph-credit-card"></i>
+        <span>Publicar · Desde 79 €</span>
       </button>
     </div>
   </div>
 
-  <iframe id="client-live-iframe" title="Página web generada del negocio"></iframe>
+  <div class="stage-wrap">
+    <iframe id="client-live-iframe" title="Página web generada del negocio"></iframe>
+  </div>
+
+  <!-- =====================================================================
+       MINI-EDITOR VISUAL EN VIVO (FOTOS DESDE MÓVIL, TEXTOS, PRECIOS Y COLOR)
+       ===================================================================== -->
+  <aside id="live-mini-editor" aria-label="Editor rápido de tu web">
+    <div class="ed-header">
+      <div>
+        <div style="font-size:10px; font-weight:800; text-transform:uppercase; color:#34D399;">Autogestión Instantánea</div>
+        <strong style="font-family:'Outfit',sans-serif; font-size:15px; color:#fff;">✏️ Personaliza Tu Web en Vivo</strong>
+      </div>
+      <button type="button" onclick="toggleLiveMiniEditor(false)" style="width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; cursor:pointer;">✕</button>
+    </div>
+
+    <div class="ed-body">
+      <!-- 1. Fotos reales desde el móvil -->
+      <div class="ed-card" style="border-color:rgba(52,211,153,0.4); background:rgba(16,185,129,0.07);">
+        <div class="ed-label">📸 1. Pon Fotos Reales de Tu Local o Trabajos</div>
+        <p style="font-size:11.5px; color:#CBD5E1; line-height:1.35;">Elige de 1 a 4 fotos desde tu móvil u ordenador y míralas puestas al instante:</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <label style="flex:1; padding:10px 12px; border-radius:12px; background:#34D399; color:#04130D; font-family:'Outfit',sans-serif; font-weight:800; font-size:12.5px; text-align:center; cursor:pointer;">
+            📷 Elegir Fotos de Mi Galería
+            <input type="file" accept="image/*" multiple style="display:none;" onchange="handleSitioPhotosUpload(this)" />
+          </label>
+          <button type="button" onclick="resetSitioPhotos()" style="padding:10px 12px; border-radius:12px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#CBD5E1; font-size:11.5px; font-weight:700; cursor:pointer;">
+            Restaurar
+          </button>
+        </div>
+        <div id="ed-photo-msg" style="font-size:11px; color:#6EE7B7; font-weight:700;"></div>
+      </div>
+
+      <!-- 2. Nombre, Titular y Contacto -->
+      <div class="ed-card">
+        <div class="ed-label">🏪 2. Datos de Tu Negocio y WhatsApp</div>
+        <input id="ed-name" class="ed-input" type="text" placeholder="Nombre del negocio" oninput="applyLiveEditorChanges()" />
+        <input id="ed-tagline" class="ed-input" type="text" placeholder="Titular principal de tu web" oninput="applyLiveEditorChanges()" />
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+          <input id="ed-city" class="ed-input" type="text" placeholder="Ciudad" oninput="applyLiveEditorChanges()" />
+          <input id="ed-wa" class="ed-input" type="tel" placeholder="WhatsApp" oninput="applyLiveEditorChanges()" />
+        </div>
+        <input id="ed-address" class="ed-input" type="text" placeholder="Calle y número (para Google Maps)" oninput="applyLiveEditorChanges()" />
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+          <input id="ed-hw" class="ed-input" type="text" placeholder="Horario L-V" oninput="applyLiveEditorChanges()" />
+          <input id="ed-hs" class="ed-input" type="text" placeholder="Horario Sáb" oninput="applyLiveEditorChanges()" />
+        </div>
+      </div>
+
+      <!-- 3. Color del diseño -->
+      <div class="ed-card">
+        <div class="ed-label">🎨 3. Estilo de Color</div>
+        <div id="ed-theme-pills" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;"></div>
+      </div>
+
+      <!-- 4. Servicios / Carta y Precios -->
+      <div class="ed-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div class="ed-label">🏷️ 4. Tus Servicios / Carta y Precios</div>
+          <button type="button" onclick="edAddServiceRow()" style="padding:4px 9px; border-radius:8px; background:rgba(52,211,153,0.18); border:1px solid rgba(52,211,153,0.4); color:#6EE7B7; font-size:11px; font-weight:800; cursor:pointer;">+ Añadir</button>
+        </div>
+        <div id="ed-services-box" style="display:flex; flex-direction:column; gap:7px;"></div>
+      </div>
+
+      <!-- 5. Aviso Legal Automático -->
+      <div class="ed-card">
+        <div class="ed-label">⚖️ 5. Aviso Legal Automático (Opcional)</div>
+        <input id="ed-legal-holder" class="ed-input" type="text" placeholder="Razón Social o Nombre Autónomo" oninput="applyLiveEditorChanges()" />
+        <input id="ed-legal-nif" class="ed-input" type="text" placeholder="NIF / CIF (ej. B12345678)" oninput="applyLiveEditorChanges()" />
+      </div>
+    </div>
+
+    <div class="ed-footer">
+      <button type="button" onclick="toggleLiveMiniEditor(false)" style="flex:1; padding:12px; border-radius:999px; background:#34D399; color:#04130D; font-family:'Outfit',sans-serif; font-weight:800; font-size:13px; border:none; cursor:pointer;">
+        ✓ Listo · Ver Mi Web
+      </button>
+      <button type="button" onclick="toggleLiveMiniEditor(false); openSitioStripeModal('197');" style="flex:1; padding:12px; border-radius:999px; background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-family:'Outfit',sans-serif; font-weight:800; font-size:13px; border:none; cursor:pointer;">
+        Publicar Ahora →
+      </button>
+    </div>
+  </aside>
 
   <!-- Bottom Persistent 24h Lifetime Unlock Strip -->
   <div id="demo-bottom-strip" class="hidden">
     <div class="strip-info">
-      <div class="strip-title">♾️ Pago Único Para Siempre · Sin Renovar Nunca Más</div>
-      <div class="strip-sub">Incluye Dominio + Hosting de por vida + Ordenador y Móvil + WhatsApp</div>
+      <div class="strip-title">🔒 Todo Incluido en Un Único Pago Para Siempre (0 €/mes · 0 €/año) + Panel de Edición Propio</div>
+      <div class="strip-sub">Prueba tus fotos arriba en «Mis Fotos / Editar» y publícala hoy con Stripe (Express 79 € · Negocio Pro ⭐ 197 € · VIP 297 €)</div>
     </div>
-    <button type="button" class="btn-unlock" style="padding: 10px 16px; font-size: 12.5px;" onclick="openUnlockModal()">
-      <span>Quedármela · Desde 50 €</span>
-      <i class="ph-bold ph-arrow-right"></i>
-    </button>
+    <div class="strip-actions">
+      <button type="button" class="btn-unlock" style="padding: 10px 14px; font-size: 12px; justify-content: center;" onclick="openSitioStripeModal('79')">
+        <i class="ph-bold ph-credit-card"></i>
+        <span>Express · 79 €</span>
+      </button>
+      <button type="button" class="btn-unlock-vip" style="padding: 10px 14px; font-size: 12px; justify-content: center;" onclick="openSitioStripeModal('197')">
+        <i class="ph-bold ph-credit-card"></i>
+        <span>⭐ Negocio Pro · 197 €</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Real 24h Expiration Gate (if unpaid after 24h) -->
+  <div id="expired-24h-overlay">
+    <div style="max-width:480px; background:#0C1018; border:1px solid rgba(251,191,36,0.45); border-radius:26px; padding:26px; box-shadow:0 30px 80px rgba(0,0,0,0.85);">
+      <div style="display:inline-flex; padding:6px 12px; border-radius:999px; background:rgba(245,158,11,0.16); color:#FCD34D; font-size:11.5px; font-weight:800; margin-bottom:10px;">
+        ⏳ VISTA PREVIA DE 24 HORAS CADUCADA
+      </div>
+      <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:23px; color:#fff; margin-bottom:8px;">
+        Reactiva y publica la web de tu negocio para siempre
+      </h2>
+      <p style="font-size:13.5px; color:#CBD5E1; line-height:1.5; margin-bottom:18px;">
+        Tu diseño y tus cambios siguen guardados. Desbloquéala hoy en un único pago con Stripe (<strong>0 €/mes · 0 €/año</strong>) y recibe tu enlace privado de propietario.
+      </p>
+      <button type="button" onclick="document.getElementById('expired-24h-overlay').classList.remove('is-open'); openSitioStripeModal('197');" class="plan-cta" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-size:14px;">
+        🔒 Desbloquear y Publicar Para Siempre →
+      </button>
+    </div>
   </div>
 
   <!-- =====================================================================
-       MODAL DE ACTIVACIÓN DEFINITIVA (50 € EMPEZAR vs 200 € PRO COMPLETA)
+       MODAL DE CONTRATACIÓN DIRECTA STRIPE · 3 PLANES + DOMINIO LIBRE EN VIVO
        ===================================================================== -->
   <div id="unlock-modal" class="unlock-modal-backdrop" onclick="if(event.target === this) closeUnlockModal()">
     <div class="unlock-modal-card">
       <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
         <div>
-          <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:rgba(245,158,11,0.14); border:1px solid rgba(245,158,11,0.35); color:#FDE68A; font-size:11px; font-weight:700; margin-bottom:6px;">
-            <i class="ph-bold ph-clock-countdown"></i>
-            <span>Tu enlace de prueba se desactiva en <strong id="modal-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
+          <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:rgba(99,91,255,0.18); border:1px solid rgba(99,91,255,0.45); color:#C7D2FE; font-size:11px; font-weight:700; margin-bottom:6px;">
+            <i class="ph-bold ph-lock-key"></i>
+            <span>Contratación Directa en Web · Caduca en <strong id="modal-timer" style="font-family:'JetBrains Mono',monospace;">23:59:59</strong></span>
           </div>
-          <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:22px; color:#fff; line-height:1.15;">
-            Activa tu web para siempre (Pago único, sin renovaciones)
+          <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff; line-height:1.15;">
+            Todo incluido en un único pago para siempre (0 €/mes · 0 €/año)
           </h2>
-          <p style="font-size:13px; color:#94A3B8; margin-top:4px;">
-            Pagas <strong>una sola vez</strong> y es 100% tuya para toda la vida. <strong>No tienes que renovar nunca más</strong> (0 € al mes y 0 € al año).
+          <p style="font-size:12.5px; color:#94A3B8; margin-top:4px;">
+            Tras pagar en <strong>Stripe</strong> recibes al instante tu <strong>Factura PDF</strong> y tu <strong>Panel Privado de Propietario (/admin)</strong> para editar fotos, horarios y precios cuando quieras toda la vida.
           </p>
         </div>
         <button type="button" onclick="closeUnlockModal()" style="width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.06); color:#fff; cursor:pointer; flex-shrink:0;">✕</button>
       </div>
 
-      <!-- 6 Everything-Included Items (Answers "¿Dominio y qué más?") -->
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <i class="ph-bold ph-globe" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>1. Tu Dominio Propio Incluido</strong><br><span style="color:#94A3B8;">Quitamos el límite de 24h y activamos tu dirección web oficial.</span></div>
-        </div>
-        <div class="benefit-item">
-          <i class="ph-bold ph-infinity" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>2. Pago Único Para Siempre</strong><br><span style="color:#94A3B8;">No tienes que renovar nunca más. 0 € cuotas mensuales ni anuales.</span></div>
-        </div>
-        <div class="benefit-item">
-          <i class="ph-bold ph-hard-drives" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>3. Hosting Rápido de por Vida</strong><br><span style="color:#94A3B8;">Alojamiento web 24/7 incluido gratis para siempre en el pago único.</span></div>
-        </div>
-        <div class="benefit-item">
-          <i class="ph-bold ph-devices" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>4. Ordenador + Móvil Listos</strong><br><span style="color:#94A3B8;">Adaptada perfectamente a cualquier teléfono y pantalla de PC.</span></div>
-        </div>
-        <div class="benefit-item">
-          <i class="ph-bold ph-whatsapp-logo" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>5. Clientes Directos a tu WhatsApp</strong><br><span style="color:#94A3B8;">Sistema de citas/pedidos directo a tu móvil con 0% comisiones.</span></div>
-        </div>
-        <div class="benefit-item">
-          <i class="ph-bold ph-map-pin-line" style="color:#34D399; font-size:17px; flex-shrink:0; margin-top:1px;"></i>
-          <div><strong>6. Botón GPS Google Maps y Precios</strong><br><span style="color:#94A3B8;">Tus horarios, tarifas y ruta directa hasta tu puerta o negocio.</span></div>
-        </div>
-      </div>
-
-      <!-- 2 Clear Activation Options: 50 € vs 200 € -->
+      <!-- 3-Plan Selector (79 € / 197 € ⭐ / 297 €) -->
       <div class="plan-grid">
-        <!-- Plan 50 € -->
-        <div class="plan-box plan-50">
+        <div id="sitio-plan-box-79" class="plan-box plan-79" style="cursor:pointer;" onclick="selectSitioStripePlan('79')">
           <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-size:11px; font-weight:800; text-transform:uppercase; color:#6EE7B7;">Para empezar hoy</span>
-              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:24px; color:#fff;">50 €</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#6EE7B7;">Plan 1 · Express</span>
+              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff;">79 €</span>
             </div>
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#fff; margin-bottom:4px;">
-              Activar Web + Dominio
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
+              Web Express + Panel Propio
             </div>
-            <p style="font-size:12px; color:#CBD5E1; line-height:1.4;">
-              Deja activa para siempre la web que acabas de generar, recibe tu dominio propio y empieza a recibir clientes hoy mismo. <strong>Pago único sin renovar nunca más.</strong>
+            <p style="font-size:11px; color:#CBD5E1; line-height:1.35;">
+              Desbloqueo permanente + Enlace y Hosting de por vida + Panel /admin para editar + SSL + 14 días garantía.
             </p>
           </div>
-          <button type="button" class="plan-cta" style="background:#34D399; color:#04130D;" onclick="activateViaWhatsApp('50 € (Activar Web Generada + Dominio · Pago único para siempre)')">
-            <i class="ph-fill ph-whatsapp-logo" style="font-size:17px;"></i>
-            <span>Activar por 50 € · Pago Único</span>
-          </button>
         </div>
 
-        <!-- Plan 200 € -->
-        <div class="plan-box plan-200">
+        <div id="sitio-plan-box-197" class="plan-box plan-197" style="cursor:pointer;" onclick="selectSitioStripePlan('197')">
           <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <span style="font-size:11px; font-weight:800; text-transform:uppercase; color:#FCD34D;">Proyecto Completo VIP</span>
-              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:24px; color:#FCD34D;">200 €</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#C7D2FE;">⭐ Más Elegido</span>
+              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#fff;">197 €</span>
             </div>
-            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:16px; color:#fff; margin-bottom:4px;">
-              Web Completa A Medida + Dominio .com
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
+              Negocio Pro + Maps + Dominio
             </div>
-            <p style="font-size:12px; color:#CBD5E1; line-height:1.4;">
-              Nosotros te montamos todo tu catálogo completo, tus fotos, textos profesionales, efectos 3D exclusivos y alta en Google Maps. <strong>Pago único sin renovar nunca más.</strong>
+            <p style="font-size:11px; color:#E2E8F0; line-height:1.35;">
+              Dominio oficial .es/.com incluido + Alta en Google Maps + Panel /admin + Montaje completo + 14 días ajustes.
             </p>
           </div>
-          <button type="button" class="plan-cta" style="background:#FBBF24; color:#090D16;" onclick="activateViaWhatsApp('200 € (Web Completa A Medida VIP + Dominio .com · Pago único para siempre)')">
-            <i class="ph-fill ph-whatsapp-logo" style="font-size:17px;"></i>
-            <span>Pedir Completa · 200 € Pago Único</span>
-          </button>
+        </div>
+
+        <div id="sitio-plan-box-297" class="plan-box plan-297" style="cursor:pointer;" onclick="selectSitioStripePlan('297')">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <span style="font-size:10.5px; font-weight:800; text-transform:uppercase; color:#FCD34D;">Plan 3 · VIP 3D</span>
+              <span style="font-family:'Outfit',sans-serif; font-weight:900; font-size:21px; color:#FCD34D;">297 €</span>
+            </div>
+            <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14px; color:#fff; margin-bottom:4px;">
+              Catálogo Extenso + 3D + QR
+            </div>
+            <p style="font-size:11px; color:#CBD5E1; line-height:1.35;">
+              Todo lo Pro + Carga de catálogo/carta amplia + Efectos 3D + Placa QR imprenta + Entrega prioritaria 24h.
+            </p>
+          </div>
         </div>
       </div>
+
+      <!-- Real-Time Domain Checker + Stripe Checkout -->
+      <form id="sitio-stripe-form" onsubmit="completeSitioStripePayment(event)" style="margin-top:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:14px; display:flex; flex-direction:column; gap:10px;">
+        <div>
+          <label style="display:block; font-size:11px; font-weight:800; text-transform:uppercase; color:#6EE7B7; margin-bottom:5px;">
+            1. Elige tu dominio y comprueba al instante si está libre:
+          </label>
+          <div style="display:flex; gap:8px;">
+            <input id="sitio-stripe-domain" type="text" placeholder="minegocio.es" oninput="scheduleSitioDomainCheck()" style="flex:1; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
+            <button type="button" onclick="checkSitioDomainNow()" style="padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); color:#fff; font-weight:800; font-size:12px; cursor:pointer; white-space:nowrap;">
+              Comprobar
+            </button>
+          </div>
+          <div id="sitio-domain-status" style="font-size:11.5px; margin-top:5px; min-height:17px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;"></div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <input id="sitio-stripe-email" type="email" autocomplete="email" placeholder="Tu email (Factura PDF + Enlace Admin)" style="width:100%; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
+          <input id="sitio-stripe-nif" type="text" placeholder="Titular / NIF (Factura y Aviso Legal)" style="width:100%; padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:14px; outline:none;" />
+        </div>
+
+        <div style="padding:9px 12px; border-radius:12px; background:rgba(16,185,129,0.1); border:1px solid rgba(52,211,153,0.3); font-size:11.5px; color:#A7F3D0; line-height:1.35;">
+          🛡️ <strong>Entrega Automática Inmediata:</strong> Desbloqueo permanente + Enlace Privado de Propietario (<code>/admin</code>) + Factura PDF Stripe + 14 días de garantía.
+        </div>
+        <button type="submit" id="sitio-stripe-submit" class="plan-cta" style="background:linear-gradient(135deg,#635BFF 0%,#4F46E5 100%); color:#fff; font-size:14px;">
+          <i class="ph-bold ph-lock-key"></i>
+          <span id="sitio-stripe-submit-text">Contratar Negocio Pro ⭐ · 197 € Pago Único</span>
+        </button>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:11.5px; color:#94A3B8;">
+          <span>🔒 Pago único procesado en <strong>Stripe</strong> · Sin suscripciones</span>
+          <button type="button" onclick="askSitioWhatsAppNoCommitment()" style="background:none; border:none; color:#34D399; font-weight:700; cursor:pointer; text-decoration:underline;">
+            ¿Solo tienes dudas? Escríbenos por WhatsApp
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
-  <div id="copy-toast">✓ Enlace copiado para enviar por WhatsApp</div>
+  <div id="copy-toast">✓ Enlace copiado al portapapeles</div>
 
-  <script src="../assets/studio-engine.js?v=65"></script>
+  <script src="../assets/stripe-config.js?v=85"></script>
+  <script src="../assets/studio-engine.js?v=85"></script>
   <script>
     (function initLiveSiteViewer() {
       const params = new URLSearchParams(window.location.search);
       const encoded = params.get('d');
+      const slugParam = params.get('negocio') || '';
       const hasLocal = !!localStorage.getItem(STORAGE_KEY);
       const localSt = loadStudioState();
 
@@ -406,11 +634,59 @@
           }
         }
       }
+      if (!activeState.adminPin) {
+        activeState.adminPin = typeof miwebGeneratePin === 'function'
+          ? miwebGeneratePin(slugifyName(activeState.name))
+          : 'PRO-4829';
+      }
 
-      document.title = activeState.name + ' · ' + (activeState.city || 'Web Oficial');
+      let selectedSitioPlan = '197';
+      let sitioDomTimer = null;
+      const iframe = document.getElementById('client-live-iframe');
+
+      function renderLiveIframe() {
+        document.title = activeState.name + ' · ' + (activeState.city || 'Web Oficial');
+        if (iframe) iframe.srcdoc = compileClientWebsiteHTML(activeState);
+      }
+
+      function persistActiveState() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(activeState)); } catch (e) {}
+        if (typeof miwebSaveSiteVault === 'function') {
+          miwebSaveSiteVault(slugifyName(activeState.name), activeState);
+        }
+        try {
+          const nextUrl = window.location.pathname + '?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
+          window.history.replaceState(null, '', nextUrl);
+        } catch (e) {}
+      }
+
+      renderLiveIframe();
+
+      // Hydrate saved mobile photos/changes from IndexedDB / Cloud Vault
+      if (typeof miwebLoadSiteVault === 'function') {
+        const lookupSlug = slugParam || slugifyName(activeState.name);
+        miwebLoadSiteVault(lookupSlug).then(vaultData => {
+          if (vaultData && slugifyName(vaultData.name) === slugifyName(activeState.name)) {
+            if (vaultData.customHeroPhoto && !activeState.customHeroPhoto) activeState.customHeroPhoto = vaultData.customHeroPhoto;
+            if (Array.isArray(vaultData.customGallery) && vaultData.customGallery.length && (!activeState.customGallery || !activeState.customGallery.length)) {
+              activeState.customGallery = vaultData.customGallery;
+            }
+            if (vaultData.unlocked) activeState.unlocked = true;
+            renderLiveIframe();
+          }
+        }).catch(() => {});
+      }
+
+      // Listen for "📸 Poner fotos de mi local" clicked inside the preview iframe
+      window.addEventListener('message', ev => {
+        if (ev && ev.data && ev.data.type === 'MIWEB_OPEN_EDITOR') {
+          toggleLiveMiniEditor(true);
+        }
+      });
 
       const topBar = document.getElementById('demo-top-bar');
       const bottomStrip = document.getElementById('demo-bottom-strip');
+      const expOverlay = document.getElementById('expired-24h-overlay');
 
       if (!activeState.unlocked) {
         if (topBar) topBar.classList.remove('hidden');
@@ -419,7 +695,8 @@
         const timerEl = document.getElementById('sitio-timer');
         const modalTimerEl = document.getElementById('modal-timer');
         const updateClock = () => {
-          const rem = Math.max(0, (activeState.expiresAt || (Date.now() + 86000000)) - Date.now());
+          const expTs = activeState.expiresAt || (Date.now() + 86000000);
+          const rem = Math.max(0, expTs - Date.now());
           const sec = Math.floor(rem / 1000);
           const h = String(Math.floor(sec / 3600)).padStart(2, '0');
           const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
@@ -427,59 +704,258 @@
           const formatted = h + ':' + m + ':' + s;
           if (timerEl) timerEl.textContent = formatted;
           if (modalTimerEl) modalTimerEl.textContent = formatted;
+          if (rem <= 0 && expOverlay && !document.getElementById('unlock-modal').classList.contains('is-open')) {
+            expOverlay.classList.add('is-open');
+          }
         };
         updateClock();
         setInterval(updateClock, 1000);
       }
 
-      const iframe = document.getElementById('client-live-iframe');
-      if (iframe) {
-        iframe.srcdoc = compileClientWebsiteHTML(activeState);
+      // ---------------- LIVE MINI-EDITOR FUNCTIONS ----------------
+      function populateMiniEditor() {
+        document.getElementById('ed-name').value = activeState.name || '';
+        document.getElementById('ed-tagline').value = activeState.tagline || '';
+        document.getElementById('ed-city').value = activeState.city || '';
+        document.getElementById('ed-wa').value = activeState.whatsapp || '';
+        document.getElementById('ed-address').value = activeState.address || '';
+        document.getElementById('ed-hw').value = activeState.hoursWeek || '';
+        document.getElementById('ed-hs').value = activeState.hoursSat || '';
+        document.getElementById('ed-legal-holder').value = activeState.legalHolder || '';
+        document.getElementById('ed-legal-nif').value = activeState.legalNif || '';
+        renderEditorThemes();
+        renderEditorServices();
       }
 
+      function renderEditorThemes() {
+        const box = document.getElementById('ed-theme-pills');
+        if (!box) return;
+        box.innerHTML = Object.entries(DESIGN_THEMES).map(([k, t]) => {
+          const on = activeState.theme === k;
+          return `<button type="button" onclick="pickEditorTheme('${k}')" style="padding:8px 10px; border-radius:10px; border:1px solid ${on ? '#34D399' : 'rgba(255,255,255,0.12)'}; background:${on ? 'rgba(16,185,129,0.18)' : '#06090F'}; color:#fff; font-size:11.5px; font-weight:700; display:flex; align-items:center; gap:7px; cursor:pointer; text-align:left;">
+            <span style="width:16px; height:16px; border-radius:50%; background:${t.swatch2}; flex-shrink:0;"></span>
+            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(t.label)}</span>
+          </button>`;
+        }).join('');
+      }
+
+      window.pickEditorTheme = function(k) {
+        activeState.theme = k;
+        renderEditorThemes();
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      function renderEditorServices() {
+        const box = document.getElementById('ed-services-box');
+        if (!box) return;
+        box.innerHTML = (activeState.services || []).map((srv, idx) => `
+          <div style="display:grid; grid-template-columns:1fr 82px 28px; gap:5px; align-items:center;">
+            <input class="ed-input" style="padding:7px 9px; font-size:13px;" value="${escapeHtml(srv.title)}" oninput="edUpdateSrv(${idx},'title',this.value)" />
+            <input class="ed-input" style="padding:7px 9px; font-size:13px; color:#6EE7B7; font-weight:700;" value="${escapeHtml(srv.price)}" oninput="edUpdateSrv(${idx},'price',this.value)" />
+            <button type="button" onclick="edDeleteSrv(${idx})" style="height:32px; border-radius:8px; background:rgba(244,63,94,0.15); border:1px solid rgba(244,63,94,0.3); color:#FDA4AF; cursor:pointer;">✕</button>
+          </div>
+        `).join('');
+      }
+
+      window.edUpdateSrv = function(idx, key, val) {
+        if (!activeState.services[idx]) return;
+        activeState.services[idx][key] = val;
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      window.edAddServiceRow = function() {
+        activeState.services.push({ title: 'Nuevo Servicio', meta: 'Atención directa', price: '25 €' });
+        renderEditorServices();
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      window.edDeleteSrv = function(idx) {
+        if ((activeState.services || []).length <= 1) return;
+        activeState.services.splice(idx, 1);
+        renderEditorServices();
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      window.toggleLiveMiniEditor = function(open) {
+        const ed = document.getElementById('live-mini-editor');
+        if (!ed) return;
+        if (open) populateMiniEditor();
+        ed.classList.toggle('is-open', !!open);
+      };
+
+      window.applyLiveEditorChanges = function() {
+        activeState.name = document.getElementById('ed-name').value.trim() || activeState.name;
+        activeState.tagline = document.getElementById('ed-tagline').value.trim() || activeState.tagline;
+        activeState.city = document.getElementById('ed-city').value.trim() || activeState.city;
+        activeState.whatsapp = document.getElementById('ed-wa').value.trim() || activeState.whatsapp;
+        activeState.phone = activeState.whatsapp;
+        activeState.address = document.getElementById('ed-address').value.trim() || activeState.address;
+        activeState.hoursWeek = document.getElementById('ed-hw').value.trim() || activeState.hoursWeek;
+        activeState.hoursSat = document.getElementById('ed-hs').value.trim() || activeState.hoursSat;
+        activeState.legalHolder = document.getElementById('ed-legal-holder').value.trim();
+        activeState.legalNif = document.getElementById('ed-legal-nif').value.trim();
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      window.handleSitioPhotosUpload = async function(input) {
+        const files = Array.from((input && input.files) || []).slice(0, 4);
+        if (!files.length || typeof miwebCompressImageFile !== 'function') return;
+        const msg = document.getElementById('ed-photo-msg');
+        if (msg) msg.textContent = 'Optimizando fotos de tu móvil...';
+        const out = [];
+        for (const f of files) {
+          try { out.push(await miwebCompressImageFile(f, 1100, 0.78)); } catch (e) {}
+        }
+        if (!out.length) return;
+        activeState.customHeroPhoto = out[0];
+        activeState.customGallery = out;
+        if (msg) msg.textContent = '✓ ' + out.length + ' foto(s) aplicadas y guardadas en tu web';
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      window.resetSitioPhotos = function() {
+        activeState.customHeroPhoto = '';
+        activeState.customGallery = [];
+        const msg = document.getElementById('ed-photo-msg');
+        if (msg) msg.textContent = 'Fotos por defecto del sector restauradas';
+        persistActiveState();
+        renderLiveIframe();
+      };
+
+      // ---------------- SHARE & STRIPE + DOMAIN CHECKER ----------------
       function getShareUrl() {
         return window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
       }
 
-      window.shareDemoLink = function() {
+      window.sendDemoLinkWhatsApp = function() {
         const shareUrl = getShareUrl();
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(shareUrl).then(() => {
-            const t = document.getElementById('copy-toast');
-            if (t) {
-              t.style.display = 'block';
-              setTimeout(() => { t.style.display = 'none'; }, 2600);
-            }
-          });
+        const rawDigits = String(activeState.whatsapp || '').replace(/\D+/g, '');
+        const hasCustomPhone = rawDigits.length >= 9 && rawDigits !== '600123456' && rawDigits !== '34600123456';
+        const targetPhone = hasCustomPhone
+          ? (rawDigits.startsWith('34') ? rawDigits : '34' + rawDigits)
+          : '';
+        const msg =
+          `✅ *WEB GENERADA PARA ${(activeState.name || 'MI NEGOCIO').toUpperCase()} (${activeState.city || 'Madrid'})*\n\n` +
+          `🔗 *Enlace en vivo (activo 24h para ver en PC o móvil):*\n${shareUrl}\n\n` +
+          `🔒 *Pago único para siempre con Stripe (0 €/mes · 0 €/año) + Panel de Propietario incluido.*`;
+        const waEndpoint = targetPhone
+          ? `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`
+          : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+        window.open(waEndpoint, '_blank', 'noopener');
+      };
+
+      window.checkSitioDomainNow = async function(pickDomain) {
+        const domIn = document.getElementById('sitio-stripe-domain');
+        const stEl = document.getElementById('sitio-domain-status');
+        if (!domIn || !stEl || typeof miwebCheckDomainLive !== 'function') return;
+        if (pickDomain) domIn.value = pickDomain;
+        const raw = domIn.value.trim() || (slugifyName(activeState.name) + '.es');
+        stEl.innerHTML = `<span style="color:#94A3B8;">⏳ Comprobando <strong>${escapeHtml(raw)}</strong>...</span>`;
+        const res = await miwebCheckDomainLive(raw, activeState.name, activeState.city);
+        if (!res.ok) {
+          stEl.innerHTML = `<span style="color:#FCD34D;">${escapeHtml(res.error)}</span>`;
+          return;
+        }
+        domIn.value = res.domain;
+        activeState.desiredDomain = res.domain;
+        if (res.available) {
+          stEl.innerHTML = `<span style="color:#6EE7B7; font-weight:700;">✅ ¡Libre! <strong>${escapeHtml(res.domain)}</strong> está disponible para tu negocio.</span>`;
+        } else {
+          const chips = (res.suggestions || []).map(s =>
+            `<button type="button" onclick="checkSitioDomainNow('${escapeHtml(s)}')" style="padding:2px 8px; border-radius:6px; background:rgba(52,211,153,0.18); border:1px solid rgba(52,211,153,0.45); color:#6EE7B7; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; cursor:pointer;">${escapeHtml(s)}</button>`
+          ).join(' ');
+          stEl.innerHTML = `<span style="color:#FCD34D; font-weight:700;">⚠️ ${escapeHtml(res.domain)} está ocupado.</span> ${chips ? '<span>Libres en 1 clic:</span> ' + chips : ''}`;
         }
       };
 
-      window.sendDemoLinkWhatsApp = function() {
-        const shareUrl = getShareUrl();
-        const msg = `Aquí está el enlace de la web generada para *${activeState.name}* (${activeState.city}) activa durante 24h:\n${shareUrl}`;
-        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      window.scheduleSitioDomainCheck = function() {
+        if (sitioDomTimer) clearTimeout(sitioDomTimer);
+        sitioDomTimer = setTimeout(() => checkSitioDomainNow(), 420);
       };
 
-      window.openUnlockModal = function() {
+      window.selectSitioStripePlan = function(plan) {
+        selectedSitioPlan = typeof miwebNormalizePlan === 'function' ? miwebNormalizePlan(plan) : '197';
+        const b79 = document.getElementById('sitio-plan-box-79');
+        const b197 = document.getElementById('sitio-plan-box-197');
+        const b297 = document.getElementById('sitio-plan-box-297');
+        const btnTxt = document.getElementById('sitio-stripe-submit-text');
+
+        if (b79) b79.style.outline = selectedSitioPlan === '79' ? '2px solid #34D399' : 'none';
+        if (b197) b197.style.outline = selectedSitioPlan === '197' ? '2px solid #818CF8' : 'none';
+        if (b297) b297.style.outline = selectedSitioPlan === '297' ? '2px solid #FBBF24' : 'none';
+
+        const LABELS = {
+          '79': 'Contratar Web Express · 79 € Pago Único',
+          '197': 'Contratar Negocio Pro ⭐ · 197 € Pago Único',
+          '297': 'Contratar Plan VIP · 297 € Pago Único'
+        };
+        if (btnTxt) btnTxt.textContent = LABELS[selectedSitioPlan] || LABELS['197'];
+      };
+
+      window.openSitioStripeModal = function(plan) {
+        selectSitioStripePlan(plan || '197');
+        const slug = slugifyName(activeState.name);
+        const domIn = document.getElementById('sitio-stripe-domain');
+        const nifIn = document.getElementById('sitio-stripe-nif');
+        if (domIn && !domIn.value) domIn.value = activeState.desiredDomain || (slug + '.es');
+        if (nifIn && !nifIn.value && (activeState.legalHolder || activeState.legalNif)) {
+          nifIn.value = [activeState.legalHolder, activeState.legalNif].filter(Boolean).join(' · ');
+        }
         const m = document.getElementById('unlock-modal');
         if (m) m.classList.add('is-open');
+        setTimeout(() => checkSitioDomainNow(), 120);
       };
 
+      window.openUnlockModal = function() { openSitioStripeModal('197'); };
       window.closeUnlockModal = function() {
         const m = document.getElementById('unlock-modal');
         if (m) m.classList.remove('is-open');
       };
 
-      window.activateViaWhatsApp = function(planLabel) {
+      window.completeSitioStripePayment = function(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        const emIn = document.getElementById('sitio-stripe-email');
+        const domIn = document.getElementById('sitio-stripe-domain');
+        const nifIn = document.getElementById('sitio-stripe-nif');
+        if (nifIn && nifIn.value.trim()) {
+          activeState.legalNif = nifIn.value.trim();
+        }
+        if (domIn && domIn.value.trim()) {
+          activeState.desiredDomain = domIn.value.trim();
+        }
+        persistActiveState();
+        const order = {
+          plan: selectedSitioPlan,
+          name: activeState.name,
+          city: activeState.city,
+          whatsapp: activeState.whatsapp,
+          slug: slugifyName(activeState.name),
+          adminPin: activeState.adminPin,
+          siteUrl: getShareUrl(),
+          email: emIn ? emIn.value.trim() : '',
+          domain: domIn ? domIn.value.trim() : '',
+          legalNif: nifIn ? nifIn.value.trim() : ''
+        };
+        miwebGoToStripe(order);
+      };
+
+      window.askSitioWhatsAppNoCommitment = function() {
         const shareUrl = getShareUrl();
         const msg =
-          `Hola, acabo de generar mi web en miweblocal.com y quiero activarla antes de que pasen las 24h:\n` +
-          `• Negocio: *${activeState.name}* (${activeState.city})\n` +
-          `• Opción elegida: *${planLabel}*\n` +
-          `• Enlace de mi web generada: ${shareUrl}\n` +
-          `¿Me indicas cómo hacer el pago único para dejarla activa para siempre con mi dominio?`;
+          `Hola, tengo una duda antes de contratar mi web en MiWebLocal.com:\n\n` +
+          `• *Negocio:* ${activeState.name} (${activeState.city})\n` +
+          `• *Vista previa generada:* ${shareUrl}\n\n` +
+          `Mi duda antes de hacer el pago único en Stripe es:`;
         window.open(`https://wa.me/34632768152?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
       };
+
+      window.activateViaWhatsApp = function(planType) { openSitioStripeModal(planType); };
     })();
   </script>
 </body>
