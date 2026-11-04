@@ -1,6 +1,6 @@
 /* ==========================================================================
-   MIWEBLOCAL V4 — ULTRA-VISUAL CINEMA SHOWCASE STYLES
-   Zero iframes · Zero scroll traps · Pure GPU motion · Double-Bezel Hardware
+   MIWEBLOCAL V5 — ORDENADOR + MÓVIL STUDIO SHOWCASE & PAIN-FIRST ARCHITECTURE
+   Zero iframes · Zero mismatched screens · 100% Unified Desktop+Mobile Luxury
    ========================================================================== */
 
 :root {
@@ -16,7 +16,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* CRITICAL: Never put overflow-x: hidden on html (breaks Windows Chromium mouse wheel). */
+/* Keep html free of overflow-x:hidden so Windows Chromium mouse wheel is 100% native */
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -32,36 +32,34 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Subtle fixed film grain (pointer-events: none, fixed layer only) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.026;
+  opacity: 0.025;
   background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
-/* Ambient Hero Mesh Glow */
 .hero-ambient {
   background:
-    radial-gradient(680px 460px at 78% 22%, rgba(16, 185, 129, 0.13), transparent 68%),
-    radial-gradient(560px 380px at 18% 12%, rgba(245, 158, 11, 0.08), transparent 65%);
+    radial-gradient(760px 500px at 75% 24%, rgba(16, 185, 129, 0.13), transparent 68%),
+    radial-gradient(600px 420px at 18% 15%, rgba(245, 158, 11, 0.09), transparent 65%);
 }
 
-/* Double-Bezel Machined Hardware Architecture */
+/* Machined Double-Bezel Hardware */
 .double-bezel {
   padding: 7px;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  transition: transform 380ms var(--ease-out), border-color 380ms var(--ease-out);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.032);
+  border: 1px solid rgba(255, 255, 255, 0.095);
+  transition: transform 360ms var(--ease-out), border-color 360ms var(--ease-out);
 }
 
 .double-bezel-inner {
-  border-radius: 23px;
+  border-radius: 21px;
   background: var(--bg-card);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.11);
   overflow: hidden;
@@ -70,10 +68,14 @@ body::before {
 @media (hover: hover) and (pointer: fine) {
   .showcase-card:hover .double-bezel {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.24);
   }
   .showcase-card:hover .card-media-img {
     transform: scale(1.03);
+  }
+  .pain-card:hover {
+    border-color: rgba(52, 211, 153, 0.32);
+    transform: translateY(-2px);
   }
   .btn-island:hover .btn-island-circle {
     transform: translate(2px, -2px) scale(1.05);
@@ -85,7 +87,10 @@ body::before {
   will-change: transform;
 }
 
-/* Responsive tactile press on all buttons */
+.pain-card {
+  transition: transform 300ms var(--ease-out), border-color 300ms var(--ease-out);
+}
+
 .btn-press {
   transition: transform 150ms var(--ease-out), background-color 200ms ease, border-color 200ms ease;
 }
@@ -97,88 +102,57 @@ body::before {
   transition: transform 240ms var(--ease-out);
 }
 
-/* Titanium Phone Hardware for Real Smooth-Scrolling Videos */
-.titanium-phone {
-  border-radius: 38px;
+/* Hero Live "Ordenador + Móvil" Stage */
+.hero-stage-shell {
   padding: 8px;
-  background: linear-gradient(145deg, #434854 0%, #1B1E26 48%, #343944 100%);
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.72),
-    inset 0 1px 1px rgba(255, 255, 255, 0.32);
-  position: relative;
+  border-radius: 32px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.75);
 }
 
-.titanium-phone-screen {
-  border-radius: 31px;
+.hero-stage-screen {
+  position: relative;
+  border-radius: 24px;
   overflow: hidden;
-  background: #07090E;
-  aspect-ratio: 1 / 2;
-  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #080A0F;
 }
 
-.titanium-phone-screen video,
-.titanium-phone-screen img {
+.hero-stage-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
   display: block;
+  transform: scale(1.01);
+  transition: opacity 420ms var(--ease-out), transform 4200ms linear;
 }
 
-/* Hero 3-Phone Trio Composition */
-.hero-trio {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 410px;
+.hero-stage-img.is-zooming {
+  transform: scale(1.055);
 }
 
-.hero-phone-center {
-  width: 215px;
-  z-index: 3;
-  transform: translateY(0);
+.hero-stage-img.is-fading {
+  opacity: 0.15;
+  filter: blur(2px);
 }
 
-.hero-phone-side {
-  width: 176px;
-  z-index: 2;
-  opacity: 0.84;
+/* Progress bar for auto-rotating Hero stage */
+@keyframes heroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 
-.hero-phone-left {
-  margin-right: -46px;
-  transform: translateY(18px) rotate(-5deg);
-}
-
-.hero-phone-right {
-  margin-left: -46px;
-  transform: translateY(18px) rotate(5deg);
-}
-
-@media (min-width: 640px) {
-  .hero-trio {
-    min-height: 490px;
-  }
-  .hero-phone-center {
-    width: 246px;
-  }
-  .hero-phone-side {
-    width: 200px;
-  }
-  .hero-phone-left {
-    margin-right: -40px;
-  }
-  .hero-phone-right {
-    margin-left: -40px;
-  }
+.hero-tab-active .hero-tab-bar {
+  transform-origin: left center;
+  animation: heroProgress 4.2s linear forwards;
 }
 
 /* Scroll Entry Reveal */
 .reveal-item {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 650ms var(--ease-fluid), transform 650ms var(--ease-fluid);
+  transform: translateY(20px);
+  transition: opacity 600ms var(--ease-fluid), transform 600ms var(--ease-fluid);
 }
 
 .reveal-item.is-visible {
@@ -186,16 +160,10 @@ body::before {
   transform: translateY(0);
 }
 
-/* Hide scrollbars on horizontal filter row */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Modal Backdrop & Dialog Transition */
+/* Lightbox Modal */
 .cinema-modal {
   opacity: 0;
   pointer-events: none;
@@ -219,8 +187,8 @@ body::before {
     transform: none !important;
     transition: none !important;
   }
-  .hero-phone-left,
-  .hero-phone-right {
+  .hero-stage-img {
+    transition: none !important;
     transform: none !important;
   }
 }
