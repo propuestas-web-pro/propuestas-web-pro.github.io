@@ -1311,8 +1311,8 @@ const OFICIOS_RAW_LIST = [
     yearsExp: 'Sin Jaulas · Baño Dermocosmético y Stripping',
     tagline: 'Baño, corte a tijera y deslanado sin estrés para que tu peludo salga feliz.',
     story: 'Cosmética natural adaptada a su piel, trato paciente sin prisas ni sedación y aviso automático a tu WhatsApp en cuanto tu perro está listo para recoger.',
-    img: '/assets/real/peluqueria_hero.jpg',
-    gal: ['/assets/real/peluqueria_hero.jpg', '/assets/real/clinica_work_1.jpg', '/assets/real/peluqueria_work_2.jpg'],
+    img: '/assets/real/peluqueria_work_2.jpg',
+    gal: ['/assets/real/peluqueria_work_2.jpg', '/assets/real/clinica_work_1.jpg', '/assets/real/peluqueria_work_1.jpg'],
     kw: ['peluqueria canina', 'baño perro', 'corte perro', 'autolavado mascotas', 'guarderia canina', 'residencia canina', 'bichon', 'caniche'],
     services: [
       ['Baño Dermocosmético + Secado + Uñas y Oídos', 'Raza pequeña / mediana · Champú específico piel sana', 'Desde 24 €'],

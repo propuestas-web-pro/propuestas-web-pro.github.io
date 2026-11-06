@@ -862,11 +862,85 @@ function buildTradeCapas(preset, st, srvList) {
   ];
 }
 
+const CATEGORY_EXTRA_PHOTOS = {
+  hogar: [
+    '/assets/real/carpinteria_hero.jpg',
+    '/assets/real/reformas_work_1.jpg',
+    '/assets/real/reformas_hero.jpg',
+    '/assets/real/reformas_work_2.jpg',
+    '/assets/real/cerrajeria_blindada.jpg',
+    '/assets/real/cerrajeria_work_1.jpg',
+    '/assets/real/cerrajeria_bombin.jpg'
+  ],
+  motor: [
+    '/assets/real/lavadero_hero.jpg',
+    '/assets/real/taller_hero.jpg',
+    '/assets/real/taller_work_1.jpg',
+    '/assets/real/motos_hero.jpg',
+    '/assets/real/motos_work_1.jpg',
+    '/assets/real/motos_work_2.jpg',
+    '/assets/real/cerrajeria_coche.jpg'
+  ],
+  belleza: [
+    '/assets/real/peluqueria_hero.jpg',
+    '/assets/real/peluqueria_work_1.jpg',
+    '/assets/real/peluqueria_work_2.jpg',
+    '/assets/real/barberia_hero.jpg',
+    '/assets/real/barberia_work_1.jpg',
+    '/assets/real/comercio_regalo.jpg'
+  ],
+  salud: [
+    '/assets/real/clinica_hero.jpg',
+    '/assets/real/clinica_work_1.jpg',
+    '/assets/real/clinica_work_2.jpg',
+    '/assets/real/fitness_hero.jpg',
+    '/assets/real/fitness_work_1.jpg',
+    '/assets/real/peluqueria_work_2.jpg'
+  ],
+  hosteleria: [
+    '/assets/real/restaurante_hero.jpg',
+    '/assets/real/restaurante_work_1.jpg',
+    '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/tapas_bar.jpg',
+    '/assets/real/terraza_bar.jpg',
+    '/assets/real/panaderia_brunch.jpg',
+    '/assets/real/pizza_hero.jpg',
+    '/assets/real/asador_pollo.jpg'
+  ],
+  comercio: [
+    '/assets/real/tienda_hero.jpg',
+    '/assets/real/tienda_work_1.jpg',
+    '/assets/real/tienda_work_2.jpg',
+    '/assets/real/floristeria_hero.jpg',
+    '/assets/real/comercio_regalo.jpg',
+    '/assets/real/reformas_work_1.jpg'
+  ]
+};
+
+function buildUniquePhotoPool(preset, st, baseUrls) {
+  const seen = new Set();
+  const pool = [];
+  const pushUnique = (u) => {
+    const resolved = resolveProjectAssetUrl(u);
+    if (resolved && !seen.has(resolved)) {
+      seen.add(resolved);
+      pool.push(resolved);
+    }
+  };
+  (baseUrls || []).forEach(pushUnique);
+  const cat = preset && preset.cat ? preset.cat : 'comercio';
+  const extras = CATEGORY_EXTRA_PHOTOS[cat] || CATEGORY_EXTRA_PHOTOS.comercio;
+  extras.forEach(pushUnique);
+  CATEGORY_EXTRA_PHOTOS.comercio.forEach(pushUnique);
+  return pool;
+}
+
 function buildTradeCasos(preset, st, srvList, galleryArr, heroImg) {
-  const p0 = galleryArr[0] || heroImg;
-  const p1 = galleryArr[1] || heroImg;
-  const p2 = galleryArr[2] || p0;
-  const p3 = galleryArr[3] || p1;
+  const pool = buildUniquePhotoPool(preset, st, [heroImg].concat(galleryArr || []));
+  const p0 = pool[0] || heroImg;
+  const p1 = pool[1] || p0;
+  const p2 = pool[2] || p1;
+  const p3 = pool[3] || p2;
 
   const s0 = srvList[0] || { title: 'Servicio Integral', meta: 'Trabajo completo', price: 'Precio cerrado' };
   const s1 = srvList[1] || s0;
@@ -935,10 +1009,12 @@ function compileClientWebsiteHTML(st) {
 
   const customPhotos = Array.isArray(st.customGallery) ? st.customGallery.filter(Boolean) : [];
   const defaultGallery = Array.isArray(preset.gallery) && preset.gallery.length ? preset.gallery : [preset.heroImage];
-  const activeGallery = (customPhotos.length ? customPhotos : defaultGallery).map(resolveProjectAssetUrl);
-  const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || activeGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
-  const secondImg = resolveProjectAssetUrl(activeGallery[1] || heroImg);
-  const thirdImg = resolveProjectAssetUrl(activeGallery[2] || secondImg);
+  const rawGallery = (customPhotos.length ? customPhotos : defaultGallery).map(resolveProjectAssetUrl);
+  const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || rawGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
+  const activeGallery = buildUniquePhotoPool(preset, st, [heroImg].concat(rawGallery));
+  const secondImg = activeGallery[1] || heroImg;
+  const thirdImg = activeGallery[2] || secondImg;
+  const fourthImg = activeGallery[4] || activeGallery[3] || thirdImg;
 
   const cleanWa = String(st.whatsapp || '612890345').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
@@ -2271,7 +2347,7 @@ function compileClientWebsiteHTML(st) {
         <h2>Así se trabaja en ${escapeHtml(st.name)}</h2>
         <div class="proceso">
           <figure>
-            <img src="${escapeHtml(secondImg)}" alt="Equipo e instalaciones de ${escapeHtml(st.name)}" />
+            <img src="${escapeHtml(fourthImg)}" alt="Equipo e instalaciones de ${escapeHtml(st.name)}" />
             <figcaption>Cuidamos cada entrega en ${escapeHtml(st.address)} (${escapeHtml(st.city)}).</figcaption>
           </figure>
           <ol class="pasos">
@@ -2523,25 +2599,22 @@ function compileClientWebsiteHTML(st) {
         });
       }
 
-      // Si está dentro del cuadro de vista previa de miweblocal.com (isEmbedded),
-      // hace el zoom del escudo automáticamente ("él tiene el zoom") sin obligar a hacer scroll interno:
+      // Tanto en el cuadro de vista previa (isEmbedded) como al abrir "Ver pantalla completa" (/sitio/),
+      // garantizamos que el zoom del escudo (1x -> 46x) funcione siempre automáticamente al entrar
+      // y también responda al scroll manual del usuario:
       if (isEmbedded) {
-        const cycleDuration = 7600; // 7.6s por ciclo completo
+        const cycleDuration = 7600; // 7.6s por ciclo completo en la miniatura
         function runEmbeddedZoomLoop(now) {
           if (!manualScrollActive && window.scrollY <= 8) {
             const elapsed = (now - autoZoomStart) % cycleDuration;
             let vAuto = 0;
             if (elapsed < 1200) {
-              // 0.0s - 1.2s: Muestra el Escudo Calado con la cámara moviéndose detrás
               vAuto = 0;
             } else if (elapsed < 3000) {
-              // 1.2s - 3.0s: Hace el Zoom 1x -> 46x atravesando el escudo hacia la portada
               vAuto = (elapsed - 1200) / 1800;
             } else if (elapsed < 6400) {
-              // 3.0s - 6.4s: Mantiene la portada abierta con el titular Serif y botones
               vAuto = 1;
             } else {
-              // 6.4s - 7.6s: Regresa suavemente al escudo para repetir la demostración
               vAuto = 1 - (elapsed - 6400) / 1200;
             }
             applyIntroProgress(vAuto, false);
@@ -2550,7 +2623,25 @@ function compileClientWebsiteHTML(st) {
         }
         requestAnimationFrame(runEmbeddedZoomLoop);
       } else {
+        // En "Ver pantalla completa" (/sitio/): muestra el escudo 0.85s y ejecuta el zoom cinemático 1x -> 46x
+        // automáticamente hacia la portada (salvo que el usuario ya esté haciendo scroll manual)
         updateIntroOnScroll();
+        const fullStart = performance.now();
+        function runFullscreenEntranceZoom(now) {
+          if (manualScrollActive || window.scrollY > 12) return;
+          const elapsed = now - fullStart;
+          if (elapsed < 850) {
+            applyIntroProgress(0, false);
+            requestAnimationFrame(runFullscreenEntranceZoom);
+          } else if (elapsed < 2650) {
+            const vFull = (elapsed - 850) / 1800;
+            applyIntroProgress(vFull, false);
+            requestAnimationFrame(runFullscreenEntranceZoom);
+          } else {
+            applyIntroProgress(1, false);
+          }
+        }
+        requestAnimationFrame(runFullscreenEntranceZoom);
       }
 
       // Escuchar comandos desde los botones de vista previa de index.html (sin conflicto de scroll en móvil)
