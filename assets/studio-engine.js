@@ -864,56 +864,85 @@ function buildTradeCapas(preset, st, srvList) {
 
 const CATEGORY_EXTRA_PHOTOS = {
   hogar: [
-    '/assets/real/carpinteria_hero.jpg',
     '/assets/real/reformas_work_1.jpg',
-    '/assets/real/reformas_hero.jpg',
     '/assets/real/reformas_work_2.jpg',
-    '/assets/real/cerrajeria_blindada.jpg',
     '/assets/real/cerrajeria_work_1.jpg',
-    '/assets/real/cerrajeria_bombin.jpg'
+    '/assets/real/cerrajeria_blindada.jpg',
+    '/assets/real/cerrajeria_llaves.jpg',
+    '/assets/real/reformas_hero.jpg',
+    '/assets/real/carpinteria_hero.jpg',
+    '/assets/real/aluminio_hero.jpg',
+    '/assets/real/cristalero_hero.jpg',
+    '/assets/real/pintor_hero.jpg',
+    '/assets/real/fontanero_hero.jpg',
+    '/assets/real/electricista_hero.jpg',
+    '/assets/real/llavero_hero.jpg',
+    '/assets/real/climatizacion_hero.jpg'
   ],
   motor: [
-    '/assets/real/lavadero_hero.jpg',
-    '/assets/real/taller_hero.jpg',
     '/assets/real/taller_work_1.jpg',
-    '/assets/real/motos_hero.jpg',
     '/assets/real/motos_work_1.jpg',
     '/assets/real/motos_work_2.jpg',
-    '/assets/real/cerrajeria_coche.jpg'
+    '/assets/real/lavadero_hero.jpg',
+    '/assets/real/taller_hero.jpg',
+    '/assets/real/chapa_pintura_hero.jpg',
+    '/assets/real/neumaticos_hero.jpg',
+    '/assets/real/compraventa_hero.jpg',
+    '/assets/real/motos_hero.jpg',
+    '/assets/real/cerrajeria_coche.jpg',
+    '/assets/real/grua_hero.jpg'
   ],
   belleza: [
-    '/assets/real/peluqueria_hero.jpg',
     '/assets/real/peluqueria_work_1.jpg',
     '/assets/real/peluqueria_work_2.jpg',
-    '/assets/real/barberia_hero.jpg',
     '/assets/real/barberia_work_1.jpg',
-    '/assets/real/comercio_regalo.jpg'
+    '/assets/real/peluqueria_hero.jpg',
+    '/assets/real/barberia_hero.jpg',
+    '/assets/real/estetica_hero.jpg',
+    '/assets/real/spa_hero.jpg',
+    '/assets/real/depilacion_hero.jpg',
+    '/assets/real/tattoo_hero.jpg'
   ],
   salud: [
-    '/assets/real/clinica_hero.jpg',
     '/assets/real/clinica_work_1.jpg',
     '/assets/real/clinica_work_2.jpg',
-    '/assets/real/fitness_hero.jpg',
-    '/assets/real/fitness_work_1.jpg',
-    '/assets/real/peluqueria_work_2.jpg'
+    '/assets/real/clinica_hero.jpg',
+    '/assets/real/fisioterapia_hero.jpg',
+    '/assets/real/podologia_hero.jpg',
+    '/assets/real/optica_hero.jpg',
+    '/assets/real/nutricionista_hero.jpg',
+    '/assets/real/psicologia_hero.jpg',
+    '/assets/real/logopedia_hero.jpg',
+    '/assets/real/veterinario_hero.jpg',
+    '/assets/real/peluqueria_canina_hero.jpg'
   ],
   hosteleria: [
-    '/assets/real/restaurante_hero.jpg',
     '/assets/real/restaurante_work_1.jpg',
     '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/restaurante_hero.jpg',
     '/assets/real/tapas_bar.jpg',
-    '/assets/real/terraza_bar.jpg',
+    '/assets/real/cafeteria_hero.jpg',
     '/assets/real/panaderia_brunch.jpg',
     '/assets/real/pizza_hero.jpg',
-    '/assets/real/asador_pollo.jpg'
+    '/assets/real/asador_pollo.jpg',
+    '/assets/real/carniceria_hero.jpg',
+    '/assets/real/fruteria_hero.jpg'
   ],
   comercio: [
-    '/assets/real/tienda_hero.jpg',
     '/assets/real/tienda_work_1.jpg',
     '/assets/real/tienda_work_2.jpg',
+    '/assets/real/fitness_work_1.jpg',
+    '/assets/real/tienda_hero.jpg',
     '/assets/real/floristeria_hero.jpg',
-    '/assets/real/comercio_regalo.jpg',
-    '/assets/real/reformas_work_1.jpg'
+    '/assets/real/inmobiliaria_hero.jpg',
+    '/assets/real/asesoria_hero.jpg',
+    '/assets/real/abogados_hero.jpg',
+    '/assets/real/fotografo_hero.jpg',
+    '/assets/real/eventos_hero.jpg',
+    '/assets/real/academia_hero.jpg',
+    '/assets/real/guarderia_hero.jpg',
+    '/assets/real/autoescuela_hero.jpg',
+    '/assets/real/bicicletas_hero.jpg'
   ]
 };
 
@@ -928,19 +957,21 @@ function buildUniquePhotoPool(preset, st, baseUrls) {
     }
   };
   (baseUrls || []).forEach(pushUnique);
-  const cat = preset && preset.cat ? preset.cat : 'comercio';
+  const cat = (preset && (preset.category || preset.cat)) ? (preset.category || preset.cat) : 'comercio';
   const extras = CATEGORY_EXTRA_PHOTOS[cat] || CATEGORY_EXTRA_PHOTOS.comercio;
   extras.forEach(pushUnique);
   CATEGORY_EXTRA_PHOTOS.comercio.forEach(pushUnique);
   return pool;
 }
 
-function buildTradeCasos(preset, st, srvList, galleryArr, heroImg) {
-  const pool = buildUniquePhotoPool(preset, st, [heroImg].concat(galleryArr || []));
-  const p0 = pool[0] || heroImg;
-  const p1 = pool[1] || p0;
-  const p2 = pool[2] || p1;
-  const p3 = pool[3] || p2;
+function buildTradeCasos(preset, st, srvList, uniquePool, heroImg) {
+  const pool = Array.isArray(uniquePool) && uniquePool.length >= 8
+    ? uniquePool
+    : buildUniquePhotoPool(preset, st, [heroImg].concat(uniquePool || []));
+  const p0 = pool[4] || pool[0] || heroImg;
+  const p1 = pool[5] || pool[1] || p0;
+  const p2 = pool[6] || pool[2] || p1;
+  const p3 = pool[7] || pool[3] || p2;
 
   const s0 = srvList[0] || { title: 'Servicio Integral', meta: 'Trabajo completo', price: 'Precio cerrado' };
   const s1 = srvList[1] || s0;
@@ -1012,9 +1043,10 @@ function compileClientWebsiteHTML(st) {
   const rawGallery = (customPhotos.length ? customPhotos : defaultGallery).map(resolveProjectAssetUrl);
   const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || rawGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
   const activeGallery = buildUniquePhotoPool(preset, st, [heroImg].concat(rawGallery));
-  const secondImg = activeGallery[1] || heroImg;
-  const thirdImg = activeGallery[2] || secondImg;
-  const fourthImg = activeGallery[4] || activeGallery[3] || thirdImg;
+  const afterImg = activeGallery[1] || heroImg;
+  const beforeImg = activeGallery[2] || afterImg;
+  const thirdImg = activeGallery[3] || beforeImg;
+  const fourthImg = activeGallery[8] || activeGallery[4] || thirdImg;
 
   const cleanWa = String(st.whatsapp || '612890345').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
@@ -1145,7 +1177,7 @@ function compileClientWebsiteHTML(st) {
   const legalHolderName = st.legalHolder || st.name;
   const legalNifText = st.legalNif ? ` · NIF/CIF: ${st.legalNif}` : '';
   const widgetHtml = buildSectorActionWidgetHTML(st, preset);
-  const firstPrice = (srvList[0] && srvList[0].price) ? srvList[0].price : 'Precio cerrado';
+  const firstPrice = (srvList[0] && srvList[0].price) ? String(srvList[0].price).replace(/^desde\s+/i, '') : 'Precio cerrado';
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -1659,29 +1691,39 @@ function compileClientWebsiteHTML(st) {
     position: absolute;
     inset: 0;
   }
+  .ad-img.despues {
+    filter: contrast(1.08) saturate(1.12) brightness(1.03);
+  }
   .ad-antes {
-    filter: grayscale(0.65) contrast(0.86) brightness(0.68) sepia(0.18);
-    clip-path: inset(0 var(--x, 65%) 0 0);
+    filter: grayscale(0.78) contrast(0.84) brightness(0.64) sepia(0.22);
+    clip-path: inset(0 calc(100% - var(--x, 38%)) 0 0);
   }
   .ad-divisor {
     position: absolute;
     top: 0; bottom: 0;
-    left: calc(100% - var(--x, 65%));
-    width: 1.5px;
+    left: var(--x, 38%);
+    width: 2px;
     background: var(--oro);
-    box-shadow: 0 0 16px rgba(200, 165, 72, 0.8);
+    box-shadow: 0 0 16px rgba(200, 165, 72, 0.85);
     pointer-events: none;
+    z-index: 2;
   }
   .ad .et {
     font-family: var(--serif);
     color: var(--tinta);
-    background: rgba(10, 19, 34, 0.82);
+    background: rgba(10, 19, 34, 0.84);
     border: 1px solid var(--filete);
-    padding: 6px 12px;
-    font-size: 18px;
+    padding: 5px 11px;
+    font-size: 16px;
     position: absolute;
     top: 14px; left: 14px;
     z-index: 3;
+  }
+  .ad .et-despues {
+    left: auto;
+    right: 14px;
+    color: var(--oro);
+    border-color: var(--oro);
   }
   .ad.salio .et { color: var(--oro); border-color: var(--oro); }
   .ad .riel {
@@ -1693,7 +1735,7 @@ function compileClientWebsiteHTML(st) {
   }
   .ad .avance {
     height: 2px;
-    width: var(--x, 35%);
+    width: var(--x, 38%);
     background: var(--oro);
     position: absolute;
     top: 0; left: 0;
@@ -1701,7 +1743,7 @@ function compileClientWebsiteHTML(st) {
   }
   .ad .asa {
     top: 0;
-    left: var(--x, 35%);
+    left: var(--x, 38%);
     background: var(--oro);
     border-radius: 50%;
     width: 22px; height: 22px;
@@ -2145,7 +2187,6 @@ function compileClientWebsiteHTML(st) {
         <!-- Cámara en movimiento continuo detrás del emblema -->
         <div class="fondo-cam" id="fondo-cam">
           <img class="cam-plane cam-plane-1" src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)} en ${escapeHtml(st.city)}" />
-          <img class="cam-plane cam-plane-2" src="${escapeHtml(secondImg)}" alt="${escapeHtml(sectorBadge)} · Vista 2" />
           <div class="cam-sheen"></div>
         </div>
 
@@ -2191,6 +2232,7 @@ function compileClientWebsiteHTML(st) {
           <div class="acciones">
             <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)}</button>
             <a class="btn btn-linea" href="#servicios">Ver servicios y precios</a>
+            <button type="button" class="btn btn-linea" id="btn-replay-intro" onclick="replayPrestigeIntro()" title="Repetir animación de portada">🎬 Repetir entrada</button>
           </div>
           <div class="nota-google">
             <b>5,0</b>
@@ -2266,16 +2308,17 @@ function compileClientWebsiteHTML(st) {
         </div>
 
         <div>
-          <div class="ad" id="ad" style="--x:36%;">
-            <img class="ad-img" src="${escapeHtml(heroImg)}" alt="Resultado final en ${escapeHtml(st.name)}" />
-            <img class="ad-img ad-antes" src="${escapeHtml(secondImg)}" alt="Estado previo antes de ${escapeHtml(st.name)}" />
+          <div class="ad" id="ad" style="--x:38%;">
+            <img class="ad-img despues" src="${escapeHtml(afterImg)}" alt="Después · Resultado final en ${escapeHtml(st.name)}" />
+            <img class="ad-img ad-antes antes" src="${escapeHtml(beforeImg)}" alt="Antes · Estado previo antes de ${escapeHtml(st.name)}" />
             <div class="ad-divisor"></div>
-            <span class="et" data-et>Entró así</span>
+            <span class="et et-antes">Antes · Sin tratar</span>
+            <span class="et et-despues" data-et>Después · Terminado</span>
             <div class="riel">
               <div class="avance"></div>
               <div class="asa"></div>
             </div>
-            <input type="range" id="ad-range" min="0" max="1000" value="360" aria-label="Comparar antes y después" />
+            <input type="range" id="ad-range" min="0" max="1000" value="380" aria-label="Comparar antes y después" />
           </div>
           <p style="color:var(--tinta-2); font-size:13.5px; margin-top:10px; text-align:center;">
             ${escapeHtml(st.name)} · Trabajo real en ${escapeHtml(st.city)}
@@ -2518,7 +2561,7 @@ function compileClientWebsiteHTML(st) {
       const isEmbedded = (function() {
         try {
           if (window.self === window.top) return false;
-          if (window.parent && window.parent.location && /\/sitio(\/|$)/i.test(window.parent.location.pathname)) return false;
+          if (window.parent && window.parent.location && String(window.parent.location.pathname || '').toLowerCase().includes('/sitio')) return false;
           return true;
         } catch (e) { return true; }
       })();
@@ -2566,6 +2609,39 @@ function compileClientWebsiteHTML(st) {
 
       let manualScrollActive = false;
       let autoZoomStart = performance.now();
+      let fullStart = performance.now();
+      let fullAnimRunning = false;
+
+      function runFullscreenEntranceZoom(now) {
+        if (manualScrollActive || window.scrollY > 12) {
+          fullAnimRunning = false;
+          return;
+        }
+        const elapsed = now - fullStart;
+        if (elapsed < 750) {
+          applyIntroProgress(0, false);
+          requestAnimationFrame(runFullscreenEntranceZoom);
+        } else if (elapsed < 2550) {
+          const vFull = (elapsed - 750) / 1800;
+          applyIntroProgress(vFull, false);
+          requestAnimationFrame(runFullscreenEntranceZoom);
+        } else {
+          applyIntroProgress(1, false);
+          fullAnimRunning = false;
+        }
+      }
+
+      window.replayPrestigeIntro = function() {
+        manualScrollActive = false;
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        applyIntroProgress(0, false);
+        autoZoomStart = performance.now();
+        fullStart = performance.now();
+        if (!isEmbedded && !fullAnimRunning) {
+          fullAnimRunning = true;
+          requestAnimationFrame(runFullscreenEntranceZoom);
+        }
+      };
 
       function updateIntroOnScroll() {
         const rect = intro.getBoundingClientRect();
@@ -2623,24 +2699,9 @@ function compileClientWebsiteHTML(st) {
         }
         requestAnimationFrame(runEmbeddedZoomLoop);
       } else {
-        // En "Ver pantalla completa" (/sitio/): muestra el escudo 0.85s y ejecuta el zoom cinemático 1x -> 46x
-        // automáticamente hacia la portada (salvo que el usuario ya esté haciendo scroll manual)
         updateIntroOnScroll();
-        const fullStart = performance.now();
-        function runFullscreenEntranceZoom(now) {
-          if (manualScrollActive || window.scrollY > 12) return;
-          const elapsed = now - fullStart;
-          if (elapsed < 850) {
-            applyIntroProgress(0, false);
-            requestAnimationFrame(runFullscreenEntranceZoom);
-          } else if (elapsed < 2650) {
-            const vFull = (elapsed - 850) / 1800;
-            applyIntroProgress(vFull, false);
-            requestAnimationFrame(runFullscreenEntranceZoom);
-          } else {
-            applyIntroProgress(1, false);
-          }
-        }
+        fullStart = performance.now();
+        fullAnimRunning = true;
         requestAnimationFrame(runFullscreenEntranceZoom);
       }
 
@@ -2649,9 +2710,7 @@ function compileClientWebsiteHTML(st) {
         if (!ev || !ev.data || ev.data.type !== 'MIWEB_PREVIEW_NAV') return;
         const target = ev.data.target;
         if (target === 'intro') {
-          manualScrollActive = false;
-          autoZoomStart = performance.now() - 1050; // Arranca el zoom al instante
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.replayPrestigeIntro();
           return;
         }
         manualScrollActive = true;
@@ -2697,11 +2756,8 @@ function compileClientWebsiteHTML(st) {
         const val = Number(range.value) / 1000;
         const pct = (val * 100).toFixed(1) + '%';
         ad.style.setProperty('--x', pct);
-        const salio = val > 0.68;
+        const salio = val < 0.45;
         ad.classList.toggle('salio', salio);
-        if (et) {
-          et.textContent = salio ? 'Salió así' : (val > 0.40 ? 'Trabajando…' : 'Entró así');
-        }
       }
       range.addEventListener('input', syncAd);
       syncAd();
