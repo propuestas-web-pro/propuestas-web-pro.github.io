@@ -191,6 +191,10 @@ async function miwebCheckDomainLive(rawDomain, bizName, city) {
    2. DETECTOR INTELIGENTE DE SECTOR + ESCUDO ANTI-CURIOSOS TIKTOK + BUSCADOR LOCAL
    ========================================================================== */
 function miwebDetectSectorFromText(text) {
+  if (typeof miwebDetectOficioMatch === 'function') {
+    const m = miwebDetectOficioMatch(text);
+    if (m && m.matched) return m.id;
+  }
   const t = String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   if (/(peluquer|salon|cabello|mechas|balayage|estilis|melena|keratina|alisado|peinad|tinte)/.test(t)) return 'peluqueria';
   if (/(clinica|dental|dentista|fisio|podolog|medic|salud|psicolog|optica|veterinar|ortodon)/.test(t)) return 'clinica';

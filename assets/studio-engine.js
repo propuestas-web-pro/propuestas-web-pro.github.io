@@ -1,568 +1,46 @@
 /* ==========================================================================
-   MI WEB LOCAL — V3 VISUAL ENGINE, SECTOR SOLVERS, 2-TIER LADDER & COMPILER
+   MIWEBLOCAL.COM — COMPILADOR DE WEBS EN VIVO (MOTOR UNIVERSAL DE +65 OFICIOS)
+   Incluye los 8 Módulos Interactivos de Solución al WhatsApp según oficio:
+   1. medidas_presupuesto     (Carpintero, Aluminio, Cristalero, Tapicero, Reformas...)
+   2. urgencia_o_llaves       (Cerrajero/Llavero, Fontanero, Electricista, Grúa...)
+   3. motor_diagnostico       (Taller Mecánico, Chapa, Neumáticos, Lavadero, Motos...)
+   4. recepcion_taller_local  (Móviles, Tintorería, Zapatería, Bicicletas/Patinetes...)
+   5. encargo_sin_cola        (Asador, Panadería, Pizzería, Carnicería, Floristería...)
+   6. mesa_carta              (Restaurante, Bar de Tapas, Cafetería y Brunch)
+   7. agenda_citas            (Peluquería, Barbería, Clínica, Fisio, Mascotas, Autoescuela...)
+   8. filtro_clientes         (Inmobiliaria, Abogados, Asesoría, Fotógrafo, Eventos...)
    ========================================================================== */
 
-const STORAGE_KEY = 'miweblocal_platform_v6';
+const STORAGE_KEY = 'miweblocal_platform_v5';
 const FATHI_WHATSAPP = '34632768152';
 
-// 16 Sector Presets with Real Editorial Photography & Conversion Copy (Zero Mockups, White + Royal Blue First)
-const SECTOR_PRESETS = {
-  peluqueria: {
-    label: 'Peluquería y Salón',
-    icon: 'ph-scissors',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Salón Aura Estilistas',
-    yearsExp: 'Salón de Belleza · Cita Online',
-    tagline: 'Coloración luminosa, mechas balayage y estilismo a tu medida.',
-    story: 'Diagnóstico capilar personalizado, productos respetuosos con tu melena y reserva directa en 15 segundos sin llamadas ni esperas.',
-    painTag: 'No pares de trabajar con una clienta para contestar precios y huecos por teléfono',
-    solves: [
-      'Carta clara de mechas, color, corte y tratamientos con precios visibles 24h',
-      'Tus clientas eligen servicio y tramo horario directo a tu WhatsApp',
-      'Llenas huecos entre semana sin pagar el 25% de comisión a apps de reservas',
-      'Imagen limpia, luminosa y de salón de primer nivel desde el móvil'
-    ],
-    heroImage: '/assets/real/peluqueria_hero.jpg',
-    gallery: [
-      '/assets/real/peluqueria_hero.jpg',
-      '/assets/real/peluqueria_work_1.jpg',
-      '/assets/real/peluqueria_work_2.jpg'
-    ],
-    defaultReviews: [
-      { author: 'Marta Gómez', rating: 5, text: 'Me hicieron unas mechas balayage preciosas y súper naturales. Ver los precios en la web y pedir cita por WhatsApp fue comodísimo.' },
-      { author: 'Lucía Serrano', rating: 5, text: 'El salón tiene una luz increíble, son puntuales al minuto y te asesoran de verdad antes de tocar el cabello.' },
-      { author: 'Carmen Ruiz', rating: 5, text: 'Mi peluquería de confianza. Salgo siempre encantada con el corte y el tratamiento de hidratación.' }
-    ],
-    services: [
-      { title: 'Mechas Balayage + Matiz + Peinado', meta: '150 min · Diagnóstico + Protector capilar incluido', price: 'Desde 78 €' },
-      { title: 'Corte de Diseño + Lavado Spa + Brushing', meta: '50 min · Estudio de rostro y acabado pulido', price: '34 €' },
-      { title: 'Coloración Orgánica Sin Amoniaco', meta: '75 min · Cobertura total y brillo espejo', price: '46 €' },
-      { title: 'Tratamiento Keratina Anti-Encrespamiento', meta: '120 min · Melena suave y lisa hasta 4 meses', price: '65 €' },
-      { title: 'Manicura Semipermanente con Nivelación', meta: '45 min · Base vitamínica de larga duración', price: '26 €' },
-      { title: 'Peinado y Maquillaje Invitada / Eventos', meta: '70 min · Acabado duradero a medida', price: '69 €' }
-    ]
-  },
-  clinica: {
-    label: 'Clínica y Salud',
-    icon: 'ph-heartbeat',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Clínica Dental Sonrisas',
-    yearsExp: 'Centro Sanitario · Primera Visita',
-    tagline: 'Odontología avanzada, estética dental y salud integral sin esperas.',
-    story: 'Tecnología de diagnóstico digital 3D, trato cercano y primera valoración completa para cuidar de ti y tu familia.',
-    painTag: 'Transmite la confianza médica que un paciente necesita antes de elegir clínica',
-    solves: [
-      'Especialidades, equipo y tratamientos explicados con total claridad',
-      'Solicitud de primera visita directa al WhatsApp de recepción',
-      'Capta pacientes de tu ciudad que buscan dentista o fisio en Google',
-      'Mapa GPS en 1 toque y horarios siempre actualizados'
-    ],
-    heroImage: '/assets/real/clinica_hero.jpg',
-    gallery: [
-      '/assets/real/clinica_hero.jpg',
-      '/assets/real/clinica_work_1.jpg',
-      '/assets/real/peluqueria_work_2.jpg'
-    ],
-    defaultReviews: [
-      { author: 'Elena Navarro', rating: 5, text: 'Trato impecable desde recepción. Me explicaron todo el presupuesto sin letra pequeña y cero dolor.' },
-      { author: 'Javier Morales', rating: 5, text: 'Instalaciones blanquísimas y muy modernas. Pedí la primera revisión desde el móvil y me atendieron al día siguiente.' },
-      { author: 'Patricia Vidal', rating: 5, text: 'Grandes profesionales, puntuales y muy cercanos con los niños. Totalmente recomendables.' }
-    ],
-    services: [
-      { title: '1ª Visita + Diagnóstico Digital Completo', meta: '40 min · Revisión y plan personalizado', price: 'Gratis' },
-      { title: 'Higiene Dental Avanzada por Ultrasonidos', meta: '45 min · Pulido antimanchas incluido', price: '48 €' },
-      { title: 'Blanqueamiento Clínico LED en Consulta', meta: '60 min · Hasta 4 tonos más blancos en 1 sesión', price: '195 €' },
-      { title: 'Ortodoncia Invisible Transparente', meta: 'Estudio 3D previo · Financiación sin intereses', price: 'Consultar' },
-      { title: 'Implante Dental de Carga Inmediata', meta: 'Titanio grado médico con garantía certificada', price: 'Valoración' },
-      { title: 'Sesión de Fisioterapia / Rehabilitación', meta: '50 min · Tratamiento manual individual', price: '38 €' }
-    ]
-  },
-  estetica: {
-    label: 'Estética y Uñas',
-    icon: 'ph-sparkle',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Maison Lumière Estética',
-    yearsExp: 'Estética Avanzada · Cabina Privada',
-    tagline: 'Cuidado facial luminoso, manicura rusa y rituales de bienestar.',
-    story: 'Diagnóstico de piel gratuito, cosmética de alta eficacia y reserva cómoda desde tu móvil sin llamadas.',
-    painTag: 'Muestra tu carta de tratamientos con imagen cuidada para atraer clientela fiel',
-    solves: [
-      'Carta ordenada de tratamientos faciales, corporales, cejas y uñas',
-      'Reserva de cita por tramo horario directa a tu WhatsApp',
-      'Atrae clientas que valoran la higiene y pagan tu tarifa sin regatear',
-      '0% comisiones por cita reservada'
-    ],
-    heroImage: '/assets/real/peluqueria_work_2.jpg',
-    gallery: [
-      '/assets/real/peluqueria_work_2.jpg',
-      '/assets/real/peluqueria_hero.jpg',
-      '/assets/real/peluqueria_work_1.jpg'
-    ],
-    services: [
-      { title: 'Higiene Facial Profunda Hydraglow', meta: '60 min · Extracción suave + vitamina C', price: '52 €' },
-      { title: 'Manicura Rusa con Nivelación', meta: '55 min · Acabado limpio y duradero', price: '28 €' },
-      { title: 'Lifting de Pestañas + Diseño de Cejas', meta: '45 min · Mirada natural durante 6 semanas', price: '42 €' },
-      { title: 'Indiba Facial Reafirmante', meta: '50 min · Luminosidad desde la 1ª sesión', price: '65 €' }
-    ]
-  },
-  restaurante: {
-    label: 'Restaurante y Bar',
-    icon: 'ph-fork-knife',
-    actionType: 'mesa',
-    defaultTheme: 'royal',
-    defaultName: 'Casa Olivo Cocina & Terraza',
-    yearsExp: 'Cocina de Mercado · Reserva Directa',
-    tagline: 'Producto fresco de temporada, arroces al momento y terraza soleada.',
-    story: 'Consulta nuestra carta actualizada con precios claros y reserva tu mesa en salón o terraza en 15 segundos sin intermediarios.',
-    painTag: 'Que tus platos entren por los ojos y reserven mesa sin pagar comisiones a portales',
-    solves: [
-      'Carta limpia y rápida en el móvil (sin PDFs borrosos que tardan en abrir)',
-      'Reserva de mesa en terraza o comedor en 3 toques directo a tu WhatsApp',
-      'Pedidos para recoger sin colas ni llamadas en mitad del servicio',
-      'Te ahorras el 25% de comisión por comensal o pedido'
-    ],
-    heroImage: '/assets/real/restaurante_work_2.jpg',
-    gallery: [
-      '/assets/real/restaurante_work_2.jpg',
-      '/assets/real/restaurante_work_1.jpg',
-      '/assets/real/restaurante_hero.jpg'
-    ],
-    defaultReviews: [
-      { author: 'Carlos Mendoza', rating: 5, text: 'Producto espectacular, terraza muy agradable y atención de diez. Reservamos mesa desde su web en medio minuto.' },
-      { author: 'Sonia Beltrán', rating: 5, text: 'Da gusto ver la carta tan clara en el móvil con todos los precios antes de ir. El provolone y las croquetas son obligatorios.' },
-      { author: 'Raúl Ortega', rating: 5, text: 'Raciones generosas, ambiente luminoso y servicio rapidísimo. Repetiremos seguro este fin de semana.' }
-    ],
-    services: [
-      { title: 'Arroz Meloso de Marisco (mín. 2 pers.)', meta: 'Caldo casero de roca · Precio por persona', price: '19,50 €' },
-      { title: 'Provolone Fundido al Horno de Leña', meta: 'Con orégano fresco y pan de masa madre', price: '11,90 €' },
-      { title: 'Solomillo Ibérico a la Brasa', meta: 'Patatas gajo caseras y pimientos del padrón', price: '18,90 €' },
-      { title: 'Croquetas Cremosas de Jamón (6 uds.)', meta: 'Boleadas a mano cada mañana', price: '9,50 €' },
-      { title: 'Menú Mediodía Completo (Martes a Viernes)', meta: 'Entrante + Principal + Postre casero + Bebida', price: '16,50 €' },
-      { title: 'Tarta de Queso Cremosa al Horno', meta: 'Receta de la casa · Ración individual', price: '6,50 €' }
-    ]
-  },
-  cafeteria: {
-    label: 'Cafetería y Brunch',
-    icon: 'ph-coffee',
-    actionType: 'mesa',
-    defaultTheme: 'royal',
-    defaultName: 'Alma Café & Brunch',
-    yearsExp: 'Specialty Coffee · Obrador',
-    tagline: 'Café 100% arábica, desayunos artesanos y repostería recién horneada.',
-    story: 'Tostadas de masa madre, zumo recién exprimido y terraza tranquila en pleno centro.',
-    painTag: 'Enseña tu carta de desayunos y brunch con fotos luminosas que abren el apetito',
-    solves: [
-      'Carta digital instantánea con precios claros en cualquier móvil',
-      'Reserva de mesa para desayunos y grupos directa a tu WhatsApp',
-      'Encargos de tartas y desayunos para llevar sin esperas',
-      '0% comisiones: todo el margen se queda en tu local'
-    ],
-    heroImage: '/assets/real/restaurante_work_2.jpg',
-    gallery: [
-      '/assets/real/restaurante_work_2.jpg',
-      '/assets/real/tienda_work_1.jpg',
-      '/assets/real/restaurante_work_1.jpg'
-    ],
-    services: [
-      { title: 'Menú Brunch Completo', meta: 'Café especialidad + Zumo natural + Tosta + Dulce', price: '15,90 €' },
-      { title: 'Tosta Ibérica con Aceite Virgen Extra', meta: 'Pan rústico de masa madre tostado al momento', price: '6,80 €' },
-      { title: 'Cappuccino Doble Origen Especialidad', meta: 'Leche fresca cremada o bebida vegetal', price: '3,20 €' },
-      { title: 'Tarta Artesana por Encargo (8-10 raciones)', meta: 'Reserva con 24h por WhatsApp', price: '28,00 €' }
-    ]
-  },
-  pizzeria: {
-    label: 'Pizzería y Delivery',
-    icon: 'ph-pizza',
-    actionType: 'mesa',
-    defaultTheme: 'royal',
-    defaultName: 'Forno Bianco Pizzería',
-    yearsExp: 'Pedidos Directos · 0% Comisión',
-    tagline: 'Masa madre de 72 horas al horno de piedra para recoger o domicilio.',
-    story: 'Haz tu pedido directo desde el móvil sin recargos ni comisiones de plataformas externas.',
-    painTag: 'Deja de regalar el 30% de cada pedido a las aplicaciones de reparto',
-    solves: [
-      'Carta interactiva con menús, ofertas y precios siempre al día',
-      'Pedidos para recoger o envío propios directos a tu WhatsApp',
-      'Reserva rápida de mesa en 3 toques',
-      '0% comisiones para toda la vida'
-    ],
-    heroImage: '/assets/real/restaurante_work_1.jpg',
-    gallery: [
-      '/assets/real/restaurante_work_1.jpg',
-      '/assets/real/restaurante_hero.jpg',
-      '/assets/real/restaurante_work_2.jpg'
-    ],
-    services: [
-      { title: 'Pizza Trufada Fior di Latte', meta: 'Masa fermentada 72h · Horno de piedra', price: '13,50 €' },
-      { title: 'Oferta 2 Pizzas Artesanas + Entrante', meta: 'Recogida en 15 min o envío propio', price: '23,90 €' },
-      { title: 'Provolone Fundido con Focaccia', meta: 'Receta italiana tradicional', price: '10,50 €' },
-      { title: 'Tiramisú Casero Mascarpone', meta: 'Elaborado a diario', price: '5,90 €' }
-    ]
-  },
-  reformas: {
-    label: 'Reformas y Oficios',
-    icon: 'ph-house-line',
-    actionType: 'reformas',
-    defaultTheme: 'royal',
-    defaultName: 'Estudio Norte Reformas',
-    yearsExp: 'Reformas Integrales · Plazo Cerrado',
-    tagline: 'Reformas de cocinas, baños y viviendas completas con presupuesto cerrado.',
-    story: 'Coordinamos todos los gremios, cumplimos fechas por contrato y te enviamos valoración detallada sin compromiso.',
-    painTag: 'Consigue obras rentables enseñando acabados reales de nivel antes de visitar',
-    solves: [
-      'Solicitud de presupuesto filtrada por tipo de reforma y metros',
-      'Galería luminosa de cocinas, baños y salones terminados',
-      'Atrae propietarios serios y filtra curiosos automáticamente',
-      'Recibe los datos de la obra en tu WhatsApp mientras trabajas'
-    ],
-    heroImage: '/assets/real/reformas_work_2.jpg',
-    gallery: [
-      '/assets/real/reformas_work_2.jpg',
-      '/assets/real/reformas_work_1.jpg',
-      '/assets/real/reformas_hero.jpg'
-    ],
-    defaultReviews: [
-      { author: 'Alejandro Cano', rating: 5, text: 'Reformaron nuestra cocina y salón cumpliendo exactamente el día prometido. Limpios, detallistas y presupuesto sin sorpresas.' },
-      { author: 'Beatriz Soler', rating: 5, text: 'Cambiamos bañera por plato de ducha y muebles de baño. En 48 horas estaba todo impecable.' },
-      { author: 'Fernando Gil', rating: 5, text: 'Da mucha tranquilidad tratar con un equipo serio que te enseña trabajos reales y responde al momento.' }
-    ],
-    services: [
-      { title: 'Visita Técnica + Medición + Presupuesto', meta: 'Entrega detallada en 48h sin compromiso', price: 'Gratis' },
-      { title: 'Cambio de Bañera por Plato de Ducha', meta: 'Antideslizante + mampara cristal en 24h', price: '1.190 €' },
-      { title: 'Reforma Completa de Cocina a Medida', meta: 'Mobiliario, encimera porcelánica e instalaciones', price: 'A medida' },
-      { title: 'Reforma Integral de Vivienda Llave en Mano', meta: 'Todos los gremios coordinados con garantía', price: 'Consultar' }
-    ]
-  },
-  barberia: {
-    label: 'Barbería Masculina',
-    icon: 'ph-scissors',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Barbería Nexo Studio',
-    yearsExp: 'Barbería · Cita Directa',
-    tagline: 'Degradados precisos, corte clásico a tijera y ritual de barba.',
-    story: 'Puntualidad exacta, ambiente cuidado y reserva de hora desde el móvil en 15 segundos sin llamadas.',
-    painTag: 'No interrumpas un corte a mitad para contestar WhatsApps preguntando huecos',
-    solves: [
-      'Agenda clara: el cliente elige corte y hora disponible sin llamarte',
-      'Tarifas transparentes visibles las 24 horas',
-      'Llenas huecos libres incluso de noche cuando el local está cerrado',
-      '0% comisiones por cita: cada cliente va directo a tu móvil'
-    ],
-    heroImage: '/assets/real/barberia_hero.jpg',
-    gallery: [
-      '/assets/real/barberia_hero.jpg',
-      '/assets/real/barberia_work_1.jpg',
-      '/assets/real/peluqueria_hero.jpg'
-    ],
-    services: [
-      { title: 'Corte Degradado / Skin Fade + Lavado', meta: '35 min · Acabado limpio con peinado', price: '17 €' },
-      { title: 'Pack Completo Corte + Barba con Toalla Caliente', meta: '50 min · Perfilado a navaja y aceites', price: '25 €' },
-      { title: 'Arreglo y Perfilado de Barba', meta: '25 min · Bálsamo hidratante', price: '13 €' },
-      { title: 'Corte Clásico Ejecutivo / Infantil', meta: '30 min · Puntualidad sin esperas', price: '14 €' }
-    ]
-  },
-  motos: {
-    label: 'Motos y Concesionario',
-    icon: 'ph-motorcycle',
-    actionType: 'motor',
-    defaultTheme: 'royal',
-    defaultName: 'Motor Estudio Concesionario',
-    yearsExp: 'Exposición · Stock y Taller',
-    tagline: 'Motos nuevas y de ocasión revisadas con garantía oficial.',
-    story: 'Exposición física, revisión completa en 60 puntos, financiación rápida y taller multimarca propio.',
-    painTag: 'Enseña tu stock y precios claros 24h sin mandar fotos una por una',
-    solves: [
-      'Escaparate ordenado con vehículos, kilómetros, precios y garantía',
-      'Consultas filtradas por modelo concreto directas a tu WhatsApp',
-      'Reserva rápida de cita para revisión o neumáticos en taller',
-      'Ubicación exacta de tu exposición con ruta GPS'
-    ],
-    heroImage: '/assets/real/motos_hero.jpg',
-    gallery: [
-      '/assets/real/motos_hero.jpg',
-      '/assets/real/motos_work_1.jpg',
-      '/assets/real/motos_work_2.jpg'
-    ],
-    services: [
-      { title: 'Scooter Urbano 125cc ABS (Nuevo)', meta: 'Matriculación y casco incluidos · Financiación', price: '3.290 €' },
-      { title: 'Maxi Scooter 350cc Ocasión Certificada', meta: '8.200 km · 1 año de garantía total', price: '4.690 €' },
-      { title: 'Revisión Oficial Multimarca + Diagnosis', meta: 'Entrega en el mismo día con cita previa', price: 'Desde 69 €' },
-      { title: 'Tasación de Tu Moto Actual como Parte de Pago', meta: 'Valoración en 15 min sin compromiso', price: 'Gratis' }
-    ]
-  },
-  taller: {
-    label: 'Taller y Automoción',
-    icon: 'ph-wrench',
-    actionType: 'motor',
-    defaultTheme: 'royal',
-    defaultName: 'AutoPrecisión Taller Multimarca',
-    yearsExp: 'Mecánica · Pre-ITV · Chapa',
-    tagline: 'Mecánica multimarca, diagnosis avanzada y mantenimiento con precio cerrado.',
-    story: 'Te damos presupuesto exacto antes de intervenir en tu vehículo y cumplimos el plazo de entrega.',
-    painTag: 'Recibe citas ordenadas con matrícula y síntoma antes de que llegue el coche',
-    solves: [
-      'El cliente elige revisión, frenos, neumáticos, Pre-ITV o chapa y pide hora',
-      'Envío directo de matrícula o foto del roce a tu WhatsApp',
-      'Transmite seriedad de servicio oficial desde el primer vistazo',
-      'Botón directo de Google Maps hasta la puerta de tu taller'
-    ],
-    heroImage: '/assets/real/taller_work_1.jpg',
-    gallery: [
-      '/assets/real/taller_work_1.jpg',
-      '/assets/real/taller_hero.jpg',
-      '/assets/real/motos_hero.jpg'
-    ],
-    services: [
-      { title: 'Mantenimiento Completo Aceite + Filtros', meta: 'Sello de mantenimiento sin perder garantía', price: 'Desde 95 €' },
-      { title: 'Diagnosis Electrónica + Revisión Pre-ITV', meta: 'Chequeo de 40 puntos de seguridad', price: '39 €' },
-      { title: 'Carga de Climatización + Higienización', meta: 'Listo en 45 minutos con cita previa', price: '59 €' },
-      { title: 'Valoración de Chapa y Pintura por Foto', meta: 'Respuesta rápida por WhatsApp', price: 'Gratis' }
-    ]
-  },
-  tienda: {
-    label: 'Tienda y Comercio',
-    icon: 'ph-storefront',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Atelier Comercio Local',
-    yearsExp: 'Comercio Local · Encargos 24h',
-    tagline: 'Selección cuidada de productos con reserva rápida y recogida sin esperas.',
-    story: 'Descubre nuestras novedades desde el móvil y haz tu encargo directo por WhatsApp con trato cercano.',
-    painTag: 'Vende y recibe encargos las 24h sin depender de que el algoritmo enseñe tus historias',
-    solves: [
-      'Catálogo limpio con fotos reales, precios y opciones disponibles',
-      'Encargos para recoger en tienda o envío local directos a tu WhatsApp',
-      '0% comisiones por pedido ni pasarelas complicadas de mantener',
-      'Enlace profesional para tu perfil de Instagram, TikTok y Google'
-    ],
-    heroImage: '/assets/real/tienda_hero.jpg',
-    gallery: [
-      '/assets/real/tienda_hero.jpg',
-      '/assets/real/tienda_work_1.jpg',
-      '/assets/real/tienda_work_2.jpg'
-    ],
-    services: [
-      { title: 'Selección Destacada de Temporada', meta: 'Edición cuidada · Reserva inmediata', price: '39,90 €' },
-      { title: 'Pack Regalo Personalizado con Dedicatoria', meta: 'Preparado a medida para recoger hoy', price: '49,00 €' },
-      { title: 'Cesta Especial / Lote Completo', meta: 'El más solicitado · Presentación cuidada', price: '68,00 €' },
-      { title: 'Recogida Rápida en Tienda', meta: 'Listo a la hora que nos indiques', price: '0 €' }
-    ]
-  },
-  fitness: {
-    label: 'Fitness y Pilates',
-    icon: 'ph-barbell',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Estudio Balance Pilates & Fuerza',
-    yearsExp: 'Grupos Reducidos · Entrenamiento',
-    tagline: 'Pilates Studio, entrenamiento personal y salud postural en grupos reducidos.',
-    story: 'Reserva tu sesión de prueba inicial y entrena con planificación adaptada a tu nivel.',
-    painTag: 'Capta nuevos alumnos todas las semanas mostrando horarios y bonos claros',
-    solves: [
-      'Bonos mensuales, horarios y tarifas explicados sin confusión',
-      'Reserva directa de clase de prueba o valoración física inicial',
-      'Ideal para estudios de pilates, yoga, box o entrenadores personales',
-      'Contacto directo a tu WhatsApp sin intermediarios'
-    ],
-    heroImage: '/assets/real/fitness_hero.jpg',
-    gallery: [
-      '/assets/real/fitness_hero.jpg',
-      '/assets/real/fitness_work_1.jpg',
-      '/assets/real/peluqueria_work_2.jpg'
-    ],
-    services: [
-      { title: 'Sesión de Prueba + Valoración Postural', meta: '50 min · Conoce el estudio sin compromiso', price: '12 €' },
-      { title: 'Bono Pilates Studio (2 clases/semana)', meta: 'Grupos reducidos de máx. 6 alumnos', price: '75 €/mes' },
-      { title: 'Entrenamiento Funcional Fuerza & Salud', meta: 'Turnos de mañana y tarde', price: '65 €/mes' },
-      { title: 'Entrenamiento Personal Individual 1 a 1', meta: 'Planificación y seguimiento a medida', price: '38 €' }
-    ]
-  },
-  gimnasio: {
-    label: 'Gimnasio y Entrenador',
-    icon: 'ph-barbell',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Kinetic Centro de Entrenamiento',
-    yearsExp: 'Entrenamiento · Captación Directa',
-    tagline: 'Fuerza, readaptación y entrenamiento personal con resultados medibles.',
-    story: 'Empieza con una valoración inicial personalizada presencial u online.',
-    painTag: 'Convierte visitas de Instagram y Google en reservas de clase de prueba',
-    solves: [
-      'Tarifas y planes claros en una sola vista limpia',
-      'Reserva de prueba inicial en 15 segundos por WhatsApp',
-      '0% comisiones ni cuotas de plataforma',
-      'Panel móvil para actualizar horarios cuando quieras'
-    ],
-    heroImage: '/assets/real/fitness_work_1.jpg',
-    gallery: [
-      '/assets/real/fitness_work_1.jpg',
-      '/assets/real/fitness_hero.jpg'
-    ],
-    services: [
-      { title: 'Valoración Física Inicial + Sesión Prueba', meta: '45 min · Estudio de objetivos', price: 'Gratis' },
-      { title: 'Grupos Reducidos Fuerza (3 días/semana)', meta: 'Máximo 8 personas por entrenador', price: '69 €/mes' },
-      { title: 'Bono Entrenamiento Personal 1 a 1', meta: 'Seguimiento semanal completo', price: '120 €/mes' }
-    ]
-  },
-  urgencias: {
-    label: 'Cerrajería y Asistencia 24h',
-    icon: 'ph-key',
-    actionType: 'urgencia',
-    defaultTheme: 'royal',
-    defaultName: 'Cerrajería Técnica Express',
-    yearsExp: 'Servicio Local · Llegada en 20 min',
-    tagline: 'Aperturas limpias sin daños, cambio de bombines de alta seguridad y urgencias 24h.',
-    story: 'Técnicos propios de tu ciudad con precio cerrado confirmado antes de desplazarnos.',
-    painTag: 'Genera confianza inmediata con tarifas claras frente a anuncios dudosos',
-    solves: [
-      'Botón de aviso urgente directo a tu teléfono y WhatsApp',
-      'Precios orientativos claros que cierran el aviso al instante',
-      'Sin intermediarios ni comisiones por llamada',
-      'Carga instantánea en móvil con cobertura baja'
-    ],
-    heroImage: '/assets/real/cerrajeria_work_1.jpg',
-    gallery: [
-      '/assets/real/cerrajeria_work_1.jpg',
-      '/assets/real/reformas_work_2.jpg'
-    ],
-    services: [
-      { title: 'Apertura Limpia de Puerta Sin Romper', meta: 'Llegada media en 20 minutos', price: 'Desde 59 €' },
-      { title: 'Instalación Bombín Antibumping Alta Seguridad', meta: 'Incluye 5 llaves incopiables', price: '125 €' },
-      { title: 'Reparación de Cierres y Persianas de Local', meta: 'Atención en el mismo día', price: 'Consultar' }
-    ]
-  },
-  tattoo: {
-    label: 'Estudio Tattoo y Piercing',
-    icon: 'ph-pen-nib',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Línea Fina Tattoo Studio',
-    yearsExp: 'Estudio Homologado · Diseño Único',
-    tagline: 'Fine line, micro-realismo y diseño personalizado en cabina privada.',
-    story: 'Material 100% estéril monouso, asesoramiento previo y reserva directa con el artista.',
-    painTag: 'Filtra consultas serias mostrando tus estilos y tarifa mínima con claridad',
-    solves: [
-      'Estilos y tarifas base ordenados para ahorrar mensajes eternos',
-      'Solicitud de cita y boceto directo a tu WhatsApp',
-      'Galería limpia de trabajos curados',
-      '0% comisiones por sesión agendada'
-    ],
-    heroImage: '/assets/real/barberia_work_1.jpg',
-    gallery: [
-      '/assets/real/barberia_work_1.jpg',
-      '/assets/real/peluqueria_work_2.jpg'
-    ],
-    services: [
-      { title: 'Tatuaje Fine Line / Minimalista', meta: 'Diseño limpio · Material 100% estéril', price: 'Desde 60 €' },
-      { title: 'Pieza Personalizada Media (10 a 18 cm)', meta: 'Incluye diseño de boceto previo', price: 'Desde 150 €' },
-      { title: 'Sesión Completa Realismo / Proyecto', meta: 'Cabina privada reservada', price: 'Consultar' }
-    ]
-  },
-  personal: {
-    label: 'Despacho y Profesionales',
-    icon: 'ph-briefcase',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Nexo Despacho Profesional',
-    yearsExp: 'Atención Directa · Cita Previa',
-    tagline: 'Asesoramiento cercano, soluciones claras y resultados desde el primer día.',
-    story: 'Agenda tu consulta presencial u online con respuesta rápida y presupuesto transparente.',
-    painTag: 'Presenta tu despacho o servicio profesional con una imagen limpia que inspira seriedad',
-    solves: [
-      'Servicios, especialidades y honorarios explicados con claridad',
-      'Solicitud de consulta previa directa a tu WhatsApp',
-      'Ideal para abogados, asesorías, psicólogos, arquitectos o autónomos',
-      'Dominio propio .es o .com sin cuotas mensuales'
-    ],
-    heroImage: '/assets/real/peluqueria_work_2.jpg',
-    gallery: [
-      '/assets/real/peluqueria_work_2.jpg',
-      '/assets/real/reformas_work_2.jpg'
-    ],
-    services: [
-      { title: 'Primera Consulta de Valoración', meta: '30 min · Análisis inicial de tu caso', price: 'Gratis' },
-      { title: 'Gestión / Servicio Profesional Completo', meta: 'Presupuesto cerrado por escrito', price: 'A medida' },
-      { title: 'Asesoramiento Preferente Presencial u Online', meta: 'Respuesta en menos de 24h', price: '55 €' }
-    ]
-  },
-  otro: {
-    label: 'Otro Negocio Local',
-    icon: 'ph-buildings',
-    actionType: 'citas',
-    defaultTheme: 'royal',
-    defaultName: 'Mi Negocio Local',
-    yearsExp: 'Atención Cercana en Tu Ciudad',
-    tagline: 'Calidad profesional, precios claros y atención rápida sin esperas.',
-    story: 'Consulta nuestros servicios actualizados y escríbenos o pide cita en un solo clic.',
-    painTag: 'Tu escaparate abierto las 24 horas en Google, Instagram y WhatsApp sin cuotas',
-    solves: [
-      'Web limpia y rápida adaptada a móvil y ordenador',
-      'Listado claro de servicios y precios para evitar preguntas repetidas',
-      'Reservas y consultas directas a tu WhatsApp con 0% comisión',
-      'Un único pago para siempre con panel propio de edición'
-    ],
-    heroImage: '/assets/real/peluqueria_hero.jpg',
-    gallery: [
-      '/assets/real/peluqueria_hero.jpg',
-      '/assets/real/reformas_work_2.jpg',
-      '/assets/real/clinica_hero.jpg'
-    ],
-    services: [
-      { title: 'Servicio Principal Más Solicitado', meta: 'Atención personalizada con cita previa', price: '35 €' },
-      { title: 'Pack Completo Profesional', meta: 'Garantía de satisfacción incluida', price: '65 €' },
-      { title: 'Primera Valoración o Presupuesto', meta: 'Respuesta rápida en el día', price: 'Gratis' }
-    ]
-  }
-};
-
-// Clean Light-First Design System Themes (#1 Flagship: Blanco & Azul Real #4F46E5)
 const DESIGN_THEMES = {
   royal: {
-    label: 'Blanco & Azul Real', sub: 'Luminoso · El que más convierte',
-    swatch1: '#FFFFFF', swatch2: '#4F46E5',
+    label: 'Blanco & Azul Real', sub: 'Limpio, moderno y luminoso',
+    swatch1: '#FAFBFD', swatch2: '#4F46E5',
     bg: '#FAFBFD', surface: '#F1F5FB', card: '#FFFFFF',
     text: '#0F172A', muted: '#475569', border: 'rgba(15, 23, 42, 0.08)',
     accent: '#4F46E5', accentHi: '#4338CA', accentSoft: '#EEF2FF', accentInk: '#FFFFFF',
     headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
   },
-  clinical: {
-    label: 'Blanco & Azul Cobalto', sub: 'Clínicas, Salones y Salud',
-    swatch1: '#F8FAFC', swatch2: '#2563EB',
-    bg: '#F8FAFC', surface: '#EFF6FF', card: '#FFFFFF',
-    text: '#0F172A', muted: '#475569', border: 'rgba(37, 99, 235, 0.12)',
-    accent: '#2563EB', accentHi: '#1D4ED8', accentSoft: '#DBEAFE', accentInk: '#FFFFFF',
-    headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
-  },
-  cream: {
-    label: 'Marfil & Índigo Suave', sub: 'Peluquería, Estética y Moda',
-    swatch1: '#FDFCFB', swatch2: '#6366F1',
-    bg: '#FDFCFB', surface: '#F5F3FF', card: '#FFFFFF',
-    text: '#1E1B4B', muted: '#52525B', border: 'rgba(99, 102, 241, 0.12)',
-    accent: '#4F46E5', accentHi: '#4338CA', accentSoft: '#EEF2FF', accentInk: '#FFFFFF',
-    headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
-  },
-  emerald: {
-    label: 'Blanco & Aguamarina', sub: 'Bienestar, Fisio y Pilates',
+  sage: {
+    label: 'Blanco & Esmeralda', sub: 'Salud, Mascotas y Bienestar',
     swatch1: '#F8FAFC', swatch2: '#0D9488',
-    bg: '#F8FAFC', surface: '#F0FDFA', card: '#FFFFFF',
-    text: '#0F172A', muted: '#475569', border: 'rgba(13, 148, 136, 0.14)',
+    bg: '#F9FBFA', surface: '#ECFDF5', card: '#FFFFFF',
+    text: '#0F172A', muted: '#475569', border: 'rgba(15, 23, 42, 0.08)',
     accent: '#0D9488', accentHi: '#0F766E', accentSoft: '#CCFBF1', accentInk: '#FFFFFF',
     headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
   },
-  copper: {
-    label: 'Blanco Cálido & Terracota', sub: 'Hostelería, Panadería y Hogar',
+  atelier: {
+    label: 'Marfil & Terracota', sub: 'Madera, Gastronomía y Artesanía',
     swatch1: '#FDFBF7', swatch2: '#C2410C',
-    bg: '#FDFBF7', surface: '#FEF3C7', card: '#FFFFFF',
+    bg: '#FDFBF7', surface: '#F7F2EA', card: '#FFFFFF',
     text: '#1C1917', muted: '#57534E', border: 'rgba(28, 25, 23, 0.09)',
     accent: '#C2410C', accentHi: '#9A3412', accentSoft: '#FFEDD5', accentInk: '#FFFFFF',
     headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
   },
   gold: {
-    label: 'Azul Marino & Blanco', sub: 'Despachos, Motor y Reformas',
+    label: 'Azul Marino & Blanco', sub: 'Oficios, Motor y Despachos',
     swatch1: '#F8FAFC', swatch2: '#1E40AF',
     bg: '#F8FAFC', surface: '#EEF2FF', card: '#FFFFFF',
     text: '#0F172A', muted: '#475569', border: 'rgba(30, 64, 175, 0.12)',
@@ -570,7 +48,7 @@ const DESIGN_THEMES = {
     headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: true
   },
   crimson: {
-    label: 'Noche Índigo (Opcional)', sub: 'Modo oscuro opcional',
+    label: 'Noche Índigo (Oscuro)', sub: 'Tattoo, Eventos y Estilo Urbano',
     swatch1: '#0F172A', swatch2: '#6366F1',
     bg: '#0F172A', surface: '#1E293B', card: '#1E293B',
     text: '#F8FAFC', muted: '#CBD5E1', border: 'rgba(148, 163, 184, 0.18)',
@@ -578,6 +56,37 @@ const DESIGN_THEMES = {
     headingFont: "'Outfit', sans-serif", headingWeight: '800', isLight: false
   }
 };
+
+// Construir SECTOR_PRESETS unificado desde oficios-catalog.js (+ respaldo por si se carga aislado)
+const SECTOR_PRESETS = (function buildUnifiedPresets() {
+  const map = {};
+  if (typeof MIWEB_OFICIOS_BY_ID === 'object' && MIWEB_OFICIOS_BY_ID) {
+    Object.keys(MIWEB_OFICIOS_BY_ID).forEach(k => {
+      map[k] = MIWEB_OFICIOS_BY_ID[k];
+    });
+  }
+  if (!map.peluqueria) {
+    map.peluqueria = {
+      id: 'peluqueria', label: 'Peluquería y Salón', icon: 'ph-scissors',
+      actionType: 'agenda_citas', defaultTheme: 'royal', defaultName: 'Salón Aura',
+      yearsExp: 'Reserva Directa', tagline: 'Tu salón de confianza con cita rápida por WhatsApp.',
+      story: 'Consulta nuestros servicios con precios claros y elige tu hora en 15 segundos.',
+      heroImage: '/assets/real/peluqueria_hero.jpg',
+      gallery: ['/assets/real/peluqueria_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg'],
+      services: [
+        { title: 'Mechas Balayage + Matiz', meta: 'Diagnóstico y peinado incluido', price: '89 €' },
+        { title: 'Corte + Lavado + Peinado', meta: 'Asesoramiento personalizado', price: '32 €' }
+      ],
+      wcfg: {}
+    };
+  }
+  if (!map.otro) {
+    map.otro = typeof miwebBuildCustomOficio === 'function'
+      ? miwebBuildCustomOficio('Negocio Especializado Madrid')
+      : Object.assign({}, map.peluqueria, { id: 'otro', label: 'Oficio a Medida' });
+  }
+  return map;
+})();
 
 function escapeHtml(str) {
   return String(str || '')
@@ -592,6 +101,37 @@ function slugifyName(name) {
   return s || 'minegocio';
 }
 
+function normalizeActionType(rawMode) {
+  const m = String(rawMode || '').trim();
+  if (m === 'reformas') return 'medidas_presupuesto';
+  if (m === 'urgencia') return 'urgencia_o_llaves';
+  if (m === 'motor') return 'motor_diagnostico';
+  if (m === 'mesa') return 'mesa_carta';
+  if (m === 'citas') return 'agenda_citas';
+  const valid = [
+    'medidas_presupuesto', 'urgencia_o_llaves', 'motor_diagnostico',
+    'recepcion_taller_local', 'encargo_sin_cola', 'mesa_carta',
+    'agenda_citas', 'filtro_clientes'
+  ];
+  return valid.includes(m) ? m : 'agenda_citas';
+}
+
+function resolvePresetForState(st) {
+  if (!st) return SECTOR_PRESETS.peluqueria;
+  if (st.sector && st.sector !== 'otro' && SECTOR_PRESETS[st.sector]) {
+    return SECTOR_PRESETS[st.sector];
+  }
+  if (typeof miwebBuildCustomOficio === 'function') {
+    const seed = (st.customSectorLabel && st.customSectorLabel !== 'Negocio Local')
+      ? `${st.customSectorLabel} ${st.city || ''}`
+      : `${st.name || 'Negocio Local'} ${st.city || ''}`;
+    const custom = miwebBuildCustomOficio(seed);
+    if (st.actionType) custom.actionType = normalizeActionType(st.actionType);
+    return custom;
+  }
+  return SECTOR_PRESETS.otro || SECTOR_PRESETS.peluqueria;
+}
+
 function encodeSharePayload(st) {
   try {
     const httpHero = (st.customHeroPhoto && /^https?:\/\//.test(st.customHeroPhoto)) ? st.customHeroPhoto : '';
@@ -599,9 +139,10 @@ function encodeSharePayload(st) {
       ? st.customGallery.filter(u => typeof u === 'string' && /^https?:\/\//.test(u)).slice(0, 4)
       : [];
     const slim = {
-      n: st.name, s: st.sector, cs: st.customSectorLabel, y: st.yearsExp,
-      tg: st.tagline, st: st.story, bp: st.bookingPolicy, c: st.city,
-      a: st.address, w: st.whatsapp, p: st.phone, ig: st.instagram,
+      n: st.name, s: st.sector, cs: st.customSectorLabel || '',
+      at: st.actionType || '',
+      y: st.yearsExp, tg: st.tagline, st: st.story, bp: st.bookingPolicy,
+      c: st.city, a: st.address, w: st.whatsapp, p: st.phone, ig: st.instagram,
       hw: st.hoursWeek, hs: st.hoursSat, hd: st.hoursSun, th: st.theme,
       hp: httpHero, gp: httpGal,
       rv: Array.isArray(st.reviews) ? st.reviews.slice(0, 3) : [],
@@ -621,47 +162,84 @@ function decodeSharePayload(b64) {
     while (norm.length % 4) norm += '=';
     const slim = JSON.parse(decodeURIComponent(escape(atob(norm))));
     if (!slim || !slim.n) return null;
-    const def = SECTOR_PRESETS[slim.s] || SECTOR_PRESETS.peluqueria;
+    const tempRef = {
+      name: slim.n,
+      sector: slim.s || 'peluqueria',
+      customSectorLabel: slim.cs || '',
+      city: slim.c || 'Madrid',
+      actionType: slim.at || ''
+    };
+    const def = resolvePresetForState(tempRef);
     return {
-      name: slim.n, userEditedName: true, sector: slim.s || 'peluqueria',
-      customSectorLabel: slim.cs || 'Negocio Local', yearsExp: slim.y || def.yearsExp,
-      tagline: slim.tg || def.tagline, story: slim.st || def.story,
-      bookingPolicy: slim.bp || 'ambos', city: slim.c || 'Madrid',
-      address: slim.a || 'Calle Serrano 42', whatsapp: slim.w || '612 890 345',
-      phone: slim.p || '', instagram: slim.ig || '',
-      hoursWeek: slim.hw || '09:30 a 20:00', hoursSat: slim.hs || '09:30 a 14:30',
-      hoursSun: slim.hd || 'Cerrado', theme: slim.th || def.defaultTheme || 'royal',
-      customHeroPhoto: slim.hp || '', customGallery: Array.isArray(slim.gp) ? slim.gp : [],
+      name: slim.n,
+      userEditedName: true,
+      sector: slim.s || 'peluqueria',
+      customSectorLabel: slim.cs || def.label || 'Negocio Local',
+      actionType: slim.at || def.actionType || 'agenda_citas',
+      yearsExp: slim.y || def.yearsExp,
+      tagline: slim.tg || def.tagline,
+      story: slim.st || def.story,
+      bookingPolicy: slim.bp || 'ambos',
+      city: slim.c || 'Madrid',
+      address: slim.a || 'Calle Principal 18',
+      whatsapp: slim.w || '612 890 345',
+      phone: slim.p || '',
+      instagram: slim.ig || '',
+      hoursWeek: slim.hw || '09:30 a 20:00',
+      hoursSat: slim.hs || '09:30 a 14:00',
+      hoursSun: slim.hd || 'Cerrado',
+      theme: slim.th || def.defaultTheme || 'royal',
+      customHeroPhoto: slim.hp || '',
+      customGallery: Array.isArray(slim.gp) ? slim.gp : [],
       reviews: Array.isArray(slim.rv) ? slim.rv : [],
-      legalHolder: slim.lh || '', legalNif: slim.ln || '', desiredDomain: slim.dm || '',
+      legalHolder: slim.lh || '',
+      legalNif: slim.ln || '',
+      desiredDomain: slim.dm || '',
       services: Array.isArray(slim.sv) && slim.sv.length ? slim.sv : JSON.parse(JSON.stringify(def.services)),
       modules: Object.assign({
         booking: true, whatsappFloat: true, services: true, about: true,
         scheduleMap: true, gallery: true, reviews: true, faq: true
       }, slim.md || {}),
-      unlocked: !!slim.un, adminPin: slim.pin || 'PRO-4829',
+      unlocked: !!slim.un,
+      adminPin: slim.pin || 'PRO-4829',
       expiresAt: slim.ex || (Date.now() + 24 * 3600 * 1000)
     };
   } catch (e) { return null; }
 }
 
 function loadStudioState() {
-  const def = SECTOR_PRESETS.peluqueria;
+  const def = SECTOR_PRESETS.carpintero || SECTOR_PRESETS.peluqueria;
   const fallback = {
-    name: def.defaultName, userEditedName: false, sector: 'peluqueria',
-    customSectorLabel: 'Negocio Local',
-    yearsExp: def.yearsExp, tagline: def.tagline, story: def.story,
-    bookingPolicy: 'ambos', city: 'Madrid', address: 'Calle Serrano 42, Local',
-    whatsapp: '612 890 345', phone: '910 234 567', instagram: '@salonaura',
-    hoursWeek: '09:30 a 20:00', hoursSat: '09:30 a 14:30', hoursSun: 'Cerrado',
-    theme: 'royal', customHeroPhoto: '', customGallery: [],
+    name: def.defaultName,
+    userEditedName: false,
+    sector: def.id || 'peluqueria',
+    customSectorLabel: def.label || 'Negocio Local',
+    actionType: def.actionType || 'agenda_citas',
+    yearsExp: def.yearsExp,
+    tagline: def.tagline,
+    story: def.story,
+    bookingPolicy: 'ambos',
+    city: 'Madrid',
+    address: 'Calle Serrano 42, Local',
+    whatsapp: '612 890 345',
+    phone: '910 234 567',
+    instagram: '',
+    hoursWeek: '09:00 a 19:30',
+    hoursSat: '09:30 a 14:00',
+    hoursSun: 'Cerrado',
+    theme: def.defaultTheme || 'royal',
+    customHeroPhoto: '',
+    customGallery: [],
     services: JSON.parse(JSON.stringify(def.services)),
     modules: {
       booking: true, whatsappFloat: true, services: true, about: true,
       scheduleMap: true, gallery: true, reviews: true, faq: true
     },
-    unlocked: false, adminPin: 'PRO-4829', buyerEmail: '',
-    previewDevice: 'mobile', activeStep: 1,
+    unlocked: false,
+    adminPin: 'PRO-4829',
+    buyerEmail: '',
+    previewDevice: 'mobile',
+    activeStep: 1,
     expiresAt: Date.now() + (24 * 3600 * 1000) - 9000
   };
   try {
@@ -679,50 +257,71 @@ function loadStudioState() {
 }
 
 let studioState = loadStudioState();
-let compileTimer = null;
 
 function saveStudioState() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(studioState)); } catch (e) {}
 }
 
+function getLiveShareableSiteUrl(customSt) {
+  const target = customSt || studioState;
+  const slug = slugifyName(target.name);
+  return `/sitio/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(target)}`;
+}
+
+function getLiveAdminPanelUrl(customSt) {
+  const target = customSt || studioState;
+  const slug = slugifyName(target.name);
+  return `/admin/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(target)}`;
+}
 // ==========================================================================
-// SECTOR-ADAPTIVE COMPILER (Agency-Grade Soft-Structuralist Client Website)
+// 8 MÓDULOS INTERACTIVOS DE SOLUCIÓN ESPECÍFICA CONECTADOS A WHATSAPP
 // ==========================================================================
 function buildSectorActionWidgetHTML(st, preset) {
-  const mode = preset.actionType || 'citas';
-  const srvOpts = (st.services || []).map(srv =>
+  const mode = normalizeActionType(st.actionType || preset.actionType);
+  const wcfg = preset.wcfg || {};
+  const srvList = Array.isArray(st.services) && st.services.length ? st.services : (preset.services || []);
+  const srvOpts = srvList.map(srv =>
     `<option value="${escapeHtml(srv.title)} (${escapeHtml(srv.price)})">${escapeHtml(srv.title)} · ${escapeHtml(srv.price)}</option>`
   ).join('');
 
-  if (mode === 'reformas') {
+  // 1) MEDIDAS + PRESUPUESTO FILTRADO (Carpintero, Aluminio/PVC, Cristalero, Tapicero, Reformas, Pintor...)
+  if (mode === 'medidas_presupuesto') {
+    const dimChips = wcfg.dimChips || ['180 × 220 cm', '240 × 240 cm', 'Estancia media', 'Vivienda completa'];
+    const mats = wcfg.materials || ['Calidad estándar profesional', 'Acabado blanco / madera', 'Alta gama a medida', 'Aconsejadme material'];
     return `
       <div class="sec-head">
-        <span class="sec-pill">Presupuesto sin compromiso</span>
-        <h2>Solicita valoración para tu reforma</h2>
-        <p class="sec-sub">Indica qué estancia quieres reformar y te respondemos en el día por WhatsApp o teléfono.</p>
+        <span class="sec-pill">Presupuesto filtrado con medidas · Cero visitas en balde</span>
+        <h2>${escapeHtml(wcfg.heading || 'Calcula tu solicitud a medida en 30 segundos')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Indica trabajo, medidas aproximadas y acabado para recibir valoración directa por WhatsApp.')}</p>
       </div>
       <div class="bezel-shell">
         <div class="book-card">
           <div class="form-grid">
             <div>
-              <label for="bk-service">1. Tipo de trabajo</label>
+              <label for="bk-service">1. Trabajo o servicio</label>
               <select id="bk-service">${srvOpts}</select>
             </div>
             <div>
-              <label for="bk-extra">2. Superficie aproximada</label>
-              <select id="bk-extra">
-                <option value="Baño o estancia (< 10 m²)">Baño o estancia (&lt; 10 m²)</option>
-                <option value="Cocina o salón (15 a 35 m²)">Cocina o salón (15 a 35 m²)</option>
-                <option value="Vivienda completa (+70 m²)">Vivienda completa (+70 m²)</option>
+              <label for="bk-material">${escapeHtml(wcfg.matLabel || '3. Acabado o material')}</label>
+              <select id="bk-material">
+                ${mats.map(m => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join('')}
               </select>
             </div>
           </div>
-          <div style="margin-bottom:16px;">
-            <label for="bk-client">3. Tu nombre y zona</label>
-            <input type="text" id="bk-client" placeholder="Ej. Javier · ${escapeHtml(st.city)}" />
+          <label for="bk-dims">${escapeHtml(wcfg.dimLabel || '2. Medidas aproximadas (ancho × alto o m²)')}</label>
+          <div class="slots">
+            ${dimChips.map((ch, idx) => `<button type="button" class="slot-btn ${idx === 1 ? 'active' : ''}" onclick="pickDimChip(this, '${escapeHtml(ch)}')">${escapeHtml(ch)}</button>`).join('')}
           </div>
-          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('reforma')">
-            <span>Pedir visita y presupuesto por WhatsApp</span>
+          <div class="form-grid">
+            <div>
+              <input type="text" id="bk-dims" value="${escapeHtml(dimChips[1] || '')}" placeholder="${escapeHtml(wcfg.dimPlaceholder || 'Ej. 240 × 220 cm (o m² aproximados)')}" />
+            </div>
+            <div>
+              <input type="text" id="bk-client" placeholder="Tu nombre y zona · Ej. Javier (${escapeHtml(st.city)})" />
+            </div>
+          </div>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('medidas_presupuesto')">
+            <span>Enviar medidas y pedir presupuesto por WhatsApp</span>
             <span class="btn-arrow">→</span>
           </button>
           <div class="book-ok" id="bk-ok"></div>
@@ -730,31 +329,110 @@ function buildSectorActionWidgetHTML(st, preset) {
       </div>`;
   }
 
-  if (mode === 'motor') {
+  // 2) DOBLE MODO: URGENCIA 24H vs COPIA DE LLAVE / MANDO / MODELO (Cerrajero/Llavero, Fontanero, Electricista, Grúa...)
+  if (mode === 'urgencia_o_llaves') {
+    const tabUrg = wcfg.tabUrgent || '🚨 Urgencia 24h Ahora';
+    const tabQuo = wcfg.tabQuote || '🔑 Copia Llave / Presupuesto';
+    const urgOpts = wcfg.urgentOptions || ['Asistencia urgente ahora', 'Avería bloqueante en vivienda o local', 'Apertura sin daños'];
+    const quoOpts = wcfg.quoteOptions || ['Presupuesto indicando modelo', 'Copia / Sustitución programada', 'Revisión sin urgencia'];
     return `
       <div class="sec-head">
-        <span class="sec-pill">Taller y Exposición</span>
-        <h2>Pide cita de taller o consulta disponibilidad</h2>
-        <p class="sec-sub">Selecciona vehículo o mantenimiento y te confirmamos hueco directo en tu móvil.</p>
+        <span class="sec-pill">Doble modo inteligente · Datos exactos antes de desplazarnos</span>
+        <h2>¿Tienes una urgencia ahora o buscas presupuesto / copia?</h2>
+        <p class="sec-sub">Elige modo arriba para enviarnos la calle exacta o el modelo de llave, mando o equipo directo a nuestro WhatsApp.</p>
+      </div>
+      <div class="bezel-shell">
+        <div class="book-card">
+          <div class="mode-tabs" role="tablist">
+            <button type="button" class="mode-tab active" data-umode="urgencia" onclick="switchUrgentTab('urgencia')">${escapeHtml(tabUrg)}</button>
+            <button type="button" class="mode-tab" data-umode="copia" onclick="switchUrgentTab('copia')">${escapeHtml(tabQuo)}</button>
+          </div>
+
+          <div id="urg-pane-urgencia">
+            <div class="live-est live-est-urgent">⚡ Atención inmediata en <strong>${escapeHtml(st.city)}</strong> · Confirmamos precio cerrado y llegada (~20 min) antes de salir.</div>
+            <div class="form-grid">
+              <div>
+                <label for="bk-urg-type">1. Qué ocurre ahora mismo</label>
+                <select id="bk-urg-type">
+                  ${urgOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label for="bk-urg-street">2. Calle exacta y número en ${escapeHtml(st.city)}</label>
+                <input type="text" id="bk-urg-street" placeholder="Ej. Calle Mayor 18, 3ºB · ${escapeHtml(st.city)}" />
+              </div>
+            </div>
+          </div>
+
+          <div id="urg-pane-copia" style="display:none;">
+            <div class="live-est">✓ Ahorra esperas: dinos marca y modelo exacto y te confirmamos precio y disponibilidad en el acto.</div>
+            <div class="form-grid">
+              <div>
+                <label for="bk-quo-type">1. Qué necesitas</label>
+                <select id="bk-quo-type">
+                  ${quoOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
+                  ${srvOpts}
+                </select>
+              </div>
+              <div>
+                <label for="bk-quo-model">${escapeHtml(wcfg.modelLabel || '2. Marca y modelo (coche, mando, cerradura o equipo)')}</label>
+                <input type="text" id="bk-quo-model" placeholder="${escapeHtml(wcfg.modelPlaceholder || 'Ej. Seat León 2020 / Bombín Tesa / Mando garaje')}" />
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label for="bk-client">3. Tu nombre (y cuándo pasas o teléfono)</label>
+            <input type="text" id="bk-client" placeholder="Ej. David · Paso hoy tarde / Urgente ahora" />
+          </div>
+          <button type="button" class="btn-primary btn-block" id="bk-urg-submit" onclick="sendSectorWhatsApp('urgencia_o_llaves')">
+            <span id="bk-urg-btn-txt">Enviar aviso urgente por WhatsApp</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <div class="book-ok" id="bk-ok"></div>
+        </div>
+      </div>`;
+  }
+
+  // 3) MOTOR Y DIAGNÓSTICO PREVIO (Taller Mecánico, Chapa, Neumáticos, Motos, Lavadero, Compraventa)
+  if (mode === 'motor_diagnostico') {
+    return `
+      <div class="sec-head">
+        <span class="sec-pill">Recepción digital de vehículos · Sin esperas al teléfono</span>
+        <h2>${escapeHtml(wcfg.heading || 'Reserva cita de taller o lavado indicando tu vehículo')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Déjanos matrícula/modelo y qué necesitas para tener recambios y box preparados.')}</p>
       </div>
       <div class="bezel-shell">
         <div class="book-card">
           <div class="form-grid">
             <div>
-              <label for="bk-service">1. Vehículo o servicio</label>
+              <label for="bk-service">1. Servicio o pack elegido</label>
               <select id="bk-service">${srvOpts}</select>
             </div>
             <div>
-              <label for="bk-extra">2. Modelo o matrícula</label>
-              <input type="text" id="bk-extra" placeholder="Ej. Honda SH 125 / Seat León" />
+              <label for="bk-plate">${escapeHtml(wcfg.plateLabel || '2. Matrícula y modelo del vehículo')}</label>
+              <input type="text" id="bk-plate" placeholder="${escapeHtml(wcfg.platePlaceholder || 'Ej. 4821 KLP · Seat León / Scooter 125')}" />
             </div>
           </div>
-          <div style="margin-bottom:16px;">
-            <label for="bk-client">3. Tu nombre</label>
-            <input type="text" id="bk-client" placeholder="Ej. Marcos" />
+          <div class="form-grid">
+            <div>
+              <label for="bk-symptom">${escapeHtml(wcfg.symLabel || '3. Síntoma, medida o detalle')}</label>
+              <input type="text" id="bk-symptom" placeholder="${escapeHtml(wcfg.symPlaceholder || 'Ej. Ruido frenos / Toca revisión / Tapicería')}" />
+            </div>
+            <div>
+              <label for="bk-client">4. Tu nombre</label>
+              <input type="text" id="bk-client" placeholder="Ej. Marcos" />
+            </div>
           </div>
-          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('motor')">
-            <span>Confirmar consulta por WhatsApp</span>
+          <label>Preferencia de entrada</label>
+          <div class="slots">
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Hoy si hay hueco')">Hoy</button>
+            <button type="button" class="slot-btn active" onclick="pickSlot(this,'Mañana 09:00')">Mañana 09h</button>
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Esta semana mañanas')">Mañanas</button>
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Esta semana tardes')">Tardes</button>
+          </div>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('motor_diagnostico')">
+            <span>Confirmar entrada en ${escapeHtml(st.name)} por WhatsApp</span>
             <span class="btn-arrow">→</span>
           </button>
           <div class="book-ok" id="bk-ok"></div>
@@ -762,43 +440,126 @@ function buildSectorActionWidgetHTML(st, preset) {
       </div>`;
   }
 
-  if (mode === 'mesa') {
+  // 4) RECEPCIÓN TALLER LOCAL + AVISO RECOGIDA (Móviles, Tintorería, Arreglos, Calzado, Bicicletas)
+  if (mode === 'recepcion_taller_local') {
+    const firstSrv = srvList[0] ? `${srvList[0].title} · ${srvList[0].price}` : 'Consulta rápida';
     return `
       <div class="sec-head">
-        <span class="sec-pill">Reserva directa · 0% comisiones</span>
-        <h2>Reserva tu mesa o haz tu encargo</h2>
-        <p class="sec-sub">Elige zona y hora aproximada. Confirmación directa con nuestro equipo sin intermediarios.</p>
+        <span class="sec-pill">Tarifa orientativa al instante + Aviso por WhatsApp al terminar</span>
+        <h2>${escapeHtml(wcfg.heading || 'Consulta tu arreglo y reserva repuesto o entrega')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Indica dispositivo, prenda o artículo y te avisamos por WhatsApp en cuanto esté listo para recoger.')}</p>
       </div>
       <div class="bezel-shell">
         <div class="book-card">
           <div class="form-grid">
             <div>
-              <label for="bk-extra">1. Preferencia de mesa o recogida</label>
-              <select id="bk-extra">
-                <option value="Mesa para 2 personas en Terraza">Mesa 2 personas · Terraza</option>
-                <option value="Mesa para 4 personas en Salón">Mesa 4 personas · Salón</option>
-                <option value="Mesa para grupo (+6 personas)">Mesa grupo (+6 personas)</option>
+              <label for="bk-device">${escapeHtml(wcfg.itemLabel || '1. Dispositivo, prenda o artículo')}</label>
+              <input type="text" id="bk-device" placeholder="${escapeHtml(wcfg.itemPlaceholder || 'Ej. iPhone 13 / Traje 2 piezas / Botas piel')}" />
+            </div>
+            <div>
+              <label for="bk-service">2. Avería o arreglo necesario</label>
+              <select id="bk-service" onchange="updateRepairEstimate(this)">${srvOpts}</select>
+            </div>
+          </div>
+          <div class="live-est" id="bk-live-estimate">
+            💡 Tarifa seleccionada: <strong>${escapeHtml(firstSrv)}</strong> · Te avisamos al WhatsApp en cuanto esté terminado.
+          </div>
+          <label>3. Cuándo nos lo acercas</label>
+          <div class="slots">
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Paso hoy por la mañana')">Hoy mañana</button>
+            <button type="button" class="slot-btn active" onclick="pickSlot(this,'Paso hoy por la tarde')">Hoy tarde</button>
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Paso mañana')">Mañana</button>
+            <button type="button" class="slot-btn" onclick="pickSlot(this,'Consultar recogida')">Consultar</button>
+          </div>
+          <div style="margin-bottom:16px;">
+            <label for="bk-client">4. Tu nombre</label>
+            <input type="text" id="bk-client" placeholder="Ej. Víctor · Avisar por WhatsApp al terminar" />
+          </div>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('recepcion_taller_local')">
+            <span>Confirmar precio y dejar aviso en WhatsApp</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <div class="book-ok" id="bk-ok"></div>
+        </div>
+      </div>`;
+  }
+
+  // 5) ENCARGOS SIN COLA Y 0% COMISIONES (Asador, Panadería, Pizzería, Carnicería, Frutería, Floristería, Copistería, Tienda)
+  if (mode === 'encargo_sin_cola') {
+    const slots = wcfg.slots || ['11:30', '13:30', '14:15', '19:30'];
+    return `
+      <div class="sec-head">
+        <span class="sec-pill">Encargos directos sin hacer cola · 0% comisiones</span>
+        <h2>${escapeHtml(wcfg.heading || 'Haz tu encargo y pasa directo a recogerlo a tu hora')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Sin esperas al teléfono ni recargos de aplicaciones externas.')}</p>
+      </div>
+      <div class="bezel-shell">
+        <div class="book-card">
+          <div class="form-grid">
+            <div>
+              <label for="bk-service">1. Producto, menú o encargo principal</label>
+              <select id="bk-service">${srvOpts}</select>
+            </div>
+            <div>
+              <label for="bk-qty">${escapeHtml(wcfg.qtyLabel || '2. Unidades y detalle del pedido')}</label>
+              <input type="text" id="bk-qty" placeholder="${escapeHtml(wcfg.qtyPlaceholder || 'Ej. 2 unidades / Detalle o dedicatoria')}" />
+            </div>
+          </div>
+          <label>3. Hora exacta de recogida en tienda (sin cola)</label>
+          <div class="slots">
+            ${slots.map((sl, i) => `<button type="button" class="slot-btn ${i === 1 ? 'active' : ''}" onclick="pickSlot(this,'${escapeHtml(sl)}')">${escapeHtml(sl)}</button>`).join('')}
+          </div>
+          <div style="margin-bottom:16px;">
+            <label for="bk-client">4. A nombre de</label>
+            <input type="text" id="bk-client" placeholder="Ej. Carmen · Recojo en mostrador" />
+          </div>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('encargo_sin_cola')">
+            <span>Enviar encargo directo al WhatsApp</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <div class="book-ok" id="bk-ok"></div>
+        </div>
+      </div>`;
+  }
+
+  // 6) RESERVA DE MESA SALÓN / TERRAZA + CARTA (Restaurante, Bar de Tapas, Cafetería/Brunch)
+  if (mode === 'mesa_carta') {
+    const slots = wcfg.slots || ['13:30', '14:15', '20:45', '21:30'];
+    return `
+      <div class="sec-head">
+        <span class="sec-pill">Reserva directa con sala · 0 € comisión por comensal</span>
+        <h2>${escapeHtml(wcfg.heading || 'Reserva tu mesa en Salón o Terraza')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Elige zona, comensales y turno. Confirmación directa con nuestro equipo.')}</p>
+      </div>
+      <div class="bezel-shell">
+        <div class="book-card">
+          <div class="form-grid">
+            <div>
+              <label for="bk-zone">1. Zona y nº de comensales</label>
+              <select id="bk-zone">
+                <option value="Terraza exterior · 2 personas">Terraza exterior · 2 personas</option>
+                <option value="Terraza exterior · 4 personas" selected>Terraza exterior · 4 personas</option>
+                <option value="Salón interior · 2 personas">Salón interior · 2 personas</option>
+                <option value="Salón interior · 4 personas">Salón interior · 4 personas</option>
+                <option value="Mesa para grupo (6 o más personas)">Mesa grupo (6+ personas)</option>
                 <option value="Pedido para recoger en local">Pedido para recoger sin espera</option>
               </select>
             </div>
             <div>
-              <label for="bk-service">2. Plato o menú destacado</label>
+              <label for="bk-service">2. Plato, arroz o menú destacado</label>
               <select id="bk-service">${srvOpts}</select>
             </div>
           </div>
-          <label>3. Turno preferido</label>
+          <label>3. Turno y hora</label>
           <div class="slots">
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'Hoy 14:00')">14:00</button>
-            <button type="button" class="slot-btn active" onclick="pickSlot(this,'Hoy 14:30')">14:30</button>
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'Hoy 21:00')">21:00</button>
-            <button type="button" class="slot-btn" onclick="pickSlot(this,'Hoy 21:30')">21:30</button>
+            ${slots.map((sl, i) => `<button type="button" class="slot-btn ${i === 1 ? 'active' : ''}" onclick="pickSlot(this,'Hoy ${escapeHtml(sl)}')">${escapeHtml(sl)}</button>`).join('')}
           </div>
           <div style="margin-bottom:16px;">
-            <label for="bk-client">4. A nombre de</label>
-            <input type="text" id="bk-client" placeholder="Ej. Laura (4 personas)" />
+            <label for="bk-client">4. Reserva a nombre de (indica si vienes otro día o trona/alergias)</label>
+            <input type="text" id="bk-client" placeholder="Ej. Laura · Sábado mediodía" />
           </div>
-          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('mesa')">
-            <span>Confirmar reserva por WhatsApp</span>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('mesa_carta')">
+            <span>Confirmar mesa gratis por WhatsApp</span>
             <span class="btn-arrow">→</span>
           </button>
           <div class="book-ok" id="bk-ok"></div>
@@ -806,27 +567,46 @@ function buildSectorActionWidgetHTML(st, preset) {
       </div>`;
   }
 
-  if (mode === 'urgencia') {
+  // 8) FILTRO DE CLIENTES CUALIFICADOS (Inmobiliaria, Abogados, Asesoría, Guardería, Fotógrafo, Eventos)
+  if (mode === 'filtro_clientes') {
+    const qOpts = wcfg.qualifyOptions || [
+      'Quiero iniciar gestión esta semana',
+      'Consulta con fecha concreta / Urgente',
+      'Empresa / Profesional',
+      'Solicitar valoración previa'
+    ];
     return `
       <div class="sec-head">
-        <span class="sec-pill">Atención inmediata 24h</span>
-        <h2>Solicita técnico en tu ubicación</h2>
-        <p class="sec-sub">Te confirmamos precio cerrado y tiempo exacto de llegada antes de salir.</p>
+        <span class="sec-pill">Atención prioritaria filtrada · Trato directo sin esperas</span>
+        <h2>${escapeHtml(wcfg.heading || 'Cuéntanos tu caso o fecha y recibe respuesta directa')}</h2>
+        <p class="sec-sub">${escapeHtml(wcfg.sub || 'Completa estos 3 datos para darte respuesta exacta desde el primer mensaje.')}</p>
       </div>
       <div class="bezel-shell">
         <div class="book-card">
           <div class="form-grid">
             <div>
-              <label for="bk-service">1. Servicio necesario</label>
+              <label for="bk-service">1. Servicio o área</label>
               <select id="bk-service">${srvOpts}</select>
             </div>
             <div>
-              <label for="bk-extra">2. Calle o zona en ${escapeHtml(st.city)}</label>
-              <input type="text" id="bk-extra" placeholder="Ej. Calle Mayor 18" />
+              <label for="bk-qualify">${escapeHtml(wcfg.qualifyLabel || '2. Tu situación o perfil')}</label>
+              <select id="bk-qualify">
+                ${qOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
+              </select>
             </div>
           </div>
-          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('urgencia')">
-            <span>Enviar aviso directo por WhatsApp</span>
+          <div class="form-grid">
+            <div>
+              <label for="bk-detail">${escapeHtml(wcfg.detailLabel || '3. Fecha, zona o resumen breve')}</label>
+              <input type="text" id="bk-detail" placeholder="${escapeHtml(wcfg.detailPlaceholder || 'Ej. Resumen en 1 línea o fecha del evento')}" />
+            </div>
+            <div>
+              <label for="bk-client">4. Tu nombre</label>
+              <input type="text" id="bk-client" placeholder="Ej. Miguel Ángel" />
+            </div>
+          </div>
+          <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('filtro_clientes')">
+            <span>Enviar consulta filtrada por WhatsApp</span>
             <span class="btn-arrow">→</span>
           </button>
           <div class="book-ok" id="bk-ok"></div>
@@ -834,32 +614,32 @@ function buildSectorActionWidgetHTML(st, preset) {
       </div>`;
   }
 
-  // Default: citas (Peluquería, Clínica, Estética, Barbería, Fitness, Despacho, Tienda)
+  // 7) DEFAULT: AGENDA DE CITAS DIRECTA 0% COMISIÓN (Belleza, Salud, Mascotas, Autoescuela, Academia, Fitness...)
   return `
     <div class="sec-head">
-      <span class="sec-pill">Agenda directa sin esperas</span>
-      <h2>Pide tu cita en 15 segundos</h2>
-      <p class="sec-sub">Elige el servicio y el horario que mejor te venga. Recibimos tu solicitud al instante en nuestro WhatsApp.</p>
+      <span class="sec-pill">Agenda directa 24h · 0% comisiones externas</span>
+      <h2>${escapeHtml(wcfg.heading || 'Pide tu cita en 15 segundos')}</h2>
+      <p class="sec-sub">${escapeHtml(wcfg.sub || 'Elige servicio, día y tramo horario; recibimos tu solicitud al instante en nuestro WhatsApp.')}</p>
     </div>
     <div class="bezel-shell">
       <div class="book-card">
         <div class="form-grid">
           <div>
-            <label for="bk-service">1. Servicio deseado</label>
+            <label for="bk-service">1. Servicio con tarifa clara</label>
             <select id="bk-service">${srvOpts}</select>
           </div>
           <div>
             <label for="bk-extra">2. Día preferido</label>
             <select id="bk-extra">
-              <option value="Hoy (si hay hueco libre)">Hoy (si hay hueco)</option>
-              <option value="Mañana">Mañana</option>
-              <option value="Esta semana por la mañana">Esta semana · Mañanas</option>
-              <option value="Esta semana por la tarde">Esta semana · Tardes</option>
+              <option value="Hoy (si queda hueco)">Hoy (si queda hueco)</option>
+              <option value="Mañana" selected>Mañana</option>
+              <option value="Esta semana · Mañanas">Esta semana · Mañanas</option>
+              <option value="Esta semana · Tardes">Esta semana · Tardes</option>
               <option value="Sábado">Sábado</option>
             </select>
           </div>
         </div>
-        <label>3. Hora aproximada</label>
+        <label>3. Tramo horario preferido</label>
         <div class="slots">
           <button type="button" class="slot-btn" onclick="pickSlot(this,'10:00')">10:00</button>
           <button type="button" class="slot-btn active" onclick="pickSlot(this,'11:30')">11:30</button>
@@ -867,10 +647,10 @@ function buildSectorActionWidgetHTML(st, preset) {
           <button type="button" class="slot-btn" onclick="pickSlot(this,'18:30')">18:30</button>
         </div>
         <div style="margin-bottom:16px;">
-          <label for="bk-client">4. Tu nombre</label>
-          <input type="text" id="bk-client" placeholder="Ej. Marta García" />
+          <label for="bk-client">4. Tu nombre y nota opcional</label>
+          <input type="text" id="bk-client" placeholder="${escapeHtml(wcfg.clientPlaceholder || 'Ej. Marta García')}" />
         </div>
-        <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('citas')">
+        <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('agenda_citas')">
           <span>Confirmar cita en ${escapeHtml(st.name)}</span>
           <span class="btn-arrow">→</span>
         </button>
@@ -879,564 +659,2043 @@ function buildSectorActionWidgetHTML(st, preset) {
     </div>`;
 }
 
+// ==========================================================================
+// COMPILADOR EDITORIAL "PRESTIGE" (INSPIRADO EN PRESTIGECARDETAIL.ES / NOTFOUND404)
+// Entrada con cámara en movimiento + escudo recortado con zoom en scroll +
+// 3 Verbos + Tabla de precios cerrados + Antes/Después interactivo +
+// Capas técnicas + Casos reales con serif superpuesta + Herramienta WhatsApp
+// ==========================================================================
+
+function resolvePrestigePalette(themeKey) {
+  const palettes = {
+    royal: {
+      noche: '#0f1a2d', hondo: '#0a1322', placa: '#16253d',
+      oro: '#c8a548', oroHover: '#d8b75c', plata: '#c0c0c0',
+      tinta: '#eef0f3', tinta2: '#a9b1be', filete: 'rgba(192, 192, 192, 0.18)'
+    },
+    gold: {
+      noche: '#0d1728', hondo: '#080f1c', placa: '#142238',
+      oro: '#d4af37', oroHover: '#e2bf4c', plata: '#c4cad4',
+      tinta: '#f1f3f6', tinta2: '#a6b0c0', filete: 'rgba(196, 202, 212, 0.18)'
+    },
+    atelier: {
+      noche: '#171311', hondo: '#0f0c0a', placa: '#221c18',
+      oro: '#cf9d56', oroHover: '#deaef68', plata: '#c7beb5',
+      tinta: '#f3efe9', tinta2: '#b8afa6', filete: 'rgba(199, 190, 181, 0.18)'
+    },
+    sage: {
+      noche: '#0d1d1b', hondo: '#081312', placa: '#132a27',
+      oro: '#c7ab59', oroHover: '#d6bc6c', plata: '#b8c7c4',
+      tinta: '#eef3f2', tinta2: '#a3b8b4', filete: 'rgba(184, 199, 196, 0.18)'
+    },
+    crimson: {
+      noche: '#12131a', hondo: '#0a0b10', placa: '#1a1c26',
+      oro: '#cba34b', oroHover: '#dab45e', plata: '#c2c5d0',
+      tinta: '#f0f1f5', tinta2: '#a6abc0', filete: 'rgba(194, 197, 208, 0.18)'
+    }
+  };
+  return palettes[themeKey] || palettes.royal;
+}
+
+function buildPrestigeBrandParts(bizName, sectorBadge) {
+  const clean = String(bizName || 'PRESTIGE').trim();
+  const words = clean.split(/\s+/).filter(Boolean);
+  let mainLine = words[0] ? words[0].toUpperCase() : 'PRESTIGE';
+  let subLine = '';
+  if (words.length >= 2) {
+    if (words[0].length <= 3 && words[1]) {
+      mainLine = (words[0] + ' ' + words[1]).toUpperCase();
+      subLine = words.slice(2).join(' ').toUpperCase();
+    } else {
+      mainLine = words[0].toUpperCase();
+      subLine = words.slice(1).join(' ').toUpperCase();
+    }
+  }
+  if (!subLine) {
+    subLine = String(sectorBadge || 'ESTUDIO PROFESIONAL').toUpperCase();
+  }
+  if (mainLine.length > 13) mainLine = mainLine.slice(0, 13);
+  if (subLine.length > 26) subLine = subLine.slice(0, 26);
+  return { mainLine, subLine };
+}
+
+function buildPrestigeCrestArtworkSVG(preset, mode) {
+  const cat = String(preset.category || '').toLowerCase();
+  const id = String(preset.id || '').toLowerCase();
+
+  //Nota: el centro (500, 390) incluye una ventana blanca amplia (r=54) para que al hacer zoom 50x la cámara atraviese limpia el emblema
+  if (cat === 'motor' || mode === 'motor_diagnostico' || id.includes('taller') || id.includes('lavadero') || id.includes('moto')) {
+    return `
+      <!-- Silueta coupé estilo Prestige Car Detail + Torre/Emblema central -->
+      <path d="M295 415 C330 362, 405 338, 495 336 C575 335, 650 358, 705 408 L722 436 C725 452, 710 462, 685 462 L315 462 C292 462, 282 444, 295 415 Z" />
+      <circle cx="500" cy="390" r="64" />
+      <path d="M472 260 L500 218 L528 260 L528 332 L472 332 Z" />
+      <rect x="494" y="192" width="12" height="34" />
+    `;
+  }
+  if (cat === 'belleza' || id.includes('barber') || id.includes('peluquer') || id.includes('estetica') || id.includes('tatuaje')) {
+    return `
+      <!-- Emblema Barbería / Salón: Tijeras cruzadas + Corona + Ventana central -->
+      <path d="M365 295 L635 455 L618 474 L348 314 Z" />
+      <path d="M635 295 L365 455 L382 474 L652 314 Z" />
+      <circle cx="348" cy="462" r="28" />
+      <circle cx="652" cy="462" r="28" />
+      <path d="M438 265 L468 292 L500 246 L532 292 L562 265 L548 320 L452 320 Z" />
+      <circle cx="500" cy="390" r="66" />
+      <path d="M320 432 Q500 472 680 432 L666 454 Q500 490 334 454 Z" />
+    `;
+  }
+  if (mode === 'medidas_presupuesto' || id.includes('carpinter') || id.includes('reforma') || id.includes('cristal') || id.includes('pintor')) {
+    return `
+      <!-- Emblema Maestro de Oficio / Carpintería / Reformas: Escuadra + Compás + Ventana central -->
+      <path d="M500 222 L660 395 L628 422 L500 282 L372 422 L340 395 Z" />
+      <path d="M330 430 L670 430 L655 458 L345 458 Z" />
+      <circle cx="500" cy="390" r="66" />
+    `;
+  }
+  if (mode === 'urgencia_o_llaves' || id.includes('cerrajer') || id.includes('llave') || id.includes('fontaner') || id.includes('electric')) {
+    return `
+      <!-- Emblema Cerrajería / Asistencia Técnica: Escudo y Llave Maestra -->
+      <path d="M500 218 L635 270 C635 375, 585 445, 500 475 C415 445, 365 375, 365 270 Z" />
+      <circle cx="500" cy="390" r="68" />
+    `;
+  }
+  if (cat === 'hosteleria' || mode === 'mesa_carta' || mode === 'encargo_sin_cola') {
+    return `
+      <!-- Emblema Gastronómico / Obrador: Campana Real + Espiga + Ventana central -->
+      <path d="M335 438 C345 330, 415 278, 500 278 C585 278, 655 330, 665 438 Z" />
+      <circle cx="500" cy="256" r="22" />
+      <rect x="315" y="444" width="370" height="18" rx="9" />
+      <circle cx="500" cy="390" r="66" />
+    `;
+  }
+  // Salud / Clínicas / Servicios / General: Escudo Imperial con Ventana Central
+  return `
+    <path d="M500 220 L645 282 C642 382, 585 444, 500 472 C415 444, 358 382, 355 282 Z" />
+    <circle cx="500" cy="390" r="68" />
+  `;
+}
+
+function buildTradeVerbos(preset, st, mode) {
+  const cat = String(preset.category || '').toLowerCase();
+  const id = String(preset.id || '').toLowerCase();
+  if (id.includes('barber') || id.includes('peluquer') || cat === 'belleza') {
+    return {
+      intro: `Mucho más que un servicio rápido en ${st.city}`,
+      items: [
+        { word: 'Precisión.', desc: 'Diagnóstico previo de facciones, caída y textura para que el resultado te favorezca desde el primer día y crezca con forma.' },
+        { word: 'Ritual.', desc: 'Productos de primera línea, toalla caliente, herramientas esterilizadas y el tiempo que cada trabajo necesita sin prisas.' },
+        { word: 'Estilo.', desc: 'Acabado limpio y duradero que puedes mantener fácilmente en casa hasta tu próxima visita al salón.' }
+      ]
+    };
+  }
+  if (cat === 'motor' || mode === 'motor_diagnostico') {
+    return {
+      intro: 'Mucho más que revisar o lavar un vehículo',
+      items: [
+        { word: 'Limpieza.', desc: 'Interior y exterior a fondo, también donde no llega la vista: marcos, rieles, vano, conductos y tapicerías.' },
+        { word: 'Recuperación.', desc: 'Piezas, ópticas, tapicerías y superficies que parecían desgastadas vuelven a su estado original con técnica profesional.' },
+        { word: 'Protección.', desc: 'Tratamientos, recambios y sellantes de primera marca para que el resultado aguante el uso diario en carretera.' }
+      ]
+    };
+  }
+  if (mode === 'medidas_presupuesto') {
+    return {
+      intro: `Mucho más que dar un presupuesto a ojo en ${st.city}`,
+      items: [
+        { word: 'Medida.', desc: 'Ajuste milimétrico a tu espacio real: salvamos pilares, vigas, desniveles y aprovechamos cada centímetro útil.' },
+        { word: 'Material.', desc: 'Herrajes, maderas, perfiles y acabados seleccionados para durar décadas sin desajustarse ni perder presencia.' },
+        { word: 'Montaje.', desc: 'Instalación limpia en tu domicilio, protegiendo el suelo y entregando el trabajo rematado y listo para usar.' }
+      ]
+    };
+  }
+  if (mode === 'urgencia_o_llaves') {
+    return {
+      intro: `Mucho más que salir del paso en ${st.city}`,
+      items: [
+        { word: 'Rapidez.', desc: 'Atención directa sin centralitas intermediarias: hablas con el técnico que va a ir a tu puerta o te atiende en taller.' },
+        { word: 'Limpieza.', desc: 'Aperturas, codificaciones y reparaciones con herramienta específica para no dañar tu puerta, cerradura o vehículo.' },
+        { word: 'Garantía.', desc: 'Precio cerrado confirmado por WhatsApp antes de empezar y factura oficial en cada intervención.' }
+      ]
+    };
+  }
+  if (cat === 'salud') {
+    return {
+      intro: `Mucho más que una consulta estándar en ${st.city}`,
+      items: [
+        { word: 'Escucha.', desc: 'Valoración completa de tu caso sin prisas para entender el origen real de la molestia o necesidad antes de actuar.' },
+        { word: 'Rigor.', desc: 'Protocolos clínicos actualizados, equipamiento de última generación y trato cercano en cada sesión.' },
+        { word: 'Seguimiento.', desc: 'Plan claro por etapas y contacto directo por WhatsApp para resolver cualquier duda tras tu visita.' }
+      ]
+    };
+  }
+  if (cat === 'hosteleria' || mode === 'mesa_carta' || mode === 'encargo_sin_cola') {
+    return {
+      intro: `Mucho más que salir a comer en ${st.city}`,
+      items: [
+        { word: 'Producto.', desc: 'Materia prima fresca seleccionada a diario en origen, respetando temporada, punto y sabor auténtico.' },
+        { word: 'Oficio.', desc: 'Elaboración propia cada mañana en nuestra cocina y obrador, sin atajos industriales ni prisas.' },
+        { word: 'Mesa.', desc: 'Atención cercana, tiempos cuidados y reserva o encargo directo por WhatsApp sin esperas en la puerta.' }
+      ]
+    };
+  }
+  return {
+    intro: `Mucho más que un servicio convencional en ${st.city}`,
+    items: [
+      { word: 'Criterio.', desc: 'Analizamos tu caso concreto antes de empezar para proponerte la solución que mejor funciona de verdad.' },
+      { word: 'Oficio.', desc: 'Ejecución cuidada al detalle por profesionales con experiencia contrastada en ' + st.city + '.' },
+      { word: 'Claridad.', desc: 'Precios cerrados desde el primer minuto y comunicación directa por WhatsApp sin intermediarios.' }
+    ]
+  };
+}
+
+function buildTradeCapas(preset, st, srvList) {
+  const s0 = srvList[0] ? srvList[0].title : 'Valoración inicial';
+  const s1 = srvList[1] ? srvList[1].title : 'Ejecución principal';
+  const s2 = srvList[2] ? srvList[2].title : 'Acabado superior';
+  return [
+    { num: '01', name: 'Recepción y diagnóstico previo', spec: '100% incluido', desc: `Revisamos contigo el estado inicial en ${st.name} y confirmamos el precio cerrado antes de tocar nada.`, tag: 'DIAGNÓSTICO', pos: 'top:28%;left:44%' },
+    { num: '02', name: s0, spec: srvList[0] ? srvList[0].price : 'Estándar Pro', desc: (srvList[0] && srvList[0].meta ? srvList[0].meta : 'Intervención base con materiales certificados') + ' trabajando zona por zona con máxima precisión.', tag: s0.slice(0, 18).toUpperCase(), pos: 'top:46%;left:52%' },
+    { num: '03', name: s1, spec: srvList[1] ? srvList[1].price : 'Nivel Avanzado', desc: (srvList[1] && srvList[1].meta ? srvList[1].meta : 'Tratamiento completo en detalle') + ' cuidando tanto lo que se ve a primera vista como los remates internos.', tag: s1.slice(0, 18).toUpperCase(), pos: 'top:58%;left:38%' },
+    { num: '04', name: s2, spec: srvList[2] ? srvList[2].price : 'Acabado Especial', desc: (srvList[2] && srvList[2].meta ? srvList[2].meta : 'Resultado de máxima durabilidad') + ' pensado para que el trabajo aguante perfecto mucho más tiempo.', tag: s2.slice(0, 18).toUpperCase(), pos: 'top:36%;left:62%' },
+    { num: '05', name: 'Revisión final y entrega garantizada', spec: 'Garantía Oficial', desc: `Comprobamos cada punto contigo antes de entregar y quedamos a tu disposición directa en nuestro WhatsApp de ${st.city}.`, tag: 'ENTREGA OK', pos: 'top:68%;left:48%' }
+  ];
+}
+
+function buildTradeCasos(preset, st, srvList, galleryArr, heroImg) {
+  const p0 = galleryArr[0] || heroImg;
+  const p1 = galleryArr[1] || heroImg;
+  const p2 = galleryArr[2] || p0;
+  const p3 = galleryArr[3] || p1;
+
+  const s0 = srvList[0] || { title: 'Servicio Integral', meta: 'Trabajo completo', price: 'Precio cerrado' };
+  const s1 = srvList[1] || s0;
+  const s2 = srvList[2] || s0;
+  const s3 = srvList[3] || s1;
+
+  return [
+    {
+      num: 'Nº 001',
+      title: s0.title.split(/[·+\(\/]/)[0].trim(),
+      photo: p0,
+      llego: `Cliente de ${st.city} buscando un resultado impecable y sin esperas`,
+      trabajo: `${s0.title} (${s0.meta || 'ejecución completa'})`,
+      entrega: 'Acabado de estudio entregado en el plazo acordado'
+    },
+    {
+      num: 'Nº 002',
+      title: s1.title.split(/[·+\(\/]/)[0].trim(),
+      photo: p1,
+      llego: 'Necesitaba solución profesional con presupuesto claro por adelantado',
+      trabajo: `${s1.title} (${s1.meta || 'atención personalizada'})`,
+      entrega: 'Resultado revisado al detalle y garantía activa'
+    },
+    {
+      num: 'Nº 003',
+      title: s2.title.split(/[·+\(\/]/)[0].trim(),
+      photo: p2,
+      llego: 'Reserva directa por WhatsApp indicando preferencia de horario',
+      trabajo: `${s2.title} (${s2.meta || 'máxima dedicación'})`,
+      entrega: 'Trabajo terminado a la primera y cliente 100% satisfecho'
+    },
+    {
+      num: 'Nº 004',
+      title: s3.title.split(/[·+\(\/]/)[0].trim(),
+      photo: p3,
+      llego: `Recomendado por otro cliente habitual de ${st.name}`,
+      trabajo: `${s3.title} (${s3.meta || 'servicio especialista'})`,
+      entrega: 'Revisión completa y acabado protegido'
+    }
+  ];
+}
+
+function resolveProjectAssetUrl(rawUrl) {
+  const u = String(rawUrl || '').trim();
+  if (!u) return '';
+  if (/^(https?:|data:|blob:|file:)/i.test(u)) return u;
+  if (typeof window !== 'undefined' && window.location && window.location.href) {
+    try {
+      const href = window.location.href.split('#')[0].split('?')[0];
+      const baseDir = /\/(sitio|admin|gracias)\/[^/]*$/i.test(href)
+        ? href.replace(/\/(sitio|admin|gracias)\/[^/]*$/i, '/')
+        : href.replace(/\/[^/]*$/, '/');
+      const cleanRel = u.replace(/^\/+/, '');
+      return new URL(cleanRel, baseDir).href;
+    } catch (e) {}
+  }
+  return u;
+}
+
 function compileClientWebsiteHTML(st) {
-  const preset = SECTOR_PRESETS[st.sector] || SECTOR_PRESETS.peluqueria;
-  const thm = DESIGN_THEMES[st.theme] || DESIGN_THEMES.royal;
-  const sectorBadge = st.sector === 'otro' ? (st.customSectorLabel || 'Negocio Local') : preset.label;
+  const preset = resolvePresetForState(st);
+  const pal = resolvePrestigePalette(st.theme || preset.defaultTheme || 'royal');
+  const sectorBadge = st.sector === 'otro'
+    ? (st.customSectorLabel || preset.label || 'Especialista Local')
+    : preset.label;
 
   const customPhotos = Array.isArray(st.customGallery) ? st.customGallery.filter(Boolean) : [];
   const defaultGallery = Array.isArray(preset.gallery) && preset.gallery.length ? preset.gallery : [preset.heroImage];
-  const activeGallery = customPhotos.length ? customPhotos : defaultGallery;
-  const heroImg = st.customHeroPhoto || activeGallery[0] || preset.heroImage;
+  const activeGallery = (customPhotos.length ? customPhotos : defaultGallery).map(resolveProjectAssetUrl);
+  const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || activeGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
+  const secondImg = resolveProjectAssetUrl(activeGallery[1] || heroImg);
+  const thirdImg = resolveProjectAssetUrl(activeGallery[2] || secondImg);
 
   const cleanWa = String(st.whatsapp || '612890345').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
   const telHref = 'tel:+' + fullWa;
+  const directWaHref = `https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', he visto vuestra web y me gustaría consultar disponibilidad.')}`;
 
-  const actionBtnLabel = preset.actionType === 'reformas' ? 'Pedir presupuesto'
-    : preset.actionType === 'mesa' ? 'Reservar mesa'
-    : preset.actionType === 'motor' ? 'Cita / Stock'
-    : preset.actionType === 'urgencia' ? 'Asistencia 24h'
-    : 'Pedir cita';
+  const mode = normalizeActionType(st.actionType || preset.actionType);
+  const actionBtnLabel = preset.ctaShort || (
+    mode === 'medidas_presupuesto' ? 'Pedir presupuesto'
+    : mode === 'urgencia_o_llaves' ? 'Asistencia / Llaves'
+    : mode === 'motor_diagnostico' ? 'Cita de taller'
+    : mode === 'recepcion_taller_local' ? 'Consultar arreglo'
+    : mode === 'encargo_sin_cola' ? 'Hacer encargo'
+    : mode === 'mesa_carta' ? 'Reservar mesa'
+    : mode === 'filtro_clientes' ? 'Consultar ahora'
+    : 'Reservar por WhatsApp'
+  );
 
-  const servicesHtml = (st.services || []).map((srv, idx) => `
-    <div class="srv-card" onclick="selectServiceForBooking('${escapeHtml(srv.title)}')">
-      <div class="srv-info">
-        ${idx === 0 ? `<span class="srv-pop">Más solicitado</span>` : ''}
-        <div class="srv-title">${escapeHtml(srv.title)}</div>
-        <div class="srv-meta">${escapeHtml(srv.meta)}</div>
+  const brandParts = buildPrestigeBrandParts(st.name, sectorBadge);
+  const crestArtworkSvg = buildPrestigeCrestArtworkSVG(preset, mode);
+  const srvList = Array.isArray(st.services) && st.services.length ? st.services : (preset.services || []);
+
+  // Tabla interactiva estilo Prestige ("Tres detallados, precio cerrado")
+  const cartaRowsHtml = srvList.map((srv, idx) => `
+    <details class="fila srv-card" ${idx === 0 ? 'open' : ''}>
+      <summary>
+        <span class="n">
+          ${escapeHtml(srv.title)}
+          <small>${escapeHtml(srv.meta || 'Servicio profesional con precio cerrado')}</small>
+        </span>
+        <span class="p">${escapeHtml(srv.price)}</span>
+      </summary>
+      <div class="inc">
+        <ul>
+          <li><strong>Qué incluye:</strong> ${escapeHtml(srv.meta || 'Atención completa por nuestro equipo especialista')}</li>
+          <li><strong>Precio cerrado:</strong> ${escapeHtml(srv.price)} confirmados antes de empezar, sin cargos ocultos.</li>
+          <li><strong>Reserva directa:</strong> Confirmación inmediata en nuestro WhatsApp de ${escapeHtml(st.city)}.</li>
+        </ul>
+        <div class="pie-fila">
+          <button type="button" class="enlace-btn" onclick="selectServiceForBooking('${escapeHtml(srv.title)}')">
+            Seleccionar ${escapeHtml(srv.title)} y pedir por WhatsApp →
+          </button>
+        </div>
       </div>
-      <div class="srv-right">
-        <span class="srv-price">${escapeHtml(srv.price)}</span>
-        <span class="srv-arrow">Reservar →</span>
-      </div>
-    </div>
+    </details>
   `).join('');
 
-  const galleryGridHtml = activeGallery.slice(0, 3).map((ph, idx) => `
-    <figure class="gal-item ${idx === 0 ? 'gal-featured' : ''}">
-      <img src="${escapeHtml(ph)}" alt="${escapeHtml(st.name)} · Imagen ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}" />
-    </figure>
+  const verbosData = buildTradeVerbos(preset, st, mode);
+  const verbosHtml = verbosData.items.map(v => `
+    <a class="verbo" href="#servicios">
+      <strong>${escapeHtml(v.word)}</strong>
+      <p>${escapeHtml(v.desc)}</p>
+    </a>
+  `).join('');
+
+  const capasData = buildTradeCapas(preset, st, srvList);
+  const capasHtml = capasData.map((c, idx) => `
+    <details class="capa" data-capa="${escapeHtml(c.tag)}" data-pos="${escapeHtml(c.pos)}" ${idx === 0 ? 'open' : ''}>
+      <summary>
+        <span class="capa-n">${escapeHtml(c.num)}</span>
+        <span class="capa-nombre">${escapeHtml(c.name)}</span>
+        <span class="capa-grosor">${escapeHtml(c.spec)}</span>
+      </summary>
+      <div class="capa-det">
+        <p>${escapeHtml(c.desc)}</p>
+        <button type="button" class="enlace-btn" style="margin-top:10px;" onclick="jumpSec('accion')">Consultar para mi caso →</button>
+      </div>
+    </details>
+  `).join('');
+
+  const casosData = buildTradeCasos(preset, st, srvList, activeGallery, heroImg);
+  const casosHtml = casosData.map((cs, idx) => `
+    <article class="e-caso">
+      <div class="e-media">
+        <span class="dato e-num">${escapeHtml(cs.num)}</span>
+        <img src="${escapeHtml(cs.photo)}" alt="${escapeHtml(cs.title)} en ${escapeHtml(st.name)}" />
+      </div>
+      <h3>${escapeHtml(cs.title)}</h3>
+      <dl class="e-parte">
+        <dt>Llegó</dt><dd>${escapeHtml(cs.llego)}</dd>
+        <dt>Trabajo</dt><dd>${escapeHtml(cs.trabajo)}</dd>
+        <dt>Entrega</dt><dd>${escapeHtml(cs.entrega)}</dd>
+      </dl>
+    </article>
   `).join('');
 
   const fallbackReviews = preset.defaultReviews || [
-    { author: 'Marta G.', rating: 5, text: `Trato de 10 en ${st.name}. Puntuales, muy profesionales y pedir cita por WhatsApp fue comodísimo.` },
-    { author: 'Lucía S.', rating: 5, text: `De lo mejor de ${st.city}. Precios claros en la web desde el primer momento y atención impecable.` },
-    { author: 'Carlos R.', rating: 5, text: 'Instalaciones cuidadísimas, trato cercano y cero esperas. Repetiré sin duda.' }
+    { author: 'Gonzalo G.', rating: 5, text: `Excelente servicio en ${st.name}. Quedó impecable, trato muy amable, profesional y atento en todo momento. Da gusto encontrar personas que trabajan con tanta dedicación en ${st.city}.` },
+    { author: 'Sandra M.', rating: 5, text: `100% recomendable. Precio cerrado desde el primer momento por WhatsApp, cero esperas y un resultado inmejorable. Volveré sin duda.` },
+    { author: 'Eugenio A.', rating: 5, text: `Sinceramente un trabajo excepcional. Se nota el oficio, el cuidado por los detalles y la puntualidad. Totalmente de confianza.` }
   ];
   const activeReviews = (Array.isArray(st.reviews) && st.reviews.length) ? st.reviews : fallbackReviews;
-  const reviewsHtml = activeReviews.slice(0, 3).map(rv => `
-    <article class="rev-card">
-      <div>
-        <div class="rev-stars" aria-label="5 de 5 estrellas">★★★★★</div>
-        <p class="rev-text">“${escapeHtml(rv.text)}”</p>
-      </div>
-      <div class="rev-author">
-        <span class="rev-avatar">${escapeHtml((rv.author || 'C').trim().charAt(0).toUpperCase())}</span>
+  const reviewsHtml = activeReviews.slice(0, 3).map((rv, idx) => `
+    <figure class="res-tarjeta ${idx === 0 ? 'activa' : ''}" style="--o:${idx}">
+      <div class="res-estrellas" aria-label="5 de 5 estrellas">★★★★★</div>
+      <blockquote>«${escapeHtml(rv.text)}»</blockquote>
+      <figcaption>
+        <span class="res-inicial">${escapeHtml((rv.author || 'C').trim().charAt(0).toUpperCase())}</span>
         <div>
-          <strong>${escapeHtml(rv.author || 'Cliente verificado')}</strong>
-          <span>Reseña verificada · ${escapeHtml(st.city)}</span>
+          <b>${escapeHtml(rv.author || 'Cliente verificado')}</b>
+          <small>Reseña de Google · ${escapeHtml(st.city)}</small>
         </div>
-      </div>
-    </article>
+      </figcaption>
+    </figure>
+  `).join('');
+
+  const faqs = preset.faqs || [
+    { q: '¿Sabré el precio exacto antes de empezar?', a: 'Sí. Trabajamos con precios claros y cerrados. Si nos escribes por WhatsApp con lo que necesitas, te confirmamos importe y tiempo antes de tocar nada.' },
+    { q: '¿Cómo pido cita, encargo o presupuesto rápido?', a: 'Usa la herramienta interactiva de esta misma sección: eliges el servicio, completas los datos básicos y se abre tu WhatsApp con todo listo para que te demos hueco prioritario.' },
+    { q: '¿Cómo se puede pagar?', a: `En efectivo, con tarjeta o por Bizum directamente en nuestro local de ${st.city} al terminar.` },
+    { q: '¿Dónde estáis exactamente y qué horario tenéis?', a: `Estamos en ${st.address} (${st.city}).Nuestro horario habitual es de lunes a viernes de ${st.hoursWeek} y sábados de ${st.hoursSat}.` }
+  ];
+  const faqHtml = faqs.map((f, i) => `
+    <details ${i === 0 ? 'open' : ''}>
+      <summary>${escapeHtml(f.q)}</summary>
+      <p>${escapeHtml(f.a)}</p>
+    </details>
   `).join('');
 
   const editPhotoBtnHero = !st.unlocked
     ? `<button type="button" class="demo-photo-pill" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}">
-         <span>Subir fotos de mi local</span>
+         <span>Cambiar fotos por las de mi negocio</span>
        </button>`
     : '';
 
   const editPhotoBtnGal = !st.unlocked
-    ? `<button type="button" class="btn-secondary-sm" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}">
-         Cambiar por fotos de mi móvil
+    ? `<button type="button" class="btn btn-linea" style="min-height:38px;padding:0 14px;font-size:13px;" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}">
+         Subir fotos de mi móvil
        </button>`
     : '';
 
   const legalHolderName = st.legalHolder || st.name;
   const legalNifText = st.legalNif ? ` · NIF/CIF: ${st.legalNif}` : '';
   const widgetHtml = buildSectorActionWidgetHTML(st, preset);
-  const accentSoft = thm.accentSoft || (thm.isLight ? '#EEF2FF' : 'rgba(99,102,241,0.18)');
-  const navBg = thm.isLight ? 'rgba(255, 255, 255, 0.88)' : 'rgba(15, 23, 42, 0.88)';
-  const bezelBg = thm.isLight ? 'rgba(15, 23, 42, 0.035)' : 'rgba(255, 255, 255, 0.04)';
+  const firstPrice = (srvList[0] && srvList[0].price) ? srvList[0].price : 'Precio cerrado';
 
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${escapeHtml(st.name)} · ${escapeHtml(st.city)}</title>
+<title>${escapeHtml(st.name)} · ${escapeHtml(sectorBadge)} en ${escapeHtml(st.city)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:${thm.bg}; --surface:${thm.surface}; --card:${thm.card};
-    --ink:${thm.text}; --muted:${thm.muted}; --border:${thm.border};
-    --accent:${thm.accent}; --accent-hi:${thm.accentHi}; --accent-soft:${accentSoft}; --accent-ink:${thm.accentInk};
-    --bezel:${bezelBg};
+    --noche: ${pal.noche};
+    --hondo: ${pal.hondo};
+    --placa: ${pal.placa};
+    --oro: ${pal.oro};
+    --oro-hover: ${pal.oroHover};
+    --plata: ${pal.plata};
+    --tinta: ${pal.tinta};
+    --tinta-2: ${pal.tinta2};
+    --filete: ${pal.filete};
+    --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --gutter: 20px;
+    --bar: 62px;
+    --cab: 78px;
+    /* Compatibilidad con el widget interactivo de WhatsApp */
+    --bg: ${pal.hondo};
+    --surface: ${pal.noche};
+    --card: ${pal.placa};
+    --ink: ${pal.tinta};
+    --muted: ${pal.tinta2};
+    --border: ${pal.filete};
+    --accent: ${pal.oro};
+    --accent-hi: ${pal.oroHover};
+    --accent-soft: rgba(200, 165, 72, 0.14);
+    --accent-ink: #121212;
   }
-  * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-  html { scroll-behavior:smooth; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: var(--cab); }
   body {
-    background:var(--bg); color:var(--ink);
-    font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height:1.55; overflow-x:clip; padding-bottom:84px;
-    -webkit-font-smoothing:antialiased;
+    background: var(--noche);
+    color: var(--tinta);
+    font-family: var(--sans);
+    padding-bottom: var(--bar);
+    font-size: 16.5px;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  a { color:inherit; text-decoration:none; }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  img, video { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: 1180px; padding: 0 var(--gutter); margin: 0 auto; }
+  .dato { font-family: var(--mono); letter-spacing: 0.04em; color: var(--plata); font-size: 12px; text-transform: uppercase; }
 
-  /* Top Info Bar */
-  .top-strip {
-    background:var(--card); border-bottom:1px solid var(--border);
-    padding:8px 20px; font-size:12px; color:var(--muted);
+  /* CABECERA SIMÉTRICA ESTILO PRESTIGE */
+  .top {
+    z-index: 45;
+    padding: 10px var(--gutter);
+    border-bottom: 1px solid transparent;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    transition: background 0.4s, border-color 0.4s, padding 0.4s;
+    display: grid;
+    position: fixed;
+    top: 0; left: 0; right: 0;
   }
-  .top-strip-inner {
-    max-width:1080px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  .top.solida {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--filete);
+    background: rgba(10, 19, 34, 0.90);
+    padding-block: 8px;
   }
-  .open-pill { display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--ink); }
-  .open-dot { width:7px; height:7px; border-radius:50%; background:#10B981; box-shadow:0 0 0 3px rgba(16,185,129,0.18); }
-
-  /* Sticky Glass Navbar */
-  .nav {
-    position:sticky; top:0; z-index:40; background:${navBg};
-    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-    border-bottom:1px solid var(--border);
+  .top .marca {
+    grid-column: 2;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.45s, transform 0.45s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
   }
-  .nav-inner {
-    max-width:1080px; margin:0 auto; padding:13px 20px;
-    display:flex; align-items:center; justify-content:space-between; gap:14px;
+  .top .marca-titulo {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tinta);
+    line-height: 1;
   }
-  .brand {
-    font-family:'Outfit',sans-serif; font-weight:800; font-size:1.22rem;
-    letter-spacing:-0.03em; line-height:1.05; cursor:pointer; display:flex; align-items:center; gap:9px;
+  .top .marca-sub {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--oro);
   }
-  .brand-mark {
-    width:32px; height:32px; border-radius:10px; background:var(--accent); color:var(--accent-ink);
-    display:inline-flex; align-items:center; justify-content:center; font-size:0.95rem; font-weight:800; flex-shrink:0;
+  .top.en-portada:not(.solida) .marca {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
   }
-  .nav-links { display:none; align-items:center; gap:22px; font-size:13.5px; font-weight:600; color:var(--muted); }
-  .nav-links a:hover { color:var(--accent); }
-  @media (min-width:820px) { .nav-links { display:flex; } }
-
-  /* Tactile Pill Buttons */
-  .btn-primary {
-    background:var(--accent); color:var(--accent-ink);
-    padding:12px 18px 12px 22px; border-radius:999px; border:none;
-    font-family:'Outfit',sans-serif; font-weight:700; font-size:14px;
-    display:inline-flex; align-items:center; gap:10px; cursor:pointer;
-    box-shadow:0 12px 28px -8px rgba(79, 70, 229, 0.38);
-    transition:transform 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s ease;
+  .top nav { display: none; align-items: center; gap: 24px; }
+  .top nav a { color: var(--tinta-2); font-size: 14.5px; transition: color 0.2s; }
+  .top nav a:hover { color: var(--tinta); }
+  .top .izq { grid-column: 1; justify-self: start; }
+  .top .der { grid-column: 3; justify-self: end; }
+  .menu-btn {
+    min-height: 42px; color: var(--tinta); font: 500 14.5px var(--sans);
+    cursor: pointer; background: none; border: 0; grid-column: 1; justify-self: start;
+    align-items: center; gap: 8px; display: flex;
   }
-  .btn-primary:hover { background:var(--accent-hi); transform:translateY(-1px); }
-  .btn-primary:active { transform:scale(0.97); }
-  .btn-block { width:100%; justify-content:center; padding:14px 22px; font-size:15px; }
-  .btn-arrow {
-    width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,0.2);
-    display:inline-flex; align-items:center; justify-content:center; font-size:13px;
-  }
-  .btn-secondary {
-    background:var(--card); color:var(--ink); border:1px solid var(--border);
-    padding:12px 20px; border-radius:999px; font-weight:700; font-size:14px;
-    display:inline-flex; align-items:center; gap:8px; cursor:pointer;
-    box-shadow:0 4px 14px rgba(15,23,42,0.04);
-    transition:border-color 0.2s ease, transform 0.2s ease;
-  }
-  .btn-secondary:hover { border-color:var(--accent); }
-  .btn-secondary-sm {
-    background:var(--accent-soft); color:var(--accent); border:1px solid var(--border);
-    padding:8px 14px; border-radius:999px; font-weight:700; font-size:12px; cursor:pointer;
-  }
-  .nav-cta {
-    background:var(--accent); color:var(--accent-ink); padding:9px 16px;
-    border-radius:999px; font-family:'Outfit',sans-serif; font-size:13px; font-weight:700;
-    border:none; cursor:pointer; white-space:nowrap;
-  }
-
-  /* Double-Bezel Surface Architecture */
-  .bezel-shell {
-    background:var(--bezel); border:1px solid var(--border);
-    padding:7px; border-radius:28px;
+  .menu-btn i { gap: 5px; width: 18px; display: grid; }
+  .menu-btn i:before, .menu-btn i:after { content: ""; background: currentColor; height: 1.5px; display: block; }
+  .reservar-movil {
+    color: #121212; background: var(--oro); grid-column: 3; justify-self: end;
+    align-items: center; min-height: 36px; padding: 0 13px; border-radius: 2px;
+    font-size: 13px; font-weight: 600; display: inline-flex; border: none; cursor: pointer;
   }
 
-  /* Editorial Split Hero */
-  .hero {
-    padding:34px 0 46px;
-    background:radial-gradient(720px 380px at 85% 0%, var(--accent-soft), transparent 70%);
-    border-bottom:1px solid var(--border);
+  /* CORTINA MENÚ MÓVIL */
+  .cortina {
+    z-index: 70; background: var(--noche); padding: 18px var(--gutter) 90px;
+    visibility: hidden; flex-direction: column;
+    transition: transform 0.45s cubic-bezier(0.6, 0, 0.2, 1), visibility 0s 0.45s;
+    display: flex; position: fixed; inset: 0; overflow-y: auto; transform: translateY(-100%);
   }
-  .hero-grid { display:grid; grid-template-columns:1fr; gap:26px; align-items:center; }
-  @media (min-width:820px) {
-    .hero { padding:58px 0 68px; }
-    .hero-grid { grid-template-columns:1.06fr 0.94fr; gap:42px; }
+  .cortina.abierta { visibility: visible; transition: transform 0.45s cubic-bezier(0.6, 0, 0.2, 1); transform: none; }
+  .cortina .cerrar { min-height: 44px; color: var(--tinta); font: 500 15px var(--sans); cursor: pointer; background: 0 0; border: 0; align-self: flex-start; }
+  .cortina ul { border-top: 1px solid var(--oro); margin-top: 20px; list-style: none; }
+  .cortina li a {
+    border-bottom: 1px solid var(--filete); font-family: var(--serif);
+    justify-content: space-between; align-items: baseline; padding: 15px 0;
+    font-size: 28px; line-height: 1.1; display: flex;
   }
-  .trust-row {
-    display:inline-flex; flex-wrap:wrap; align-items:center; gap:8px;
-    padding:6px 13px; border-radius:999px; background:var(--card); border:1px solid var(--border);
-    font-size:12px; font-weight:700; margin-bottom:16px;
-    box-shadow:0 4px 12px rgba(15,23,42,0.04);
-  }
-  .trust-stars { color:#F59E0B; letter-spacing:1px; }
-  h1 {
-    font-family:'Outfit',sans-serif; font-weight:800;
-    font-size:clamp(2rem, 4.6vw, 3.15rem); line-height:1.06;
-    letter-spacing:-0.035em; text-wrap:balance; margin-bottom:14px;
-  }
-  .hero-p { color:var(--muted); font-size:15.5px; max-width:520px; margin-bottom:22px; line-height:1.6; }
-  .hero-btns { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
-  .hero-checks { display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; font-weight:600; color:var(--muted); }
-  .hero-checks span { display:inline-flex; align-items:center; gap:5px; }
-  .hero-checks b { color:var(--accent); }
+  .cortina li a small { font-family: var(--mono); color: var(--oro); font-size: 12px; }
 
-  .hero-photo-shell {
-    position:relative; background:var(--bezel); border:1px solid var(--border);
-    padding:8px; border-radius:30px;
-    box-shadow:0 24px 54px -16px rgba(15, 23, 42, 0.14);
+  /* BOTONES PRESTIGE */
+  .btn {
+    min-height: 48px; font: 600 15.5px/1.1 var(--sans); cursor: pointer;
+    text-align: center; border: 0; border-radius: 2px;
+    justify-content: center; align-items: center; gap: 8px; padding: 0 22px;
+    display: inline-flex; position: relative; overflow: hidden;
+    transition: background 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-  .hero-photo-core {
-    position:relative; border-radius:22px; overflow:hidden; background:var(--card);
+  .btn:after {
+    content: ""; pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+    position: absolute; inset: 0; transform: translateX(-120%);
   }
-  .hero-photo-core img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
-  .hero-float-card {
-    position:absolute; bottom:12px; left:12px; right:12px;
-    background:${navBg}; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    color:var(--ink); padding:11px 15px; border-radius:16px; border:1px solid var(--border);
-    display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12.5px;
-    box-shadow:0 12px 28px rgba(15,23,42,0.10);
+  .btn:hover:after { transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); transform: translateX(120%); }
+  .btn-oro, .btn-primary { background: var(--oro); color: #121212; }
+  .btn-oro:hover, .btn-primary:hover { background: var(--oro-hover); transform: translateY(-2px); box-shadow: 0 12px 28px -12px rgba(200, 165, 72, 0.7); }
+  .btn-linea { color: var(--tinta); box-shadow: inset 0 0 0 1px var(--filete); background: rgba(15, 26, 45, 0.45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  .btn-linea:hover { box-shadow: inset 0 0 0 1px var(--oro); color: var(--oro); }
+  .top .btn { min-height: 38px; padding: 0 16px; font-size: 14px; }
+  .enlace-btn {
+    background: none; border: 0; color: var(--tinta); box-shadow: inset 0 -1px var(--oro);
+    font: 600 14.5px var(--sans); padding: 2px 0; cursor: pointer; text-align: left;
   }
+  .enlace-btn:hover { color: var(--oro); }
+
+  /* ==========================================================================
+     PORTADA DE ENTRADA CON CÁMARA EN MOVIMIENTO + ESCUDO EN SCROLL (#intro)
+     ========================================================================== */
+  .portada { height: 235vh; position: relative; }
+  .pin {
+    background: var(--hondo);
+    isolation: isolate;
+    height: 100svh;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+  }
+  /* Escenario de cámara en movimiento continuo (Dolly + Pan 3D + Reflejo de estudio) */
+  .fondo-cam {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--hondo);
+    will-change: transform;
+  }
+  .cam-plane {
+    position: absolute;
+    inset: -6%;
+    width: 112%;
+    height: 112%;
+    max-width: none;
+    object-fit: cover;
+    filter: contrast(1.06) saturate(1.05) brightness(0.86);
+    will-change: transform, opacity;
+  }
+  .cam-plane-1 {
+    animation: camMovePrimary 14s ease-in-out infinite alternate;
+  }
+  .cam-plane-2 {
+    opacity: 0;
+    animation: camMoveSecondary 14s ease-in-out infinite alternate;
+  }
+  /* Barrido de luces de techo reflejadas sobre la escena (como los tubos de luz en el capó del Mercedes) */
+  .cam-sheen {
+    position: absolute;
+    inset: -20%;
+    background:
+      linear-gradient(115deg,
+        transparent 18%,
+        rgba(255, 255, 255, 0.03) 34%,
+        rgba(255, 248, 225, 0.16) 38%,
+        rgba(255, 255, 255, 0.02) 42%,
+        transparent 56%,
+        rgba(200, 165, 72, 0.11) 68%,
+        transparent 76%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: camLightSweep 9s ease-in-out infinite alternate;
+  }
+  @keyframes camMovePrimary {
+    0%   { transform: scale(1.04) translate3d(-1.8%, -1.2%, 0) rotate(-0.3deg); }
+    50%  { transform: scale(1.13) translate3d(1.6%, 0.8%, 0) rotate(0.2deg); }
+    100% { transform: scale(1.20) translate3d(-1.0%, 1.8%, 0) rotate(-0.2deg); }
+  }
+  @keyframes camMoveSecondary {
+    0%, 38%  { opacity: 0; transform: scale(1.16) translate3d(2.2%, -1.0%, 0); }
+    62%, 92% { opacity: 0.72; transform: scale(1.06) translate3d(-1.8%, 1.2%, 0); }
+    100%     { opacity: 0; transform: scale(1.12) translate3d(0%, 0%, 0); }
+  }
+  @keyframes camLightSweep {
+    0%   { transform: translate3d(-14%, -6%, 0) rotate(-2deg); }
+    100% { transform: translate3d(14%, 6%, 0) rotate(2deg); }
+  }
+
+  /* Velo multiplicador con escudo recortado (blanco = ventana transparente a la cámara) */
+  .velo {
+    mix-blend-mode: multiply;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .fondo-velo { fill: var(--hondo); }
+  .escudo-rim {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .firma {
+    left: 0; right: 0;
+    bottom: calc(var(--bar) + 4vh);
+    text-align: center;
+    color: var(--plata);
+    font-size: 14.5px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    position: absolute;
+    cursor: pointer;
+    z-index: 6;
+  }
+  .firma span {
+    display: inline-block;
+    max-width: calc(100vw - 32px);
+    padding: 5px 14px;
+    background: rgba(10, 19, 34, 0.72);
+    border: 1px solid var(--filete);
+    border-radius: 999px;
+    font-size: clamp(12px, 3.2vw, 14.5px);
+  }
+  .firma i {
+    background: linear-gradient(var(--oro), transparent);
+    width: 1px;
+    height: 36px;
+    margin: 10px auto 0;
+    animation: 2.2s ease-in-out infinite gota;
+    display: block;
+  }
+  @keyframes gota {
+    0%   { transform-origin: top; transform: scaleY(0); }
+    50%  { transform-origin: top; transform: scaleY(1); }
+    51%  { transform-origin: bottom; }
+    100% { transform-origin: bottom; transform: scaleY(0); }
+  }
+
+  .sombra {
+    opacity: 0;
+    background: linear-gradient(rgba(15, 26, 45, 0.55) 0%, rgba(15, 26, 45, 0.10) 28%, rgba(15, 26, 45, 0.94) 88%);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .titular {
+    left: 0; right: 0;
+    bottom: calc(var(--bar) + 24px);
+    padding: 0 var(--gutter);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateY(24px);
+    z-index: 8;
+  }
+  .titular-kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .titular h1 {
+    font-family: var(--serif);
+    letter-spacing: -0.02em;
+    max-width: 13ch;
+    font-size: clamp(32px, 8.2vw, 84px);
+    font-weight: 400;
+    line-height: 1.01;
+    color: var(--tinta);
+  }
+  .titular .sub {
+    color: var(--tinta);
+    opacity: 0.88;
+    max-width: 42ch;
+    margin-top: 12px;
+    font-size: clamp(14.5px, 3.8vw, 16.5px);
+  }
+  .titular .acciones {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    display: flex;
+  }
+  @media (max-width: 639px) {
+    .titular .acciones .btn { flex: 1 1 auto; padding: 0 14px; font-size: 14.5px; }
+  }
+  .nota-google {
+    color: var(--tinta-2);
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 13.5px;
+    display: flex;
+  }
+  .nota-google b { font-family: var(--serif); color: var(--tinta); font-size: 20px; font-weight: 400; }
+  .estrellas { color: var(--oro); letter-spacing: 2px; }
+
   .demo-photo-pill {
-    position:absolute; top:12px; right:12px; z-index:5;
-    background:var(--accent); color:#fff; border:none; border-radius:999px;
-    padding:8px 14px; font-size:12px; font-weight:700; cursor:pointer;
-    box-shadow:0 10px 24px rgba(79,70,229,0.4);
+    position: absolute;
+    top: calc(var(--cab) + 8px);
+    right: var(--gutter);
+    z-index: 25;
+    background: rgba(10, 19, 34, 0.85);
+    color: var(--oro);
+    border: 1px solid var(--oro);
+    border-radius: 2px;
+    padding: 7px 13px;
+    font: 600 12px var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 
-  /* Sections */
-  section { padding:52px 0; border-bottom:1px solid var(--border); }
-  .sec-head { margin-bottom:24px; max-width:640px; }
-  .sec-head-row { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:22px; }
+  /* ==========================================================================
+     SECCIÓN 1: LOS 3 VERBOS EN SERIF CONTORNEADA (.verbos)
+     ========================================================================== */
+  .verbos {
+    background: var(--hondo);
+    border-block: 1px solid var(--filete);
+    padding: 68px 0;
+  }
+  .verbos h2 {
+    font-family: var(--serif);
+    color: var(--tinta-2);
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .verbos .lista { display: grid; gap: 24px; }
+  .verbo {
+    border-top: 1px solid var(--filete);
+    padding: 18px 0 10px;
+    display: block;
+    transition: border-color 0.3s;
+  }
+  .verbo:hover { border-top-color: var(--oro); }
+  .verbo strong {
+    font-family: var(--serif);
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1.2px var(--plata);
+    font-size: clamp(36px, 9vw, 62px);
+    font-weight: 600;
+    line-height: 0.98;
+    display: block;
+    transition: color 0.35s, -webkit-text-stroke-color 0.35s;
+  }
+  .verbo:hover strong {
+    color: var(--oro);
+    -webkit-text-stroke-color: var(--oro);
+  }
+  .verbo p { color: var(--tinta-2); max-width: 38ch; margin-top: 10px; font-size: 15.5px; }
+
+  /* ==========================================================================
+     SECCIONES EDITORIALES Y PRECIOS CERRADOS (#servicios)
+     ========================================================================== */
+  .sec { padding: 78px 0; }
+  .sec.hundida, .e.hundida { background: var(--hondo); border-block: 1px solid var(--filete); }
+  .sec.destacada {
+    background: radial-gradient(ellipse 70% 60% at 85% 0%, rgba(200, 165, 72, 0.12), transparent 70%), var(--placa);
+    border-block: 1px solid rgba(200, 165, 72, 0.52);
+    position: relative;
+  }
+  .sec.destacada:before {
+    content: "";
+    background: var(--oro);
+    width: min(220px, 40%);
+    height: 3px;
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+  }
+  .sec h2 {
+    font-family: var(--serif);
+    letter-spacing: -0.015em;
+    max-width: 16ch;
+    font-size: clamp(32px, 7.5vw, 58px);
+    font-weight: 400;
+    line-height: 1.03;
+  }
+  .sec .intro { color: var(--tinta-2); max-width: 44ch; margin-top: 14px; }
+  .duo { display: grid; gap: 44px; align-items: start; }
+
+  .incluye { border-top: 1px solid var(--oro); margin-top: 24px; }
+  .incluye ul { list-style: none; }
+  .incluye li {
+    border-bottom: 1px solid var(--filete);
+    padding: 13px 0 13px 20px;
+    position: relative;
+    color: var(--tinta-2);
+    font-size: 15.5px;
+  }
+  .incluye li:before {
+    content: "";
+    background: var(--oro);
+    width: 9px; height: 1px;
+    position: absolute;
+    top: 1.4em; left: 0;
+  }
+  .incluye li strong { color: var(--tinta); font-weight: 600; }
+
+  .carta {
+    border-top: 1px solid var(--oro);
+    background: rgba(10, 19, 34, 0.38);
+    padding: 0 18px;
+  }
+  .carta .cab {
+    color: var(--tinta-2);
+    border-bottom: 1px solid var(--filete);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 11px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: grid;
+  }
+  .fila { border-bottom: 1px solid var(--filete); }
+  .fila summary {
+    cursor: pointer;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 14px;
+    padding: 18px 0;
+    list-style: none;
+    display: grid;
+  }
+  .fila summary::-webkit-details-marker { display: none; }
+  .fila .n { font-family: var(--serif); font-size: 23px; line-height: 1.15; color: var(--tinta); }
+  .fila .n small { font-family: var(--sans); color: var(--tinta-2); margin-top: 4px; font-size: 13.5px; display: block; }
+  .fila .p { font-family: var(--serif); font-variant-numeric: tabular-nums; font-size: 23px; color: var(--oro); white-space: nowrap; }
+  .fila[open] summary .n { color: var(--oro); }
+  .fila .inc { color: var(--tinta-2); padding: 0 0 18px; font-size: 14.5px; }
+  .fila .inc ul { gap: 6px; list-style: none; display: grid; }
+  .fila .inc li { padding-left: 16px; position: relative; }
+  .fila .inc li:before { content: ""; background: var(--oro); width: 7px; height: 1px; position: absolute; top: 0.7em; left: 0; }
+  .fila .inc .pie-fila { margin-top: 12px; }
+
+  /* ==========================================================================
+     SECCIÓN 2: COMPARADOR INTERACTIVO ANTES / DESPUÉS (#resultados)
+     ========================================================================== */
+  .ad {
+    aspect-ratio: 4/5;
+    -webkit-user-select: none;
+    user-select: none;
+    background: #000;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--filete);
+  }
+  .ad-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+  .ad-antes {
+    filter: grayscale(0.65) contrast(0.86) brightness(0.68) sepia(0.18);
+    clip-path: inset(0 var(--x, 65%) 0 0);
+  }
+  .ad-divisor {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: calc(100% - var(--x, 65%));
+    width: 1.5px;
+    background: var(--oro);
+    box-shadow: 0 0 16px rgba(200, 165, 72, 0.8);
+    pointer-events: none;
+  }
+  .ad .et {
+    font-family: var(--serif);
+    color: var(--tinta);
+    background: rgba(10, 19, 34, 0.82);
+    border: 1px solid var(--filete);
+    padding: 6px 12px;
+    font-size: 18px;
+    position: absolute;
+    top: 14px; left: 14px;
+    z-index: 3;
+  }
+  .ad.salio .et { color: var(--oro); border-color: var(--oro); }
+  .ad .riel {
+    background: rgba(255, 255, 255, 0.35);
+    height: 2px;
+    position: absolute;
+    bottom: 24px; left: 16px; right: 16px;
+    z-index: 3;
+  }
+  .ad .avance {
+    height: 2px;
+    width: var(--x, 35%);
+    background: var(--oro);
+    position: absolute;
+    top: 0; left: 0;
+    box-shadow: 0 0 14px 1px rgba(200, 165, 72, 0.7);
+  }
+  .ad .asa {
+    top: 0;
+    left: var(--x, 35%);
+    background: var(--oro);
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    margin: -10px 0 0 -11px;
+    position: absolute;
+    box-shadow: 0 0 0 6px rgba(200, 165, 72, 0.25);
+  }
+  .ad input[type="range"] {
+    opacity: 0;
+    cursor: ew-resize;
+    width: 100%; height: 100%;
+    margin: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+  }
+  .ad-hecho { border-top: 1px solid var(--filete); margin: 24px 0 0; padding: 0; list-style: none; }
+  .ad-hecho li {
+    border-bottom: 1px solid var(--filete);
+    color: var(--tinta-2);
+    padding: 13px 0 13px 22px;
+    position: relative;
+    font-size: 15.5px;
+  }
+  .ad-hecho li:before { content: ""; background: var(--oro); width: 9px; height: 1px; position: absolute; top: 22px; left: 0; }
+  .ad-hecho b { color: var(--tinta); font-weight: 600; }
+  .ad-precio { font: 500 12.5px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--oro); margin: 20px 0 16px; }
+
+  /* ==========================================================================
+     SECCIÓN 3: RESEÑAS DE GOOGLE ESTILO PRESTIGE (#opiniones)
+     ========================================================================== */
+  .resenas-grid { display: grid; gap: 18px; margin-top: 32px; }
+  .res-tarjeta {
+    background: var(--placa);
+    border: 1px solid var(--filete);
+    border-top: 2px solid var(--oro);
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 26px 24px 22px;
+    display: flex;
+  }
+  .res-estrellas { color: var(--oro); letter-spacing: 4px; font-size: 19px; line-height: 1; }
+  .res-tarjeta blockquote { font-family: var(--serif); color: var(--tinta); font-size: 19px; line-height: 1.42; }
+  .res-tarjeta figcaption { border-top: 1px solid var(--filete); align-items: center; gap: 12px; padding-top: 14px; display: flex; }
+  .res-inicial {
+    background: var(--hondo);
+    width: 38px; height: 38px;
+    color: var(--oro);
+    font: 400 17px var(--serif);
+    border: 1px solid rgba(200, 165, 72, 0.5);
+    border-radius: 50%;
+    place-items: center;
+    display: grid;
+    flex-shrink: 0;
+  }
+  .res-tarjeta figcaption b { font-size: 15px; font-weight: 600; display: block; }
+  .res-tarjeta figcaption small { color: var(--tinta-2); font-size: 12.5px; display: block; }
+
+  /* ==========================================================================
+     SECCIÓN 4: DESGLOSE POR CAPAS DE CALIDAD (#capas)
+     ========================================================================== */
+  .capas { display: grid; gap: 36px; align-items: center; }
+  .capas-lista { border-top: 1px solid var(--oro); margin-top: 22px; }
+  .capa { border-bottom: 1px solid var(--filete); }
+  .capa summary {
+    cursor: pointer;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: 14px;
+    padding: 15px 4px;
+    list-style: none;
+    display: grid;
+  }
+  .capa summary::-webkit-details-marker { display: none; }
+  .capa-n { font: 500 12px var(--mono); color: var(--oro); }
+  .capa-nombre { font-family: var(--serif); color: var(--tinta-2); font-size: 21px; line-height: 1.2; transition: color 0.2s; }
+  .capa[open] .capa-nombre, .capa summary:hover .capa-nombre { color: var(--tinta); }
+  .capa-grosor { font: 400 12px var(--mono); color: var(--plata); text-align: right; }
+  .capa-det { padding: 0 4px 18px 32px; color: var(--tinta-2); font-size: 15px; }
+  .capas-coche {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 1px solid var(--filete);
+    background: var(--hondo);
+  }
+  .capas-coche img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) brightness(0.86); }
+  .capas-marca {
+    pointer-events: none;
+    position: absolute;
+    top: 38%; left: 46%;
+    transition: top 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), left 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .capas-marca i {
+    border: 2px solid var(--oro);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    margin: -16px 0 0 -16px;
+    position: absolute;
+    box-shadow: 0 0 0 6px rgba(200, 165, 72, 0.25);
+  }
+  .capas-marca span {
+    white-space: nowrap;
+    font: 500 11.5px/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #10141c;
+    background: var(--oro);
+    padding: 7px 10px;
+    position: absolute;
+    top: -13px; left: 24px;
+  }
+
+  /* ==========================================================================
+     SECCIÓN 5: CASOS NUMERADOS CON SERIF GIGANTE SUPERPUESTA (#casos / #galeria)
+     ========================================================================== */
+  .e { padding: 80px 0 56px; position: relative; }
+  .e-cab { justify-content: space-between; align-items: flex-end; gap: 16px; display: flex; flex-wrap: wrap; }
+  .e-pista {
+    padding: 28px 0 18px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 24px;
+    display: flex;
+    overflow-x: auto;
+  }
+  .e-pista::-webkit-scrollbar { display: none; }
+  .e-caso {
+    scroll-snap-align: start;
+    flex: 0 0 min(82vw, 340px);
+    position: relative;
+  }
+  .e-media {
+    aspect-ratio: 3/4;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--filete);
+  }
+  .e-media img { object-fit: cover; width: 100%; height: 100%; transition: transform 0.7s ease; }
+  .e-caso:hover .e-media img { transform: scale(1.04); }
+  .e-media:after {
+    content: "";
+    background: linear-gradient(transparent 50%, rgba(10, 19, 34, 0.88));
+    position: absolute;
+    inset: 0;
+  }
+  .e-num { z-index: 2; color: var(--tinta); background: rgba(10, 19, 34, 0.72); padding: 4px 8px; position: absolute; top: 12px; left: 12px; }
+  .e-caso h3 {
+    z-index: 2;
+    font-family: var(--serif);
+    letter-spacing: -0.03em;
+    margin: -0.95em 0 0 12px;
+    font-size: clamp(38px, 8vw, 64px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.94;
+    position: relative;
+    color: var(--tinta);
+    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+  }
+  .e-parte {
+    grid-template-columns: auto 1fr;
+    gap: 7px 14px;
+    margin-top: 16px;
+    font-size: 14.5px;
+    display: grid;
+    border-top: 1px solid var(--filete);
+    padding-top: 12px;
+  }
+  .e-parte dt { font-family: var(--mono); color: var(--oro); font-size: 11.5px; text-transform: uppercase; padding-top: 2px; }
+  .e-parte dd { color: var(--tinta-2); }
+
+  /* ==========================================================================
+     SECCIÓN 6: ASÍ SE TRABAJA AQUÍ (#nosotros)
+     ========================================================================== */
+  .proceso { gap: 34px; margin-top: 32px; display: grid; }
+  .proceso figure { aspect-ratio: 4/5; max-height: 480px; width: 100%; position: relative; overflow: hidden; border: 1px solid var(--filete); }
+  .proceso figure img { object-fit: cover; width: 100%; height: 100%; }
+  .proceso figcaption {
+    background: linear-gradient(transparent, rgba(10, 19, 34, 0.92));
+    padding: 28px 14px 12px;
+    font-size: 13.5px;
+    color: var(--plata);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+  .pasos { counter-reset: p; list-style: none; display: grid; }
+  .pasos li {
+    counter-increment: p;
+    border-top: 1px solid var(--filete);
+    grid-template-columns: 46px 1fr;
+    padding: 18px 0;
+    display: grid;
+  }
+  .pasos li:before {
+    content: counter(p);
+    font-family: var(--serif);
+    color: var(--oro);
+    font-size: 34px;
+    line-height: 1;
+  }
+  .pasos h3 { font-size: 18px; font-weight: 600; color: var(--tinta); }
+  .pasos p { color: var(--tinta-2); margin-top: 4px; font-size: 15.5px; }
+
+  /* ==========================================================================
+     SECCIÓN 7: RESERVA / HERRAMIENTA WHATSAPP + FAQ + UBICACIÓN (#accion)
+     ========================================================================== */
+  .reserva { background: var(--hondo); border-top: 1px solid var(--filete); }
+  .vias { flex-wrap: wrap; gap: 10px; margin-top: 22px; display: flex; }
+  .faq { border-top: 1px solid var(--oro); margin-top: 28px; }
+  .faq details { border-bottom: 1px solid var(--filete); }
+  .faq summary {
+    cursor: pointer;
+    padding: 16px 32px 16px 0;
+    font-weight: 500;
+    list-style: none;
+    position: relative;
+    color: var(--tinta);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary:after {
+    content: "+";
+    font-family: var(--serif);
+    color: var(--oro);
+    font-size: 25px;
+    transition: transform 0.25s;
+    position: absolute;
+    top: 11px; right: 4px;
+  }
+  .faq details[open] summary:after { transform: rotate(45deg); }
+  .faq details p { color: var(--tinta-2); padding: 0 0 16px; font-size: 15px; }
+
+  .contacto-datos { border-top: 1px solid var(--oro); margin-top: 26px; display: grid; }
+  .contacto-datos div { border-bottom: 1px solid var(--filete); padding: 13px 0; }
+  .contacto-datos dt { font-family: var(--mono); color: var(--oro); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contacto-datos dd { margin-top: 3px; font-size: 15.5px; color: var(--tinta); }
+
+  /* ESTILOS DEL MÓDULO INTERACTIVO DE WHATSAPP INTEGRADO EN PRESTIGE */
+  .sec-head { margin-bottom: 18px; }
   .sec-pill {
-    display:inline-block; padding:4px 12px; border-radius:999px;
-    background:var(--accent-soft); color:var(--accent);
-    font-size:11.5px; font-weight:700; letter-spacing:0.02em; margin-bottom:8px;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 8px;
   }
-  h2 {
-    font-family:'Outfit',sans-serif; font-weight:800;
-    font-size:clamp(1.55rem, 3.4vw, 2.2rem); line-height:1.12;
-    letter-spacing:-0.03em; text-wrap:balance;
+  #accion .sec-head h2 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4.5vw, 38px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--tinta);
   }
-  .sec-sub { color:var(--muted); font-size:14.5px; margin-top:6px; }
-
-  /* Services Menu */
-  .srv-list { display:grid; grid-template-columns:1fr; gap:12px; }
-  @media (min-width:720px) { .srv-list { grid-template-columns:1fr 1fr; gap:14px; } }
-  .srv-card {
-    background:var(--card); border:1px solid var(--border); border-radius:20px;
-    padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:14px;
-    cursor:pointer; box-shadow:0 8px 24px -12px rgba(15,23,42,0.06);
-    transition:transform 0.2s cubic-bezier(0.23,1,0.32,1), border-color 0.2s ease;
+  .sec-sub { color: var(--tinta-2); font-size: 14.5px; margin-top: 6px; }
+  .bezel-shell {
+    border-top: 2px solid var(--oro);
+    background: var(--placa);
+    border-inline: 1px solid var(--filete);
+    border-bottom: 1px solid var(--filete);
   }
-  .srv-card:hover { transform:translateY(-2px); border-color:var(--accent); }
-  .srv-pop {
-    display:inline-block; padding:2px 8px; border-radius:999px;
-    background:var(--accent-soft); color:var(--accent); font-size:10.5px; font-weight:700; margin-bottom:5px;
+  .book-card { padding: 22px 20px; }
+  .mode-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 5px;
+    background: var(--hondo);
+    border: 1px solid var(--filete);
   }
-  .srv-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:15.5px; margin-bottom:3px; }
-  .srv-meta { color:var(--muted); font-size:12.5px; }
-  .srv-right { text-align:right; flex-shrink:0; }
-  .srv-price {
-    display:inline-block; padding:5px 11px; border-radius:999px;
-    background:var(--accent-soft); color:var(--accent);
-    font-family:'Outfit',sans-serif; font-weight:800; font-size:14.5px;
-    font-variant-numeric:tabular-nums; white-space:nowrap; margin-bottom:4px;
+  @media (min-width: 520px) { .mode-tabs { grid-template-columns: 1fr 1fr; } }
+  .mode-tab {
+    padding: 11px 12px;
+    border: 0;
+    background: transparent;
+    color: var(--tinta-2);
+    font: 600 13.5px var(--sans);
+    cursor: pointer;
+    border-radius: 2px;
   }
-  .srv-arrow { display:block; font-size:11.5px; color:var(--muted); font-weight:700; }
-
-  /* Editorial 3-Photo Gallery */
-  .gal-grid { display:grid; grid-template-columns:1fr; gap:14px; }
-  @media (min-width:720px) {
-    .gal-grid { grid-template-columns:1.35fr 0.85fr; grid-template-rows:repeat(2, 195px); }
-    .gal-featured { grid-row:1 / span 2; }
+  .mode-tab.active { background: var(--oro); color: #121212; }
+  .live-est {
+    padding: 11px 14px;
+    background: rgba(200, 165, 72, 0.12);
+    border-left: 2px solid var(--oro);
+    color: var(--tinta);
+    font-size: 13.5px;
+    margin-bottom: 14px;
   }
-  .gal-item {
-    border-radius:22px; overflow:hidden; border:1px solid var(--border);
-    background:var(--card); box-shadow:0 12px 28px -12px rgba(15,23,42,0.08);
+  .form-grid { display: grid; grid-template-columns: 1fr; gap: 13px; margin-bottom: 14px; }
+  @media (min-width: 620px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+  label {
+    display: block;
+    font: 500 12px var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--tinta-2);
+    margin-bottom: 6px;
   }
-  .gal-item img { width:100%; height:100%; min-height:190px; object-fit:cover; display:block; }
-
-  /* Booking Card */
-  .book-card { background:var(--card); border:1px solid var(--border); border-radius:22px; padding:22px; }
-  @media (min-width:680px) { .book-card { padding:28px; } }
-  .form-grid { display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:14px; }
-  @media (min-width:640px) { .form-grid { grid-template-columns:1fr 1fr; } }
-  label { display:block; font-size:11.5px; font-weight:700; color:var(--muted); margin-bottom:6px; }
-  input, select {
-    width:100%; padding:12px 14px; border-radius:13px; border:1px solid var(--border);
-    background:var(--bg); color:var(--ink); font-size:15px; font-family:inherit; outline:none;
+  input, select, textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 13px;
+    border-radius: 2px;
+    border: 1px solid var(--filete);
+    background: var(--hondo);
+    color: var(--tinta);
+    font: 16px var(--sans);
+    outline: none;
   }
-  input:focus, select:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
-  .slots { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:6px 0 16px; }
+  @media (max-width: 899px) {
+    #accion .duo > div:last-child { order: -1; }
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--oro); }
+  .slots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 6px 0 15px; }
+  @media (min-width: 520px) { .slots { grid-template-columns: repeat(4, 1fr); } }
   .slot-btn {
-    padding:10px 6px; border-radius:12px; border:1px solid var(--border);
-    background:var(--bg); color:var(--ink); font-weight:700; font-size:13px;
-    font-variant-numeric:tabular-nums; cursor:pointer;
+    padding: 10px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--filete);
+    background: var(--hondo);
+    color: var(--tinta);
+    font: 600 13px var(--mono);
+    cursor: pointer;
   }
-  .slot-btn.active { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+  .slot-btn.active { background: var(--oro); color: #121212; border-color: var(--oro); }
+  .btn-block { width: 100%; min-height: 50px; justify-content: center; padding: 14px 18px; font: 700 15px var(--sans); border-radius: 2px; border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+  .btn-arrow { font-weight: 700; }
   .book-ok {
-    display:none; margin-top:14px; padding:13px 15px; border-radius:14px;
-    background:rgba(16,185,129,0.10); border:1px solid rgba(16,185,129,0.3);
-    color:#047857; font-size:13.5px; font-weight:600;
+    display: none;
+    margin-top: 14px;
+    padding: 13px 15px;
+    background: rgba(200, 165, 72, 0.16);
+    border: 1px solid var(--oro);
+    color: var(--tinta);
+    font-size: 14px;
   }
 
-  /* Reviews */
-  .rev-grid { display:grid; grid-template-columns:1fr; gap:14px; }
-  @media (min-width:760px) { .rev-grid { grid-template-columns:repeat(3,1fr); } }
-  .rev-card {
-    background:var(--card); border:1px solid var(--border); border-radius:22px;
-    padding:20px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;
-    box-shadow:0 10px 26px -14px rgba(15,23,42,0.06);
-  }
-  .rev-stars { color:#F59E0B; font-size:14px; letter-spacing:2px; margin-bottom:8px; }
-  .rev-text { font-size:13.5px; line-height:1.55; color:var(--ink); }
-  .rev-author { display:flex; align-items:center; gap:10px; font-size:12px; }
-  .rev-avatar {
-    width:34px; height:34px; border-radius:50%; background:var(--accent-soft); color:var(--accent);
-    display:inline-flex; align-items:center; justify-content:center; font-weight:800; flex-shrink:0;
-  }
-  .rev-author strong { display:block; font-size:13px; color:var(--ink); }
-  .rev-author span { color:var(--muted); font-size:11.5px; }
+  /* PIE DE PÁGINA ESTILO PRESTIGE + BARRA INFERIOR MÓVIL */
+  .pie-web { border-top: 1px solid var(--oro); padding: 64px 0 40px; position: relative; overflow: hidden; background: var(--noche); }
+  .pie-web .lema { font-family: var(--serif); max-width: 16ch; font-size: clamp(26px, 6vw, 42px); line-height: 1.08; color: var(--tinta); }
+  .pie-web .cols { gap: 30px; margin-top: 32px; display: grid; }
+  .pie-web h2 { font-family: var(--mono); color: var(--oro); margin-bottom: 10px; font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; }
+  .pie-web ul { gap: 6px; list-style: none; display: grid; font-size: 14.5px; color: var(--tinta-2); }
+  .pie-web a:hover { color: var(--oro); }
+  .pie-web .legal { color: var(--tinta-2); flex-wrap: wrap; gap: 8px 18px; margin-top: 36px; font-size: 13px; display: flex; border-top: 1px solid var(--filete); padding-top: 20px; }
 
-  /* Schedule & Location */
-  .sched-grid { display:grid; grid-template-columns:1fr; gap:16px; }
-  @media (min-width:720px) { .sched-grid { grid-template-columns:1fr 1fr; } }
-  .sched-box {
-    background:var(--card); border:1px solid var(--border); border-radius:22px; padding:22px;
-    box-shadow:0 10px 26px -14px rgba(15,23,42,0.06);
+  .barra {
+    z-index: 50;
+    height: var(--bar);
+    background: var(--noche);
+    border-top: 1px solid var(--oro);
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
   }
-  .day-row {
-    display:flex; justify-content:space-between; padding:10px 0;
-    font-size:13.5px; border-bottom:1px solid var(--border);
-    font-variant-numeric:tabular-nums;
+  .barra a, .barra button {
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font: 600 14.5px var(--sans);
+    border: 0;
+    cursor: pointer;
+    display: flex;
   }
-  .day-row:last-child { border-bottom:none; }
-  .day-row strong { color:var(--accent); }
+  .barra .b-wa { background: var(--oro); color: #121212; }
+  .barra .b-tel { background: var(--noche); color: var(--tinta); }
 
-  /* Mobile Sticky Call/Reserve Bar */
-  .mob-dock {
-    position:fixed; bottom:12px; left:12px; right:12px; z-index:55;
-    background:${navBg}; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-    border:1px solid var(--border); border-radius:999px; padding:6px;
-    display:grid; grid-template-columns:1fr 1.35fr; gap:6px;
-    box-shadow:0 16px 38px rgba(15,23,42,0.16);
+  @media (min-width: 900px) {
+    :root { --gutter: 40px; --bar: 0px; --cab: 92px; }
+    .barra, .menu-btn, .reservar-movil { display: none; }
+    .top { padding-block: 14px; }
+    .top nav { display: flex; }
+    .titular { left: max(var(--gutter), calc((100vw - 1180px) / 2 + 40px)); padding: 0; bottom: 9vh; }
+    .verbos .lista { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .duo { grid-template-columns: 0.92fr 1.08fr; gap: 64px; }
+    .duo .fijo { top: calc(var(--cab) + 24px); position: sticky; }
+    .resenas-grid { grid-template-columns: repeat(3, 1fr); }
+    .capas { grid-template-columns: 0.95fr 1.05fr; gap: 56px; }
+    .proceso { grid-template-columns: 0.82fr 1.18fr; gap: 56px; align-items: start; }
+    .pie-web .cols { grid-template-columns: 1.3fr 1fr 1fr; }
+    .e-caso { flex: 0 0 360px; }
   }
-  @media (min-width:820px) {
-    .mob-dock { left:auto; right:20px; bottom:20px; width:auto; display:inline-flex; padding:6px; }
-  }
-  .dock-btn-sec {
-    padding:11px 16px; border-radius:999px; background:var(--surface); color:var(--ink);
-    font-weight:700; font-size:13px; text-align:center; display:inline-flex; align-items:center; justify-content:center; gap:6px;
-  }
-  .dock-btn-pri {
-    padding:11px 18px; border-radius:999px; background:var(--accent); color:var(--accent-ink);
-    font-family:'Outfit',sans-serif; font-weight:700; font-size:13px; border:none; cursor:pointer;
-    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cam-plane-1, .cam-plane-2, .cam-sheen, .firma i { animation: none !important; }
   }
 </style>
 </head>
 <body>
-  <div class="top-strip">
-    <div class="top-strip-inner">
-      <div class="open-pill"><span class="open-dot"></span><span>Abierto hoy en ${escapeHtml(st.city)} · ${escapeHtml(st.hoursWeek)}</span></div>
-      <div style="font-weight:700; color:var(--accent); white-space:nowrap;">Tel. ${escapeHtml(st.phone || st.whatsapp)}</div>
-    </div>
-  </div>
 
-  <header class="nav">
-    <div class="nav-inner">
-      <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <span class="brand-mark">${escapeHtml((st.name || 'M').trim().charAt(0).toUpperCase())}</span>
-        <span>${escapeHtml(st.name)}</span>
-      </div>
-      <nav class="nav-links">
-        <a href="#servicios">Servicios y precios</a>
-        <a href="#galeria">Nuestro espacio</a>
-        <a href="#opiniones">Opiniones</a>
-        <a href="#ubicacion">Dónde estamos</a>
-      </nav>
-      <button type="button" class="nav-cta" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)}</button>
-    </div>
+  <!-- CABECERA SIMÉTRICA PRESTIGE -->
+  <header class="top en-portada" id="top">
+    <button type="button" class="menu-btn" id="btn-abrir-cortina" aria-expanded="false">
+      <i></i><span>Menú</span>
+    </button>
+    <nav class="izq" aria-label="Principal izquierda">
+      <a href="#servicios">Servicios</a>
+      <a href="#capas">Método</a>
+      <a href="#resultados">Resultados</a>
+    </nav>
+    <a class="marca" href="#intro">
+      <span class="marca-titulo">${escapeHtml(brandParts.mainLine)}</span>
+      <span class="marca-sub">${escapeHtml(brandParts.subLine)}</span>
+    </a>
+    <nav class="der" aria-label="Principal derecha">
+      <a href="#casos">Trabajos</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#accion">Contacto</a>
+      <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Reservar</button>
+    </nav>
+    <button type="button" class="reservar-movil" onclick="jumpSec('accion')">Reservar</button>
   </header>
 
+  <!-- MENÚ DESPLEGABLE MÓVIL -->
+  <div class="cortina" id="cortina" aria-hidden="true">
+    <button type="button" class="cerrar" id="btn-cerrar-cortina">✕ Cerrar</button>
+    <ul>
+      <li><a href="#servicios" onclick="cerrarCortina()"><span>Servicios y precios</span><small>01</small></a></li>
+      <li><a href="#resultados" onclick="cerrarCortina()"><span>Antes y después</span><small>02</small></a></li>
+      <li><a href="#capas" onclick="cerrarCortina()"><span>Nuestro método</span><small>03</small></a></li>
+      <li><a href="#casos" onclick="cerrarCortina()"><span>Trabajos realizados</span><small>04</small></a></li>
+      <li><a href="#opiniones" onclick="cerrarCortina()"><span>Reseñas Google</span><small>05</small></a></li>
+      <li><a href="#accion" onclick="cerrarCortina()"><span>${escapeHtml(actionBtnLabel)}</span><small>06</small></a></li>
+    </ul>
+  </div>
+
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="trust-row">
-            <span class="trust-stars">★★★★★</span>
-            <span>4,9 en Google · ${escapeHtml(sectorBadge)} en ${escapeHtml(st.city)}</span>
+    <!-- ======================================================================
+         ENTRADA CINEMÁTICA CON CÁMARA EN MOVIMIENTO + ESCUDO EN SCROLL (#intro)
+         ====================================================================== -->
+    <section class="portada" id="intro">
+      <div class="pin">
+        ${editPhotoBtnHero}
+
+        <!-- Cámara en movimiento continuo detrás del emblema -->
+        <div class="fondo-cam" id="fondo-cam">
+          <img class="cam-plane cam-plane-1" src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)} en ${escapeHtml(st.city)}" />
+          <img class="cam-plane cam-plane-2" src="${escapeHtml(secondImg)}" alt="${escapeHtml(sectorBadge)} · Vista 2" />
+          <div class="cam-sheen"></div>
+        </div>
+
+        <!-- Máscara SVG con mix-blend-mode:multiply (el escudo blanco deja ver la cámara en movimiento y encaja 100% en móvil y PC) -->
+        <svg class="velo" id="velo-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <rect class="fondo-velo" x="-50000" y="-50000" width="100000" height="100000"></rect>
+          <g id="escudo" fill="#ffffff">
+            <!-- Doble arco superior estilo Prestige -->
+            <path d="M235 440 A268 268 0 0 1 765 440 L748 440 A251 251 0 0 0 252 440 Z" />
+            <path d="M275 432 A228 228 0 0 1 725 432 L713 432 A216 216 0 0 0 287 432 Z" />
+            <!-- Emblema vectorial del oficio + ventana central (500,390) -->
+            ${crestArtworkSvg}
+            <!-- Nombre principal del negocio en Serif mayúscula a través del cual se ve la cámara -->
+            <text x="500" y="548" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="${brandParts.mainLine.length > 10 ? 54 : brandParts.mainLine.length > 8 ? 64 : 74}" font-weight="700" letter-spacing="6">${escapeHtml(brandParts.mainLine)}</text>
+            <!-- Subtítulo espaciado del oficio -->
+            <text x="500" y="604" text-anchor="middle" font-family="Arial, sans-serif" font-size="${brandParts.subLine.length > 20 ? 18 : 22}" font-weight="700" letter-spacing="9">${escapeHtml(brandParts.subLine)}</text>
+            <!-- Doble chevron inferior estilo Prestige -->
+            <path d="M350 644 L500 704 L650 644 L636 632 L500 684 L364 632 Z" />
+            <path d="M388 678 L500 726 L612 678 L600 668 L500 708 L400 668 Z" />
+          </g>
+        </svg>
+
+        <!-- Filete dorado sutil que acompaña al emblema antes de abrirse -->
+        <svg class="escudo-rim" id="escudo-rim" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g id="escudo-borde" fill="none" stroke="${pal.oro}" stroke-opacity="0.42" stroke-width="1.8">
+            <path d="M235 440 A268 268 0 0 1 765 440" />
+            <path d="M350 644 L500 704 L650 644" />
+            <path d="M388 678 L500 726 L612 678" />
+          </g>
+        </svg>
+
+        <div class="sombra" id="intro-sombra"></div>
+
+        <p class="firma" id="intro-firma" onclick="abrirPortadaSuave()">
+          <span>${escapeHtml(sectorBadge)} en ${escapeHtml(st.city)} · Desliza para entrar</span>
+          <i></i>
+        </p>
+
+        <div class="titular" id="intro-titular">
+          <span class="titular-kicker">${escapeHtml(st.name)} · ${escapeHtml(st.city)}</span>
+          <h1>${escapeHtml(st.tagline || (sectorBadge + ' en ' + st.city))}</h1>
+          <p class="sub">${escapeHtml(st.story)}</p>
+          <div class="acciones">
+            <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)}</button>
+            <a class="btn btn-linea" href="#servicios">Ver servicios y precios</a>
           </div>
-          <h1>${escapeHtml(st.tagline)}</h1>
-          <p class="hero-p">${escapeHtml(st.story)}</p>
-          <div class="hero-btns">
-            ${st.modules.booking ? `
-            <button type="button" class="btn-primary" onclick="jumpSec('accion')">
-              <span>${escapeHtml(actionBtnLabel)} ahora</span>
-              <span class="btn-arrow">→</span>
-            </button>` : ''}
-            <a href="https://wa.me/${fullWa}?text=${encodeURIComponent('Hola ' + st.name + ', os escribo desde vuestra página web.')}" target="_blank" rel="noopener" class="btn-secondary">
-              <span>WhatsApp · ${escapeHtml(st.whatsapp)}</span>
-            </a>
+          <div class="nota-google">
+            <b>5,0</b>
+            <span class="estrellas">★★★★★</span>
+            <span>Valoración verificada en ${escapeHtml(st.city)} · Trato directo por WhatsApp</span>
           </div>
-          <div class="hero-checks">
-            <span><b>✓</b> Precios transparentes</span>
-            <span><b>✓</b> Respuesta rápida</span>
-            <span><b>✓</b> Sin esperas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN 1: LOS 3 VERBOS EN SERIF CONTORNEADA (.verbos)
+         ====================================================================== -->
+    <section class="verbos">
+      <div class="wrap">
+        <h2>${escapeHtml(verbosData.intro)}</h2>
+        <div class="lista">${verbosHtml}</div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN 2: PRECIOS CERRADOS Y TABLA DESPLEGABLE (#servicios)
+         ====================================================================== -->
+    ${st.modules.services !== false ? `
+    <section class="sec destacada" id="servicios">
+      <div class="wrap duo">
+        <div class="fijo">
+          <h2>Tarifas claras, precio cerrado</h2>
+          <p class="intro">Elige según lo que necesites en ${escapeHtml(st.name)}. Toca cualquier servicio para ver qué incluye y solicitarlo directo por WhatsApp.</p>
+          <div class="incluye">
+            <ul>
+              <li><strong>Sabes el precio antes de empezar.</strong> Por WhatsApp te confirmamos el importe exacto sin compromiso.</li>
+              <li><strong>No cambia a mitad del trabajo.</strong> Si hace falta algo adicional, te lo valoramos antes de tocarlo.</li>
+              <li><strong>Pagas en efectivo, Bizum o tarjeta.</strong> Sin comisiones ni plataformas intermediarias.</li>
+              <li><strong>Atención prioritaria en ${escapeHtml(st.city)}.</strong> Confirmamos tu hueco directamente desde el móvil.</li>
+            </ul>
+          </div>
+          <div style="margin-top:26px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Pedir precio por WhatsApp</button>
           </div>
         </div>
 
-        <div class="hero-photo-shell">
-          <div class="hero-photo-core">
-            ${editPhotoBtnHero}
-            <img src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)} en ${escapeHtml(st.city)}" />
-            <div class="hero-float-card">
-              <div>
-                <strong style="display:block; font-size:13px;">${escapeHtml(st.name)}</strong>
-                <span style="color:var(--muted); font-size:11.5px;">${escapeHtml(st.address)} · ${escapeHtml(st.city)}</span>
-              </div>
-              <span style="padding:5px 10px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-weight:700; font-size:11.5px; white-space:nowrap;">Cita hoy</span>
+        <div class="carta-col">
+          <div class="carta">
+            <div class="cab">
+              <span>Servicio en ${escapeHtml(st.name)}</span>
+              <span>Precio</span>
             </div>
+            ${cartaRowsHtml}
           </div>
+          <p style="color:var(--tinta-2); font-size:14px; margin-top:14px;">
+            ¿Buscas algo personalizado? Escríbenos por WhatsApp y te damos valoración cerrada antes de empezar.
+          </p>
+        </div>
+      </div>
+    </section>` : ''}
+
+    <!-- ======================================================================
+         SECCIÓN 3: COMPARADOR INTERACTIVO ANTES / DESPUÉS (#resultados)
+         ====================================================================== -->
+    <section class="sec" id="resultados">
+      <div class="wrap duo">
+        <div class="ad-texto">
+          <h2>Así entra, así sale terminado</h2>
+          <p class="intro">Míralo salir impecable. Arrastra el deslizador de izquierda a derecha para comprobar la diferencia cuando se trabaja cada detalle con calma.</p>
+          <ul class="ad-hecho">
+            <li><b>Preparación completa</b> desde la base antes de iniciar el trabajo principal.</li>
+            <li><b>Materiales y herramientas de primera línea</b> específicos para cada acabado.</li>
+            <li><b>Revisión punto por punto</b> antes de avisarte para la entrega en ${escapeHtml(st.city)}.</li>
+          </ul>
+          <p class="ad-precio">${escapeHtml(sectorBadge)} · DESDE ${escapeHtml(firstPrice)}</p>
+          <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Quiero este resultado</button>
+        </div>
+
+        <div>
+          <div class="ad" id="ad" style="--x:36%;">
+            <img class="ad-img" src="${escapeHtml(heroImg)}" alt="Resultado final en ${escapeHtml(st.name)}" />
+            <img class="ad-img ad-antes" src="${escapeHtml(secondImg)}" alt="Estado previo antes de ${escapeHtml(st.name)}" />
+            <div class="ad-divisor"></div>
+            <span class="et" data-et>Entró así</span>
+            <div class="riel">
+              <div class="avance"></div>
+              <div class="asa"></div>
+            </div>
+            <input type="range" id="ad-range" min="0" max="1000" value="360" aria-label="Comparar antes y después" />
+          </div>
+          <p style="color:var(--tinta-2); font-size:13.5px; margin-top:10px; text-align:center;">
+            ${escapeHtml(st.name)} · Trabajo real en ${escapeHtml(st.city)}
+          </p>
         </div>
       </div>
     </section>
 
-    ${st.modules.services ? `
-    <section id="servicios">
+    <!-- ======================================================================
+         SECCIÓN 4: LO QUE DICEN EN GOOGLE (#opiniones)
+         ====================================================================== -->
+    <section class="sec hundida" id="opiniones">
       <div class="wrap">
-        <div class="sec-head">
-          <span class="sec-pill">Carta y Tarifas Clarísimas</span>
-          <h2>Servicios y precios de ${escapeHtml(st.name)}</h2>
-          <p class="sec-sub">Pulsa sobre cualquier servicio para seleccionarlo directamente en tu solicitud de cita.</p>
+        <h2>Lo que dicen en Google</h2>
+        <div class="resenas-grid">${reviewsHtml}</div>
+        <div style="margin-top:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; color:var(--tinta-2); font-size:14.5px;">
+          <div><b style="font-family:var(--serif); font-size:22px; color:var(--tinta); font-weight:400;">5,0</b> de 5 en Google · Clientes verificados en ${escapeHtml(st.city)}</div>
+          <button type="button" class="enlace-btn" onclick="jumpSec('accion')">Solicitar cita o consulta por WhatsApp →</button>
         </div>
-        <div class="srv-list">${servicesHtml}</div>
-      </div>
-    </section>` : ''}
-
-    ${st.modules.gallery ? `
-    <section id="galeria">
-      <div class="wrap">
-        <div class="sec-head-row">
-          <div>
-            <span class="sec-pill">Instalaciones y Resultados</span>
-            <h2>Conoce ${escapeHtml(st.name)} por dentro</h2>
-          </div>
-          ${editPhotoBtnGal}
-        </div>
-        <div class="gal-grid">${galleryGridHtml}</div>
-      </div>
-    </section>` : ''}
-
-    ${st.modules.booking ? `
-    <section id="accion">
-      <div class="wrap">${widgetHtml}</div>
-    </section>` : ''}
-
-    <section id="opiniones">
-      <div class="wrap">
-        <div class="sec-head">
-          <span class="sec-pill">Valoración Media 4,9 ★</span>
-          <h2>Lo que dicen quienes ya nos visitan en ${escapeHtml(st.city)}</h2>
-        </div>
-        <div class="rev-grid">${reviewsHtml}</div>
       </div>
     </section>
 
-    ${st.modules.scheduleMap ? `
-    <section id="ubicacion" style="border-bottom:none;">
-      <div class="wrap sched-grid">
-        <div class="sched-box">
-          <span class="sec-pill">Horario de atención</span>
-          <h3 style="font-family:'Outfit',sans-serif; font-size:19px; margin-bottom:12px;">Cuándo estamos abiertos</h3>
-          <div class="day-row"><span>Lunes a Viernes</span><strong>${escapeHtml(st.hoursWeek)}</strong></div>
-          <div class="day-row"><span>Sábados</span><strong>${escapeHtml(st.hoursSat)}</strong></div>
-          <div class="day-row"><span>Domingos</span><span>${escapeHtml(st.hoursSun)}</span></div>
-        </div>
-        <div class="sched-box" style="display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
-          <div>
-            <span class="sec-pill">Ubicación y Contacto</span>
-            <h3 style="font-family:'Outfit',sans-serif; font-size:19px; margin-bottom:6px;">${escapeHtml(st.address)}</h3>
-            <p style="color:var(--muted); font-size:14px;">${escapeHtml(st.city)} · Atención directa en el ${escapeHtml(st.phone || st.whatsapp)}</p>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:10px;">
-            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(st.name + ' ' + st.address + ' ' + st.city)}" target="_blank" rel="noopener" class="btn-secondary" style="flex:1; justify-content:center;">
-              Cómo llegar en Google Maps ↗
-            </a>
+    <!-- ======================================================================
+         SECCIÓN 5: DESGLOSE INTERACTIVO POR CAPAS (#capas)
+         ====================================================================== -->
+    <section class="sec" id="capas" data-capas>
+      <div class="wrap capas">
+        <div>
+          <h2>¿Cómo cuidamos cada trabajo?</h2>
+          <p class="intro">Cada servicio lleva un orden técnico. Toca cada fase para ver qué hacemos exactamente en ${escapeHtml(st.name)}.</p>
+          <div class="capas-lista">${capasHtml}</div>
+          <div style="margin-top:24px;">
+            <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Consultar para mi caso</button>
           </div>
         </div>
+
+        <figure class="capas-coche">
+          <img src="${escapeHtml(thirdImg)}" alt="Detalle técnico en ${escapeHtml(st.name)}" />
+          <div class="capas-marca" id="capas-marca">
+            <i></i>
+            <span data-marca>DIAGNÓSTICO</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN 6: CASOS REALES CON TIPOGRAFÍA SERIF GIGANTE (#casos / #galeria)
+         ====================================================================== -->
+    ${st.modules.gallery !== false ? `
+    <section class="e hundida" id="casos">
+      <div class="wrap" id="galeria">
+        <div class="e-cab">
+          <h2>Trabajos que han pasado por aquí</h2>
+          <div style="display:flex; gap:12px; align-items:center;">
+            ${editPhotoBtnGal}
+            <button type="button" class="enlace-btn" onclick="jumpSec('accion')">Pedir el mío →</button>
+          </div>
+        </div>
+        <div class="e-pista">${casosHtml}</div>
       </div>
     </section>` : ''}
+
+    <!-- ======================================================================
+         SECCIÓN 7: ASÍ SE TRABAJA EN EL LOCAL (#nosotros)
+         ====================================================================== -->
+    <section class="sec" id="nosotros">
+      <div class="wrap">
+        <h2>Así se trabaja en ${escapeHtml(st.name)}</h2>
+        <div class="proceso">
+          <figure>
+            <img src="${escapeHtml(secondImg)}" alt="Equipo e instalaciones de ${escapeHtml(st.name)}" />
+            <figcaption>Cuidamos cada entrega en ${escapeHtml(st.address)} (${escapeHtml(st.city)}).</figcaption>
+          </figure>
+          <ol class="pasos">
+            <li>
+              <div>
+                <h3>Nos escribes desde la web a nuestro WhatsApp</h3>
+                <p>Eliges el servicio o nos indicas los datos en 15 segundos y lo recibimos al instante en el móvil del local.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Te damos precio cerrado antes de empezar</h3>
+                <p>Sin sorpresas. Si hay cualquier detalle especial, te lo valoramos y confirmamos antes de tocar nada.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Trabajamos paso a paso con material profesional</h3>
+                <p>Dedicamos el tiempo necesario a cada fase para garantizar un resultado limpio y duradero.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Te avisamos en cuanto está listo</h3>
+                <p>Revisamos contigo el acabado final y pagas cómodamente en efectivo, tarjeta o Bizum.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN 8: HERRAMIENTA INTERACTIVA WHATSAPP + FAQ + HORARIO (#accion)
+         ====================================================================== -->
+    <section class="sec reserva" id="accion">
+      <div class="wrap duo" id="ubicacion">
+        <div>
+          <h2>Pide tu cita o presupuesto</h2>
+          <p class="intro">Atendemos directamente por WhatsApp y teléfono en ${escapeHtml(st.city)}. Completa la herramienta interactiva o escríbenos en 1 clic.</p>
+          <div class="vias">
+            <a class="btn btn-oro" href="${directWaHref}" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="btn btn-linea" href="${telHref}">Llamar al ${escapeHtml(st.phone || st.whatsapp)}</a>
+          </div>
+
+          <div class="faq">${faqHtml}</div>
+
+          <dl class="contacto-datos">
+            <div>
+              <dt>Dirección en ${escapeHtml(st.city)}</dt>
+              <dd>${escapeHtml(st.address)} · ${escapeHtml(st.city)} (<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(st.name + ' ' + st.address + ' ' + st.city)}" target="_blank" rel="noopener" style="color:var(--oro);text-decoration:underline;">Cómo llegar en Google Maps ↗</a>)</dd>
+            </div>
+            <div>
+              <dt>Horario de atención</dt>
+              <dd>Lunes a viernes: ${escapeHtml(st.hoursWeek)} · Sábados: ${escapeHtml(st.hoursSat)} · Domingos: ${escapeHtml(st.hoursSun)}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          ${widgetHtml}
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer style="padding:28px 20px; text-align:center; font-size:12.5px; color:var(--muted); border-top:1px solid var(--border); background:var(--card); display:flex; flex-direction:column; gap:6px; align-items:center;">
-    <div>© ${new Date().getFullYear()} <strong>${escapeHtml(st.name)}</strong> · ${escapeHtml(st.address)}, ${escapeHtml(st.city)}</div>
-    <button type="button" onclick="document.getElementById('legal-modal').style.display='flex'" style="background:none; border:none; color:var(--muted); text-decoration:underline; font-size:12px; cursor:pointer;">
-      Aviso Legal y Política de Privacidad (RGPD)
-    </button>
+  <!-- PIE DE PÁGINA ESTILO PRESTIGE -->
+  <footer class="pie-web">
+    <div class="wrap">
+      <p class="lema">Pasión, precisión y oficio en ${escapeHtml(st.city)}.</p>
+      <div class="cols">
+        <div>
+          <h2>${escapeHtml(st.name)}</h2>
+          <ul>
+            <li>${escapeHtml(st.address)} · ${escapeHtml(st.city)}</li>
+            <li><a href="${telHref}">Tel. ${escapeHtml(st.phone || st.whatsapp)}</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(st.name + ' ' + st.address + ' ' + st.city)}" target="_blank" rel="noopener">Cómo llegar ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Servicios Principales</h2>
+          <ul>
+            ${srvList.slice(0, 4).map(s => `<li><a href="#servicios">${escapeHtml(s.title)}</a></li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h2>El Estudio</h2>
+          <ul>
+            <li><a href="#resultados">Resultados (Antes y Después)</a></li>
+            <li><a href="#casos">Trabajos realizados</a></li>
+            <li><a href="#opiniones">Reseñas de Google</a></li>
+            <li><a href="#accion">${escapeHtml(actionBtnLabel)}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="legal">
+        <span>© ${new Date().getFullYear()} ${escapeHtml(st.name)} · Todos los derechos reservados</span>
+        <button type="button" onclick="document.getElementById('legal-modal').style.display='flex'" style="background:none;border:0;color:var(--tinta-2);text-decoration:underline;cursor:pointer;font:inherit;">
+          Aviso Legal y Política de Privacidad (RGPD)
+        </button>
+      </div>
+    </div>
   </footer>
 
-  <div id="legal-modal" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; z-index:90; background:rgba(15,23,42,0.55); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:16px;">
-    <div style="background:var(--card); color:var(--ink); border:1px solid var(--border); border-radius:22px; max-width:560px; width:100%; padding:24px; max-height:82vh; overflow-y:auto; font-size:13px; line-height:1.6; box-shadow:0 24px 60px rgba(15,23,42,0.2);">
+  <!-- MODAL LEGAL RGPD -->
+  <div id="legal-modal" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; z-index:95; background:rgba(10,19,34,0.82); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding:16px;">
+    <div style="background:var(--placa); color:var(--tinta); border:1px solid var(--oro); max-width:560px; width:100%; padding:24px; max-height:82vh; overflow-y:auto; font-size:13.5px; line-height:1.6;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-        <strong style="font-family:'Outfit',sans-serif; font-size:16px;">Aviso Legal y Privacidad (LSSI-CE / RGPD)</strong>
-        <button type="button" onclick="document.getElementById('legal-modal').style.display='none'" style="background:var(--surface); color:var(--ink); border:1px solid var(--border); border-radius:50%; width:30px; height:30px; cursor:pointer;">✕</button>
+        <strong style="font-family:var(--serif); font-size:20px; font-weight:400;">Aviso Legal y Privacidad (LSSI-CE / RGPD)</strong>
+        <button type="button" onclick="document.getElementById('legal-modal').style.display='none'" style="background:var(--hondo); color:var(--tinta); border:1px solid var(--filete); width:32px; height:32px; cursor:pointer;">✕</button>
       </div>
       <p style="margin-bottom:8px;"><strong>Titular:</strong> ${escapeHtml(legalHolderName)}${escapeHtml(legalNifText)}</p>
       <p style="margin-bottom:8px;"><strong>Domicilio / Ubicación:</strong> ${escapeHtml(st.address)}, ${escapeHtml(st.city)} · Teléfono: ${escapeHtml(st.phone || st.whatsapp)}</p>
-      <p style="margin-bottom:8px;"><strong>Protección de Datos (RGPD):</strong> Los datos enviados voluntariamente por WhatsApp o teléfono se destinan exclusivamente a gestionar su cita, reserva o presupuesto solicitado, sin cesión a terceros ni comunicaciones comerciales no autorizadas.</p>
-      <p style="color:var(--muted); font-size:12px;">Este sitio web no instala cookies publicitarias ni rastreadores de terceros.</p>
+      <p style="margin-bottom:8px;"><strong>Protección de Datos (RGPD):</strong> Los datos enviados voluntariamente por WhatsApp o teléfono se destinan exclusivamente a gestionar su cita, reserva, encargo o presupuesto solicitado, sin cesión a terceros.</p>
+      <p style="color:var(--tinta-2); font-size:12px;">Este sitio web no instala cookies publicitarias ni rastreadores de terceros.</p>
     </div>
   </div>
 
-  ${st.modules.whatsappFloat ? `
-  <div class="mob-dock">
-    <a class="dock-btn-sec" href="${telHref}">Llamar</a>
-    <button type="button" class="dock-btn-pri" onclick="jumpSec('accion')">${escapeHtml(actionBtnLabel)} →</button>
-  </div>` : ''}
+  <!-- BARRA INFERIOR FIJA EN MÓVIL -->
+  ${st.modules.whatsappFloat !== false ? `
+  <nav class="barra" aria-label="Contacto rápido móvil">
+    <button type="button" class="b-wa" onclick="jumpSec('accion')">WhatsApp</button>
+    <a class="b-tel" href="${telHref}">Llamar</a>
+  </nav>` : ''}
 
   <script>
     let chosenSlot = '11:30';
+    let urgentMode = 'urgencia';
+
+    (function initDefaultSlot() {
+      const act = document.querySelector('.slot-btn.active');
+      if (act) chosenSlot = act.textContent.trim();
+    })();
+
+    // Menú cortina móvil
+    const cortina = document.getElementById('cortina');
+    const btnAbrir = document.getElementById('btn-abrir-cortina');
+    const btnCerrar = document.getElementById('btn-cerrar-cortina');
+    function cerrarCortina() {
+      if (cortina) cortina.classList.remove('abierta');
+      if (btnAbrir) btnAbrir.setAttribute('aria-expanded', 'false');
+    }
+    if (btnAbrir && cortina) {
+      btnAbrir.addEventListener('click', () => {
+        cortina.classList.add('abierta');
+        btnAbrir.setAttribute('aria-expanded', 'true');
+      });
+    }
+    if (btnCerrar) btnCerrar.addEventListener('click', cerrarCortina);
+
+    // =========================================================================
+    // MOTOR DE ENTRADA CINEMÁTICA (#intro) IDÉNTICO A PRESTIGECARDETAIL.ES
+    // =========================================================================
+    (function initPrestigeIntro() {
+      const intro = document.getElementById('intro');
+      const velo = document.getElementById('velo-svg');
+      const rim = document.getElementById('escudo-rim');
+      const escudo = document.getElementById('escudo');
+      const escudoBorde = document.getElementById('escudo-borde');
+      const sombra = document.getElementById('intro-sombra');
+      const firma = document.getElementById('intro-firma');
+      const titular = document.getElementById('intro-titular');
+      const fondoCam = document.getElementById('fondo-cam');
+      const topBar = document.getElementById('top');
+      if (!intro || !velo || !escudo) return;
+
+      const clamp01 = (v, a, b) => Math.min(1, Math.max(0, (v - a) / (b - a)));
+      const easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+
+      // Punto focal central de la ventana del escudo en el viewBox 1000x1000
+      const pivotX = 500;
+      const pivotY = 390;
+      const maxZoom = 46;
+
+      function updateIntroOnScroll() {
+        const rect = intro.getBoundingClientRect();
+        const scrollable = Math.max(1, intro.offsetHeight - window.innerHeight);
+        const v = Math.min(1, Math.max(0, -rect.top / scrollable));
+
+        // Zoom exponencial del escudo alrededor de (500, 390)
+        const zoomProgress = easeInOutCubic(clamp01(v, 0, 0.62));
+        const scale = Math.pow(maxZoom, zoomProgress);
+        const tx = (pivotX - pivotX * scale).toFixed(2);
+        const ty = (pivotY - pivotY * scale).toFixed(2);
+        const tf = 'translate(' + tx + ' ' + ty + ') scale(' + scale.toFixed(4) + ')';
+        escudo.setAttribute('transform', tf);
+        if (escudoBorde) escudoBorde.setAttribute('transform', tf);
+
+        const veloOpacity = String((1 - clamp01(v, 0.50, 0.62)).toFixed(3));
+        velo.style.opacity = veloOpacity;
+        if (rim) rim.style.opacity = String((1 - clamp01(v, 0.25, 0.48)).toFixed(3));
+        if (firma) firma.style.opacity = String((1 - clamp01(v, 0, 0.12)).toFixed(3));
+
+        // Push físico de cámara al hacer scroll
+        if (fondoCam) {
+          const camPush = 1 + v * 0.10;
+          fondoCam.style.transform = 'scale(' + camPush.toFixed(4) + ')';
+        }
+
+        // Aparición del titular editorial Serif y botones dorados
+        const rev = clamp01(v, 0.56, 0.84);
+        if (sombra) sombra.style.opacity = String(rev.toFixed(3));
+        if (titular) {
+          titular.style.opacity = String(rev.toFixed(3));
+          titular.style.transform = 'translateY(' + (24 * (1 - rev)).toFixed(1) + 'px)';
+          titular.style.pointerEvents = rev > 0.45 ? 'auto' : 'none';
+        }
+        if (topBar) {
+          topBar.classList.toggle('solida', rect.bottom < window.innerHeight * 1.04 || v > 0.55);
+        }
+      }
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            ticking = false;
+            updateIntroOnScroll();
+          });
+        }
+      }, { passive: true });
+      window.addEventListener('resize', updateIntroOnScroll);
+      const pinEl = intro.querySelector('.pin');
+      if (pinEl) {
+        pinEl.addEventListener('click', (ev) => {
+          if (ev.target && ev.target.closest('button, a')) return;
+          const rect = intro.getBoundingClientRect();
+          const scrollable = Math.max(1, intro.offsetHeight - window.innerHeight);
+          const v = Math.min(1, Math.max(0, -rect.top / scrollable));
+          if (v < 0.35) abrirPortadaSuave();
+        });
+      }
+      updateIntroOnScroll();
+    })();
+
+    function abrirPortadaSuave() {
+      const intro = document.getElementById('intro');
+      if (!intro) return;
+      const targetY = Math.max(0, (intro.offsetHeight - window.innerHeight) * 0.78);
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // DESLIZADOR INTERACTIVO ANTES / DESPUÉS (#ad)
+    // =========================================================================
+    (function initBeforeAfter() {
+      const ad = document.getElementById('ad');
+      const range = document.getElementById('ad-range');
+      const et = ad ? ad.querySelector('[data-et]') : null;
+      if (!ad || !range) return;
+      function syncAd() {
+        const val = Number(range.value) / 1000;
+        const pct = (val * 100).toFixed(1) + '%';
+        ad.style.setProperty('--x', pct);
+        const salio = val > 0.68;
+        ad.classList.toggle('salio', salio);
+        if (et) {
+          et.textContent = salio ? 'Salió así' : (val > 0.40 ? 'Trabajando…' : 'Entró así');
+        }
+      }
+      range.addEventListener('input', syncAd);
+      syncAd();
+    })();
+
+    // =========================================================================
+    // DESGLOSE INTERACTIVO POR CAPAS (#capas)
+    // =========================================================================
+    (function initCapas() {
+      const sec = document.querySelector('[data-capas]');
+      if (!sec) return;
+      const detailsList = Array.from(sec.querySelectorAll('details.capa'));
+      const marcaWrap = document.getElementById('capas-marca');
+      const marcaTxt = sec.querySelector('[data-marca]');
+      detailsList.forEach(det => {
+        det.addEventListener('toggle', () => {
+          if (det.open) {
+            detailsList.forEach(other => { if (other !== det) other.open = false; });
+            if (marcaTxt) marcaTxt.textContent = det.getAttribute('data-capa') || 'DETALLE';
+            const pos = det.getAttribute('data-pos') || '';
+            if (marcaWrap && pos) {
+              pos.split(';').forEach(pair => {
+                const [k, v] = pair.split(':');
+                if (k && v) marcaWrap.style[k.trim()] = v.trim();
+              });
+            }
+          }
+        });
+      });
+    })();
+
     function jumpSec(id) {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
+
     function pickSlot(btn, slot) {
       chosenSlot = slot;
-      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+      const box = btn.parentElement;
+      if (box) box.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
+
+    function pickDimChip(btn, val) {
+      pickSlot(btn, val);
+      const inp = document.getElementById('bk-dims');
+      if (inp) inp.value = val;
+    }
+
+    function switchUrgentTab(mode) {
+      urgentMode = mode;
+      document.querySelectorAll('.mode-tab').forEach(t => {
+        t.classList.toggle('active', t.getAttribute('data-umode') === mode);
+      });
+      const pUrg = document.getElementById('urg-pane-urgencia');
+      const pCop = document.getElementById('urg-pane-copia');
+      const btnTxt = document.getElementById('bk-urg-btn-txt');
+      if (pUrg) pUrg.style.display = mode === 'urgencia' ? 'block' : 'none';
+      if (pCop) pCop.style.display = mode === 'copia' ? 'block' : 'none';
+      if (btnTxt) {
+        btnTxt.textContent = mode === 'urgencia'
+          ? 'Enviar aviso urgente por WhatsApp'
+          : 'Consultar precio exacto por WhatsApp';
+      }
+    }
+
+    function updateRepairEstimate(sel) {
+      const box = document.getElementById('bk-live-estimate');
+      if (box && sel) {
+        box.innerHTML = '💡 Tarifa seleccionada: <strong>' + sel.value.replace(/</g, '&lt;') + '</strong> · Te avisamos al WhatsApp en cuanto esté terminado.';
+      }
+    }
+
     function selectServiceForBooking(title) {
-      const sel = document.getElementById('bk-service');
+      const sel = document.getElementById('bk-service') || document.getElementById('bk-quo-type');
       if (sel) {
+        if (sel.id === 'bk-quo-type') switchUrgentTab('copia');
         for (let i = 0; i < sel.options.length; i++) {
           if (sel.options[i].value.includes(title)) { sel.selectedIndex = i; break; }
         }
-        jumpSec('accion');
+        if (sel.id === 'bk-service') updateRepairEstimate(sel);
       }
+      jumpSec('accion');
     }
+
     function sendSectorWhatsApp(kind) {
+      const biz = ${JSON.stringify(st.name)};
       const srv = document.getElementById('bk-service')?.value || '';
-      const ext = document.getElementById('bk-extra')?.value || '';
       const cli = document.getElementById('bk-client')?.value || '';
-      const msg = 'Hola ' + ${JSON.stringify(st.name)} + ', me gustaría reservar:\\n' +
-        '• Servicio: ' + srv + '\\n' +
-        (ext ? '• Preferencia: ' + ext + '\\n' : '') +
-        (chosenSlot ? '• Hora aprox.: ' + chosenSlot + '\\n' : '') +
-        (cli ? '• Nombre: ' + cli : '');
+      const lines = ['Hola ' + biz + ', os escribo desde vuestra web:'];
+
+      if (kind === 'medidas_presupuesto') {
+        const dims = document.getElementById('bk-dims')?.value || chosenSlot;
+        const mat = document.getElementById('bk-material')?.value || '';
+        if (srv) lines.push('• Trabajo: ' + srv);
+        if (dims) lines.push('• Medidas aprox.: ' + dims);
+        if (mat) lines.push('• Acabado / Material: ' + mat);
+        if (cli) lines.push('• Cliente y zona: ' + cli);
+      } else if (kind === 'urgencia_o_llaves') {
+        if (urgentMode === 'urgencia') {
+          const ut = document.getElementById('bk-urg-type')?.value || '';
+          const stName = document.getElementById('bk-urg-street')?.value || '';
+          lines.push('• MODO: 🚨 URGENCIA AHORA');
+          if (ut) lines.push('• Avería: ' + ut);
+          if (stName) lines.push('• Ubicación exacta: ' + stName);
+        } else {
+          const qt = document.getElementById('bk-quo-type')?.value || '';
+          const md = document.getElementById('bk-quo-model')?.value || '';
+          lines.push('• MODO: 🔑 CONSULTA / COPIA / PRESUPUESTO');
+          if (qt) lines.push('• Solicitud: ' + qt);
+          if (md) lines.push('• Marca / Modelo exacto: ' + md);
+        }
+        if (cli) lines.push('• Contacto: ' + cli);
+      } else if (kind === 'motor_diagnostico') {
+        const plate = document.getElementById('bk-plate')?.value || '';
+        const sym = document.getElementById('bk-symptom')?.value || '';
+        if (srv) lines.push('• Servicio: ' + srv);
+        if (plate) lines.push('• Vehículo / Matrícula: ' + plate);
+        if (sym) lines.push('• Síntoma / Detalle: ' + sym);
+        if (chosenSlot) lines.push('• Preferencia: ' + chosenSlot);
+        if (cli) lines.push('• Cliente: ' + cli);
+      } else if (kind === 'recepcion_taller_local') {
+        const dev = document.getElementById('bk-device')?.value || '';
+        if (dev) lines.push('• Artículo / Modelo: ' + dev);
+        if (srv) lines.push('• Arreglo: ' + srv);
+        if (chosenSlot) lines.push('• Entrega en local: ' + chosenSlot);
+        if (cli) lines.push('• Cliente (avisar al terminar): ' + cli);
+      } else if (kind === 'encargo_sin_cola') {
+        const qty = document.getElementById('bk-qty')?.value || '';
+        if (srv) lines.push('• Encargo: ' + srv);
+        if (qty) lines.push('• Unidades / Detalle: ' + qty);
+        if (chosenSlot) lines.push('• Hora recogida sin cola: ' + chosenSlot);
+        if (cli) lines.push('• A nombre de: ' + cli);
+      } else if (kind === 'mesa_carta') {
+        const zone = document.getElementById('bk-zone')?.value || '';
+        if (zone) lines.push('• Mesa / Zona: ' + zone);
+        if (srv) lines.push('• Preferencia carta: ' + srv);
+        if (chosenSlot) lines.push('• Turno: ' + chosenSlot);
+        if (cli) lines.push('• A nombre de: ' + cli);
+      } else if (kind === 'filtro_clientes') {
+        const qual = document.getElementById('bk-qualify')?.value || '';
+        const det = document.getElementById('bk-detail')?.value || '';
+        if (srv) lines.push('• Servicio: ' + srv);
+        if (qual) lines.push('• Perfil / Situación: ' + qual);
+        if (det) lines.push('• Fecha / Detalle: ' + det);
+        if (cli) lines.push('• Contacto: ' + cli);
+      } else {
+        const ext = document.getElementById('bk-extra')?.value || '';
+        if (srv) lines.push('• Servicio: ' + srv);
+        if (ext) lines.push('• Día: ' + ext);
+        if (chosenSlot) lines.push('• Hora aprox.: ' + chosenSlot);
+        if (cli) lines.push('• Nombre: ' + cli);
+      }
+
+      const msg = lines.join('\\n');
       const ok = document.getElementById('bk-ok');
       if (ok) {
         ok.style.display = 'block';
-        ok.innerHTML = '✓ Solicitud preparada para <strong>' + ${JSON.stringify(st.name)} + '</strong> (' + srv + '). <a href="https://wa.me/${fullWa}?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:800; margin-left:6px;">Enviar ahora por WhatsApp ↗</a>';
+        ok.innerHTML = '✓ Solicitud preparada para <strong>' + biz.replace(/</g, '&lt;') + '</strong>. <a href="https://wa.me/${fullWa}?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:800; margin-left:6px; color:var(--oro);">Enviar ahora por WhatsApp ↗</a>';
       }
       try {
         window.open('https://wa.me/${fullWa}?text=' + encodeURIComponent(msg), '_blank', 'noopener');
@@ -1447,869 +2706,12 @@ function compileClientWebsiteHTML(st) {
 </html>`;
 }
 
-// ==========================================================================
-// VISUAL SECTOR SOLUTIONS SHOWCASE (Interactive Visual Demos on Landing Page!)
-// ==========================================================================
-function switchVisualSolution(solKey) {
-  document.querySelectorAll('.sol-tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-sol') === solKey);
-  });
-  document.querySelectorAll('.sol-stage-pane').forEach(pane => {
-    pane.classList.toggle('hidden', pane.getAttribute('data-sol-pane') !== solKey);
-  });
+if (typeof window !== 'undefined') {
+  window.STORAGE_KEY = STORAGE_KEY;
+  window.DESIGN_THEMES = DESIGN_THEMES;
+  window.SECTOR_PRESETS = SECTOR_PRESETS;
+  window.slugifyName = slugifyName;
+  window.encodeSharePayload = encodeSharePayload;
+  window.decodeSharePayload = decodeSharePayload;
+  window.compileClientWebsiteHTML = compileClientWebsiteHTML;
 }
-
-function demoPickChip(btn) {
-  const group = btn.parentElement;
-  if (!group) return;
-  group.querySelectorAll('button').forEach(b => {
-    b.classList.remove('bg-emerald-400', 'text-slate-950', 'border-emerald-400');
-    b.classList.add('bg-white/5', 'text-slate-200', 'border-white/10');
-  });
-  btn.classList.remove('bg-white/5', 'text-slate-200', 'border-white/10');
-  btn.classList.add('bg-emerald-400', 'text-slate-950', 'border-emerald-400');
-
-  const feedback = btn.closest('.sol-stage-pane')?.querySelector('.js-sol-feedback');
-  if (feedback) {
-    feedback.textContent = '✓ Seleccionado: ' + btn.innerText.trim() + ' — Directo al WhatsApp del dueño';
-    feedback.classList.remove('hidden');
-  }
-}
-
-function jumpGeneratorWithSector(sectorKey) {
-  selectStudioSector(sectorKey);
-  const gen = document.getElementById('generador');
-  if (gen) gen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ==========================================================================
-// INTERACTIVE BEFORE / AFTER IMAGE SLIDERS (Mouse + Touch Drag)
-// ==========================================================================
-function initBeforeAfterSliders() {
-  document.querySelectorAll('.ba-slider').forEach(slider => {
-    let dragging = false;
-    const setPos = (clientX) => {
-      const rect = slider.getBoundingClientRect();
-      if (!rect.width) return;
-      const pct = Math.max(6, Math.min(94, ((clientX - rect.left) / rect.width) * 100));
-      slider.style.setProperty('--pos', pct.toFixed(1) + '%');
-    };
-    slider.addEventListener('mousedown', (e) => { dragging = true; setPos(e.clientX); });
-    window.addEventListener('mousemove', (e) => { if (dragging) setPos(e.clientX); });
-    window.addEventListener('mouseup', () => { dragging = false; });
-
-    slider.addEventListener('touchstart', (e) => {
-      if (e.touches[0]) setPos(e.touches[0].clientX);
-    }, { passive: true });
-    slider.addEventListener('touchmove', (e) => {
-      if (e.touches[0]) setPos(e.touches[0].clientX);
-    }, { passive: true });
-  });
-}
-
-// ==========================================================================
-// VIP CUSTOM HIGH-TICKET PROJECT CONFIGURATOR MODAL (400€ – 900€+ Leads!)
-// ==========================================================================
-let vipState = {
-  sector: 'Motos / Taller / Concesionario',
-  extras: ['Diseño Exclusivo 100% A Medida', 'Catálogo / Reservas Avanzadas'],
-  refSite: ''
-};
-
-function openVipCustomModal(preSector, refSiteName) {
-  closeLiveClientModal();
-  if (preSector) vipState.sector = preSector;
-  vipState.refSite = refSiteName || '';
-
-  const modal = document.getElementById('vip-custom-modal');
-  const refBadge = document.getElementById('vip-ref-badge');
-  const refText = document.getElementById('vip-ref-text');
-  if (!modal) return;
-
-  if (vipState.refSite && refBadge && refText) {
-    refText.textContent = 'Inspirado en: ' + vipState.refSite;
-    refBadge.classList.remove('hidden');
-  } else if (refBadge) {
-    refBadge.classList.add('hidden');
-  }
-
-  document.querySelectorAll('.vip-sec-btn').forEach(btn => {
-    const on = btn.getAttribute('data-vsec') === vipState.sector;
-    btn.className = on
-      ? 'vip-sec-btn p-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-white font-bold text-xs text-left flex items-center gap-2'
-      : 'vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2';
-  });
-
-  modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeVipCustomModal() {
-  const modal = document.getElementById('vip-custom-modal');
-  if (modal) modal.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function pickVipSector(btn, secLabel) {
-  vipState.sector = secLabel;
-  document.querySelectorAll('.vip-sec-btn').forEach(b => {
-    b.className = b === btn
-      ? 'vip-sec-btn p-2.5 rounded-xl border border-amber-400 bg-amber-400/15 text-white font-bold text-xs text-left flex items-center gap-2'
-      : 'vip-sec-btn p-2.5 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-semibold text-xs text-left flex items-center gap-2';
-  });
-}
-
-function toggleVipExtra(btn, label) {
-  const idx = vipState.extras.indexOf(label);
-  if (idx >= 0) vipState.extras.splice(idx, 1);
-  else vipState.extras.push(label);
-  const on = vipState.extras.includes(label);
-  btn.className = on
-    ? 'vip-ext-btn px-3 py-2 rounded-xl border border-emerald-400 bg-emerald-500/15 text-emerald-200 font-bold text-xs text-left flex items-center justify-between gap-2'
-    : 'vip-ext-btn px-3 py-2 rounded-xl border border-white/10 bg-slate-950 text-slate-300 font-medium text-xs text-left flex items-center justify-between gap-2';
-}
-
-function sendVipProposalWhatsApp(e) {
-  if (e) e.preventDefault();
-  const biz = document.getElementById('vip-biz-name')?.value.trim() || 'Mi Negocio';
-  const city = document.getElementById('vip-biz-city')?.value.trim() || '';
-  const refLine = vipState.refSite ? `\n• Referencia que me gustó: ${vipState.refSite}` : '';
-  const extrasLine = vipState.extras.length ? vipState.extras.join(', ') : 'Proyecto completo a medida';
-
-  const msg = `Hola Fathi, quiero presupuesto para una *WEB ÉLITE A MEDIDA* (Proyecto Exclusivo):\n` +
-    `• Negocio: *${biz}* ${city ? '(' + city + ')' : ''}\n` +
-    `• Sector: ${vipState.sector}\n` +
-    `• Funciones clave: ${extrasLine}${refLine}\n` +
-    `¿Podemos ver una propuesta personalizada para mi local?`;
-
-  window.open(`https://wa.me/${FATHI_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
-  closeVipCustomModal();
-}
-
-// ==========================================================================
-// 50€ BASIC SELF-SERVE STUDIO LOGIC
-// ==========================================================================
-function renderSectorSelector() {
-  const container = document.getElementById('sector-chips-grid');
-  if (!container) return;
-
-  container.innerHTML = Object.entries(SECTOR_PRESETS).map(([key, item]) => {
-    const isActive = studioState.sector === key;
-    return `
-      <button type="button" onclick="selectStudioSector('${key}')"
-        class="sector-btn ${isActive ? 'active' : 'bg-white/[0.03] border-white/10 text-slate-300'} border rounded-xl px-3 py-2.5 text-left flex items-center gap-2 text-xs font-bold">
-        <i class="ph-bold ${item.icon} text-sm ${isActive ? 'text-emerald-400' : 'text-slate-400'} shrink-0"></i>
-        <span>${escapeHtml(item.label)}</span>
-      </button>
-    `;
-  }).join('');
-
-  const customWrap = document.getElementById('custom-sector-wrap');
-  if (customWrap) customWrap.classList.toggle('hidden', studioState.sector !== 'otro');
-}
-
-function selectStudioSector(sectorKey) {
-  const preset = SECTOR_PRESETS[sectorKey];
-  if (!preset) return;
-
-  const currentTyped = document.getElementById('inp-name')?.value.trim();
-  const isDefaultName = Object.values(SECTOR_PRESETS).some(p => p.defaultName === currentTyped);
-  if (currentTyped && !isDefaultName) {
-    studioState.userEditedName = true;
-    studioState.name = currentTyped;
-  }
-
-  studioState.sector = sectorKey;
-  if (!studioState.userEditedName) studioState.name = preset.defaultName;
-  studioState.yearsExp = preset.yearsExp;
-  studioState.tagline = preset.tagline;
-  studioState.story = preset.story;
-  studioState.theme = preset.defaultTheme;
-  studioState.services = JSON.parse(JSON.stringify(preset.services));
-  studioState.customHeroPhoto = '';
-  studioState.customGallery = [];
-
-  syncInputsFromState();
-  renderSectorSelector();
-  renderServicesEditor();
-  renderThemeSelector();
-  updateStudioPreview(true);
-}
-
-function onNameInputManual(val) {
-  studioState.userEditedName = val.trim().length > 0;
-  schedulePreviewRefresh();
-}
-
-function renderServicesEditor() {
-  const list = document.getElementById('services-editor-list');
-  if (!list) return;
-  list.innerHTML = studioState.services.map((srv, idx) => `
-    <div class="p-3 rounded-xl bg-slate-900/90 border border-white/10 space-y-2">
-      <div class="flex items-center justify-between gap-2">
-        <span class="text-[11px] font-mono uppercase text-emerald-400 font-bold">Ítem #${idx + 1}</span>
-        ${studioState.services.length > 1 ? `
-          <button type="button" onclick="removeServiceItem(${idx})" class="text-xs text-rose-300 px-2 py-0.5 rounded bg-rose-500/15 font-semibold">Quitar</button>` : ''}
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-        <input type="text" value="${escapeHtml(srv.title)}" oninput="editServiceField(${idx}, 'title', this.value)"
-          class="sm:col-span-8 desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-white focus:border-emerald-400 focus:outline-none" />
-        <input type="text" value="${escapeHtml(srv.price)}" oninput="editServiceField(${idx}, 'price', this.value)"
-          class="sm:col-span-4 desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-emerald-300 font-bold focus:border-emerald-400 focus:outline-none" />
-      </div>
-      <input type="text" value="${escapeHtml(srv.meta)}" oninput="editServiceField(${idx}, 'meta', this.value)"
-        class="w-full desk-sm px-3 py-2 rounded-lg bg-slate-950 border border-white/12 text-slate-300 focus:border-emerald-400 focus:outline-none" />
-    </div>
-  `).join('');
-}
-
-function editServiceField(idx, field, val) {
-  if (!studioState.services[idx]) return;
-  studioState.services[idx][field] = val;
-  schedulePreviewRefresh();
-}
-
-function addServiceItem() {
-  studioState.services.push({ title: 'Nuevo Servicio / Producto', meta: 'Atención directa', price: '20 €' });
-  renderServicesEditor();
-  updateStudioPreview(true);
-}
-
-function removeServiceItem(idx) {
-  if (studioState.services.length <= 1) return;
-  studioState.services.splice(idx, 1);
-  renderServicesEditor();
-  updateStudioPreview(true);
-}
-
-function handleHeroPhotoUpload(input) {
-  const file = input.files && input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    studioState.customHeroPhoto = ev.target.result;
-    const status = document.getElementById('hero-photo-status');
-    if (status) status.textContent = '✓ Foto cargada en portada';
-    updateStudioPreview(true);
-  };
-  reader.readAsDataURL(file);
-}
-
-function handleGalleryUpload(input) {
-  const files = Array.from(input.files || []).slice(0, 4);
-  if (!files.length) return;
-  const loaded = [];
-  let done = 0;
-  files.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      loaded.push(ev.target.result);
-      done++;
-      if (done === files.length) {
-        studioState.customGallery = loaded;
-        const status = document.getElementById('gallery-photo-status');
-        if (status) status.textContent = `✓ ${loaded.length} foto(s) listas`;
-        updateStudioPreview(true);
-      }
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-function resetUploadedPhotos() {
-  studioState.customHeroPhoto = '';
-  studioState.customGallery = [];
-  const s1 = document.getElementById('hero-photo-status');
-  const s2 = document.getElementById('gallery-photo-status');
-  if (s1) s1.textContent = 'Foto automática del sector';
-  if (s2) s2.textContent = '3 fotos de muestra';
-  updateStudioPreview(true);
-}
-
-function renderThemeSelector() {
-  const wrap = document.getElementById('theme-selector-grid');
-  if (!wrap) return;
-  wrap.innerHTML = Object.entries(DESIGN_THEMES).map(([key, t]) => {
-    const active = studioState.theme === key;
-    return `
-      <button type="button" onclick="selectStudioTheme('${key}')"
-        class="p-3 rounded-xl border text-left flex items-center gap-3 ${active ? 'border-emerald-400 bg-emerald-500/12' : 'border-white/10 bg-white/[0.03]'}">
-        <span class="w-8 h-8 rounded-full shrink-0 border border-white/20 flex overflow-hidden">
-          <span style="background:${t.swatch1}; width:50%; height:100%;"></span>
-          <span style="background:${t.swatch2}; width:50%; height:100%;"></span>
-        </span>
-        <span class="min-w-0">
-          <span class="block text-xs font-bold text-white truncate">${escapeHtml(t.label)}</span>
-          <span class="block text-[11px] text-slate-400 truncate">${escapeHtml(t.sub)}</span>
-        </span>
-      </button>
-    `;
-  }).join('');
-}
-
-function selectStudioTheme(themeKey) {
-  studioState.theme = themeKey;
-  renderThemeSelector();
-  updateStudioPreview(true);
-}
-
-const MODULE_LIST = [
-  { key: 'booking', label: 'Módulo Interactivo del Sector (Citas / Presupuesto / Mesa)' },
-  { key: 'whatsappFloat', label: 'Botón Flotante de WhatsApp Directo' },
-  { key: 'services', label: 'Listado de Servicios / Carta con Precios' },
-  { key: 'gallery', label: 'Galería Fotográfica Visual' },
-  { key: 'scheduleMap', label: 'Horario + Ruta Google Maps' }
-];
-
-function renderModulesSelector() {
-  const wrap = document.getElementById('modules-toggle-grid');
-  if (!wrap) return;
-  wrap.innerHTML = MODULE_LIST.map(m => {
-    const on = !!studioState.modules[m.key];
-    return `
-      <button type="button" onclick="toggleStudioModule('${m.key}')"
-        class="mod-switch ${on ? 'active' : 'bg-white/[0.02] border-white/10'} border rounded-xl p-3 flex items-center justify-between gap-2 text-left">
-        <span class="text-xs font-semibold text-white">${escapeHtml(m.label)}</span>
-        <span class="w-5 h-5 rounded-md flex items-center justify-center shrink-0 text-xs font-extrabold ${on ? 'bg-emerald-400 text-slate-950' : 'bg-white/10 text-transparent'}">✓</span>
-      </button>
-    `;
-  }).join('');
-}
-
-function toggleStudioModule(modKey) {
-  studioState.modules[modKey] = !studioState.modules[modKey];
-  renderModulesSelector();
-  updateStudioPreview(true);
-}
-
-function switchStudioStep(stepNum) {
-  studioState.activeStep = stepNum;
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById(`studio-step-${i}`)?.classList.toggle('hidden', i !== stepNum);
-    document.getElementById(`studio-tab-${i}`)?.classList.toggle('active', i === stepNum);
-  }
-}
-
-function syncInputsFromState() {
-  const map = {
-    'inp-name': studioState.name,
-    'inp-custom-sector': studioState.customSectorLabel,
-    'inp-years': studioState.yearsExp,
-    'inp-tagline': studioState.tagline,
-    'inp-story': studioState.story,
-    'inp-city': studioState.city,
-    'inp-address': studioState.address,
-    'inp-whatsapp': studioState.whatsapp,
-    'inp-phone': studioState.phone,
-    'inp-hours-week': studioState.hoursWeek,
-    'inp-hours-sat': studioState.hoursSat,
-    'inp-hours-sun': studioState.hoursSun
-  };
-  Object.entries(map).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.value = val || '';
-  });
-}
-
-function readInputsIntoState() {
-  const v = id => {
-    const el = document.getElementById(id);
-    return el ? el.value : null;
-  };
-  if (v('inp-name') !== null) studioState.name = v('inp-name').trim() || 'Mi Negocio';
-  if (v('inp-custom-sector') !== null) studioState.customSectorLabel = v('inp-custom-sector').trim() || 'Negocio Local';
-  if (v('inp-years') !== null) studioState.yearsExp = v('inp-years').trim() || 'Atención Directa';
-  if (v('inp-tagline') !== null) studioState.tagline = v('inp-tagline').trim() || 'Calidad profesional.';
-  if (v('inp-story') !== null) studioState.story = v('inp-story').trim() || 'Contacto directo.';
-  if (v('inp-city') !== null) studioState.city = v('inp-city').trim() || 'Madrid';
-  if (v('inp-address') !== null) studioState.address = v('inp-address').trim() || 'Calle Principal 12';
-  if (v('inp-whatsapp') !== null) studioState.whatsapp = v('inp-whatsapp').trim() || '612 890 345';
-  if (v('inp-phone') !== null) studioState.phone = v('inp-phone').trim();
-  if (v('inp-hours-week') !== null) studioState.hoursWeek = v('inp-hours-week').trim() || '09:30 – 20:00';
-  if (v('inp-hours-sat') !== null) studioState.hoursSat = v('inp-hours-sat').trim() || '09:30 – 14:30';
-  if (v('inp-hours-sun') !== null) studioState.hoursSun = v('inp-hours-sun').trim() || 'Cerrado';
-}
-
-function schedulePreviewRefresh() {
-  if (compileTimer) clearTimeout(compileTimer);
-  compileTimer = setTimeout(() => {
-    readInputsIntoState();
-    updateStudioPreview(true);
-  }, 180);
-}
-
-function getLiveShareableSiteUrl() {
-  const slug = slugifyName(studioState.name);
-  return `/sitio/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(studioState)}`;
-}
-
-function getLiveAdminPanelUrl() {
-  const slug = slugifyName(studioState.name);
-  return `/admin/?negocio=${encodeURIComponent(slug)}&d=${encodeSharePayload(studioState)}`;
-}
-
-function updateStudioPreview(skipRead) {
-  if (!skipRead) readInputsIntoState();
-  saveStudioState();
-
-  const slug = slugifyName(studioState.name);
-  const prettyUrl = `miweblocal.com/${slug}`;
-  const urlEl = document.getElementById('preview-live-url');
-  if (urlEl) urlEl.textContent = prettyUrl;
-  const fullUrlEl = document.getElementById('fullscreen-demo-url');
-  if (fullUrlEl) fullUrlEl.textContent = prettyUrl;
-
-  const openRealLink = document.getElementById('open-real-demo-tab');
-  if (openRealLink) openRealLink.href = getLiveShareableSiteUrl();
-
-  const html = compileClientWebsiteHTML(studioState);
-  const iframe = document.getElementById('studio-preview-iframe');
-  if (iframe) iframe.srcdoc = html;
-}
-
-let mobileInlineUnlocked = false;
-function toggleInlineIframeTouch() {
-  mobileInlineUnlocked = !mobileInlineUnlocked;
-  const guard = document.getElementById('iframe-touch-guard');
-  const btn = document.getElementById('btn-unlock-inline-touch');
-  if (!guard || !btn) return;
-  if (mobileInlineUnlocked) {
-    guard.classList.remove('locked-scroll');
-    btn.innerHTML = '<i class="ph-bold ph-lock-simple"></i><span>Fijar Scroll</span>';
-    btn.className = 'px-3.5 py-2 rounded-full bg-amber-400 text-slate-950 font-display font-extrabold text-xs shadow-lg flex items-center gap-1.5 whitespace-nowrap';
-  } else {
-    guard.classList.add('locked-scroll');
-    btn.innerHTML = '<i class="ph-bold ph-hand-tap text-emerald-400"></i><span>Tocar Demo</span>';
-    btn.className = 'px-3.5 py-2 rounded-full bg-slate-900/95 border border-white/20 text-white font-display font-bold text-xs shadow-lg flex items-center gap-1.5 whitespace-nowrap';
-  }
-}
-
-function setPreviewDevice(mode) {
-  studioState.previewDevice = mode;
-  const wrap = document.getElementById('preview-frame-shell');
-  const btnMob = document.getElementById('btn-dev-mobile');
-  const btnDesk = document.getElementById('btn-dev-desktop');
-  if (wrap) {
-    wrap.classList.toggle('is-mobile-width', mode === 'mobile');
-    wrap.classList.toggle('is-desktop-width', mode === 'desktop');
-  }
-  if (btnMob && btnDesk) {
-    btnMob.className = mode === 'mobile'
-      ? 'px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-950'
-      : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
-    btnDesk.className = mode === 'desktop'
-      ? 'px-3 py-1 rounded-lg text-xs font-bold bg-white text-slate-950'
-      : 'px-3 py-1 rounded-lg text-xs font-semibold text-slate-400 hover:text-white';
-  }
-}
-
-function openFullscreenGeneratedDemo() {
-  readInputsIntoState();
-  saveStudioState();
-  const modal = document.getElementById('fullscreen-demo-modal');
-  const iframe = document.getElementById('fullscreen-demo-iframe');
-  if (!modal || !iframe) return;
-  iframe.srcdoc = compileClientWebsiteHTML(studioState);
-  modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeFullscreenGeneratedDemo() {
-  document.getElementById('fullscreen-demo-modal')?.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function tickCountdownTimers() {
-  const remMs = Math.max(0, (studioState.expiresAt || (Date.now() + 86000000)) - Date.now());
-  const totalSec = Math.floor(remMs / 1000);
-  const h = String(Math.floor(totalSec / 3600)).padStart(2, '0');
-  const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
-  const s = String(totalSec % 60).padStart(2, '0');
-  document.querySelectorAll('.js-countdown-24h').forEach(el => { el.textContent = `${h}:${m}:${s}`; });
-}
-
-function pickPayMethod(m) {
-  document.querySelectorAll('.pay-method-btn').forEach(btn => {
-    const on = btn.getAttribute('data-pm') === m;
-    btn.className = on
-      ? 'pay-method-btn py-2.5 px-3 rounded-xl border border-emerald-400 bg-emerald-500/15 text-white font-bold text-xs text-center'
-      : 'pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center';
-  });
-}
-
-function openAutomatedCheckoutModal() {
-  readInputsIntoState();
-  saveStudioState();
-  closeFullscreenGeneratedDemo();
-  const modal = document.getElementById('checkout-modal');
-  const content = document.getElementById('checkout-modal-body');
-  if (!modal || !content) return;
-
-  const slug = slugifyName(studioState.name);
-  content.innerHTML = `
-    <div>
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] font-bold">
-          ⚡ PLAN WEB EXPRESS · 79 €
-        </span>
-        <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
-      </div>
-
-      <h3 class="font-display font-extrabold text-xl text-white mb-1">
-        Activar web básica de <span class="text-emerald-400">${escapeHtml(studioState.name)}</span>
-      </h3>
-
-      <div class="p-3.5 rounded-2xl bg-slate-950 border border-white/10 space-y-2 my-3 text-xs">
-        <div class="flex justify-between items-center gap-2">
-          <span class="text-slate-400">Enlace público:</span>
-          <strong class="text-emerald-300 font-mono truncate">miweblocal.com/${escapeHtml(slug)}</strong>
-        </div>
-        <div class="flex justify-between items-center gap-2">
-          <span class="text-slate-400">Autogestión básica:</span>
-          <strong class="text-amber-300 font-mono truncate">miweblocal.com/${escapeHtml(slug)}/admin</strong>
-        </div>
-        <div class="flex justify-between items-center pt-2 border-t border-white/10">
-          <span class="text-white font-bold">Pago único total:</span>
-          <strong class="text-xl font-display font-extrabold text-white">79 €</strong>
-        </div>
-      </div>
-
-      <div class="space-y-3 mb-4">
-        <div>
-          <label class="block text-[11px] font-mono uppercase text-slate-300 font-semibold mb-1">Tu Email (para enviarte enlaces y PIN)</label>
-          <input type="email" id="buyer-email" value="${escapeHtml(studioState.buyerEmail || '')}" placeholder="ejemplo@tunegocio.com"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white focus:border-emerald-400 focus:outline-none" />
-          <div id="buyer-email-err" class="hidden text-rose-400 text-xs font-semibold mt-1">Introduce un email válido con @</div>
-        </div>
-        <div class="grid grid-cols-3 gap-2">
-          <button type="button" data-pm="card" onclick="pickPayMethod('card')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-emerald-400 bg-emerald-500/15 text-white font-bold text-xs text-center">Tarjeta</button>
-          <button type="button" data-pm="bizum" onclick="pickPayMethod('bizum')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Bizum</button>
-          <button type="button" data-pm="apple" onclick="pickPayMethod('apple')" class="pay-method-btn py-2.5 px-3 rounded-xl border border-white/12 bg-slate-950 text-slate-300 font-semibold text-xs text-center">Apple / GPay</button>
-        </div>
-      </div>
-
-      <button type="button" onclick="completeAutomatedDelivery()"
-        class="w-full py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-display font-extrabold text-sm shadow-lg mb-2.5">
-        Desbloquear Web Express · 79 € →
-      </button>
-
-      <button type="button" onclick="closeCheckoutModal(); openVipCustomModal('${escapeHtml(studioState.sector)}', '')"
-        class="w-full py-2.5 px-3 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold">
-        💎 ¿Prefieres una Web Élite A Medida hecha por nosotros? Consultar
-      </button>
-    </div>
-  `;
-  modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function completeAutomatedDelivery() {
-  const emailEl = document.getElementById('buyer-email');
-  const errEl = document.getElementById('buyer-email-err');
-  const email = emailEl ? emailEl.value.trim() : '';
-
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    if (errEl) errEl.classList.remove('hidden');
-    emailEl?.focus();
-    return;
-  }
-
-  studioState.buyerEmail = email;
-  studioState.unlocked = true;
-  if (!studioState.adminPin) studioState.adminPin = 'PRO-' + String(Math.floor(1000 + Math.random() * 9000));
-  saveStudioState();
-
-  const siteUrl = getLiveShareableSiteUrl();
-  const adminUrl = getLiveAdminPanelUrl();
-  const content = document.getElementById('checkout-modal-body');
-  if (!content) return;
-
-  content.innerHTML = `
-    <div>
-      <div class="flex items-center justify-between mb-3">
-        <span class="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
-          ✓ WEB ACTIVA + PANEL /ADMIN
-        </span>
-        <button type="button" onclick="closeCheckoutModal()" class="w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center">✕</button>
-      </div>
-      <h3 class="font-display font-extrabold text-xl text-white mb-2">¡Lista, ${escapeHtml(studioState.name)}!</h3>
-      <div class="p-4 rounded-2xl bg-slate-950 border border-emerald-500/35 space-y-2.5 text-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-slate-400">PIN Propietario:</span>
-          <strong class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-sm">${escapeHtml(studioState.adminPin)}</strong>
-        </div>
-        <a href="${siteUrl}" target="_blank" class="btn-tap py-3 px-4 rounded-xl bg-emerald-400 text-slate-950 font-display font-extrabold text-center block">
-          1. Abrir Mi Web Pública ↗
-        </a>
-        <a href="${adminUrl}" target="_blank" class="btn-tap py-3 px-4 rounded-xl bg-amber-400 text-slate-950 font-display font-extrabold text-center block">
-          2. Entrar a Mi Panel (/admin) ↗
-        </a>
-      </div>
-    </div>
-  `;
-}
-
-function closeCheckoutModal() {
-  document.getElementById('checkout-modal')?.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function openLiveAdminPreview() {
-  readInputsIntoState();
-  saveStudioState();
-  window.open(getLiveAdminPanelUrl(), '_blank');
-}
-
-// ==========================================================================
-// 8 REAL ELITE CUSTOM PROJECTS PORTFOLIO (High-Ticket Showcase + Mouse Drag)
-// ==========================================================================
-const REAL_PORTFOLIO = [
-  {
-    id: 'orero', category: 'motor',
-    name: 'Orero Motorcycles', city: 'Orihuela',
-    badge: 'ÉLITE A MEDIDA · MOTOR',
-    visualTags: ['18 Motos en Stock', 'Sonido 310 CV', 'Cita Taller'],
-    screenshot: 'assets/portfolio/motos_orero.jpg',
-    route: '/motorcycle-store-orero/'
-  },
-  {
-    id: 'elite', category: 'reformas',
-    name: 'Reformas Elite Gold', city: 'Guardamar',
-    badge: 'ÉLITE A MEDIDA · OBRAS',
-    visualTags: ['Villas de Lujo', 'Presupuesto WhatsApp', '5,0 ★ Google'],
-    screenshot: 'assets/portfolio/reformas_elite.jpg',
-    route: '/reformas-elite-gold-guardamar/'
-  },
-  {
-    id: 'autolomas', category: 'motor',
-    name: 'Auto Lomas Chapa', city: 'Torrevieja',
-    badge: 'ÉLITE A MEDIDA · TALLER',
-    visualTags: ['Slider Antes/Después', 'Foto Daño WhatsApp', 'Cabina Horno'],
-    screenshot: 'assets/portfolio/autochrome.jpg',
-    route: '/autochrome-torrevieja/'
-  },
-  {
-    id: 'vimacchiata', category: 'hosteleria',
-    name: 'La Vimacchiata Brunch', city: 'Orihuela',
-    badge: 'ÉLITE A MEDIDA · BRUNCH',
-    visualTags: ['Carta Interactiva', 'Reserva Terraza', 'Specialty Coffee'],
-    screenshot: 'assets/portfolio/vimacchiata_brunch.jpg',
-    route: '/orihuela/la-vimacchiata-brunch/'
-  },
-  {
-    id: 'jamal', category: 'barberia',
-    name: 'Barbería Jamal', city: 'Cox',
-    badge: 'ÉLITE A MEDIDA · BARBER',
-    visualTags: ['Agenda 30 seg', 'Galería Cortes', '+45 Citas/sem'],
-    screenshot: 'assets/portfolio/barberia_jamal.jpg',
-    route: '/cox/barberia-jamal/'
-  },
-  {
-    id: 'artedent', category: 'salud',
-    name: 'Clínica Dental Artedent', city: 'Orihuela',
-    badge: 'ÉLITE A MEDIDA · SALUD',
-    visualTags: ['Cita Médica Online', 'Especialidades', 'Confianza Clínica'],
-    screenshot: 'assets/portfolio/clinica_artedent.jpg',
-    route: '/orihuela/clinica-dental-artedent/'
-  },
-  {
-    id: 'lebano', category: 'hosteleria',
-    name: 'El Lebano Restaurante', city: 'Alicante',
-    badge: 'ÉLITE A MEDIDA · CARTA',
-    visualTags: ['Reserva de Mesa', 'Carta Visual', '0% Comisiones'],
-    screenshot: 'assets/portfolio/el_lebano.jpg',
-    route: '/alicante/el-lebano-cocina-libanesa/'
-  },
-  {
-    id: 'gabi', category: 'barberia',
-    name: 'Gabi Tattoo Studio', city: 'Orihuela',
-    badge: 'ÉLITE A MEDIDA · TATTOO',
-    visualTags: ['Cotizador Tatuaje', 'Portafolio Piel', 'Cita Privada'],
-    screenshot: 'assets/portfolio/gabi_tattoo.jpg',
-    route: '/orihuela/gabi-tattoo-studio/'
-  }
-];
-
-function renderPortfolioCards(filterCat = 'all') {
-  const grid = document.getElementById('portfolio-cards-container');
-  if (!grid) return;
-
-  document.querySelectorAll('.pf-filter-btn').forEach(btn => {
-    const active = btn.getAttribute('data-cat') === filterCat;
-    btn.className = active
-      ? 'pf-filter-btn px-4 py-2 rounded-full text-xs font-extrabold bg-amber-400 text-slate-950 whitespace-nowrap'
-      : 'pf-filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-slate-300 border border-white/10 hover:text-white whitespace-nowrap';
-  });
-
-  const items = filterCat === 'all' ? REAL_PORTFOLIO : REAL_PORTFOLIO.filter(p => p.category === filterCat);
-
-  grid.innerHTML = items.map(item => `
-    <article class="pf-card pf-slide w-[80vw] max-w-[300px] rounded-3xl bg-[#10141F] border border-white/12 p-4 flex flex-col justify-between transition-all duration-300">
-      <div>
-        <div class="flex items-center justify-between gap-2 mb-3">
-          <span class="px-2.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/35 text-amber-300 text-[10px] font-mono font-extrabold">
-            💎 ${escapeHtml(item.badge)}
-          </span>
-          <span class="text-[11px] text-slate-400 truncate">${escapeHtml(item.city)}</span>
-        </div>
-
-        <div class="cursor-pointer" onclick="openLiveClientModal('${escapeHtml(item.route)}', '${escapeHtml(item.name)}')">
-          <div class="iphone-mockup">
-            <div class="iphone-inner">
-              <div class="iphone-island"></div>
-              <img src="${escapeHtml(item.screenshot)}" alt="${escapeHtml(item.name)}" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 pt-3.5 border-t border-white/10 space-y-2.5">
-        <h3 class="font-display font-extrabold text-base text-white truncate">${escapeHtml(item.name)}</h3>
-        <div class="flex flex-wrap gap-1">
-          ${item.visualTags.map(t => `<span class="px-2 py-0.5 rounded-md bg-white/[0.06] text-[10.5px] font-semibold text-emerald-300">${escapeHtml(t)}</span>`).join('')}
-        </div>
-        <div class="grid grid-cols-2 gap-1.5 pt-1">
-          <button type="button" onclick="openLiveClientModal('${escapeHtml(item.route)}', '${escapeHtml(item.name)}')"
-            class="py-2.5 px-2 rounded-xl bg-white text-slate-950 font-display font-extrabold text-xs whitespace-nowrap">
-            Ver en Vivo
-          </button>
-          <button type="button" onclick="openVipCustomModal('', '${escapeHtml(item.name)}')"
-            class="py-2.5 px-2 rounded-xl bg-amber-400/15 border border-amber-400/35 text-amber-300 font-display font-bold text-xs whitespace-nowrap">
-            Pedir Igual
-          </button>
-        </div>
-      </div>
-    </article>
-  `).join('');
-}
-
-function scrollPortfolioCarousel(dir) {
-  const el = document.getElementById('portfolio-cards-container');
-  if (el) el.scrollBy({ left: dir * 320, behavior: 'smooth' });
-}
-
-function initMouseDragCarousels() {
-  document.querySelectorAll('.pf-carousel').forEach(box => {
-    let isDown = false, startX = 0, scrollL = 0;
-    box.addEventListener('mousedown', e => {
-      if (window.innerWidth >= 1100) return;
-      isDown = true;
-      startX = e.pageX - box.offsetLeft;
-      scrollL = box.scrollLeft;
-    });
-    window.addEventListener('mouseup', () => { isDown = false; });
-    box.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - box.offsetLeft;
-      box.scrollLeft = scrollL - (x - startX) * 1.4;
-    });
-  });
-}
-
-function cleanPortfolioIframe(iframe) {
-  const hideExtras = () => {
-    try {
-      const curDoc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-      if (!curDoc || !curDoc.defaultView) return;
-      curDoc.querySelectorAll('#owner-activation-banner, #owner-floating-pill, [id*="cookie"], [class*="cookie"]').forEach(el => {
-        el.style.display = 'none';
-      });
-      curDoc.querySelectorAll('div, aside, section').forEach(el => {
-        if (el.innerText && el.innerText.length < 700 && (el.innerText.includes('Aviso de Cookies') || el.innerText.includes('Aceptar todas')) && curDoc.defaultView.getComputedStyle(el).position === 'fixed') {
-          el.style.display = 'none';
-        }
-      });
-      if (curDoc.body) {
-        curDoc.body.style.paddingTop = '0px';
-        curDoc.body.style.marginTop = '0px';
-      }
-    } catch (err) {}
-  };
-  hideExtras();
-  setTimeout(hideExtras, 650);
-  setTimeout(hideExtras, 1700);
-}
-
-let currentModalClientName = '';
-function openLiveClientModal(route, name) {
-  currentModalClientName = name || 'Proyecto Élite';
-  const modal = document.getElementById('live-client-modal');
-  const iframe = document.getElementById('live-client-iframe');
-  const title = document.getElementById('live-client-title');
-  const ext = document.getElementById('live-client-external');
-  if (!modal || !iframe) return;
-
-  if (title) title.textContent = name;
-  if (ext) ext.href = route;
-  iframe.onload = () => cleanPortfolioIframe(iframe);
-  iframe.src = route;
-  modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function requestLikeCurrentModalClient() {
-  openVipCustomModal('', currentModalClientName);
-}
-
-function closeLiveClientModal() {
-  const modal = document.getElementById('live-client-modal');
-  const iframe = document.getElementById('live-client-iframe');
-  if (iframe) iframe.src = 'about:blank';
-  if (modal) modal.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function toggleMobileNav(open) {
-  const sheet = document.getElementById('mobile-nav-sheet');
-  if (!sheet) return;
-  sheet.classList.toggle('hidden', !open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-
-// ==========================================================================
-// INITIALIZATION
-// ==========================================================================
-window.addEventListener('DOMContentLoaded', () => {
-  if (!document.getElementById('generador')) return;
-
-  syncInputsFromState();
-  renderSectorSelector();
-  renderServicesEditor();
-  renderThemeSelector();
-  renderModulesSelector();
-  switchStudioStep(1);
-  setPreviewDevice(window.innerWidth >= 1024 ? 'desktop' : 'mobile');
-  updateStudioPreview(true);
-  renderPortfolioCards('all');
-
-  initBeforeAfterSliders();
-  initMouseDragCarousels();
-
-  tickCountdownTimers();
-  setInterval(tickCountdownTimers, 1000);
-
-  // Scroll-Reveal Observer
-  if ('IntersectionObserver' in window) {
-    const revObs = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          en.target.classList.add('is-visible');
-          revObs.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal-up').forEach(el => revObs.observe(el));
-
-    // Smart Bottom Bar visibility
-    const heroEl = document.getElementById('hero-section');
-    const genEl = document.getElementById('generador');
-    const smartBar = document.getElementById('smart-bottom-bar');
-    if (heroEl && genEl && smartBar) {
-      let heroVis = true, genVis = false;
-      const syncBar = () => smartBar.classList.toggle('bar-hidden', heroVis || genVis);
-      new IntersectionObserver(e => { heroVis = e[0].isIntersecting; syncBar(); }, { threshold: 0.1 }).observe(heroEl);
-      new IntersectionObserver(e => { genVis = e[0].isIntersecting; syncBar(); }, { threshold: 0.05 }).observe(genEl);
-    }
-  }
-});

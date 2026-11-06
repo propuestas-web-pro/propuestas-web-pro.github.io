@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Estudio de Vídeos Faceless (9:16) · MiWebLocal.com</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --bg-app: #090D16;
+      --panel: #111827;
+      --panel-border: rgba(255, 255, 255, 0.09);
+      --brand: #4F46E5;
+      --brand-hi: #6366F1;
+      --brand-soft: #EEF2FF;
+      --green: #10B981;
+      --green-dark: #047857;
+      --red: #EF4444;
+      --amber: #F59E0B;
+      --ink: #0F172A;
+      --muted: #475569;
+      --stage-bg: #FAFBFD;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: var(--bg-app);
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      min-height: 60px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--panel-border);
+      background: rgba(17, 24, 39, 0.88);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .brand-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.08rem;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .brand-logo .mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      background: var(--brand);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .brand-logo span b { color: #818CF8; }
+    .badge-top {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.2);
+      border: 1px solid rgba(129, 140, 248, 0.35);
+      color: #C7D2FE;
+      display: none;
+    }
+    @media (min-width: 960px) { .badge-top { display: inline-block; } }
+    .top-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .btn-ui {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px; border-radius: 999px;
+      border: 1px solid var(--panel-border);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff; font-weight: 700; font-size: 12.5px;
+      cursor: pointer; transition: transform 0.16s var(--ease), background 0.2s ease;
+      text-decoration: none; white-space: nowrap;
+      touch-action: manipulation; user-select: none;
+    }
+    .btn-ui:active { transform: scale(0.96); }
+    @media (hover: hover) and (pointer: fine) {
+      .btn-ui:hover { background: rgba(255, 255, 255, 0.12); }
+      .btn-ui.primary:hover { background: var(--brand-hi); }
+    }
+    .btn-ui.primary {
+      background: var(--brand);
+      border-color: var(--brand-hi);
+      box-shadow: 0 8px 24px -6px rgba(79, 70, 229, 0.65);
+    }
+    .btn-ui.green {
+      background: var(--green);
+      border-color: #34D399;
+      color: #052E16;
+    }
+    @media (max-width: 560px) {
+      .topbar { padding: 8px 12px; }
+      .brand-logo { font-size: 0.96rem; }
+      .btn-ui { padding: 7px 11px; font-size: 11.5px; }
+    }
+
+    /* STUDIO LAYOUT */
+    .studio {
+      flex: 1;
+      max-width: 1420px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 18px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 767px) {
+      .center-col { order: -1; }
+    }
+    @media (min-width: 768px) and (max-width: 1239px) {
+      .studio { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); }
+      .right-col { grid-column: 1 / -1; }
+    }
+    @media (min-width: 1240px) {
+      .studio { grid-template-columns: minmax(0, 350px) minmax(0, 1fr) minmax(0, 360px); gap: 24px; padding: 20px; }
+    }
+
+    .panel-box {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 22px;
+      padding: 18px;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #E2E8F0;
+    }
+    .panel-title i { color: #818CF8; font-size: 19px; flex-shrink: 0; }
+
+    /* NICHE SELECTOR LIST (+65 OFICIOS + SEARCH + CUSTOM) */
+    .search-dark-wrap { position: relative; margin-bottom: 8px; }
+    .search-dark-wrap i {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      color: #818CF8; font-size: 16px; pointer-events: none;
+    }
+    .inp-search-dark {
+      width: 100%; height: 40px; padding: 0 12px 0 36px;
+      border-radius: 11px; border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.32); color: #fff; font-size: 14px; font-family: inherit;
+    }
+    @media (pointer: coarse) { .inp-search-dark { font-size: 16px; } }
+    .inp-search-dark:focus { outline: none; border-color: #818CF8; box-shadow: 0 0 0 3px rgba(129,140,248,0.2); }
+    .cat-bar-dark {
+      display: flex; gap: 5px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .cat-bar-dark::-webkit-scrollbar { display: none; }
+    .cat-chip-dark {
+      padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); color: #94A3B8; font-size: 11px; font-weight: 700;
+      white-space: nowrap; cursor: pointer; flex-shrink: 0;
+    }
+    .cat-chip-dark.active { background: var(--brand); color: #fff; border-color: #818CF8; }
+    .niche-list {
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px;
+      max-height: 270px; overflow-y: auto; padding-right: 3px; margin-bottom: 14px;
+    }
+    .niche-list::-webkit-scrollbar { width: 5px; }
+    .niche-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 99px; }
+    .niche-btn {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; min-width: 0; max-width: 100%; padding: 9px 11px;
+      border-radius: 13px;
+      border: 1.5px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      color: #CBD5E1;
+      text-align: left; cursor: pointer;
+      transition: transform 0.16s var(--ease), border-color 0.2s ease, background 0.2s ease;
+      overflow: hidden;
+    }
+    .niche-btn:active { transform: scale(0.98); }
+    @media (hover: hover) and (pointer: fine) {
+      .niche-btn:hover { border-color: rgba(129, 140, 248, 0.4); color: #fff; }
+    }
+    .niche-btn.active {
+      background: rgba(79, 70, 229, 0.2);
+      border-color: #818CF8;
+      color: #fff;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.22);
+    }
+    .niche-ic {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: rgba(255,255,255,0.07);
+      display: grid; place-items: center;
+      font-size: 17px; flex-shrink: 0;
+    }
+    .niche-btn.active .niche-ic { background: var(--brand); color: #fff; }
+    .niche-meta { flex: 1; min-width: 0; overflow: hidden; }
+    .niche-meta b { display: block; font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .niche-meta small { display: block; font-size: 11px; color: #94A3B8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .custom-builder {
+      background: rgba(79, 70, 229, 0.12);
+      border: 1px dashed rgba(129, 140, 248, 0.42);
+      border-radius: 14px;
+      padding: 11px;
+      margin-bottom: 14px;
+    }
+    .custom-builder-lbl {
+      display: block; font-size: 11.5px; font-weight: 800; color: #C7D2FE; margin-bottom: 6px;
+    }
+    .custom-builder-row {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .custom-builder-row .inp-dark { flex: 1; min-width: 0; height: 38px; font-size: 13.5px; }
+    @media (pointer: coarse) { .custom-builder-row .inp-dark { font-size: 16px; } }
+
+    /* CUSTOMIZATION INPUTS */
+    .field-group { margin-bottom: 12px; min-width: 0; }
+    .field-group label { display: block; font-size: 11.5px; font-weight: 700; color: #94A3B8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .inp-dark {
+      width: 100%; height: 40px; padding: 0 12px;
+      border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.28); color: #fff;
+      font-size: 16px; font-family: inherit;
+    }
+    .inp-dark:focus { outline: none; border-color: #818CF8; }
+    .row-2 { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 8px; }
+
+    .toggles { display: grid; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--panel-border); }
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      font-size: 12.5px; color: #CBD5E1; font-weight: 600;
+    }
+    .toggle-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--brand); cursor: pointer; flex-shrink: 0; }
+
+    /* CENTER STAGE WRAPPER (9:16 VERTICAL VIDEO) */
+    .center-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      width: 100%;
+    }
+    .player-controls {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 430px;
+    }
+    .scene-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; background: rgba(255,255,255,0.05);
+      padding: 5px; border-radius: 999px; border: 1px solid var(--panel-border); max-width: 100%;
+    }
+    .sc-pill {
+      padding: 5px 9px; border-radius: 999px; border: none;
+      background: transparent; color: #94A3B8; font-size: 11px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+    }
+    .sc-pill.active { background: var(--brand); color: #fff; }
+
+    /* THE 9:16 PHONE FRAME */
+    .phone-frame {
+      width: min(405px, calc(100vw - 32px));
+      aspect-ratio: 9 / 16;
+      height: auto;
+      border-radius: 34px;
+      background: var(--stage-bg);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 8px #1E293B, 0 30px 80px -15px rgba(0, 0, 0, 0.75);
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Animated pointer cursor inside video stage */
+    .v-cursor {
+      position: absolute; z-index: 28; width: 28px; height: 28px; pointer-events: none;
+      opacity: 0; transform: translate(180px, 320px);
+      transition: transform 0.55s var(--ease), opacity 0.25s ease;
+      filter: drop-shadow(0 6px 12px rgba(15,23,42,0.35));
+    }
+    .v-cursor.show { opacity: 1; }
+    .v-cursor.click::after {
+      content: ''; position: absolute; top: -6px; left: -6px; width: 24px; height: 24px;
+      border-radius: 50%; border: 2.5px solid var(--brand);
+      animation: curRipple 0.45s ease-out forwards;
+    }
+    @keyframes curRipple {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+
+    /* Clean mode for recording */
+    body.clean-record .topbar,
+    body.clean-record .left-col,
+    body.clean-record .right-col,
+    body.clean-record .player-controls,
+    body.clean-record .record-hint {
+      display: none !important;
+    }
+    body.clean-record .studio {
+      display: flex; align-items: center; justify-content: center;
+      height: 100dvh; padding: 0; max-width: none;
+    }
+    body.clean-record .phone-frame {
+      height: 96dvh; width: calc(96dvh * 9 / 16);
+      max-width: none; border-radius: 0; box-shadow: none;
+    }
+    .exit-clean {
+      position: fixed; top: 14px; right: 14px; z-index: 100;
+      display: none;
+    }
+    body.clean-record .exit-clean { display: inline-flex; opacity: 0.25; }
+    body.clean-record .exit-clean:hover { opacity: 1; }
+
+    /* PROGRESS BAR AT TOP OF VIDEO */
+    .v-progress {
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: rgba(15, 23, 42, 0.1); z-index: 30;
+    }
+    .v-progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--brand), #10B981);
+      transition: width 0.1s linear;
+    }
+
+    /* PERSISTENT HEADER INSIDE VIDEO */
+    .v-header {
+      padding: 18px 18px 10px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 20;
+      transition: all 0.4s var(--ease);
+    }
+    .v-series-tag {
+      display: inline-block;
+      max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      padding: 5px 11px; border-radius: 999px;
+      background: #EEF2FF; border: 1px solid rgba(79, 70, 229, 0.22);
+      color: var(--brand); font-family: 'Outfit', sans-serif;
+      font-weight: 800; font-size: 11px; letter-spacing: 0.02em;
+    }
+    .v-brand-pill {
+      display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0;
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 12.5px;
+      color: var(--ink); background: #fff; padding: 4px 10px;
+      border-radius: 999px; border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+    }
+    .v-brand-pill i { color: var(--brand); }
+
+    /* SCENES CONTAINER */
+    .v-stage {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .scene {
+      position: absolute;
+      inset: 0;
+      padding: 10px 18px 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px) scale(0.97);
+      transition: opacity 0.42s var(--ease), transform 0.42s var(--ease);
+    }
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    /* =====================================================
+       SCENE 1: DARK CODE HOOK (0s - 4.2s) — Estilo @alejandroo.ia
+       ===================================================== */
+    .scene-1 {
+      background: radial-gradient(circle at 50% 25%, #1E1B4B 0%, #090D16 75%);
+      color: #fff;
+      text-align: center;
+      margin-top: -56px;
+      padding-top: 66px;
+    }
+    .s1-pre {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 14.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #A5B4FC;
+      margin-bottom: 6px;
+    }
+    .s1-day {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 70px;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #fff;
+      text-shadow: 0 10px 35px rgba(79, 70, 229, 0.6);
+      margin-bottom: 12px;
+    }
+    .s1-niche-badge {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      align-self: center; max-width: 100%;
+      padding: 9px 18px; border-radius: 999px;
+      background: #fff; color: var(--ink);
+      font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 16.5px; line-height: 1.15;
+      box-shadow: 0 14px 35px rgba(79, 70, 229, 0.5);
+      transform: scale(0.85);
+      animation: popBadge 0.6s var(--spring) 0.25s forwards;
+      margin-bottom: 18px;
+    }
+    @keyframes popBadge { to { transform: scale(1); } }
+    .s1-terminal {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 18px;
+      padding: 14px;
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94A3B8;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    .s1-term-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 9px; margin-bottom: 9px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 10px; color: #64748B;
+    }
+    .s1-dots { display: flex; gap: 5px; }
+    .s1-dots i { width: 8px; height: 8px; border-radius: 50%; background: #334155; }
+    .s1-dots i:nth-child(1) { background: #EF4444; }
+    .s1-dots i:nth-child(2) { background: #F59E0B; }
+    .s1-dots i:nth-child(3) { background: #10B981; }
+    .s1-code-line { margin-bottom: 5px; line-height: 1.42; }
+    .s1-code-line .c-kw { color: #818CF8; font-weight: 700; }
+    .s1-code-line .c-ok { color: #34D399; font-weight: 700; }
+    .s1-code-line .c-str { color: #FBBF24; }
+
+    /* =====================================================
+       SCENE 2: EL PROBLEMA EN 2D + CAOS DE LLAMADAS (4.2s - 14s)
+       ===================================================== */
+    .s2-head {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .s2-tag {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      background: #FEE2E2; color: #B91C1C;
+      font-weight: 800; font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 5px;
+    }
+    .s2-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 19px; font-weight: 800; line-height: 1.15;
+      color: var(--ink);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .s2-arena {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 10px;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+    .s2-illus-card {
+      background: #fff;
+      border: 1.5px solid rgba(15, 23, 42, 0.08);
+      border-radius: 22px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: 0 14px 30px -12px rgba(15, 23, 42, 0.1);
+    }
+    .s2-svg-wrap {
+      width: 100%; height: 145px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .s2-bubbles {
+      width: 100%;
+      display: grid; gap: 5px;
+    }
+    .s2-bubble {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex; align-items: center; gap: 5px;
+      transform: translateX(-8px); opacity: 0;
+      transition: all 0.3s var(--spring);
+    }
+    .s2-bubble.show { transform: translateX(0); opacity: 1; }
+    .s2-bubble i { color: var(--red); font-size: 14px; flex-shrink: 0; }
+
+    /* Ringing Phone on the right */
+    .s2-phone {
+      background: #0F172A;
+      border-radius: 24px;
+      padding: 6px;
+      box-shadow: 0 16px 32px -10px rgba(239, 68, 68, 0.35);
+      display: flex;
+    }
+    .s2-phone.ringing {
+      animation: phoneShake 0.38s infinite;
+    }
+    @keyframes phoneShake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-2.5deg) translateY(-2px); }
+      75% { transform: rotate(2.5deg) translateY(-2px); }
+    }
+    .s2-phone-in {
+      background: #fff;
+      border-radius: 19px;
+      flex: 1;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .s2-call-lbl { font-size: 10px; font-weight: 700; color: #64748B; text-transform: uppercase; }
+    .s2-call-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 46px; font-weight: 900; line-height: 1;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+    }
+    .s2-call-sub { font-size: 11.5px; font-weight: 800; color: var(--ink); }
+    .s2-call-btns { display: flex; gap: 14px; margin-top: 6px; }
+    .s2-cbtn {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; font-size: 15px;
+    }
+    .s2-cbtn.red { background: var(--red); }
+    .s2-cbtn.green { background: var(--green); }
+
+    .s2-pain-Stamp {
+      background: #FEF2F2;
+      border: 1.5px solid #FECACA;
+      border-radius: 16px;
+      padding: 10px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px;
+    }
+    .s2-pain-Stamp b { color: #B91C1C; font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
+    .s2-pain-Stamp span { font-size: 11.5px; font-weight: 700; color: #7F1D1D; text-decoration: line-through; }
+
+    /* =====================================================
+       SCENE 3: NUESTRA PÁGINA MIWEBLOCAL.COM EN VIVO (14s - 24s)
+       ===================================================== */
+    .s3-badge {
+      align-self: center;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px; border-radius: 999px;
+      background: #EEF2FF; color: var(--brand);
+      font-weight: 800; font-size: 11.5px; margin-bottom: 8px;
+    }
+    .s3-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 21px; font-weight: 800; text-align: center;
+      margin-bottom: 12px; line-height: 1.15;
+    }
+    .s3-title em { font-style: normal; color: var(--brand); }
+
+    .s3-browser {
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      padding: 6px; border-radius: 26px;
+      position: relative;
+    }
+    .s3-browser-in {
+      background: #fff;
+      border-radius: 21px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.16);
+    }
+    .s3-winbar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 12px; border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+      background: #F8FAFC;
+    }
+    .s3-url {
+      flex: 1; height: 24px; border-radius: 999px;
+      background: #EEF2FF; color: var(--brand);
+      font-size: 11.5px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+      overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 8px;
+    }
+    .s3-body { padding: 14px; }
+    .s3-step-lbl {
+      font-size: 11px; font-weight: 800; color: var(--muted);
+      margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+    }
+    .s3-step-lbl span {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #EEF2FF; color: var(--brand);
+      display: grid; place-items: center; font-size: 10px;
+    }
+    .s3-sectors-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
+      margin-bottom: 12px;
+    }
+    .s3-sec-chip {
+      padding: 8px 9px; border-radius: 12px;
+      border: 1.5px solid rgba(15, 23, 42, 0.08);
+      background: #FAFBFD; font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; gap: 5px; color: var(--ink);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: all 0.25s var(--spring);
+    }
+    .s3-sec-chip.selected {
+      border-color: var(--brand);
+      background: #EEF2FF;
+      color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+      transform: scale(1.02);
+    }
+    .s3-input-box {
+      height: 42px; padding: 0 14px; border-radius: 999px;
+      border: 1.5px solid var(--brand);
+      background: #fff; display: flex; align-items: center;
+      font-size: 13px; font-weight: 700; color: var(--ink);
+      margin-bottom: 10px; overflow: hidden; white-space: nowrap;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+    .s3-caret {
+      width: 2px; height: 16px; background: var(--brand); flex-shrink: 0;
+      margin-left: 2px; animation: blink 0.8s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .s3-gen-btn {
+      width: 100%; height: 42px; border-radius: 999px;
+      background: var(--brand); color: #fff;
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 10px 24px -6px rgba(79, 70, 229, 0.6);
+      transition: transform 0.2s var(--spring), background 0.2s;
+    }
+    .s3-gen-btn.clicked {
+      transform: scale(0.95);
+      background: var(--green);
+    }
+    .s3-toast-ok {
+      margin-top: 10px; padding: 10px 12px; border-radius: 14px;
+      background: #ECFDF5; border: 1.5px solid #A7F3D0;
+      color: #065F46; font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: space-between;
+      opacity: 0; transform: translateY(8px);
+      transition: all 0.35s var(--spring);
+    }
+    .s3-toast-ok.show { opacity: 1; transform: translateY(0); }
+
+    /* =====================================================
+       SCENE 4: SOLUCIÓN EN LA WEB DEL CLIENTE + WHATSAPP (24s - 37s)
+       ===================================================== */
+    .s4-top-card {
+      background: #fff;
+      border: 1.5px solid rgba(15, 23, 42, 0.09);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px -14px rgba(15, 23, 42, 0.14);
+      margin-bottom: 10px;
+    }
+    .s4-site-hdr {
+      padding: 10px 14px; gap: 8px;
+      background: linear-gradient(135deg, var(--brand), #3730A3);
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .s4-site-hdr b { font-family: 'Outfit', sans-serif; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .s4-site-hdr span {
+      font-size: 10px; font-weight: 700; flex-shrink: 0;
+      background: rgba(255,255,255,0.2); padding: 3px 8px; border-radius: 999px;
+    }
+    .s4-form-body { padding: 12px 14px; }
+    .s4-slots {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px;
+      margin-bottom: 10px;
+    }
+    .s4-slot {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 11px;
+      padding: 7px 9px; min-width: 0;
+      opacity: 0.35; transform: scale(0.96);
+      transition: all 0.3s var(--spring);
+    }
+    .s4-slot.filled {
+      opacity: 1; transform: scale(1);
+      background: #EEF2FF; border-color: rgba(79, 70, 229, 0.35);
+    }
+    .s4-slot small { display: block; font-size: 9.5px; font-weight: 800; color: #64748B; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .s4-slot b { display: block; font-size: 11.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .s4-wa-btn {
+      width: 100%; height: 36px; border-radius: 11px;
+      background: #10B981; color: #fff;
+      font-weight: 800; font-size: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    /* Bottom Owner Panel / WhatsApp Incoming + Call Drop */
+    .s4-bottom-row {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 9px;
+      align-items: stretch;
+    }
+    .s4-wa-card {
+      background: #ECFDF5;
+      border: 1.5px solid #6EE7B7;
+      border-radius: 18px;
+      padding: 10px 12px; min-width: 0;
+      display: flex; flex-direction: column; justify-content: space-between;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.4s var(--spring);
+    }
+    .s4-wa-card.show { opacity: 1; transform: translateY(0); }
+    .s4-wa-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 10.5px; font-weight: 800; color: #047857;
+      margin-bottom: 5px;
+    }
+    .s4-wa-msg {
+      background: #fff; border-radius: 11px; padding: 8px 10px;
+      font-size: 11px; line-height: 1.35; color: var(--ink);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+    .s4-wa-msg b { color: #047857; display: block; margin-bottom: 2px; }
+
+    .s4-zero-card {
+      background: #fff;
+      border: 1.5px solid rgba(15, 23, 42, 0.09);
+      border-radius: 18px;
+      padding: 10px 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+    }
+    .s4-zero-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 40px; font-weight: 900; line-height: 1;
+      color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+    .s4-zero-lbl { font-size: 10.5px; font-weight: 800; color: var(--muted); margin: 3px 0 5px; }
+    .s4-zero-tag {
+      padding: 3px 8px; border-radius: 999px;
+      background: #DCFCE7; color: #15803D;
+      font-size: 9.5px; font-weight: 900;
+    }
+
+    /* =====================================================
+       SCENE 5: CIERRE + OFERTA PAGO ÚNICO + DOBLE CTA (37s - 44s)
+       ===================================================== */
+    .s5-card {
+      background: linear-gradient(155deg, #4F46E5 0%, #312E81 100%);
+      color: #fff;
+      border-radius: 26px;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 24px 50px -12px rgba(79, 70, 229, 0.55);
+      margin-bottom: 12px;
+    }
+    .s5-pill {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.18); font-size: 11px; font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .s5-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25px; font-weight: 900; line-height: 1.08;
+      margin-bottom: 12px;
+    }
+    .s5-compare {
+      display: grid; gap: 6px; margin-bottom: 14px; text-align: left;
+    }
+    .s5-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 12px; border-radius: 12px;
+      background: rgba(255,255,255,0.1); font-size: 12px; font-weight: 700;
+    }
+    .s5-row.win {
+      background: #fff; color: var(--ink);
+      font-weight: 800; box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+    .s5-row.win b { color: var(--brand); font-size: 15px; font-family: 'Outfit', sans-serif; }
+    .s5-cta-web {
+      background: #10B981; color: #052E16;
+      padding: 11px 16px; border-radius: 999px;
+      font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 14.5px;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .s5-comment-box {
+      background: #fff;
+      border: 2px dashed var(--brand);
+      border-radius: 18px;
+      padding: 11px 14px;
+      text-align: center;
+    }
+    .s5-comment-box b {
+      display: block; font-family: 'Outfit', sans-serif;
+      font-size: 14px; color: var(--brand); margin-bottom: 2px;
+    }
+    .s5-comment-box span { font-size: 12px; font-weight: 700; color: var(--ink); }
+
+    /* =====================================================
+       DYNAMIC TIKTOK SUBTITLES OVERLAY (BOTTOM)
+       ===================================================== */
+    .v-captions-wrap {
+      position: absolute;
+      left: 14px; right: 14px; bottom: 16px;
+      z-index: 25;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .v-caption-box {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      padding: 10px 16px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+      min-height: 58px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
+    .cap-word {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.15;
+      color: #F8FAFC;
+      text-transform: uppercase;
+      transition: transform 0.12s var(--spring), color 0.12s;
+    }
+    .cap-word.active {
+      color: #34D399;
+      transform: scale(1.12);
+      text-shadow: 0 0 16px rgba(52, 211, 153, 0.55);
+    }
+    .v-footer-bar {
+      font-size: 11px; font-weight: 800;
+      color: var(--muted);
+      background: rgba(255,255,255,0.9);
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.08);
+    }
+
+    /* RIGHT COLUMN: SCRIPT & TIKTOK COPY */
+    .script-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #E2E8F0;
+      max-height: 290px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      white-space: pre-line;
+    }
+    .copy-meta {
+      background: rgba(79, 70, 229, 0.12);
+      border: 1px solid rgba(129, 140, 248, 0.25);
+      border-radius: 12px;
+      padding: 11px;
+      font-size: 12.5px;
+      color: #C7D2FE;
+      margin-bottom: 12px;
+    }
+    .steps-guide {
+      list-style: none;
+      display: grid; gap: 9px;
+      font-size: 12.5px; color: #CBD5E1;
+    }
+    .steps-guide li {
+      display: flex; gap: 9px; align-items: flex-start;
+      background: rgba(255,255,255,0.03);
+      padding: 9px 11px; border-radius: 11px;
+    }
+    .steps-guide li b { color: #fff; }
+    .steps-guide li i { color: #34D399; font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+
+    /* SOCIAL PROFILE KIT CARD */
+    .profile-kit {
+      background: rgba(79, 70, 229, 0.12);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 16px;
+      padding: 13px;
+      margin-bottom: 16px;
+    }
+    .pk-top {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    }
+    .pk-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--brand); color: #fff;
+      display: grid; place-items: center; font-size: 28px;
+      flex-shrink: 0; border: 2px solid #818CF8;
+      box-shadow: 0 8px 20px -6px rgba(79, 70, 229, 0.65);
+    }
+    .pk-meta b { display: block; font-family: 'Outfit', sans-serif; font-size: 14.5px; color: #fff; }
+    .pk-meta span { display: block; font-size: 11.5px; color: #A5B4FC; font-weight: 600; }
+    .pk-bio {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 11px;
+      padding: 10px 11px;
+      font-size: 12px; line-height: 1.48; color: #F1F5F9;
+      white-space: pre-line; margin-bottom: 9px;
+    }
+    .pk-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <!-- Botón flotante para salir del modo grabación limpia -->
+  <button type="button" class="btn-ui exit-clean" id="exit-clean-btn">
+    <i class="ph-bold ph-arrows-in"></i> Salir de modo grabación (ESC)
+  </button>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="index.html" class="brand-logo">
+        <span class="mark"><i class="ph-bold ph-storefront"></i></span>
+        <span>MiWeb<b>Local</b> · Estudio TikTok</span>
+      </a>
+      <span class="badge-top">Serie @alejandroo.ia · +65 Oficios + Cualquiera a Medida (9:16)</span>
+    </div>
+    <div class="top-actions">
+      <button type="button" class="btn-ui" id="clean-mode-btn" title="Oculta todos los menús para grabar la pantalla limpia en 9:16">
+        <i class="ph-bold ph-frame-corners"></i> Modo Grabación Limpia (9:16)
+      </button>
+      <a href="index.html" class="btn-ui" id="open-gen-link">
+        <i class="ph-bold ph-arrow-left"></i> Abrir en MiWebLocal.com
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN STUDIO -->
+  <main class="studio">
+
+    <!-- COLUMNA IZQUIERDA: SELECTOR UNIVERSAL DE +65 OFICIOS Y CREADOR AL VUELO -->
+    <aside class="panel-box left-col">
+      <div class="panel-title"><i class="ph-fill ph-stack"></i> 1. Elige o Busca el Oficio (+65)</div>
+
+      <div class="search-dark-wrap">
+        <i class="ph-bold ph-magnifying-glass"></i>
+        <input type="text" id="inp-search-oficio" class="inp-search-dark" placeholder="Buscar: carpintero, cerrajero, lavadero..." aria-label="Buscar entre más de 65 oficios" />
+      </div>
+      <div class="cat-bar-dark" id="cat-bar-dark" role="tablist" aria-label="Categorías de oficios"></div>
+      <div class="niche-list" id="niche-list"></div>
+
+      <div class="custom-builder">
+        <label class="custom-builder-lbl" for="inp-custom-oficio">✨ ¿Te pidieron en comentarios un oficio nuevo?</label>
+        <div class="custom-builder-row">
+          <input type="text" id="inp-custom-oficio" class="inp-dark" placeholder="Ej. Afinadores de pianos / Cuchillero" />
+          <button type="button" class="btn-ui primary" id="btn-custom-oficio" style="height:38px;padding:0 12px;">Generar</button>
+        </div>
+      </div>
+
+      <div class="panel-title" style="margin-top:10px;"><i class="ph-fill ph-sliders"></i> 2. Personaliza Episodio y Negocio</div>
+      <div class="row-2">
+        <div class="field-group">
+          <label for="inp-day">Episodio</label>
+          <input type="text" id="inp-day" class="inp-dark" value="DÍA 18" />
+        </div>
+        <div class="field-group">
+          <label for="inp-biz">Negocio en pantalla</label>
+          <input type="text" id="inp-biz" class="inp-dark" value="Carpintería Roble Vivo" />
+        </div>
+      </div>
+
+      <div class="toggles">
+        <label class="toggle-row">
+          <span><i class="ph-bold ph-speaker-high"></i> Voz en off automática (Español)</span>
+          <input type="checkbox" id="chk-voice" checked />
+        </label>
+        <label class="toggle-row">
+          <span><i class="ph-bold ph-waveform"></i> Efectos de sonido (Clicks, Whoosh, Timbre)</span>
+          <input type="checkbox" id="chk-sfx" checked />
+        </label>
+      </div>
+    </aside>
+
+    <!-- COLUMNA CENTRAL: REPRODUCTOR VERTICAL 9:16 -->
+    <section class="center-col">
+      <div class="player-controls">
+        <button type="button" class="btn-ui primary" id="play-btn">
+          <i class="ph-fill ph-play" id="play-ic"></i> <span id="play-lbl">Reproducir Vídeo Completo</span>
+        </button>
+        <button type="button" class="btn-ui" id="restart-btn" title="Reiniciar desde el segundo 0">
+          <i class="ph-bold ph-arrow-counter-clockwise"></i>
+        </button>
+        <div class="scene-pills" id="scene-pills">
+          <button type="button" class="sc-pill active" data-scene="0">1. Hook</button>
+          <button type="button" class="sc-pill" data-scene="1">2. Problema</button>
+          <button type="button" class="sc-pill" data-scene="2">3. Nuestra Web</button>
+          <button type="button" class="sc-pill" data-scene="3">4. Solución</button>
+          <button type="button" class="sc-pill" data-scene="4">5. Cierre</button>
+        </div>
+      </div>
+
+      <!-- LIENZO 9:16 (1080x1920 ESCALADO) -->
+      <div class="phone-frame" id="phone-frame">
+        <div class="v-progress"><div class="v-progress-bar" id="v-progress-bar"></div></div>
+        <div class="v-cursor" id="v-cursor" aria-hidden="true">
+          <svg viewBox="0 0 28 28" width="28" height="28">
+            <path d="M5 3 L23 13 L14 15.5 L11 24 Z" fill="#0F172A" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Cabecera superior -->
+        <div class="v-header" id="v-header">
+          <span class="v-series-tag" id="v-series-tag">DÍA 18 · CARPINTEROS Y EBANISTAS</span>
+          <span class="v-brand-pill"><i class="ph-fill ph-storefront"></i> MiWebLocal.com</span>
+        </div>
+
+        <!-- ESCENARIO DE LAS 5 ESCENAS -->
+        <div class="v-stage">
+
+          <!-- ESCENA 1: HOOK ESTILO CLAUDE CODE -->
+          <div class="scene scene-1 active" id="scene-0">
+            <div class="s1-pre">Solucionando el problema de cada oficio</div>
+            <div class="s1-day" id="s1-day">DÍA 18</div>
+            <div class="s1-niche-badge" id="s1-niche-badge">🪚 CARPINTEROS Y EBANISTAS</div>
+
+            <div class="s1-terminal">
+              <div class="s1-term-top">
+                <div class="s1-dots"><i></i><i></i><i></i></div>
+                <span>miweblocal-engine · universal-oficios</span>
+              </div>
+              <div class="s1-code-line"><span class="c-kw">▸ Analizando oficio:</span> <span class="c-str" id="s1-term-sector">"Carpinteros y Ebanistas"</span></div>
+              <div class="s1-code-line"><span class="c-kw">▸ Dolor detectado:</span> <span id="s1-term-pain">14 interrupciones/día sin medidas</span></div>
+              <div class="s1-code-line"><span class="c-kw">▸ Herramienta:</span> <span style="color:#38BDF8" id="s1-term-mod">Calculadora de Presupuesto con Medidas</span></div>
+              <div class="s1-code-line"><span class="c-ok">✓ Compilando en MiWebLocal.com (15s)...</span></div>
+            </div>
+          </div>
+
+          <!-- ESCENA 2: EL PROBLEMA EN 2D + TELÉFONO VIBRANDO -->
+          <div class="scene" id="scene-1">
+            <div class="s2-head">
+              <span class="s2-tag">El problema diario del oficio</span>
+              <h2 class="s2-title" id="s2-title">Perder tardes dando presupuestos a ojo sin medidas</h2>
+            </div>
+
+            <div class="s2-arena">
+              <div class="s2-illus-card">
+                <div class="s2-svg-wrap" id="s2-svg-wrap"></div>
+                <div class="s2-bubbles" id="s2-bubbles"></div>
+              </div>
+
+              <div class="s2-phone ringing" id="s2-phone">
+                <div class="s2-phone-in">
+                  <span class="s2-call-lbl">Interrupciones hoy</span>
+                  <div class="s2-call-num" id="s2-call-counter">14</div>
+                  <span class="s2-call-sub" id="s2-call-unit">llamadas</span>
+                  <div class="s2-call-btns">
+                    <span class="s2-cbtn red"><i class="ph-fill ph-phone-disconnect"></i></span>
+                    <span class="s2-cbtn green"><i class="ph-fill ph-phone-call"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="s2-pain-Stamp">
+              <b><i class="ph-fill ph-warning-octagon"></i> TIEMPO Y TRABAJOS PERDIDOS</b>
+              <span>Agencia: 1.200 € + cuotas</span>
+            </div>
+          </div>
+
+          <!-- ESCENA 3: NUESTRA PÁGINA MIWEBLOCAL.COM GENERANDO LA WEB EN 15S -->
+          <div class="scene" id="scene-2">
+            <span class="s3-badge"><i class="ph-fill ph-sparkle"></i> La solución en nuestra página</span>
+            <h2 class="s3-title">Buscas tu oficio en <em>MiWebLocal.com</em> y está lista en 15s</h2>
+
+            <div class="s3-browser">
+              <div class="s3-browser-in">
+                <div class="s3-winbar">
+                  <div class="s1-dots"><i></i><i></i><i></i></div>
+                  <div class="s3-url"><i class="ph-fill ph-lock-simple"></i> <span id="s3-url-txt">miweblocal.com</span></div>
+                </div>
+                <div class="s3-body">
+                  <div class="s3-step-lbl"><span>1</span> Eliges tu oficio exacto entre +65 sectores</div>
+                  <div class="s3-sectors-grid" id="s3-sectors-grid"></div>
+
+                  <div class="s3-step-lbl"><span>2</span> Escribes el nombre de tu negocio y tu ciudad</div>
+                  <div class="s3-input-box">
+                    <span id="s3-typed-name"></span><span class="s3-caret"></span>
+                  </div>
+
+                  <div class="s3-gen-btn" id="s3-gen-btn">
+                    <span id="s3-btn-txt">Ver mi web gratis en 15s</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                  </div>
+
+                  <div class="s3-toast-ok" id="s3-toast-ok">
+                    <span><i class="ph-fill ph-check-circle"></i> ¡Web + Herramienta lista!</span>
+                    <span>24:00:00 gratis</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ESCENA 4: LA WEB DEL NEGOCIO FUNCIONANDO EN VIVO + WHATSAPP -->
+          <div class="scene" id="scene-3">
+            <div class="s4-top-card">
+              <div class="s4-site-hdr">
+                <b id="s4-biz-title">Carpintería Roble Vivo</b>
+                <span id="s4-hdr-badge">Abierto 24h · 0% comisión</span>
+              </div>
+              <div class="s4-form-body">
+                <div class="s4-slots" id="s4-slots"></div>
+                <div class="s4-wa-btn">
+                  <i class="ph-fill ph-whatsapp-logo"></i>
+                  <span id="s4-cta-btn">Enviar medidas por WhatsApp →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="s4-bottom-row">
+              <div class="s4-wa-card" id="s4-wa-card">
+                <div class="s4-wa-head">
+                  <span><i class="ph-fill ph-whatsapp-logo"></i> WhatsApp filtrado</span>
+                  <span>0% comisión</span>
+                </div>
+                <div class="s4-wa-msg" id="s4-wa-msg"></div>
+              </div>
+
+              <div class="s4-zero-card">
+                <div class="s4-zero-num" id="s4-zero-num">0</div>
+                <div class="s4-zero-lbl">interrupciones</div>
+                <span class="s4-zero-tag">✓ FILTRADO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ESCENA 5: CIERRE + OFERTA PAGO ÚNICO + DOBLE CTA VIRAL -->
+          <div class="scene" id="scene-4">
+            <div class="s5-card">
+              <span class="s5-pill">Tuya en propiedad para siempre</span>
+              <h2 class="s5-title">Sin pagar agencias caras ni cuotas mensuales</h2>
+              <div class="s5-compare">
+                <div class="s5-row">
+                  <span>Agencia tradicional</span>
+                  <span style="color:#FCA5A5;text-decoration:line-through;">1.200 € + 50 €/mes</span>
+                </div>
+                <div class="s5-row win">
+                  <span>MiWebLocal.com (Pago único)</span>
+                  <b>Desde 79 € · 0 €/mes</b>
+                </div>
+              </div>
+              <div class="s5-cta-web">
+                <i class="ph-bold ph-storefront"></i> Pruébalo gratis en MiWebLocal.com
+              </div>
+            </div>
+
+            <div class="s5-comment-box">
+              <b>💬 ¿QUÉ OFICIO HACEMOS MAÑANA?</b>
+              <span>Déjame tu oficio en comentarios y lo montamos 👇</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SUBTÍTULOS DINÁMICOS ESTILO TIKTOK (PARTE INFERIOR) -->
+        <div class="v-captions-wrap">
+          <div class="v-caption-box" id="v-caption-box"></div>
+          <div class="v-footer-bar">🔒 miweblocal.com · +65 oficios con herramienta propia en 15s</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLUMNA DERECHA: PERFIL OFICIAL + GUIÓN + TEXTO TIKTOK -->
+    <aside class="panel-box right-col">
+      <div class="panel-title"><i class="ph-fill ph-user-circle-check"></i> Tu Perfil en Redes (Mismo Icono #4F46E5)</div>
+      <div class="profile-kit">
+        <div class="pk-top">
+          <div class="pk-avatar" title="Exactamente el mismo icono oficial de MiWebLocal.com"><i class="ph-bold ph-storefront"></i></div>
+          <div class="pk-meta">
+            <b>MiWebLocal · Webs en 15s</b>
+            <span>@miweblocal · miweblocal.com</span>
+          </div>
+        </div>
+        <div class="pk-bio" id="profile-bio-box">Webs con sistema propio para +65 oficios en 15s ⚡
+Solicitudes filtradas a tu WhatsApp · Sin cuotas mensuales
+👇 Pruébala gratis con el nombre de tu negocio:</div>
+        <button type="button" class="btn-ui primary" id="copy-bio-btn" style="width:100%;justify-content:center;">
+          <i class="ph-bold ph-copy"></i> Copiar descripción para mi perfil
+        </button>
+        <div class="pk-btns">
+          <a href="marca/avatar_perfil.png" download="MiWebLocal_Foto_Perfil.png" class="btn-ui" style="justify-content:center;font-size:11.5px;padding:7px 8px;">
+            <i class="ph-bold ph-download-simple"></i> Foto Icono
+          </a>
+          <a href="marca/avatar_perfil_con_nombre.png" download="MiWebLocal_Foto_Perfil_Nombre.png" class="btn-ui" style="justify-content:center;font-size:11.5px;padding:7px 8px;">
+            <i class="ph-bold ph-download-simple"></i> Foto + Nombre
+          </a>
+        </div>
+      </div>
+
+      <div class="panel-title"><i class="ph-fill ph-microphone-stage"></i> Guión Limpio (Voz Natural / ElevenLabs)</div>
+      <div class="script-box" id="script-box"></div>
+      <button type="button" class="btn-ui" id="copy-script-btn" style="width:100%;justify-content:center;margin-bottom:16px;">
+        <i class="ph-bold ph-copy"></i> Copiar guión limpio para locutar / ElevenLabs
+      </button>
+
+      <div class="panel-title"><i class="ph-fill ph-tiktok-logo"></i> Descripción + Hashtags para Publicar</div>
+      <div class="copy-meta" id="tiktok-caption"></div>
+      <button type="button" class="btn-ui" id="copy-caption-btn" style="width:100%;justify-content:center;margin-bottom:18px;">
+        <i class="ph-bold ph-copy"></i> Copiar título y hashtags
+      </button>
+
+      <div class="panel-title"><i class="ph-fill ph-check-square-offset"></i> Flujo Faceless en 2 Minutos</div>
+      <ul class="steps-guide">
+        <li><i class="ph-fill ph-number-circle-one"></i><span>Busca cualquiera de los <b>+65 oficios</b> (o escribe el que te pidan en comentarios) y pulsa <b>Modo Grabación Limpia (9:16)</b>.</span></li>
+        <li><i class="ph-fill ph-number-circle-two"></i><span>Pulsa <b>Reproducir Vídeo</b>: las 5 escenas, la herramienta del oficio, los subtítulos y el sonido corren solos.</span></li>
+        <li><i class="ph-fill ph-number-circle-three"></i><span>Graba con <code>Win + Alt + R</code> (o OBS en 1080×1920) y pega el guión limpio en ElevenLabs/CapCut o usa tu propia voz.</span></li>
+      </ul>
+    </aside>
+
+  </main>
+
+  <script src="assets/oficios-catalog.js?v=95"></script>
+  <script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+
+    function esc(s) {
+      return String(s || '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    var activeCat = 'all';
+    var activePreset = (typeof MIWEB_OFICIOS_BY_ID === 'object' && MIWEB_OFICIOS_BY_ID.carpintero)
+      ? MIWEB_OFICIOS_BY_ID.carpintero
+      : MIWEB_OFICIOS_LIST[0];
+    var currentEpisode = null;
+    var isPlaying = false;
+    var timers = [];
+    var audioCtx = null;
+
+    /* =====================================================
+       WEB AUDIO API SOUND EFFECTS (Pop, Whoosh, Ring, Success)
+       ===================================================== */
+    function initAudio() {
+      if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playSfx(type) {
+      if (!$('chk-sfx').checked) return;
+      initAudio();
+      if (!audioCtx) return;
+      var now = audioCtx.currentTime;
+
+      if (type === 'pop') {
+        var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(340, now);
+        o.frequency.exponentialRampToValueAtTime(680, now + 0.065);
+        g.gain.setValueAtTime(0.12, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start(now); o.stop(now + 0.07);
+      } else if (type === 'whoosh') {
+        var o2 = audioCtx.createOscillator(), g2 = audioCtx.createGain();
+        o2.type = 'triangle';
+        o2.frequency.setValueAtTime(180, now);
+        o2.frequency.exponentialRampToValueAtTime(75, now + 0.18);
+        g2.gain.setValueAtTime(0.14, now);
+        g2.gain.exponentialRampToValueAtTime(0.001, now + 0.19);
+        o2.connect(g2); g2.connect(audioCtx.destination);
+        o2.start(now); o2.stop(now + 0.19);
+      } else if (type === 'ring') {
+        var o3 = audioCtx.createOscillator(), g3 = audioCtx.createGain();
+        o3.type = 'square';
+        o3.frequency.setValueAtTime(880, now);
+        o3.frequency.setValueAtTime(1100, now + 0.06);
+        g3.gain.setValueAtTime(0.06, now);
+        g3.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+        o3.connect(g3); g3.connect(audioCtx.destination);
+        o3.start(now); o3.stop(now + 0.14);
+      } else if (type === 'success') {
+        [523.25, 659.25, 783.99, 1046.5].forEach(function (freq, idx) {
+          var osc = audioCtx.createOscillator(), gn = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.055);
+          gn.gain.setValueAtTime(0.11, now + idx * 0.055);
+          gn.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.055 + 0.28);
+          osc.connect(gn); gn.connect(audioCtx.destination);
+          osc.start(now + idx * 0.055); osc.stop(now + idx * 0.055 + 0.29);
+        });
+      }
+    }
+
+    /* =====================================================
+       VOICEOVER (WEB SPEECH API SPANISH)
+       ===================================================== */
+    function speakText(text) {
+      if (!$('chk-voice').checked || !('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        var u = new SpeechSynthesisUtterance(text);
+        u.lang = 'es-ES';
+        u.rate = 1.13;
+        u.pitch = 1.0;
+        var voices = window.speechSynthesis.getVoices();
+        var esVoice = voices.find(function (v) {
+          return v.lang.indexOf('es-ES') !== -1 && (v.name.indexOf('Natural') !== -1 || v.name.indexOf('Microsoft') !== -1 || v.name.indexOf('Google') !== -1);
+        }) || voices.find(function (v) { return v.lang.indexOf('es') === 0; });
+        if (esVoice) u.voice = esVoice;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+
+    function clearAllTimers() {
+      timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+      timers = [];
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    /* =====================================================
+       RENDER CATEGORY CHIPS & +65 OFICIOS LIST
+       ===================================================== */
+    function renderCategoryChips() {
+      var bar = $('cat-bar-dark');
+      if (!bar) return;
+      bar.innerHTML = OFICIOS_CATEGORIES.map(function (c) {
+        return '<button type="button" class="cat-chip-dark' + (c.id === activeCat ? ' active' : '') + '" data-cat="' + c.id + '">' + esc(c.short) + '</button>';
+      }).join('');
+    }
+
+    function renderNicheList() {
+      var q = ($('inp-search-oficio') ? $('inp-search-oficio').value : '').trim();
+      var items = miwebSearchOficios(q, activeCat);
+      var html = '';
+
+      if (activePreset && activePreset.isCustom) {
+        html += '<button type="button" class="niche-btn active" data-custom-active="1">' +
+          '<span class="niche-ic">' + activePreset.emoji + '</span>' +
+          '<span class="niche-meta"><b>' + esc(($('inp-day').value || activePreset.day) + ' · ' + activePreset.label) + '</b>' +
+          '<small>✨ Oficio a medida · ' + esc(activePreset.moduleBadge) + '</small></span></button>';
+      }
+
+      html += items.map(function (o) {
+        var isAct = (!activePreset.isCustom && o.id === activePreset.id);
+        return '<button type="button" class="niche-btn' + (isAct ? ' active' : '') + '" data-id="' + o.id + '">' +
+          '<span class="niche-ic">' + o.emoji + '</span>' +
+          '<span class="niche-meta"><b>' + esc(o.day + ' · ' + o.label) + '</b>' +
+          '<small>' + esc(o.moduleBadge) + '</small></span></button>';
+      }).join('');
+
+      if (q.length >= 3) {
+        html += '<button type="button" class="niche-btn" data-make-custom="' + esc(q) + '" style="border-style:dashed;border-color:rgba(129,140,248,0.45);">' +
+          '<span class="niche-ic">✨</span>' +
+          '<span class="niche-meta"><b>Generar vídeo para: «' + esc(q) + '»</b>' +
+          '<small>Crear episodio 9:16 + guión al vuelo</small></span></button>';
+      }
+
+      $('niche-list').innerHTML = html;
+    }
+
+    /* =====================================================
+       BUILD & POPULATE EPISODE STAGE FOR ANY OFICIO
+       ===================================================== */
+    function buildStageChipsForPreset(p) {
+      var baseIds = ['carpintero', 'cerrajero', 'taller', 'peluqueria', 'clinica', 'restaurante'];
+      var chips = [{ id: p.id, label: p.emoji + ' ' + p.label.split(' / ')[0], selected: true }];
+      baseIds.forEach(function (id) {
+        if (chips.length >= 6) return;
+        if (!p.isCustom && id === p.id) return;
+        var item = MIWEB_OFICIOS_BY_ID[id];
+        if (item) chips.push({ id: item.id, label: item.emoji + ' ' + item.label.split(' / ')[0], selected: false });
+      });
+      return chips;
+    }
+
+    function loadPresetToStage(presetObj, resetInputs) {
+      activePreset = presetObj || MIWEB_OFICIOS_BY_ID.carpintero;
+      if (resetInputs) {
+        $('inp-day').value = activePreset.day || 'DÍA 18';
+        $('inp-biz').value = activePreset.defaultName || 'Mi Negocio Local';
+      }
+
+      var dayVal = ($('inp-day').value || '').trim() || activePreset.day || 'DÍA 18';
+      var bizVal = ($('inp-biz').value || '').trim() || activePreset.defaultName;
+      var ep = miwebBuildTikTokEpisode(activePreset, { day: dayVal, bizName: bizVal });
+      currentEpisode = ep;
+
+      if ($('open-gen-link')) {
+        var qParam = activePreset.isCustom ? activePreset.label : activePreset.id;
+        $('open-gen-link').href = 'index.html?oficio=' + encodeURIComponent(qParam);
+      }
+
+      // Header + Scene 1
+      $('v-series-tag').textContent = ep.day + ' · ' + ep.pluralName.toUpperCase();
+      $('s1-day').textContent = ep.day;
+      $('s1-niche-badge').textContent = ep.emoji + ' ' + ep.pluralName.toUpperCase();
+      $('s1-term-sector').textContent = '"' + ep.pluralName + ' en España"';
+      $('s1-term-pain').textContent = ep.callsCount + ' interrupciones/día · ' + activePreset.singular;
+      if ($('s1-term-mod')) $('s1-term-mod').textContent = ep.moduleBadge;
+
+      // Scene 2: 2D SVG + Incoming Pain Bubbles + Vibrating Phone Counter
+      $('s2-title').textContent = ep.painTitle;
+      $('s2-svg-wrap').innerHTML = miwebRenderSceneSVG(ep.sceneKind, false);
+      $('s2-bubbles').innerHTML = (ep.painBubbles || []).slice(0, 3).map(function (b) {
+        return '<div class="s2-bubble show"><i class="ph-fill ph-chat-circle-dots"></i><span>' + esc(b) + '</span></div>';
+      }).join('');
+      $('s2-call-counter').textContent = String(ep.callsCount);
+      $('s2-call-unit').textContent = 'interrupciones';
+
+      // Scene 3: MiWebLocal.com Live 15s Generator
+      var s3Chips = buildStageChipsForPreset(activePreset);
+      $('s3-sectors-grid').innerHTML = s3Chips.map(function (c) {
+        return '<div class="s3-sec-chip' + (c.selected ? ' selected' : '') + '">' + esc(c.label) + '</div>';
+      }).join('');
+      $('s3-typed-name').textContent = ep.bizName;
+      var slugUrl = ep.bizName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      $('s3-url-txt').textContent = 'miweblocal.com/' + (slugUrl || 'mi-oficio');
+      $('s3-toast-ok').classList.add('show');
+
+      // Scene 4: Specific Trade Solution Module + Incoming WhatsApp + 0 Interruptions
+      $('s4-biz-title').textContent = ep.bizName;
+      if ($('s4-hdr-badge')) $('s4-hdr-badge').textContent = 'Abierto 24h · 0% comisión';
+      var pickedSlotVal = ep.slots[ep.pickedSlotIndex] || ep.slots[0] || 'Confirmado';
+      var fourSlots = [
+        { lbl: ep.demoStep1Label, val: ep.demoStep1Value },
+        { lbl: ep.demoStep2Label, val: pickedSlotVal },
+        { lbl: 'Herramienta del oficio', val: ep.moduleBadge },
+        { lbl: 'Comisión por solicitud', val: '0,00 € · Directo al móvil' }
+      ];
+      $('s4-slots').innerHTML = fourSlots.map(function (sl) {
+        return '<div class="s4-slot filled"><small>' + esc(sl.lbl) + '</small><b>' + esc(sl.val) + '</b></div>';
+      }).join('');
+      $('s4-cta-btn').textContent = ep.ctaLabel;
+      $('s4-wa-msg').innerHTML = '<b>✅ ' + esc(ep.bizName) + '</b>' + (ep.waSummary || []).map(esc).join('<br>');
+      $('s4-wa-card').classList.add('show');
+      $('s4-zero-num').textContent = '0';
+
+      // Right Column: Clean natural voiceover script (ready for ElevenLabs / CapCut) + TikTok Caption
+      $('script-box').textContent = ep.cleanVoiceover;
+      $('tiktok-caption').textContent = ep.caption;
+
+      if (ep.cues && ep.cues.length) {
+        renderCaptionChunk(ep.cues[0].sub, 0);
+      }
+      renderNicheList();
+    }
+
+    /* =====================================================
+       DYNAMIC SUBTITLES (CHUNKED 4 WORDS AT A TIME)
+       ===================================================== */
+    function renderCaptionChunk(fullSentence, durationMs) {
+      var words = String(fullSentence || '').split(/\s+/).filter(Boolean);
+      var box = $('v-caption-box');
+      if (!words.length) return;
+      if (!durationMs) {
+        box.innerHTML = words.slice(0, 5).map(function (w, i) {
+          return '<span class="cap-word' + (i === 0 ? ' active' : '') + '">' + esc(w) + '</span>';
+        }).join('');
+        return;
+      }
+
+      var chunkSize = 4;
+      var chunks = [];
+      for (var i = 0; i < words.length; i += chunkSize) {
+        chunks.push(words.slice(i, i + chunkSize));
+      }
+      var timePerWord = durationMs / Math.max(1, words.length);
+      var globalWordIdx = 0;
+
+      chunks.forEach(function (chunk) {
+        chunk.forEach(function (_, wInChunk) {
+          var delay = globalWordIdx * timePerWord;
+          var t = setTimeout(function () {
+            box.innerHTML = chunk.map(function (cw, idx) {
+              var cls = idx === wInChunk ? 'cap-word active' : 'cap-word';
+              return '<span class="' + cls + '">' + esc(cw) + '</span>';
+            }).join('');
+          }, delay);
+          timers.push(t);
+          globalWordIdx++;
+        });
+      });
+    }
+
+    /* =====================================================
+       SCENE TRANSITIONS & MICRO-ANIMATIONS
+       ===================================================== */
+    function setActiveScene(sceneIdx, animateInside) {
+      for (var i = 0; i < 5; i++) {
+        var el = $('scene-' + i);
+        if (el) el.classList.toggle('active', i === sceneIdx);
+      }
+      document.querySelectorAll('.sc-pill').forEach(function (p) {
+        p.classList.toggle('active', Number(p.getAttribute('data-scene')) === sceneIdx);
+      });
+      playSfx('whoosh');
+
+      if (!currentEpisode) return;
+      var bizVal = currentEpisode.bizName;
+      var callTarget = currentEpisode.callsCount || 14;
+
+      if (!animateInside) return;
+
+      var curEl = $('v-cursor');
+      if (curEl) curEl.classList.remove('show', 'click');
+
+      // Scene 2 (index 1): Animate call counter & pain bubbles
+      if (sceneIdx === 1) {
+        var bubbles = document.querySelectorAll('#s2-bubbles .s2-bubble');
+        bubbles.forEach(function (b) { b.classList.remove('show'); });
+        bubbles.forEach(function (b, idx) {
+          timers.push(setTimeout(function () {
+            b.classList.add('show');
+            playSfx('ring');
+          }, 420 + idx * 1050));
+        });
+        var cur = 1;
+        $('s2-call-counter').textContent = '1';
+        var iv = setInterval(function () {
+          cur++;
+          if (cur <= callTarget) {
+            $('s2-call-counter').textContent = String(cur);
+          } else {
+            clearInterval(iv);
+          }
+        }, 210);
+        timers.push(iv);
+      }
+
+      // Scene 3 (index 2): Select trade chip, type business name & click generate in 15s
+      if (sceneIdx === 2) {
+        $('s3-typed-name').textContent = '';
+        $('s3-toast-ok').classList.remove('show');
+        $('s3-gen-btn').classList.remove('clicked');
+        $('s3-url-txt').textContent = 'miweblocal.com';
+        if (curEl) {
+          curEl.style.transform = 'translate(108px, 215px)';
+          curEl.classList.add('show');
+          timers.push(setTimeout(function () {
+            curEl.style.transform = 'translate(185px, 338px)';
+          }, 350));
+        }
+        var chars = bizVal.split('');
+        chars.forEach(function (ch, idx) {
+          timers.push(setTimeout(function () {
+            $('s3-typed-name').textContent += ch;
+            if (idx % 3 === 0) playSfx('pop');
+          }, 550 + idx * 65));
+        });
+        var clickTime = 550 + chars.length * 65 + 420;
+        timers.push(setTimeout(function () {
+          if (curEl) curEl.style.transform = 'translate(205px, 398px)';
+        }, clickTime - 240));
+        timers.push(setTimeout(function () {
+          if (curEl) {
+            curEl.classList.add('click');
+            setTimeout(function () { curEl.classList.remove('click'); }, 450);
+          }
+          $('s3-gen-btn').classList.add('clicked');
+          playSfx('success');
+          var slugUrl = bizVal.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          $('s3-url-txt').textContent = 'miweblocal.com/' + (slugUrl || 'mi-oficio');
+          $('s3-toast-ok').classList.add('show');
+        }, clickTime));
+      }
+
+      // Scene 4 (index 3): Fill specific module slots, click WhatsApp CTA & drop calls to 0
+      if (sceneIdx === 3) {
+        var slots = document.querySelectorAll('#s4-slots .s4-slot');
+        slots.forEach(function (s) { s.classList.remove('filled'); });
+        $('s4-wa-card').classList.remove('show');
+        $('s4-zero-num').textContent = String(callTarget);
+        if (curEl) {
+          curEl.style.transform = 'translate(115px, 190px)';
+          curEl.classList.add('show');
+        }
+
+        slots.forEach(function (s, idx) {
+          timers.push(setTimeout(function () {
+            s.classList.add('filled');
+            if (curEl) {
+              var gx = (idx % 2 === 0) ? 115 : 265;
+              var gy = (idx < 2) ? 190 : 242;
+              curEl.style.transform = 'translate(' + gx + 'px, ' + gy + 'px)';
+            }
+            playSfx('pop');
+          }, 380 + idx * 620));
+        });
+
+        timers.push(setTimeout(function () {
+          if (curEl) {
+            curEl.style.transform = 'translate(200px, 294px)';
+            curEl.classList.add('click');
+            setTimeout(function () { curEl.classList.remove('click', 'show'); }, 500);
+          }
+          $('s4-wa-card').classList.add('show');
+          playSfx('success');
+          var c = callTarget;
+          var iv2 = setInterval(function () {
+            c = Math.max(0, c - 1);
+            $('s4-zero-num').textContent = String(c);
+            if (c === 0) clearInterval(iv2);
+          }, 115);
+          timers.push(iv2);
+        }, 3050));
+      }
+
+      // Scene 5 (index 4): Final chime
+      if (sceneIdx === 4) {
+        timers.push(setTimeout(function () { playSfx('success'); }, 350));
+      }
+    }
+
+    /* =====================================================
+       FULL TIMELINE PLAYBACK
+       ===================================================== */
+    function startPlayback() {
+      clearAllTimers();
+      isPlaying = true;
+      $('play-ic').className = 'ph-fill ph-pause';
+      $('play-lbl').textContent = 'Pausar Vídeo';
+      loadPresetToStage(activePreset, false);
+
+      var rawCues = (currentEpisode && currentEpisode.cues) || [];
+      var cues = rawCues.map(function (c) {
+        return {
+          sceneIdx: Math.max(0, Math.min(4, (c.scene || 1) - 1)),
+          dur: Math.max(2400, Math.round(((c.end || 4) - (c.start || 0)) * 1000)),
+          sub: c.sub || c.speak || '',
+          speak: c.speak || c.sub || ''
+        };
+      });
+
+      var totalDur = cues.reduce(function (acc, c) { return acc + c.dur; }, 0);
+      var elapsed = 0;
+      var lastScene = -1;
+
+      var startTs = Date.now();
+      var progIv = setInterval(function () {
+        var pct = Math.min(100, ((Date.now() - startTs) / totalDur) * 100);
+        $('v-progress-bar').style.width = pct + '%';
+        if (pct >= 100) clearInterval(progIv);
+      }, 60);
+      timers.push(progIv);
+
+      cues.forEach(function (cue) {
+        var startAt = elapsed;
+        timers.push(setTimeout(function () {
+          if (cue.sceneIdx !== lastScene) {
+            setActiveScene(cue.sceneIdx, true);
+            lastScene = cue.sceneIdx;
+          }
+          speakText(cue.speak);
+          renderCaptionChunk(cue.sub, cue.dur);
+        }, startAt));
+        elapsed += cue.dur;
+      });
+
+      timers.push(setTimeout(function () {
+        isPlaying = false;
+        $('play-ic').className = 'ph-fill ph-play';
+        $('play-lbl').textContent = 'Volver a Reproducir';
+      }, totalDur + 300));
+    }
+
+    function stopPlayback() {
+      clearAllTimers();
+      isPlaying = false;
+      $('play-ic').className = 'ph-fill ph-play';
+      $('play-lbl').textContent = 'Reproducir Vídeo Completo';
+    }
+
+    /* =====================================================
+       CUSTOM ON-THE-FLY OFICIO TRIGGER
+       ===================================================== */
+    function generateCustomEpisode(rawStr) {
+      var val = String(rawStr || ($('inp-custom-oficio') ? $('inp-custom-oficio').value : '')).trim();
+      if (val.length < 2) {
+        if ($('inp-custom-oficio')) $('inp-custom-oficio').focus();
+        return;
+      }
+      stopPlayback();
+      var det = miwebDetectOficioMatch(val);
+      var nextPreset = (!det.isCustom && det.matched && MIWEB_OFICIOS_BY_ID[det.id])
+        ? MIWEB_OFICIOS_BY_ID[det.id]
+        : miwebBuildCustomOficio(val, ($('inp-day').value || 'DÍA 78').trim());
+
+      loadPresetToStage(nextPreset, true);
+      setActiveScene(0, false);
+      $('v-progress-bar').style.width = '0%';
+    }
+
+    /* =====================================================
+       EVENT LISTENERS
+       ===================================================== */
+    if ($('cat-bar-dark')) {
+      $('cat-bar-dark').addEventListener('click', function (e) {
+        var c = e.target.closest('[data-cat]');
+        if (!c) return;
+        activeCat = c.getAttribute('data-cat');
+        renderCategoryChips();
+        renderNicheList();
+      });
+    }
+
+    if ($('inp-search-oficio')) {
+      $('inp-search-oficio').addEventListener('input', function () {
+        if (this.value.trim().length > 0 && activeCat !== 'all') {
+          activeCat = 'all';
+          renderCategoryChips();
+        }
+        renderNicheList();
+      });
+    }
+
+    $('niche-list').addEventListener('click', function (e) {
+      var b = e.target.closest('.niche-btn');
+      if (!b) return;
+      var makeCustom = b.getAttribute('data-make-custom');
+      if (makeCustom) {
+        var customBuilt = miwebBuildCustomOficio(makeCustom, ($('inp-day').value || 'DÍA 78').trim());
+        stopPlayback();
+        loadPresetToStage(customBuilt, true);
+        setActiveScene(0, false);
+        $('v-progress-bar').style.width = '0%';
+        return;
+      }
+      var id = b.getAttribute('data-id');
+      if (id && MIWEB_OFICIOS_BY_ID[id]) {
+        stopPlayback();
+        loadPresetToStage(MIWEB_OFICIOS_BY_ID[id], true);
+        setActiveScene(0, false);
+        $('v-progress-bar').style.width = '0%';
+      }
+    });
+
+    if ($('btn-custom-oficio')) {
+      $('btn-custom-oficio').addEventListener('click', function () {
+        generateCustomEpisode();
+      });
+    }
+    if ($('inp-custom-oficio')) {
+      $('inp-custom-oficio').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          generateCustomEpisode();
+        }
+      });
+    }
+
+    $('inp-day').addEventListener('input', function () { loadPresetToStage(activePreset, false); });
+    $('inp-biz').addEventListener('input', function () { loadPresetToStage(activePreset, false); });
+
+    $('play-btn').addEventListener('click', function () {
+      if (isPlaying) stopPlayback();
+      else startPlayback();
+    });
+
+    $('restart-btn').addEventListener('click', function () {
+      startPlayback();
+    });
+
+    $('scene-pills').addEventListener('click', function (e) {
+      var p = e.target.closest('.sc-pill');
+      if (!p) return;
+      stopPlayback();
+      var sc = Number(p.getAttribute('data-scene'));
+      setActiveScene(sc, true);
+      if (currentEpisode && currentEpisode.cues) {
+        var matchCue = currentEpisode.cues.find(function (c) { return (c.scene - 1) === sc; });
+        if (matchCue) renderCaptionChunk(matchCue.sub, 0);
+      }
+    });
+
+    $('clean-mode-btn').addEventListener('click', function () {
+      document.body.classList.add('clean-record');
+    });
+    $('exit-clean-btn').addEventListener('click', function () {
+      document.body.classList.remove('clean-record');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') document.body.classList.remove('clean-record');
+    });
+
+    $('copy-script-btn').addEventListener('click', function () {
+      navigator.clipboard.writeText($('script-box').textContent);
+      var btn = $('copy-script-btn');
+      btn.innerHTML = '<i class="ph-bold ph-check"></i> ¡Guión limpio copiado!';
+      setTimeout(function () { btn.innerHTML = '<i class="ph-bold ph-copy"></i> Copiar guión limpio para locutar / ElevenLabs'; }, 2000);
+    });
+
+    $('copy-caption-btn').addEventListener('click', function () {
+      navigator.clipboard.writeText($('tiktok-caption').textContent);
+      var btn = $('copy-caption-btn');
+      btn.innerHTML = '<i class="ph-bold ph-check"></i> ¡Descripción copiada!';
+      setTimeout(function () { btn.innerHTML = '<i class="ph-bold ph-copy"></i> Copiar título y hashtags'; }, 2000);
+    });
+
+    if ($('copy-bio-btn')) {
+      $('copy-bio-btn').addEventListener('click', function () {
+        navigator.clipboard.writeText($('profile-bio-box').textContent);
+        var btn = $('copy-bio-btn');
+        btn.innerHTML = '<i class="ph-bold ph-check"></i> ¡Biografía copiada!';
+        setTimeout(function () { btn.innerHTML = '<i class="ph-bold ph-copy"></i> Copiar descripción para mi perfil'; }, 2000);
+      });
+    }
+
+    // Init (soporta ?oficio=cerrajero o ?oficio=Afinador+de+pianos)
+    renderCategoryChips();
+    var qParams = new URLSearchParams(location.search);
+    var urlOficio = qParams.get('oficio');
+    if (urlOficio) {
+      if (MIWEB_OFICIOS_BY_ID[urlOficio]) {
+        activePreset = MIWEB_OFICIOS_BY_ID[urlOficio];
+      } else {
+        var detUrl = miwebDetectOficioMatch(urlOficio);
+        activePreset = (detUrl && detUrl.matched) ? detUrl.preset : miwebBuildCustomOficio(urlOficio);
+      }
+    }
+    loadPresetToStage(activePreset, true);
+  })();
+  </script>
+</body>
+</html>
+
