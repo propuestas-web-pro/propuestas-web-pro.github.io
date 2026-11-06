@@ -1058,11 +1058,7 @@ function compileClientWebsiteHTML(st) {
     </details>
   `).join('');
 
-  const editPhotoBtnHero = !st.unlocked
-    ? `<button type="button" class="demo-photo-pill" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}">
-         <span>Cambiar fotos por las de mi negocio</span>
-       </button>`
-    : '';
+  const editPhotoBtnHero = '';
 
   const editPhotoBtnGal = !st.unlocked
     ? `<button type="button" class="btn btn-linea" style="min-height:38px;padding:0 14px;font-size:13px;" onclick="try{window.parent.postMessage({type:'MIWEB_OPEN_EDITOR',tab:'fotos'},'*')}catch(e){}">
@@ -1390,10 +1386,10 @@ function compileClientWebsiteHTML(st) {
   .titular h1 {
     font-family: var(--serif);
     letter-spacing: -0.02em;
-    max-width: 13ch;
-    font-size: clamp(32px, 8.2vw, 84px);
+    max-width: 14ch;
+    font-size: clamp(26px, 7.2vw, 84px);
     font-weight: 400;
-    line-height: 1.01;
+    line-height: 1.02;
     color: var(--tinta);
   }
   .titular .sub {
