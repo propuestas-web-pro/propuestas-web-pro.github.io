@@ -1494,10 +1494,10 @@ function compileClientWebsiteHTML(st) {
   .titular h1 {
     font-family: var(--serif);
     letter-spacing: -0.02em;
-    max-width: 14ch;
-    font-size: clamp(26px, 7.2vw, 84px);
+    max-width: 16ch;
+    font-size: clamp(26px, min(5.2vw, 6.6vh), 58px);
     font-weight: 400;
-    line-height: 1.02;
+    line-height: 1.04;
     color: var(--tinta);
   }
   .titular .sub {
@@ -2122,7 +2122,7 @@ function compileClientWebsiteHTML(st) {
     .barra, .menu-btn, .reservar-movil { display: none; }
     .top { padding-block: 14px; }
     .top nav { display: flex; }
-    .titular { left: max(var(--gutter), calc((100vw - 1180px) / 2 + 40px)); padding: 0; bottom: 9vh; }
+    .titular { left: max(var(--gutter), calc((100vw - 1180px) / 2 + 40px)); padding: 0; bottom: 5.5vh; }
     .verbos .lista { grid-template-columns: repeat(3, 1fr); gap: 28px; }
     .duo { grid-template-columns: 0.92fr 1.08fr; gap: 64px; }
     .duo .fijo { top: calc(var(--cab) + 24px); position: sticky; }
