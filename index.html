@@ -260,13 +260,45 @@
     .pt-btn-full:hover { background: #4338CA; border-color: #4338CA; color: #FFFFFF; }
     .live-tag {
       position: absolute; z-index: 4; left: 50%; bottom: 14px; transform: translateX(-50%);
-      padding: 7px 14px; border-radius: 999px; background: rgba(15,23,42,0.88); backdrop-filter: blur(8px);
-      color: #fff; font-size: 12px; font-weight: 700; pointer-events: none; white-space: nowrap;
+      padding: 9px 16px; border-radius: 999px; background: rgba(15,23,42,0.92); backdrop-filter: blur(8px);
+      border: 1px solid rgba(200, 165, 72, 0.55);
+      color: #fff; font-size: 12.5px; font-weight: 800; pointer-events: auto; cursor: pointer; white-space: nowrap;
       max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis;
-      display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 10px 24px rgba(15,23,42,0.25);
-      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+      display: inline-flex; align-items: center; gap: 7px; box-shadow: 0 12px 28px rgba(15,23,42,0.45);
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), background 0.2s;
     }
-    .live-tag i { color: #34D399; }
+    .live-tag:hover { background: #4F46E5; border-color: #4F46E5; transform: translateX(-50%) scale(1.03); }
+    .live-tag i { color: #FBBF24; font-size: 15px; }
+    .fullscreen-cta-bar {
+      padding: 10px 12px;
+      background: #0B1322;
+      border-top: 1px solid rgba(200, 165, 72, 0.35);
+    }
+    .btn-fullscreen-main {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid #E0BC5E;
+      background: linear-gradient(135deg, #4F46E5 0%, #3730A3 100%);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 12px 26px -8px rgba(79, 70, 229, 0.65);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-fullscreen-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px -8px rgba(79, 70, 229, 0.85);
+    }
+    .btn-fullscreen-main:active { transform: scale(0.98); }
 
     /* SECTIONS */
     section.block { padding: 96px 0; scroll-margin-top: 84px; }
@@ -944,7 +976,14 @@
             <div class="viewport" id="viewport">
               <iframe id="preview" title="Vista previa de tu web" loading="eager"></iframe>
               <button type="button" class="tap-open" id="tap-open" aria-label="Abrir la web a pantalla completa"></button>
-              <div class="live-tag" id="live-tag"><i class="ph-fill ph-sparkle"></i><span id="live-tag-txt">Vista previa interactiva en vivo</span></div>
+              <button type="button" class="live-tag" id="live-tag"><i class="ph-bold ph-arrows-out"></i><span id="live-tag-txt">Ver pantalla completa</span></button>
+            </div>
+            <div class="fullscreen-cta-bar">
+              <button type="button" class="btn-fullscreen-main" id="btn-fullscreen-main">
+                <i class="ph-bold ph-arrows-out"></i>
+                <span>Ver pantalla completa en vivo</span>
+                <i class="ph-bold ph-arrow-up-right"></i>
+              </button>
             </div>
             <div class="preview-tour-bar" id="preview-tour-bar" aria-label="Ver secciones de la web generada">
               <button type="button" class="pt-btn active" data-pt="intro">🎬 Entrada Zoom</button>
@@ -952,7 +991,6 @@
               <button type="button" class="pt-btn" data-pt="resultados">✨ Antes / Después</button>
               <button type="button" class="pt-btn" data-pt="casos">📸 Trabajos</button>
               <button type="button" class="pt-btn" data-pt="accion">💬 WhatsApp</button>
-              <button type="button" class="pt-btn pt-btn-full" data-pt="full">↗ Ver completa</button>
             </div>
           </div>
         </div>
@@ -1461,7 +1499,7 @@
 
   <script src="assets/oficios-catalog.js?v=95"></script>
   <script src="assets/stripe-config.js?v=95"></script>
-  <script src="assets/studio-engine.js?v=99"></script>
+  <script src="assets/studio-engine.js?v=100"></script>
   <script>
   (function () {
     var QUICK_SECTORS = [
@@ -1573,7 +1611,7 @@
       iframe.srcdoc = compileClientWebsiteHTML(state);
       $('url-text').textContent = 'miweblocal.com/' + slug(state.name);
       if ($('live-tag-txt')) {
-        $('live-tag-txt').textContent = state.name + ' · ' + state.customSectorLabel;
+        $('live-tag-txt').textContent = 'Ver pantalla completa · ' + state.name;
       }
       document.querySelectorAll('#preview-tour-bar .pt-btn[data-pt]').forEach(function (b) {
         if (b.getAttribute('data-pt') !== 'full') {
@@ -1806,6 +1844,8 @@
     }
     $('open-full').addEventListener('click', openFull);
     $('tap-open').addEventListener('click', openFull);
+    if ($('btn-fullscreen-main')) $('btn-fullscreen-main').addEventListener('click', openFull);
+    if ($('live-tag')) $('live-tag').addEventListener('click', openFull);
     if ($('preview-tour-bar')) {
       $('preview-tour-bar').addEventListener('click', function (e) {
         var btn = e.target.closest('.pt-btn[data-pt]');

@@ -145,9 +145,15 @@
 
   <!-- Barra de la vista previa (solo mientras es demo de 24h) -->
   <div id="demo-top-bar" class="hidden">
-    <div class="badge-timer">
-      <span class="dot-pulse"></span>
-      <span>Vista previa · Caduca en <strong id="sitio-timer">23:59:59</strong></span>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="../index.html#generador" class="btn-sm" style="text-decoration:none;">
+        <i class="ph-bold ph-arrow-left"></i>
+        <span>Volver</span>
+      </a>
+      <div class="badge-timer hide-xs">
+        <span class="dot-pulse"></span>
+        <span>Vista previa · Caduca en <strong id="sitio-timer">23:59:59</strong></span>
+      </div>
     </div>
     <div class="actions">
       <button type="button" class="btn-edit-live" onclick="toggleLiveMiniEditor(true)">
@@ -325,7 +331,7 @@
 
   <script src="../assets/stripe-config.js?v=95"></script>
   <script src="../assets/oficios-catalog.js?v=95"></script>
-  <script src="../assets/studio-engine.js?v=99"></script>
+  <script src="../assets/studio-engine.js?v=100"></script>
   <script>
     (function initLiveSiteViewer() {
       const params = new URLSearchParams(window.location.search);

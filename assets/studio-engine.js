@@ -2439,7 +2439,13 @@ function compileClientWebsiteHTML(st) {
       const topBar = document.getElementById('top');
       if (!intro || !velo || !escudo) return;
 
-      const isEmbedded = (function() { try { return window.self !== window.top; } catch (e) { return true; } })();
+      const isEmbedded = (function() {
+        try {
+          if (window.self === window.top) return false;
+          if (window.parent && window.parent.location && /\/sitio(\/|$)/i.test(window.parent.location.pathname)) return false;
+          return true;
+        } catch (e) { return true; }
+      })();
       const clamp01 = (v, a, b) => Math.min(1, Math.max(0, (v - a) / (b - a)));
       const easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
