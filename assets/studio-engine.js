@@ -862,37 +862,88 @@ function buildTradeCapas(preset, st, srvList) {
   ];
 }
 
-const CATEGORY_EXTRA_PHOTOS = {
-  hogar: [
+const SUBSECTOR_PHOTO_POOLS = {
+  reformas_obra: [
     '/assets/real/reformas_work_1.jpg',
     '/assets/real/reformas_work_2.jpg',
+    '/assets/real/reformas_hero.jpg',
+    '/assets/real/pintor_hero.jpg',
+    '/assets/real/aluminio_hero.jpg',
+    '/assets/real/cristalero_hero.jpg',
+    '/assets/real/toldos_hero.jpg',
+    '/assets/real/carpinteria_hero.jpg'
+  ],
+  carpinteria_medida: [
+    '/assets/real/carpinteria_hero.jpg',
+    '/assets/real/reformas_work_1.jpg',
+    '/assets/real/reformas_work_2.jpg',
+    '/assets/real/tapicero_hero.jpg',
+    '/assets/real/herrero_hero.jpg',
+    '/assets/real/aluminio_hero.jpg',
+    '/assets/real/reformas_hero.jpg',
+    '/assets/real/cristalero_hero.jpg'
+  ],
+  instalaciones_energia: [
+    '/assets/real/fontanero_hero.jpg',
+    '/assets/real/electricista_hero.jpg',
+    '/assets/real/climatizacion_hero.jpg',
+    '/assets/real/placas_solares_hero.jpg',
+    '/assets/real/reformas_work_1.jpg',
+    '/assets/real/reformas_work_2.jpg',
+    '/assets/real/aluminio_hero.jpg',
+    '/assets/real/reformas_hero.jpg'
+  ],
+  cerrajeria_seguridad: [
+    '/assets/real/llavero_hero.jpg',
     '/assets/real/cerrajeria_work_1.jpg',
     '/assets/real/cerrajeria_blindada.jpg',
     '/assets/real/cerrajeria_llaves.jpg',
-    '/assets/real/reformas_hero.jpg',
-    '/assets/real/carpinteria_hero.jpg',
+    '/assets/real/cerrajeria_coche.jpg',
     '/assets/real/aluminio_hero.jpg',
-    '/assets/real/cristalero_hero.jpg',
-    '/assets/real/pintor_hero.jpg',
-    '/assets/real/fontanero_hero.jpg',
-    '/assets/real/electricista_hero.jpg',
-    '/assets/real/llavero_hero.jpg',
-    '/assets/real/climatizacion_hero.jpg'
+    '/assets/real/herrero_hero.jpg',
+    '/assets/real/reformas_work_1.jpg'
   ],
-  motor: [
+  hogar_servicios: [
+    '/assets/real/limpieza_hero.jpg',
+    '/assets/real/jardineria_hero.jpg',
+    '/assets/real/mudanzas_hero.jpg',
+    '/assets/real/control_plagas_hero.jpg',
+    '/assets/real/reformas_work_1.jpg',
+    '/assets/real/reformas_work_2.jpg',
+    '/assets/real/toldos_hero.jpg',
+    '/assets/real/reformas_hero.jpg'
+  ],
+  car_detail: [
+    '/assets/real/lavadero_hero.jpg',
+    '/assets/real/detail_work_1.jpg',
+    '/assets/real/detail_work_2.jpg',
+    '/assets/real/detail_work_3.jpg',
+    '/assets/real/detail_work_4.jpg',
+    '/assets/real/chapa_pintura_hero.jpg',
+    '/assets/real/compraventa_hero.jpg',
+    '/assets/real/neumaticos_hero.jpg'
+  ],
+  taller_motor: [
+    '/assets/real/taller_hero.jpg',
     '/assets/real/taller_work_1.jpg',
+    '/assets/real/neumaticos_hero.jpg',
+    '/assets/real/chapa_pintura_hero.jpg',
+    '/assets/real/detail_work_3.jpg',
+    '/assets/real/grua_hero.jpg',
+    '/assets/real/compraventa_hero.jpg',
+    '/assets/real/lavadero_hero.jpg'
+  ],
+  motos_bicis: [
+    '/assets/real/motos_hero.jpg',
     '/assets/real/motos_work_1.jpg',
     '/assets/real/motos_work_2.jpg',
-    '/assets/real/lavadero_hero.jpg',
-    '/assets/real/taller_hero.jpg',
-    '/assets/real/chapa_pintura_hero.jpg',
+    '/assets/real/bicicletas_hero.jpg',
+    '/assets/real/taller_work_1.jpg',
     '/assets/real/neumaticos_hero.jpg',
-    '/assets/real/compraventa_hero.jpg',
-    '/assets/real/motos_hero.jpg',
-    '/assets/real/cerrajeria_coche.jpg',
-    '/assets/real/grua_hero.jpg'
+    '/assets/real/taller_hero.jpg',
+    '/assets/real/detail_work_3.jpg'
   ],
-  belleza: [
+  belleza_salon: [
     '/assets/real/peluqueria_work_1.jpg',
     '/assets/real/peluqueria_work_2.jpg',
     '/assets/real/barberia_work_1.jpg',
@@ -903,48 +954,126 @@ const CATEGORY_EXTRA_PHOTOS = {
     '/assets/real/depilacion_hero.jpg',
     '/assets/real/tattoo_hero.jpg'
   ],
-  salud: [
+  mascotas_vet: [
+    '/assets/real/peluqueria_canina_hero.jpg',
+    '/assets/real/veterinario_hero.jpg',
+    '/assets/real/mascotas_work_1.jpg',
+    '/assets/real/mascotas_work_2.jpg',
+    '/assets/real/mascotas_work_3.jpg',
+    '/assets/real/mascotas_work_4.jpg',
+    '/assets/real/mascotas_work_5.jpg',
+    '/assets/real/mascotas_work_6.jpg'
+  ],
+  salud_clinica: [
     '/assets/real/clinica_work_1.jpg',
     '/assets/real/clinica_work_2.jpg',
     '/assets/real/clinica_hero.jpg',
     '/assets/real/fisioterapia_hero.jpg',
     '/assets/real/podologia_hero.jpg',
     '/assets/real/optica_hero.jpg',
-    '/assets/real/nutricionista_hero.jpg',
     '/assets/real/psicologia_hero.jpg',
     '/assets/real/logopedia_hero.jpg',
-    '/assets/real/veterinario_hero.jpg',
-    '/assets/real/peluqueria_canina_hero.jpg'
+    '/assets/real/nutricionista_hero.jpg'
   ],
-  hosteleria: [
+  restauracion: [
     '/assets/real/restaurante_work_1.jpg',
     '/assets/real/restaurante_work_2.jpg',
     '/assets/real/restaurante_hero.jpg',
     '/assets/real/tapas_bar.jpg',
-    '/assets/real/cafeteria_hero.jpg',
-    '/assets/real/panaderia_brunch.jpg',
     '/assets/real/pizza_hero.jpg',
     '/assets/real/asador_pollo.jpg',
-    '/assets/real/carniceria_hero.jpg',
-    '/assets/real/fruteria_hero.jpg'
+    '/assets/real/cafeteria_hero.jpg',
+    '/assets/real/panaderia_brunch.jpg'
   ],
-  comercio: [
-    '/assets/real/tienda_work_1.jpg',
-    '/assets/real/tienda_work_2.jpg',
-    '/assets/real/fitness_work_1.jpg',
-    '/assets/real/tienda_hero.jpg',
-    '/assets/real/floristeria_hero.jpg',
-    '/assets/real/inmobiliaria_hero.jpg',
-    '/assets/real/asesoria_hero.jpg',
+  cafe_frescos: [
+    '/assets/real/cafeteria_hero.jpg',
+    '/assets/real/panaderia_brunch.jpg',
+    '/assets/real/carniceria_hero.jpg',
+    '/assets/real/fruteria_hero.jpg',
+    '/assets/real/restaurante_work_1.jpg',
+    '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/tapas_bar.jpg',
+    '/assets/real/restaurante_hero.jpg'
+  ],
+  despacho_pro: [
     '/assets/real/abogados_hero.jpg',
-    '/assets/real/fotografo_hero.jpg',
-    '/assets/real/eventos_hero.jpg',
+    '/assets/real/asesoria_hero.jpg',
+    '/assets/real/inmobiliaria_hero.jpg',
+    '/assets/real/despacho_work_1.jpg',
+    '/assets/real/despacho_work_2.jpg',
+    '/assets/real/despacho_work_3.jpg',
+    '/assets/real/despacho_work_4.jpg',
+    '/assets/real/despacho_work_5.jpg'
+  ],
+  deporte_gym: [
+    '/assets/real/fitness_hero.jpg',
+    '/assets/real/fitness_work_1.jpg',
+    '/assets/real/pilates_hero.jpg',
+    '/assets/real/baile_hero.jpg',
+    '/assets/real/deporte_work_1.jpg',
+    '/assets/real/deporte_work_2.jpg',
+    '/assets/real/deporte_work_3.jpg',
+    '/assets/real/deporte_work_4.jpg'
+  ],
+  educacion: [
     '/assets/real/academia_hero.jpg',
     '/assets/real/guarderia_hero.jpg',
     '/assets/real/autoescuela_hero.jpg',
-    '/assets/real/bicicletas_hero.jpg'
+    '/assets/real/despacho_work_1.jpg',
+    '/assets/real/despacho_work_2.jpg',
+    '/assets/real/copisteria_hero.jpg',
+    '/assets/real/psicologia_hero.jpg',
+    '/assets/real/logopedia_hero.jpg'
+  ],
+  eventos_arte: [
+    '/assets/real/fotografo_hero.jpg',
+    '/assets/real/eventos_hero.jpg',
+    '/assets/real/floristeria_hero.jpg',
+    '/assets/real/peluqueria_work_1.jpg',
+    '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/tienda_work_1.jpg',
+    '/assets/real/tienda_work_2.jpg',
+    '/assets/real/peluqueria_work_2.jpg'
+  ],
+  comercio_local: [
+    '/assets/real/tienda_hero.jpg',
+    '/assets/real/tienda_work_1.jpg',
+    '/assets/real/tienda_work_2.jpg',
+    '/assets/real/tintoreria_hero.jpg',
+    '/assets/real/zapateria_hero.jpg',
+    '/assets/real/moviles_hero.jpg',
+    '/assets/real/copisteria_hero.jpg',
+    '/assets/real/floristeria_hero.jpg'
   ]
 };
+
+function getSubsectorPhotosForPreset(preset) {
+  const id = String((preset && preset.id) || '').toLowerCase();
+  const cat = String((preset && (preset.category || preset.cat)) || 'comercio').toLowerCase();
+  if (['reformas', 'pintor', 'aluminio', 'cristalero', 'toldos'].includes(id)) return SUBSECTOR_PHOTO_POOLS.reformas_obra;
+  if (['carpintero', 'tapicero', 'herrero'].includes(id)) return SUBSECTOR_PHOTO_POOLS.carpinteria_medida;
+  if (['fontanero', 'electricista', 'climatizacion', 'placas_solares'].includes(id)) return SUBSECTOR_PHOTO_POOLS.instalaciones_energia;
+  if (['cerrajero', 'llaves_coche'].includes(id)) return SUBSECTOR_PHOTO_POOLS.cerrajeria_seguridad;
+  if (['jardineria', 'limpieza', 'mudanzas', 'control_plagas'].includes(id)) return SUBSECTOR_PHOTO_POOLS.hogar_servicios;
+  if (['lavadero', 'chapa_pintura', 'compraventa'].includes(id)) return SUBSECTOR_PHOTO_POOLS.car_detail;
+  if (['taller', 'neumaticos', 'grua'].includes(id)) return SUBSECTOR_PHOTO_POOLS.taller_motor;
+  if (['motos', 'bicicletas'].includes(id)) return SUBSECTOR_PHOTO_POOLS.motos_bicis;
+  if (['peluqueria', 'barberia', 'estetica', 'spa', 'depilacion', 'tattoo'].includes(id)) return SUBSECTOR_PHOTO_POOLS.belleza_salon;
+  if (['peluqueria_canina', 'veterinario'].includes(id)) return SUBSECTOR_PHOTO_POOLS.mascotas_vet;
+  if (['clinica', 'fisioterapia', 'podologia', 'optica', 'psicologia', 'logopedia', 'nutricionista'].includes(id)) return SUBSECTOR_PHOTO_POOLS.salud_clinica;
+  if (['restaurante', 'bar_tapas', 'pizzeria', 'asador'].includes(id)) return SUBSECTOR_PHOTO_POOLS.restauracion;
+  if (['cafeteria', 'panaderia', 'carniceria', 'fruteria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.cafe_frescos;
+  if (['abogados', 'asesoria', 'inmobiliaria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.despacho_pro;
+  if (['fitness', 'pilates', 'baile'].includes(id)) return SUBSECTOR_PHOTO_POOLS.deporte_gym;
+  if (['academia', 'guarderia', 'autoescuela'].includes(id)) return SUBSECTOR_PHOTO_POOLS.educacion;
+  if (['fotografo', 'eventos', 'floristeria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.eventos_arte;
+  if (cat === 'hogar') return SUBSECTOR_PHOTO_POOLS.reformas_obra;
+  if (cat === 'motor') return SUBSECTOR_PHOTO_POOLS.taller_motor;
+  if (cat === 'belleza') return SUBSECTOR_PHOTO_POOLS.belleza_salon;
+  if (cat === 'salud') return SUBSECTOR_PHOTO_POOLS.salud_clinica;
+  if (cat === 'hosteleria') return SUBSECTOR_PHOTO_POOLS.restauracion;
+  return SUBSECTOR_PHOTO_POOLS.comercio_local;
+}
 
 function buildUniquePhotoPool(preset, st, baseUrls) {
   const seen = new Set();
@@ -957,21 +1086,99 @@ function buildUniquePhotoPool(preset, st, baseUrls) {
     }
   };
   (baseUrls || []).forEach(pushUnique);
-  const cat = (preset && (preset.category || preset.cat)) ? (preset.category || preset.cat) : 'comercio';
-  const extras = CATEGORY_EXTRA_PHOTOS[cat] || CATEGORY_EXTRA_PHOTOS.comercio;
-  extras.forEach(pushUnique);
-  CATEGORY_EXTRA_PHOTOS.comercio.forEach(pushUnique);
+  const subPool = getSubsectorPhotosForPreset(preset);
+  subPool.forEach(pushUnique);
   return pool;
 }
 
+function buildTradeResultadosCopy(preset, st, mode) {
+  const id = String((preset && preset.id) || '').toLowerCase();
+  const cat = String((preset && (preset.category || preset.cat)) || '').toLowerCase();
+  if (['peluqueria_canina', 'veterinario'].includes(id)) {
+    return {
+      title: 'Cuidado tranquilo, resultado impecable',
+      intro: `Arrastra el deslizador de izquierda a derecha para apreciar el acabado limpio, cepillado y sin estrés con el que sale cada mascota en ${st.city}.`,
+      b1: '<b>Recepción calmada y revisión previa</b> de piel, manto y sensibilidad antes de empezar.',
+      b2: '<b>Cosmética específica e instrumental higienizado</b> adaptado a cada raza y tamaño.',
+      b3: `<b>Aviso directo por WhatsApp</b> en cuanto tu compañero está listo para recoger en ${st.city}.`,
+      beforeLabel: 'Antes · Al llegar',
+      afterLabel: 'Después · Listo y cuidado'
+    };
+  }
+  if (['abogados', 'asesoria', 'inmobiliaria'].includes(id)) {
+    return {
+      title: 'De la incertidumbre a tenerlo todo resuelto',
+      intro: `Arrastra el deslizador para comprobar la diferencia entre gestionar tu caso a ciegas o contar con un despacho especialista en ${st.city}.`,
+      b1: '<b>Análisis previo de viabilidad y documentación</b> antes de dar el primer paso.',
+      b2: '<b>Presupuesto cerrado por escrito</b> y estrategia clara explicada sin tecnicismos.',
+      b3: `<b>Trato directo por WhatsApp con tu especialista</b> en ${st.city} sin pasar por centralitas.`,
+      beforeLabel: 'Antes · Sin revisar',
+      afterLabel: 'Después · Resuelto'
+    };
+  }
+  if (cat === 'salud') {
+    return {
+      title: 'Precisión clínica y bienestar que se nota',
+      intro: `Desliza de izquierda a derecha para ver el nivel de equipamiento, dedicación y seguimiento personalizado que ofrecemos en ${st.city}.`,
+      b1: '<b>Valoración diagnóstica individual</b> en tu primera sesión para ir a la raíz del problema.',
+      b2: '<b>Equipamiento actualizado y protocolos seguros</b> adaptados a cada paciente.',
+      b3: `<b>Plan de evolución claro y contacto directo</b> con nuestra consulta de ${st.city}.`,
+      beforeLabel: 'Antes · Valoración',
+      afterLabel: 'Después · Tratamiento'
+    };
+  }
+  if (cat === 'hosteleria' || mode === 'mesa_carta' || mode === 'encargo_sin_cola') {
+    return {
+      title: 'Del producto fresco al plato recién hecho',
+      intro: `Arrastra el deslizador para ver cómo cuidamos el punto exacto, la presentación y el sabor diario en nuestro local de ${st.city}.`,
+      b1: '<b>Materia prima seleccionada cada mañana</b> en proveedores de confianza.',
+      b2: '<b>Elaboración al momento</b> respetando tiempos de horno, brasa o cocina.',
+      b3: `<b>Reserva de mesa o encargo sin colas</b> confirmando directo por WhatsApp en ${st.city}.`,
+      beforeLabel: 'Antes · Preparación',
+      afterLabel: 'Después · Recién salido'
+    };
+  }
+  if (cat === 'belleza') {
+    return {
+      title: 'Un acabado que se nota al primer vistazo',
+      intro: `Arrastra el deslizador de izquierda a derecha para comprobar el cambio de luz, textura y definición tras pasar por nuestro salón en ${st.city}.`,
+      b1: '<b>Asesoramiento personalizado previo</b> según tus facciones, estilo y rutina.',
+      b2: '<b>Productos de firma profesional</b> que cuidan y protegen desde la primera aplicación.',
+      b3: `<b>Cita directa por WhatsApp sin esperas</b> en nuestro estudio de ${st.city}.`,
+      beforeLabel: 'Antes · Sin tratar',
+      afterLabel: 'Después · Terminado'
+    };
+  }
+  if (cat === 'hogar') {
+    return {
+      title: 'El oficio se demuestra en cada remate',
+      intro: `Arrastra el deslizador para comprobar cómo cambia tu vivienda o local cuando se trabaja a medida, limpio y en plazo en ${st.city}.`,
+      b1: '<b>Toma de medidas y protección previa</b> de la zona antes de iniciar la intervención.',
+      b2: '<b>Materiales, herrajes y recambios de primera calidad</b> para un resultado duradero.',
+      b3: `<b>Revisión final contigo y garantía oficial</b> entregada en ${st.city}.`,
+      beforeLabel: 'Antes · Estado previo',
+      afterLabel: 'Después · Instalado'
+    };
+  }
+  return {
+    title: 'Así entra, así sale terminado',
+    intro: 'Míralo salir impecable. Arrastra el deslizador de izquierda a derecha para comprobar la diferencia cuando se trabaja cada detalle con calma.',
+    b1: '<b>Preparación completa</b> desde la base antes de iniciar el trabajo principal.',
+    b2: '<b>Materiales y herramientas de primera línea</b> específicos para cada acabado.',
+    b3: `<b>Revisión punto por punto</b> antes de avisarte para la entrega en ${st.city}.`,
+    beforeLabel: 'Antes · Sin tratar',
+    afterLabel: 'Después · Terminado'
+  };
+}
+
 function buildTradeCasos(preset, st, srvList, uniquePool, heroImg) {
-  const pool = Array.isArray(uniquePool) && uniquePool.length >= 8
+  const pool = Array.isArray(uniquePool) && uniquePool.length >= 7
     ? uniquePool
     : buildUniquePhotoPool(preset, st, [heroImg].concat(uniquePool || []));
-  const p0 = pool[4] || pool[0] || heroImg;
-  const p1 = pool[5] || pool[1] || p0;
-  const p2 = pool[6] || pool[2] || p1;
-  const p3 = pool[7] || pool[3] || p2;
+  const p0 = pool[3] || pool[1] || heroImg;
+  const p1 = pool[4] || pool[2] || p0;
+  const p2 = pool[5] || pool[0] || p1;
+  const p3 = pool[6] || pool[1] || p2;
 
   const s0 = srvList[0] || { title: 'Servicio Integral', meta: 'Trabajo completo', price: 'Precio cerrado' };
   const s1 = srvList[1] || s0;
@@ -1044,9 +1251,9 @@ function compileClientWebsiteHTML(st) {
   const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || rawGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
   const activeGallery = buildUniquePhotoPool(preset, st, [heroImg].concat(rawGallery));
   const afterImg = activeGallery[1] || heroImg;
-  const beforeImg = activeGallery[2] || afterImg;
-  const thirdImg = activeGallery[3] || beforeImg;
-  const fourthImg = activeGallery[8] || activeGallery[4] || thirdImg;
+  const beforeImg = afterImg + (afterImg.includes('?') ? '&' : '?') + 'estado=antes';
+  const thirdImg = activeGallery[2] || afterImg;
+  const fourthImg = activeGallery[7] || (activeGallery[3] ? activeGallery[3] + (activeGallery[3].includes('?') ? '&' : '?') + 'vista=proceso' : thirdImg);
 
   const cleanWa = String(st.whatsapp || '612890345').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
@@ -1104,7 +1311,7 @@ function compileClientWebsiteHTML(st) {
 
   const capasData = buildTradeCapas(preset, st, srvList);
   const capasHtml = capasData.map((c, idx) => `
-    <details class="capa" data-capa="${escapeHtml(c.tag)}" data-pos="${escapeHtml(c.pos)}" ${idx === 0 ? 'open' : ''}>
+    <details class="capa" data-capa-idx="${idx}" data-capa="${escapeHtml(c.tag)}" data-pos="${escapeHtml(c.pos)}" ${idx === 0 ? 'open' : ''}>
       <summary>
         <span class="capa-n">${escapeHtml(c.num)}</span>
         <span class="capa-nombre">${escapeHtml(c.name)}</span>
@@ -1116,6 +1323,12 @@ function compileClientWebsiteHTML(st) {
       </div>
     </details>
   `).join('');
+  const capasPinsHtml = capasData.map((c, idx) => `
+    <button type="button" class="capa-pin ${idx === 0 ? 'activa' : ''}" data-pin-idx="${idx}" style="${escapeHtml(c.pos)}" aria-label="Ver fase ${escapeHtml(c.num)}: ${escapeHtml(c.name)}">
+      <span>${escapeHtml(c.num)}</span>
+    </button>
+  `).join('');
+  const resultadosCopy = buildTradeResultadosCopy(preset, st, mode);
 
   const casosData = buildTradeCasos(preset, st, srvList, activeGallery, heroImg);
   const casosHtml = casosData.map((cs, idx) => `
@@ -1577,9 +1790,84 @@ function compileClientWebsiteHTML(st) {
     display: block;
     transition: color 0.35s, -webkit-text-stroke-color 0.35s;
   }
-  .verbo:hover strong {
+  .verbo:hover strong, .verbo.verbo-activo strong {
     color: var(--oro);
     -webkit-text-stroke-color: var(--oro);
+    text-shadow: 0 10px 28px rgba(200, 165, 72, 0.25);
+  }
+  .verbo.verbo-activo { border-top-color: var(--oro); }
+
+  /* ANIMACIONES DE ENTRADA EN SCROLL Y BARRA DE PROGRESO DORADA */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2.5px;
+    width: var(--scroll-w, 0%);
+    background: linear-gradient(90deg, var(--oro), #fff3c4, var(--oro));
+    z-index: 80;
+    pointer-events: none;
+    box-shadow: 0 0 12px rgba(200, 165, 72, 0.75);
+  }
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  [data-reveal].in-view {
+    opacity: 1;
+    transform: none;
+  }
+  .capa-pin {
+    position: absolute;
+    width: 30px; height: 30px;
+    margin: -15px 0 0 -15px;
+    border-radius: 50%;
+    border: 1.5px solid var(--oro);
+    background: rgba(10, 19, 34, 0.88);
+    color: var(--tinta);
+    font: 600 11px/1 var(--mono);
+    cursor: pointer;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    transition: transform 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s;
+  }
+  .capa-pin:hover, .capa-pin.activa {
+    background: var(--oro);
+    color: #10141c;
+    transform: scale(1.16);
+    box-shadow: 0 0 0 6px rgba(200, 165, 72, 0.28);
+  }
+  .capas-coche img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: contrast(1.05) brightness(0.86);
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform-origin 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .casos-nav { display: inline-flex; gap: 6px; }
+  .casos-arrow {
+    width: 38px; height: 38px;
+    border: 1px solid var(--filete);
+    background: rgba(15, 26, 45, 0.55);
+    color: var(--tinta);
+    font: 600 16px/1 var(--sans);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .casos-arrow:hover {
+    border-color: var(--oro);
+    color: var(--oro);
+    background: rgba(200, 165, 72, 0.12);
+  }
+  @keyframes pulseBooking {
+    0% { box-shadow: 0 0 0 0 rgba(200, 165, 72, 0.75); }
+    70% { box-shadow: 0 0 0 16px rgba(200, 165, 72, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(200, 165, 72, 0); }
+  }
+  .bezel-shell.flash-booking {
+    animation: pulseBooking 1.1s ease-out;
   }
   .verbo p { color: var(--tinta-2); max-width: 38ch; margin-top: 10px; font-size: 15.5px; }
 
@@ -1713,15 +2001,19 @@ function compileClientWebsiteHTML(st) {
     color: var(--tinta);
     background: rgba(10, 19, 34, 0.84);
     border: 1px solid var(--filete);
-    padding: 5px 11px;
-    font-size: 16px;
+    padding: 5px 10px;
+    font-size: clamp(12.5px, 3.3vw, 15.5px);
     position: absolute;
-    top: 14px; left: 14px;
+    top: 12px; left: 12px;
     z-index: 3;
+    max-width: calc(50% - 16px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .ad .et-despues {
     left: auto;
-    right: 14px;
+    right: 12px;
     color: var(--oro);
     border-color: var(--oro);
   }
@@ -1836,26 +2128,24 @@ function compileClientWebsiteHTML(st) {
     pointer-events: none;
     position: absolute;
     top: 38%; left: 46%;
+    z-index: 6;
     transition: top 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), left 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .capas-marca i {
-    border: 2px solid var(--oro);
-    border-radius: 50%;
-    width: 32px; height: 32px;
-    margin: -16px 0 0 -16px;
-    position: absolute;
-    box-shadow: 0 0 0 6px rgba(200, 165, 72, 0.25);
+    display: none;
   }
   .capas-marca span {
     white-space: nowrap;
-    font: 500 11.5px/1 var(--mono);
+    font: 600 11px/1.1 var(--mono);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #10141c;
     background: var(--oro);
-    padding: 7px 10px;
+    padding: 6px 10px;
     position: absolute;
-    top: -13px; left: 24px;
+    top: -40px; left: 0;
+    transform: translateX(-50%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
   }
 
   /* ==========================================================================
@@ -2139,6 +2429,7 @@ function compileClientWebsiteHTML(st) {
 </style>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress"></div>
 
   <!-- CABECERA SIMÉTRICA PRESTIGE -->
   <header class="top en-portada" id="top">
@@ -2295,25 +2586,25 @@ function compileClientWebsiteHTML(st) {
          ====================================================================== -->
     <section class="sec" id="resultados">
       <div class="wrap duo">
-        <div class="ad-texto">
-          <h2>Así entra, así sale terminado</h2>
-          <p class="intro">Míralo salir impecable. Arrastra el deslizador de izquierda a derecha para comprobar la diferencia cuando se trabaja cada detalle con calma.</p>
+        <div class="ad-texto" data-reveal>
+          <h2>${escapeHtml(resultadosCopy.title)}</h2>
+          <p class="intro">${escapeHtml(resultadosCopy.intro)}</p>
           <ul class="ad-hecho">
-            <li><b>Preparación completa</b> desde la base antes de iniciar el trabajo principal.</li>
-            <li><b>Materiales y herramientas de primera línea</b> específicos para cada acabado.</li>
-            <li><b>Revisión punto por punto</b> antes de avisarte para la entrega en ${escapeHtml(st.city)}.</li>
+            <li>${resultadosCopy.b1}</li>
+            <li>${resultadosCopy.b2}</li>
+            <li>${resultadosCopy.b3}</li>
           </ul>
           <p class="ad-precio">${escapeHtml(sectorBadge)} · DESDE ${escapeHtml(firstPrice)}</p>
           <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Quiero este resultado</button>
         </div>
 
-        <div>
+        <div data-reveal>
           <div class="ad" id="ad" style="--x:38%;">
             <img class="ad-img despues" src="${escapeHtml(afterImg)}" alt="Después · Resultado final en ${escapeHtml(st.name)}" />
             <img class="ad-img ad-antes antes" src="${escapeHtml(beforeImg)}" alt="Antes · Estado previo antes de ${escapeHtml(st.name)}" />
             <div class="ad-divisor"></div>
-            <span class="et et-antes">Antes · Sin tratar</span>
-            <span class="et et-despues" data-et>Después · Terminado</span>
+            <span class="et et-antes">${escapeHtml(resultadosCopy.beforeLabel)}</span>
+            <span class="et et-despues" data-et>${escapeHtml(resultadosCopy.afterLabel)}</span>
             <div class="riel">
               <div class="avance"></div>
               <div class="asa"></div>
@@ -2321,7 +2612,7 @@ function compileClientWebsiteHTML(st) {
             <input type="range" id="ad-range" min="0" max="1000" value="380" aria-label="Comparar antes y después" />
           </div>
           <p style="color:var(--tinta-2); font-size:13.5px; margin-top:10px; text-align:center;">
-            ${escapeHtml(st.name)} · Trabajo real en ${escapeHtml(st.city)}
+            ↔ Arrastra el deslizador · ${escapeHtml(st.name)} (${escapeHtml(st.city)})
           </p>
         </div>
       </div>
@@ -2331,7 +2622,7 @@ function compileClientWebsiteHTML(st) {
          SECCIÓN 4: LO QUE DICEN EN GOOGLE (#opiniones)
          ====================================================================== -->
     <section class="sec hundida" id="opiniones">
-      <div class="wrap">
+      <div class="wrap" data-reveal>
         <h2>Lo que dicen en Google</h2>
         <div class="resenas-grid">${reviewsHtml}</div>
         <div style="margin-top:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; color:var(--tinta-2); font-size:14.5px;">
@@ -2346,18 +2637,19 @@ function compileClientWebsiteHTML(st) {
          ====================================================================== -->
     <section class="sec" id="capas" data-capas>
       <div class="wrap capas">
-        <div>
+        <div data-reveal>
           <h2>¿Cómo cuidamos cada trabajo?</h2>
-          <p class="intro">Cada servicio lleva un orden técnico. Toca cada fase para ver qué hacemos exactamente en ${escapeHtml(st.name)}.</p>
+          <p class="intro">Cada servicio lleva un orden técnico. Toca cada fase o pulsa los puntos dorados (01–05) sobre la imagen para inspeccionar cómo trabajamos en ${escapeHtml(st.name)}.</p>
           <div class="capas-lista">${capasHtml}</div>
           <div style="margin-top:24px;">
             <button type="button" class="btn btn-oro" onclick="jumpSec('accion')">Consultar para mi caso</button>
           </div>
         </div>
 
-        <figure class="capas-coche">
-          <img src="${escapeHtml(thirdImg)}" alt="Detalle técnico en ${escapeHtml(st.name)}" />
-          <div class="capas-marca" id="capas-marca">
+        <figure class="capas-coche" data-reveal>
+          <img id="capas-img" src="${escapeHtml(thirdImg)}" alt="Detalle técnico en ${escapeHtml(st.name)}" />
+          ${capasPinsHtml}
+          <div class="capas-marca" id="capas-marca" style="top:28%;left:44%;">
             <i></i>
             <span data-marca>DIAGNÓSTICO</span>
           </div>
@@ -2370,15 +2662,19 @@ function compileClientWebsiteHTML(st) {
          ====================================================================== -->
     ${st.modules.gallery !== false ? `
     <section class="e hundida" id="casos">
-      <div class="wrap" id="galeria">
+      <div class="wrap" id="galeria" data-reveal>
         <div class="e-cab">
           <h2>Trabajos que han pasado por aquí</h2>
-          <div style="display:flex; gap:12px; align-items:center;">
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
             ${editPhotoBtnGal}
+            <div class="casos-nav" aria-label="Navegar trabajos">
+              <button type="button" class="casos-arrow" id="casos-prev" aria-label="Anterior trabajo">←</button>
+              <button type="button" class="casos-arrow" id="casos-next" aria-label="Siguiente trabajo">→</button>
+            </div>
             <button type="button" class="enlace-btn" onclick="jumpSec('accion')">Pedir el mío →</button>
           </div>
         </div>
-        <div class="e-pista">${casosHtml}</div>
+        <div class="e-pista" id="casos-pista">${casosHtml}</div>
       </div>
     </section>` : ''}
 
@@ -2745,13 +3041,13 @@ function compileClientWebsiteHTML(st) {
     }
 
     // =========================================================================
-    // DESLIZADOR INTERACTIVO ANTES / DESPUÉS (#ad)
+    // DESLIZADOR INTERACTIVO ANTES / DESPUÉS (#ad) + AUTO-DEMO AL ENTRAR EN PANTALLA
     // =========================================================================
     (function initBeforeAfter() {
       const ad = document.getElementById('ad');
       const range = document.getElementById('ad-range');
-      const et = ad ? ad.querySelector('[data-et]') : null;
       if (!ad || !range) return;
+      let userTouchedAd = false;
       function syncAd() {
         const val = Number(range.value) / 1000;
         const pct = (val * 100).toFixed(1) + '%';
@@ -2759,34 +3055,143 @@ function compileClientWebsiteHTML(st) {
         const salio = val < 0.45;
         ad.classList.toggle('salio', salio);
       }
+      range.addEventListener('pointerdown', () => { userTouchedAd = true; }, { passive: true });
+      range.addEventListener('touchstart', () => { userTouchedAd = true; }, { passive: true });
       range.addEventListener('input', syncAd);
       syncAd();
+
+      if ('IntersectionObserver' in window) {
+        let demoPlayed = false;
+        const adObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !demoPlayed && !userTouchedAd) {
+              demoPlayed = true;
+              const startT = performance.now();
+              const dur = 1550;
+              function stepAdDemo(now) {
+                if (userTouchedAd) return;
+                const p = Math.min(1, (now - startT) / dur);
+                const wave = 380 + Math.sin(p * Math.PI * 2) * 280;
+                range.value = String(Math.round(p < 1 ? wave : 440));
+                syncAd();
+                if (p < 1) requestAnimationFrame(stepAdDemo);
+              }
+              requestAnimationFrame(stepAdDemo);
+            }
+          });
+        }, { threshold: 0.35 });
+        adObs.observe(ad);
+      }
     })();
 
     // =========================================================================
-    // DESGLOSE INTERACTIVO POR CAPAS (#capas)
+    // DESGLOSE INTERACTIVO POR CAPAS (#capas) + PINES NUMERADOS + ZOOM EN FOTO
     // =========================================================================
     (function initCapas() {
       const sec = document.querySelector('[data-capas]');
       if (!sec) return;
       const detailsList = Array.from(sec.querySelectorAll('details.capa'));
+      const pinsList = Array.from(sec.querySelectorAll('.capa-pin'));
       const marcaWrap = document.getElementById('capas-marca');
       const marcaTxt = sec.querySelector('[data-marca]');
-      detailsList.forEach(det => {
-        det.addEventListener('toggle', () => {
-          if (det.open) {
-            detailsList.forEach(other => { if (other !== det) other.open = false; });
-            if (marcaTxt) marcaTxt.textContent = det.getAttribute('data-capa') || 'DETALLE';
-            const pos = det.getAttribute('data-pos') || '';
-            if (marcaWrap && pos) {
-              pos.split(';').forEach(pair => {
-                const [k, v] = pair.split(':');
-                if (k && v) marcaWrap.style[k.trim()] = v.trim();
-              });
+      const capasImg = document.getElementById('capas-img');
+
+      function activateLayerIndex(idx) {
+        const det = detailsList[idx];
+        if (!det) return;
+        detailsList.forEach((other, i) => {
+          if (i !== idx && other.open) other.open = false;
+        });
+        if (!det.open) det.open = true;
+        pinsList.forEach((p, i) => p.classList.toggle('activa', i === idx));
+        if (marcaTxt) marcaTxt.textContent = det.getAttribute('data-capa') || 'DETALLE';
+        const pos = det.getAttribute('data-pos') || '';
+        let topVal = '44%', leftVal = '50%';
+        if (pos) {
+          pos.split(';').forEach(pair => {
+            const [k, v] = pair.split(':');
+            if (k && v) {
+              const key = k.trim();
+              const val = v.trim();
+              if (marcaWrap) marcaWrap.style[key] = val;
+              if (key === 'top') topVal = val;
+              if (key === 'left') leftVal = val;
             }
-          }
+          });
+        }
+        if (capasImg) {
+          capasImg.style.transformOrigin = leftVal + ' ' + topVal;
+          capasImg.style.transform = 'scale(1.07)';
+        }
+      }
+
+      detailsList.forEach((det, idx) => {
+        det.addEventListener('toggle', () => {
+          if (det.open) activateLayerIndex(idx);
         });
       });
+      pinsList.forEach((pin, idx) => {
+        pin.addEventListener('click', () => activateLayerIndex(idx));
+      });
+    })();
+
+    // =========================================================================
+    // SCROLL-REVEAL EDITORIAL, PROGRESO DE LECTURA, VERBOS EN ORO Y CARRUSEL CASOS
+    // =========================================================================
+    (function initEditorialEffects() {
+      const progBar = document.getElementById('scroll-progress');
+      const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
+      const verbosEls = Array.from(document.querySelectorAll('.verbo'));
+
+      function updateScrollEffects() {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const pct = Math.min(100, Math.max(0, (window.scrollY / maxScroll) * 100));
+        if (progBar) progBar.style.setProperty('--scroll-w', pct.toFixed(1) + '%');
+
+        const vh = window.innerHeight;
+        verbosEls.forEach(vEl => {
+          const r = vEl.getBoundingClientRect();
+          const center = r.top + r.height * 0.5;
+          const active = center > vh * 0.18 && center < vh * 0.78;
+          vEl.classList.toggle('verbo-activo', active);
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        const revObs = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting) {
+              en.target.classList.add('in-view');
+              revObs.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+        revealEls.forEach(el => revObs.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('in-view'));
+      }
+      // Fallback para elementos ya visibles al cargar
+      setTimeout(() => {
+        revealEls.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top < window.innerHeight * 1.05) el.classList.add('in-view');
+        });
+        updateScrollEffects();
+      }, 120);
+
+      window.addEventListener('scroll', updateScrollEffects, { passive: true });
+
+      const pista = document.getElementById('casos-pista');
+      const btnPrev = document.getElementById('casos-prev');
+      const btnNext = document.getElementById('casos-next');
+      if (pista && btnPrev && btnNext) {
+        btnPrev.addEventListener('click', () => {
+          pista.scrollBy({ left: -340, behavior: 'smooth' });
+        });
+        btnNext.addEventListener('click', () => {
+          pista.scrollBy({ left: 340, behavior: 'smooth' });
+        });
+      }
     })();
 
     function jumpSec(id) {
@@ -2841,6 +3246,11 @@ function compileClientWebsiteHTML(st) {
         if (sel.id === 'bk-service') updateRepairEstimate(sel);
       }
       jumpSec('accion');
+      const shell = document.querySelector('#accion .bezel-shell');
+      if (shell) {
+        shell.classList.remove('flash-booking');
+        setTimeout(() => shell.classList.add('flash-booking'), 350);
+      }
     }
 
     function sendSectorWhatsApp(kind) {
