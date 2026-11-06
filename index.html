@@ -218,8 +218,46 @@
     @media (max-width: 639px) {
       .viewport.mobile { max-width: 100%; margin: 0; border-radius: 0 0 25px 25px; box-shadow: none; aspect-ratio: 390 / 560; }
     }
-    .viewport.mobile iframe { pointer-events: auto; }
+    .viewport.mobile iframe { pointer-events: none; }
     .tap-open { position: absolute; inset: 0; z-index: 3; display: none; background: transparent; border: 0; cursor: pointer; }
+    .viewport.mobile .tap-open { display: block; }
+    .preview-tour-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 12px;
+      background: #0F172A;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .preview-tour-bar::-webkit-scrollbar { display: none; }
+    .pt-btn {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      color: #E2E8F0;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .pt-btn.active, .pt-btn:hover {
+      background: #C8A548;
+      border-color: #C8A548;
+      color: #121212;
+    }
+    .pt-btn-full {
+      margin-left: auto;
+      background: #4F46E5;
+      border-color: #4F46E5;
+      color: #FFFFFF;
+    }
+    .pt-btn-full:hover { background: #4338CA; border-color: #4338CA; color: #FFFFFF; }
     .live-tag {
       position: absolute; z-index: 4; left: 50%; bottom: 14px; transform: translateX(-50%);
       padding: 7px 14px; border-radius: 999px; background: rgba(15,23,42,0.88); backdrop-filter: blur(8px);
@@ -908,6 +946,14 @@
               <button type="button" class="tap-open" id="tap-open" aria-label="Abrir la web a pantalla completa"></button>
               <div class="live-tag" id="live-tag"><i class="ph-fill ph-sparkle"></i><span id="live-tag-txt">Vista previa interactiva en vivo</span></div>
             </div>
+            <div class="preview-tour-bar" id="preview-tour-bar" aria-label="Ver secciones de la web generada">
+              <button type="button" class="pt-btn active" data-pt="intro">🎬 Entrada Zoom</button>
+              <button type="button" class="pt-btn" data-pt="servicios">💰 Precios</button>
+              <button type="button" class="pt-btn" data-pt="resultados">✨ Antes / Después</button>
+              <button type="button" class="pt-btn" data-pt="casos">📸 Trabajos</button>
+              <button type="button" class="pt-btn" data-pt="accion">💬 WhatsApp</button>
+              <button type="button" class="pt-btn pt-btn-full" data-pt="full">↗ Ver completa</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1415,7 +1461,7 @@
 
   <script src="assets/oficios-catalog.js?v=95"></script>
   <script src="assets/stripe-config.js?v=95"></script>
-  <script src="assets/studio-engine.js?v=97"></script>
+  <script src="assets/studio-engine.js?v=98"></script>
   <script>
   (function () {
     var QUICK_SECTORS = [
@@ -1529,6 +1575,11 @@
       if ($('live-tag-txt')) {
         $('live-tag-txt').textContent = state.name + ' · ' + state.customSectorLabel;
       }
+      document.querySelectorAll('#preview-tour-bar .pt-btn[data-pt]').forEach(function (b) {
+        if (b.getAttribute('data-pt') !== 'full') {
+          b.classList.toggle('active', b.getAttribute('data-pt') === 'intro');
+        }
+      });
       setTimeout(fit, 30);
     }
     if ($('vp-modes')) {
@@ -1755,6 +1806,25 @@
     }
     $('open-full').addEventListener('click', openFull);
     $('tap-open').addEventListener('click', openFull);
+    if ($('preview-tour-bar')) {
+      $('preview-tour-bar').addEventListener('click', function (e) {
+        var btn = e.target.closest('.pt-btn[data-pt]');
+        if (!btn) return;
+        var pt = btn.getAttribute('data-pt');
+        if (pt === 'full') {
+          openFull();
+          return;
+        }
+        document.querySelectorAll('#preview-tour-bar .pt-btn[data-pt]').forEach(function (b) {
+          if (b.getAttribute('data-pt') !== 'full') b.classList.toggle('active', b === btn);
+        });
+        try {
+          if (iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage({ type: 'MIWEB_PREVIEW_NAV', target: pt }, '*');
+          }
+        } catch (er) {}
+      });
+    }
     window.addEventListener('message', function (ev) {
       if (ev && ev.data && ev.data.type === 'MIWEB_OPEN_EDITOR') {
         $('more').open = true;

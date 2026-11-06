@@ -1242,7 +1242,7 @@ function compileClientWebsiteHTML(st) {
   /* ==========================================================================
      PORTADA DE ENTRADA CON CÁMARA EN MOVIMIENTO + ESCUDO EN SCROLL (#intro)
      ========================================================================== */
-  .portada { height: 235vh; position: relative; }
+  .portada { height: 185vh; position: relative; }
   .pin {
     background: var(--hondo);
     isolation: isolate;
@@ -2428,7 +2428,7 @@ function compileClientWebsiteHTML(st) {
     if (btnCerrar) btnCerrar.addEventListener('click', cerrarCortina);
 
     // =========================================================================
-    // MOTOR DE ENTRADA CINEMÁTICA (#intro) IDÉNTICO A PRESTIGECARDETAIL.ES
+    // MOTOR DE ENTRADA CINEMÁTICA (#intro) + AUTO-ZOOM EN VISTA PREVIA
     // =========================================================================
     (function initPrestigeIntro() {
       const intro = document.getElementById('intro');
@@ -2443,6 +2443,7 @@ function compileClientWebsiteHTML(st) {
       const topBar = document.getElementById('top');
       if (!intro || !velo || !escudo) return;
 
+      const isEmbedded = (function() { try { return window.self !== window.top; } catch (e) { return true; } })();
       const clamp01 = (v, a, b) => Math.min(1, Math.max(0, (v - a) / (b - a)));
       const easeInOutCubic = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
@@ -2451,11 +2452,7 @@ function compileClientWebsiteHTML(st) {
       const pivotY = 390;
       const maxZoom = 46;
 
-      function updateIntroOnScroll() {
-        const rect = intro.getBoundingClientRect();
-        const scrollable = Math.max(1, intro.offsetHeight - window.innerHeight);
-        const v = Math.min(1, Math.max(0, -rect.top / scrollable));
-
+      function applyIntroProgress(v, isScrolledPast) {
         // Zoom exponencial del escudo alrededor de (500, 390)
         const zoomProgress = easeInOutCubic(clamp01(v, 0, 0.62));
         const scale = Math.pow(maxZoom, zoomProgress);
@@ -2470,7 +2467,7 @@ function compileClientWebsiteHTML(st) {
         if (rim) rim.style.opacity = String((1 - clamp01(v, 0.25, 0.48)).toFixed(3));
         if (firma) firma.style.opacity = String((1 - clamp01(v, 0, 0.12)).toFixed(3));
 
-        // Push físico de cámara al hacer scroll
+        // Push físico de cámara al hacer zoom
         if (fondoCam) {
           const camPush = 1 + v * 0.10;
           fondoCam.style.transform = 'scale(' + camPush.toFixed(4) + ')';
@@ -2485,8 +2482,20 @@ function compileClientWebsiteHTML(st) {
           titular.style.pointerEvents = rev > 0.45 ? 'auto' : 'none';
         }
         if (topBar) {
-          topBar.classList.toggle('solida', rect.bottom < window.innerHeight * 1.04 || v > 0.55);
+          topBar.classList.toggle('solida', Boolean(isScrolledPast) || v > 0.55);
         }
+      }
+
+      let manualScrollActive = false;
+      let autoZoomStart = performance.now();
+
+      function updateIntroOnScroll() {
+        const rect = intro.getBoundingClientRect();
+        const scrollable = Math.max(1, intro.offsetHeight - window.innerHeight);
+        const v = Math.min(1, Math.max(0, -rect.top / scrollable));
+        if (window.scrollY > 12) manualScrollActive = true;
+        else if (isEmbedded && window.scrollY <= 4) manualScrollActive = false;
+        applyIntroProgress(v, rect.bottom < window.innerHeight * 1.04);
       }
 
       let ticking = false;
@@ -2500,6 +2509,7 @@ function compileClientWebsiteHTML(st) {
         }
       }, { passive: true });
       window.addEventListener('resize', updateIntroOnScroll);
+
       const pinEl = intro.querySelector('.pin');
       if (pinEl) {
         pinEl.addEventListener('click', (ev) => {
@@ -2510,7 +2520,69 @@ function compileClientWebsiteHTML(st) {
           if (v < 0.35) abrirPortadaSuave();
         });
       }
-      updateIntroOnScroll();
+
+      // Si está dentro del cuadro de vista previa de miweblocal.com (isEmbedded),
+      // hace el zoom del escudo automáticamente ("él tiene el zoom") sin obligar a hacer scroll interno:
+      if (isEmbedded) {
+        const cycleDuration = 7600; // 7.6s por ciclo completo
+        function runEmbeddedZoomLoop(now) {
+          if (!manualScrollActive && window.scrollY <= 8) {
+            const elapsed = (now - autoZoomStart) % cycleDuration;
+            let vAuto = 0;
+            if (elapsed < 1200) {
+              // 0.0s - 1.2s: Muestra el Escudo Calado con la cámara moviéndose detrás
+              vAuto = 0;
+            } else if (elapsed < 3000) {
+              // 1.2s - 3.0s: Hace el Zoom 1x -> 46x atravesando el escudo hacia la portada
+              vAuto = (elapsed - 1200) / 1800;
+            } else if (elapsed < 6400) {
+              // 3.0s - 6.4s: Mantiene la portada abierta con el titular Serif y botones
+              vAuto = 1;
+            } else {
+              // 6.4s - 7.6s: Regresa suavemente al escudo para repetir la demostración
+              vAuto = 1 - (elapsed - 6400) / 1200;
+            }
+            applyIntroProgress(vAuto, false);
+          }
+          requestAnimationFrame(runEmbeddedZoomLoop);
+        }
+        requestAnimationFrame(runEmbeddedZoomLoop);
+      } else {
+        updateIntroOnScroll();
+      }
+
+      // Escuchar comandos desde los botones de vista previa de index.html (sin conflicto de scroll en móvil)
+      window.addEventListener('message', (ev) => {
+        if (!ev || !ev.data || ev.data.type !== 'MIWEB_PREVIEW_NAV') return;
+        const target = ev.data.target;
+        if (target === 'intro') {
+          manualScrollActive = false;
+          autoZoomStart = performance.now() - 1050; // Arranca el zoom al instante
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        manualScrollActive = true;
+        const el = document.getElementById(target);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (target === 'resultados') {
+            const range = document.getElementById('ad-range');
+            if (range) {
+              let t0 = performance.now();
+              function demoSlider(now) {
+                const p = (now - t0) / 1800;
+                if (p <= 1) {
+                  const wave = 500 + Math.sin(p * Math.PI * 2) * 340;
+                  range.value = String(Math.round(wave));
+                  range.dispatchEvent(new Event('input'));
+                  requestAnimationFrame(demoSlider);
+                }
+              }
+              setTimeout(() => requestAnimationFrame(demoSlider), 450);
+            }
+          }
+        }
+      });
     })();
 
     function abrirPortadaSuave() {
