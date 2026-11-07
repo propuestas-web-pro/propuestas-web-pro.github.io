@@ -82,7 +82,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Armarios empotrados, puertas y cocinas a medida que encajan al milímetro.',
     story: 'Fabricamos e instalamos en madera natural y lacados de alta resistencia. Indícanos tus medidas aproximadas y recibe valoración sin visitas en balde.',
     img: '/assets/real/carpinteria_hero.jpg',
-    gal: ['/assets/real/carpinteria_hero.jpg', '/assets/real/reformas_work_1.jpg', '/assets/real/reformas_work_2.jpg', '/assets/real/tapicero_hero.jpg', '/assets/real/herrero_hero.jpg', '/assets/real/aluminio_hero.jpg'],
+    gal: ['/assets/real/carpinteria_hero.jpg', '/assets/real/carpinteria_work_1.jpg', '/assets/real/carpinteria_work_2.jpg', '/assets/real/carpinteria_work_3.jpg', '/assets/real/carpinteria_work_4.jpg', '/assets/real/carpinteria_work_5.jpg', '/assets/real/carpinteria_work_6.jpg', '/assets/real/reformas_work_1.jpg', '/assets/real/reformas_work_2.jpg'],
     kw: ['carpinter', 'ebanist', 'madera', 'armario', 'puertas de paso', 'vestidor', 'tarima', 'parquet', 'mueble a medida'],
     services: [
       ['Armario Empotrado a Medida', 'Interior vestido con cajoneras + frentes lacados o roble', 'Desde 890 €'],
@@ -115,7 +115,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Aperturas urgentes sin romper y copia de llaves de casa, coche y garaje en el acto.',
     story: 'Servicio urgente 24h con precio cerrado antes de desplazarnos, y tienda taller de duplicado de llaves de alta seguridad, mandos de garaje y llaves de coche con chip.',
     img: '/assets/real/llavero_hero.jpg',
-    gal: ['/assets/real/llavero_hero.jpg', '/assets/real/cerrajeria_work_1.jpg', '/assets/real/cerrajeria_blindada.jpg', '/assets/real/cerrajeria_llaves.jpg', '/assets/real/cerrajeria_coche.jpg', '/assets/real/aluminio_hero.jpg'],
+    gal: ['/assets/real/llavero_hero.jpg', '/assets/real/cerrajeria_work_1.jpg', '/assets/real/cerrajeria_bombin.jpg', '/assets/real/cerrajeria_blindada.jpg', '/assets/real/cerrajeria_llaves.jpg', '/assets/real/cerrajeria_coche.jpg', '/assets/real/cerrajeria_work_2.jpg', '/assets/real/cerrajeria_work_3.jpg', '/assets/real/cerrajeria_work_4.jpg'],
     kw: ['cerrajer', 'llaver', 'copia de llave', 'duplicado de llave', 'mandos de garaje', 'bombin', 'antibumping', 'cerradura', 'apertura de puerta'],
     services: [
       ['Apertura de Puerta Urgente (Sin Daños)', 'Llegada en ~20 min · Precio cerrado antes de salir', 'Desde 65 €'],
@@ -867,7 +867,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Duplicado, reparación y pérdida total de llaves de coche en el acto.',
     story: 'Tallado CNC y programación por OBD de llaves con mando, tarjetas Renault y sistemas manos libres Keyless de todas las marcas sin esperas de semanas.',
     img: '/assets/real/cerrajeria_coche.jpg',
-    gal: ['/assets/real/cerrajeria_coche.jpg', '/assets/real/llavero_hero.jpg', '/assets/real/cerrajeria_work_1.jpg', '/assets/real/cerrajeria_blindada.jpg', '/assets/real/cerrajeria_llaves.jpg', '/assets/real/aluminio_hero.jpg'],
+    gal: ['/assets/real/cerrajeria_coche.jpg', '/assets/real/llavero_hero.jpg', '/assets/real/cerrajeria_llaves.jpg', '/assets/real/cerrajeria_work_1.jpg', '/assets/real/cerrajeria_bombin.jpg', '/assets/real/cerrajeria_blindada.jpg'],
     kw: ['llaves de coche', 'mando de coche', 'carcasa llave', 'perdida total llaves', 'transponder', 'keyless', 'tarjeta renault'],
     services: [
       ['Duplicado de Llave de Coche con Mando a Distancia', 'Tallado láser + codificación inmovilizador en 30 min', 'Desde 79 €'],
@@ -902,7 +902,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Mechas balayage, corte y cuidado capilar en un salón pensado para ti.',
     story: 'Diagnóstico personalizado, productos orgánicos de salón y citas puntuales sin esperas y sin pagar comisiones en aplicaciones externas.',
     img: '/assets/real/peluqueria_hero.jpg',
-    gal: ['/assets/real/peluqueria_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/barberia_work_1.jpg', '/assets/real/barberia_hero.jpg', '/assets/real/estetica_hero.jpg'],
+    gal: ['/assets/real/peluqueria_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/estetica_hero.jpg', '/assets/real/spa_hero.jpg', '/assets/real/depilacion_hero.jpg'],
     kw: ['peluquer', 'estilist', 'mechas', 'balayage', 'salon de belleza', 'keratina', 'alisado', 'coloracion', 'tinte', 'cabello'],
     services: [
       ['Mechas Balayage / Babylights + Matiz', 'Diagnóstico, decoloración cuidada y peinado final', '89 €'],
@@ -960,7 +960,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Uñas impecables, mirada definida y tratamientos faciales con resultados visibles.',
     story: 'Higiene esterilizada en autoclave, esmaltes hipoalergénicos y cabina de estética avanzada para mimar tu piel con cita directa.',
     img: '/assets/real/estetica_hero.jpg',
-    gal: ['/assets/real/estetica_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/barberia_work_1.jpg', '/assets/real/peluqueria_hero.jpg', '/assets/real/barberia_hero.jpg'],
+    gal: ['/assets/real/estetica_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/spa_hero.jpg', '/assets/real/depilacion_hero.jpg', '/assets/real/peluqueria_hero.jpg'],
     kw: ['estetic', 'unas', 'manicura', 'pedicura', 'pestanas', 'lifting', 'microblading', 'cejas', 'higiene facial', 'indiba'],
     services: [
       ['Manicura Rusa Combinada + Nivelación Gel', 'Cutícula perfecta y brillo intacto 3–4 semanas', '30 €'],
@@ -1018,7 +1018,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Desconecta cuerpo y mente con masajes descontracturantes, rituales y bonos regalo.',
     story: 'Aceites esenciales templados, camillas calefactadas y silencio absoluto. Reserva tu sesión o solicita una tarjeta regalo personalizada por WhatsApp.',
     img: '/assets/real/spa_hero.jpg',
-    gal: ['/assets/real/spa_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/barberia_work_1.jpg', '/assets/real/peluqueria_hero.jpg', '/assets/real/barberia_hero.jpg'],
+    gal: ['/assets/real/spa_hero.jpg', '/assets/real/estetica_hero.jpg', '/assets/real/depilacion_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/fisioterapia_hero.jpg'],
     kw: ['spa', 'masaj', 'quiromasaj', 'relajante', 'ritual pareja', 'circuito termal', 'bono regalo', 'maderoterapia'],
     services: [
       ['Masaje Relajante o Descontracturante (60 min)', 'Aceites esenciales calientes en cabina privada', '48 €'],
@@ -1047,7 +1047,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Depilación láser diodo indolora para todos los fototipos todo el año.',
     story: 'Cabezal subcero -12 ºC prácticamente indoloro, sesiones sueltas transparentes sin permanencias y valoración gratuita del vello.',
     img: '/assets/real/depilacion_hero.jpg',
-    gal: ['/assets/real/depilacion_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/barberia_work_1.jpg', '/assets/real/peluqueria_hero.jpg', '/assets/real/barberia_hero.jpg'],
+    gal: ['/assets/real/depilacion_hero.jpg', '/assets/real/estetica_hero.jpg', '/assets/real/spa_hero.jpg', '/assets/real/estetica_work_1.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/peluqueria_work_2.jpg', '/assets/real/peluqueria_work_3.jpg', '/assets/real/peluqueria_work_4.jpg'],
     kw: ['depilacion laser', 'laser diodo', 'alejandrita', 'fotodepilacion', 'ingles y axilas', 'cuerpo entero laser'],
     services: [
       ['Pack Mujer: Piernas Completas + Ingles + Axilas', 'Sesión suelta láser diodo cabezal frío (-12 ºC)', '59 €'],
@@ -1345,7 +1345,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Cocina de temporada, arroces al momento y brasa para disfrutar sin prisas.',
     story: 'Reserva tu mesa en salón o terraza directamente con nosotros sin intermediarios ni comisiones por comensal, y consulta nuestra carta actualizada con alérgenos.',
     img: '/assets/real/restaurante_hero.jpg',
-    gal: ['/assets/real/restaurante_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tapas_bar.jpg', '/assets/real/pizza_hero.jpg', '/assets/real/asador_pollo.jpg'],
+    gal: ['/assets/real/restaurante_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tapas_bar.jpg', '/assets/real/terraza_bar.jpg', '/assets/real/asador_pollo.jpg'],
     kw: ['restaurante', 'arroceria', 'asador brasa', 'marisqueria', 'meson', 'casa de comidas', 'menu del dia', 'reservar mesa'],
     services: [
       ['Arroz del Señoret / Banda (Mín. 2 pers.)', 'Fumet casero de roca al momento · Precio por persona', '19,50 €'],
@@ -1374,7 +1374,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Tapas de toda la vida, raciones generosas para compartir y el mejor ambiente.',
     story: 'Carta digital rápida para ver desde el móvil o mediante código QR en mesa, reserva de terraza para grupos y raciones para recoger.',
     img: '/assets/real/tapas_bar.jpg',
-    gal: ['/assets/real/tapas_bar.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/restaurante_hero.jpg', '/assets/real/pizza_hero.jpg', '/assets/real/asador_pollo.jpg'],
+    gal: ['/assets/real/tapas_bar.jpg', '/assets/real/terraza_bar.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/restaurante_hero.jpg', '/assets/real/asador_pollo.jpg'],
     kw: ['bar de tapas', 'taberna', 'cerveceria', 'tasca', 'raciones', 'bocateria', 'terraza', 'vermuteria'],
     services: [
       ['Tabla Ibérica de Bellota + Queso Curado', 'Cortado al momento con pan de cristal y tomate', '18,50 €'],
@@ -1403,7 +1403,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Café de especialidad recién molido, desayunos artesanos y repostería casera.',
     story: 'Tostadas en hogaza de masa madre, huevos benedictinos, bowls de fruta fresca y tartas horneadas cada mañana. Reserva mesa o encarga para llevar.',
     img: '/assets/real/cafeteria_hero.jpg',
-    gal: ['/assets/real/cafeteria_hero.jpg', '/assets/real/panaderia_brunch.jpg', '/assets/real/carniceria_hero.jpg', '/assets/real/fruteria_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg'],
+    gal: ['/assets/real/cafeteria_hero.jpg', '/assets/real/panaderia_brunch.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/terraza_bar.jpg', '/assets/real/fruteria_hero.jpg'],
     kw: ['cafeteria', 'brunch', 'cafe de especialidad', 'desayunos', 'merienda', 'teteria', 'heladeria', 'gofres', 'creperia'],
     services: [
       ['Combo Brunch Completo para 1 Persona', 'Café especialidad + zumo natural + huevos/tostada + dulce', '15,90 €'],
@@ -1432,7 +1432,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Pizzas artesanas al horno de piedra y smash burgers crujientes listas a tu hora.',
     story: 'Haz tu pedido directo desde nuestra web sin recargos inflados de aplicaciones de reparto y recógelo recién salido del horno a tu minuto exacto.',
     img: '/assets/real/pizza_hero.jpg',
-    gal: ['/assets/real/pizza_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/restaurante_hero.jpg', '/assets/real/tapas_bar.jpg', '/assets/real/asador_pollo.jpg'],
+    gal: ['/assets/real/pizza_hero.jpg', '/assets/real/burger_kebab.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tapas_bar.jpg', '/assets/real/terraza_bar.jpg'],
     kw: ['pizzer', 'pizza', 'burger', 'hamburgues', 'smash', 'kebab', 'durum', 'bocadillos', 'comida rapida', 'domicilio'],
     services: [
       ['Pizza Napolitana Trufada / Burrata (32 cm)', 'Masa fermentada 48h en horno de piedra', '12,90 €'],
@@ -1494,7 +1494,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Pan artesano de masa madre, bollería de mantequilla y tartas por encargo.',
     story: 'Horneamos a diario en nuestro obrador con harinas limpias y mantequilla pura. Reserva tus barras especiales, empanadas, roscones o tartas personalizadas.',
     img: '/assets/real/panaderia_brunch.jpg',
-    gal: ['/assets/real/panaderia_brunch.jpg', '/assets/real/cafeteria_hero.jpg', '/assets/real/carniceria_hero.jpg', '/assets/real/fruteria_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg'],
+    gal: ['/assets/real/panaderia_brunch.jpg', '/assets/real/cafeteria_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/fruteria_hero.jpg', '/assets/real/comercio_regalo.jpg'],
     kw: ['panader', 'pasteler', 'obrador', 'confiteria', 'reposteria', 'tartas personalizadas', 'masa madre', 'roscon', 'empanada'],
     services: [
       ['Tarta Artesana de Cumpleaños / Celebración (8–12 rac.)', 'Personalizada con dedicatoria · Bizcocho, trufa, nata o fruta', 'Desde 26 €'],
@@ -1556,7 +1556,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Fruta y verdura recién traída de la huerta, conservas selectas y cestas regalo.',
     story: 'Seleccionamos a diario género en su punto justo de maduración. Pide tu caja semanal preparada o encarga cestas de fruta y productos gourmet.',
     img: '/assets/real/fruteria_hero.jpg',
-    gal: ['/assets/real/fruteria_hero.jpg', '/assets/real/cafeteria_hero.jpg', '/assets/real/panaderia_brunch.jpg', '/assets/real/carniceria_hero.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg'],
+    gal: ['/assets/real/fruteria_hero.jpg', '/assets/real/panaderia_brunch.jpg', '/assets/real/cafeteria_hero.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/restaurante_work_1.jpg', '/assets/real/restaurante_work_2.jpg'],
     kw: ['fruter', 'verduler', 'huerta', 'ecologic', 'herbolario', 'gourmet', 'queseria', 'vinoteca', 'ultramarinos', 'alimentacion'],
     services: [
       ['Caja Semanal de Fruta y Verdura de Temporada (8 kg)', 'Tomate con sabor, cítricos, plátano canario y verdura fresca', '24,90 €'],
@@ -1590,7 +1590,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Ramos naturales hechos al momento, plantas, bodas y entregas en el mismo día.',
     story: 'Diseñamos ramos de temporada, centros preservados y arreglos funerarios urgentes con entrega propia en mano sin intermediarios que recorten flores.',
     img: '/assets/real/floristeria_hero.jpg',
-    gal: ['/assets/real/floristeria_hero.jpg', '/assets/real/fotografo_hero.jpg', '/assets/real/eventos_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tienda_work_1.jpg'],
+    gal: ['/assets/real/floristeria_hero.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/eventos_hero.jpg', '/assets/real/fotografo_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg'],
     kw: ['florister', 'ramos de flores', 'arte floral', 'plantas', 'flores a domicilio', 'ramo novia', 'corona funeraria', 'rosas'],
     services: [
       ['Ramo Artesano de Temporada / Rosas Frescas', 'Envuelto en papel kraft y lazo + tarjeta dedicatoria', 'Desde 32 €'],
@@ -1621,7 +1621,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Tus trajes, vestidos de fiesta, edredones y arreglos de costura listos a tiempo.',
     story: 'Tratamiento delicado desmanchante prenda a prenda, limpieza higienizante de nórdicos y alfombras, bajos de pantalón, cremalleras y entallados con aviso por WhatsApp.',
     img: '/assets/real/tintoreria_hero.jpg',
-    gal: ['/assets/real/tintoreria_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/zapateria_hero.jpg', '/assets/real/moviles_hero.jpg'],
+    gal: ['/assets/real/tintoreria_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/tapicero_hero.jpg'],
     kw: ['tintorer', 'lavander', 'arreglos de ropa', 'costur', 'modist', 'planchado', 'limpieza en seco', 'edredon', 'alfombras', 'vestido de novia'],
     services: [
       ['Limpieza y Planchado de Traje Completo (2 piezas)', 'Acabado sastrería listo en percha funda', '16,50 €'],
@@ -1651,7 +1651,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Cambio de pantalla, batería, conector de carga y ordenadores en el mismo día.',
     story: 'Reparamos iPhone, Samsung, Xiaomi, iPad, consolas y portátiles en laboratorio propio con microsoldadura, manteniendo tus fotos y datos intactos.',
     img: '/assets/real/moviles_hero.jpg',
-    gal: ['/assets/real/moviles_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tintoreria_hero.jpg', '/assets/real/zapateria_hero.jpg'],
+    gal: ['/assets/real/moviles_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tienda_work_3.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/copisteria_hero.jpg'],
     kw: ['reparacion de moviles', 'pantalla rota', 'iphone', 'samsung', 'xiaomi', 'informatica', 'ordenadores', 'portatil', 'consolas', 'microsoldadura'],
     services: [
       ['Cambio de Pantalla rota en 1 Hora', 'OLED / Original o Compatible Premium + cristal templado', 'Desde 55 €'],
@@ -1681,7 +1681,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Devuelve la vida a tus zapatos, botas, zapatillas deportivas y bolsos de piel.',
     story: 'Cambio de tapas y medias suelas Vibram antideslizantes, cosido, hormas para ensanchar, teñido e hidratación de bolsos y duplicado rápido de llaves.',
     img: '/assets/real/zapateria_hero.jpg',
-    gal: ['/assets/real/zapateria_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tintoreria_hero.jpg', '/assets/real/moviles_hero.jpg'],
+    gal: ['/assets/real/zapateria_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tapicero_hero.jpg', '/assets/real/cerrajeria_llaves.jpg'],
     kw: ['zapater', 'reparacion de calzado', 'remendon', 'suelas', 'tapas zapatos', 'vibram', 'reparar bolso', 'limpieza zapatillas'],
     services: [
       ['Cambio de Tapas y Medias Suelas Antideslizantes', 'Goma Vibram o cuero de alta durabilidad (el par)', 'Desde 14 €'],
@@ -1711,7 +1711,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Impresión de apuntes, encuadernación, tarjetas, cartas de restaurante y vinilos.',
     story: 'Mándanos tus archivos desde el móvil y pasa directo a recogerlos encuadernados sin esperar cola, o encarga tarjetas, flyers, lonas y ropa laboral.',
     img: '/assets/real/copisteria_hero.jpg',
-    gal: ['/assets/real/copisteria_hero.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tintoreria_hero.jpg', '/assets/real/zapateria_hero.jpg'],
+    gal: ['/assets/real/copisteria_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/despacho_work_4.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/academia_hero.jpg'],
     kw: ['copister', 'imprent', 'fotocopias', 'encuadernacion', 'vinilos', 'rotulos', 'tarjetas de visita', 'carteleria', 'camisetas personalizadas'],
     services: [
       ['Impresión Apuntes / Temario Oposiciones + Espiral', 'Blanco/negro o color doble cara papel 80g/100g', 'Desde 0,03 €/pág'],
@@ -1853,7 +1853,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Sácate el carnet de coche o moto a la primera con test online y horarios flexibles.',
     story: 'Cursos intensivos de teórica, app oficial de exámenes DGT en tu móvil y clases prácticas de coche (manual/automático) y moto A2/A sin listas de espera eternas.',
     img: '/assets/real/autoescuela_hero.jpg',
-    gal: ['/assets/real/autoescuela_hero.jpg', '/assets/real/academia_hero.jpg', '/assets/real/guarderia_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/despacho_work_2.jpg', '/assets/real/copisteria_hero.jpg'],
+    gal: ['/assets/real/autoescuela_hero.jpg', '/assets/real/compraventa_hero.jpg', '/assets/real/motos_hero.jpg', '/assets/real/academia_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/detail_work_3.jpg'],
     kw: ['autoescuela', 'carnet de conducir', 'permiso b', 'carnet moto', 'permiso a2', 'cap', 'practicas de conducir', 'teorico intensivo'],
     services: [
       ['Matrícula Permiso B (Coche) + Curso Teórico + App Test', 'Material actualizado DGT + intensivos presenciales/online', 'Desde 99 €'],
@@ -1882,7 +1882,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Inglés oficial Cambridge y refuerzo de Primaria, ESO y Bachillerato con resultados.',
     story: 'Grupos de máximo 6 alumnos por nivel, prueba de nivel gratuita, seguimiento mensual a padres y simulacros reales para EBAU/Selectividad y títulos B1, B2 y C1.',
     img: '/assets/real/academia_hero.jpg',
-    gal: ['/assets/real/academia_hero.jpg', '/assets/real/guarderia_hero.jpg', '/assets/real/autoescuela_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/despacho_work_2.jpg', '/assets/real/copisteria_hero.jpg'],
+    gal: ['/assets/real/academia_hero.jpg', '/assets/real/academia_work_1.jpg', '/assets/real/academia_work_2.jpg', '/assets/real/guarderia_hero.jpg', '/assets/real/guarderia_work_1.jpg', '/assets/real/autoescuela_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/despacho_work_2.jpg'],
     kw: ['academia', 'ingles', 'cambridge', 'clases particulares', 'refuerzo escolar', 'ebau', 'selectividad', 'oposiciones', 'matematicas'],
     services: [
       ['Prueba de Nivel Gratuita + Clase de Prueba', 'Ubicamos al alumno en su grupo exacto sin compromiso', 'Gratis'],
@@ -1911,7 +1911,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Un segundo hogar luminoso, seguro y lleno de cariño para tu bebé de 0 a 3 años.',
     story: 'Educadoras tituladas, patio exterior soleado, cocina casera elaborada a diario, flexibilidad horaria de 07:30 a 17:30 y tramitación de becas y cheque infantil.',
     img: '/assets/real/guarderia_hero.jpg',
-    gal: ['/assets/real/guarderia_hero.jpg', '/assets/real/academia_hero.jpg', '/assets/real/autoescuela_hero.jpg', '/assets/real/despacho_work_1.jpg', '/assets/real/despacho_work_2.jpg', '/assets/real/copisteria_hero.jpg'],
+    gal: ['/assets/real/guarderia_hero.jpg', '/assets/real/guarderia_work_1.jpg', '/assets/real/guarderia_work_2.jpg', '/assets/real/logopedia_hero.jpg', '/assets/real/academia_hero.jpg', '/assets/real/academia_work_1.jpg', '/assets/real/academia_work_2.jpg', '/assets/real/psicologia_hero.jpg'],
     kw: ['guarder', 'escuela infantil', 'centro infantil', 'ludoteca', 'bebes', '0 a 3 anos', 'cheque guarderia'],
     services: [
       ['Visita Guiada Privada para Familias (Conoce el Centro)', 'Te enseñamos aulas, patio, cocina y proyecto educativo', 'Cita Gratis'],
@@ -2035,7 +2035,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Recuerdos naturales llenos de emoción y fotografía profesional para marcas.',
     story: 'Reportajes documentales de boda y comunión sin posados forzados, sesiones newborn y embarazo en estudio de luz natural, fotos DNI y vídeo corporativo.',
     img: '/assets/real/fotografo_hero.jpg',
-    gal: ['/assets/real/fotografo_hero.jpg', '/assets/real/eventos_hero.jpg', '/assets/real/floristeria_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tienda_work_1.jpg'],
+    gal: ['/assets/real/fotografo_hero.jpg', '/assets/real/eventos_hero.jpg', '/assets/real/floristeria_hero.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg'],
     kw: ['fotograf', 'estudio fotografico', 'reportaje boda', 'comunion', 'newborn', 'embarazo', 'videografo', 'audiovisual'],
     services: [
       ['Sesión en Estudio / Exterior (Embarazo, Familia, Bebé)', 'Galería digital alta resolución + copias fine art', 'Desde 135 €'],
@@ -2072,7 +2072,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'DJ animador, sonido e iluminación profesional, fotomatón 360 y decoración de eventos.',
     story: 'Hacemos que tu boda, comunión, cumpleaños o evento de empresa sea inolvidable: cabina DJ elegante, sonido cristalino, plataforma 360º, letras luminosas y catering.',
     img: '/assets/real/eventos_hero.jpg',
-    gal: ['/assets/real/eventos_hero.jpg', '/assets/real/fotografo_hero.jpg', '/assets/real/floristeria_hero.jpg', '/assets/real/peluqueria_work_1.jpg', '/assets/real/restaurante_work_2.jpg', '/assets/real/tienda_work_1.jpg'],
+    gal: ['/assets/real/eventos_hero.jpg', '/assets/real/eventos_work_1.jpg', '/assets/real/eventos_work_2.jpg', '/assets/real/eventos_work_3.jpg', '/assets/real/fotografo_hero.jpg', '/assets/real/floristeria_hero.jpg', '/assets/real/terraza_bar.jpg', '/assets/real/comercio_regalo.jpg'],
     kw: ['eventos', 'dj', 'discomovil', 'sonido e iluminacion', 'fotomaton', 'plataforma 360', 'animacion infantil', 'catering', 'wedding planner'],
     services: [
       ['Pack DJ Boda Completo (Ceremonia + Cóctel + Barra Libre)', 'Sonido profesional, iluminación robótica y reunión musical', 'Desde 650 €'],
@@ -2139,7 +2139,7 @@ const OFICIOS_RAW_LIST = [
     tagline: 'Nuestro escaparate abierto 24 horas en tu móvil con reserva directa por WhatsApp.',
     story: 'Descubre nuestras novedades, consulta tallas o disponibilidad al instante y aparta tu artículo favorito para probártelo en tienda o recibirlo en casa.',
     img: '/assets/real/tienda_hero.jpg',
-    gal: ['/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tintoreria_hero.jpg', '/assets/real/zapateria_hero.jpg', '/assets/real/moviles_hero.jpg'],
+    gal: ['/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tienda_work_3.jpg', '/assets/real/comercio_regalo.jpg', '/assets/real/floristeria_hero.jpg', '/assets/real/zapateria_hero.jpg', '/assets/real/tintoreria_hero.jpg'],
     kw: ['tienda', 'comercio', 'boutique', 'moda', 'ropa', 'joyeria', 'relojeria', 'perfumeria', 'papeleria', 'libreria', 'regalos', 'merceria', 'ferreteria'],
     services: [
       ['Reserva de Prenda / Talla / Artículo para Probar en Tienda', 'Te lo guardamos 24h a tu nombre sin compromiso', 'Reserva 0 €'],
@@ -2186,14 +2186,70 @@ const OFICIOS_CAT_LABELS = OFICIOS_CATEGORIES.reduce((acc, c) => {
   return acc;
 }, {});
 
+function miwebSlugServiceId(title, idx) {
+  const base = miwebNormalizeStr(title || '').replace(/\s+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
+  return base ? `${base}-${idx + 1}` : `servicio-${idx + 1}`;
+}
+
+function miwebParseNumericPrice(priceStr) {
+  const m = String(priceStr || '').replace(',', '.').match(/(\d+(?:\.\d+)?)/);
+  return m ? parseFloat(m[1]) : 0;
+}
+
+function miwebNormalizeServiceItem(item, idx) {
+  const rawObj = Array.isArray(item)
+    ? { title: item[0], meta: item[1], price: item[2] }
+    : Object.assign({}, item || {});
+  const title = String(rawObj.title || rawObj.nombre || ('Servicio ' + (idx + 1))).trim();
+  const price = String(rawObj.price || (rawObj.precio ? (rawObj.precio + ' €') : 'Consultar')).trim();
+  const precio = typeof rawObj.precio === 'number' && !isNaN(rawObj.precio)
+    ? rawObj.precio
+    : miwebParseNumericPrice(price);
+  const id = String(rawObj.id || miwebSlugServiceId(title, idx));
+  return {
+    id,
+    nombre: title,
+    title,
+    meta: String(rawObj.meta || 'Servicio profesional con precio claro').trim(),
+    precio,
+    price,
+    moneda: rawObj.moneda || 'EUR'
+  };
+}
+
+function miwebBuildNaturalWaSummary(raw, services) {
+  const firstSrv = (services && services[0]) ? services[0] : { title: raw.label || 'Servicio', price: '' };
+  const sName = String(firstSrv.title || raw.label || 'servicio').split(/[·\(]/)[0].trim();
+  const sPrice = firstSrv.price && !/consultar|presupuesto|directo/i.test(firstSrv.price) ? ` (${firstSrv.price})` : '';
+  const bName = raw.defaultName || raw.label || 'equipo';
+  const act = raw.actionType || 'agenda_citas';
+  if (act === 'urgencia_o_llaves') {
+    return `«Hola ${bName}, necesito ayuda con ${sName.toLowerCase()}${sPrice} en mi dirección. ¿Podéis indicarme disponibilidad?»`;
+  }
+  if (act === 'medidas_presupuesto') {
+    return `«Hola ${bName}, querría presupuesto orientativo para ${sName.toLowerCase()} indicando medidas aproximadas y zona.»`;
+  }
+  if (act === 'motor_diagnostico') {
+    return `«Hola ${bName}, querría pedir cita en el taller para ${sName.toLowerCase()}${sPrice} esta semana.»`;
+  }
+  if (act === 'recepcion_taller_local') {
+    return `«Hola ${bName}, quería consultar disponibilidad y tarifa para ${sName.toLowerCase()}${sPrice} pasando hoy por tienda.»`;
+  }
+  if (act === 'encargo_sin_cola') {
+    return `«Hola ${bName}, me gustaría dejar encargado ${sName.toLowerCase()}${sPrice} para pasar a recogerlo a las 13:30.»`;
+  }
+  if (act === 'mesa_carta') {
+    return `«Hola ${bName}, querría reservar mesa para 4 personas este sábado a las 14:30. ¿Tenéis disponibilidad?»`;
+  }
+  if (act === 'filtro_clientes') {
+    return `«Hola ${bName}, he visto vuestra web y me gustaría agendar una primera consulta para ${sName.toLowerCase()}.»`;
+  }
+  return `«Hola ${bName}, me gustaría reservar cita para ${sName.toLowerCase()}${sPrice} este jueves por la tarde.»`;
+}
+
 function hydrateRawOficio(raw) {
   const modMeta = ACTION_MODULES_META[raw.actionType] || ACTION_MODULES_META.agenda_citas;
-  const services = (raw.services || []).map(item => {
-    if (Array.isArray(item)) {
-      return { title: item[0], meta: item[1], price: item[2] };
-    }
-    return item;
-  });
+  const services = (raw.services || []).map((item, idx) => miwebNormalizeServiceItem(item, idx));
   return {
     id: raw.id,
     cat: raw.cat,
@@ -2234,6 +2290,7 @@ function hydrateRawOficio(raw) {
       '• Detalle confirmado desde la web',
       '• Cliente directo en WhatsApp (0% comisión)'
     ],
+    naturalWaMsg: raw.naturalWaMsg || miwebBuildNaturalWaSummary(raw, services),
     isCustom: false
   };
 }
@@ -2405,6 +2462,30 @@ function miwebBuildCustomOficio(rawText, customDay) {
       modelLabel: '2. Modelo, detalle o elemento afectado',
       modelPlaceholder: `Ej. Detalle para ${tradeLower} en ${parsed.city}`
     };
+  } else if (/(piscin|gunitad|gresite|depurador|clorador|vaso de piscina)/.test(tNorm)) {
+    actionType = 'medidas_presupuesto';
+    cat = 'hogar';
+    emoji = '🏊';
+    icon = 'ph-drop';
+    theme = 'royal';
+    sceneKind = 'woodwork';
+    img = '/assets/real/jardineria_hero.jpg';
+    gal = ['/assets/real/jardineria_hero.jpg', '/assets/real/reformas_hero.jpg', '/assets/real/reformas_work_1.jpg', '/assets/real/reformas_work_2.jpg', '/assets/real/reformas_work_3.jpg', '/assets/real/hogar_work_1.jpg'];
+    services = [
+      { title: 'Revestimiento Completo en Gresite o Liner Armado', meta: 'Impermeabilización garantizada + rejuntado epoxi antialgas', price: 'Desde 1.490 €' },
+      { title: 'Detección y Reparación de Fugas en Vaso y Tuberías', meta: 'Prueba de presión sin obra innecesaria + sellado técnico', price: 'Desde 180 €' },
+      { title: 'Conversión a Cloración Salina + Cuadro Depuradora', meta: 'Agua suave sin olor a cloro y control automático de pH', price: 'Desde 790 €' },
+      { title: 'Reforma de Coronación, Playa y Escalera Romana', meta: 'Piedra atérmica antideslizante e iluminación LED subacuática', price: 'Presupuesto' }
+    ];
+    wcfg = {
+      heading: `Calcula tu presupuesto de ${tradeLower} con medidas`,
+      sub: 'Indica dimensiones aproximadas del vaso (ej. 8×4 m) y qué mejora necesitas.',
+      dimLabel: '2. Medidas aproximadas de la piscina (largo × ancho)',
+      dimPlaceholder: 'Ej. Piscina 8 × 4 m (profundidad media 1,50 m)',
+      dimChips: ['6 × 3 m', '8 × 4 m', '10 × 5 m', 'Comunitaria'],
+      matLabel: '3. Actuación principal solicitada',
+      materials: ['Cambio de gresite / liner', 'Reparar pérdida de agua', 'Clorador salino + luces LED', 'Reforma integral con playa']
+    };
   } else if (/(medida|instal|montaj|aislamient|tejado|cubierta|chimenea|deshollin|piedra|marmol|encimera|escayola|pladur|pocer|pozo|impermeab|parquet|cesped|vallad|cerramient|rotul|carpa)/.test(tNorm)) {
     actionType = 'medidas_presupuesto';
     cat = 'hogar';
@@ -2413,7 +2494,7 @@ function miwebBuildCustomOficio(rawText, customDay) {
     theme = 'gold';
     sceneKind = 'woodwork';
     img = '/assets/real/carpinteria_hero.jpg';
-    gal = ['/assets/real/carpinteria_hero.jpg', '/assets/real/reformas_hero.jpg', '/assets/real/reformas_work_2.jpg'];
+    gal = ['/assets/real/carpinteria_hero.jpg', '/assets/real/reformas_hero.jpg', '/assets/real/reformas_work_1.jpg', '/assets/real/reformas_work_2.jpg', '/assets/real/reformas_work_3.jpg'];
     services = [
       { title: `Trabajo Principal · ${tradeTitle} a Medida`, meta: 'Materiales de primera calidad e instalación limpia', price: 'Presupuesto' },
       { title: 'Intervención / Mantenimiento Estándar', meta: 'Servicio rápido en vivienda, chalet o local', price: 'Desde 89 €' },
@@ -2428,6 +2509,26 @@ function miwebBuildCustomOficio(rawText, customDay) {
       dimChips: ['Trabajo puntual', 'Estancia mediana', 'Vivienda completa', 'Local / Nave'],
       matLabel: '3. Estado o acabado deseado',
       materials: ['Instalación nueva a medida', 'Reparación / Mantenimiento', 'Sustituir existente', 'Necesito asesoramiento']
+    };
+  } else if (/(acupuntur|homeopat|naturopat|quiropract|reflexolog|reiki|shiatsu|medicina tradicional|terapia holistica|biomomagnet|osteopat)/.test(tNorm)) {
+    actionType = 'agenda_citas';
+    cat = 'salud';
+    emoji = '🪷';
+    icon = 'ph-heartbeat';
+    theme = 'sage';
+    sceneKind = 'clinic';
+    img = '/assets/real/fisioterapia_hero.jpg';
+    gal = ['/assets/real/fisioterapia_hero.jpg', '/assets/real/spa_hero.jpg', '/assets/real/clinica_work_1.jpg', '/assets/real/clinica_work_2.jpg', '/assets/real/clinica_hero.jpg', '/assets/real/psicologia_hero.jpg'];
+    services = [
+      { title: `1ª Sesión de ${tradeTitle} + Valoración Integral`, meta: 'Historia clínica detallada y primera sesión en cabina privada (60 min)', price: '55 €' },
+      { title: `Sesión de Seguimiento · ${tradeTitle}`, meta: 'Tratamiento personalizado para dolor, estrés o descanso (50 min)', price: '42 €' },
+      { title: 'Tratamiento Combinado (Dolor Crónico, Ansiedad o Migraña)', meta: 'Protocolo específico adaptado a tu evolución', price: '48 €' },
+      { title: 'Bono 5 Sesiones Terapéuticas', meta: 'Ahorro directo con flexibilidad horaria', price: '185 €' }
+    ];
+    wcfg = {
+      heading: `Reserva tu sesión de ${tradeLower} sin esperas`,
+      sub: 'Elige primera valoración o sesión de seguimiento y tu tramo horario preferido.',
+      clientPlaceholder: `Ej. Elena · 1ª sesión de ${tradeLower} (dolor cervical / estrés)`
     };
   } else if (/(coche|auto|camion|furgon|caravan|autocaravan|remolque|barco|nautic|tractor|agricol)/.test(tNorm)) {
     actionType = 'motor_diagnostico';
@@ -2529,9 +2630,9 @@ function miwebBuildCustomOficio(rawText, customDay) {
     emoji = '✨';
     icon = 'ph-calendar-check';
     theme = 'royal';
-    sceneKind = 'beauty';
-    img = '/assets/real/clinica_work_2.jpg';
-    gal = ['/assets/real/clinica_work_2.jpg', '/assets/real/tienda_hero.jpg', '/assets/real/peluqueria_hero.jpg'];
+    sceneKind = 'shop';
+    img = '/assets/real/tienda_hero.jpg';
+    gal = ['/assets/real/tienda_hero.jpg', '/assets/real/tienda_work_1.jpg', '/assets/real/tienda_work_2.jpg', '/assets/real/tienda_work_3.jpg', '/assets/real/comercio_regalo.jpg'];
     services = [
       { title: `Sesión / Servicio Principal · ${tradeTitle}`, meta: 'Atención personalizada sin esperas bajo cita', price: 'Desde 35 €' },
       { title: 'Primera Valoración y Asesoramiento a Medida', meta: 'Analizamos qué necesitas con trato directo', price: 'Consultar' },
@@ -2545,8 +2646,9 @@ function miwebBuildCustomOficio(rawText, customDay) {
     };
   }
 
+  services = services.map((s, idx) => miwebNormalizeServiceItem(s, idx));
   const modMeta = ACTION_MODULES_META[actionType];
-  return {
+  const customRawObj = {
     id: 'otro',
     cat,
     categoryLabel: OFICIOS_CAT_LABELS[cat] || 'Oficio Especializado',
@@ -2588,15 +2690,23 @@ function miwebBuildCustomOficio(rawText, customDay) {
     ],
     isCustom: true
   };
+  customRawObj.naturalWaMsg = miwebBuildNaturalWaSummary(customRawObj, services);
+  return customRawObj;
 }
 
 // Detecta oficio nativo entre los +65 o activa el Respaldo Universal Inteligente si hay texto real de oficio nuevo
 function miwebDetectOficioMatch(rawText) {
   const qRaw = String(rawText || '').trim();
-  if (!qRaw) return { matched: false, id: 'peluqueria', preset: MIWEB_OFICIOS_BY_ID.peluqueria };
+  if (!qRaw) return { matched: false, id: 'cerrajero', preset: MIWEB_OFICIOS_BY_ID.cerrajero };
 
   const parsed = miwebExtractTradeAndCity(qRaw);
   const norm = miwebNormalizeStr(parsed.bizName + ' ' + qRaw);
+
+  // Casos especializados compuestos que deben usar configuración a medida (ej. "Reformas de piscinas", "Acupuntura")
+  if (/(reformas? de piscinas?|rehabilitacion de piscinas?|construccion de piscinas?|gunitado|fugas? piscina|liner piscina|acupuntur|homeopat|naturopat|quiropract|reflexolog|reiki|shiatsu)/i.test(norm)) {
+    const customPreset = miwebBuildCustomOficio(qRaw);
+    return { matched: true, isCustom: true, id: 'otro', preset: customPreset };
+  }
 
   // Priorizar coincidencias específicas primero (ej. "peluqueria canina" antes que "peluqueria", "llaves de coche" / "cerrajero", "carpinteria de aluminio" antes que "carpintero")
   const priorityRules = [
@@ -2684,98 +2794,131 @@ function miwebDetectOficioMatch(rawText) {
     }
   }
 
-  // Si el usuario escribió un oficio no listado (ej. "Afinador de pianos Toledo", "Afilador de cuchillos", "Pescadería Costa", "Relojero"), activar Respaldo Universal Inteligente
-  const unlistedTradeRx = /(\bde\b|\bpara\b|afina|afila|repara|arregl|restaura|reloj|instrument|piano|guitarra|cuchill|coser|electrodomest|antena|portero|medida|instal|montaj|aislamient|tejado|cubierta|chimenea|deshollin|marmol|encimera|escayola|pocer|pozo|impermeab|vallad|carpa|camion|furgon|caravan|autocaravan|remolque|barco|nautic|tractor|agricol|queser|bodega|pescader|marisquer|congelad|churrer|freidur|helader|chocolat|catering|perit|arquitect|aparejad|topograf|ingenier|detective|notari|procurad|traduct|consultor|corredur|alquiler|paseador|adiestrador|entrenador|profesor|artesano|ceramist|flor|costur|bordad|serigraf|grabado|dron|topograf|ortoped|herbolari|parafarmacia|estanco|loteria|quiosco|papeleria|jugueteria|colchoneria|muebles|iluminacion|saneamiento|calefaccion|gas| Caldera)/i;
+  // Si el usuario escribió un oficio no listado (ej. "Afinador de pianos Toledo", "Acupuntura", "Reformas de piscinas", "Relojero"), activar Respaldo Universal Inteligente
+  const unlistedTradeRx = /(\bde\b|\bpara\b|acupuntur|homeopat|naturopat|quiropract|reflexolog|reiki|shiatsu|piscin|gunitad|afina|afila|repara|arregl|restaura|reloj|instrument|piano|guitarra|cuchill|coser|electrodomest|antena|portero|medida|instal|montaj|aislamient|tejado|cubierta|chimenea|deshollin|marmol|encimera|escayola|pocer|pozo|impermeab|vallad|carpa|camion|furgon|caravan|autocaravan|remolque|barco|nautic|tractor|agricol|queser|bodega|pescader|marisquer|congelad|churrer|freidur|helader|chocolat|catering|perit|arquitect|aparejad|topograf|ingenier|detective|notari|procurad|traduct|consultor|corredur|alquiler|paseador|adiestrador|entrenador|profesor|artesano|ceramist|flor|costur|bordad|serigraf|grabado|dron|ortoped|herbolari|parafarmacia|estanco|loteria|quiosco|papeleria|jugueteria|colchoneria|muebles|iluminacion|saneamiento|calefaccion|gas|caldera)/i;
   if (norm.length >= 4 && unlistedTradeRx.test(norm)) {
     const customPreset = miwebBuildCustomOficio(qRaw);
     return { matched: true, isCustom: true, id: 'otro', preset: customPreset };
   }
 
-  return { matched: false, isCustom: false, id: 'peluqueria', preset: MIWEB_OFICIOS_BY_ID.peluqueria };
+  return { matched: false, isCustom: false, id: 'cerrajero', preset: MIWEB_OFICIOS_BY_ID.cerrajero };
 }
 
-// Ilustraciones vectoriales 2D limpias por familia de oficio (para #solucion-nicho y videos-tiktok.html)
+// Ilustraciones vectoriales 2D de alta precisión por familia de oficio (para #solucion-nicho y videos-tiktok.html)
 function miwebRenderSceneSVG(sceneKind, isSolution) {
   const accent = isSolution ? '#4F46E5' : '#E11D48';
-  const soft = isSolution ? '#EEF2FF' : '#FFE4E6';
+  const soft = isSolution ? '#EEF2FF' : '#FFF1F2';
   const badgeOk = isSolution ? '#10B981' : '#F43F5E';
+  const strokeMuted = isSolution ? '#C7D2FE' : '#FECDD3';
 
   if (sceneKind === 'woodwork') {
     return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-      <rect x="14" y="84" width="192" height="10" rx="5" fill="#CBD5E1"/>
-      <rect x="28" y="20" width="76" height="64" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2.5"/>
-      <line x1="66" y1="20" x2="66" y2="84" stroke="#D97706" stroke-width="2"/>
-      <circle cx="59" cy="52" r="2.5" fill="#92400E"/><circle cx="73" cy="52" r="2.5" fill="#92400E"/>
-      <line x1="28" y1="12" x2="104" y2="12" stroke="${accent}" stroke-width="2" stroke-dasharray="3 2"/>
-      <text x="66" y="9" text-anchor="middle" font-size="8.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '240 × 240 cm · ROBLE' : '¿MEDIDAS? ¿ACABADO?'}</text>
-      <g transform="translate(132,26)">
-        <rect x="0" y="16" width="58" height="42" rx="10" fill="${soft}" stroke="${accent}" stroke-width="2"/>
-        <circle cx="29" cy="8" r="10" fill="#FDE68A"/>
-        <path d="M14 44 L44 26" stroke="${badgeOk}" stroke-width="4" stroke-linecap="round"/>
-      </g>
+      <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+      <!-- Plano técnico de carpintería / medidas -->
+      <rect x="22" y="24" width="76" height="68" rx="6" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+      <line x1="60" y1="24" x2="60" y2="92" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <line x1="22" y1="58" x2="98" y2="58" stroke="#F59E0B" stroke-width="1.5"/>
+      <circle cx="53" cy="48" r="2.2" fill="#92400E"/><circle cx="67" cy="48" r="2.2" fill="#92400E"/>
+      <line x1="22" y1="16" x2="98" y2="16" stroke="${accent}" stroke-width="2"/>
+      <circle cx="22" cy="16" r="2.5" fill="${accent}"/><circle cx="98" cy="16" r="2.5" fill="${accent}"/>
+      <!-- Tarjeta derecha de estado -->
+      <rect x="110" y="22" width="90" height="72" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+      <rect x="118" y="31" width="74" height="15" rx="4" fill="${soft}"/>
+      <text x="155" y="41.5" text-anchor="middle" font-size="7.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '240×240 CM · ROBLE' : '¿MEDIDAS? ¿ACABADO?'}</text>
+      <text x="155" y="58" text-anchor="middle" font-size="7.5" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? 'Presupuesto listo' : 'Visita en balde'}</text>
+      <rect x="124" y="68" width="62" height="16" rx="8" fill="${badgeOk}"/>
+      <text x="155" y="79" text-anchor="middle" font-size="7.5" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ WHATSAPP OK' : '✕ SIN FILTRAR'}</text>
     </svg>`;
   }
 
   if (sceneKind === 'locksmith') {
     return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-      <rect x="22" y="18" width="52" height="78" rx="6" fill="#E2E8F0" stroke="#475569" stroke-width="2.5"/>
-      <circle cx="63" cy="58" r="4.5" fill="${accent}"/>
-      <g transform="translate(92,26)">
-        <rect x="0" y="0" width="104" height="64" rx="14" fill="${soft}" stroke="${accent}" stroke-width="2"/>
-        <circle cx="30" cy="32" r="13" fill="none" stroke="${accent}" stroke-width="4"/>
-        <path d="M43 32 H82 M70 32 V42 M79 32 V40" stroke="${accent}" stroke-width="4" stroke-linecap="round"/>
-        <text x="52" y="15" text-anchor="middle" font-size="8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '24H + MODELO LLAVE' : '19 LLAMADAS SIN DATOS'}</text>
-      </g>
+      <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+      <!-- Bombín / Llave técnica -->
+      <rect x="20" y="22" width="62" height="72" rx="12" fill="#FFFFFF" stroke="#475569" stroke-width="2"/>
+      <circle cx="51" cy="48" r="14" fill="${soft}" stroke="${accent}" stroke-width="2.2"/>
+      <circle cx="51" cy="45" r="4" fill="${accent}"/>
+      <path d="M48 48 L46 57 H56 L54 48 Z" fill="${accent}"/>
+      <rect x="30" y="72" width="42" height="11" rx="5.5" fill="${badgeOk}"/>
+      <text x="51" y="80" text-anchor="middle" font-size="6.8" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '24H / COPIA' : '19 LLAMADAS'}</text>
+      <!-- Panel de aviso -->
+      <rect x="94" y="22" width="106" height="72" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+      <text x="147" y="39" text-anchor="middle" font-size="7.8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'CALLE EXACTA O MODELO' : 'SIN DIRECCIÓN NI MODELO'}</text>
+      <rect x="104" y="47" width="86" height="14" rx="4" fill="#F8FAFC" stroke="#CBD5E1"/>
+      <text x="147" y="57" text-anchor="middle" font-size="7.2" font-weight="700" fill="#334155" font-family="IBM Plex Mono,monospace">${isSolution ? 'C/ Mayor 18 · León 2020' : '"¿Cuánto me cobras?"'}</text>
+      <rect x="112" y="68" width="70" height="16" rx="8" fill="${accent}"/>
+      <text x="147" y="79" text-anchor="middle" font-size="7.2" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ PRECIO CERRADO' : '✕ PARAR TALLER'}</text>
     </svg>`;
   }
 
   if (sceneKind === 'mechanic') {
     return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-      <rect x="24" y="22" width="8" height="74" rx="3" fill="#64748B"/>
-      <rect x="188" y="22" width="8" height="74" rx="3" fill="#64748B"/>
-      <rect x="32" y="60" width="156" height="6" rx="3" fill="#94A3B8"/>
-      <path d="M52 58 L66 36 H148 L166 58 Z" fill="${accent}"/>
-      <path d="M70 40 L78 52 H138 L144 40 Z" fill="#E0E7FF"/>
-      <circle cx="74" cy="60" r="10" fill="#0F172A"/><circle cx="74" cy="60" r="4.5" fill="#CBD5E1"/>
-      <circle cx="146" cy="60" r="10" fill="#0F172A"/><circle cx="146" cy="60" r="4.5" fill="#CBD5E1"/>
-      <rect x="64" y="76" width="92" height="18" rx="9" fill="${soft}" stroke="${accent}" stroke-width="1.5"/>
-      <text x="110" y="88" text-anchor="middle" font-size="8.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '4821 KLP · CITA LISTA' : 'SUELTA LA LLAVE 20 VECES'}</text>
+      <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+      <!-- Silueta vehículo + placa matrícula europea -->
+      <path d="M26 58 L38 38 H96 L108 58 Z" fill="${accent}"/>
+      <path d="M41 42 L47 53 H89 L93 42 Z" fill="#E0E7FF"/>
+      <rect x="20" y="55" width="94" height="13" rx="5" fill="#1E293B"/>
+      <circle cx="40" cy="68" r="9" fill="#0F172A"/><circle cx="40" cy="68" r="4" fill="#CBD5E1"/>
+      <circle cx="94" cy="68" r="9" fill="#0F172A"/><circle cx="94" cy="68" r="4" fill="#CBD5E1"/>
+      <!-- Placa de matrícula -->
+      <rect x="24" y="81" width="86" height="17" rx="4" fill="#FFFFFF" stroke="#1E293B" stroke-width="1.5"/>
+      <rect x="24" y="81" width="12" height="17" rx="2" fill="#1D4ED8"/>
+      <text x="72" y="92.5" text-anchor="middle" font-size="8.2" font-weight="800" fill="#0F172A" font-family="IBM Plex Mono,monospace">${isSolution ? '4821 KLP' : '¿MODELO?'}</text>
+      <!-- Ficha recepción -->
+      <rect x="122" y="22" width="80" height="76" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+      <text x="162" y="38" text-anchor="middle" font-size="7.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'FICHA DE TALLER' : 'BAJO EL ELEVADOR'}</text>
+      <text x="162" y="54" text-anchor="middle" font-size="7.2" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? 'Frenos · Mañana 9h' : '22 llamadas / día'}</text>
+      <rect x="131" y="68" width="62" height="18" rx="9" fill="${badgeOk}"/>
+      <text x="162" y="80" text-anchor="middle" font-size="7.2" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ CITA LISTA' : '✕ MANOS OCUPADAS'}</text>
     </svg>`;
   }
 
   if (sceneKind === 'food') {
     return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-      <ellipse cx="76" cy="76" rx="48" ry="14" fill="#E2E8F0"/>
-      <path d="M36 72 A40 34 0 0 1 116 72 Z" fill="#F59E0B"/>
-      <circle cx="76" cy="34" r="5" fill="#D97706"/>
-      <rect x="132" y="22" width="70" height="68" rx="12" fill="${soft}" stroke="${accent}" stroke-width="2"/>
-      <text x="167" y="42" text-anchor="middle" font-size="8.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '0% COMISIÓN' : '-30% EN APPS'}</text>
-      <text x="167" y="58" text-anchor="middle" font-size="8" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? 'Recogida 14:00' : 'Cola + Teléfono'}</text>
-      <circle cx="167" cy="74" r="7" fill="${badgeOk}"/>
+      <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+      <!-- Campana / Mesa / Comanda -->
+      <ellipse cx="60" cy="76" rx="38" ry="10" fill="#CBD5E1"/>
+      <path d="M28 72 A32 28 0 0 1 92 72 Z" fill="#F59E0B"/>
+      <circle cx="60" cy="40" r="4.5" fill="#D97706"/>
+      <rect x="26" y="84" width="68" height="14" rx="7" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5"/>
+      <text x="60" y="93.5" text-anchor="middle" font-size="7" font-weight="800" fill="#B45309" font-family="Outfit,sans-serif">${isSolution ? 'CARTA + RESERVA' : 'COLA EN PUERTA'}</text>
+      <!-- Comanda WhatsApp 0% comisión -->
+      <rect x="108" y="20" width="92" height="76" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+      <text x="154" y="37" text-anchor="middle" font-size="8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? '0% COMISIÓN APPS' : '-30% EN APPS'}</text>
+      <text x="154" y="53" text-anchor="middle" font-size="7.5" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? 'Recogida / Mesa 14:15' : '60 llamadas domingo'}</text>
+      <rect x="118" y="66" width="72" height="18" rx="9" fill="${badgeOk}"/>
+      <text x="154" y="78" text-anchor="middle" font-size="7.2" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ 100% TU MARGEN' : '✕ TELÉFONO ARDIENDO'}</text>
     </svg>`;
   }
 
   if (sceneKind === 'clinic') {
     return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-      <rect x="26" y="24" width="68" height="68" rx="16" fill="${soft}" stroke="${accent}" stroke-width="2"/>
-      <path d="M60 40 V76 M42 58 H78" stroke="${accent}" stroke-width="7" stroke-linecap="round"/>
-      <rect x="108" y="26" width="88" height="64" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-      <rect x="120" y="38" width="64" height="9" rx="4.5" fill="${soft}"/>
-      <rect x="120" y="53" width="48" height="9" rx="4.5" fill="#F1F5F9"/>
-      <text x="152" y="79" text-anchor="middle" font-size="8.5" font-weight="800" fill="${badgeOk}" font-family="Outfit,sans-serif">${isSolution ? 'AGENDA 24H ACTIVA' : 'RECEPCIÓN SATURADA'}</text>
+      <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+      <rect x="20" y="22" width="64" height="72" rx="14" fill="#FFFFFF" stroke="${accent}" stroke-width="2"/>
+      <path d="M52 38 V68 M37 53 H67" stroke="${accent}" stroke-width="6" stroke-linecap="round"/>
+      <text x="52" y="84" text-anchor="middle" font-size="6.8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'GABINETE' : 'EN CONSULTA'}</text>
+      <rect x="96" y="22" width="104" height="72" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+      <text x="148" y="39" text-anchor="middle" font-size="7.8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'CITA PREVIA FILTRADA' : 'RECEPCIÓN SATURADA'}</text>
+      <rect x="108" y="47" width="80" height="12" rx="4" fill="${soft}"/>
+      <text x="148" y="56" text-anchor="middle" font-size="7" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? '1ª Visita · Jueves 11:30' : '2 líneas sonando a la vez'}</text>
+      <rect x="114" y="67" width="68" height="17" rx="8.5" fill="${badgeOk}"/>
+      <text x="148" y="78" text-anchor="middle" font-size="7.2" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ AGENDA 24H OK' : '✕ PACIENTE ESPERA'}</text>
     </svg>`;
   }
 
   // Default: beauty / repair / shop / office
   return `<svg viewBox="0 0 220 116" width="100%" height="100%" aria-hidden="true">
-    <rect x="24" y="20" width="76" height="76" rx="18" fill="${soft}" stroke="${accent}" stroke-width="2"/>
-    <circle cx="62" cy="48" r="14" fill="${accent}" opacity="0.18"/>
-    <circle cx="62" cy="48" r="7" fill="${accent}"/>
-    <rect x="42" y="70" width="40" height="8" rx="4" fill="${accent}"/>
-    <rect x="114" y="24" width="84" height="68" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-    <text x="156" y="47" text-anchor="middle" font-size="8.5" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'DIRECTO WHATSAPP' : 'LLAMADAS PERDIDAS'}</text>
-    <rect x="126" y="56" width="60" height="10" rx="5" fill="${soft}"/>
-    <circle cx="156" cy="78" r="6" fill="${badgeOk}"/>
+    <rect x="8" y="8" width="204" height="100" rx="14" fill="${soft}" stroke="${strokeMuted}" stroke-width="1.5"/>
+    <rect x="20" y="22" width="66" height="72" rx="14" fill="#FFFFFF" stroke="${accent}" stroke-width="2"/>
+    <circle cx="53" cy="48" r="14" fill="${soft}"/>
+    <circle cx="53" cy="48" r="6.5" fill="${accent}"/>
+    <rect x="33" y="70" width="40" height="11" rx="5.5" fill="${accent}"/>
+    <text x="53" y="78" text-anchor="middle" font-size="6.5" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? 'ONLINE 24H' : 'OCUPADO'}</text>
+    <rect x="98" y="22" width="102" height="72" rx="10" fill="#FFFFFF" stroke="${accent}" stroke-width="1.8"/>
+    <text x="149" y="39" text-anchor="middle" font-size="7.8" font-weight="800" fill="${accent}" font-family="Outfit,sans-serif">${isSolution ? 'RESERVA EN 15 SEG' : 'INTERRUPCIÓN CONSTANTE'}</text>
+    <text x="149" y="55" text-anchor="middle" font-size="7.2" font-weight="700" fill="#334155" font-family="Plus Jakarta Sans,sans-serif">${isSolution ? 'Servicio + Hora cerrada' : 'Guantes puestos + móvil'}</text>
+    <rect x="114" y="66" width="70" height="18" rx="9" fill="${badgeOk}"/>
+    <text x="149" y="78" text-anchor="middle" font-size="7.2" font-weight="800" fill="#FFFFFF" font-family="Outfit,sans-serif">${isSolution ? '✓ 0% COMISIÓN' : '✕ -25% EN APPS'}</text>
   </svg>`;
 }
 
@@ -2925,6 +3068,8 @@ if (typeof window !== 'undefined') {
   window.ACTION_MODULES_META = ACTION_MODULES_META;
   window.MIWEB_OFICIOS_LIST = MIWEB_OFICIOS_LIST;
   window.MIWEB_OFICIOS_BY_ID = MIWEB_OFICIOS_BY_ID;
+  window.miwebNormalizeStr = miwebNormalizeStr;
+  window.miwebFoldAccents = miwebNormalizeStr;
   window.miwebSearchOficios = miwebSearchOficios;
   window.miwebDetectOficioMatch = miwebDetectOficioMatch;
   window.miwebBuildCustomOficio = miwebBuildCustomOficio;

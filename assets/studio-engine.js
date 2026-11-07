@@ -148,7 +148,7 @@ function encodeSharePayload(st) {
       rv: Array.isArray(st.reviews) ? st.reviews.slice(0, 3) : [],
       lh: st.legalHolder || '', ln: st.legalNif || '', dm: st.desiredDomain || '',
       sv: (st.services || []).slice(0, 12), md: st.modules,
-      un: !!st.unlocked, pin: st.adminPin || 'PRO-4829',
+      un: !!st.unlocked, pin: st.adminPin || (typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slugifyName(st.name || 'negocio')) : ''),
       ex: st.expiresAt || (Date.now() + 24 * 3600 * 1000)
     };
     return btoa(unescape(encodeURIComponent(JSON.stringify(slim))))
@@ -201,7 +201,7 @@ function decodeSharePayload(b64) {
         scheduleMap: true, gallery: true, reviews: true, faq: true
       }, slim.md || {}),
       unlocked: !!slim.un,
-      adminPin: slim.pin || 'PRO-4829',
+      adminPin: slim.pin || (typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slugifyName(slim.n || 'negocio')) : ''),
       expiresAt: slim.ex || (Date.now() + 24 * 3600 * 1000)
     };
   } catch (e) { return null; }
@@ -236,7 +236,7 @@ function loadStudioState() {
       scheduleMap: true, gallery: true, reviews: true, faq: true
     },
     unlocked: false,
-    adminPin: 'PRO-4829',
+    adminPin: typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slugifyName(def.defaultName)) : '',
     buyerEmail: '',
     previewDevice: 'mobile',
     activeStep: 1,
@@ -280,9 +280,20 @@ function buildSectorActionWidgetHTML(st, preset) {
   const mode = normalizeActionType(st.actionType || preset.actionType);
   const wcfg = preset.wcfg || {};
   const srvList = Array.isArray(st.services) && st.services.length ? st.services : (preset.services || []);
-  const srvOpts = srvList.map(srv =>
-    `<option value="${escapeHtml(srv.title)} (${escapeHtml(srv.price)})">${escapeHtml(srv.title)} · ${escapeHtml(srv.price)}</option>`
-  ).join('');
+  const srvOpts = srvList.map((srv, idx) => {
+    const sId = srv.id || ('srv-' + (idx + 1));
+    return `<option value="${escapeHtml(srv.title)} (${escapeHtml(srv.price)})" data-service-id="${escapeHtml(sId)}" data-service-title="${escapeHtml(srv.title)}">${escapeHtml(srv.title)} · ${escapeHtml(srv.price)}</option>`;
+  }).join('');
+
+  const liveWaBoxHtml = `
+    <div class="wa-live-preview" id="wa-live-preview">
+      <div class="wa-live-head">
+        <span class="wa-live-dot"></span>
+        <span>Vista previa en vivo del WhatsApp que enviarás (0% comisión)</span>
+        <span class="wa-live-ticks">✓✓</span>
+      </div>
+      <div class="wa-live-bubble" id="wa-live-bubble"></div>
+    </div>`;
 
   // 1) MEDIDAS + PRESUPUESTO FILTRADO (Carpintero, Aluminio/PVC, Cristalero, Tapicero, Reformas, Pintor...)
   if (mode === 'medidas_presupuesto') {
@@ -295,15 +306,15 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Indica trabajo, medidas aproximadas y acabado para recibir valoración directa por WhatsApp.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="medidas_presupuesto">
           <div class="form-grid">
             <div>
               <label for="bk-service">1. Trabajo o servicio</label>
-              <select id="bk-service">${srvOpts}</select>
+              <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
             </div>
             <div>
               <label for="bk-material">${escapeHtml(wcfg.matLabel || '3. Acabado o material')}</label>
-              <select id="bk-material">
+              <select id="bk-material" onchange="syncLiveWaPreview()">
                 ${mats.map(m => `<option value="${escapeHtml(m)}">${escapeHtml(m)}</option>`).join('')}
               </select>
             </div>
@@ -314,12 +325,13 @@ function buildSectorActionWidgetHTML(st, preset) {
           </div>
           <div class="form-grid">
             <div>
-              <input type="text" id="bk-dims" value="${escapeHtml(dimChips[1] || '')}" placeholder="${escapeHtml(wcfg.dimPlaceholder || 'Ej. 240 × 220 cm (o m² aproximados)')}" />
+              <input type="text" id="bk-dims" oninput="syncLiveWaPreview()" value="${escapeHtml(dimChips[1] || '')}" placeholder="${escapeHtml(wcfg.dimPlaceholder || 'Ej. 240 × 220 cm (o m² aproximados)')}" />
             </div>
             <div>
-              <input type="text" id="bk-client" placeholder="Tu nombre y zona · Ej. Javier (${escapeHtml(st.city)})" />
+              <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Tu nombre y zona · Ej. Javier (${escapeHtml(st.city)})" />
             </div>
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('medidas_presupuesto')">
             <span>Enviar medidas y pedir presupuesto por WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -342,7 +354,7 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">Elige modo arriba para enviarnos la calle exacta o el modelo de llave, mando o equipo directo a nuestro WhatsApp.</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="urgencia_o_llaves">
           <div class="mode-tabs" role="tablist">
             <button type="button" class="mode-tab active" data-umode="urgencia" onclick="switchUrgentTab('urgencia')">${escapeHtml(tabUrg)}</button>
             <button type="button" class="mode-tab" data-umode="copia" onclick="switchUrgentTab('copia')">${escapeHtml(tabQuo)}</button>
@@ -353,13 +365,13 @@ function buildSectorActionWidgetHTML(st, preset) {
             <div class="form-grid">
               <div>
                 <label for="bk-urg-type">1. Qué ocurre ahora mismo</label>
-                <select id="bk-urg-type">
+                <select id="bk-urg-type" onchange="syncLiveWaPreview()">
                   ${urgOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
                 </select>
               </div>
               <div>
                 <label for="bk-urg-street">2. Calle exacta y número en ${escapeHtml(st.city)}</label>
-                <input type="text" id="bk-urg-street" placeholder="Ej. Calle Mayor 18, 3ºB · ${escapeHtml(st.city)}" />
+                <input type="text" id="bk-urg-street" oninput="syncLiveWaPreview()" placeholder="Ej. Calle Mayor 18, 3ºB · ${escapeHtml(st.city)}" />
               </div>
             </div>
           </div>
@@ -369,22 +381,23 @@ function buildSectorActionWidgetHTML(st, preset) {
             <div class="form-grid">
               <div>
                 <label for="bk-quo-type">1. Qué necesitas</label>
-                <select id="bk-quo-type">
+                <select id="bk-quo-type" onchange="syncLiveWaPreview()">
                   ${quoOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
                   ${srvOpts}
                 </select>
               </div>
               <div>
                 <label for="bk-quo-model">${escapeHtml(wcfg.modelLabel || '2. Marca y modelo (coche, mando, cerradura o equipo)')}</label>
-                <input type="text" id="bk-quo-model" placeholder="${escapeHtml(wcfg.modelPlaceholder || 'Ej. Seat León 2020 / Bombín Tesa / Mando garaje')}" />
+                <input type="text" id="bk-quo-model" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.modelPlaceholder || 'Ej. Seat León 2020 / Bombín Tesa / Mando garaje')}" />
               </div>
             </div>
           </div>
 
           <div style="margin-bottom:16px;">
             <label for="bk-client">3. Tu nombre (y cuándo pasas o teléfono)</label>
-            <input type="text" id="bk-client" placeholder="Ej. David · Paso hoy tarde / Urgente ahora" />
+            <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. David · Paso hoy tarde / Urgente ahora" />
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" id="bk-urg-submit" onclick="sendSectorWhatsApp('urgencia_o_llaves')">
             <span id="bk-urg-btn-txt">Enviar aviso urgente por WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -403,25 +416,25 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Déjanos matrícula/modelo y qué necesitas para tener recambios y box preparados.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="motor_diagnostico">
           <div class="form-grid">
             <div>
               <label for="bk-service">1. Servicio o pack elegido</label>
-              <select id="bk-service">${srvOpts}</select>
+              <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
             </div>
             <div>
               <label for="bk-plate">${escapeHtml(wcfg.plateLabel || '2. Matrícula y modelo del vehículo')}</label>
-              <input type="text" id="bk-plate" placeholder="${escapeHtml(wcfg.platePlaceholder || 'Ej. 4821 KLP · Seat León / Scooter 125')}" />
+              <input type="text" id="bk-plate" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.platePlaceholder || 'Ej. 4821 KLP · Seat León / Scooter 125')}" />
             </div>
           </div>
           <div class="form-grid">
             <div>
               <label for="bk-symptom">${escapeHtml(wcfg.symLabel || '3. Síntoma, medida o detalle')}</label>
-              <input type="text" id="bk-symptom" placeholder="${escapeHtml(wcfg.symPlaceholder || 'Ej. Ruido frenos / Toca revisión / Tapicería')}" />
+              <input type="text" id="bk-symptom" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.symPlaceholder || 'Ej. Ruido frenos / Toca revisión / Tapicería')}" />
             </div>
             <div>
               <label for="bk-client">4. Tu nombre</label>
-              <input type="text" id="bk-client" placeholder="Ej. Marcos" />
+              <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. Marcos" />
             </div>
           </div>
           <label>Preferencia de entrada</label>
@@ -431,6 +444,7 @@ function buildSectorActionWidgetHTML(st, preset) {
             <button type="button" class="slot-btn" onclick="pickSlot(this,'Esta semana mañanas')">Mañanas</button>
             <button type="button" class="slot-btn" onclick="pickSlot(this,'Esta semana tardes')">Tardes</button>
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('motor_diagnostico')">
             <span>Confirmar entrada en ${escapeHtml(st.name)} por WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -450,15 +464,15 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Indica dispositivo, prenda o artículo y te avisamos por WhatsApp en cuanto esté listo para recoger.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="recepcion_taller_local">
           <div class="form-grid">
             <div>
               <label for="bk-device">${escapeHtml(wcfg.itemLabel || '1. Dispositivo, prenda o artículo')}</label>
-              <input type="text" id="bk-device" placeholder="${escapeHtml(wcfg.itemPlaceholder || 'Ej. iPhone 13 / Traje 2 piezas / Botas piel')}" />
+              <input type="text" id="bk-device" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.itemPlaceholder || 'Ej. iPhone 13 / Traje 2 piezas / Botas piel')}" />
             </div>
             <div>
               <label for="bk-service">2. Avería o arreglo necesario</label>
-              <select id="bk-service" onchange="updateRepairEstimate(this)">${srvOpts}</select>
+              <select id="bk-service" onchange="updateRepairEstimate(this);syncLiveWaPreview();">${srvOpts}</select>
             </div>
           </div>
           <div class="live-est" id="bk-live-estimate">
@@ -473,8 +487,9 @@ function buildSectorActionWidgetHTML(st, preset) {
           </div>
           <div style="margin-bottom:16px;">
             <label for="bk-client">4. Tu nombre</label>
-            <input type="text" id="bk-client" placeholder="Ej. Víctor · Avisar por WhatsApp al terminar" />
+            <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. Víctor · Avisar por WhatsApp al terminar" />
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('recepcion_taller_local')">
             <span>Confirmar precio y dejar aviso en WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -494,15 +509,15 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Sin esperas al teléfono ni recargos de aplicaciones externas.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="encargo_sin_cola">
           <div class="form-grid">
             <div>
               <label for="bk-service">1. Producto, menú o encargo principal</label>
-              <select id="bk-service">${srvOpts}</select>
+              <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
             </div>
             <div>
               <label for="bk-qty">${escapeHtml(wcfg.qtyLabel || '2. Unidades y detalle del pedido')}</label>
-              <input type="text" id="bk-qty" placeholder="${escapeHtml(wcfg.qtyPlaceholder || 'Ej. 2 unidades / Detalle o dedicatoria')}" />
+              <input type="text" id="bk-qty" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.qtyPlaceholder || 'Ej. 2 unidades / Detalle o dedicatoria')}" />
             </div>
           </div>
           <label>3. Hora exacta de recogida en tienda (sin cola)</label>
@@ -511,8 +526,9 @@ function buildSectorActionWidgetHTML(st, preset) {
           </div>
           <div style="margin-bottom:16px;">
             <label for="bk-client">4. A nombre de</label>
-            <input type="text" id="bk-client" placeholder="Ej. Carmen · Recojo en mostrador" />
+            <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. Carmen · Recojo en mostrador" />
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('encargo_sin_cola')">
             <span>Enviar encargo directo al WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -532,11 +548,11 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Elige zona, comensales y turno. Confirmación directa con nuestro equipo.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="mesa_carta">
           <div class="form-grid">
             <div>
               <label for="bk-zone">1. Zona y nº de comensales</label>
-              <select id="bk-zone">
+              <select id="bk-zone" onchange="syncLiveWaPreview()">
                 <option value="Terraza exterior · 2 personas">Terraza exterior · 2 personas</option>
                 <option value="Terraza exterior · 4 personas" selected>Terraza exterior · 4 personas</option>
                 <option value="Salón interior · 2 personas">Salón interior · 2 personas</option>
@@ -547,7 +563,7 @@ function buildSectorActionWidgetHTML(st, preset) {
             </div>
             <div>
               <label for="bk-service">2. Plato, arroz o menú destacado</label>
-              <select id="bk-service">${srvOpts}</select>
+              <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
             </div>
           </div>
           <label>3. Turno y hora</label>
@@ -556,8 +572,9 @@ function buildSectorActionWidgetHTML(st, preset) {
           </div>
           <div style="margin-bottom:16px;">
             <label for="bk-client">4. Reserva a nombre de (indica si vienes otro día o trona/alergias)</label>
-            <input type="text" id="bk-client" placeholder="Ej. Laura · Sábado mediodía" />
+            <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. Laura · Sábado mediodía" />
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('mesa_carta')">
             <span>Confirmar mesa gratis por WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -582,15 +599,15 @@ function buildSectorActionWidgetHTML(st, preset) {
         <p class="sec-sub">${escapeHtml(wcfg.sub || 'Completa estos 3 datos para darte respuesta exacta desde el primer mensaje.')}</p>
       </div>
       <div class="bezel-shell">
-        <div class="book-card">
+        <div class="book-card" data-wa-mode="filtro_clientes">
           <div class="form-grid">
             <div>
               <label for="bk-service">1. Servicio o área</label>
-              <select id="bk-service">${srvOpts}</select>
+              <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
             </div>
             <div>
               <label for="bk-qualify">${escapeHtml(wcfg.qualifyLabel || '2. Tu situación o perfil')}</label>
-              <select id="bk-qualify">
+              <select id="bk-qualify" onchange="syncLiveWaPreview()">
                 ${qOpts.map(o => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`).join('')}
               </select>
             </div>
@@ -598,13 +615,14 @@ function buildSectorActionWidgetHTML(st, preset) {
           <div class="form-grid">
             <div>
               <label for="bk-detail">${escapeHtml(wcfg.detailLabel || '3. Fecha, zona o resumen breve')}</label>
-              <input type="text" id="bk-detail" placeholder="${escapeHtml(wcfg.detailPlaceholder || 'Ej. Resumen en 1 línea o fecha del evento')}" />
+              <input type="text" id="bk-detail" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.detailPlaceholder || 'Ej. Resumen en 1 línea o fecha del evento')}" />
             </div>
             <div>
               <label for="bk-client">4. Tu nombre</label>
-              <input type="text" id="bk-client" placeholder="Ej. Miguel Ángel" />
+              <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="Ej. Miguel Ángel" />
             </div>
           </div>
+          ${liveWaBoxHtml}
           <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('filtro_clientes')">
             <span>Enviar consulta filtrada por WhatsApp</span>
             <span class="btn-arrow">→</span>
@@ -622,15 +640,15 @@ function buildSectorActionWidgetHTML(st, preset) {
       <p class="sec-sub">${escapeHtml(wcfg.sub || 'Elige servicio, día y tramo horario; recibimos tu solicitud al instante en nuestro WhatsApp.')}</p>
     </div>
     <div class="bezel-shell">
-      <div class="book-card">
+      <div class="book-card" data-wa-mode="agenda_citas">
         <div class="form-grid">
           <div>
             <label for="bk-service">1. Servicio con tarifa clara</label>
-            <select id="bk-service">${srvOpts}</select>
+            <select id="bk-service" onchange="syncLiveWaPreview()">${srvOpts}</select>
           </div>
           <div>
             <label for="bk-extra">2. Día preferido</label>
-            <select id="bk-extra">
+            <select id="bk-extra" onchange="syncLiveWaPreview()">
               <option value="Hoy (si queda hueco)">Hoy (si queda hueco)</option>
               <option value="Mañana" selected>Mañana</option>
               <option value="Esta semana · Mañanas">Esta semana · Mañanas</option>
@@ -648,8 +666,9 @@ function buildSectorActionWidgetHTML(st, preset) {
         </div>
         <div style="margin-bottom:16px;">
           <label for="bk-client">4. Tu nombre y nota opcional</label>
-          <input type="text" id="bk-client" placeholder="${escapeHtml(wcfg.clientPlaceholder || 'Ej. Marta García')}" />
+          <input type="text" id="bk-client" oninput="syncLiveWaPreview()" placeholder="${escapeHtml(wcfg.clientPlaceholder || 'Ej. Marta García')}" />
         </div>
+        ${liveWaBoxHtml}
         <button type="button" class="btn-primary btn-block" onclick="sendSectorWhatsApp('agenda_citas')">
           <span>Confirmar cita en ${escapeHtml(st.name)}</span>
           <span class="btn-arrow">→</span>
@@ -662,11 +681,29 @@ function buildSectorActionWidgetHTML(st, preset) {
 // ==========================================================================
 // COMPILADOR EDITORIAL "PRESTIGE" (INSPIRADO EN PRESTIGECARDETAIL.ES / NOTFOUND404)
 // Entrada con cámara en movimiento + escudo recortado con zoom en scroll +
-// 3 Verbos + Tabla de precios cerrados + Antes/Después interactivo +
-// Capas técnicas + Casos reales con serif superpuesta + Herramienta WhatsApp
+// Barra de herramienta inmediata + 3 Verbos + Precios cerrados +
+// Comparador real por oficio + Capas técnicas + Casos + WhatsApp en vivo
 // ==========================================================================
 
-function resolvePrestigePalette(themeKey) {
+function resolvePrestigePalette(themeKey, preset) {
+  const cat = String((preset && (preset.category || preset.cat)) || '').toLowerCase();
+  const id = String((preset && preset.id) || '').toLowerCase();
+  const isClinicalOrFamily = cat === 'salud' || ['guarderia', 'academia', 'limpieza', 'optica', 'clinica', 'fisioterapia', 'podologia', 'logopedia'].includes(id);
+
+  if (isClinicalOrFamily && (themeKey === 'royal' || themeKey === 'sage')) {
+    return themeKey === 'sage'
+      ? {
+          noche: '#0d211f', hondo: '#081615', placa: '#14302d',
+          oro: '#d2b868', oroHover: '#e0c87c', plata: '#c5dad7',
+          tinta: '#f4f9f8', tinta2: '#b2cbc7', filete: 'rgba(197, 218, 215, 0.20)'
+        }
+      : {
+          noche: '#102038', hondo: '#0a1526', placa: '#172d4d',
+          oro: '#d4b45c', oroHover: '#e2c470', plata: '#c8d4e6',
+          tinta: '#f5f8fc', tinta2: '#b4c2d8', filete: 'rgba(200, 212, 230, 0.20)'
+        };
+  }
+
   const palettes = {
     royal: {
       noche: '#0f1a2d', hondo: '#0a1322', placa: '#16253d',
@@ -680,7 +717,7 @@ function resolvePrestigePalette(themeKey) {
     },
     atelier: {
       noche: '#171311', hondo: '#0f0c0a', placa: '#221c18',
-      oro: '#cf9d56', oroHover: '#deaef68', plata: '#c7beb5',
+      oro: '#cf9d56', oroHover: '#deb068', plata: '#c7beb5',
       tinta: '#f3efe9', tinta2: '#b8afa6', filete: 'rgba(199, 190, 181, 0.18)'
     },
     sage: {
@@ -866,6 +903,7 @@ const SUBSECTOR_PHOTO_POOLS = {
   reformas_obra: [
     '/assets/real/reformas_work_1.jpg',
     '/assets/real/reformas_work_2.jpg',
+    '/assets/real/reformas_work_3.jpg',
     '/assets/real/reformas_hero.jpg',
     '/assets/real/pintor_hero.jpg',
     '/assets/real/aluminio_hero.jpg',
@@ -875,43 +913,47 @@ const SUBSECTOR_PHOTO_POOLS = {
   ],
   carpinteria_medida: [
     '/assets/real/carpinteria_hero.jpg',
+    '/assets/real/carpinteria_work_1.jpg',
+    '/assets/real/carpinteria_work_2.jpg',
+    '/assets/real/carpinteria_work_3.jpg',
+    '/assets/real/carpinteria_work_4.jpg',
+    '/assets/real/carpinteria_work_5.jpg',
+    '/assets/real/carpinteria_work_6.jpg',
     '/assets/real/reformas_work_1.jpg',
-    '/assets/real/reformas_work_2.jpg',
-    '/assets/real/tapicero_hero.jpg',
-    '/assets/real/herrero_hero.jpg',
-    '/assets/real/aluminio_hero.jpg',
-    '/assets/real/reformas_hero.jpg',
-    '/assets/real/cristalero_hero.jpg'
+    '/assets/real/reformas_work_2.jpg'
   ],
   instalaciones_energia: [
     '/assets/real/fontanero_hero.jpg',
     '/assets/real/electricista_hero.jpg',
     '/assets/real/climatizacion_hero.jpg',
     '/assets/real/placas_solares_hero.jpg',
+    '/assets/real/instalaciones_work_1.jpg',
+    '/assets/real/instalaciones_work_2.jpg',
     '/assets/real/reformas_work_1.jpg',
     '/assets/real/reformas_work_2.jpg',
-    '/assets/real/aluminio_hero.jpg',
-    '/assets/real/reformas_hero.jpg'
+    '/assets/real/reformas_work_3.jpg'
   ],
   cerrajeria_seguridad: [
     '/assets/real/llavero_hero.jpg',
     '/assets/real/cerrajeria_work_1.jpg',
+    '/assets/real/cerrajeria_bombin.jpg',
     '/assets/real/cerrajeria_blindada.jpg',
     '/assets/real/cerrajeria_llaves.jpg',
     '/assets/real/cerrajeria_coche.jpg',
-    '/assets/real/aluminio_hero.jpg',
-    '/assets/real/herrero_hero.jpg',
-    '/assets/real/reformas_work_1.jpg'
+    '/assets/real/cerrajeria_work_2.jpg',
+    '/assets/real/cerrajeria_work_3.jpg',
+    '/assets/real/cerrajeria_work_4.jpg'
   ],
   hogar_servicios: [
     '/assets/real/limpieza_hero.jpg',
     '/assets/real/jardineria_hero.jpg',
     '/assets/real/mudanzas_hero.jpg',
     '/assets/real/control_plagas_hero.jpg',
+    '/assets/real/hogar_work_1.jpg',
+    '/assets/real/hogar_work_2.jpg',
     '/assets/real/reformas_work_1.jpg',
     '/assets/real/reformas_work_2.jpg',
-    '/assets/real/toldos_hero.jpg',
-    '/assets/real/reformas_hero.jpg'
+    '/assets/real/toldos_hero.jpg'
   ],
   car_detail: [
     '/assets/real/lavadero_hero.jpg',
@@ -919,6 +961,7 @@ const SUBSECTOR_PHOTO_POOLS = {
     '/assets/real/detail_work_2.jpg',
     '/assets/real/detail_work_3.jpg',
     '/assets/real/detail_work_4.jpg',
+    '/assets/real/detail_work_5.jpg',
     '/assets/real/chapa_pintura_hero.jpg',
     '/assets/real/compraventa_hero.jpg',
     '/assets/real/neumaticos_hero.jpg'
@@ -926,33 +969,46 @@ const SUBSECTOR_PHOTO_POOLS = {
   taller_motor: [
     '/assets/real/taller_hero.jpg',
     '/assets/real/taller_work_1.jpg',
+    '/assets/real/taller_work_2.jpg',
+    '/assets/real/taller_work_3.jpg',
+    '/assets/real/taller_work_4.jpg',
     '/assets/real/neumaticos_hero.jpg',
     '/assets/real/chapa_pintura_hero.jpg',
-    '/assets/real/detail_work_3.jpg',
     '/assets/real/grua_hero.jpg',
-    '/assets/real/compraventa_hero.jpg',
-    '/assets/real/lavadero_hero.jpg'
+    '/assets/real/compraventa_hero.jpg'
   ],
   motos_bicis: [
     '/assets/real/motos_hero.jpg',
     '/assets/real/motos_work_1.jpg',
     '/assets/real/motos_work_2.jpg',
+    '/assets/real/motos_work_3.jpg',
     '/assets/real/bicicletas_hero.jpg',
     '/assets/real/taller_work_1.jpg',
+    '/assets/real/taller_work_2.jpg',
     '/assets/real/neumaticos_hero.jpg',
-    '/assets/real/taller_hero.jpg',
-    '/assets/real/detail_work_3.jpg'
+    '/assets/real/taller_hero.jpg'
   ],
-  belleza_salon: [
+  peluqueria_estetica: [
     '/assets/real/peluqueria_work_1.jpg',
     '/assets/real/peluqueria_work_2.jpg',
-    '/assets/real/barberia_work_1.jpg',
+    '/assets/real/peluqueria_work_3.jpg',
+    '/assets/real/peluqueria_work_4.jpg',
     '/assets/real/peluqueria_hero.jpg',
-    '/assets/real/barberia_hero.jpg',
     '/assets/real/estetica_hero.jpg',
+    '/assets/real/estetica_work_1.jpg',
     '/assets/real/spa_hero.jpg',
-    '/assets/real/depilacion_hero.jpg',
-    '/assets/real/tattoo_hero.jpg'
+    '/assets/real/depilacion_hero.jpg'
+  ],
+  barberia_tattoo: [
+    '/assets/real/barberia_hero.jpg',
+    '/assets/real/barberia_work_1.jpg',
+    '/assets/real/barberia_work_2.jpg',
+    '/assets/real/barberia_work_3.jpg',
+    '/assets/real/tattoo_hero.jpg',
+    '/assets/real/peluqueria_work_1.jpg',
+    '/assets/real/peluqueria_work_2.jpg',
+    '/assets/real/peluqueria_hero.jpg',
+    '/assets/real/estetica_hero.jpg'
   ],
   mascotas_vet: [
     '/assets/real/peluqueria_canina_hero.jpg',
@@ -962,11 +1018,15 @@ const SUBSECTOR_PHOTO_POOLS = {
     '/assets/real/mascotas_work_3.jpg',
     '/assets/real/mascotas_work_4.jpg',
     '/assets/real/mascotas_work_5.jpg',
-    '/assets/real/mascotas_work_6.jpg'
+    '/assets/real/mascotas_work_6.jpg',
+    '/assets/real/mascotas_work_7.jpg'
   ],
   salud_clinica: [
     '/assets/real/clinica_work_1.jpg',
     '/assets/real/clinica_work_2.jpg',
+    '/assets/real/clinica_work_3.jpg',
+    '/assets/real/clinica_work_4.jpg',
+    '/assets/real/clinica_work_5.jpg',
     '/assets/real/clinica_hero.jpg',
     '/assets/real/fisioterapia_hero.jpg',
     '/assets/real/podologia_hero.jpg',
@@ -978,22 +1038,36 @@ const SUBSECTOR_PHOTO_POOLS = {
   restauracion: [
     '/assets/real/restaurante_work_1.jpg',
     '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/restaurante_work_3.jpg',
+    '/assets/real/restaurante_work_4.jpg',
     '/assets/real/restaurante_hero.jpg',
     '/assets/real/tapas_bar.jpg',
+    '/assets/real/terraza_bar.jpg',
     '/assets/real/pizza_hero.jpg',
-    '/assets/real/asador_pollo.jpg',
-    '/assets/real/cafeteria_hero.jpg',
-    '/assets/real/panaderia_brunch.jpg'
+    '/assets/real/burger_kebab.jpg',
+    '/assets/real/asador_pollo.jpg'
   ],
-  cafe_frescos: [
+  cafe_panaderia: [
     '/assets/real/cafeteria_hero.jpg',
     '/assets/real/panaderia_brunch.jpg',
-    '/assets/real/carniceria_hero.jpg',
-    '/assets/real/fruteria_hero.jpg',
+    '/assets/real/cafeteria_work_1.jpg',
+    '/assets/real/cafeteria_work_2.jpg',
     '/assets/real/restaurante_work_1.jpg',
     '/assets/real/restaurante_work_2.jpg',
-    '/assets/real/tapas_bar.jpg',
+    '/assets/real/restaurante_work_3.jpg',
+    '/assets/real/terraza_bar.jpg',
     '/assets/real/restaurante_hero.jpg'
+  ],
+  frescos_mercado: [
+    '/assets/real/carniceria_hero.jpg',
+    '/assets/real/fruteria_hero.jpg',
+    '/assets/real/frescos_work_1.jpg',
+    '/assets/real/frescos_work_2.jpg',
+    '/assets/real/asador_pollo.jpg',
+    '/assets/real/panaderia_brunch.jpg',
+    '/assets/real/restaurante_work_1.jpg',
+    '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/tapas_bar.jpg'
   ],
   despacho_pro: [
     '/assets/real/abogados_hero.jpg',
@@ -1003,7 +1077,8 @@ const SUBSECTOR_PHOTO_POOLS = {
     '/assets/real/despacho_work_2.jpg',
     '/assets/real/despacho_work_3.jpg',
     '/assets/real/despacho_work_4.jpg',
-    '/assets/real/despacho_work_5.jpg'
+    '/assets/real/despacho_work_5.jpg',
+    '/assets/real/despacho_work_6.jpg'
   ],
   deporte_gym: [
     '/assets/real/fitness_hero.jpg',
@@ -1013,37 +1088,41 @@ const SUBSECTOR_PHOTO_POOLS = {
     '/assets/real/deporte_work_1.jpg',
     '/assets/real/deporte_work_2.jpg',
     '/assets/real/deporte_work_3.jpg',
-    '/assets/real/deporte_work_4.jpg'
+    '/assets/real/deporte_work_4.jpg',
+    '/assets/real/deporte_work_5.jpg'
   ],
   educacion: [
     '/assets/real/academia_hero.jpg',
+    '/assets/real/academia_work_1.jpg',
+    '/assets/real/academia_work_2.jpg',
     '/assets/real/guarderia_hero.jpg',
+    '/assets/real/guarderia_work_1.jpg',
+    '/assets/real/guarderia_work_2.jpg',
     '/assets/real/autoescuela_hero.jpg',
-    '/assets/real/despacho_work_1.jpg',
-    '/assets/real/despacho_work_2.jpg',
-    '/assets/real/copisteria_hero.jpg',
-    '/assets/real/psicologia_hero.jpg',
-    '/assets/real/logopedia_hero.jpg'
+    '/assets/real/logopedia_hero.jpg',
+    '/assets/real/psicologia_hero.jpg'
   ],
   eventos_arte: [
     '/assets/real/fotografo_hero.jpg',
     '/assets/real/eventos_hero.jpg',
     '/assets/real/floristeria_hero.jpg',
-    '/assets/real/peluqueria_work_1.jpg',
-    '/assets/real/restaurante_work_2.jpg',
+    '/assets/real/eventos_work_1.jpg',
+    '/assets/real/eventos_work_2.jpg',
+    '/assets/real/eventos_work_3.jpg',
+    '/assets/real/comercio_regalo.jpg',
     '/assets/real/tienda_work_1.jpg',
-    '/assets/real/tienda_work_2.jpg',
-    '/assets/real/peluqueria_work_2.jpg'
+    '/assets/real/tienda_work_2.jpg'
   ],
   comercio_local: [
     '/assets/real/tienda_hero.jpg',
     '/assets/real/tienda_work_1.jpg',
     '/assets/real/tienda_work_2.jpg',
+    '/assets/real/tienda_work_3.jpg',
+    '/assets/real/comercio_regalo.jpg',
     '/assets/real/tintoreria_hero.jpg',
     '/assets/real/zapateria_hero.jpg',
     '/assets/real/moviles_hero.jpg',
-    '/assets/real/copisteria_hero.jpg',
-    '/assets/real/floristeria_hero.jpg'
+    '/assets/real/copisteria_hero.jpg'
   ]
 };
 
@@ -1058,18 +1137,20 @@ function getSubsectorPhotosForPreset(preset) {
   if (['lavadero', 'chapa_pintura', 'compraventa'].includes(id)) return SUBSECTOR_PHOTO_POOLS.car_detail;
   if (['taller', 'neumaticos', 'grua'].includes(id)) return SUBSECTOR_PHOTO_POOLS.taller_motor;
   if (['motos', 'bicicletas'].includes(id)) return SUBSECTOR_PHOTO_POOLS.motos_bicis;
-  if (['peluqueria', 'barberia', 'estetica', 'spa', 'depilacion', 'tattoo'].includes(id)) return SUBSECTOR_PHOTO_POOLS.belleza_salon;
+  if (['barberia', 'tattoo'].includes(id)) return SUBSECTOR_PHOTO_POOLS.barberia_tattoo;
+  if (['peluqueria', 'estetica', 'spa', 'depilacion'].includes(id)) return SUBSECTOR_PHOTO_POOLS.peluqueria_estetica;
   if (['peluqueria_canina', 'veterinario'].includes(id)) return SUBSECTOR_PHOTO_POOLS.mascotas_vet;
   if (['clinica', 'fisioterapia', 'podologia', 'optica', 'psicologia', 'logopedia', 'nutricionista'].includes(id)) return SUBSECTOR_PHOTO_POOLS.salud_clinica;
   if (['restaurante', 'bar_tapas', 'pizzeria', 'asador'].includes(id)) return SUBSECTOR_PHOTO_POOLS.restauracion;
-  if (['cafeteria', 'panaderia', 'carniceria', 'fruteria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.cafe_frescos;
+  if (['cafeteria', 'panaderia'].includes(id)) return SUBSECTOR_PHOTO_POOLS.cafe_panaderia;
+  if (['carniceria', 'fruteria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.frescos_mercado;
   if (['abogados', 'asesoria', 'inmobiliaria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.despacho_pro;
   if (['fitness', 'pilates', 'baile'].includes(id)) return SUBSECTOR_PHOTO_POOLS.deporte_gym;
   if (['academia', 'guarderia', 'autoescuela'].includes(id)) return SUBSECTOR_PHOTO_POOLS.educacion;
   if (['fotografo', 'eventos', 'floristeria'].includes(id)) return SUBSECTOR_PHOTO_POOLS.eventos_arte;
   if (cat === 'hogar') return SUBSECTOR_PHOTO_POOLS.reformas_obra;
   if (cat === 'motor') return SUBSECTOR_PHOTO_POOLS.taller_motor;
-  if (cat === 'belleza') return SUBSECTOR_PHOTO_POOLS.belleza_salon;
+  if (cat === 'belleza') return SUBSECTOR_PHOTO_POOLS.peluqueria_estetica;
   if (cat === 'salud') return SUBSECTOR_PHOTO_POOLS.salud_clinica;
   if (cat === 'hosteleria') return SUBSECTOR_PHOTO_POOLS.restauracion;
   return SUBSECTOR_PHOTO_POOLS.comercio_local;
@@ -1101,8 +1182,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Recepción calmada y revisión previa</b> de piel, manto y sensibilidad antes de empezar.',
       b2: '<b>Cosmética específica e instrumental higienizado</b> adaptado a cada raza y tamaño.',
       b3: `<b>Aviso directo por WhatsApp</b> en cuanto tu compañero está listo para recoger en ${st.city}.`,
-      beforeLabel: 'Antes · Al llegar',
-      afterLabel: 'Después · Listo y cuidado'
+      beforeLabel: 'Recepción · Al llegar',
+      afterLabel: 'Resultado · Listo y cuidado'
     };
   }
   if (['abogados', 'asesoria', 'inmobiliaria'].includes(id)) {
@@ -1112,8 +1193,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Análisis previo de viabilidad y documentación</b> antes de dar el primer paso.',
       b2: '<b>Presupuesto cerrado por escrito</b> y estrategia clara explicada sin tecnicismos.',
       b3: `<b>Trato directo por WhatsApp con tu especialista</b> en ${st.city} sin pasar por centralitas.`,
-      beforeLabel: 'Antes · Sin revisar',
-      afterLabel: 'Después · Resuelto'
+      beforeLabel: 'Estudio · Revisión previa',
+      afterLabel: 'Despacho · Caso resuelto'
     };
   }
   if (cat === 'salud') {
@@ -1123,8 +1204,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Valoración diagnóstica individual</b> en tu primera sesión para ir a la raíz del problema.',
       b2: '<b>Equipamiento actualizado y protocolos seguros</b> adaptados a cada paciente.',
       b3: `<b>Plan de evolución claro y contacto directo</b> con nuestra consulta de ${st.city}.`,
-      beforeLabel: 'Antes · Valoración',
-      afterLabel: 'Después · Tratamiento'
+      beforeLabel: 'Consulta · Valoración inicial',
+      afterLabel: 'Clínica · Tratamiento activo'
     };
   }
   if (cat === 'hosteleria' || mode === 'mesa_carta' || mode === 'encargo_sin_cola') {
@@ -1134,8 +1215,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Materia prima seleccionada cada mañana</b> en proveedores de confianza.',
       b2: '<b>Elaboración al momento</b> respetando tiempos de horno, brasa o cocina.',
       b3: `<b>Reserva de mesa o encargo sin colas</b> confirmando directo por WhatsApp en ${st.city}.`,
-      beforeLabel: 'Antes · Preparación',
-      afterLabel: 'Después · Recién salido'
+      beforeLabel: 'Obrador · Selección y preparación',
+      afterLabel: 'Recién salido · Listo para servir'
     };
   }
   if (cat === 'belleza') {
@@ -1145,8 +1226,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Asesoramiento personalizado previo</b> según tus facciones, estilo y rutina.',
       b2: '<b>Productos de firma profesional</b> que cuidan y protegen desde la primera aplicación.',
       b3: `<b>Cita directa por WhatsApp sin esperas</b> en nuestro estudio de ${st.city}.`,
-      beforeLabel: 'Antes · Sin tratar',
-      afterLabel: 'Después · Terminado'
+      beforeLabel: 'Proceso · Preparación en salón',
+      afterLabel: 'Resultado · Acabado final'
     };
   }
   if (cat === 'hogar') {
@@ -1156,8 +1237,8 @@ function buildTradeResultadosCopy(preset, st, mode) {
       b1: '<b>Toma de medidas y protección previa</b> de la zona antes de iniciar la intervención.',
       b2: '<b>Materiales, herrajes y recambios de primera calidad</b> para un resultado duradero.',
       b3: `<b>Revisión final contigo y garantía oficial</b> entregada en ${st.city}.`,
-      beforeLabel: 'Antes · Estado previo',
-      afterLabel: 'Después · Instalado'
+      beforeLabel: 'Intervención · Trabajo en curso',
+      afterLabel: 'Resultado · Instalado y garantizado'
     };
   }
   return {
@@ -1166,19 +1247,20 @@ function buildTradeResultadosCopy(preset, st, mode) {
     b1: '<b>Preparación completa</b> desde la base antes de iniciar el trabajo principal.',
     b2: '<b>Materiales y herramientas de primera línea</b> específicos para cada acabado.',
     b3: `<b>Revisión punto por punto</b> antes de avisarte para la entrega en ${st.city}.`,
-    beforeLabel: 'Antes · Sin tratar',
-    afterLabel: 'Después · Terminado'
+    beforeLabel: 'Proceso · En taller',
+    afterLabel: 'Resultado · Terminado'
   };
 }
 
 function buildTradeCasos(preset, st, srvList, uniquePool, heroImg) {
-  const pool = Array.isArray(uniquePool) && uniquePool.length >= 7
+  const pool = Array.isArray(uniquePool) && uniquePool.length >= 8
     ? uniquePool
     : buildUniquePhotoPool(preset, st, [heroImg].concat(uniquePool || []));
-  const p0 = pool[3] || pool[1] || heroImg;
-  const p1 = pool[4] || pool[2] || p0;
-  const p2 = pool[5] || pool[0] || p1;
-  const p3 = pool[6] || pool[1] || p2;
+  // Índices 0=hero, 1=afterImg, 2=beforeImg, 3=thirdImg(#capas), 4..7=#casos, 8=fourthImg(#nosotros)
+  const p0 = pool[4] || pool[1] || heroImg;
+  const p1 = pool[5] || pool[2] || p0;
+  const p2 = pool[6] || pool[3] || p1;
+  const p3 = pool[7] || pool[1] || p2;
 
   const s0 = srvList[0] || { title: 'Servicio Integral', meta: 'Trabajo completo', price: 'Precio cerrado' };
   const s1 = srvList[1] || s0;
@@ -1240,7 +1322,7 @@ function resolveProjectAssetUrl(rawUrl) {
 
 function compileClientWebsiteHTML(st) {
   const preset = resolvePresetForState(st);
-  const pal = resolvePrestigePalette(st.theme || preset.defaultTheme || 'royal');
+  const pal = resolvePrestigePalette(st.theme || preset.defaultTheme || 'royal', preset);
   const sectorBadge = st.sector === 'otro'
     ? (st.customSectorLabel || preset.label || 'Especialista Local')
     : preset.label;
@@ -1251,9 +1333,9 @@ function compileClientWebsiteHTML(st) {
   const heroImg = resolveProjectAssetUrl(st.customHeroPhoto || rawGallery[0] || preset.heroImage || '/assets/real/tienda_hero.jpg');
   const activeGallery = buildUniquePhotoPool(preset, st, [heroImg].concat(rawGallery));
   const afterImg = activeGallery[1] || heroImg;
-  const beforeImg = afterImg + (afterImg.includes('?') ? '&' : '?') + 'estado=antes';
-  const thirdImg = activeGallery[2] || afterImg;
-  const fourthImg = activeGallery[7] || (activeGallery[3] ? activeGallery[3] + (activeGallery[3].includes('?') ? '&' : '?') + 'vista=proceso' : thirdImg);
+  const beforeImg = activeGallery[2] || activeGallery[0] || heroImg;
+  const thirdImg = activeGallery[3] || activeGallery[1] || afterImg;
+  const fourthImg = activeGallery[8] || activeGallery[4] || thirdImg;
 
   const cleanWa = String(st.whatsapp || '612890345').replace(/[^0-9]/g, '');
   const fullWa = cleanWa.startsWith('34') ? cleanWa : ('34' + cleanWa);
@@ -1277,8 +1359,10 @@ function compileClientWebsiteHTML(st) {
   const srvList = Array.isArray(st.services) && st.services.length ? st.services : (preset.services || []);
 
   // Tabla interactiva estilo Prestige ("Tres detallados, precio cerrado")
-  const cartaRowsHtml = srvList.map((srv, idx) => `
-    <details class="fila srv-card" ${idx === 0 ? 'open' : ''}>
+  const cartaRowsHtml = srvList.map((srv, idx) => {
+    const sId = srv.id || ('srv-' + (idx + 1));
+    return `
+    <details class="fila srv-card" data-service-id="${escapeHtml(sId)}" ${idx === 0 ? 'open' : ''}>
       <summary>
         <span class="n">
           ${escapeHtml(srv.title)}
@@ -1290,16 +1374,16 @@ function compileClientWebsiteHTML(st) {
         <ul>
           <li><strong>Qué incluye:</strong> ${escapeHtml(srv.meta || 'Atención completa por nuestro equipo especialista')}</li>
           <li><strong>Precio cerrado:</strong> ${escapeHtml(srv.price)} confirmados antes de empezar, sin cargos ocultos.</li>
-          <li><strong>Reserva directa:</strong> Confirmación inmediata en nuestro WhatsApp de ${escapeHtml(st.city)}.</li>
+          <li><strong>Reserva directa:</strong> Confirmación rápida en nuestro WhatsApp de ${escapeHtml(st.city)}.</li>
         </ul>
         <div class="pie-fila">
-          <button type="button" class="enlace-btn" onclick="selectServiceForBooking('${escapeHtml(srv.title)}')">
+          <button type="button" class="enlace-btn" data-select-service="${escapeHtml(sId)}" onclick="selectServiceForBooking('${escapeHtml(sId)}', '${escapeHtml(srv.title)}')">
             Seleccionar ${escapeHtml(srv.title)} y pedir por WhatsApp →
           </button>
         </div>
       </div>
-    </details>
-  `).join('');
+    </details>`;
+  }).join('');
 
   const verbosData = buildTradeVerbos(preset, st, mode);
   const verbosHtml = verbosData.items.map(v => `
@@ -1335,7 +1419,7 @@ function compileClientWebsiteHTML(st) {
     <article class="e-caso">
       <div class="e-media">
         <span class="dato e-num">${escapeHtml(cs.num)}</span>
-        <img src="${escapeHtml(cs.photo)}" alt="${escapeHtml(cs.title)} en ${escapeHtml(st.name)}" />
+        <img src="${escapeHtml(cs.photo)}" alt="${escapeHtml(cs.title)} en ${escapeHtml(st.name)}" loading="lazy" decoding="async" width="1200" height="840" />
       </div>
       <h3>${escapeHtml(cs.title)}</h3>
       <dl class="e-parte">
@@ -1391,6 +1475,54 @@ function compileClientWebsiteHTML(st) {
   const legalNifText = st.legalNif ? ` · NIF/CIF: ${st.legalNif}` : '';
   const widgetHtml = buildSectorActionWidgetHTML(st, preset);
   const firstPrice = (srvList[0] && srvList[0].price) ? String(srvList[0].price).replace(/^desde\s+/i, '') : 'Precio cerrado';
+
+  const quickChipsHtml = srvList.slice(0, 3).map((srv, idx) => {
+    const sId = srv.id || ('srv-' + (idx + 1));
+    return `
+    <button type="button" class="bho-chip" data-select-service="${escapeHtml(sId)}" onclick="selectServiceForBooking('${escapeHtml(sId)}', '${escapeHtml(srv.title)}')">
+      <span>${escapeHtml(srv.title.split(/[·+\(\/]/)[0].trim())}</span>
+      <b>${escapeHtml(srv.price)}</b>
+    </button>`;
+  }).join('');
+
+  const quickStripHtml = mode === 'urgencia_o_llaves'
+    ? `<section class="barra-herramienta-oficio bho-urgente" aria-label="Asistencia inmediata y presupuesto rápido">
+        <div class="wrap bho-grid">
+          <div class="bho-info">
+            <span class="bho-kicker"><i class="bho-dot"></i> GUARDIA ACTIVA EN ${escapeHtml(st.city)} · LLEGADA ~20 MIN</span>
+            <strong>¿Es una urgencia ahora mismo o necesitas copia / presupuesto?</strong>
+            <p>Te confirmamos el precio cerrado por WhatsApp antes de desplazarnos. Sin sorpresas en la factura.</p>
+          </div>
+          <div class="bho-actions">
+            <button type="button" class="btn btn-oro" onclick="quickJumpUrgentMode('urgencia')">🚨 Urgencia 24h Ahora</button>
+            <button type="button" class="btn btn-linea" onclick="quickJumpUrgentMode('copia')">🔑 Copia / Presupuesto</button>
+            <a class="btn btn-linea" href="${telHref}">📞 ${escapeHtml(st.phone || st.whatsapp)}</a>
+          </div>
+        </div>
+      </section>`
+    : `<section class="barra-herramienta-oficio" aria-label="Acceso rápido a herramienta del oficio">
+        <div class="wrap bho-grid">
+          <div class="bho-info">
+            <span class="bho-kicker"><i class="bho-dot"></i> ${escapeHtml(
+              mode === 'medidas_presupuesto' ? 'CALCULADORA DE MEDIDAS Y PRESUPUESTO EN ' + st.city
+              : mode === 'motor_diagnostico' ? 'RECEPCIÓN DE TALLER SIN ESPERAS EN ' + st.city
+              : mode === 'recepcion_taller_local' ? 'CONSULTA DE TARIFA Y DISPONIBILIDAD EN ' + st.city
+              : mode === 'encargo_sin_cola' ? 'ENCARGOS LISTOS SIN HACER COLA EN ' + st.city
+              : mode === 'mesa_carta' ? 'RESERVA DE MESA EN SALÓN O TERRAZA EN ' + st.city
+              : mode === 'filtro_clientes' ? 'VALORACIÓN DIRECTA Y PRECIO CERRADO EN ' + st.city
+              : 'RESERVA DIRECTA POR WHATSAPP EN ' + st.city
+            )}</span>
+            <strong>Elige lo que necesitas y recíbelo valorado en tu WhatsApp en 15 segundos:</strong>
+          </div>
+          <div class="bho-chips">
+            ${quickChipsHtml}
+            <button type="button" class="bho-chip bho-chip-cta" onclick="jumpSec('accion')">
+              <span>Abrir herramienta completa</span>
+              <b>→</b>
+            </button>
+          </div>
+        </div>
+      </section>`;
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -1624,6 +1756,14 @@ function compileClientWebsiteHTML(st) {
     0%   { transform: translate3d(-14%, -6%, 0) rotate(-2deg); }
     100% { transform: translate3d(14%, 6%, 0) rotate(2deg); }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .cam-plane-1, .cam-plane-2, .cam-sheen { animation: none !important; transform: none !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+  .input-invalid {
+    border-color: #f43f5e !important;
+    box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.25) !important;
+  }
 
   /* Velo multiplicador con escudo recortado (blanco = ventana transparente a la cámara) */
   .velo {
@@ -1727,7 +1867,19 @@ function compileClientWebsiteHTML(st) {
     display: flex;
   }
   @media (max-width: 639px) {
-    .titular .acciones .btn { flex: 1 1 auto; padding: 0 14px; font-size: 14.5px; }
+    .titular { bottom: calc(var(--bar) + 14px); }
+    .titular h1 { font-size: clamp(23px, 6.2vw, 31px); line-height: 1.06; }
+    .titular .sub {
+      font-size: 13.8px;
+      margin-top: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .titular .acciones { margin-top: 12px; gap: 7px; }
+    .titular .acciones .btn { flex: 1 1 auto; min-height: 41px; padding: 0 12px; font-size: 13.5px; }
+    .nota-google { margin-top: 10px; font-size: 12px; gap: 7px; }
   }
   .nota-google {
     color: var(--tinta-2);
@@ -1980,10 +2132,10 @@ function compileClientWebsiteHTML(st) {
     inset: 0;
   }
   .ad-img.despues {
-    filter: contrast(1.08) saturate(1.12) brightness(1.03);
+    filter: contrast(1.06) saturate(1.08) brightness(1.02);
   }
   .ad-antes {
-    filter: grayscale(0.78) contrast(0.84) brightness(0.64) sepia(0.22);
+    filter: contrast(0.97) saturate(0.92) brightness(0.92);
     clip-path: inset(0 calc(100% - var(--x, 38%)) 0 0);
   }
   .ad-divisor {
@@ -2375,6 +2527,143 @@ function compileClientWebsiteHTML(st) {
     color: var(--tinta);
     font-size: 14px;
   }
+  .wa-live-preview {
+    margin: 14px 0 16px;
+    padding: 12px 14px;
+    background: rgba(18, 140, 126, 0.11);
+    border: 1px solid rgba(37, 211, 102, 0.34);
+    border-left: 3px solid #25D366;
+    border-radius: 2px;
+  }
+  .wa-live-head {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font: 600 10.5px var(--mono);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #25D366;
+    margin-bottom: 6px;
+  }
+  .wa-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #25D366;
+    box-shadow: 0 0 8px #25D366;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .wa-live-bubble {
+    font: 400 12.5px/1.48 var(--mono);
+    color: var(--tinta);
+    white-space: pre-line;
+    opacity: 0.94;
+  }
+
+  /* BARRA DE ACCIÓN RÁPIDA DEL OFICIO (JUSTO DEBAJO DE LA PORTADA) */
+  .barra-herramienta-oficio {
+    background: var(--placa);
+    border-top: 2px solid var(--oro);
+    border-bottom: 1px solid var(--filete);
+    padding: 20px 0;
+    position: relative;
+    z-index: 12;
+  }
+  .barra-herramienta-oficio.bho-urgente {
+    background: linear-gradient(90deg, rgba(200, 165, 72, 0.14), rgba(15, 26, 45, 0.92));
+  }
+  .bho-grid {
+    display: grid;
+    gap: 16px;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .bho-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+    }
+  }
+  .bho-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font: 600 11px var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 4px;
+  }
+  .bho-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #25D366;
+    box-shadow: 0 0 8px #25D366;
+    display: inline-block;
+  }
+  .bho-info strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(19px, 2.5vw, 24px);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--tinta);
+  }
+  .bho-info p {
+    font-size: 13.5px;
+    color: var(--tinta-2);
+    margin-top: 3px;
+  }
+  .bho-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bho-chips {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  @media (min-width: 560px) {
+    .bho-chips {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .bho-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 13px;
+    background: var(--hondo);
+    border: 1px solid var(--filete);
+    color: var(--tinta);
+    font: 500 13px var(--sans);
+    cursor: pointer;
+    text-align: left;
+    border-radius: 2px;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  }
+  .bho-chip:hover {
+    border-color: var(--oro);
+    transform: translateY(-1px);
+  }
+  .bho-chip span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bho-chip b {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--oro);
+    white-space: nowrap;
+  }
+  .bho-chip.bho-chip-cta {
+    background: rgba(200, 165, 72, 0.14);
+    border-color: var(--oro);
+  }
 
   /* PIE DE PÁGINA ESTILO PRESTIGE + BARRA INFERIOR MÓVIL */
   .pie-web { border-top: 1px solid var(--oro); padding: 64px 0 40px; position: relative; overflow: hidden; background: var(--noche); }
@@ -2477,7 +2766,7 @@ function compileClientWebsiteHTML(st) {
 
         <!-- Cámara en movimiento continuo detrás del emblema -->
         <div class="fondo-cam" id="fondo-cam">
-          <img class="cam-plane cam-plane-1" src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)} en ${escapeHtml(st.city)}" />
+          <img class="cam-plane cam-plane-1" src="${escapeHtml(heroImg)}" alt="${escapeHtml(st.name)} en ${escapeHtml(st.city)}" fetchpriority="high" decoding="async" width="1200" height="840" />
           <div class="cam-sheen"></div>
         </div>
 
@@ -2533,6 +2822,8 @@ function compileClientWebsiteHTML(st) {
         </div>
       </div>
     </section>
+
+    ${quickStripHtml}
 
     <!-- ======================================================================
          SECCIÓN 1: LOS 3 VERBOS EN SERIF CONTORNEADA (.verbos)
@@ -2600,8 +2891,8 @@ function compileClientWebsiteHTML(st) {
 
         <div data-reveal>
           <div class="ad" id="ad" style="--x:38%;">
-            <img class="ad-img despues" src="${escapeHtml(afterImg)}" alt="Después · Resultado final en ${escapeHtml(st.name)}" />
-            <img class="ad-img ad-antes antes" src="${escapeHtml(beforeImg)}" alt="Antes · Estado previo antes de ${escapeHtml(st.name)}" />
+            <img class="ad-img despues" src="${escapeHtml(afterImg)}" alt="Después · Resultado final en ${escapeHtml(st.name)}" loading="lazy" decoding="async" width="1200" height="840" />
+            <img class="ad-img ad-antes antes" src="${escapeHtml(beforeImg)}" alt="Antes · Estado previo antes de ${escapeHtml(st.name)}" loading="lazy" decoding="async" width="1200" height="840" />
             <div class="ad-divisor"></div>
             <span class="et et-antes">${escapeHtml(resultadosCopy.beforeLabel)}</span>
             <span class="et et-despues" data-et>${escapeHtml(resultadosCopy.afterLabel)}</span>
@@ -2613,6 +2904,9 @@ function compileClientWebsiteHTML(st) {
           </div>
           <p style="color:var(--tinta-2); font-size:13.5px; margin-top:10px; text-align:center;">
             ↔ Arrastra el deslizador · ${escapeHtml(st.name)} (${escapeHtml(st.city)})
+          </p>
+          <p class="ad-nota-demo" style="color:var(--tinta-2); font-size:11.5px; margin-top:4px; text-align:center; opacity:0.8;">
+            Demostración ilustrativa de acabado profesional · Puedes subir tus propias fotos reales desde tu panel.
           </p>
         </div>
       </div>
@@ -2647,7 +2941,7 @@ function compileClientWebsiteHTML(st) {
         </div>
 
         <figure class="capas-coche" data-reveal>
-          <img id="capas-img" src="${escapeHtml(thirdImg)}" alt="Detalle técnico en ${escapeHtml(st.name)}" />
+          <img id="capas-img" src="${escapeHtml(thirdImg)}" alt="Detalle técnico en ${escapeHtml(st.name)}" loading="lazy" decoding="async" width="1200" height="840" />
           ${capasPinsHtml}
           <div class="capas-marca" id="capas-marca" style="top:28%;left:44%;">
             <i></i>
@@ -2686,7 +2980,7 @@ function compileClientWebsiteHTML(st) {
         <h2>Así se trabaja en ${escapeHtml(st.name)}</h2>
         <div class="proceso">
           <figure>
-            <img src="${escapeHtml(fourthImg)}" alt="Equipo e instalaciones de ${escapeHtml(st.name)}" />
+            <img src="${escapeHtml(fourthImg)}" alt="Equipo e instalaciones de ${escapeHtml(st.name)}" loading="lazy" decoding="async" width="1200" height="840" />
             <figcaption>Cuidamos cada entrega en ${escapeHtml(st.address)} (${escapeHtml(st.city)}).</figcaption>
           </figure>
           <ol class="pasos">
@@ -2907,6 +3201,7 @@ function compileClientWebsiteHTML(st) {
       let autoZoomStart = performance.now();
       let fullStart = performance.now();
       let fullAnimRunning = false;
+      let maxIntroProgress = 0;
 
       function runFullscreenEntranceZoom(now) {
         if (manualScrollActive || window.scrollY > 12) {
@@ -2919,9 +3214,11 @@ function compileClientWebsiteHTML(st) {
           requestAnimationFrame(runFullscreenEntranceZoom);
         } else if (elapsed < 2550) {
           const vFull = (elapsed - 750) / 1800;
+          if (vFull > maxIntroProgress) maxIntroProgress = vFull;
           applyIntroProgress(vFull, false);
           requestAnimationFrame(runFullscreenEntranceZoom);
         } else {
+          maxIntroProgress = 1;
           applyIntroProgress(1, false);
           fullAnimRunning = false;
         }
@@ -2929,6 +3226,7 @@ function compileClientWebsiteHTML(st) {
 
       window.replayPrestigeIntro = function() {
         manualScrollActive = false;
+        maxIntroProgress = 0;
         window.scrollTo({ top: 0, behavior: 'auto' });
         applyIntroProgress(0, false);
         autoZoomStart = performance.now();
@@ -2942,10 +3240,12 @@ function compileClientWebsiteHTML(st) {
       function updateIntroOnScroll() {
         const rect = intro.getBoundingClientRect();
         const scrollable = Math.max(1, intro.offsetHeight - window.innerHeight);
-        const v = Math.min(1, Math.max(0, -rect.top / scrollable));
+        const vScroll = Math.min(1, Math.max(0, -rect.top / scrollable));
         if (window.scrollY > 12) manualScrollActive = true;
         else if (isEmbedded && window.scrollY <= 4) manualScrollActive = false;
-        applyIntroProgress(v, rect.bottom < window.innerHeight * 1.04);
+        const effectiveV = isEmbedded ? vScroll : Math.max(maxIntroProgress, vScroll);
+        if (!isEmbedded && vScroll > maxIntroProgress) maxIntroProgress = vScroll;
+        applyIntroProgress(effectiveV, rect.bottom < window.innerHeight * 1.04);
       }
 
       let ticking = false;
@@ -2971,10 +3271,15 @@ function compileClientWebsiteHTML(st) {
         });
       }
 
-      // Tanto en el cuadro de vista previa (isEmbedded) como al abrir "Ver pantalla completa" (/sitio/),
-      // garantizamos que el zoom del escudo (1x -> 46x) funcione siempre automáticamente al entrar
-      // y también responda al scroll manual del usuario:
-      if (isEmbedded) {
+      const prefersReducedMotion = Boolean(
+        window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      );
+
+      // Si el usuario tiene prefers-reduced-motion activo, mostrar el estado final directamente sin bucles de animación
+      if (prefersReducedMotion) {
+        maxIntroProgress = 1;
+        applyIntroProgress(1, false);
+      } else if (isEmbedded) {
         const cycleDuration = 7600; // 7.6s por ciclo completo en la miniatura
         function runEmbeddedZoomLoop(now) {
           if (!manualScrollActive && window.scrollY <= 8) {
@@ -3001,10 +3306,13 @@ function compileClientWebsiteHTML(st) {
         requestAnimationFrame(runFullscreenEntranceZoom);
       }
 
-      // Escuchar comandos desde los botones de vista previa de index.html (sin conflicto de scroll en móvil)
+      // Escuchar comandos desde los botones de vista previa de index.html (validando origen/fuente y tipo)
       window.addEventListener('message', (ev) => {
-        if (!ev || !ev.data || ev.data.type !== 'MIWEB_PREVIEW_NAV') return;
-        const target = ev.data.target;
+        if (!ev || !ev.data || typeof ev.data !== 'object') return;
+        if (ev.source && window.parent && ev.source !== window.parent && ev.source !== window) return;
+        if (ev.origin && ev.origin !== 'null' && window.location.origin && window.location.origin !== 'null' && ev.origin !== window.location.origin) return;
+        if (ev.data.type !== 'MIWEB_PREVIEW_NAV') return;
+        const target = String(ev.data.target || '');
         if (target === 'intro') {
           window.replayPrestigeIntro();
           return;
@@ -3012,8 +3320,9 @@ function compileClientWebsiteHTML(st) {
         manualScrollActive = true;
         const el = document.getElementById(target);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          if (target === 'resultados') {
+          const topY = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 72);
+          window.scrollTo({ top: topY, behavior: 'smooth' });
+          if (target === 'resultados' && !prefersReducedMotion) {
             const range = document.getElementById('ad-range');
             if (range) {
               let t0 = performance.now();
@@ -3059,6 +3368,12 @@ function compileClientWebsiteHTML(st) {
       range.addEventListener('touchstart', () => { userTouchedAd = true; }, { passive: true });
       range.addEventListener('input', syncAd);
       syncAd();
+      window.setBeforeAfterPos = function(pct) {
+        userTouchedAd = true;
+        const clamped = Math.min(100, Math.max(0, Number(pct) || 50));
+        range.value = String(Math.round(clamped * 10));
+        syncAd();
+      };
 
       if ('IntersectionObserver' in window) {
         let demoPlayed = false;
@@ -3133,6 +3448,7 @@ function compileClientWebsiteHTML(st) {
       pinsList.forEach((pin, idx) => {
         pin.addEventListener('click', () => activateLayerIndex(idx));
       });
+      window.activateCapasPin = activateLayerIndex;
     })();
 
     // =========================================================================
@@ -3196,20 +3512,39 @@ function compileClientWebsiteHTML(st) {
 
     function jumpSec(id) {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (!el) return;
+      const topY = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 72);
+      window.scrollTo({ top: topY, behavior: 'smooth' });
     }
+
+    // Interceptar clics en enlaces internos (#servicios, #resultados, etc.) para no desplazar la ventana padre cuando está en iframe
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (ev) => {
+        const href = a.getAttribute('href') || '';
+        if (href.length > 1) {
+          const targetId = href.slice(1);
+          const el = document.getElementById(targetId);
+          if (el) {
+            ev.preventDefault();
+            jumpSec(targetId);
+          }
+        }
+      });
+    });
 
     function pickSlot(btn, slot) {
       chosenSlot = slot;
       const box = btn.parentElement;
       if (box) box.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      syncLiveWaPreview();
     }
 
     function pickDimChip(btn, val) {
       pickSlot(btn, val);
       const inp = document.getElementById('bk-dims');
       if (inp) inp.value = val;
+      syncLiveWaPreview();
     }
 
     function switchUrgentTab(mode) {
@@ -3227,24 +3562,11 @@ function compileClientWebsiteHTML(st) {
           ? 'Enviar aviso urgente por WhatsApp'
           : 'Consultar precio exacto por WhatsApp';
       }
+      syncLiveWaPreview();
     }
 
-    function updateRepairEstimate(sel) {
-      const box = document.getElementById('bk-live-estimate');
-      if (box && sel) {
-        box.innerHTML = '💡 Tarifa seleccionada: <strong>' + sel.value.replace(/</g, '&lt;') + '</strong> · Te avisamos al WhatsApp en cuanto esté terminado.';
-      }
-    }
-
-    function selectServiceForBooking(title) {
-      const sel = document.getElementById('bk-service') || document.getElementById('bk-quo-type');
-      if (sel) {
-        if (sel.id === 'bk-quo-type') switchUrgentTab('copia');
-        for (let i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value.includes(title)) { sel.selectedIndex = i; break; }
-        }
-        if (sel.id === 'bk-service') updateRepairEstimate(sel);
-      }
+    function quickJumpUrgentMode(mode) {
+      switchUrgentTab(mode);
       jumpSec('accion');
       const shell = document.querySelector('#accion .bezel-shell');
       if (shell) {
@@ -3253,84 +3575,221 @@ function compileClientWebsiteHTML(st) {
       }
     }
 
+    function updateRepairEstimate(sel) {
+      const box = document.getElementById('bk-live-estimate');
+      if (box && sel) {
+        box.innerHTML = '💡 Tarifa seleccionada: <strong>' + sel.value.replace(/</g, '&lt;') + '</strong> · Te avisamos al WhatsApp en cuanto esté terminado.';
+      }
+      syncLiveWaPreview();
+    }
+
+    // Acordeón exclusivo en #servicios (al abrir una fila se cierran las demás para no acumular filas abiertas)
+    (function initServiciosAccordion() {
+      const srvRows = Array.from(document.querySelectorAll('#servicios details.fila'));
+      srvRows.forEach((row) => {
+        row.addEventListener('toggle', () => {
+          if (row.open) {
+            srvRows.forEach((other) => {
+              if (other !== row && other.open) other.open = false;
+            });
+          }
+        });
+      });
+    })();
+
+    function selectServiceForBooking(serviceIdOrTitle, fallbackTitle) {
+      const sel = document.getElementById('bk-service') || document.getElementById('bk-quo-type');
+      const targetId = String(serviceIdOrTitle || '').trim();
+      const targetTitle = String(fallbackTitle || serviceIdOrTitle || '').trim();
+      if (sel) {
+        if (sel.id === 'bk-quo-type') switchUrgentTab('copia');
+        let matchedIndex = -1;
+        for (let i = 0; i < sel.options.length; i++) {
+          const opt = sel.options[i];
+          const optId = opt.getAttribute('data-service-id') || '';
+          if (targetId && optId && optId === targetId) {
+            matchedIndex = i;
+            break;
+          }
+        }
+        if (matchedIndex === -1 && targetTitle) {
+          for (let i = 0; i < sel.options.length; i++) {
+            if (sel.options[i].value.includes(targetTitle) || (sel.options[i].getAttribute('data-service-title') || '') === targetTitle) {
+              matchedIndex = i;
+              break;
+            }
+          }
+        }
+        if (matchedIndex >= 0) sel.selectedIndex = matchedIndex;
+        if (sel.id === 'bk-service') updateRepairEstimate(sel);
+      }
+      syncLiveWaPreview();
+      jumpSec('accion');
+      const shell = document.querySelector('#accion .bezel-shell');
+      if (shell) {
+        shell.classList.remove('flash-booking');
+        setTimeout(() => shell.classList.add('flash-booking'), 350);
+      }
+    }
+
+    function buildWhatsAppMessageLines(kind) {
+      const biz = ${JSON.stringify(st.name)};
+      const city = ${JSON.stringify(st.city)};
+      const activeKind = kind || ${JSON.stringify(mode)};
+      const srv = (document.getElementById('bk-service')?.value || '').trim();
+      const cli = (document.getElementById('bk-client')?.value || '').trim();
+      const who = cli ? (', soy ' + cli) : '';
+
+      if (activeKind === 'medidas_presupuesto') {
+        const dims = (document.getElementById('bk-dims')?.value || chosenSlot || '').trim();
+        const mat = (document.getElementById('bk-material')?.value || '').trim();
+        const workTxt = srv || 'un trabajo a medida';
+        const dimTxt = dims ? (' con medidas aproximadas de ' + dims) : '';
+        const matTxt = mat ? (' en acabado ' + mat.toLowerCase()) : '';
+        return [
+          'Hola ' + biz + who + '. Me gustaría pedir presupuesto para ' + workTxt + dimTxt + matTxt + '. ¿Podéis indicarme orientación de precio y disponibilidad?'
+        ];
+      }
+
+      if (activeKind === 'urgencia_o_llaves') {
+        if (urgentMode === 'urgencia') {
+          const ut = (document.getElementById('bk-urg-type')?.value || 'asistencia urgente').trim();
+          const stName = (document.getElementById('bk-urg-street')?.value || '').trim();
+          const locTxt = stName ? (' en ' + stName) : (' en ' + city);
+          return [
+            'Hola ' + biz + who + '. Necesito ayuda urgente para ' + ut.toLowerCase() + locTxt + '. ¿Podéis indicarme disponibilidad y precio aproximado antes de desplazaros?'
+          ];
+        } else {
+          const qt = (document.getElementById('bk-quo-type')?.value || 'copia o presupuesto').trim();
+          const md = (document.getElementById('bk-quo-model')?.value || '').trim();
+          const mdTxt = md ? (' (modelo/detalle: ' + md + ')') : '';
+          return [
+            'Hola ' + biz + who + '. Quería consultar disponibilidad y precio para ' + qt + mdTxt + '. ¿Me podéis orientar?'
+          ];
+        }
+      }
+
+      if (activeKind === 'motor_diagnostico') {
+        const plate = (document.getElementById('bk-plate')?.value || '').trim();
+        const sym = (document.getElementById('bk-symptom')?.value || '').trim();
+        const vehTxt = plate ? (' para mi vehículo (' + plate + ')') : '';
+        const symTxt = sym ? ('. Detalle: ' + sym) : '';
+        return [
+          'Hola ' + biz + who + '. Querría pedir cita en el taller para ' + (srv || 'revisión') + vehTxt + symTxt + '. Preferencia de entrega: ' + (chosenSlot || 'esta semana') + '. ¿Tenéis hueco?'
+        ];
+      }
+
+      if (activeKind === 'recepcion_taller_local') {
+        const dev = (document.getElementById('bk-device')?.value || '').trim();
+        const devTxt = dev ? (' de ' + dev) : '';
+        return [
+          'Hola ' + biz + who + '. Quería consultar tarifa y disponibilidad para ' + (srv || 'un arreglo') + devTxt + '. Tenía pensado pasar por el local (' + (chosenSlot || 'hoy') + ').'
+        ];
+      }
+
+      if (activeKind === 'encargo_sin_cola') {
+        const qty = (document.getElementById('bk-qty')?.value || '').trim();
+        const qtyTxt = qty ? (' (' + qty + ')') : '';
+        return [
+          'Hola ' + biz + who + '. Me gustaría dejar encargado ' + (srv || 'un pedido') + qtyTxt + ' para pasar a recogerlo sobre las ' + (chosenSlot || '13:30') + '. ¿Me confirmáis disponibilidad?'
+        ];
+      }
+
+      if (activeKind === 'mesa_carta') {
+        const zone = (document.getElementById('bk-zone')?.value || 'el local').trim();
+        const dishTxt = srv ? (' (nos interesa ' + srv.split('(')[0].trim() + ')') : '';
+        return [
+          'Hola ' + biz + who + '. Querría reservar mesa en ' + zone.toLowerCase() + ' para el turno de ' + (chosenSlot || 'mediodía') + dishTxt + '. ¿Tenéis disponibilidad?'
+        ];
+      }
+
+      if (activeKind === 'filtro_clientes') {
+        const qual = (document.getElementById('bk-qualify')?.value || '').trim();
+        const det = (document.getElementById('bk-detail')?.value || '').trim();
+        const qualTxt = qual ? (' (' + qual + ')') : '';
+        const detTxt = det ? ('. Detalle: ' + det) : '';
+        return [
+          'Hola ' + biz + who + '. Os escribo para consultar sobre ' + (srv || 'vuestros servicios') + qualTxt + detTxt + '. ¿Cómo podemos agendar una primera valoración?'
+        ];
+      }
+
+      const ext = (document.getElementById('bk-extra')?.value || '').trim();
+      const whenTxt = (ext ? ext : 'esta semana') + (chosenSlot ? (' sobre las ' + chosenSlot) : '');
+      return [
+        'Hola ' + biz + who + '. Me gustaría pedir cita para ' + (srv || 'un servicio') + ' (' + whenTxt + '). ¿Tenéis disponibilidad?'
+      ];
+    }
+
+    function syncLiveWaPreview() {
+      const bubble = document.getElementById('wa-live-bubble');
+      if (!bubble) return;
+      document.querySelectorAll('#accion .input-invalid').forEach(el => {
+        if (String(el.value || '').trim()) {
+          el.classList.remove('input-invalid');
+          el.removeAttribute('aria-invalid');
+        }
+      });
+      const lines = buildWhatsAppMessageLines(${JSON.stringify(mode)});
+      bubble.textContent = lines.join('\\n');
+    }
+    syncLiveWaPreview();
+
     function sendSectorWhatsApp(kind) {
       const biz = ${JSON.stringify(st.name)};
-      const srv = document.getElementById('bk-service')?.value || '';
-      const cli = document.getElementById('bk-client')?.value || '';
-      const lines = ['Hola ' + biz + ', os escribo desde vuestra web:'];
+      const activeKind = kind || ${JSON.stringify(mode)};
+      const requiredIds = [];
+      if (activeKind === 'urgencia_o_llaves') {
+        requiredIds.push(urgentMode === 'urgencia' ? 'bk-urg-street' : 'bk-quo-model');
+      } else if (activeKind === 'medidas_presupuesto') {
+        requiredIds.push('bk-dims');
+      } else if (activeKind === 'motor_diagnostico') {
+        requiredIds.push('bk-plate');
+      } else if (activeKind === 'recepcion_taller_local') {
+        requiredIds.push('bk-device');
+      } else if (activeKind === 'encargo_sin_cola') {
+        requiredIds.push('bk-qty');
+      } else if (activeKind === 'filtro_clientes') {
+        requiredIds.push('bk-detail');
+      }
+      requiredIds.push('bk-client');
 
-      if (kind === 'medidas_presupuesto') {
-        const dims = document.getElementById('bk-dims')?.value || chosenSlot;
-        const mat = document.getElementById('bk-material')?.value || '';
-        if (srv) lines.push('• Trabajo: ' + srv);
-        if (dims) lines.push('• Medidas aprox.: ' + dims);
-        if (mat) lines.push('• Acabado / Material: ' + mat);
-        if (cli) lines.push('• Cliente y zona: ' + cli);
-      } else if (kind === 'urgencia_o_llaves') {
-        if (urgentMode === 'urgencia') {
-          const ut = document.getElementById('bk-urg-type')?.value || '';
-          const stName = document.getElementById('bk-urg-street')?.value || '';
-          lines.push('• MODO: 🚨 URGENCIA AHORA');
-          if (ut) lines.push('• Avería: ' + ut);
-          if (stName) lines.push('• Ubicación exacta: ' + stName);
-        } else {
-          const qt = document.getElementById('bk-quo-type')?.value || '';
-          const md = document.getElementById('bk-quo-model')?.value || '';
-          lines.push('• MODO: 🔑 CONSULTA / COPIA / PRESUPUESTO');
-          if (qt) lines.push('• Solicitud: ' + qt);
-          if (md) lines.push('• Marca / Modelo exacto: ' + md);
+      const missingEls = [];
+      requiredIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !String(el.value || '').trim()) {
+          el.classList.add('input-invalid');
+          el.setAttribute('aria-invalid', 'true');
+          missingEls.push(el);
+        } else if (el) {
+          el.classList.remove('input-invalid');
+          el.removeAttribute('aria-invalid');
         }
-        if (cli) lines.push('• Contacto: ' + cli);
-      } else if (kind === 'motor_diagnostico') {
-        const plate = document.getElementById('bk-plate')?.value || '';
-        const sym = document.getElementById('bk-symptom')?.value || '';
-        if (srv) lines.push('• Servicio: ' + srv);
-        if (plate) lines.push('• Vehículo / Matrícula: ' + plate);
-        if (sym) lines.push('• Síntoma / Detalle: ' + sym);
-        if (chosenSlot) lines.push('• Preferencia: ' + chosenSlot);
-        if (cli) lines.push('• Cliente: ' + cli);
-      } else if (kind === 'recepcion_taller_local') {
-        const dev = document.getElementById('bk-device')?.value || '';
-        if (dev) lines.push('• Artículo / Modelo: ' + dev);
-        if (srv) lines.push('• Arreglo: ' + srv);
-        if (chosenSlot) lines.push('• Entrega en local: ' + chosenSlot);
-        if (cli) lines.push('• Cliente (avisar al terminar): ' + cli);
-      } else if (kind === 'encargo_sin_cola') {
-        const qty = document.getElementById('bk-qty')?.value || '';
-        if (srv) lines.push('• Encargo: ' + srv);
-        if (qty) lines.push('• Unidades / Detalle: ' + qty);
-        if (chosenSlot) lines.push('• Hora recogida sin cola: ' + chosenSlot);
-        if (cli) lines.push('• A nombre de: ' + cli);
-      } else if (kind === 'mesa_carta') {
-        const zone = document.getElementById('bk-zone')?.value || '';
-        if (zone) lines.push('• Mesa / Zona: ' + zone);
-        if (srv) lines.push('• Preferencia carta: ' + srv);
-        if (chosenSlot) lines.push('• Turno: ' + chosenSlot);
-        if (cli) lines.push('• A nombre de: ' + cli);
-      } else if (kind === 'filtro_clientes') {
-        const qual = document.getElementById('bk-qualify')?.value || '';
-        const det = document.getElementById('bk-detail')?.value || '';
-        if (srv) lines.push('• Servicio: ' + srv);
-        if (qual) lines.push('• Perfil / Situación: ' + qual);
-        if (det) lines.push('• Fecha / Detalle: ' + det);
-        if (cli) lines.push('• Contacto: ' + cli);
-      } else {
-        const ext = document.getElementById('bk-extra')?.value || '';
-        if (srv) lines.push('• Servicio: ' + srv);
-        if (ext) lines.push('• Día: ' + ext);
-        if (chosenSlot) lines.push('• Hora aprox.: ' + chosenSlot);
-        if (cli) lines.push('• Nombre: ' + cli);
+      });
+
+      const lines = buildWhatsAppMessageLines(activeKind);
+      const msg = lines.join('\\n');
+      const waUrl = 'https://wa.me/${fullWa}?text=' + encodeURIComponent(msg);
+      const ok = document.getElementById('bk-ok');
+
+      if (missingEls.length > 0) {
+        if (ok) {
+          ok.style.display = 'block';
+          ok.setAttribute('data-status', 'validation-warning');
+          ok.innerHTML = '⚠️ Completa los campos marcados para enviar tu solicitud completa, o <a href="' + waUrl + '" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:800; margin-left:4px; color:var(--oro);">abre WhatsApp directamente aquí ↗</a>';
+        }
+        try { missingEls[0].focus(); } catch (e) {}
+        return false;
       }
 
-      const msg = lines.join('\\n');
-      const ok = document.getElementById('bk-ok');
       if (ok) {
         ok.style.display = 'block';
-        ok.innerHTML = '✓ Solicitud preparada para <strong>' + biz.replace(/</g, '&lt;') + '</strong>. <a href="https://wa.me/${fullWa}?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:800; margin-left:6px; color:var(--oro);">Enviar ahora por WhatsApp ↗</a>';
+        ok.setAttribute('data-status', 'ready');
+        ok.innerHTML = '✓ Solicitud preparada para <strong>' + biz.replace(/</g, '&lt;') + '</strong>. <a href="' + waUrl + '" target="_blank" rel="noopener" style="text-decoration:underline; font-weight:800; margin-left:6px; color:var(--oro);">Enviar ahora por WhatsApp ↗</a>';
       }
       try {
-        window.open('https://wa.me/${fullWa}?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+        window.open(waUrl, '_blank', 'noopener');
       } catch (e) {}
+      return true;
     }
   <\/script>
 </body>
@@ -3341,6 +3800,7 @@ if (typeof window !== 'undefined') {
   window.STORAGE_KEY = STORAGE_KEY;
   window.DESIGN_THEMES = DESIGN_THEMES;
   window.SECTOR_PRESETS = SECTOR_PRESETS;
+  window.escapeHtml = escapeHtml;
   window.slugifyName = slugifyName;
   window.encodeSharePayload = encodeSharePayload;
   window.decodeSharePayload = decodeSharePayload;

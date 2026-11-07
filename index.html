@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WBXMKQ6G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>MiWebLocal · Tu web profesional en 15 segundos · Pago único</title>
@@ -198,8 +205,7 @@
     .dots i:nth-child(3) { background: #6EE7B7; }
     .url { flex: 1; min-width: 0; height: 32px; padding: 0 12px; border-radius: 999px; background: var(--tint); display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted); overflow: hidden; white-space: nowrap; }
     .url i { color: #10B981; flex-shrink: 0; }
-    .vp-modes { display: none; gap: 4px; background: var(--tint); padding: 3px; border-radius: 999px; flex-shrink: 0; }
-    @media (min-width: 640px) { .vp-modes { display: inline-flex; } }
+    .vp-modes { display: inline-flex; gap: 4px; background: var(--tint); padding: 3px; border-radius: 999px; flex-shrink: 0; }
     .vp-mode-btn {
       border: 0; background: transparent; color: var(--muted); font-size: 11.5px; font-weight: 700;
       padding: 4px 10px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
@@ -215,12 +221,15 @@
     .viewport.switching { filter: blur(3px); opacity: 0.72; transform: scale(0.992); }
     .viewport iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
     .viewport.mobile { aspect-ratio: 390 / 620; width: 100%; max-width: 340px; margin: 12px auto; border-radius: 24px; box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.22), 0 0 0 6px #0F172A; }
-    @media (max-width: 639px) {
-      .viewport.mobile { max-width: 100%; margin: 0; border-radius: 0; box-shadow: none; aspect-ratio: 390 / 560; }
-    }
-    .viewport.mobile iframe { pointer-events: none; }
     .tap-open { position: absolute; inset: 0; z-index: 3; display: none; background: transparent; border: 0; cursor: pointer; }
-    .viewport.mobile .tap-open { display: block; }
+    @media (max-width: 639px) {
+      .viewport.mobile { max-width: 340px; margin: 8px auto; border-radius: 20px; aspect-ratio: 390 / 560; }
+    }
+    .oficio-opt.kb-focus {
+      background: var(--soft);
+      outline: 2px solid var(--brand);
+      outline-offset: -2px;
+    }
     .preview-tour-bar {
       display: flex;
       align-items: center;
@@ -408,7 +417,46 @@
     /* Checkout modal */
     .modal { position: fixed; inset: 0; z-index: 90; display: none; align-items: center; justify-content: center; padding: 14px; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(8px); overflow-y: auto; overscroll-behavior: contain; }
     .modal.is-open { display: flex; }
-    .m-card { width: 100%; max-width: 640px; max-height: 94dvh; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border-radius: 30px; padding: 26px; box-shadow: 0 40px 90px -20px rgba(15,23,42,0.4); animation: pop 0.32s var(--ease-out); }
+    .m-card { width: 100%; max-width: 640px; max-height: 92dvh; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border-radius: 30px; padding: 26px; box-shadow: 0 40px 90px -20px rgba(15,23,42,0.4); animation: pop 0.32s var(--ease-out); }
+    @media (max-width: 480px) {
+      .modal { padding: 8px; align-items: flex-end; }
+      .m-card { padding: 18px 15px; border-radius: 22px; max-height: 92dvh; }
+      .m-top h3 { font-size: 20px; }
+    }
+    .plan-summary-box {
+      padding: 11px 13px; border-radius: 14px; background: #F8FAFC; border: 1px solid var(--line-strong);
+      font-size: 12.5px; color: var(--ink-2); line-height: 1.45; margin-bottom: 12px;
+    }
+    .plan-summary-box strong { color: var(--ink); display: block; margin-bottom: 2px; }
+    .dom-badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 10px;
+      font-size: 12.5px; font-weight: 700; line-height: 1.35;
+    }
+    .dom-badge.checking { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+    .dom-badge.available { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+    .dom-badge.unavailable { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+    .dom-badge.error { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+    .dom-badge.invalid { background: #FEF2F2; color: #BE123C; border: 1px solid #FECDD3; }
+    .roi-funnel-steps {
+      display: grid; gap: 8px; padding: 12px 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid var(--line);
+    }
+    .roi-f-row { display: grid; gap: 3px; font-size: 12px; color: var(--ink-2); }
+    .roi-f-head { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; }
+    .roi-f-bar { height: 6px; border-radius: 999px; background: #E2E8F0; overflow: hidden; }
+    .roi-f-fill { height: 100%; border-radius: 999px; background: var(--brand); transition: width 0.2s ease; }
+    .roi-metrics-split {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+    }
+    @media (max-width: 420px) { .roi-metrics-split { grid-template-columns: 1fr; } }
+    .roi-metric-box {
+      padding: 12px 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid var(--line-strong);
+    }
+    .roi-metric-box small { display: block; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .roi-metric-box b { font-family: var(--display); font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.03em; }
+    .roi-legal-note {
+      font-size: 11.5px; color: var(--muted); line-height: 1.45; padding: 10px 12px;
+      border-radius: 12px; background: rgba(15, 23, 42, 0.035); border: 1px dashed var(--line-strong);
+    }
     .m-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 18px; }
     .m-top h3 { font-size: 24px; }
     .m-top p { font-size: 13.5px; color: var(--muted); margin-top: 4px; }
@@ -994,7 +1042,7 @@
               <button type="button" class="pt-btn" data-pt="servicios">💰 Precios</button>
               <button type="button" class="pt-btn" data-pt="resultados">✨ Antes / Después</button>
               <button type="button" class="pt-btn" data-pt="casos">📸 Trabajos</button>
-              <button type="button" class="pt-btn" data-pt="accion">💬 WhatsApp</button>
+              <button type="button" class="pt-btn" data-pt="accion" id="pt-btn-accion">📐 Calculadora Medidas</button>
             </div>
           </div>
         </div>
@@ -1005,13 +1053,13 @@
     <div class="nf-ticker" aria-hidden="true">
       <div class="nf-ticker-track">
         <span class="nf-ticker-item"><i class="ph-bold ph-code"></i> CÓDIGO PROPIO · 0 PLANTILLAS WORDPRESS</span>
-        <span class="nf-ticker-item"><i class="ph-bold ph-lightning"></i> CARGA EN &lt; 0.4 SEGUNDOS</span>
+        <span class="nf-ticker-item"><i class="ph-bold ph-lightning"></i> ARQUITECTURA HTML/CSS/JS LIGERA</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-wrench"></i> +65 OFICIOS CON SISTEMA A MEDIDA</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-whatsapp-logo"></i> DIRECTO A TU WHATSAPP · 0% COMISIÓN</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-shield-check"></i> PAGO ÚNICO EN STRIPE · 0 €/MES</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-google-logo"></i> SEO LOCAL Y GOOGLE MAPS LISTO</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-code"></i> CÓDIGO PROPIO · 0 PLANTILLAS WORDPRESS</span>
-        <span class="nf-ticker-item"><i class="ph-bold ph-lightning"></i> CARGA EN &lt; 0.4 SEGUNDOS</span>
+        <span class="nf-ticker-item"><i class="ph-bold ph-lightning"></i> ARQUITECTURA HTML/CSS/JS LIGERA</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-wrench"></i> +65 OFICIOS CON SISTEMA A MEDIDA</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-whatsapp-logo"></i> DIRECTO A TU WHATSAPP · 0% COMISIÓN</span>
         <span class="nf-ticker-item"><i class="ph-bold ph-shield-check"></i> PAGO ÚNICO EN STRIPE · 0 €/MES</span>
@@ -1102,8 +1150,8 @@
                 <div class="ps-call-toast" id="ps-call-toast" style="flex:1;">
                   <div class="ps-call-ic"><i class="ph-fill ph-phone-incoming"></i></div>
                   <div>
-                    <b id="ps-call-q">«Hola, ¿cuánto cuesta el cambio de aceite y tenéis hueco hoy?»</b>
-                    <span id="ps-call-sub">Llamada entrante #8 · Te obliga a parar de trabajar</span>
+                    <b id="ps-call-q">«¿Cuánto me sale un armario empotrado más o menos?»</b>
+                    <span id="ps-call-sub">Llamada entrante #1 · Te obliga a parar de trabajar</span>
                   </div>
                 </div>
               </div>
@@ -1123,35 +1171,33 @@
             <div>
               <div class="ps-badge-row">
                 <span class="ps-pill good"><i class="ph-bold ph-check-circle"></i>Con tu web en MiWebLocal.com</span>
-                <span class="ps-counter good" id="ps-good-badge">0 interrupciones · 0 % comisión</span>
+                <span class="ps-counter good" id="ps-good-badge">Menos interrupciones · 0 % comisión</span>
               </div>
-              <h3 class="ps-title" id="ps-good-title" style="margin-top:14px;">Tu web enseña tus precios 24 h y te envía la cita cerrada al WhatsApp</h3>
-              <p class="ps-desc" id="ps-good-desc" style="margin-top:6px;">La creas arriba en 15 segundos poniendo tu nombre. El cliente consulta precios desde su móvil y te llega el mensaje listo.</p>
+              <h3 class="ps-title" id="ps-good-title" style="margin-top:14px;">Tu web muestra tus servicios, precios y recoge solicitudes a cualquier hora para que respondas desde WhatsApp</h3>
+              <p class="ps-desc" id="ps-good-desc" style="margin-top:6px;">La creas arriba en 15 segundos poniendo tu nombre. El cliente consulta precios desde su móvil y te llega el mensaje estructurado.</p>
             </div>
 
             <div class="ps-stage" style="background:#fff;border-color:#C7D2FE;">
               <!-- MINI DEMO INTERACTIVA DEL PASO ACTIVO -->
-              <div class="ps-mini-demo">
-                <div class="ps-mini-bar">
-                  <div class="ps-mini-dots"><i></i><i></i><i></i></div>
-                  <span id="ps-mini-url">🔒 miweblocal.com · Paso 1 de 3 en vivo</span>
-                  <span style="font-size:10.5px;color:#059669;">● En directo</span>
+              <div class="ps-mini-bar">
+                <div class="ps-mini-dots"><i></i><i></i><i></i></div>
+                <span id="ps-mini-url">🔒 miweblocal.com · Paso 1 de 3 en vivo</span>
+                <span style="font-size:10.5px;color:#059669;">● En directo</span>
+              </div>
+              <div class="ps-mini-body" id="ps-mini-body">
+                <div>
+                  <b style="display:block;font-size:13.5px;color:var(--ink);" id="ps-mini-title">Generando web en 15 segundos...</b>
+                  <span style="font-size:12px;color:var(--muted);" id="ps-mini-sub">Escribes el nombre de tu negocio y se monta al instante</span>
                 </div>
-                <div class="ps-mini-body" id="ps-mini-body">
-                  <div>
-                    <b style="display:block;font-size:13.5px;color:var(--ink);" id="ps-mini-title">Generando web en 15 segundos...</b>
-                    <span style="font-size:12px;color:var(--muted);" id="ps-mini-sub">Escribes el nombre de tu negocio y se monta al instante</span>
-                  </div>
-                  <span class="ps-mini-pill" id="ps-mini-pill"><i class="ph-bold ph-magic-wand"></i> 15 seg</span>
-                </div>
+                <span class="ps-mini-pill" id="ps-mini-pill"><i class="ph-bold ph-magic-wand"></i> 15 seg</span>
               </div>
 
               <div class="ps-sol-steps" id="ps-sol-steps"></div>
               <div class="ps-wa-preview" id="ps-wa-preview">
                 <div class="ps-wa-ic"><i class="ph-fill ph-whatsapp-logo"></i></div>
                 <div>
-                  <b id="ps-wa-title">WhatsApp que recibes en tu móvil (ya confirmado):</b>
-                  <span id="ps-wa-msg">«Hola Taller Paco, quiero cita para Cambio de Aceite + Filtro (59 €) mañana a las 10:00»</span>
+                  <b id="ps-wa-title">WhatsApp que recibes en tu móvil (con datos filtrados):</b>
+                  <span id="ps-wa-msg">«Hola Carpintería Roble Vivo, querría presupuesto orientativo para armario empotrado a medida indicando medidas aproximadas y zona.»</span>
                 </div>
               </div>
             </div>
@@ -1171,30 +1217,30 @@
       </div>
     </section>
 
-    <!-- SIMULADOR INTERACTIVO DE DINERO PERDIDO (INSPIRADO EN NOTFOUND /ROI) -->
+    <!-- SIMULADOR DE EMBUDO DE CAPTACIÓN Y RENTABILIDAD -->
     <section class="block" id="calculadora-perdidas" style="border-top:1px solid var(--line);background:var(--tint);">
       <div class="wrap">
-        <div class="head reveal" style="max-width:720px;margin-bottom:24px;">
-          <span class="pill" style="margin-bottom:14px;"><i class="ph-bold ph-calculator"></i>HERRAMIENTA GRATUITA · SIMULADOR EN TIEMPO REAL</span>
-          <h2>¿Cuánto dinero te está costando no tener web propia?</h2>
+        <div class="head reveal" style="max-width:760px;margin-bottom:24px;">
+          <span class="pill" style="margin-bottom:14px;"><i class="ph-bold ph-calculator"></i>HERRAMIENTA GRATUITA · SIMULADOR DE EMBUDO EN TIEMPO REAL</span>
+          <h2>Simulador de embudo de captación y oportunidad local</h2>
           <div class="nf-bar"></div>
-          <p class="sub">No es lo que cuesta hacer tu web (desde 79 € una sola vez): es lo que dejas escapar cada mes cuando te buscan fuera de horario o comunicas. Mueve los valores y descúbrelo en tiempo real.</p>
+          <p class="sub">Calcula de forma transparente y por etapas cuántas consultas pueden quedarse sin respuesta fuera de horario o cuando estás trabajando, y cuántos encargos reales podrías recuperar con una web conectada a tu WhatsApp.</p>
         </div>
 
         <div class="nf-roi-presets reveal" id="roi-presets" aria-label="Ejemplos rápidos por oficio">
-          <button type="button" class="nf-roi-chip active" data-r-visits="95" data-r-ticket="220" data-r-leak="11">🔨 Carpintería / Reformas</button>
-          <button type="button" class="nf-roi-chip" data-r-visits="150" data-r-ticket="95" data-r-leak="12">🔑 Cerrajero / Fontanero</button>
-          <button type="button" class="nf-roi-chip" data-r-visits="180" data-r-ticket="115" data-r-leak="10">🔧 Taller / Lavadero</button>
-          <button type="button" class="nf-roi-chip" data-r-visits="240" data-r-ticket="32" data-r-leak="12">✂️ Peluquería / Estética</button>
-          <button type="button" class="nf-roi-chip" data-r-visits="190" data-r-ticket="65" data-r-leak="11">🦷 Clínica / Fisio</button>
-          <button type="button" class="nf-roi-chip" data-r-visits="320" data-r-ticket="42" data-r-leak="10">🍽️ Restaurante / Obrador</button>
+          <button type="button" class="nf-roi-chip active" data-r-visits="95" data-r-ticket="220" data-r-leak="12" data-r-contact="45" data-r-close="35">🔨 Carpintería / Reformas</button>
+          <button type="button" class="nf-roi-chip" data-r-visits="150" data-r-ticket="95" data-r-leak="14" data-r-contact="50" data-r-close="40">🔑 Cerrajero / Fontanero</button>
+          <button type="button" class="nf-roi-chip" data-r-visits="180" data-r-ticket="115" data-r-leak="11" data-r-contact="45" data-r-close="35">🔧 Taller / Lavadero</button>
+          <button type="button" class="nf-roi-chip" data-r-visits="240" data-r-ticket="32" data-r-leak="12" data-r-contact="55" data-r-close="50">✂️ Peluquería / Estética</button>
+          <button type="button" class="nf-roi-chip" data-r-visits="190" data-r-ticket="65" data-r-leak="11" data-r-contact="50" data-r-close="45">🦷 Clínica / Fisio</button>
+          <button type="button" class="nf-roi-chip" data-r-visits="320" data-r-ticket="42" data-r-leak="10" data-r-contact="55" data-r-close="50">🍽️ Restaurante / Obrador</button>
         </div>
 
         <div class="nf-roi-grid reveal">
           <div class="nf-roi-card">
             <div class="nf-slider-group">
               <div class="nf-slider-top">
-                <label class="nf-slider-lbl" for="roi-visits">Personas que buscan tu oficio al mes (aprox.)</label>
+                <label class="nf-slider-lbl" for="roi-visits">1. Búsquedas o visitas mensuales estimadas</label>
                 <span class="nf-slider-val num" id="roi-visits-val">95</span>
               </div>
               <input class="nf-range" id="roi-visits" type="range" min="30" max="600" step="5" value="95" />
@@ -1202,39 +1248,101 @@
 
             <div class="nf-slider-group">
               <div class="nf-slider-top">
-                <label class="nf-slider-lbl" for="roi-ticket">Valor medio de un cliente o trabajo (€)</label>
-                <span class="nf-slider-val num" id="roi-ticket-val">220 €</span>
+                <label class="nf-slider-lbl" for="roi-leak">2. Visitas fuera de hora o sin web clara (%)</label>
+                <span class="nf-slider-val num" id="roi-leak-val">12 %</span>
               </div>
-              <input class="nf-range" id="roi-ticket" type="range" min="15" max="500" step="5" value="220" />
+              <input class="nf-range" id="roi-leak" type="range" min="4" max="30" step="1" value="12" />
             </div>
 
-            <div class="nf-slider-group">
-              <div class="nf-slider-top">
-                <label class="nf-slider-lbl" for="roi-leak">Visitas que se van sin llamar o fuera de hora (%)</label>
-                <span class="nf-slider-val num" id="roi-leak-val">11 %</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="nf-slider-group">
+                <div class="nf-slider-top">
+                  <label class="nf-slider-lbl" for="roi-contact">3. Envían solicitud (%)</label>
+                  <span class="nf-slider-val num" id="roi-contact-val">45 %</span>
+                </div>
+                <input class="nf-range" id="roi-contact" type="range" min="15" max="80" step="5" value="45" />
               </div>
-              <input class="nf-range" id="roi-leak" type="range" min="4" max="30" step="1" value="11" />
+
+              <div class="nf-slider-group">
+                <div class="nf-slider-top">
+                  <label class="nf-slider-lbl" for="roi-close">4. Cierran encargo (%)</label>
+                  <span class="nf-slider-val num" id="roi-close-val">35 %</span>
+                </div>
+                <input class="nf-range" id="roi-close" type="range" min="15" max="80" step="5" value="35" />
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="nf-slider-group">
+                <div class="nf-slider-top">
+                  <label class="nf-slider-lbl" for="roi-ticket">5. Ticket medio (€)</label>
+                  <span class="nf-slider-val num" id="roi-ticket-val">220 €</span>
+                </div>
+                <input class="nf-range" id="roi-ticket" type="range" min="15" max="500" step="5" value="220" />
+              </div>
+
+              <div class="nf-slider-group">
+                <div class="nf-slider-top">
+                  <label class="nf-slider-lbl" for="roi-margin">6. Margen bruto (%)</label>
+                  <span class="nf-slider-val num" id="roi-margin-val">65 %</span>
+                </div>
+                <input class="nf-range" id="roi-margin" type="range" min="20" max="95" step="5" value="65" />
+              </div>
             </div>
 
             <div class="nf-mono" style="color:var(--muted);font-size:11px;padding-top:6px;border-top:1px solid var(--line);">
-              _ estimación directa · 0 % comisiones · pago único sin cuotas
+              _ cálculo por embudo de conversión · margen bruto incluido · 0 % comisiones
             </div>
           </div>
 
           <div class="nf-roi-out-card">
             <div>
-              <span class="nf-mono" style="color:#DC2626;">ESTÁS DEJANDO ESCAPAR APROXIMADAMENTE</span>
-              <div class="nf-loss-big num" style="margin-top:10px;">
-                <span id="roi-month-loss">2.299</span> <small>€ / mes</small>
+              <span class="nf-mono" style="color:var(--brand);">OPORTUNIDAD MENSUAL RECUPERABLE (EMBUDO COMPLETO)</span>
+              <div class="nf-loss-big num" style="margin-top:8px;">
+                <span id="roi-month-loss">396</span> <small>€ / mes facturación potencial</small>
               </div>
               <div class="nf-loss-year num">
-                ≈ <span id="roi-year-loss">27.588</span> € al año · <span id="roi-jobs-lost">10</span> clientes/mes que acaban en la competencia
+                Beneficio bruto potencial: <strong id="roi-gross-profit">257 € / mes</strong> · ≈ <span id="roi-year-loss">4.752</span> € / año (<span id="roi-jobs-lost">1,8</span> encargos potenciales/mes)
+              </div>
+            </div>
+
+            <div class="roi-funnel-steps" aria-label="Desglose del embudo de captación">
+              <div class="roi-step-row">
+                <span class="roi-step-lbl">1. Búsquedas / visitas mensuales</span>
+                <div class="roi-step-bar"><i id="roi-bar-1" style="width:100%"></i></div>
+                <span class="roi-step-val num" id="roi-f-visits">95</span>
+              </div>
+              <div class="roi-step-row">
+                <span class="roi-step-lbl">2. Oportunidades no atendidas</span>
+                <div class="roi-step-bar"><i id="roi-bar-2" style="width:24%"></i></div>
+                <span class="roi-step-val num" id="roi-f-unattended">11,4</span>
+              </div>
+              <div class="roi-step-row">
+                <span class="roi-step-lbl">3. Solicitudes recuperables</span>
+                <div class="roi-step-bar"><i id="roi-bar-3" style="width:15%"></i></div>
+                <span class="roi-step-val num" id="roi-f-contacts">5,1</span>
+              </div>
+              <div class="roi-step-row">
+                <span class="roi-step-lbl">4. Trabajos potenciales</span>
+                <div class="roi-step-bar"><i id="roi-bar-4" style="width:10%"></i></div>
+                <span class="roi-step-val num" id="roi-f-sales">1,8</span>
+              </div>
+            </div>
+
+            <div class="roi-metrics-split">
+              <div class="roi-metric-pill">
+                <span>Coste del servicio (pago único)</span>
+                <strong class="num" id="roi-service-cost">79 € / 197 € / 297 €</strong>
+              </div>
+              <div class="roi-metric-pill">
+                <span>Periodo de recuperación (Plan 79 €)</span>
+                <strong class="num" id="roi-amort-time">Con 1 encargo cerrado</strong>
               </div>
             </div>
 
             <div class="nf-payback-box">
-              <strong id="roi-payback">Se amortiza con 1 solo cliente recuperado en tu primera semana.</strong>
-              <span>En MiWebLocal tu web cuesta desde <b>79 € en pago único</b> (0 €/mes para siempre) y atiende a tus clientes 24 horas directo a tu WhatsApp.</span>
+              <strong id="roi-payback">Con un beneficio bruto estimado de 143 € por encargo, el plan de 79 € se recupera en 1 trabajo cerrado.</strong>
+              <span class="roi-legal-note" id="roi-legal-disclaimer">Simulación orientativa basada en los datos y supuestos introducidos. No representa facturación perdida comprobada ni garantiza resultados.</span>
             </div>
 
             <button type="button" class="btn" id="roi-cta-btn" style="width:100%;justify-content:space-between;">
@@ -1258,19 +1366,19 @@
 
         <div class="nf-metrics-4 reveal">
           <div class="nf-mcol">
-            <div class="nf-mcol-val num">99/100</div>
-            <h3>Velocidad móvil</h3>
-            <p>Carga instantánea incluso con cobertura 4G en la calle</p>
+            <div class="nf-mcol-val num">HTML5</div>
+            <h3>Carga ligera</h3>
+            <p>Optimizada para abrir rápido con cobertura móvil en la calle</p>
           </div>
           <div class="nf-mcol">
-            <div class="nf-mcol-val num">100/100</div>
-            <h3>SEO Local listo</h3>
-            <p>Estructura preparada para Google y Google Maps</p>
+            <div class="nf-mcol-val num">SEO Local</div>
+            <h3>Estructura clara</h3>
+            <p>Metadatos y encabezados preparados para búsquedas de tu zona</p>
           </div>
           <div class="nf-mcol">
             <div class="nf-mcol-val num">0</div>
             <h3>Plantillas WordPress</h3>
-            <p>Código propio de extremo a extremo sin plugins rotos</p>
+            <p>Código propio de extremo a extremo sin plugins que caducan</p>
           </div>
           <div class="nf-mcol">
             <div class="nf-mcol-val num">0 €/mes</div>
@@ -1278,7 +1386,7 @@
             <p>Un único pago con Stripe · Sin permanencias ni cuotas</p>
           </div>
         </div>
-        <span class="nf-proof-note reveal">Medición sobre código compilado por el motor de MiWebLocal.com · Certificado SSL y panel privado incluidos</span>
+        <span class="nf-proof-note reveal">Arquitectura estática compilada por MiWebLocal.com · Certificado SSL y panel privado incluidos</span>
 
         <div class="nf-comp-shell reveal" role="region" aria-label="Comparativa MiWebLocal frente a agencias WordPress y apps de reservas">
           <div class="nf-comp-row nf-comp-head">
@@ -1390,49 +1498,52 @@
         </div>
         <div class="plans">
           <div class="bz reveal"><div class="bz-in plan">
-            <span class="p-tag">Express</span>
+            <span class="p-tag">Plan Básico · Enlace incluido</span>
             <h3>Web Express</h3>
-            <div class="price num">79 €</div><div class="once">pago único</div>
+            <div class="price num">79 €</div><div class="once">pago único · activación inmediata</div>
             <ul>
-              <li><i class="ph-bold ph-check"></i>Tu web publicada con enlace propio</li>
-              <li><i class="ph-bold ph-check"></i>Panel privado para editar fotos y precios</li>
-              <li><i class="ph-bold ph-check"></i>Botón de WhatsApp y cita directa</li>
-              <li><i class="ph-bold ph-check"></i>Certificado de seguridad incluido</li>
+              <li><i class="ph-bold ph-check"></i><span><b>Dirección web en MiWebLocal</b> (<code>miweblocal.com/sitio/?negocio=...</code> · sin dominio .es/.com propio)</span></li>
+              <li><i class="ph-bold ph-check"></i><span>Catálogo de hasta 6 servicios con precios cerrados</span></li>
+              <li><i class="ph-bold ph-check"></i><span>Herramienta de solicitud directa a tu WhatsApp (0 % comisión)</span></li>
+              <li><i class="ph-bold ph-check"></i><span>Panel privado para editar textos, precios y horarios</span></li>
             </ul>
-            <button type="button" class="btn" data-plan="79"><span>Quiero Express</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+            <button type="button" class="btn" data-plan="79"><span>Elegir Web Express (79 €)</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
           </div></div>
 
           <div class="plan pro reveal">
-            <span class="p-tag">El más elegido</span>
+            <span class="p-tag">El más elegido · Dominio + Maps</span>
             <h3>Negocio Pro</h3>
-            <div class="price num">197 €</div><div class="once">pago único</div>
+            <div class="price num">197 €</div><div class="once">pago único · entrega 24–48 h</div>
             <ul>
-              <li><i class="ph-bold ph-check"></i>Tu dominio propio .es o .com</li>
-              <li><i class="ph-bold ph-check"></i>Alta de tu negocio en Google Maps</li>
-              <li><i class="ph-bold ph-check"></i>Panel privado de edición</li>
-              <li><i class="ph-bold ph-check"></i>Montaje completo y 14 días de ajustes</li>
+              <li><i class="ph-bold ph-check"></i><span><b>Dominio propio .es o .com incluido</b> (1 año registrado a tu nombre)</span></li>
+              <li><i class="ph-bold ph-check"></i><span><b>Alta y optimización en Google Maps</b> (Perfil de Empresa)</span></li>
+              <li><i class="ph-bold ph-check"></i><span>Los 8 módulos sectoriales de WhatsApp + Comparador Antes/Después</span></li>
+              <li><i class="ph-bold ph-check"></i><span>Panel privado de propietario (/admin/) + 14 días de ajustes</span></li>
             </ul>
-            <button type="button" class="btn" data-plan="197"><span>Quiero Negocio Pro</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+            <button type="button" class="btn" data-plan="197"><span>Elegir Negocio Pro (197 €)</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
           </div>
 
           <div class="bz reveal"><div class="bz-in plan">
-            <span class="p-tag">VIP</span>
-            <h3>Catálogo + Placa QR</h3>
-            <div class="price num">297 €</div><div class="once">pago único</div>
+            <span class="p-tag">Plan Completo · Llave en mano 24h</span>
+            <h3>Lanzamiento VIP</h3>
+            <div class="price num">297 €</div><div class="once">pago único · prioridad 24 h</div>
             <ul>
-              <li><i class="ph-bold ph-check"></i>Todo lo de Negocio Pro</li>
-              <li><i class="ph-bold ph-check"></i>Carga de catálogo o carta amplia</li>
-              <li><i class="ph-bold ph-check"></i>Placa QR para tu mostrador</li>
-              <li><i class="ph-bold ph-check"></i>Entrega prioritaria en 24 h</li>
+              <li><i class="ph-bold ph-check"></i><span><b>Todo lo incluido en Negocio Pro</b> (dominio .es/.com + Google Maps)</span></li>
+              <li><i class="ph-bold ph-check"></i><span><b>Carga de catálogo o carta amplia</b> (hasta 25 ítems/fotos por nuestro equipo)</span></li>
+              <li><i class="ph-bold ph-check"></i><span><b>Placa física con código QR</b> para el mostrador de tu local</span></li>
+              <li><i class="ph-bold ph-check"></i><span><b>Entrega prioritaria en 24 horas laborables</b> y soporte directo</span></li>
             </ul>
-            <button type="button" class="btn" data-plan="297"><span>Quiero VIP</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
+            <button type="button" class="btn" data-plan="297"><span>Elegir Lanzamiento VIP (297 €)</span><span class="btn-ic"><i class="ph-bold ph-arrow-right"></i></span></button>
           </div></div>
         </div>
         <div class="guarantee">
-          <span><i class="ph-bold ph-shield-check"></i>14 días de garantía</span>
-          <span><i class="ph-bold ph-lock-key"></i>Pago seguro con Stripe</span>
+          <span><i class="ph-bold ph-shield-check"></i>Garantía de reembolso de 14 días naturales</span>
+          <span><i class="ph-bold ph-lock-key"></i>Pago único seguro con Stripe</span>
           <span><i class="ph-bold ph-receipt"></i>Factura PDF automática</span>
         </div>
+        <p style="max-width:740px;margin:12px auto 0;text-align:center;font-size:12px;color:var(--muted);line-height:1.5;">
+          Condiciones de la garantía de 14 días: si dentro de los primeros 14 días naturales tras tu compra decides no continuar o la web no se adapta a tu oficio, puedes solicitar la devolución íntegra escribiendo con tu referencia de pedido por WhatsApp o email (descontando únicamente costes de dominios personalizados ya emitidos a tu nombre).
+        </p>
       </div>
     </section>
 
@@ -1492,24 +1603,28 @@
         <button type="button" class="ptab" data-plan="197" aria-pressed="true"><b class="num">197 €</b>Negocio Pro</button>
         <button type="button" class="ptab" data-plan="297" aria-pressed="false"><b class="num">297 €</b>VIP</button>
       </div>
+      <div class="plan-summary-box" id="stripe-plan-summary">
+        <strong>Plan Negocio Pro (197 € pago único)</strong>
+        <span>Incluye dominio propio .es o .com (1 año), alta en Google Maps, panel de propietario y entrega en 24–48 h.</span>
+      </div>
       <form id="stripe-form" autocomplete="off">
-        <label class="m-label" for="stripe-domain">1. Elige tu dirección web y comprueba si está libre</label>
+        <label class="m-label" id="stripe-domain-label" for="stripe-domain">1. Elige tu dirección web (.es o .com) y comprueba disponibilidad</label>
         <div class="dom-row"><input class="input" id="stripe-domain" type="text" placeholder="minegocio.es" /><button type="button" class="btn-ghost" id="dom-check" style="height:50px;">Comprobar</button></div>
-        <div id="stripe-domain-status"></div>
+        <div id="stripe-domain-status" data-domain-status="idle" aria-live="polite"></div>
         <label class="m-label" for="stripe-email">2. Tu correo (para la factura y tu enlace)</label>
-        <input class="input" id="stripe-email" type="email" autocomplete="email" placeholder="tu@correo.com" />
+        <input class="input" id="stripe-email" type="email" autocomplete="email" placeholder="tu@correo.com" required />
         <label class="m-label" for="stripe-nif">3. Titular y NIF (para la factura y el aviso legal)</label>
         <input class="input" id="stripe-nif" type="text" placeholder="Nombre o razón social · NIF" />
-        <div class="m-note"><i class="ph-bold ph-shield-check"></i><span>Pago único procesado por Stripe. Recibes factura PDF, tu enlace privado y 14 días de garantía.</span></div>
+        <div class="m-note"><i class="ph-bold ph-shield-check"></i><span>Pago único procesado por Stripe. Recibes factura PDF, tu enlace privado y 14 días naturales de garantía de reembolso.</span></div>
         <button type="submit" class="btn" id="stripe-submit-btn" style="width:100%;justify-content:space-between;"><span id="stripe-submit-label">Pagar 197 € una sola vez</span><span class="btn-ic"><i class="ph-bold ph-lock-key"></i></span></button>
-        <div class="m-foot"><span>Sin suscripciones. Sin renovaciones.</span><button type="button" id="m-doubt">¿Tienes dudas? Escríbenos por WhatsApp</button></div>
+        <div class="m-foot"><span>Sin suscripciones. Sin renovaciones obligatorias.</span><button type="button" id="m-doubt">¿Tienes dudas? Escríbenos por WhatsApp</button></div>
       </form>
     </div>
   </div>
 
-  <script src="assets/oficios-catalog.js?v=105"></script>
-  <script src="assets/stripe-config.js?v=105"></script>
-  <script src="assets/studio-engine.js?v=105"></script>
+  <script src="assets/oficios-catalog.js?v=106"></script>
+  <script src="assets/stripe-config.js?v=106"></script>
+  <script src="assets/studio-engine.js?v=106"></script>
   <script>
   (function () {
     var QUICK_SECTORS = [
@@ -1596,8 +1711,9 @@
     var iframe = $('preview'), viewport = $('viewport');
     var vpModeOverride = null;
     function isMobilePreview() {
-      if (window.innerWidth < 640) return true;
-      return vpModeOverride === 'mobile';
+      if (vpModeOverride === 'mobile') return true;
+      if (vpModeOverride === 'desktop' || vpModeOverride === 'pc') return false;
+      return window.innerWidth < 640;
     }
     function fit() {
       var mobile = isMobilePreview();
@@ -1610,15 +1726,25 @@
       iframe.style.transform = 'scale(' + (cw / w) + ')';
       var btns = document.querySelectorAll('#vp-modes .vp-mode-btn');
       btns.forEach(function (b) {
-        b.classList.toggle('active', (b.getAttribute('data-vp') === 'mobile') === mobile);
+        var isAct = (b.getAttribute('data-vp') === 'mobile') === mobile;
+        b.classList.toggle('active', isAct);
+        b.setAttribute('aria-pressed', String(isAct));
       });
     }
+    var __miwebSyncSeq = 0;
     function renderPreview(animateSwitch) {
+      var seq = ++__miwebSyncSeq;
       if (animateSwitch) {
         viewport.classList.add('switching');
-        setTimeout(function () { viewport.classList.remove('switching'); }, 220);
+        setTimeout(function () {
+          if (seq === __miwebSyncSeq) viewport.classList.remove('switching');
+        }, 220);
       }
-      iframe.srcdoc = compileClientWebsiteHTML(state);
+      var compiledHtml = compileClientWebsiteHTML(state);
+      if (seq !== __miwebSyncSeq) return;
+      iframe.setAttribute('data-sync-seq', String(seq));
+      iframe.setAttribute('data-active-sector', String(state.sector || current));
+      iframe.srcdoc = compiledHtml;
       $('url-text').textContent = 'miweblocal.com/' + slug(state.name);
       if ($('live-tag-txt')) {
         $('live-tag-txt').textContent = 'Ver pantalla completa · ' + state.name;
@@ -1628,7 +1754,9 @@
           b.classList.toggle('active', b.getAttribute('data-pt') === 'intro');
         }
       });
-      setTimeout(fit, 30);
+      setTimeout(function () {
+        if (seq === __miwebSyncSeq) fit();
+      }, 30);
     }
     if ($('vp-modes')) {
       $('vp-modes').addEventListener('click', function (e) {
@@ -1646,6 +1774,7 @@
     if (window.ResizeObserver) new ResizeObserver(fit).observe(viewport);
 
     /* ---------- Universal +65 Oficios Selector & Search ---------- */
+    var oficioKbIdx = -1;
     function updateActiveBanner() {
       var p = getActivePreset(current, customPreset);
       if ($('active-oficio-name')) {
@@ -1656,6 +1785,18 @@
       }
       if ($('gen-name')) {
         $('gen-name').placeholder = p.placeholder || ('Ej. ' + p.defaultName + ' Madrid');
+      }
+      if ($('pt-btn-accion')) {
+        var at = p.actionType || '';
+        $('pt-btn-accion').textContent =
+          at === 'medidas_presupuesto' ? '📐 Calculadora Medidas'
+          : at === 'urgencia_o_llaves' ? '🚨 Urgencia 24h / Llaves'
+          : at === 'motor_diagnostico' ? '🚗 Recepción Taller'
+          : at === 'recepcion_taller_local' ? '⚡ Tarifa y Cita'
+          : at === 'encargo_sin_cola' ? '🥖 Encargo sin Cola'
+          : at === 'mesa_carta' ? '🍽️ Reserva de Mesa'
+          : at === 'filtro_clientes' ? '📋 Filtro Clientes'
+          : '✂️ Reserva WhatsApp';
       }
     }
 
@@ -1677,9 +1818,9 @@
       }
       if (byUser) manualSector = true;
       renderSectors();
+      state = buildState(current, $('gen-name').value.trim(), customPreset);
       if (typeof setPsSector === 'function') setPsSector(current, true, customPreset);
       if (typeof syncRoiFromPreset === 'function') syncRoiFromPreset(getActivePreset(current, customPreset));
-      state = buildState(current, $('gen-name').value.trim(), customPreset);
       renderPreview(true);
     }
 
@@ -1702,19 +1843,21 @@
     function renderOficioDropdownList(query) {
       var listEl = $('oficio-list');
       if (!listEl) return;
+      oficioKbIdx = -1;
       var qTrim = String(query || '').trim();
       var items = miwebSearchOficios(qTrim, searchCat);
-      var html = items.slice(0, 30).map(function (o) {
+      var html = items.slice(0, 35).map(function (o) {
         var isAct = (!customPreset && o.id === current);
-        return '<button type="button" class="oficio-opt' + (isAct ? ' active' : '') + '" data-oid="' + o.id + '">' +
+        return '<button type="button" role="option" aria-selected="' + isAct + '" class="oficio-opt' + (isAct ? ' active' : '') + '" data-oid="' + o.id + '">' +
           '<span class="oficio-opt-left"><span class="oficio-opt-em">' + o.emoji + '</span>' +
           '<span style="min-width:0;"><span class="oficio-opt-title">' + escapeHtml(o.label) + '</span>' +
           '<span class="oficio-opt-sub">' + escapeHtml(o.moduleBadge) + '</span></span></span>' +
           '<span class="oficio-opt-tag">' + escapeHtml(o.ctaShort || 'Elegir') + '</span></button>';
       }).join('');
 
-      if (qTrim.length >= 3) {
-        html += '<button type="button" class="oficio-opt" data-custom-trade="' + escapeHtml(qTrim) + '" style="border-top:1px dashed var(--line);margin-top:4px;">' +
+      var exactMatch = items.some(function (o) { return miwebFoldAccents(o.label) === miwebFoldAccents(qTrim); });
+      if (qTrim.length >= 2 && !exactMatch) {
+        html += '<button type="button" role="option" aria-selected="false" class="oficio-opt" data-custom-trade="' + escapeHtml(qTrim) + '" style="border-top:1px dashed var(--line);margin-top:4px;">' +
           '<span class="oficio-opt-left"><span class="oficio-opt-em">✨</span>' +
           '<span style="min-width:0;"><span class="oficio-opt-title">Crear oficio a medida: «' + escapeHtml(qTrim) + '»</span>' +
           '<span class="oficio-opt-sub">Adapta textos, tarifas y herramienta de WhatsApp a este oficio exacto</span></span></span>' +
@@ -1727,6 +1870,30 @@
       renderOficioCatBar();
       renderOficioDropdownList($('oficio-search').value);
       $('oficio-dropdown').classList.add('open');
+      if ($('oficio-toggle-btn')) $('oficio-toggle-btn').setAttribute('aria-expanded', 'true');
+    }
+    function closeOficioDropdown() {
+      if ($('oficio-dropdown')) $('oficio-dropdown').classList.remove('open');
+      if ($('oficio-toggle-btn')) $('oficio-toggle-btn').setAttribute('aria-expanded', 'false');
+      oficioKbIdx = -1;
+    }
+
+    function selectOficioOptElement(opt) {
+      if (!opt) return;
+      var customRaw = opt.getAttribute('data-custom-trade');
+      if (customRaw) {
+        var built = miwebBuildCustomOficio(customRaw);
+        $('oficio-search').value = built.label;
+        closeOficioDropdown();
+        setSector('otro', true, built);
+        return;
+      }
+      var oid = opt.getAttribute('data-oid');
+      if (oid && MIWEB_OFICIOS_BY_ID[oid]) {
+        $('oficio-search').value = MIWEB_OFICIOS_BY_ID[oid].label;
+        closeOficioDropdown();
+        setSector(oid, true, null);
+      }
     }
 
     if ($('oficio-search')) {
@@ -1738,13 +1905,42 @@
         }
         renderOficioDropdownList(this.value);
         $('oficio-dropdown').classList.add('open');
+        if ($('oficio-toggle-btn')) $('oficio-toggle-btn').setAttribute('aria-expanded', 'true');
+      });
+      $('oficio-search').addEventListener('keydown', function (e) {
+        var dd = $('oficio-dropdown');
+        var opts = dd ? Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')) : [];
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (!dd.classList.contains('open')) { openOficioDropdown(); opts = Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')); }
+          if (!opts.length) return;
+          oficioKbIdx = (oficioKbIdx + 1) % opts.length;
+          opts.forEach(function (el, idx) { el.classList.toggle('kb-focus', idx === oficioKbIdx); });
+          opts[oficioKbIdx].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!dd.classList.contains('open')) { openOficioDropdown(); opts = Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')); }
+          if (!opts.length) return;
+          oficioKbIdx = (oficioKbIdx - 1 + opts.length) % opts.length;
+          opts.forEach(function (el, idx) { el.classList.toggle('kb-focus', idx === oficioKbIdx); });
+          opts[oficioKbIdx].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+          if (dd && dd.classList.contains('open') && opts.length) {
+            e.preventDefault();
+            var targetOpt = opts[oficioKbIdx >= 0 ? oficioKbIdx : 0];
+            selectOficioOptElement(targetOpt);
+          }
+        } else if (e.key === 'Escape') {
+          closeOficioDropdown();
+        }
       });
     }
     if ($('oficio-toggle-btn')) {
+      $('oficio-toggle-btn').setAttribute('aria-expanded', 'false');
       $('oficio-toggle-btn').addEventListener('click', function (e) {
         e.stopPropagation();
         var dd = $('oficio-dropdown');
-        if (dd.classList.contains('open')) dd.classList.remove('open');
+        if (dd.classList.contains('open')) closeOficioDropdown();
         else { openOficioDropdown(); $('oficio-search').focus(); }
       });
     }
@@ -1761,21 +1957,7 @@
     if ($('oficio-list')) {
       $('oficio-list').addEventListener('click', function (e) {
         var opt = e.target.closest('.oficio-opt');
-        if (!opt) return;
-        var customRaw = opt.getAttribute('data-custom-trade');
-        if (customRaw) {
-          var built = miwebBuildCustomOficio(customRaw);
-          $('oficio-search').value = built.label;
-          $('oficio-dropdown').classList.remove('open');
-          setSector('otro', true, built);
-          return;
-        }
-        var oid = opt.getAttribute('data-oid');
-        if (oid && MIWEB_OFICIOS_BY_ID[oid]) {
-          $('oficio-search').value = MIWEB_OFICIOS_BY_ID[oid].label;
-          $('oficio-dropdown').classList.remove('open');
-          setSector(oid, true, null);
-        }
+        if (opt) selectOficioOptElement(opt);
       });
     }
 
@@ -1796,7 +1978,6 @@
           }
         }
         renderSectors();
-        if (typeof setPsSector === 'function') setPsSector(current, false, customPreset);
       }
     }
 
@@ -1807,6 +1988,8 @@
       if (raw.length < 2) { $('gen-name').focus(); return; }
       autoDetectFromName(raw);
       state = buildState(current, raw, customPreset);
+      if (typeof setPsSector === 'function') setPsSector(current, false, customPreset);
+      if (typeof syncRoiFromPreset === 'function') syncRoiFromPreset(getActivePreset(current, customPreset));
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (er) {}
       if (typeof miwebSaveSiteVault === 'function') miwebSaveSiteVault(slug(state.name), state);
       renderPreview(true);
@@ -1824,8 +2007,10 @@
         var raw = $('gen-name').value.trim();
         if (raw.length > 3) autoDetectFromName(raw);
         state = buildState(current, raw, customPreset);
+        if (typeof setPsSector === 'function') setPsSector(current, false, customPreset);
+        if (typeof syncRoiFromPreset === 'function') syncRoiFromPreset(getActivePreset(current, customPreset));
         renderPreview(false);
-      }, 380);
+      }, 280);
     });
 
     $('gen-photos').addEventListener('change', async function (e) {
@@ -1874,13 +2059,17 @@
         });
         try {
           if (iframe && iframe.contentWindow) {
-            iframe.contentWindow.postMessage({ type: 'MIWEB_PREVIEW_NAV', target: pt }, '*');
+            var targetOrigin = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : '*';
+            iframe.contentWindow.postMessage({ type: 'MIWEB_PREVIEW_NAV', target: pt }, targetOrigin);
           }
         } catch (er) {}
       });
     }
     window.addEventListener('message', function (ev) {
-      if (ev && ev.data && ev.data.type === 'MIWEB_OPEN_EDITOR') {
+      if (!ev || !ev.data || typeof ev.data !== 'object') return;
+      if (iframe && iframe.contentWindow && ev.source && ev.source !== iframe.contentWindow) return;
+      if (ev.origin && ev.origin !== 'null' && window.location.origin && window.location.origin !== 'null' && ev.origin !== window.location.origin) return;
+      if (ev.data.type === 'MIWEB_OPEN_EDITOR') {
         $('more').open = true;
         $('more').scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
@@ -1913,7 +2102,7 @@
       $('ex-grid').innerHTML = list.map(function (o) {
         var imgSrc = String(o.heroImage || '/assets/real/tienda_hero.jpg').replace(/^\//, '');
         return '<article class="bz reveal in"><div class="bz-in ex-card">' +
-          '<div class="ex-img"><img src="' + imgSrc + '" alt="' + escapeHtml(o.label) + '" loading="eager" /></div>' +
+          '<div class="ex-img"><img src="' + imgSrc + '" alt="' + escapeHtml(o.label) + '" loading="lazy" decoding="async" width="600" height="450" /></div>' +
           '<div class="ex-body">' +
           '<div style="font-size:11.5px;font-weight:800;color:var(--brand);margin-bottom:4px;">' + o.emoji + ' ' + escapeHtml(o.moduleBadge) + '</div>' +
           '<h3>' + escapeHtml(o.label) + '</h3>' +
@@ -1953,32 +2142,69 @@
 
     /* ---------- Checkout ---------- */
     var PLAN_LABEL = { '79': 'Pagar 79 € una sola vez', '197': 'Pagar 197 € una sola vez', '297': 'Pagar 297 € una sola vez' };
+    var PLAN_SUMMARIES = {
+      '79': {
+        title: 'Plan Web Express (79 € pago único)',
+        desc: 'Incluye dirección en MiWebLocal (miweblocal.com/sitio/?negocio=...), catálogo de hasta 6 servicios, solicitud por WhatsApp y panel privado. No incluye dominio .es/.com propio.'
+      },
+      '197': {
+        title: 'Plan Negocio Pro (197 € pago único)',
+        desc: 'Incluye dominio propio .es o .com (1 año), alta y optimización en Google Maps, los 8 módulos de WhatsApp, comparador Antes/Después y panel privado.'
+      },
+      '297': {
+        title: 'Plan Lanzamiento VIP (297 € pago único)',
+        desc: 'Incluye todo el Plan Negocio Pro + carga asistida de catálogo amplio (hasta 25 ítems/fotos), placa QR de mostrador y entrega prioritaria en 24 h.'
+      }
+    };
     function setPlan(p) {
       plan = miwebNormalizePlan(p);
       document.querySelectorAll('.ptab').forEach(function (t) { t.setAttribute('aria-pressed', String(t.getAttribute('data-plan') === plan)); });
       $('stripe-submit-label').textContent = PLAN_LABEL[plan];
+      var sumBox = $('stripe-plan-summary');
+      if (sumBox && PLAN_SUMMARIES[plan]) {
+        sumBox.innerHTML = '<strong>' + escapeHtml(PLAN_SUMMARIES[plan].title) + '</strong><span>' + escapeHtml(PLAN_SUMMARIES[plan].desc) + '</span>';
+      }
+      var domLbl = $('stripe-domain-label');
+      if (domLbl) {
+        domLbl.textContent = plan === '79'
+          ? '1. Nombre de tu enlace web (o comprueba si tu dominio .es/.com está libre)'
+          : '1. Elige tu dominio propio (.es o .com incluido) y comprueba disponibilidad';
+      }
     }
     var domTimer;
     async function checkDomain(custom) {
       var di = $('stripe-domain'), st = $('stripe-domain-status');
-      if (custom) di.value = custom;
-      var raw = di.value.trim() || (slug(state.name) + '.es');
-      st.innerHTML = '<span style="color:#64748B">Comprobando ' + raw + '...</span>';
-      var r = await miwebCheckDomainLive(raw, state.name, state.city);
-      if (!r.ok) { st.innerHTML = '<span style="color:#B45309">' + r.error + '</span>'; return; }
-      di.value = r.domain;
-      if (r.available) {
-        st.innerHTML = '<span style="color:#047857;font-weight:700">' + r.domain + ' está libre para tu negocio</span>';
-      } else {
-        st.innerHTML = '<span style="color:#B45309;font-weight:700">' + r.domain + ' ya está ocupado.</span>' +
-          (r.suggestions && r.suggestions.length ? ' <span style="color:#64748B">Libres:</span> ' + r.suggestions.map(function (s) { return '<button type="button" class="chip" data-dom="' + s + '">' + s + '</button>'; }).join(' ') : '');
+      if (typeof custom === 'string') di.value = custom;
+      var raw = di.value;
+      st.setAttribute('data-domain-status', 'checking');
+      st.innerHTML = '<span class="dom-badge checking"><i class="ph-bold ph-spinner"></i> Comprobando disponibilidad DNS...</span>';
+      var r = await miwebCheckDomainLive(raw, state ? state.name : '', state ? state.city : '');
+      if (r.status === 'invalid' || (!r.ok && r.status !== 'error')) {
+        st.setAttribute('data-domain-status', 'invalid');
+        st.innerHTML = '<span class="dom-badge invalid"><i class="ph-bold ph-warning-circle"></i> ' + escapeHtml(r.error || 'Introduce un dominio válido (ej. minegocio.es).') + '</span>';
+        return r;
       }
+      if (r.status === 'error' || !r.ok) {
+        st.setAttribute('data-domain-status', 'error');
+        st.innerHTML = '<span class="dom-badge error"><i class="ph-bold ph-wifi-slash"></i> ' + escapeHtml(r.error || 'No se pudo verificar el dominio en este momento.') + '</span>';
+        return r;
+      }
+      di.value = r.domain;
+      if (r.available && r.status === 'available') {
+        st.setAttribute('data-domain-status', 'available');
+        st.innerHTML = '<span class="dom-badge available"><i class="ph-bold ph-check-circle"></i> ' + escapeHtml(r.domain) + ' está disponible para tu negocio</span>';
+      } else {
+        st.setAttribute('data-domain-status', 'unavailable');
+        st.innerHTML = '<span class="dom-badge unavailable"><i class="ph-bold ph-x-circle"></i> ' + escapeHtml(r.domain) + ' no está disponible (ya registrado).</span>' +
+          (r.suggestions && r.suggestions.length ? '<div style="margin-top:6px;"><span style="color:#64748B;font-size:12px;">Alternativas verificadas libres:</span> ' + r.suggestions.map(function (s) { return '<button type="button" class="chip" data-dom="' + escapeHtml(s) + '">' + escapeHtml(s) + '</button>'; }).join(' ') + '</div>' : '');
+      }
+      return r;
     }
     $('stripe-domain-status').addEventListener('click', function (e) {
       var c = e.target.closest('[data-dom]'); if (c) checkDomain(c.getAttribute('data-dom'));
     });
     $('stripe-domain').addEventListener('input', function () { clearTimeout(domTimer); domTimer = setTimeout(function () { checkDomain(); }, 450); });
-    $('dom-check').addEventListener('click', function () { checkDomain(); });
+    $('dom-check').addEventListener('click', function () { clearTimeout(domTimer); checkDomain(); });
 
     function openCheckout(p) {
       if (!state) state = buildState(current, $('gen-name').value.trim(), customPreset);
@@ -2005,18 +2231,24 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeCheckout();
-        if ($('oficio-dropdown')) $('oficio-dropdown').classList.remove('open');
+        closeOficioDropdown();
         if ($('ps-dropdown')) $('ps-dropdown').classList.remove('open');
       }
     });
 
-    $('stripe-form').addEventListener('submit', function (e) {
+    $('stripe-form').addEventListener('submit', async function (e) {
       e.preventDefault();
-      var dom = $('stripe-domain').value.trim() || (slug(state.name) + '.es');
+      var domVal = $('stripe-domain').value.trim();
+      var vDom = miwebValidateDomainInput(domVal);
+      if (!vDom.valid) {
+        await checkDomain();
+        $('stripe-domain').focus();
+        return;
+      }
       miwebGoToStripe({
         plan: plan, name: state.name, city: state.city, whatsapp: state.whatsapp, sector: state.sector,
         slug: slug(state.name), adminPin: state.adminPin, siteUrl: siteUrl(),
-        email: $('stripe-email').value.trim(), domain: dom, legalNif: $('stripe-nif').value.trim()
+        email: $('stripe-email').value.trim(), domain: vDom.domain, legalNif: $('stripe-nif').value.trim()
       });
     });
 
@@ -2034,14 +2266,22 @@
     var psCallIdx = 0;
     var psStepIdx = 0;
 
+    var psKbIdx = -1;
     function buildDynamicPsData(preset) {
       var p = preset || MIWEB_OFICIOS_BY_ID.carpintero;
+      var bizDisplayName = (state && (!psCustomPreset && psCurrent === current) && state.userEditedName && state.name)
+        ? state.name
+        : p.defaultName;
       var s0 = (p.services && p.services[0]) ? (p.services[0].title + ' (' + p.services[0].price + ')') : p.tagline;
       var callsArr = (p.badCalls && p.badCalls.length) ? p.badCalls : [
         '«Hola, ¿cuánto cobráis más o menos y tenéis hueco hoy?»',
         '«Oye, ¿dónde estáis exactamente y hasta qué hora abrís?»',
         '«Pásate a verlo sin compromiso para hacerme una idea»'
       ];
+      var naturalMsg = p.naturalWaMsg || ('Hola ' + bizDisplayName + ', he visto vuestra web y quería consultar disponibilidad para ' + ((p.services && p.services[0]) ? p.services[0].title.toLowerCase() : p.singular) + '. ¿Me decís cuándo os viene bien?');
+      if (bizDisplayName !== p.defaultName && naturalMsg.indexOf(p.defaultName) !== -1) {
+        naturalMsg = naturalMsg.replace(p.defaultName, bizDisplayName);
+      }
       return {
         badBadge: (p.calls || 14) + ' interrupciones / día',
         badTitle: p.painTitle,
@@ -2053,7 +2293,7 @@
           'Quien busca ' + p.singular + ' a las 22:30 se va a otro si no ve precios claros ni WhatsApp',
           'Las agencias piden +1.200 € + cuotas mensuales y las apps se quedan hasta un 25 %'
         ],
-        goodBadge: '0 llamadas · ' + p.moduleBadge,
+        goodBadge: 'Menos interrupciones · ' + p.moduleBadge,
         goodTitle: 'Tu web con ' + p.moduleBadge.toLowerCase() + ' conectada a tu WhatsApp',
         goodDesc: p.solSpoken,
         steps: [
@@ -2061,28 +2301,28 @@
             t: '1. Creas tu web en 15 s arriba',
             s: 'Eliges «' + p.label + '», pones tu nombre y se genera con tarifas reales',
             mUrl: 'miweblocal.com · Generador 15s',
-            mTitle: 'Escribiendo: «' + p.defaultName + '»...',
+            mTitle: 'Escribiendo: «' + bizDisplayName + '»...',
             mSub: 'Activando servicios reales + ' + p.moduleBadge,
             mPill: '⚡ En 15 seg'
           },
           {
-            t: '2. El cliente usa tu herramienta 24 h',
+            t: '2. El cliente consulta tarifas y envía su solicitud a cualquier hora',
             s: s0 + ' · Filtra los datos clave sin llamarte',
-            mUrl: 'miweblocal.com/' + slug(p.defaultName),
+            mUrl: 'miweblocal.com/' + slug(bizDisplayName),
             mTitle: p.emoji + ' ' + p.moduleBadge,
             mSub: p.moduleSummary || p.tagline,
             mPill: '0 % comisión'
           },
           {
-            t: '3. Te llega masticado a tu WhatsApp',
+            t: '3. Te llega ordenado a tu WhatsApp',
             s: 'Pago único desde 79 € para siempre · Sin cuotas mensuales ni intermediarios',
             mUrl: 'WhatsApp Directo · Listo',
             mTitle: '✅ Solicitud filtrada en tu móvil sin parar de trabajar',
-            mSub: 'Pasas de ' + (p.calls || 14) + ' interrupciones diarias a 0 llamadas vacías',
-            mPill: '0 llamadas'
+            mSub: 'Reduce las ' + (p.calls || 14) + ' interrupciones diarias y recibe consultas claras por escrito',
+            mPill: 'Filtro directo'
           }
         ],
-        waMsg: '«Hola ' + p.defaultName + ', nueva solicitud desde la web · ' + (p.waLines || []).join(' · ') + '»',
+        waMsg: '«' + naturalMsg + '»',
         ctaLabel: '¿Te dedicas a ' + p.label.toLowerCase() + '? Pruébala gratis arriba con tu nombre'
       };
     }
@@ -2195,21 +2435,41 @@
     function renderPsDropdown(q) {
       var dd = $('ps-dropdown');
       if (!dd) return;
+      psKbIdx = -1;
       var qTrim = String(q || '').trim();
       var items = miwebSearchOficios(qTrim, 'all').slice(0, 20);
       var html = items.map(function (o) {
-        return '<button type="button" class="oficio-opt" data-psid="' + o.id + '">' +
+        return '<button type="button" role="option" class="oficio-opt" data-psid="' + o.id + '">' +
           '<span class="oficio-opt-left"><span class="oficio-opt-em">' + o.emoji + '</span>' +
           '<span style="min-width:0;"><span class="oficio-opt-title">' + escapeHtml(o.label) + '</span>' +
           '<span class="oficio-opt-sub">' + escapeHtml(o.moduleBadge) + '</span></span></span></button>';
       }).join('');
-      if (qTrim.length >= 3) {
-        html += '<button type="button" class="oficio-opt" data-pscustom="' + escapeHtml(qTrim) + '">' +
+      var exactMatch = items.some(function (o) { return miwebFoldAccents(o.label) === miwebFoldAccents(qTrim); });
+      if (qTrim.length >= 2 && !exactMatch) {
+        html += '<button type="button" role="option" class="oficio-opt" data-pscustom="' + escapeHtml(qTrim) + '">' +
           '<span class="oficio-opt-left"><span class="oficio-opt-em">✨</span>' +
           '<span style="min-width:0;"><span class="oficio-opt-title">Comparar oficio: «' + escapeHtml(qTrim) + '»</span>' +
           '<span class="oficio-opt-sub">Ver problema vs. solución adaptado</span></span></span></button>';
       }
       dd.innerHTML = html;
+    }
+
+    function selectPsOptElement(opt) {
+      if (!opt) return;
+      var cust = opt.getAttribute('data-pscustom');
+      if (cust) {
+        var built = miwebBuildCustomOficio(cust);
+        $('ps-search').value = built.label;
+        $('ps-dropdown').classList.remove('open');
+        setPsSector('otro', true, built);
+        return;
+      }
+      var pid = opt.getAttribute('data-psid');
+      if (pid && MIWEB_OFICIOS_BY_ID[pid]) {
+        $('ps-search').value = MIWEB_OFICIOS_BY_ID[pid].label;
+        $('ps-dropdown').classList.remove('open');
+        setPsSector(pid, true, null);
+      }
     }
 
     if ($('ps-search')) {
@@ -2221,31 +2481,43 @@
         renderPsDropdown(this.value);
         $('ps-dropdown').classList.add('open');
       });
+      $('ps-search').addEventListener('keydown', function (e) {
+        var dd = $('ps-dropdown');
+        var opts = dd ? Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')) : [];
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (!dd.classList.contains('open')) { renderPsDropdown(this.value); dd.classList.add('open'); opts = Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')); }
+          if (!opts.length) return;
+          psKbIdx = (psKbIdx + 1) % opts.length;
+          opts.forEach(function (el, idx) { el.classList.toggle('kb-focus', idx === psKbIdx); });
+          opts[psKbIdx].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!dd.classList.contains('open')) { renderPsDropdown(this.value); dd.classList.add('open'); opts = Array.prototype.slice.call(dd.querySelectorAll('.oficio-opt')); }
+          if (!opts.length) return;
+          psKbIdx = (psKbIdx - 1 + opts.length) % opts.length;
+          opts.forEach(function (el, idx) { el.classList.toggle('kb-focus', idx === psKbIdx); });
+          opts[psKbIdx].scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+          if (dd && dd.classList.contains('open') && opts.length) {
+            e.preventDefault();
+            selectPsOptElement(opts[psKbIdx >= 0 ? psKbIdx : 0]);
+          }
+        } else if (e.key === 'Escape') {
+          if (dd) dd.classList.remove('open');
+        }
+      });
     }
     if ($('ps-dropdown')) {
       $('ps-dropdown').addEventListener('click', function (e) {
         var opt = e.target.closest('.oficio-opt');
-        if (!opt) return;
-        var cust = opt.getAttribute('data-pscustom');
-        if (cust) {
-          var built = miwebBuildCustomOficio(cust);
-          $('ps-search').value = built.label;
-          $('ps-dropdown').classList.remove('open');
-          setPsSector('otro', true, built);
-          return;
-        }
-        var pid = opt.getAttribute('data-psid');
-        if (pid && MIWEB_OFICIOS_BY_ID[pid]) {
-          $('ps-search').value = MIWEB_OFICIOS_BY_ID[pid].label;
-          $('ps-dropdown').classList.remove('open');
-          setPsSector(pid, true, null);
-        }
+        if (opt) selectPsOptElement(opt);
       });
     }
 
     document.addEventListener('click', function (e) {
       if ($('oficio-search-wrap') && !$('oficio-search-wrap').contains(e.target)) {
-        $('oficio-dropdown').classList.remove('open');
+        closeOficioDropdown();
       }
       if ($('ps-search-wrap') && !$('ps-search-wrap').contains(e.target)) {
         $('ps-dropdown').classList.remove('open');
@@ -2279,44 +2551,141 @@
       updatePsMiniStep(d, psStepIdx, true);
     }, 3400);
 
-    /* ---------- Simulador de Pérdidas / ROI en Tiempo Real (Estilo NotFound404) ---------- */
+    /* ---------- Simulador Económico / Embudo de Conversión Transparente ---------- */
     function formatEsNum(n) {
       return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
+    function formatEsDec(n) {
+      var r = Math.round(n * 10) / 10;
+      return (r % 1 === 0 ? String(r) : r.toFixed(1).replace('.', ','));
+    }
+
+    function calcularOportunidad(datos) {
+      datos = datos || {};
+      var busquedas = Number(datos.busquedas != null ? datos.busquedas : datos.visitasMensuales) || 0;
+      var porcentajeVisitas = Number(datos.porcentajeVisitas != null ? datos.porcentajeVisitas : 100);
+      var tasaIntencion = Number(datos.tasaIntencion != null ? datos.tasaIntencion : datos.porcentajeFueraDeHorario) || 0;
+      var tasaPerdida = Number(datos.tasaPerdida != null ? datos.tasaPerdida : 100);
+      var tasaRecuperacion = Number(datos.tasaRecuperacion != null ? datos.tasaRecuperacion : datos.porcentajeContacto) || 0;
+      var tasaCierre = Number(datos.tasaCierre != null ? datos.tasaCierre : datos.porcentajeCierre) || 0;
+      var ticketMedio = Number(datos.ticketMedio) || 0;
+      var margen = Number(datos.margen != null ? datos.margen : 65);
+
+      var visitas = busquedas * (porcentajeVisitas / 100);
+      var contactosPotenciales = visitas * (tasaIntencion / 100);
+      var oportunidadesPerdidas = contactosPotenciales * (tasaPerdida / 100);
+      var oportunidadesRecuperables = oportunidadesPerdidas * (tasaRecuperacion / 100);
+      var trabajosPotenciales = oportunidadesRecuperables * (tasaCierre / 100);
+      var facturacionPotencial = Math.round(trabajosPotenciales * ticketMedio);
+      var beneficioBrutoPotencial = Math.round(facturacionPotencial * (margen / 100));
+      var beneficioBrutoPorTrabajo = ticketMedio * (margen / 100);
+
+      var demandaBruta = Math.round(oportunidadesPerdidas * ticketMedio);
+      var encargosParaAmortizar79 = (beneficioBrutoPorTrabajo > 0 && beneficioBrutoPotencial > 0)
+        ? Math.max(1, Math.ceil(79 / beneficioBrutoPorTrabajo))
+        : null;
+      var mesesAmortizacion = beneficioBrutoPotencial > 0 ? Number((79 / beneficioBrutoPotencial).toFixed(2)) : null;
+
+      return {
+        busquedas: busquedas,
+        visitas: visitas,
+        contactosPotenciales: contactosPotenciales,
+        oportunidadesPerdidas: oportunidadesPerdidas,
+        oportunidadesRecuperables: oportunidadesRecuperables,
+        trabajosPotenciales: trabajosPotenciales,
+        facturacionPotencial: facturacionPotencial,
+        beneficioBrutoPotencial: beneficioBrutoPotencial,
+        beneficioBrutoPorTrabajo: Math.round(beneficioBrutoPorTrabajo),
+        costeServicio79: 79,
+        costeServicio197: 197,
+        costeServicio297: 297,
+        periodoRecuperacionMeses: mesesAmortizacion,
+        /* Compatibilidad con selectores existentes */
+        visitasMensuales: visitas,
+        visitasNoAtendidas: oportunidadesPerdidas,
+        ventasPotenciales: trabajosPotenciales,
+        oportunidadMensual: facturacionPotencial,
+        oportunidadAnual: facturacionPotencial * 12,
+        demandaBruta: demandaBruta,
+        encargosParaAmortizar79: encargosParaAmortizar79,
+        mesesAmortizacion: mesesAmortizacion
+      };
+    }
+    window.calcularOportunidad = calcularOportunidad;
 
     function updateRoiCalc() {
-      var vEl = $('roi-visits'), tEl = $('roi-ticket'), lEl = $('roi-leak');
+      var vEl = $('roi-visits'), tEl = $('roi-ticket'), lEl = $('roi-leak'), cEl = $('roi-contact'), clEl = $('roi-close'), mEl = $('roi-margin');
       if (!vEl || !tEl || !lEl) return;
       var visits = Number(vEl.value) || 95;
       var ticket = Number(tEl.value) || 120;
-      var leakPct = Number(lEl.value) || 10;
+      var leakPct = Number(lEl.value) || 12;
+      var contactPct = cEl ? (Number(cEl.value) || 45) : 45;
+      var closePct = clEl ? (Number(clEl.value) || 35) : 35;
+      var marginPct = mEl ? (Number(mEl.value) || 65) : 65;
+
+      [vEl, tEl, lEl, cEl, clEl, mEl].filter(Boolean).forEach(function (inp) {
+        var min = Number(inp.min) || 0;
+        var max = Number(inp.max) || 100;
+        var val = Number(inp.value) || min;
+        var pct = Math.min(100, Math.max(0, ((val - min) / Math.max(1, max - min)) * 100)).toFixed(1);
+        inp.style.background = 'linear-gradient(90deg, #4F46E5 0%, #4F46E5 ' + pct + '%, #E2E8F0 ' + pct + '%, #E2E8F0 100%)';
+      });
 
       $('roi-visits-val').textContent = formatEsNum(visits);
       $('roi-ticket-val').textContent = formatEsNum(ticket) + ' €';
       $('roi-leak-val').textContent = leakPct + ' %';
+      if ($('roi-contact-val')) $('roi-contact-val').textContent = contactPct + ' %';
+      if ($('roi-close-val')) $('roi-close-val').textContent = closePct + ' %';
+      if ($('roi-margin-val')) $('roi-margin-val').textContent = marginPct + ' %';
 
-      var lostJobsExact = visits * (leakPct / 100);
-      var lostJobs = Math.max(1, Math.round(lostJobsExact));
-      var monthLoss = Math.round(lostJobsExact * ticket);
-      var yearLoss = monthLoss * 12;
+      var res = calcularOportunidad({
+        busquedas: visits,
+        porcentajeVisitas: 100,
+        tasaIntencion: leakPct,
+        tasaPerdida: 100,
+        tasaRecuperacion: contactPct,
+        tasaCierre: closePct,
+        ticketMedio: ticket,
+        margen: marginPct
+      });
 
-      $('roi-month-loss').textContent = formatEsNum(monthLoss);
-      $('roi-year-loss').textContent = formatEsNum(yearLoss);
-      $('roi-jobs-lost').textContent = String(lostJobs);
+      $('roi-month-loss').textContent = formatEsNum(res.facturacionPotencial);
+      $('roi-year-loss').textContent = formatEsNum(res.oportunidadAnual);
+      $('roi-jobs-lost').textContent = formatEsDec(res.trabajosPotenciales);
+      if ($('roi-gross-profit')) $('roi-gross-profit').textContent = formatEsNum(res.beneficioBrutoPotencial) + ' € / mes';
 
-      var neededFor79 = Math.max(1, Math.ceil(79 / Math.max(1, ticket)));
+      if ($('roi-f-visits')) $('roi-f-visits').textContent = formatEsNum(res.visitas);
+      if ($('roi-f-unattended')) $('roi-f-unattended').textContent = formatEsDec(res.oportunidadesPerdidas);
+      if ($('roi-f-contacts')) $('roi-f-contacts').textContent = formatEsDec(res.oportunidadesRecuperables);
+      if ($('roi-f-sales')) $('roi-f-sales').textContent = formatEsDec(res.trabajosPotenciales);
+
+      if ($('roi-bar-2')) $('roi-bar-2').style.width = Math.min(100, Math.max(8, Math.round((res.oportunidadesPerdidas / Math.max(1, res.visitas)) * 220))) + '%';
+      if ($('roi-bar-3')) $('roi-bar-3').style.width = Math.min(100, Math.max(6, Math.round((res.oportunidadesRecuperables / Math.max(1, res.visitas)) * 260))) + '%';
+      if ($('roi-bar-4')) $('roi-bar-4').style.width = Math.min(100, Math.max(4, Math.round((res.trabajosPotenciales / Math.max(1, res.visitas)) * 320))) + '%';
+
+      if ($('roi-amort-time')) {
+        if (res.beneficioBrutoPotencial > 0 && res.encargosParaAmortizar79) {
+          var mesesTxt = res.periodoRecuperacionMeses <= 1 ? '< 1 mes' : ('≈ ' + formatEsDec(res.periodoRecuperacionMeses) + ' meses');
+          $('roi-amort-time').textContent = res.encargosParaAmortizar79 === 1
+            ? '1 encargo (' + mesesTxt + ')'
+            : res.encargosParaAmortizar79 + ' encargos (' + mesesTxt + ')';
+        } else {
+          $('roi-amort-time').textContent = 'Sin beneficio incremental';
+        }
+      }
+
       var paybackEl = $('roi-payback');
       if (paybackEl) {
-        if (neededFor79 === 1) {
-          paybackEl.textContent = 'Se amortiza con 1 solo cliente recuperado en tu primera semana.';
+        if (res.beneficioBrutoPotencial > 0 && res.encargosParaAmortizar79) {
+          paybackEl.textContent = 'Con un beneficio bruto estimado de ' + formatEsNum(res.beneficioBrutoPorTrabajo) + ' € por trabajo (' + marginPct + ' % de ' + formatEsNum(ticket) + ' €), el coste único de 79 € se recupera en ' + (res.encargosParaAmortizar79 === 1 ? '1 encargo cerrado' : (res.encargosParaAmortizar79 + ' encargos cerrados')) + '.';
         } else {
-          paybackEl.textContent = 'Se amortiza recuperando solo ' + neededFor79 + ' clientes en el primer mes.';
+          paybackEl.textContent = 'Introduce valores con beneficio mensual incremental mayor que cero para estimar el periodo de recuperación.';
         }
       }
     }
 
     function syncRoiFromPreset(p) {
-      var vEl = $('roi-visits'), tEl = $('roi-ticket'), lEl = $('roi-leak');
+      var vEl = $('roi-visits'), tEl = $('roi-ticket'), lEl = $('roi-leak'), cEl = $('roi-contact'), clEl = $('roi-close');
       if (!vEl || !tEl || !lEl || !p) return;
       var parsedPrice = 0;
       if (p.services && p.services.length) {
@@ -2334,7 +2703,7 @@
       updateRoiCalc();
     }
 
-    ['roi-visits', 'roi-ticket', 'roi-leak'].forEach(function (id) {
+    ['roi-visits', 'roi-ticket', 'roi-leak', 'roi-contact', 'roi-close', 'roi-margin'].forEach(function (id) {
       var el = $(id);
       if (el) {
         el.addEventListener('input', function () {
@@ -2349,9 +2718,11 @@
         var btn = e.target.closest('.nf-roi-chip');
         if (!btn) return;
         document.querySelectorAll('#roi-presets .nf-roi-chip').forEach(function (c) { c.classList.toggle('active', c === btn); });
-        if ($('roi-visits')) $('roi-visits').value = btn.getAttribute('data-r-visits');
-        if ($('roi-ticket')) $('roi-ticket').value = btn.getAttribute('data-r-ticket');
-        if ($('roi-leak')) $('roi-leak').value = btn.getAttribute('data-r-leak');
+        if ($('roi-visits') && btn.getAttribute('data-r-visits')) $('roi-visits').value = btn.getAttribute('data-r-visits');
+        if ($('roi-ticket') && btn.getAttribute('data-r-ticket')) $('roi-ticket').value = btn.getAttribute('data-r-ticket');
+        if ($('roi-leak') && btn.getAttribute('data-r-leak')) $('roi-leak').value = btn.getAttribute('data-r-leak');
+        if ($('roi-contact') && btn.getAttribute('data-r-contact')) $('roi-contact').value = btn.getAttribute('data-r-contact');
+        if ($('roi-close') && btn.getAttribute('data-r-close')) $('roi-close').value = btn.getAttribute('data-r-close');
         updateRoiCalc();
       });
     }
@@ -2376,6 +2747,13 @@
     /* ---------- Init ---------- */
     var q = new URLSearchParams(location.search);
     var qOficio = q.get('oficio') || q.get('sector');
+    var qNegocio = q.get('negocio') || '';
+    var savedFromEditor = null;
+    try {
+      var rawSaved = localStorage.getItem(STORAGE_KEY);
+      if (rawSaved) savedFromEditor = JSON.parse(rawSaved);
+    } catch (e) {}
+
     if (qOficio) {
       if (MIWEB_OFICIOS_BY_ID[qOficio]) {
         current = qOficio;
@@ -2388,13 +2766,61 @@
           manualSector = true;
         }
       }
+    } else if (savedFromEditor && savedFromEditor.sector) {
+      if (MIWEB_OFICIOS_BY_ID[savedFromEditor.sector]) {
+        current = savedFromEditor.sector;
+      } else if (savedFromEditor.sector === 'otro' && savedFromEditor.customSectorLabel) {
+        current = 'otro';
+        customPreset = miwebBuildCustomOficio(savedFromEditor.customSectorLabel + (savedFromEditor.city ? (' ' + savedFromEditor.city) : ''));
+      }
     }
+
+    var shouldHydrateSaved = Boolean(
+      savedFromEditor &&
+      (q.get('from') === 'editor' || (!qOficio && savedFromEditor.name) || (qOficio && savedFromEditor.sector === current))
+    );
+
+    var initialInputName = '';
+    if (qNegocio) {
+      initialInputName = qNegocio;
+    } else if (shouldHydrateSaved && savedFromEditor.name) {
+      var defaultPresetCheck = getActivePreset(current, customPreset);
+      if (savedFromEditor.name !== defaultPresetCheck.defaultName || savedFromEditor.city !== 'Tu Ciudad') {
+        initialInputName = savedFromEditor.city && savedFromEditor.city !== 'Tu Ciudad' && savedFromEditor.name.toLowerCase().indexOf(savedFromEditor.city.toLowerCase()) === -1
+          ? (savedFromEditor.name + ' ' + savedFromEditor.city)
+          : savedFromEditor.name;
+      }
+    }
+
+    if (initialInputName && $('gen-name')) {
+      $('gen-name').value = initialInputName;
+    }
+    if (shouldHydrateSaved && savedFromEditor.whatsapp && $('gen-wa')) {
+      $('gen-wa').value = savedFromEditor.whatsapp;
+    }
+    if (shouldHydrateSaved) {
+      if (savedFromEditor.customHeroPhoto) photos.hero = savedFromEditor.customHeroPhoto;
+      if (Array.isArray(savedFromEditor.customGallery) && savedFromEditor.customGallery.length) {
+        photos.gallery = savedFromEditor.customGallery.slice();
+      }
+    }
+
     renderSectors();
     renderExamples();
     setPsSector(current, false, customPreset);
     syncRoiFromPreset(getActivePreset(current, customPreset));
     updateRoiCalc();
-    state = buildState(current, '', customPreset);
+    state = buildState(current, initialInputName, customPreset);
+    if (shouldHydrateSaved) {
+      if (savedFromEditor.name) state.name = savedFromEditor.name;
+      if (savedFromEditor.city) state.city = savedFromEditor.city;
+      if (savedFromEditor.tagline) state.tagline = savedFromEditor.tagline;
+      if (savedFromEditor.story) state.story = savedFromEditor.story;
+      if (savedFromEditor.theme) state.theme = savedFromEditor.theme;
+      if (Array.isArray(savedFromEditor.services) && savedFromEditor.services.length) {
+        state.services = savedFromEditor.services;
+      }
+    }
     renderPreview(false);
     fit();
     if (q.get('plan')) setTimeout(function () { openCheckout(q.get('plan')); }, 400);

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WBXMKQ6G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Panel Móvil de Propietario (/admin) · MiWebLocal</title>
@@ -55,6 +62,10 @@
           class="px-3.5 py-1.5 rounded-full bg-[#4F46E5] text-white font-display font-bold text-xs whitespace-nowrap shadow-sm">
           Ver Mi Web ↗
         </a>
+        <button type="button" id="adm-logout-btn" onclick="logoutAdminSession()"
+          class="hidden px-3 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold">
+          Cerrar sesión
+        </button>
         <a href="/" class="px-3 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
           Inicio
         </a>
@@ -68,32 +79,38 @@
   <main id="pin-gate" class="max-w-md mx-auto px-4 pt-10">
     <div class="rounded-3xl bg-white border border-slate-200 p-6 shadow-xl space-y-5">
       <div class="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 text-[#4F46E5] flex items-center justify-center text-2xl">
-        <i class="ph-bold ph-lock-key-open"></i>
+        <i class="ph-bold ph-lock-key"></i>
       </div>
 
       <div>
-        <span class="text-[11px] font-mono uppercase text-[#4F46E5] font-bold">Acceso Privado sin Comisiones</span>
+        <span class="text-[11px] font-mono uppercase text-[#4F46E5] font-bold">Acceso Privado de Propietario</span>
         <h1 class="font-display font-extrabold text-2xl text-slate-900 mt-0.5">
           Autogestión de <span id="gate-biz-name" class="text-[#4F46E5]">Tu Negocio</span>
         </h1>
         <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
-          Desde aquí cambias precios, servicios, teléfono de WhatsApp u horarios de vacaciones desde tu móvil en 10 segundos.
+          Introduce tu clave de propietario para modificar precios, servicios, teléfono de WhatsApp, fotografías u horarios de apertura.
         </p>
       </div>
 
-      <div id="demo-pin-hint" class="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs text-slate-700">
-        <strong class="text-[#4F46E5]">Modo Prueba Gratis Activo:</strong> Tu clave temporal es <code id="hint-pin-code" class="px-1.5 py-0.5 rounded bg-white border border-indigo-200 text-[#4F46E5] font-mono font-bold">PRO-4829</code> (ya escrita abajo para que entres con 1 toque).
+      <div id="demo-pin-hint" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
+        <strong class="text-slate-900">Acceso protegido:</strong> Introduce la clave privada asignada a tu negocio en el comprobante de activación.
       </div>
 
-      <form onsubmit="verifyAdminPin(event)" class="space-y-3">
+      <form id="admin-login-form" onsubmit="verifyAdminPin(event)" class="space-y-3" autocomplete="off">
         <div>
           <label for="pin-input" class="block text-xs font-bold uppercase text-slate-600 mb-1">Clave de Propietario (PIN)</label>
-          <input type="text" id="pin-input" placeholder="PRO-4829"
-            class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono font-bold tracking-wider uppercase focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
-          <p id="pin-error" class="hidden text-xs text-rose-600 font-semibold mt-1.5">Clave incorrecta. Revisa el código enviado al activar tu web.</p>
+          <div class="relative">
+            <input type="password" id="pin-input" placeholder="Introduce tu clave privada" required autocomplete="current-password"
+              class="w-full px-4 py-3 pr-11 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-mono font-bold tracking-wider uppercase focus:border-[#4F46E5] focus:bg-white focus:outline-none" />
+            <button type="button" id="toggle-pin-vis" onclick="togglePinVisibility()" aria-label="Mostrar u ocultar clave"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800">
+              <i class="ph-bold ph-eye"></i>
+            </button>
+          </div>
+          <p id="pin-error" role="alert" class="hidden text-xs text-rose-600 font-semibold mt-1.5">Credenciales incorrectas. Verifica la clave de propietario de tu negocio.</p>
         </div>
 
-        <button type="submit"
+        <button type="submit" id="pin-submit-btn"
           class="w-full py-3.5 rounded-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-display font-bold text-sm shadow-lg">
           Entrar al Panel de Mi Negocio →
         </button>
@@ -109,13 +126,15 @@
     <!-- Status Banner -->
     <div id="adm-demo-banner" class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div class="text-xs">
-        <strong class="text-slate-900 block">Estás probando tu Panel /admin en vivo</strong>
-        <span class="text-slate-600">Sube tus fotos o haz cualquier cambio abajo, pulsa Guardar y abre tu web para verlo al instante.</span>
+        <strong class="text-slate-900 block">Panel de administración autenticado</strong>
+        <span class="text-slate-600">Sube tus fotos o realiza cualquier cambio abajo, pulsa Guardar y abre tu web para verlo publicado al instante.</span>
       </div>
       <a href="/#precios" class="px-4 py-2 rounded-full bg-[#4F46E5] text-white font-display font-bold text-xs whitespace-nowrap self-start sm:self-auto">
-        Contratar · Desde 79 €
+        Ver Planes · Desde 79 €
       </a>
     </div>
+
+    <div id="adm-form-error" role="alert" class="hidden p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-xs font-bold text-rose-700"></div>
 
     <!-- Card 0: Subir / Cambiar Fotos Reales desde el Móvil -->
     <section class="rounded-3xl bg-white border border-slate-200 p-5 space-y-3 shadow-sm">
@@ -123,16 +142,17 @@
         <h2 class="font-display font-bold text-base text-slate-900 flex items-center gap-2">
           <i class="ph-bold ph-camera text-[#4F46E5]"></i> Fotos Reales de Tu Local o Trabajos
         </h2>
-        <button type="button" onclick="admResetPhotos()" class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-          Restaurar
+        <button type="button" id="adm-reset-photos-btn" onclick="admResetPhotos()" class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+          Restaurar originales
         </button>
       </div>
-      <p class="text-xs text-slate-600">Sube de 1 a 4 fotos desde tu móvil u ordenador. Se optimizan solas al instante:</p>
+      <p class="text-xs text-slate-600">Sube de 1 a 4 fotos (formatos permitidos: JPG, PNG o WebP · tamaño máximo 5 MB por archivo):</p>
       <label class="w-full py-3 px-4 rounded-full bg-[#4F46E5] hover:bg-[#4338CA] text-white font-display font-bold text-xs sm:text-sm text-center cursor-pointer block shadow-sm">
-        📷 Seleccionar Fotos de Mi Móvil / PC
-        <input type="file" accept="image/*" multiple class="hidden" onchange="admUploadPhotos(this)" />
+        📷 Seleccionar Fotos (JPG, PNG, WebP)
+        <input id="adm-photo-input" type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="admUploadPhotos(this)" />
       </label>
-      <div id="adm-photo-status" class="text-xs font-semibold text-[#4F46E5]"></div>
+      <div id="adm-photo-thumbs" class="hidden flex-wrap gap-2 pt-1"></div>
+      <div id="adm-photo-status" class="text-xs font-semibold text-[#4F46E5]" aria-live="polite"></div>
     </section>
 
     <!-- Card 1: Quick Status / Vacation Mode -->
@@ -260,11 +280,62 @@
     ✓ Cambios guardados y publicados al instante
   </div>
 
-  <script src="../assets/stripe-config.js?v=105"></script>
-  <script src="../assets/oficios-catalog.js?v=105"></script>
-  <script src="../assets/studio-engine.js?v=105"></script>
+  <script src="../assets/stripe-config.js?v=106"></script>
+  <script src="../assets/oficios-catalog.js?v=106"></script>
+  <script src="../assets/studio-engine.js?v=106"></script>
   <script>
     let admState = loadStudioState();
+    let admAuthenticated = false;
+    let pinAttempts = 0;
+    const SESSION_AUTH_KEY = 'MIWEB_ADMIN_SESSION_V1';
+
+    async function sha256Hex(str) {
+      const normalized = String(str || '').trim().toUpperCase();
+      if (window.crypto && window.crypto.subtle) {
+        const buf = new TextEncoder().encode('miweblocal-salt-v1:' + normalized);
+        const hash = await window.crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+      let h = 2166136261;
+      for (let i = 0; i < normalized.length; i++) {
+        h ^= normalized.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return (h >>> 0).toString(16);
+    }
+
+    function getExpectedPinForState(st) {
+      if (st && st.adminPin) return String(st.adminPin).trim().toUpperCase();
+      if (typeof miwebGeneratePin === 'function') {
+        return miwebGeneratePin(slugifyName((st && st.name) || 'negocio'));
+      }
+      return '';
+    }
+
+    function setAuthenticatedUI(isAuth) {
+      admAuthenticated = !!isAuth;
+      document.getElementById('pin-gate').classList.toggle('hidden', admAuthenticated);
+      document.getElementById('owner-dashboard').classList.toggle('hidden', !admAuthenticated);
+      document.getElementById('adm-save-bar').classList.toggle('hidden', !admAuthenticated);
+      const logoutBtn = document.getElementById('adm-logout-btn');
+      if (logoutBtn) logoutBtn.classList.toggle('hidden', !admAuthenticated);
+      if (admAuthenticated) {
+        populateAdminFields();
+      }
+    }
+
+    window.togglePinVisibility = function() {
+      const inp = document.getElementById('pin-input');
+      if (!inp) return;
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    };
+
+    window.logoutAdminSession = function() {
+      try { sessionStorage.removeItem(SESSION_AUTH_KEY); } catch (e) {}
+      const inp = document.getElementById('pin-input');
+      if (inp) inp.value = '';
+      setAuthenticatedUI(false);
+    };
 
     (function initAdminApp() {
       const params = new URLSearchParams(window.location.search);
@@ -280,18 +351,24 @@
           }
         }
       }
-      if (!admState.adminPin) admState.adminPin = 'PRO-4829';
+      if (!admState.adminPin && typeof miwebGeneratePin === 'function') {
+        admState.adminPin = miwebGeneratePin(slugifyName(admState.name));
+      }
 
       document.getElementById('adm-header-name').textContent = admState.name;
       document.getElementById('gate-biz-name').textContent = admState.name;
-      document.getElementById('hint-pin-code').textContent = admState.adminPin;
-      document.getElementById('pin-input').value = admState.adminPin;
 
       if (admState.unlocked) {
         document.getElementById('adm-demo-banner').classList.add('hidden');
-        document.getElementById('demo-pin-hint').innerHTML = '<strong>✓ Web Oficial Activa:</strong> Tu clave privada de propietario es <code class="px-1.5 py-0.5 rounded bg-white border border-indigo-200 text-[#4F46E5] font-mono font-bold">' + escapeHtml(admState.adminPin) + '</code>.';
       }
       refreshLiveLinks();
+
+      try {
+        const savedSession = JSON.parse(sessionStorage.getItem(SESSION_AUTH_KEY) || 'null');
+        if (savedSession && savedSession.slug === slugifyName(admState.name) && savedSession.exp > Date.now()) {
+          setAuthenticatedUI(true);
+        }
+      } catch (e) {}
     })();
 
     function refreshLiveLinks() {
@@ -302,18 +379,72 @@
       if (b) b.href = url;
     }
 
-    function verifyAdminPin(e) {
-      e.preventDefault();
-      const entered = (document.getElementById('pin-input').value || '').trim().toUpperCase();
-      const expected = String(admState.adminPin || 'PRO-4829').trim().toUpperCase();
-      if (entered === expected || entered === 'PRO-4829' || entered === 'PRO-2026') {
-        document.getElementById('pin-gate').classList.add('hidden');
-        document.getElementById('owner-dashboard').classList.remove('hidden');
-        document.getElementById('adm-save-bar').classList.remove('hidden');
-        populateAdminFields();
-      } else {
-        document.getElementById('pin-error').classList.remove('hidden');
+    async function verifyAdminPin(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      const errEl = document.getElementById('pin-error');
+      const inp = document.getElementById('pin-input');
+      if (pinAttempts >= 5) {
+        if (errEl) {
+          errEl.textContent = 'Demasiados intentos fallidos. Espera 30 segundos antes de volver a intentarlo.';
+          errEl.classList.remove('hidden');
+        }
+        return;
       }
+      const entered = (inp ? inp.value : '').trim().toUpperCase();
+      if (!entered) {
+        if (errEl) {
+          errEl.textContent = 'Introduce tu clave de propietario.';
+          errEl.classList.remove('hidden');
+        }
+        return;
+      }
+      const expected = getExpectedPinForState(admState);
+      const [enteredHash, expectedHash] = await Promise.all([
+        sha256Hex(entered),
+        sha256Hex(expected)
+      ]);
+      if (enteredHash && expectedHash && enteredHash === expectedHash) {
+        pinAttempts = 0;
+        if (errEl) errEl.classList.add('hidden');
+        try {
+          sessionStorage.setItem(SESSION_AUTH_KEY, JSON.stringify({
+            slug: slugifyName(admState.name),
+            token: enteredHash.slice(0, 24),
+            exp: Date.now() + 2 * 3600 * 1000
+          }));
+        } catch (er) {}
+        setAuthenticatedUI(true);
+      } else {
+        pinAttempts++;
+        if (errEl) {
+          errEl.textContent = 'Credenciales incorrectas. Verifica la clave de propietario de tu negocio.';
+          errEl.classList.remove('hidden');
+        }
+        if (pinAttempts >= 5) {
+          setTimeout(() => { pinAttempts = 0; }, 30000);
+        }
+      }
+    }
+
+    function renderAdmPhotoThumbs() {
+      const box = document.getElementById('adm-photo-thumbs');
+      if (!box) return;
+      const imgs = Array.isArray(admState.customGallery) && admState.customGallery.length
+        ? admState.customGallery
+        : (admState.customHeroPhoto ? [admState.customHeroPhoto] : []);
+      if (!imgs.length) {
+        box.classList.add('hidden');
+        box.classList.remove('flex');
+        box.innerHTML = '';
+        return;
+      }
+      box.classList.remove('hidden');
+      box.classList.add('flex');
+      box.innerHTML = imgs.map((src, idx) => `
+        <div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-[#4F46E5] shrink-0">
+          <img src="${src}" alt="Previsualización ${idx + 1}" class="w-full h-full object-cover block" />
+        </div>
+      `).join('');
     }
 
     function populateAdminFields() {
@@ -326,6 +457,7 @@
       document.getElementById('adm-hw').value = admState.hoursWeek || '';
       document.getElementById('adm-hs').value = admState.hoursSat || '';
       document.getElementById('adm-hd').value = admState.hoursSun || '';
+      renderAdmPhotoThumbs();
       renderAdmServices();
       renderAdmThemes();
     }
@@ -339,24 +471,36 @@
             ${admState.services.length > 1 ? `<button type="button" onclick="admRemoveService(${idx})" class="text-xs text-rose-600 font-semibold px-2 py-0.5 rounded bg-rose-50">Eliminar</button>` : ''}
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-            <input type="text" value="${escapeHtml(srv.title)}" oninput="admState.services[${idx}].title = this.value"
+            <input type="text" data-adm-srv-title="${idx}" value="${escapeHtml(srv.title)}" oninput="admUpdateSrv(${idx}, 'title', this.value)"
               class="sm:col-span-8 px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-900 font-semibold" />
-            <input type="text" value="${escapeHtml(srv.price)}" oninput="admState.services[${idx}].price = this.value"
+            <input type="text" data-adm-srv-price="${idx}" value="${escapeHtml(srv.price)}" oninput="admUpdateSrv(${idx}, 'price', this.value)"
               class="sm:col-span-4 px-3 py-2 rounded-xl bg-white border border-slate-300 text-[#4F46E5] font-bold" />
           </div>
-          <input type="text" value="${escapeHtml(srv.meta)}" oninput="admState.services[${idx}].meta = this.value"
+          <input type="text" data-adm-srv-meta="${idx}" value="${escapeHtml(srv.meta)}" oninput="admUpdateSrv(${idx}, 'meta', this.value)"
             class="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-slate-600" />
         </div>
       `).join('');
     }
 
+    function admUpdateSrv(idx, key, val) {
+      if (!admState.services[idx]) return;
+      admState.services[idx][key] = val;
+      if (key === 'title') admState.services[idx].nombre = val;
+      if (key === 'price') {
+        const m = String(val).match(/(\d+(?:[.,]\d+)?)/);
+        if (m) admState.services[idx].precio = parseFloat(m[1].replace(',', '.'));
+      }
+    }
+
     function admAddService() {
-      admState.services.push({ title: 'Nuevo Servicio / Producto', meta: 'Disponible hoy', price: '25 €' });
+      if (!admAuthenticated) return;
+      const newId = 'srv-adm-' + Date.now();
+      admState.services.push({ id: newId, nombre: 'Nuevo Servicio / Producto', title: 'Nuevo Servicio / Producto', meta: 'Disponible hoy', precio: 25, price: '25 €', moneda: 'EUR' });
       renderAdmServices();
     }
 
     function admRemoveService(idx) {
-      if (admState.services.length <= 1) return;
+      if (!admAuthenticated || admState.services.length <= 1) return;
       admState.services.splice(idx, 1);
       renderAdmServices();
     }
@@ -366,7 +510,7 @@
       grid.innerHTML = Object.entries(DESIGN_THEMES).map(([k, t]) => {
         const on = admState.theme === k;
         return `
-          <button type="button" onclick="admPickTheme('${k}')"
+          <button type="button" data-adm-theme="${k}" onclick="admPickTheme('${k}')"
             class="p-3 rounded-xl border text-left flex items-center gap-3 ${on ? 'border-[#4F46E5] bg-indigo-50' : 'border-slate-200 bg-slate-50'}">
             <span class="w-7 h-7 rounded-full border border-slate-300 flex overflow-hidden shrink-0">
               <span style="background:${t.swatch1}; width:50%; height:100%;"></span>
@@ -379,45 +523,123 @@
     }
 
     function admPickTheme(k) {
+      if (!admAuthenticated) return;
       admState.theme = k;
       renderAdmThemes();
     }
 
     function setVacationNotice() {
+      if (!admAuthenticated) return;
       document.getElementById('adm-years').value = '🏖️ Cerrado por vacaciones · Volvemos el lunes';
       saveAdminChanges();
     }
 
     async function admUploadPhotos(input) {
-      const files = Array.from((input && input.files) || []).slice(0, 4);
-      if (!files.length || typeof miwebCompressImageFile !== 'function') return;
+      if (!admAuthenticated) return;
+      const rawFiles = Array.from((input && input.files) || []).slice(0, 4);
       const st = document.getElementById('adm-photo-status');
-      if (st) st.textContent = 'Optimizando fotos...';
+      if (!rawFiles.length || typeof miwebCompressImageFile !== 'function') return;
+
+      const allowedMime = ['image/jpeg', 'image/png', 'image/webp'];
+      const allowedExt = /\.(jpe?g|png|webp)$/i;
+      const maxBytes = 5 * 1024 * 1024;
+      const validFiles = [];
+
+      for (const f of rawFiles) {
+        const nameStr = String(f.name || '');
+        const typeStr = String(f.type || '').toLowerCase();
+        if (!allowedMime.includes(typeStr) || !allowedExt.test(nameStr) || /\.svg|\.exe|\.sh|\.bat|\.js|\.html/i.test(nameStr)) {
+          if (st) {
+            st.className = 'text-xs font-semibold text-rose-600';
+            st.textContent = 'Archivo rechazado (' + nameStr + '). Solo se permiten imágenes JPG, PNG o WebP.';
+          }
+          if (input) input.value = '';
+          return;
+        }
+        if (f.size > maxBytes) {
+          if (st) {
+            st.className = 'text-xs font-semibold text-rose-600';
+            st.textContent = 'La imagen ' + nameStr + ' supera el límite máximo de 5 MB.';
+          }
+          if (input) input.value = '';
+          return;
+        }
+        validFiles.push(f);
+      }
+
+      if (st) {
+        st.className = 'text-xs font-semibold text-[#4F46E5]';
+        st.textContent = 'Optimizando fotos...';
+      }
       const arr = [];
-      for (const f of files) {
+      for (const f of validFiles) {
         try { arr.push(await miwebCompressImageFile(f, 1100, 0.78)); } catch (e) {}
       }
       if (!arr.length) return;
       admState.customHeroPhoto = arr[0];
       admState.customGallery = arr;
-      if (st) st.textContent = '✓ ' + arr.length + ' foto(s) cargadas. Pulsa Guardar abajo.';
-      saveAdminChanges();
+      renderAdmPhotoThumbs();
+      if (st) {
+        st.className = 'text-xs font-semibold text-emerald-700';
+        st.textContent = '✓ ' + arr.length + ' foto(s) validadas y previsualizadas. Pulsa Guardar abajo para publicar.';
+      }
     }
 
     function admResetPhotos() {
+      if (!admAuthenticated) return;
       admState.customHeroPhoto = '';
       admState.customGallery = [];
+      const inp = document.getElementById('adm-photo-input');
+      if (inp) inp.value = '';
+      renderAdmPhotoThumbs();
       const st = document.getElementById('adm-photo-status');
-      if (st) st.textContent = 'Fotos por defecto restauradas.';
+      if (st) {
+        st.className = 'text-xs font-semibold text-[#4F46E5]';
+        st.textContent = 'Fotos originales del oficio restauradas.';
+      }
       saveAdminChanges();
     }
 
     function saveAdminChanges() {
+      if (!admAuthenticated) return false;
+      const errBox = document.getElementById('adm-form-error');
+      const nameVal = document.getElementById('adm-name').value.trim();
+      const waVal = document.getElementById('adm-whatsapp').value.trim();
+      const cityVal = document.getElementById('adm-city').value.trim();
+      const waDigits = waVal.replace(/\D+/g, '');
+
+      if (!nameVal || nameVal.length < 2) {
+        if (errBox) {
+          errBox.textContent = 'El nombre del negocio no puede estar vacío.';
+          errBox.classList.remove('hidden');
+        }
+        document.getElementById('adm-name').focus();
+        return false;
+      }
+      if (waDigits.length < 9 || waDigits.length > 15) {
+        if (errBox) {
+          errBox.textContent = 'Introduce un número de teléfono o WhatsApp válido (mínimo 9 dígitos).';
+          errBox.classList.remove('hidden');
+        }
+        document.getElementById('adm-whatsapp').focus();
+        return false;
+      }
+      const invalidService = (admState.services || []).some(s => !String(s.title || '').trim() || !String(s.price || '').trim());
+      if (invalidService) {
+        if (errBox) {
+          errBox.textContent = 'Todos los servicios deben tener un nombre y un precio válido.';
+          errBox.classList.remove('hidden');
+        }
+        return false;
+      }
+      if (errBox) errBox.classList.add('hidden');
+
       admState.yearsExp = document.getElementById('adm-years').value.trim() || 'Atención Profesional';
-      admState.name = document.getElementById('adm-name').value.trim() || admState.name;
+      admState.name = nameVal;
       admState.userEditedName = true;
-      admState.whatsapp = document.getElementById('adm-whatsapp').value.trim() || admState.whatsapp;
-      admState.city = document.getElementById('adm-city').value.trim() || admState.city;
+      admState.whatsapp = waVal;
+      admState.phone = waVal;
+      admState.city = cityVal || admState.city;
       admState.address = document.getElementById('adm-address').value.trim() || admState.address;
       admState.tagline = document.getElementById('adm-tagline').value.trim() || admState.tagline;
       admState.hoursWeek = document.getElementById('adm-hw').value.trim() || admState.hoursWeek;
@@ -437,6 +659,7 @@
       const toast = document.getElementById('adm-toast');
       toast.classList.remove('hidden');
       setTimeout(() => toast.classList.add('hidden'), 2400);
+      return true;
     }
   </script>
 </body>

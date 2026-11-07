@@ -13,7 +13,58 @@ const MIWEB_STRIPE = {
   paymentLink197: 'https://buy.stripe.com/eVq7sL3Oh3Rx7N2a5IcfK05',
   paymentLink297: 'https://buy.stripe.com/fZu28r0C53Rxffu3HkcfK06',
   whatsapp: '34632768152',
-  supportDays: 14
+  supportDays: 14,
+  plansMeta: {
+    '79': {
+      id: '79',
+      code: 'basic',
+      name: 'Web Express',
+      price: 79,
+      currency: 'EUR',
+      includesCustomDomain: false,
+      deliveryTime: 'Activación inmediata tras el pago',
+      domainPolicy: 'Incluye dirección web publicada bajo MiWebLocal (miweblocal.com/sitio/?negocio=...). No incluye registro de dominio .es/.com propio.',
+      features: [
+        'Tu web publicada con enlace propio en MiWebLocal',
+        'Catálogo de hasta 6 servicios o tarifas con precio claro',
+        'Herramienta interactiva de solicitudes al WhatsApp (0 % comisión)',
+        'Adaptada a móviles y ordenadores con certificado SSL incluido'
+      ]
+    },
+    '197': {
+      id: '197',
+      code: 'pro',
+      name: 'Negocio Pro',
+      price: 197,
+      currency: 'EUR',
+      includesCustomDomain: true,
+      deliveryTime: 'Activación inmediata + configuración DNS y Google Maps en 24–48 h',
+      domainPolicy: 'Incluye registro y configuración de tu dominio propio .es o .com (1 año incluido) y alta/optimización en Google Maps.',
+      features: [
+        'Dominio propio .es o .com incluido y configurado a tu nombre',
+        'Alta y optimización de ficha en Google Maps (Perfil de Empresa)',
+        'Panel privado de propietario (/admin/) para editar precios, fotos y horarios',
+        'Los 8 módulos sectoriales de WhatsApp + Comparador Antes/Después'
+      ]
+    },
+    '297': {
+      id: '297',
+      code: 'vip',
+      name: 'Lanzamiento VIP',
+      price: 297,
+      currency: 'EUR',
+      includesCustomDomain: true,
+      deliveryTime: 'Entrega prioritaria llave en mano en menos de 24 horas laborables',
+      domainPolicy: 'Incluye todo el plan Negocio Pro (dominio .es/.com + Google Maps) más carga completa de catálogo y placa física NFC/QR.',
+      features: [
+        'Todo lo incluido en Negocio Pro (dominio .es/.com + Google Maps + Panel)',
+        'Catálogo ampliado (hasta 25 servicios, carta o galería completa cargada por nosotros)',
+        'Placa física con código QR para mostrador o escaparate enviada a tu local',
+        'Entrega prioritaria en 24 h laborables y revisión personalizada 1 a 1'
+      ]
+    }
+  },
+  guaranteeTerms: 'Garantía de reembolso de 14 días naturales desde la fecha de contratación. Si la web entregada no se ajusta a tu actividad o decides no continuar dentro de los primeros 14 días naturales, puedes solicitar la devolución íntegra escribiendo por WhatsApp o correo con tu referencia de pedido, sin penalización (salvo costes de registro de dominios personalizados ya emitidos a tu nombre).'
 };
 
 /* ==========================================================================
@@ -100,28 +151,143 @@ function miwebGoToStripe(order) {
 }
 
 /* ==========================================================================
-   1. COMPROBADOR DE DOMINIO LIBRE EN TIEMPO REAL (0,2s · DNS-over-HTTPS · 0 €)
+   1. COMPROBADOR DE DOMINIO EN TIEMPO REAL (DNS-over-HTTPS · Validación Estricta)
+   Estados diferenciados:
+   - 'checking'    (Comprobando)
+   - 'available'   (Disponible)
+   - 'unavailable' (No disponible)
+   - 'error'       (Error temporal / Tiempo de espera agotado)
+   - 'invalid'     (Formato incorrecto)
    ========================================================================== */
+function miwebValidateDomainInput(raw) {
+  const original = String(raw === undefined || raw === null ? '' : raw);
+  const trimmed = original.trim();
+  if (!trimmed) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'empty',
+      domain: '',
+      error: 'Formato incorrecto: escribe un nombre de dominio (por ejemplo, micerrajeria.es).'
+    };
+  }
+
+  // Strip protocol and leading www.
+  let withoutProto = trimmed.replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
+
+  // Check internal spaces before stripping
+  if (/\s/.test(withoutProto)) {
+    const suggested = withoutProto
+      .toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '')
+      .replace(/[^a-z0-9.-]/g, '');
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'spaces',
+      domain: '',
+      suggestion: suggested ? (suggested.includes('.') ? suggested : suggested + '.es') : '',
+      error: 'Formato incorrecto: un dominio no puede contener espacios en blanco.'
+    };
+  }
+
+  // Check for accents/tildes or non-ASCII characters (reject and suggest normalized ASCII domain)
+  const hadAccents = /[^\u0000-\u007f]/.test(withoutProto);
+  let normalized = withoutProto
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+  if (hadAccents) {
+    const cleanSug = normalized.replace(/[^a-z0-9.-]/g, '');
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'accents',
+      domain: '',
+      suggestion: cleanSug ? (cleanSug.includes('.') ? cleanSug : cleanSug + '.es') : '',
+      error: 'Formato incorrecto: los dominios no deben llevar tildes ni eñes (usa «' + (cleanSug || 'minegocio.es') + '»).'
+    };
+  }
+
+  // Reject any remaining non-ASCII or disallowed punctuation/symbols (only a-z, 0-9, '-', '.' allowed)
+  if (/[^a-z0-9.-]/.test(normalized)) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'invalid_chars',
+      domain: '',
+      error: 'Formato incorrecto: solo se permiten letras, números y guiones medios (-), sin símbolos especiales.'
+    };
+  }
+
+  if (!normalized.includes('.')) {
+    normalized = normalized + '.es';
+  }
+
+  const parts = normalized.split('.');
+  if (parts.length < 2 || parts.some(p => !p)) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'malformed',
+      domain: '',
+      error: 'Formato incorrecto: indica un nombre y extensión válidos (ej. minegocio.es o minegocio.com).'
+    };
+  }
+
+  const tld = parts.pop();
+  const sld = parts.join('-');
+
+  if (!/^[a-z]{2,12}$/.test(tld)) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'invalid_tld',
+      domain: '',
+      error: 'Formato incorrecto: la extensión del dominio (.' + tld + ') no es válida. Usa .es, .com, .net o .eu.'
+    };
+  }
+
+  if (sld.startsWith('-') || sld.endsWith('-') || sld.includes('--')) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'hyphen',
+      domain: '',
+      error: 'Formato incorrecto: el nombre del dominio no puede empezar, terminar ni repetir guiones seguidos (-).'
+    };
+  }
+
+  if (sld.length < 2 || sld.length > 63 || !/^[a-z0-9-]+$/.test(sld)) {
+    return {
+      valid: false,
+      status: 'invalid',
+      reason: 'length',
+      domain: '',
+      error: 'Formato incorrecto: el nombre del dominio debe tener entre 2 y 63 caracteres válidos.'
+    };
+  }
+
+  return {
+    valid: true,
+    status: 'valid',
+    normalizedFromAccents: hadAccents,
+    domain: `${sld}.${tld}`
+  };
+}
+
 function miwebCleanDomainInput(raw, fallbackSlug) {
-  let d = String(raw || '').trim().toLowerCase();
-  d = d.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].replace(/\s+/g, '');
-  if (!d && fallbackSlug) {
-    d = String(fallbackSlug).replace(/[^a-z0-9-]/g, '') + '.es';
-  }
-  if (d && !d.includes('.')) {
-    d = d.replace(/[^a-z0-9-]/g, '') + '.es';
-  }
-  const parts = d.split('.');
-  if (parts.length >= 2) {
-    const tld = parts.pop().replace(/[^a-z]/g, '') || 'es';
-    const name = parts.join('-').replace(/[^a-z0-9-]/g, '').replace(/^-+|-+$/g, '');
-    if (!name) return '';
-    return `${name}.${tld}`;
-  }
+  const rawStr = String(raw === undefined || raw === null ? '' : raw).trim();
+  const source = rawStr || (fallbackSlug ? String(fallbackSlug).trim() : '');
+  if (!source) return '';
+  const check = miwebValidateDomainInput(source);
+  if (check.valid) return check.domain;
   return '';
 }
 
-async function miwebFetchWithTimeout(url, opts = {}, timeoutMs = 1800) {
+async function miwebFetchWithTimeout(url, opts = {}, timeoutMs = 2500) {
   const ctrl = new AbortController();
   const id = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -131,25 +297,48 @@ async function miwebFetchWithTimeout(url, opts = {}, timeoutMs = 1800) {
   }
 }
 
-async function miwebQueryDnsSingle(domain) {
+async function miwebQueryDnsSingle(domain, opts = {}) {
+  if (opts && opts.__forceTimeout) {
+    return { ok: false, available: false, reason: 'timeout' };
+  }
+  if (opts && opts.__forceError) {
+    return { ok: false, available: false, reason: 'provider_error' };
+  }
+  const timeoutMs = typeof opts.timeoutMs === 'number' ? opts.timeoutMs : 2500;
+  const endpoint = opts.endpoint || `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=NS`;
   try {
-    const res = await miwebFetchWithTimeout(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=NS`, {
+    const res = await miwebFetchWithTimeout(endpoint, {
       method: 'GET',
       headers: { 'Accept': 'application/json' }
-    }, 1800);
-    if (!res.ok) return null;
-    const data = await res.json();
-    // Status 3 === NXDOMAIN (not registered in root/TLD zone -> available!)
-    if (typeof data.Status === 'number') {
-      return data.Status === 3;
+    }, timeoutMs);
+    if (!res || !res.ok) {
+      return { ok: false, available: false, reason: 'provider_error', httpStatus: res ? res.status : 0 };
     }
-    return null;
+    const data = await res.json();
+    if (!data || typeof data.Status !== 'number') {
+      return { ok: false, available: false, reason: 'provider_error' };
+    }
+    // Status 3 === NXDOMAIN (not registered in TLD zone -> available)
+    if (data.Status === 3) {
+      return { ok: true, available: true, reason: 'nxdomain' };
+    }
+    // Status 0 === NOERROR (registered/delegated)
+    if (data.Status === 0) {
+      return { ok: true, available: false, reason: 'registered' };
+    }
+    // Status 2 === SERVFAIL -> cannot confirm availability! Never claim available.
+    return { ok: false, available: false, reason: 'provider_error', dnsStatus: data.Status };
   } catch (e) {
-    return null;
+    const isTimeout = Boolean(e && (e.name === 'AbortError' || /abort|timeout/i.test(String(e.message || ''))));
+    return {
+      ok: false,
+      available: false,
+      reason: isTimeout ? 'timeout' : 'provider_error'
+    };
   }
 }
 
-async function miwebCheckDomainLive(rawDomain, bizName, city) {
+async function miwebCheckDomainLive(rawDomain, bizName, city, opts = {}) {
   const baseSlug = String(bizName || 'minegocio')
     .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '').slice(0, 28) || 'minegocio';
@@ -157,34 +346,71 @@ async function miwebCheckDomainLive(rawDomain, bizName, city) {
     .toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '').slice(0, 14);
 
-  const domain = miwebCleanDomainInput(rawDomain, baseSlug);
-  if (!domain || domain.length < 4) {
-    return { ok: false, error: 'Escribe un dominio válido (ej. ' + baseSlug + '.es)' };
+  const validation = miwebValidateDomainInput(rawDomain);
+  if (!validation.valid) {
+    return {
+      ok: false,
+      status: 'invalid',
+      available: false,
+      reason: validation.reason,
+      domain: validation.domain || '',
+      error: validation.error,
+      suggestions: validation.suggestion ? [validation.suggestion] : [`${baseSlug}.es`, `${baseSlug}.com`]
+    };
   }
 
-  const isFree = await miwebQueryDnsSingle(domain);
-  if (isFree === true) {
-    return { ok: true, available: true, domain, suggestions: [] };
+  const domain = validation.domain;
+  const primary = await miwebQueryDnsSingle(domain, opts);
+
+  if (!primary.ok) {
+    const isTimeout = primary.reason === 'timeout';
+    return {
+      ok: false,
+      status: 'error',
+      available: false,
+      unverified: true,
+      reason: primary.reason,
+      domain,
+      error: isTimeout
+        ? `Tiempo de espera agotado al consultar el proveedor de dominios para «${domain}». Comprueba tu conexión o vuelve a intentarlo.`
+        : `Error temporal al consultar disponibilidad de «${domain}» en el proveedor DNS. No podemos confirmarlo como libre en este instante; reinténtalo en unos segundos.`,
+      suggestions: []
+    };
   }
 
-  // Build smart alternatives and check in parallel
+  if (primary.available === true) {
+    return {
+      ok: true,
+      status: 'available',
+      available: true,
+      normalizedFromAccents: Boolean(validation.normalizedFromAccents),
+      domain,
+      suggestions: []
+    };
+  }
+
+  // Domain is registered -> check alternatives in parallel
   const stem = domain.split('.')[0];
   const candidates = [
     domain.endsWith('.es') ? `${stem}.com` : `${stem}.es`,
     citySlug && !stem.includes(citySlug) ? `${stem}${citySlug}.es` : `${stem}oficial.es`,
-    `${stem}web.com`,
-    `oficial${stem}.es`
+    `${stem}web.es`,
+    `mi${stem}.es`
   ].filter((v, i, a) => v !== domain && a.indexOf(v) === i);
 
-  const checks = await Promise.all(candidates.map(async c => ({ d: c, free: await miwebQueryDnsSingle(c) })));
+  const checks = await Promise.all(candidates.map(async c => {
+    const r = await miwebQueryDnsSingle(c, opts);
+    return { d: c, free: r.ok && r.available === true };
+  }));
   const freeAlts = checks.filter(x => x.free === true).map(x => x.d).slice(0, 3);
 
-  if (isFree === null) {
-    // Offline fallback
-    return { ok: true, available: true, domain, unverified: true, suggestions: [] };
-  }
-
-  return { ok: true, available: false, domain, suggestions: freeAlts };
+  return {
+    ok: true,
+    status: 'unavailable',
+    available: false,
+    domain,
+    suggestions: freeAlts
+  };
 }
 
 /* ==========================================================================
@@ -351,16 +577,23 @@ async function miwebSearchRealBusiness(query) {
   };
 }
 
+const _catalogSplitNameAndCity = typeof window !== 'undefined' && typeof window.miwebSplitNameAndCity === 'function'
+  ? window.miwebSplitNameAndCity
+  : null;
+
 function miwebSplitNameAndCity(raw) {
   const q = String(raw || '').trim();
-  if (!q) return { name: 'Salón Aura', city: 'Madrid' };
+  if (!q) return { name: '', city: 'Madrid' };
   const bySep = q.split(/[,·]/).map(s => s.trim()).filter(Boolean);
   if (bySep.length >= 2) {
     return { name: bySep[0], city: bySep[1] };
   }
+  if (_catalogSplitNameAndCity && _catalogSplitNameAndCity !== miwebSplitNameAndCity) {
+    return _catalogSplitNameAndCity(q);
+  }
   const cities = [
     'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza', 'Málaga', 'Malaga', 'Murcia',
-    'Palma', 'Bilbao', 'Alicante', 'Córdoba', 'Cordoba', 'Valladolid', 'Vigo', 'Gijón', 'Gijon',
+    'Palma', 'Mallorca', 'Bilbao', 'Alicante', 'Córdoba', 'Cordoba', 'Valladolid', 'Vigo', 'Gijón', 'Gijon',
     'Granada', 'Elche', 'Oviedo', 'Badalona', 'Cartagena', 'Terrassa', 'Jerez', 'Sabadell',
     'Móstoles', 'Mostoles', 'Alcalá', 'Alcala', 'Pamplona', 'Almería', 'Almeria', 'San Sebastián',
     'Donostia', 'Santander', 'Burgos', 'Albacete', 'Castellón', 'Castellon', 'Logroño', 'Badajoz',
@@ -370,11 +603,11 @@ function miwebSplitNameAndCity(raw) {
     'Alcorcón', 'Alcorcon', 'Tenerife', 'Las Palmas', 'Ibiza', 'Toledo', 'Guadalajara'
   ];
   for (const c of cities) {
-    const rx = new RegExp(`\\s+(?:en\\s+)?(${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})$`, 'i');
+    const rx = new RegExp(`(?:\\s*,\\s*|\\s+en\\s+|\\s+-\\s+|\\s+)(${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})$`, 'i');
     const m = q.match(rx);
     if (m && q.length > m[0].length + 2) {
       const cleanCity = c === 'Malaga' ? 'Málaga' : c === 'Cordoba' ? 'Córdoba' : c === 'Mostoles' ? 'Móstoles' : c;
-      return { name: q.slice(0, q.length - m[0].length).trim(), city: cleanCity };
+      return { name: q.slice(0, q.length - m[0].length).replace(/[\s,·-]+$/, '').trim(), city: cleanCity };
     }
   }
   return { name: q, city: 'Madrid' };

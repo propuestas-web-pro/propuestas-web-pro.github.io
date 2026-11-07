@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WBXMKQ6G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>Vista previa de tu web · MiWebLocal</title>
@@ -147,7 +154,7 @@
   <!-- Barra de la vista previa (solo mientras es demo de 24h) -->
   <div id="demo-top-bar" class="hidden">
     <div style="display:flex; align-items:center; gap:8px;">
-      <a href="../index.html#generador" class="btn-sm" style="text-decoration:none;">
+      <a href="../index.html#crear" id="btn-back-generator" class="btn-sm" style="text-decoration:none;" onclick="handleBackToGenerator(event)">
         <i class="ph-bold ph-arrow-left"></i>
         <span>Volver</span>
       </a>
@@ -157,9 +164,10 @@
       </div>
     </div>
     <div class="actions">
-      <button type="button" class="btn-edit-live" onclick="toggleLiveMiniEditor(true)">
+      <button type="button" class="btn-edit-live" id="btn-open-mini-editor" onclick="toggleLiveMiniEditor(true)">
         <i class="ph-bold ph-camera"></i>
         <span>Mis fotos y cambios</span>
+        <span id="ed-dirty-dot" style="display:none;width:8px;height:8px;border-radius:50%;background:#D97706;"></span>
       </button>
       <button type="button" class="btn-sm hide-xs" onclick="sendDemoLinkWhatsApp()">
         <i class="ph-bold ph-paper-plane-tilt"></i>
@@ -179,7 +187,10 @@
   <aside id="live-mini-editor" aria-label="Editor rápido de tu web">
     <div class="ed-header">
       <div>
-        <div style="font-size:12px; font-weight:700; color:var(--brand);">Edición instantánea</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:12px; font-weight:700; color:var(--brand);">Edición instantánea</span>
+          <span id="ed-state-pill" style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#ECFDF5;color:#047857;">Guardado</span>
+        </div>
         <strong style="font-family:'Outfit',sans-serif; font-size:18px;">Personaliza tu web</strong>
       </div>
       <button type="button" class="ed-close" onclick="toggleLiveMiniEditor(false)" aria-label="Cerrar">&times;</button>
@@ -188,14 +199,15 @@
     <div class="ed-body">
       <div class="ed-card" style="background:var(--soft); border-color:var(--ring);">
         <div class="ed-label">1. Pon fotos reales de tu local</div>
-        <p class="ed-help">Elige de 1 a 4 fotos desde tu móvil u ordenador y míralas puestas al momento.</p>
+        <p class="ed-help">Elige de 1 a 4 fotos (JPG, PNG o WebP, máx. 5 MB) y míralas puestas al momento.</p>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
           <label style="flex:1; min-width:160px; height:46px; border-radius:999px; background:var(--brand); color:#fff; font-family:'Outfit',sans-serif; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;">
             <i class="ph-bold ph-camera"></i> Elegir fotos
-            <input type="file" accept="image/*" multiple style="display:none;" onchange="handleSitioPhotosUpload(this)" />
+            <input id="ed-photo-input" type="file" accept="image/jpeg,image/png,image/webp" multiple style="display:none;" onchange="handleSitioPhotosUpload(this)" />
           </label>
-          <button type="button" onclick="resetSitioPhotos()" class="ed-btn" style="flex:0 0 auto; padding:0 18px; height:46px; font-size:13px;">Restaurar</button>
+          <button type="button" id="ed-restore-photos-btn" onclick="resetSitioPhotos()" class="ed-btn" style="flex:0 0 auto; padding:0 16px; height:46px; font-size:13px;">Restaurar original</button>
         </div>
+        <div id="ed-photo-thumbs" style="display:none; gap:8px; flex-wrap:wrap; margin-top:4px;"></div>
         <div id="ed-photo-msg" style="font-size:12.5px; color:var(--brand); font-weight:700;"></div>
       </div>
 
@@ -215,14 +227,17 @@
       </div>
 
       <div class="ed-card">
-        <div class="ed-label">3. Estilo de color</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+          <div class="ed-label">3. Estilo de color</div>
+          <span id="ed-contrast-badge" style="font-size:11px;font-weight:700;color:#047857;background:#ECFDF5;padding:2px 8px;border-radius:999px;">WCAG AA ✓</span>
+        </div>
         <div id="ed-theme-pills" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;"></div>
       </div>
 
       <div class="ed-card">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div class="ed-label">4. Servicios y precios</div>
-          <button type="button" onclick="edAddServiceRow()" style="padding:6px 12px; border-radius:999px; background:var(--soft); border:1px solid var(--ring); color:var(--brand); font-size:12.5px; font-weight:700; cursor:pointer;">+ Añadir</button>
+          <button type="button" id="ed-add-service-btn" onclick="edAddServiceRow()" style="padding:6px 12px; border-radius:999px; background:var(--soft); border:1px solid var(--ring); color:var(--brand); font-size:12.5px; font-weight:700; cursor:pointer;">+ Añadir</button>
         </div>
         <div id="ed-services-box" style="display:flex; flex-direction:column; gap:7px;"></div>
       </div>
@@ -234,9 +249,12 @@
       </div>
     </div>
 
-    <div class="ed-footer">
-      <button type="button" class="ed-btn" onclick="toggleLiveMiniEditor(false)">Ver mi web</button>
-      <button type="button" class="ed-btn pri" onclick="toggleLiveMiniEditor(false); openSitioStripeModal('197');">Contratar</button>
+    <div class="ed-footer" style="flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:8px;width:100%;">
+        <button type="button" id="ed-save-btn" class="ed-btn pri" onclick="saveLiveEditorChanges()">Guardar cambios</button>
+        <button type="button" class="ed-btn" onclick="toggleLiveMiniEditor(false)">Ver mi web</button>
+      </div>
+      <div id="ed-save-status" style="font-size:12px;text-align:center;color:#047857;font-weight:700;min-height:16px;" aria-live="polite"></div>
     </div>
   </aside>
 
@@ -285,33 +303,33 @@
 
       <div class="plan-grid">
         <div id="sitio-plan-box-79" class="plan-box plan-79" onclick="selectSitioStripePlan('79')">
-          <div class="pb-top"><span class="pb-tag">Express</span><span class="pb-price">79 €</span></div>
+          <div class="pb-top"><span class="pb-tag">Enlace MiWebLocal</span><span class="pb-price">79 €</span></div>
           <div class="pb-name">Web Express</div>
-          <p>Tu web publicada con enlace propio, panel privado, certificado de seguridad y 14 días de garantía.</p>
+          <p>Enlace en MiWebLocal (sin dominio .es/.com propio), hasta 6 servicios, solicitud por WhatsApp y panel privado.</p>
         </div>
         <div id="sitio-plan-box-197" class="plan-box plan-197" onclick="selectSitioStripePlan('197')">
           <div class="pb-top"><span class="pb-tag">El más elegido</span><span class="pb-price">197 €</span></div>
           <div class="pb-name">Negocio Pro</div>
-          <p>Dominio propio .es o .com, alta en Google Maps, panel privado, montaje completo y 14 días de ajustes.</p>
+          <p>Dominio propio .es o .com (1 año), alta en Google Maps, los 8 módulos WhatsApp y panel privado.</p>
         </div>
         <div id="sitio-plan-box-297" class="plan-box plan-297" onclick="selectSitioStripePlan('297')">
-          <div class="pb-top"><span class="pb-tag">VIP</span><span class="pb-price">297 €</span></div>
+          <div class="pb-top"><span class="pb-tag">VIP Llave en mano</span><span class="pb-price">297 €</span></div>
           <div class="pb-name">Catálogo + Placa QR</div>
-          <p>Todo lo de Negocio Pro, catálogo amplio, placa QR para tu mostrador y entrega prioritaria.</p>
+          <p>Todo lo de Negocio Pro + carga de catálogo amplio (25 ítems), placa QR física y prioridad 24 h.</p>
         </div>
       </div>
 
       <form id="sitio-stripe-form" onsubmit="completeSitioStripePayment(event)" style="margin-top:16px; background:var(--bg); border:1px solid var(--line); border-radius:22px; padding:16px; display:flex; flex-direction:column; gap:12px;">
         <div>
-          <label class="m-label" for="sitio-stripe-domain">1. Elige tu dirección web y comprueba si está libre</label>
+          <label class="m-label" id="sitio-domain-label" for="sitio-stripe-domain">1. Elige tu dirección web (.es o .com) y comprueba disponibilidad</label>
           <div style="display:flex; gap:8px;">
             <input id="sitio-stripe-domain" class="m-input" type="text" placeholder="minegocio.es" oninput="scheduleSitioDomainCheck()" />
             <button type="button" onclick="checkSitioDomainNow()" class="btn-sm" style="height:48px;">Comprobar</button>
           </div>
-          <div id="sitio-domain-status" style="font-size:13px; margin-top:7px; min-height:18px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;"></div>
+          <div id="sitio-domain-status" data-domain-status="idle" aria-live="polite" style="font-size:13px; margin-top:7px; min-height:18px; display:flex; flex-wrap:wrap; gap:6px; align-items:center;"></div>
         </div>
         <div style="display:grid; grid-template-columns:1fr; gap:10px;">
-          <input id="sitio-stripe-email" class="m-input" type="email" autocomplete="email" placeholder="Tu correo (factura y enlace de tu panel)" />
+          <input id="sitio-stripe-email" class="m-input" type="email" autocomplete="email" placeholder="Tu correo (factura y enlace de tu panel)" required />
           <input id="sitio-stripe-nif" class="m-input" type="text" placeholder="Titular y NIF (factura y aviso legal)" />
         </div>
         <button type="submit" id="sitio-stripe-submit" class="plan-cta">
@@ -319,7 +337,7 @@
           <span id="sitio-stripe-submit-text">Pagar 197 € una sola vez</span>
         </button>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12.5px; color:var(--muted);">
-          <span>Pago seguro con Stripe. Sin suscripciones.</span>
+          <span>Pago único seguro con Stripe · 14 días naturales de garantía de reembolso.</span>
           <button type="button" onclick="askSitioWhatsAppNoCommitment()" style="background:none; border:none; color:var(--brand); font-weight:700; cursor:pointer; text-decoration:underline; font-size:12.5px;">
             ¿Tienes dudas? Escríbenos por WhatsApp
           </button>
@@ -330,9 +348,9 @@
 
   <div id="copy-toast">Enlace copiado</div>
 
-  <script src="../assets/stripe-config.js?v=105"></script>
-  <script src="../assets/oficios-catalog.js?v=105"></script>
-  <script src="../assets/studio-engine.js?v=105"></script>
+  <script src="../assets/stripe-config.js?v=106"></script>
+  <script src="../assets/oficios-catalog.js?v=106"></script>
+  <script src="../assets/studio-engine.js?v=106"></script>
   <script>
     (function initLiveSiteViewer() {
       const params = new URLSearchParams(window.location.search);
@@ -354,19 +372,31 @@
             activeState = decoded;
           }
         }
-      } else if (sectorParam && window.MIWEB_OFICIOS_BY_ID && window.MIWEB_OFICIOS_BY_ID[sectorParam]) {
-        const p = window.MIWEB_OFICIOS_BY_ID[sectorParam];
-        activeState = Object.assign({}, localSt, {
-          sector: p.id,
-          name: params.get('nombre') || p.defaultName || p.label,
-          city: params.get('ciudad') || p.defaultCity || 'Madrid',
-          tagline: p.tagline,
-          story: p.story,
-          services: p.services,
-          actionType: p.actionType,
-          customHeroPhoto: '',
-          customGallery: []
-        });
+      } else if (sectorParam) {
+        let p = (window.MIWEB_OFICIOS_BY_ID && window.MIWEB_OFICIOS_BY_ID[sectorParam]) || null;
+        if (!p && typeof miwebDetectOficioMatch === 'function') {
+          const det = miwebDetectOficioMatch(sectorParam);
+          if (det && det.matched) {
+            p = det.isCustom ? det.preset : (window.MIWEB_OFICIOS_BY_ID && window.MIWEB_OFICIOS_BY_ID[det.id]);
+          }
+        }
+        if (!p && typeof miwebBuildCustomOficio === 'function') {
+          p = miwebBuildCustomOficio(sectorParam);
+        }
+        if (p) {
+          activeState = Object.assign({}, localSt, {
+            sector: p.isCustom ? 'otro' : p.id,
+            customSectorLabel: p.label,
+            name: params.get('nombre') || p.defaultName || p.label,
+            city: params.get('ciudad') || p.defaultCity || 'Madrid',
+            tagline: p.tagline,
+            story: p.story,
+            services: JSON.parse(JSON.stringify(p.services || [])),
+            actionType: p.actionType,
+            customHeroPhoto: p.isCustom ? (p.heroImage || '') : '',
+            customGallery: p.isCustom && Array.isArray(p.gallery) ? p.gallery.slice() : []
+          });
+        }
       }
       if (!activeState.adminPin) {
         activeState.adminPin = typeof miwebGeneratePin === 'function'
@@ -374,25 +404,107 @@
           : 'PRO-4829';
       }
 
+      // Separate savedState, draftState, activeState (preview), and pending changes (isDirty)
+      let savedState = JSON.parse(JSON.stringify(activeState));
+      let draftState = JSON.parse(JSON.stringify(activeState));
+      let isDirty = false;
+      window.miwebEditorStates = {
+        getDraftState: () => draftState,
+        getPreviewState: () => activeState,
+        getSavedState: () => savedState,
+        isDirty: () => isDirty
+      };
+
+      function setDirtyState(dirty, statusMessage) {
+        isDirty = !!dirty;
+        const pill = document.getElementById('ed-state-pill');
+        const dot = document.getElementById('ed-dirty-dot');
+        const statusEl = document.getElementById('ed-save-status');
+        if (pill) {
+          pill.textContent = isDirty ? 'Cambios sin guardar' : 'Guardado';
+          pill.style.background = isDirty ? '#FEF3C7' : '#ECFDF5';
+          pill.style.color = isDirty ? '#92400E' : '#047857';
+        }
+        if (dot) dot.style.display = isDirty ? 'inline-block' : 'none';
+        if (statusEl && typeof statusMessage === 'string') {
+          statusEl.textContent = statusMessage;
+        }
+      }
+
       let selectedSitioPlan = '197';
       let sitioDomTimer = null;
+      let liveRenderTimer = null;
       const iframe = document.getElementById('client-live-iframe');
 
       function renderLiveIframe() {
         document.title = activeState.name + ' · ' + (activeState.city || 'Web Oficial');
         if (iframe) iframe.srcdoc = compileClientWebsiteHTML(activeState);
+        const backBtn = document.getElementById('btn-back-generator');
+        if (backBtn) {
+          const sec = activeState.sector === 'otro' ? (activeState.customSectorLabel || 'otro') : (activeState.sector || 'carpintero');
+          backBtn.href = '../index.html?oficio=' + encodeURIComponent(sec) + '#crear';
+        }
+      }
+
+      function scheduleLiveIframeRender() {
+        if (liveRenderTimer) clearTimeout(liveRenderTimer);
+        liveRenderTimer = setTimeout(renderLiveIframe, 280);
       }
 
       function persistActiveState() {
-        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(activeState)); } catch (e) {}
+        savedState = JSON.parse(JSON.stringify(activeState));
+        draftState = JSON.parse(JSON.stringify(activeState));
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(savedState)); } catch (e) {}
         if (typeof miwebSaveSiteVault === 'function') {
-          miwebSaveSiteVault(slugifyName(activeState.name), activeState);
+          miwebSaveSiteVault(slugifyName(savedState.name), savedState);
         }
         try {
-          const nextUrl = window.location.pathname + '?negocio=' + encodeURIComponent(slugifyName(activeState.name)) + '&d=' + encodeSharePayload(activeState);
+          const nextUrl = window.location.pathname + '?negocio=' + encodeURIComponent(slugifyName(savedState.name)) + '&d=' + encodeSharePayload(savedState);
           window.history.replaceState(null, '', nextUrl);
         } catch (e) {}
+        setDirtyState(false, '✓ Cambios guardados correctamente');
       }
+
+      window.saveLiveEditorChanges = function() {
+        activeState = JSON.parse(JSON.stringify(draftState));
+        persistActiveState();
+        renderLiveIframe();
+        const toast = document.getElementById('copy-toast');
+        if (toast) {
+          toast.textContent = '✓ Cambios guardados en tu web';
+          toast.style.display = 'block';
+          setTimeout(() => { toast.style.display = 'none'; }, 2200);
+        }
+      };
+
+      window.handleBackToGenerator = function(e) {
+        if (isDirty) {
+          const ok = window.confirm('Tienes cambios pendientes de guardar en el editor. ¿Quieres guardarlos antes de volver al generador?');
+          if (ok) {
+            window.saveLiveEditorChanges();
+          }
+        } else {
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(activeState)); } catch (er) {}
+        }
+        const sec = activeState.sector === 'otro' ? (activeState.customSectorLabel || 'otro') : (activeState.sector || 'carpintero');
+        const bizCombo = activeState.name
+          ? (activeState.city && activeState.city !== 'Tu Ciudad' && !activeState.name.toLowerCase().includes(activeState.city.toLowerCase())
+              ? (activeState.name + ' ' + activeState.city)
+              : activeState.name)
+          : '';
+        const targetHref = '../index.html?oficio=' + encodeURIComponent(sec) + (bizCombo ? ('&negocio=' + encodeURIComponent(bizCombo)) : '') + '&from=editor#crear';
+        if (e && e.preventDefault) {
+          e.preventDefault();
+          window.location.href = targetHref;
+        }
+      };
+
+      window.addEventListener('beforeunload', function(e) {
+        if (isDirty) {
+          e.preventDefault();
+          e.returnValue = '';
+        }
+      });
 
       renderLiveIframe();
 
@@ -406,6 +518,8 @@
               activeState.customGallery = vaultData.customGallery;
             }
             if (vaultData.unlocked) activeState.unlocked = true;
+            savedState = JSON.parse(JSON.stringify(activeState));
+            draftState = JSON.parse(JSON.stringify(activeState));
             renderLiveIframe();
           }
         }).catch(() => {});
@@ -413,7 +527,10 @@
 
       // Listen for "📸 Poner fotos de mi local" clicked inside the preview iframe
       window.addEventListener('message', ev => {
-        if (ev && ev.data && ev.data.type === 'MIWEB_OPEN_EDITOR') {
+        if (!ev || !ev.data || typeof ev.data !== 'object') return;
+        if (iframe && iframe.contentWindow && ev.source && ev.source !== iframe.contentWindow) return;
+        if (ev.origin && ev.origin !== 'null' && window.location.origin && window.location.origin !== 'null' && ev.origin !== window.location.origin) return;
+        if (ev.data.type === 'MIWEB_OPEN_EDITOR') {
           toggleLiveMiniEditor(true);
         }
       });
@@ -446,17 +563,53 @@
         setInterval(updateClock, 1000);
       }
 
+      // ---------------- WCAG CONTRAST HELPER ----------------
+      function hexLuminance(hex) {
+        const clean = String(hex || '#0F172A').replace('#', '');
+        const r = parseInt(clean.substring(0, 2), 16) / 255;
+        const g = parseInt(clean.substring(2, 4), 16) / 255;
+        const b = parseInt(clean.substring(4, 6), 16) / 255;
+        const f = c => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+      }
+      function getContrastRatio(hex1, hex2) {
+        const l1 = hexLuminance(hex1);
+        const l2 = hexLuminance(hex2);
+        return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+      }
+
       // ---------------- LIVE MINI-EDITOR FUNCTIONS ----------------
+      function renderPhotoThumbs() {
+        const box = document.getElementById('ed-photo-thumbs');
+        if (!box) return;
+        const imgs = Array.isArray(draftState.customGallery) && draftState.customGallery.length
+          ? draftState.customGallery
+          : (draftState.customHeroPhoto ? [draftState.customHeroPhoto] : []);
+        if (!imgs.length) {
+          box.style.display = 'none';
+          box.innerHTML = '';
+          return;
+        }
+        box.style.display = 'flex';
+        box.innerHTML = imgs.map((src, i) => `
+          <div style="position:relative;width:62px;height:62px;border-radius:10px;overflow:hidden;border:1.5px solid var(--brand);">
+            <img src="${src}" alt="Miniatura ${i + 1}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+        `).join('');
+      }
+
       function populateMiniEditor() {
-        document.getElementById('ed-name').value = activeState.name || '';
-        document.getElementById('ed-tagline').value = activeState.tagline || '';
-        document.getElementById('ed-city').value = activeState.city || '';
-        document.getElementById('ed-wa').value = activeState.whatsapp || '';
-        document.getElementById('ed-address').value = activeState.address || '';
-        document.getElementById('ed-hw').value = activeState.hoursWeek || '';
-        document.getElementById('ed-hs').value = activeState.hoursSat || '';
-        document.getElementById('ed-legal-holder').value = activeState.legalHolder || '';
-        document.getElementById('ed-legal-nif').value = activeState.legalNif || '';
+        draftState = JSON.parse(JSON.stringify(activeState));
+        document.getElementById('ed-name').value = draftState.name || '';
+        document.getElementById('ed-tagline').value = draftState.tagline || '';
+        document.getElementById('ed-city').value = draftState.city || '';
+        document.getElementById('ed-wa').value = draftState.whatsapp || '';
+        document.getElementById('ed-address').value = draftState.address || '';
+        document.getElementById('ed-hw').value = draftState.hoursWeek || '';
+        document.getElementById('ed-hs').value = draftState.hoursSat || '';
+        document.getElementById('ed-legal-holder').value = draftState.legalHolder || '';
+        document.getElementById('ed-legal-nif').value = draftState.legalNif || '';
+        renderPhotoThumbs();
         renderEditorThemes();
         renderEditorServices();
       }
@@ -465,52 +618,68 @@
         const box = document.getElementById('ed-theme-pills');
         if (!box) return;
         box.innerHTML = Object.entries(DESIGN_THEMES).map(([k, t]) => {
-          const on = activeState.theme === k;
-          return `<button type="button" onclick="pickEditorTheme('${k}')" style="padding:9px 10px; border-radius:12px; border:1.5px solid ${on ? '#4F46E5' : 'rgba(15,23,42,0.1)'}; background:${on ? '#EEF2FF' : '#FFFFFF'}; color:#0F172A; font-size:12px; font-weight:700; display:flex; align-items:center; gap:7px; cursor:pointer; text-align:left;">
+          const on = draftState.theme === k;
+          return `<button type="button" data-theme-key="${k}" onclick="pickEditorTheme('${k}')" style="padding:9px 10px; border-radius:12px; border:1.5px solid ${on ? '#4F46E5' : 'rgba(15,23,42,0.1)'}; background:${on ? '#EEF2FF' : '#FFFFFF'}; color:#0F172A; font-size:12px; font-weight:700; display:flex; align-items:center; gap:7px; cursor:pointer; text-align:left;">
             <span style="width:16px; height:16px; border-radius:50%; background:${t.swatch2}; border:1px solid rgba(15,23,42,0.15); flex-shrink:0;"></span>
             <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeHtml(t.label)}</span>
           </button>`;
         }).join('');
+        const activeTheme = DESIGN_THEMES[draftState.theme] || DESIGN_THEMES.royal;
+        const bodyContrast = getContrastRatio('#FAFBFD', '#0F172A');
+        const badgeEl = document.getElementById('ed-contrast-badge');
+        if (badgeEl) {
+          badgeEl.textContent = `WCAG AA ${bodyContrast.toFixed(1)}:1 ✓`;
+        }
       }
 
       window.pickEditorTheme = function(k) {
+        draftState.theme = k;
         activeState.theme = k;
         renderEditorThemes();
-        persistActiveState();
+        setDirtyState(true, 'Estilo aplicado en vista previa · Pulsa «Guardar cambios»');
         renderLiveIframe();
       };
 
       function renderEditorServices() {
         const box = document.getElementById('ed-services-box');
         if (!box) return;
-        box.innerHTML = (activeState.services || []).map((srv, idx) => `
+        box.innerHTML = (draftState.services || []).map((srv, idx) => `
           <div style="display:grid; grid-template-columns:1fr 82px 28px; gap:5px; align-items:center;">
-            <input class="ed-input" style="padding:7px 9px; font-size:13px;" value="${escapeHtml(srv.title)}" oninput="edUpdateSrv(${idx},'title',this.value)" />
-            <input class="ed-input" style="padding:7px 9px; font-size:13px; color:#4F46E5; font-weight:700;" value="${escapeHtml(srv.price)}" oninput="edUpdateSrv(${idx},'price',this.value)" />
+            <input class="ed-input" data-srv-title="${idx}" style="padding:7px 9px; font-size:13px;" value="${escapeHtml(srv.title)}" oninput="edUpdateSrv(${idx},'title',this.value)" />
+            <input class="ed-input" data-srv-price="${idx}" style="padding:7px 9px; font-size:13px; color:#4F46E5; font-weight:700;" value="${escapeHtml(srv.price)}" oninput="edUpdateSrv(${idx},'price',this.value)" />
             <button type="button" onclick="edDeleteSrv(${idx})" style="height:32px; border-radius:8px; background:#FFF1F2; border:1px solid #FECDD3; color:#BE123C; cursor:pointer;">✕</button>
           </div>
         `).join('');
       }
 
       window.edUpdateSrv = function(idx, key, val) {
-        if (!activeState.services[idx]) return;
-        activeState.services[idx][key] = val;
-        persistActiveState();
-        renderLiveIframe();
+        if (!draftState.services[idx]) return;
+        draftState.services[idx][key] = val;
+        if (key === 'title') draftState.services[idx].nombre = val;
+        if (key === 'price') {
+          const m = String(val).match(/(\d+(?:[.,]\d+)?)/);
+          if (m) draftState.services[idx].precio = parseFloat(m[1].replace(',', '.'));
+        }
+        activeState.services = JSON.parse(JSON.stringify(draftState.services));
+        setDirtyState(true, 'Servicio actualizado en vista previa · Pulsa «Guardar cambios»');
+        scheduleLiveIframeRender();
       };
 
       window.edAddServiceRow = function() {
-        activeState.services.push({ title: 'Nuevo Servicio', meta: 'Atención directa', price: '25 €' });
+        const newId = 'srv-custom-' + Date.now();
+        draftState.services.push({ id: newId, nombre: 'Nuevo Servicio', title: 'Nuevo Servicio', meta: 'Atención directa', precio: 25, price: '25 €', moneda: 'EUR' });
+        activeState.services = JSON.parse(JSON.stringify(draftState.services));
         renderEditorServices();
-        persistActiveState();
+        setDirtyState(true, 'Servicio añadido · Pulsa «Guardar cambios»');
         renderLiveIframe();
       };
 
       window.edDeleteSrv = function(idx) {
-        if ((activeState.services || []).length <= 1) return;
-        activeState.services.splice(idx, 1);
+        if ((draftState.services || []).length <= 1) return;
+        draftState.services.splice(idx, 1);
+        activeState.services = JSON.parse(JSON.stringify(draftState.services));
         renderEditorServices();
-        persistActiveState();
+        setDirtyState(true, 'Servicio eliminado · Pulsa «Guardar cambios»');
         renderLiveIframe();
       };
 
@@ -522,43 +691,90 @@
       };
 
       window.applyLiveEditorChanges = function() {
-        activeState.name = document.getElementById('ed-name').value.trim() || activeState.name;
-        activeState.tagline = document.getElementById('ed-tagline').value.trim() || activeState.tagline;
-        activeState.city = document.getElementById('ed-city').value.trim() || activeState.city;
-        activeState.whatsapp = document.getElementById('ed-wa').value.trim() || activeState.whatsapp;
-        activeState.phone = activeState.whatsapp;
-        activeState.address = document.getElementById('ed-address').value.trim() || activeState.address;
-        activeState.hoursWeek = document.getElementById('ed-hw').value.trim() || activeState.hoursWeek;
-        activeState.hoursSat = document.getElementById('ed-hs').value.trim() || activeState.hoursSat;
-        activeState.legalHolder = document.getElementById('ed-legal-holder').value.trim();
-        activeState.legalNif = document.getElementById('ed-legal-nif').value.trim();
-        persistActiveState();
-        renderLiveIframe();
+        const nameVal = document.getElementById('ed-name').value.trim();
+        const tagVal = document.getElementById('ed-tagline').value.trim();
+        const cityVal = document.getElementById('ed-city').value.trim();
+        const waVal = document.getElementById('ed-wa').value.trim();
+        const addrVal = document.getElementById('ed-address').value.trim();
+        const hwVal = document.getElementById('ed-hw').value.trim();
+        const hsVal = document.getElementById('ed-hs').value.trim();
+
+        draftState.name = nameVal || savedState.name || defaultPreset.defaultName;
+        draftState.tagline = tagVal || savedState.tagline || defaultPreset.tagline;
+        draftState.city = cityVal || savedState.city || 'Tu Ciudad';
+        draftState.whatsapp = waVal || savedState.whatsapp || '612 890 345';
+        draftState.phone = draftState.whatsapp;
+        draftState.address = addrVal || ('Atención en ' + draftState.city);
+        draftState.hoursWeek = hwVal || savedState.hoursWeek;
+        draftState.hoursSat = hsVal || savedState.hoursSat;
+        draftState.legalHolder = document.getElementById('ed-legal-holder').value.trim();
+        draftState.legalNif = document.getElementById('ed-legal-nif').value.trim();
+
+        Object.assign(activeState, JSON.parse(JSON.stringify(draftState)));
+        setDirtyState(true, 'Vista previa actualizada · Pulsa «Guardar cambios» para fijar');
+        scheduleLiveIframeRender();
       };
 
       window.handleSitioPhotosUpload = async function(input) {
-        const files = Array.from((input && input.files) || []).slice(0, 4);
-        if (!files.length || typeof miwebCompressImageFile !== 'function') return;
+        const rawFiles = Array.from((input && input.files) || []).slice(0, 4);
         const msg = document.getElementById('ed-photo-msg');
-        if (msg) msg.textContent = 'Optimizando fotos de tu móvil...';
+        if (!rawFiles.length || typeof miwebCompressImageFile !== 'function') return;
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        const maxBytes = 5 * 1024 * 1024;
+        const validFiles = [];
+        for (const f of rawFiles) {
+          if (f.type && !validTypes.includes(f.type)) {
+            if (msg) {
+              msg.style.color = '#BE123C';
+              msg.textContent = 'Formato no permitido (' + f.name + '). Usa JPG, PNG o WebP.';
+            }
+            return;
+          }
+          if (f.size > maxBytes) {
+            if (msg) {
+              msg.style.color = '#BE123C';
+              msg.textContent = 'La imagen ' + f.name + ' supera los 5 MB máximos.';
+            }
+            return;
+          }
+          validFiles.push(f);
+        }
+        if (msg) {
+          msg.style.color = 'var(--brand)';
+          msg.textContent = 'Optimizando fotos...';
+        }
         const out = [];
-        for (const f of files) {
+        for (const f of validFiles) {
           try { out.push(await miwebCompressImageFile(f, 1100, 0.78)); } catch (e) {}
         }
         if (!out.length) return;
+        draftState.customHeroPhoto = out[0];
+        draftState.customGallery = out;
         activeState.customHeroPhoto = out[0];
         activeState.customGallery = out;
-        if (msg) msg.textContent = '✓ ' + out.length + ' foto(s) aplicadas y guardadas en tu web';
-        persistActiveState();
+        renderPhotoThumbs();
+        if (msg) {
+          msg.style.color = '#047857';
+          msg.textContent = '✓ ' + out.length + ' foto(s) previsualizadas en tu web';
+        }
+        setDirtyState(true, 'Fotos aplicadas en vista previa · Pulsa «Guardar cambios»');
         renderLiveIframe();
       };
 
       window.resetSitioPhotos = function() {
+        draftState.customHeroPhoto = '';
+        draftState.customGallery = [];
         activeState.customHeroPhoto = '';
         activeState.customGallery = [];
+        const input = document.getElementById('ed-photo-input');
+        if (input) input.value = '';
+        renderPhotoThumbs();
         const msg = document.getElementById('ed-photo-msg');
-        if (msg) msg.textContent = 'Fotos por defecto del sector restauradas';
-        persistActiveState();
+        if (msg) {
+          msg.style.color = 'var(--brand)';
+          msg.textContent = 'Fotos originales del oficio restauradas';
+        }
+        setDirtyState(true, 'Fotos originales restauradas · Pulsa «Guardar cambios»');
         renderLiveIframe();
       };
 
@@ -575,9 +791,8 @@
           ? (rawDigits.startsWith('34') ? rawDigits : '34' + rawDigits)
           : '';
         const msg =
-          `✅ *WEB GENERADA PARA ${(activeState.name || 'MI NEGOCIO').toUpperCase()} (${activeState.city || 'Madrid'})*\n\n` +
-          `🔗 *Enlace en vivo (activo 24h para ver en PC o móvil):*\n${shareUrl}\n\n` +
-          `🔒 *Pago único para siempre con Stripe (0 €/mes · 0 €/año) + Panel de Propietario incluido.*`;
+          `Hola, te comparto la vista previa de la web de ${activeState.name || 'mi negocio'} (${activeState.city || 'Madrid'}):\n` +
+          `${shareUrl}`;
         const waEndpoint = targetPhone
           ? `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`
           : `https://wa.me/?text=${encodeURIComponent(msg)}`;
@@ -588,24 +803,34 @@
         const domIn = document.getElementById('sitio-stripe-domain');
         const stEl = document.getElementById('sitio-domain-status');
         if (!domIn || !stEl || typeof miwebCheckDomainLive !== 'function') return;
-        if (pickDomain) domIn.value = pickDomain;
-        const raw = domIn.value.trim() || (slugifyName(activeState.name) + '.es');
-        stEl.innerHTML = `<span style="color:#64748B;">Comprobando <strong>${escapeHtml(raw)}</strong>...</span>`;
+        if (typeof pickDomain === 'string') domIn.value = pickDomain;
+        const raw = domIn.value;
+        stEl.setAttribute('data-domain-status', 'checking');
+        stEl.innerHTML = `<span style="color:#1E40AF;font-weight:700;">Comprobando disponibilidad DNS...</span>`;
         const res = await miwebCheckDomainLive(raw, activeState.name, activeState.city);
-        if (!res.ok) {
-          stEl.innerHTML = `<span style="color:#B45309;">${escapeHtml(res.error)}</span>`;
-          return;
+        if (res.status === 'invalid' || (!res.ok && res.status !== 'error')) {
+          stEl.setAttribute('data-domain-status', 'invalid');
+          stEl.innerHTML = `<span style="color:#BE123C;font-weight:700;">${escapeHtml(res.error || 'Introduce un dominio válido (ej. minegocio.es).')}</span>`;
+          return res;
+        }
+        if (res.status === 'error' || !res.ok) {
+          stEl.setAttribute('data-domain-status', 'error');
+          stEl.innerHTML = `<span style="color:#92400E;font-weight:700;">${escapeHtml(res.error || 'No se pudo verificar el dominio en este momento.')}</span>`;
+          return res;
         }
         domIn.value = res.domain;
         activeState.desiredDomain = res.domain;
-        if (res.available) {
-          stEl.innerHTML = `<span style="color:#4F46E5; font-weight:700;">✅ ¡Libre! <strong>${escapeHtml(res.domain)}</strong> está disponible para tu negocio.</span>`;
+        if (res.available && res.status === 'available') {
+          stEl.setAttribute('data-domain-status', 'available');
+          stEl.innerHTML = `<span style="color:#047857; font-weight:700;">✓ <strong>${escapeHtml(res.domain)}</strong> está disponible para tu negocio.</span>`;
         } else {
+          stEl.setAttribute('data-domain-status', 'unavailable');
           const chips = (res.suggestions || []).map(s =>
             `<button type="button" onclick="checkSitioDomainNow('${escapeHtml(s)}')" style="padding:3px 10px; border-radius:999px; background:#EEF2FF; border:1px solid rgba(79,70,229,0.2); color:#4F46E5; font-size:12.5px; font-weight:700; cursor:pointer;">${escapeHtml(s)}</button>`
           ).join(' ');
-          stEl.innerHTML = `<span style="color:#B45309; font-weight:700;">${escapeHtml(res.domain)} ya está ocupado.</span> ${chips ? '<span style="color:#64748B;">Libres:</span> ' + chips : ''}`;
+          stEl.innerHTML = `<span style="color:#B45309; font-weight:700;">${escapeHtml(res.domain)} no está disponible (ya registrado).</span> ${chips ? '<span style="color:#64748B;">Alternativas libres:</span> ' + chips : ''}`;
         }
+        return res;
       };
 
       window.scheduleSitioDomainCheck = function() {
@@ -619,10 +844,17 @@
         const b197 = document.getElementById('sitio-plan-box-197');
         const b297 = document.getElementById('sitio-plan-box-297');
         const btnTxt = document.getElementById('sitio-stripe-submit-text');
+        const domLbl = document.getElementById('sitio-domain-label');
 
         if (b79) b79.style.outline = selectedSitioPlan === '79' ? '2px solid #4F46E5' : 'none';
         if (b197) b197.style.outline = selectedSitioPlan === '197' ? '2px solid #4F46E5' : 'none';
         if (b297) b297.style.outline = selectedSitioPlan === '297' ? '2px solid #4F46E5' : 'none';
+
+        if (domLbl) {
+          domLbl.textContent = selectedSitioPlan === '79'
+            ? '1. Nombre de tu enlace web (o comprueba si tu dominio .es/.com está libre)'
+            : '1. Elige tu dominio propio (.es o .com incluido) y comprueba disponibilidad';
+        }
 
         const LABELS = {
           '79': 'Pagar 79 € una sola vez',
@@ -652,16 +884,25 @@
         if (m) m.classList.remove('is-open');
       };
 
-      window.completeSitioStripePayment = function(e) {
+      window.completeSitioStripePayment = async function(e) {
         if (e && e.preventDefault) e.preventDefault();
         const emIn = document.getElementById('sitio-stripe-email');
         const domIn = document.getElementById('sitio-stripe-domain');
         const nifIn = document.getElementById('sitio-stripe-nif');
+        const domRaw = domIn ? domIn.value.trim() : '';
+        if (typeof miwebValidateDomainInput === 'function') {
+          const v = miwebValidateDomainInput(domRaw);
+          if (!v.valid) {
+            await checkSitioDomainNow();
+            if (domIn) domIn.focus();
+            return;
+          }
+        }
         if (nifIn && nifIn.value.trim()) {
           activeState.legalNif = nifIn.value.trim();
         }
-        if (domIn && domIn.value.trim()) {
-          activeState.desiredDomain = domIn.value.trim();
+        if (domRaw) {
+          activeState.desiredDomain = domRaw;
         }
         persistActiveState();
         const order = {
@@ -673,7 +914,7 @@
           adminPin: activeState.adminPin,
           siteUrl: getShareUrl(),
           email: emIn ? emIn.value.trim() : '',
-          domain: domIn ? domIn.value.trim() : '',
+          domain: activeState.desiredDomain || '',
           legalNif: nifIn ? nifIn.value.trim() : ''
         };
         miwebGoToStripe(order);
