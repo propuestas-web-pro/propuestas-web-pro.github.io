@@ -19,19 +19,19 @@ const CANCION_CONFIG = {
   // Cuenta Stripe Live verificada del proyecto (acct_1TOvtGGcKo8sPYaQ · EUR)
   stripePublishableKey: 'pk_live_51TOvtGGcKo8sPYaQukhMmk1bBmyZwxq85qvQuOLRjJ87PbOcxIRsCFfOX1LuWy0oNoJMQqorm80NnqYdZjclvwb200HF1GznMm',
 
-  // Enlaces oficiales de Stripe Payment Links (Pago único · Redirección a /gracias/?paid=1&session_id={CHECKOUT_SESSION_ID})
+  // Enlaces oficiales de Stripe Payment Links EN VIVO (acct_1TOvtGGcKo8sPYaQ · Pago único · Redirección a /gracias/?paid=1&session_id={CHECKOUT_SESSION_ID})
   stripeLinks: {
     EUR: {
-      single: '',       // Payment Link 12,90 € (Canción + Mini-Web + QR)
-      singlePhoto: '',  // Payment Link 20,80 € (Canción + QR + Foto Animada)
-      pack3: '',        // Payment Link 19,90 € (Pack 3 estilos + Vídeo 9:16 + Web + QR)
-      pack3Photo: ''    // Payment Link 27,80 € (Pack 3 + Foto Antigua Animada)
+      single: 'https://buy.stripe.com/3cI00jbgJewbaZe1zccfK07',       // 12,90 € · Canción Personalizada + Mini-Web QR
+      singlePhoto: 'https://buy.stripe.com/14A00j0C53Rx4AQa5IcfK09',  // 20,80 € · Canción + QR + Foto Antigua Animada
+      pack3: 'https://buy.stripe.com/6oUaEX5Wp0Flebq1zccfK08',        // 19,90 € · Pack Emoción x3 + Vídeo 9:16 + QR
+      pack3Photo: 'https://buy.stripe.com/4gM00j2Kd5ZF4AQ3HkcfK0a'    // 27,80 € · Pack x3 + Vídeo + Foto Antigua Animada
     },
     USD: {
-      single: '',       // Payment Link $12.90 USD (si vacío, usa pasarela internacional EUR de Stripe con conversión automática)
-      singlePhoto: '',
-      pack3: '',
-      pack3Photo: ''
+      single: 'https://buy.stripe.com/3cI00jbgJewbaZe1zccfK07',       // Pasarela internacional Stripe (tarjetas MX/AR + Apple/Google Pay)
+      singlePhoto: 'https://buy.stripe.com/14A00j0C53Rx4AQa5IcfK09',
+      pack3: 'https://buy.stripe.com/6oUaEX5Wp0Flebq1zccfK08',
+      pack3Photo: 'https://buy.stripe.com/4gM00j2Kd5ZF4AQ3HkcfK0a'
     }
   },
 
