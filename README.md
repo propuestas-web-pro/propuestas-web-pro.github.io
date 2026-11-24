@@ -32,12 +32,12 @@ Plataforma comercial de alto volumen pensada para **España, México y Argentina
 
 Cada vídeo generado por `generar_3_videos.py` aplica obligatoriamente estos parámetros empíricos (prohibido editar «a ojo»):
 
-| Regla | Dato estadístico de referencia | Implementación fija en código |
+| Regla | Dato estadístico de referencia | Implementación fija en código (Motor V2) |
 | :--- | :--- | :--- |
-| **Gancho en `t = 0.00 s`** | 70–71 % decide si desliza en los primeros 3 s (30–50 % abandona en `0–3 s`; Meta mide desde `1,3 s`). | Sin saludos ni intros. En el fotograma 0 ya suena la canción personalizada + titular grande de 3–5 palabras + sobre/QR en movimiento. |
-| **Frecuencia de corte visual** | Pacing óptimo en corto: cambio visual cada `1,5 – 3,0 s`. | Cambio de escena, zoom físico o tarjeta UI cada **`1,8 – 2,2 s`** máximo. |
-| **Velocidad de locución** | Corto de alta retención: `150 – 180 WPM` sin pausas muertas. | Voz `Orus Studio HD` (`gemini-3.8-flash-tts`), recorte automático de silencios `> 0,14 s` a `0,05 s`, calibrado en **`160 – 175 WPM`**. |
-| **Subtítulos cinéticos** | +12 % de tiempo medio visto y rescate de audiencia sin sonido. | Bloques de `2–4 palabras` sincronizados palabra a palabra con `faster-whisper` en zona segura inferior (sin tapar botones de IG/FB/YT). |
+| **Gancho en `t = 0.00 s` + Cero voces solapadas** | 70–71 % decide si desliza en los primeros 3 s (Meta mide desde `1,3 s`). | Sin saludos ni intros y **nunca 2 voces hablando a la vez**: voz `Orus Studio HD` cristalina sobre base 100 % instrumental Neo-Soul Rhodes (`music_synth.py`) con sidechain automático. |
+| **Claridad narrativa (5 capítulos anclados)** | La retención cae si la pantalla confunde al espectador. | Carril vertical izquierdo progresivo (`01` a `05`) + consola inferior viva + cambio de escena disparado **en el milisegundo exacto** de la palabra clave (`faster-whisper`). |
+| **Velocidad de locución natural** | Corto entendible y ágil: `150 – 175 WPM` sin pausas largas ni voz estirada. | Voz `Orus Studio HD` (`gemini-3.8-flash-tts`), recorte suave de pausas `> 0,22 s` a `0,085 s` sin deformar el timbre (`atempo` máx `0.91–1.08`). |
+| **Subtítulos arriba a la altura de los ojos** | +12 % de tiempo medio visto y comprensión instantánea sin sonido. | Subtítulos enormes (`64 px`) de `2–3 palabras` en la parte superior con píldora `#E11D48` activa palabra a palabra, sin cortar preposiciones y lejos de los botones de IG/FB/YT. |
 | **Mix de duraciones diario** | Máxima completación: `21–34 s`. Máximo AVD en YouTube Shorts (estudio Paddy Galloway, 3.300 M vistas): `48–58 s`. | Los **3 vídeos diarios** rotan siempre: **2 vídeos rápidos (`26–30 s`)** para Shares/Completación + **1 vídeo storytelling (`46–52 s`)** para AVD en Shorts y FB Reels. |
 | **Masterización y limpieza API** | Cero marcas de agua, audio potente y metadatos limpios. | H.264 `CRF 15`, `1080×1920`, AAC `192 kbps` a **`-11.8 LUFS`**, `-map_metadata -1`, + `info.json` listo para API. |
 
