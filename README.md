@@ -23,14 +23,14 @@ Plataforma comercial de alto volumen pensada para **España, México y Argentina
 - `assets/cancion/` — Fotografías editoriales (`hero-emocion.jpg`, `regalo-qr.jpg`, `familia-celebracion.jpg`).
 - `assets/audio/` — Pistas reales de estudio generadas para demos web y gancho `t = 0.00 s` de los vídeos.
 - `worker/lyria-song-worker.js` — Cloudflare Worker listo para desplegar con `GEMINI_API_KEY` usando la API oficial de **Gemini `lyria-3.5`** (`v1beta/interactions`, ~`$0.08` por canción completa de estudio).
-- `EDITAR/REMOTION_ESTUDIO/crear_video_regalo.py` — Fábrica oficial en 1 comando (**Producto Real · Remotion 4 + ACE-Step 1.5 Local en RTX 3060 Ti**) que genera canciones cantadas reales en español (sin locutor comercial) y renderiza vídeos `1080×1920 @ 30 fps` (`H.264`, `crf=15`, `≤ 15 s`, `-11.8 LUFS`, `-map_metadata -1`) + `info.json` (`title`, `caption`, `pinned_comment`).
-- `EDITAR/REMOTION_ESTUDIO/src/ProductGiftFilm.tsx` — Composición Remotion 4 centrada 100 % en el regalo real que recibe la persona (`WhatsApp → Sobre interactivo → Mini-Web con letra en vivo estilo Spotify resaltando el nombre + Tarjeta QR imprimible → Reacción emocional + miweblocal.com`) para 5 perfiles (`mama`, `pareja`, `papa`, `amigo`, `hijo`).
+- `EDITAR/REMOTION_ESTUDIO/crear_video_claude.py` — Fábrica oficial en 1 comando (**Claude Motion Skill · Remotion 4 · 0 % GPU · 0 % TTS**) basada en las skills virales de GitHub `haidrrrry/claude-remotion-skill` + `iart-ai/tiktok-video-skills`, que renderiza vídeos `1080×1920 @ 30 fps` (`H.264`, `crf=16`, `15,0 s`, `-map_metadata -1`, `+faststart`) + `info.json` (`title`, `caption`, `pinned_comment`).
+- `EDITAR/REMOTION_ESTUDIO/src/ClaudeViralFilm.tsx` — Composición Remotion 4 editorial estilo Claude Design (`#FAF7F2` + `Fraunces` + 1 color héroe `#E11D48` + 5-Layer Stack + kit SFX en Node.js puro `scripts/gen-sfx.mjs` sincronizado 2 frames antes de cada impacto) para 5 perfiles (`mama`, `pareja`, `papa`, `amigo`, `hijo`).
 
 ---
 
-## 3. Estándar de producción y retención (Producto Real · `≤ 15 s`, CERO locutor)
+## 3. Estándar de producción y retención (Claude Motion Skill · `15,0 s`, 0 % GPU, CERO locutor)
 
-En lugar de anuncios con voz de narrador, cada vídeo suena desde el segundo `0.0` con una **canción cantada real en español** (generada localmente en GPU con **ACE-Step 1.5 Turbo + LM 1.7B**, coste `0 €`) y muestra paso a paso la experiencia exacta del destinatario al abrir su regalo en `miweblocal.com`.
+Sigue la estructura segundo a segundo de los vídeos virales hechos con Claude Code + Remotion Skills: gancho editorial limpio con 3 baldosas vectoriales (`0–2,5 s`), giro con tarjeta personalizada en vivo (`2,5–5,5 s`), anillo SVG animado `02:00` + onda viva (`5,5–9,0 s`), tarjeta física QR real escaneable (`9,0–12,3 s`) y cierre calmado estilo marca de diseño (`12,3–15,0 s`), todo con SFX sincronizados en Node.js puro y sin tocar la GPU.
 
 ---
 
@@ -38,19 +38,19 @@ En lugar de anuncios con voz de narrador, cada vídeo suena desde el segundo `0.
 
 ### A) Generar 1 vídeo (rotación automática: Mamá → Pareja → Papá → Amigo → Hijo)
 ```powershell
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_regalo.py" --angulo next
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_claude.py" --angulo next
 ```
 
 ### B) Generar 3 vídeos diarios, los 5 perfiles o un destinatario concreto
 ```powershell
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_regalo.py" --todos
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_regalo.py" --todos5
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_regalo.py" --angulo pareja
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_claude.py" --todos
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_claude.py" --todos5
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_claude.py" --angulo pareja
 ```
 
 ### C) Exportar directo a la bandeja de Drive (para tu portátil 24/7)
 ```powershell
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_regalo.py" --todos --export-drive "G:\Mi unidad\BANDEJAAAAAAAAAAAAAAAA\GRUPO_CANCION_QR"
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_claude.py" --todos --export-drive "G:\Mi unidad\BANDEJAAAAAAAAAAAAAAAA\GRUPO_CANCION_QR"
 ```
 
 ### D) Previsualizar y ajustar en tiempo real con Remotion Studio (`http://localhost:3000`)
