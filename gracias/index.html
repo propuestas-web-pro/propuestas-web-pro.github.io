@@ -1,206 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQLB87F330"></script>
-  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WBXMKQ6G"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VQLB87F330');
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
-  <title>Pago confirmado · Entrega Automática · MiWebLocal</title>
-  <meta name="theme-color" content="#FAFBFD" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Outfit:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Tu canción está lista · TuCanciónQR</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
   <style>
+    :root {
+      --tint: #F7F8FA; --ink: #111318; --muted: #4B5563; --line: #E5E7EB;
+      --accent: #E11D48; --accent-hi: #BE123C; --accent-soft: #FFF1F2; --accent-border: #FECDD3;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { min-height: 100dvh; background: #FAFBFD; color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; padding: 18px; }
-    .card { width: 100%; max-width: 640px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 26px; padding: 26px; box-shadow: 0 28px 70px -20px rgba(15,23,42,.12); }
-    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; border-radius: 999px; background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE; font-size: 12px; font-weight: 800; }
-    h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 25px; line-height: 1.15; margin: 12px 0 8px; color: #0F172A; }
-    p { color: #475569; font-size: 14px; line-height: 1.5; }
-    .ref { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #4F46E5; word-break: break-all; margin-top: 10px; padding: 8px 12px; background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px; }
-    .owner-box { margin: 14px 0; padding: 16px; border-radius: 18px; background: #F8FAFC; border: 1.5px solid #C7D2FE; display: grid; gap: 10px; }
-    .pin-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 13px; color: #334155; font-weight: 600; }
-    .pin-code { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 14px; color: #4F46E5; background: #EEF2FF; padding: 4px 10px; border-radius: 7px; border: 1px solid #C7D2FE; }
-    .grid-btns { display: grid; grid-template-columns: 1fr; gap: 8px; }
-    @media (min-width: 520px) { .grid-btns { grid-template-columns: 1fr 1fr; } }
-    .form-box { margin: 14px 0; display: grid; gap: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 18px; padding: 16px; }
-    .field label { display: block; font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px; }
-    .field input, .field textarea { width: 100%; padding: 10px 12px; border-radius: 10px; background: #FFFFFF; border: 1px solid #CBD5E1; color: #0F172A; font-family: inherit; font-size: 14px; outline: none; }
-    .field input:focus, .field textarea:focus { border-color: #4F46E5; }
-    .field textarea { resize: vertical; min-height: 54px; }
-    .btn { width: 100%; padding: 13px 16px; border-radius: 999px; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 7px; text-decoration: none; }
-    .btn-wa { background: #4F46E5; color: #FFFFFF; box-shadow: 0 12px 28px -8px rgba(79,70,229,.45); }
-    .btn-admin { background: #EEF2FF; color: #4F46E5; border: 1.5px solid #C7D2FE; }
-    .btn-site { background: #4F46E5; color: #fff; }
-    .btn-ghost { background: #FFFFFF; color: #0F172A; border: 1px solid #CBD5E1; margin-top: 8px; font-size: 13px; }
-    .muted { font-size: 12px; color: #64748B; margin-top: 12px; text-align: center; }
+    body {
+      min-height: 100dvh; background: var(--tint); color: var(--ink);
+      font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center;
+      padding: 18px;
+    }
+    .card {
+      width: 100%; max-width: 560px; background: #FFFFFF; border: 1px solid var(--line);
+      border-radius: 24px; padding: 26px; display: grid; gap: 16px;
+      box-shadow: 0 24px 60px -24px rgba(17, 19, 24, 0.14);
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px; width: fit-content;
+      padding: 6px 12px; border-radius: 999px; background: var(--accent-soft);
+      border: 1px solid var(--accent-border); color: var(--accent); font-size: 12.5px; font-weight: 700;
+    }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; line-height: 1.12; }
+    p { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+    .ref {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      padding: 8px 12px; border-radius: 10px;
+    }
+    .delivery-box {
+      background: var(--tint); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .qr-out {
+      width: 112px; height: 112px; background: #FFFFFF; border: 1px solid var(--line);
+      border-radius: 12px; padding: 6px; flex-shrink: 0;
+    }
+    .qr-out svg { width: 100%; height: 100%; display: block; }
+    .delivery-copy { flex: 1; min-width: 200px; display: grid; gap: 5px; }
+    .delivery-copy b { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; }
+    .grid-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 480px) { .grid-btns { grid-template-columns: 1fr; } }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 18px; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--accent); color: #FFFFFF; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800; font-size: 14px; text-decoration: none;
+    }
+    .btn:hover { background: var(--accent-hi); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 46px; padding: 0 16px; border-radius: 999px; background: #FFFFFF;
+      color: var(--ink); border: 1.5px solid #D1D5DB; font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 13.5px; cursor: pointer; text-decoration: none;
+    }
   </style>
 </head>
 <body>
   <main class="card">
-    <span class="badge"><i class="ph-bold ph-check-circle"></i> Pago único confirmado · Web desbloqueada</span>
-    <h1 id="ty-title">¡Gracias! Tu web ya es tuya para siempre.</h1>
-    <p id="ty-sub">Stripe ha enviado tu recibo y factura PDF a tu correo. Todo incluido en este único pago: <strong>0 €/mes y 0 €/año</strong> + <strong>14 días de garantía</strong>.</p>
+    <span class="badge"><i class="ph-bold ph-check-circle"></i> Pedido registrado · Entrega inmediata</span>
+    <h1 id="ty-title">Tu canción personalizada está lista</h1>
+    <p>Guarda tu enlace permanente y tu código QR. Puedes enviarlo por WhatsApp o imprimir la tarjeta ahora mismo.</p>
+    <div class="ref" id="ty-ref">Referencia: TCQ-DEMO</div>
 
-    <div class="ref" id="ty-ref"></div>
-
-    <!-- AUTOMATIC OWNER SELF-EDIT KIT (/admin + PIN) -->
-    <section class="owner-box">
-      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:15px; color:#0F172A;">
-        🔑 Tu Acceso Privado de Propietario (Edita fotos, precios y horarios cuando quieras)
-      </div>
-      <div class="pin-row">
-        <span>Clave privada (PIN) de propietario:</span>
-        <span class="pin-code" id="ty-pin">PRO-4829</span>
-      </div>
-      <div class="grid-btns">
-        <a id="ty-site" class="btn btn-site" href="/sitio/" target="_blank" rel="noopener">
-          <i class="ph-bold ph-globe"></i> Abrir Mi Web Pública ↗
-        </a>
-        <a id="ty-admin" class="btn btn-admin" href="/admin/" target="_blank" rel="noopener">
-          <i class="ph-bold ph-pencil-simple"></i> Editar Mi Web (/admin) ↗
-        </a>
-      </div>
-      <button type="button" class="btn btn-ghost" onclick="saveMyCredentialsToWhatsApp()">
-        <i class="ph-fill ph-whatsapp-logo" style="color:#4F46E5;"></i> Guardarme mi Enlace + Panel /admin + PIN en mi WhatsApp
-      </button>
-    </section>
-
-    <div class="form-box">
-      <div style="font-family:'Outfit',sans-serif; font-weight:800; font-size:14.5px; color:#0F172A;">
-        🌐 Confirma tu dominio oficial incluido (activación automática con SSL):
-      </div>
-      <div class="field">
-        <label for="f-dom">Dominio oficial deseado (.es / .com)</label>
-        <input id="f-dom" type="text" placeholder="Ej. peluquerialaura.es" />
-      </div>
-      <div class="field">
-        <label for="f-hor">Horario y dirección exacta (opcional si ya los pusiste)</label>
-        <input id="f-hor" type="text" placeholder="Ej. Lunes a Sábado 9:30 a 20:00 · Calle Mayor 12, Madrid" />
-      </div>
-      <div class="field">
-        <label for="f-ser">Nota opcional o servicios extra</label>
-        <textarea id="f-ser" placeholder="Opcional: escribe aquí cualquier detalle extra si elegiste montaje Pro/VIP..."></textarea>
-      </div>
-      <div class="field">
-        <label for="f-leg">Titular / NIF para tu Aviso Legal y Factura</label>
-        <input id="f-leg" type="text" placeholder="Ej. Autónomo / SL + NIF" />
+    <div class="delivery-box">
+      <div class="qr-out" id="ty-qr"></div>
+      <div class="delivery-copy">
+        <b id="ty-song-name">Feliz cumpleaños, Mamá Carmen</b>
+        <span id="ty-song-meta" style="font-size:13px; color:var(--muted);">Pop Acústico · Pago único 0 €/mes</span>
       </div>
     </div>
 
-    <button type="button" class="btn btn-wa" onclick="sendDeliveryData()">
-      <i class="ph-bold ph-paper-plane-tilt"></i> Confirmar Dominio y Datos de Activación en 1 toque
-    </button>
+    <div class="grid-btns">
+      <a class="btn" id="ty-open-web" href="../cancion/" target="_blank" rel="noopener">
+        <i class="ph-bold ph-music-notes"></i> Abrir Mini-Web
+      </a>
+      <a class="btn-ghost" id="ty-download-mp3" href="../assets/audio/demo-mama-carmen.mp3" download>
+        <i class="ph-bold ph-download-simple"></i> Descargar MP3
+      </a>
+    </div>
 
-    <p class="muted">Soporte directo: WhatsApp +34 632 76 81 52.</p>
+    <a class="btn-ghost" id="ty-wa-backup" href="#" target="_blank" rel="noopener">
+      <i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;"></i> Recibir versión personalizada final por WhatsApp
+    </a>
   </main>
 
-  <script src="../assets/stripe-config.js?v=106"></script>
-  <script src="../assets/oficios-catalog.js?v=106"></script>
-  <script src="../assets/studio-engine.js?v=106"></script>
+  <script src="../assets/cancion-config.js"></script>
+  <script src="../assets/cancion-catalog.js"></script>
   <script>
-    const qs = new URLSearchParams(window.location.search);
-    const sessionId = qs.get('session_id') || '';
-    const rawPlan = qs.get('plan') || '';
+    (function () {
+      const qs = new URLSearchParams(window.location.search);
+      const pending = cancionLoadPendingOrder() || {};
+      const token = qs.get('d') || '';
+      const decoded = cancionDecodePayload(token) || {};
 
-    let order = {};
-    try { order = JSON.parse(localStorage.getItem(MIWEB_PENDING_KEY) || '{}') || {}; } catch (e) {}
-    const plan = miwebNormalizePlan(rawPlan || order.plan || '197');
+      const recipient = cancionCleanName(decoded.r || pending.recipient, 'Mamá Carmen');
+      const sender = cancionCleanName(decoded.s || pending.sender, 'Tus hijos');
+      const occasion = decoded.o || pending.occasion || 'cumpleanos';
+      const genreId = decoded.g || pending.genre || 'pop_acustico';
+      const memory = decoded.m || pending.memory || '';
+      const plan = qs.get('plan') || pending.plan || 'pack3';
+      const ref = qs.get('ref') || pending.ref || 'TCQ-LIVE';
+      const genre = cancionGetGenre(genreId);
+      const title = decoded.t || cancionGenerateTitle(recipient, occasion);
 
-    const PLAN_NAMES = {
-      '79': '79 € · Plan Web Express (Pago Único Para Siempre)',
-      '197': '197 € · Plan Negocio Pro + Google Maps + Dominio (Pago Único Para Siempre)',
-      '297': '297 € · Plan VIP Catálogo Completo + 3D + Placa QR (Pago Único Para Siempre)'
-    };
-    const planName = PLAN_NAMES[plan] || PLAN_NAMES['197'];
+      const share = cancionBuildShareUrl({ recipient, sender, occasion, genre: genreId, memory, title, plan }, false);
 
-    // Unlock website automatically upon returning from Stripe Checkout
-    let stObj = loadStudioState();
-    if (/^cs_(live|test)_/.test(sessionId) || sessionId) {
-      stObj.unlocked = true;
-    }
-    if (order.name) stObj.name = order.name;
-    if (order.city) stObj.city = order.city;
-    if (order.whatsapp) stObj.whatsapp = order.whatsapp;
-    if (order.domain) stObj.desiredDomain = order.domain;
-    if (order.legalNif) stObj.legalNif = order.legalNif;
-    const ownerPin = order.adminPin || stObj.adminPin || (typeof miwebGeneratePin === 'function' ? miwebGeneratePin(slugifyName(stObj.name)) : 'PRO-4829');
-    stObj.adminPin = ownerPin;
+      document.getElementById('ty-ref').textContent = `Referencia: ${ref} · Plan: ${plan === 'single' ? 'Canción + QR' : 'Pack Emoción ×3 + Vídeo'}`;
+      document.getElementById('ty-song-name').textContent = title;
+      document.getElementById('ty-song-meta').textContent = `${genre.label} · Dedicada por ${sender}`;
+      document.getElementById('ty-open-web').href = share.rel;
+      document.getElementById('ty-download-mp3').href = '../' + genre.audioFile;
 
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(stObj)); } catch (e) {}
-    if (typeof miwebSaveSiteVault === 'function') {
-      miwebSaveSiteVault(slugifyName(stObj.name), stObj);
-    }
+      const waMsg = `Hola! Acabo de pedir mi canción personalizada (${ref}).\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}\nEnlace mini-web: ${share.abs}`;
+      document.getElementById('ty-wa-backup').href = `https://wa.me/${CANCION_CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
 
-    const slug = slugifyName(stObj.name);
-    const encodedUnlocked = encodeSharePayload(stObj);
-    const permanentSiteUrl = window.location.origin + '/sitio/?negocio=' + encodeURIComponent(slug) + '&d=' + encodedUnlocked;
-    const permanentAdminUrl = window.location.origin + '/admin/?negocio=' + encodeURIComponent(slug) + '&d=' + encodedUnlocked;
-
-    if (order.name || stObj.name) {
-      document.getElementById('ty-title').textContent = `¡Gracias! La web de ${order.name || stObj.name} ya es tuya para siempre.`;
-    }
-    document.getElementById('ty-pin').textContent = ownerPin;
-    document.getElementById('ty-site').href = permanentSiteUrl;
-    document.getElementById('ty-admin').href = permanentAdminUrl;
-
-    if (order.domain || stObj.desiredDomain) {
-      document.getElementById('f-dom').value = order.domain || stObj.desiredDomain;
-    }
-    if (order.legalNif || stObj.legalNif) {
-      document.getElementById('f-leg').value = order.legalNif || stObj.legalNif;
-    }
-    document.getElementById('ty-ref').textContent =
-      `Plan contratado: ${planName}` + (sessionId ? ` · Ref. Stripe: ${sessionId}` : '');
-
-    function saveMyCredentialsToWhatsApp() {
-      const rawDigits = String(stObj.whatsapp || order.whatsapp || '').replace(/\D+/g, '');
-      const hasPhone = rawDigits.length >= 9 && rawDigits !== '600123456';
-      const target = hasPhone ? (rawDigits.startsWith('34') ? rawDigits : '34' + rawDigits) : '';
-      const msg =
-        `🔑 *ACCESO DE PROPIETARIO · ${(stObj.name || 'MI WEB').toUpperCase()}*\n\n` +
-        `🌐 *Mi Web Pública Definitiva:*\n${permanentSiteUrl}\n\n` +
-        `✏️ *Mi Panel Privado de Edición (/admin):*\n${permanentAdminUrl}\n\n` +
-        `🔐 *Mi Clave PIN:* ${ownerPin}`;
-      const url = target ? `https://wa.me/${target}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank', 'noopener');
-    }
-
-    function sendDeliveryData() {
-      const domVal = document.getElementById('f-dom').value.trim() || order.domain || '';
-      const horVal = document.getElementById('f-hor').value.trim();
-      const serVal = document.getElementById('f-ser').value.trim();
-      const legVal = document.getElementById('f-leg').value.trim();
-
-      if (legVal) stObj.legalNif = legVal;
-      if (domVal) stObj.desiredDomain = domVal;
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(stObj)); } catch (e) {}
-      if (typeof miwebSaveSiteVault === 'function') miwebSaveSiteVault(slug, stObj);
-
-      const msg =
-        `✅ *CONTRATACIÓN PAGADA EN STRIPE (ACTIVACIÓN DE DOMINIO)*\n\n` +
-        `• *Plan:* ${planName}\n` +
-        (sessionId ? `• *Ref. Stripe:* ${sessionId}\n` : '') +
-        `• *Negocio:* ${stObj.name} (${stObj.city || ''})\n` +
-        `• *Dominio oficial a activar:* ${domVal || (slug + '.es')}\n` +
-        (stObj.whatsapp ? `• *WhatsApp del negocio:* ${stObj.whatsapp}\n` : '') +
-        (order.email ? `• *Email factura:* ${order.email}\n` : '') +
-        (horVal ? `• *Horario y dirección:* ${horVal}\n` : '') +
-        (serVal ? `• *Notas / Servicios:* ${serVal}\n` : '') +
-        (legVal ? `• *Datos Aviso Legal:* ${legVal}\n` : '') +
-        `• *Web desbloqueada:* ${permanentSiteUrl}`;
-      window.open(`https://wa.me/${MIWEB_STRIPE.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-    }
+      try {
+        if (typeof qrcode === 'function') {
+          const qr = qrcode(0, 'M');
+          qr.addData(share.abs);
+          qr.make();
+          document.getElementById('ty-qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        }
+      } catch (e) {}
+    })();
   </script>
 </body>
 </html>

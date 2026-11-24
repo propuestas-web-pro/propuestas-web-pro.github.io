@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tienes una canción dedicada · TuCanciónQR</title>
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --tint: #F7F8FA;
+      --ink: #111318;
+      --ink-2: #272B35;
+      --muted: #4B5563;
+      --line: #E5E7EB;
+      --accent: #E11D48;
+      --accent-hi: #BE123C;
+      --accent-soft: #FFF1F2;
+      --accent-border: #FECDD3;
+      --display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --body: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      min-height: 100dvh; background: var(--tint); color: var(--ink);
+      font-family: var(--body); display: flex; flex-direction: column; align-items: center;
+      padding: 18px 14px 96px; -webkit-font-smoothing: antialiased;
+    }
+
+    /* ENVELOPE INTRO OVERLAY */
+    .envelope-screen {
+      position: fixed; inset: 0; z-index: 40; background: #FFFFFF;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .envelope-screen.opened { opacity: 0; pointer-events: none; transform: scale(1.03); }
+    .env-card {
+      width: 100%; max-width: 420px; text-align: center;
+      background: var(--tint); border: 1px solid var(--line); border-radius: 24px; padding: 34px 24px;
+      box-shadow: 0 24px 54px -24px rgba(17, 19, 24, 0.16);
+    }
+    .env-seal {
+      width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: #FFFFFF;
+      margin: 0 auto 18px; display: grid; place-items: center; font-size: 32px;
+      box-shadow: 0 18px 34px -12px rgba(225, 29, 72, 0.55);
+      animation: sealBeat 1.8s ease-in-out infinite;
+    }
+    @keyframes sealBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+    .env-card h1 { font-family: var(--display); font-size: 1.75rem; line-height: 1.12; margin-bottom: 8px; }
+    .env-card p { color: var(--muted); font-size: 15px; margin-bottom: 22px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 50px; padding: 0 24px; border-radius: 999px; border: 0; cursor: pointer;
+      background: var(--accent); color: #FFFFFF; font-family: var(--display); font-weight: 800; font-size: 15px;
+      white-space: nowrap; text-decoration: none;
+      box-shadow: 0 14px 30px -12px rgba(225, 29, 72, 0.45);
+    }
+    .btn:hover { background: var(--accent-hi); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      height: 44px; padding: 0 16px; border-radius: 999px; background: #FFFFFF;
+      color: var(--ink); border: 1.5px solid #D1D5DB; font-family: var(--display);
+      font-weight: 700; font-size: 13.5px; cursor: pointer; text-decoration: none;
+    }
+
+    /* MAIN GIFT PAGE */
+    .gift-shell {
+      width: 100%; max-width: 480px; background: #FFFFFF; border: 1px solid var(--line);
+      border-radius: 24px; padding: 22px; display: grid; gap: 18px;
+      box-shadow: 0 20px 50px -24px rgba(17, 19, 24, 0.12);
+    }
+    .gift-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      padding: 4px 11px; border-radius: 999px;
+    }
+    .genre-pill { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+    .gift-title { font-family: var(--display); font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
+    .gift-sub { font-size: 14.5px; color: var(--muted); margin-top: 4px; }
+
+    .player-card {
+      background: var(--tint); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+      display: grid; gap: 12px;
+    }
+    .player-row { display: flex; align-items: center; gap: 14px; }
+    .play-btn {
+      width: 54px; height: 54px; border-radius: 50%; border: 0; background: var(--accent); color: #FFFFFF;
+      font-size: 22px; display: grid; place-items: center; cursor: pointer; flex-shrink: 0;
+      box-shadow: 0 12px 24px -10px rgba(225, 29, 72, 0.55);
+    }
+    .progress-wrap { flex: 1; display: grid; gap: 6px; }
+    .progress-track {
+      height: 8px; border-radius: 999px; background: #E5E7EB; overflow: hidden; cursor: pointer;
+    }
+    .progress-fill { height: 100%; width: 0%; background: var(--accent); transition: width 0.15s linear; }
+    .time-row { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+
+    .lyrics-box {
+      border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 14px;
+    }
+    .stanza h2 {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px;
+    }
+    .stanza p { font-size: 15px; line-height: 1.62; color: var(--ink-2); }
+
+    .qr-card {
+      background: var(--tint); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .qr-img {
+      width: 96px; height: 96px; background: #FFFFFF; border: 1px solid var(--line);
+      border-radius: 12px; padding: 6px; flex-shrink: 0; display: grid; place-items: center;
+    }
+    .qr-img svg { width: 100%; height: 100%; }
+    .qr-meta b { display: block; font-family: var(--display); font-size: 14.5px; margin-bottom: 4px; }
+    .qr-meta span { display: block; font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 420px) { .actions { grid-template-columns: 1fr; } }
+
+    /* PREVIEW BAR */
+    .preview-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      background: #FFFFFF; border-top: 1px solid var(--line);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      display: none; align-items: center; justify-content: center; gap: 12px;
+      box-shadow: 0 -10px 30px rgba(17, 19, 24, 0.08);
+    }
+    .preview-bar.show { display: flex; }
+    .preview-bar span { font-size: 13px; font-weight: 700; color: var(--ink); }
+    .preview-bar .btn { height: 40px; padding: 0 18px; font-size: 13.5px; }
+
+    @media print {
+      .envelope-screen, .actions, .preview-bar { display: none !important; }
+      body { background: #FFFFFF; padding: 0; }
+      .gift-shell { box-shadow: none; border: 1px solid #D1D5DB; }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-screen" id="envelope-screen">
+    <div class="env-card">
+      <div class="env-seal" aria-hidden="true"><i class="ph-fill ph-music-notes-simple"></i></div>
+      <h1 id="env-title">Tienes una canción dedicada, Mamá Carmen</h1>
+      <p id="env-from">Un regalo musical único creado por Tus hijos.</p>
+      <button type="button" class="btn" id="btn-open-gift" style="width:100%;">
+        <i class="ph-fill ph-play" aria-hidden="true"></i> Abrir y escuchar ahora
+      </button>
+    </div>
+  </div>
+
+  <main class="gift-shell">
+    <div class="gift-top">
+      <span class="tag" id="g-tag">Cumpleaños</span>
+      <span class="genre-pill" id="g-genre">Pop Acústico</span>
+    </div>
+
+    <div>
+      <h1 class="gift-title" id="g-title">Feliz cumpleaños, Mamá Carmen</h1>
+      <p class="gift-sub" id="g-from">Dedicada con cariño por Tus hijos</p>
+    </div>
+
+    <div class="player-card">
+      <div class="player-row">
+        <button type="button" class="play-btn" id="g-play" aria-label="Reproducir o pausar canción">
+          <i class="ph-fill ph-play" aria-hidden="true"></i>
+        </button>
+        <div class="progress-wrap">
+          <div class="progress-track" id="g-track"><div class="progress-fill" id="g-fill"></div></div>
+          <div class="time-row"><span id="g-cur">0:00</span><span id="g-dur">0:30</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="lyrics-box" aria-label="Letra de la canción">
+      <div class="stanza">
+        <h2>Estrofa</h2>
+        <div id="g-verse"></div>
+      </div>
+      <div class="stanza">
+        <h2>Estribillo</h2>
+        <div id="g-chorus"></div>
+      </div>
+      <div class="stanza">
+        <h2>Dedicatoria</h2>
+        <div id="g-outro"></div>
+      </div>
+    </section>
+
+    <section class="qr-card" aria-label="Tarjeta con código QR">
+      <div class="qr-img" id="g-qr"></div>
+      <div class="qr-meta">
+        <b>Tarjeta QR de esta canción</b>
+        <span>Guarda o imprime esta página para regalarla en un sobre o compartirla en WhatsApp.</span>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" class="btn-ghost" onclick="window.print()">
+        <i class="ph-bold ph-printer" aria-hidden="true"></i> Imprimir tarjeta QR
+      </button>
+      <a class="btn-ghost" id="g-wa-share" href="#" target="_blank" rel="noopener">
+        <i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;" aria-hidden="true"></i> Enviar por WhatsApp
+      </a>
+    </div>
+  </main>
+
+  <div class="preview-bar" id="preview-bar">
+    <span>Vista previa gratuita</span>
+    <a href="../#precios" class="btn">Desbloquear desde 12,90 €</a>
+  </div>
+
+  <audio id="gift-audio" preload="auto"></audio>
+
+  <script src="../assets/cancion-config.js"></script>
+  <script src="../assets/cancion-catalog.js"></script>
+  <script>
+    (function () {
+      const qs = new URLSearchParams(window.location.search);
+      const raw = cancionDecodePayload(qs.get('d')) || {};
+      const isPreview = qs.get('preview') === '1';
+
+      const recipient = cancionCleanName(raw.r, 'Mamá Carmen');
+      const sender = cancionCleanName(raw.s, 'Tus hijos');
+      const occasion = raw.o || 'cumpleanos';
+      const genreId = raw.g || 'pop_acustico';
+      const memory = raw.m || '';
+      const genre = cancionGetGenre(genreId);
+      const occ = cancionGetOccasion(occasion);
+      const title = raw.t || cancionGenerateTitle(recipient, occasion);
+      const lyrics = cancionGenerateLyrics(recipient, occasion, genreId, memory, sender);
+
+      document.title = `${title} · TuCanciónQR`;
+      document.getElementById('env-title').textContent = `Tienes una canción dedicada, ${recipient}`;
+      document.getElementById('env-from').textContent = `Un regalo musical creado por ${sender}.`;
+      document.getElementById('g-tag').textContent = occ.shortTag;
+      document.getElementById('g-genre').textContent = genre.label;
+      document.getElementById('g-title').textContent = title;
+      document.getElementById('g-from').textContent = `Dedicada con cariño por ${sender}`;
+
+      document.getElementById('g-verse').innerHTML = lyrics.verse.map((l) => `<p>${l}</p>`).join('');
+      document.getElementById('g-chorus').innerHTML = lyrics.chorus.map((l) => `<p>${l}</p>`).join('');
+      document.getElementById('g-outro').innerHTML = lyrics.outro.map((l) => `<p>${l}</p>`).join('');
+
+      if (isPreview) document.getElementById('preview-bar').classList.add('show');
+
+      const shareHref = window.location.href.replace('&preview=1', '').replace('?preview=1', '');
+      document.getElementById('g-wa-share').href =
+        `https://wa.me/?text=${encodeURIComponent(`Te han dedicado una canción con tu nombre 🎶 Ábrela aquí: ${shareHref}`)}`;
+
+      try {
+        if (typeof qrcode === 'function') {
+          const qr = qrcode(0, 'M');
+          qr.addData(shareHref);
+          qr.make();
+          document.getElementById('g-qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        }
+      } catch (e) {}
+
+      const audio = document.getElementById('gift-audio');
+      audio.src = '../' + genre.audioFile;
+      const playBtn = document.getElementById('g-play');
+      const fill = document.getElementById('g-fill');
+      const curEl = document.getElementById('g-cur');
+      const durEl = document.getElementById('g-dur');
+
+      function fmt(s) {
+        if (!isFinite(s)) return '0:00';
+        return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+      }
+      function sync() {
+        playBtn.innerHTML = audio.paused
+          ? '<i class="ph-fill ph-play" aria-hidden="true"></i>'
+          : '<i class="ph-fill ph-pause" aria-hidden="true"></i>';
+      }
+
+      document.getElementById('btn-open-gift').addEventListener('click', () => {
+        document.getElementById('envelope-screen').classList.add('opened');
+        audio.play().then(sync).catch(sync);
+      });
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) audio.play().then(sync).catch(sync);
+        else { audio.pause(); sync(); }
+      });
+      audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmt(audio.duration); });
+      audio.addEventListener('timeupdate', () => {
+        curEl.textContent = fmt(audio.currentTime);
+        if (audio.duration) fill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+      });
+      audio.addEventListener('ended', sync);
+      document.getElementById('g-track').addEventListener('click', (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        if (audio.duration) audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+      });
+    })();
+  </script>
+</body>
+</html>

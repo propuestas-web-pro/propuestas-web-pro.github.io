@@ -1,30 +1,82 @@
-# MiWebLocal.com — Plataforma Oficial y Estudio TikTok 9:16
+# TuCanciónQR — Plataforma de Canciones Personalizadas IA + Mini-Web QR y Fábrica Diaria de 3 Vídeos
 
-Plataforma web oficial de **MiWebLocal.com**: generador en 15 segundos de páginas web con herramientas operativas conectadas a WhatsApp para **+65 oficios locales de España** (más respaldo inteligente universal para cualquier oficio personalizado), pago único en Stripe (79 € / 197 € / 297 €, sin cuotas mensuales) y estudio integrado de vídeos virales 9:16 sin mostrar la cara (*faceless*).
+Plataforma comercial de alto volumen pensada para **España, México y Argentina** (tráfico orgánico en **Instagram Reels, Facebook Reels y YouTube Shorts** + subida automática por API desde portátil 24/7).
 
-## Estructura limpia del proyecto
+## 1. Modelo de negocio elegido (basado en datos reales)
+- **Producto:** Canción personalizada con el nombre y recuerdos de una persona + **Mini-Web interactiva privada** (sobre animado, reproductor y letra completa) + **Código QR imprimible** listo para regalar o enviar por WhatsApp.
+- **Mercado objetivo:** España (~48,5 M), México (~130 M) y Argentina (~47 M) → **~225,5 M de personas** (~617.800 cumpleaños cada día + Día de la Madre/Padre, aniversarios, Quinceañeras, bodas, Reyes y abuelos).
+- **Precios optimizados para tráfico social frío (pago único, 0 €/mes, sin registro ni NIF):**
+  - **Canción + Mini-Web QR:** `12,90 €` (España) / `$12.90 USD` (México y Argentina).
+  - **Pack Emoción ×3 estilos + Vídeo 9:16:** `19,90 €` / `$19.90 USD` *(plan más elegido)*.
+  - **Upsell 1 clic en checkout:** `+7,90 €` / `+$7.90 USD` (restauración y animación de foto antigua).
+- **Estilos musicales locales incluidos:** Pop Acústico, Balada a Piano, Mariachi Serenata (MX), Cumbia Festiva (AR/MX), Rumba Española (ES) y Bachata Suave.
 
-Solo se conservan los archivos esenciales en producción de **MiWebLocal.com**:
+---
 
-- `index.html` — Portada oficial, buscador universal de +65 oficios, generador en vivo en 15 segundos, comparador animado *Problema vs. Solución* y pasarela Stripe.
-- `videos-tiktok.html` — Estudio reproductor 9:16 *faceless* conectado a los +65 oficios y a cualquier oficio escrito al vuelo (5 escenas animadas, subtítulos dinámicos, locución limpia y modo grabación 9:16).
-- `assets/oficios-catalog.js` — Catálogo maestro de 66 oficios españoles en 6 categorías, detector inteligente de oficios no listados, ilustraciones vectoriales 2D y generador de guiones TikTok.
-- `assets/studio-engine.js` — Motor compilador de webs de clientes y 8 módulos interactivos de WhatsApp (`medidas_presupuesto`, `urgencia_o_llaves`, `motor_diagnostico`, `recepcion_taller_local`, `encargo_sin_cola`, `mesa_carta`, `agenda_citas`, `filtro_clientes`).
-- `assets/stripe-config.js` — Configuración de planes de pago único en Stripe (`79 €`, `197 €`, `297 €`).
-- `assets/real/` — Fotografías verificadas de oficios reales en España.
-- `sitio/index.html` — Visor público de las webs generadas para cada negocio (`/sitio/?negocio=...`).
-- `admin/index.html` — Panel de edición rápida para dueños de negocios.
-- `gracias/index.html` — Página de confirmación post-compra y activación de dominio.
-- `marca/` y `favicon.svg` — Identidad visual oficial de MiWebLocal.com (`#4F46E5`).
-- `404.html`, `CNAME`, `.nojekyll` — Enrutamiento y dominio en producción (`miweblocal.com`).
-- `ESTRATEGIA_VIDEOS_FACELESS_MIWEBLOCAL.md` y `tiktok_alejandroo_ia_report.md` — Documentación estratégica de vídeos virales.
-- `EDITAR/` — Estudio automático de renderizado MP4 (`1080×1920 @ 30fps`, `-11.8 LUFS`):
-  - `EDITAR/SALIDA_EDITADOS/MIWEBLOCAL_VIDEO_FINAL_V4_ESTUDIO.mp4` — Vídeo máster V4 generado (música Neo-Soul Rhodes, locución masterizada y efectos vectoriales).
-  - `EDITAR/SALIDA_EDITADOS/MIWEBLOCAL_VIDEO_ANTERIOR_V3.mp4` — Versión V3 anterior.
-  - `EDITAR/ENTRADA/`, `EDITAR/MOTOR_ESTUDIO/`, `EDITAR/PROMPTS_Y_PLANTILLAS/`, `EDITAR/VIDEOS_Y_REFERENCIAS/` y `EDITAR/CREAR_NUEVO_VIDEO.bat`.
+## 2. Estructura del proyecto
 
-## Proyectos externos separados
+- `index.html` — Portada mobile-first con wizard above-the-fold sin registro, vista previa interactiva en vivo con audio real y código QR escaneable, demos reproducibles, precios `EUR / USD` y modal de checkout sin fricción.
+- `cancion/index.html` — Mini-web pública compartible (`/cancion/?d=...`) con sobre animado, reproductor de estudio, letra completa, botón de impresión de tarjeta QR y envío en 1 toque por WhatsApp.
+- `gracias/index.html` — Página de entrega instantánea post-pago (enlace permanente, descarga MP3, tarjeta QR y respaldo WhatsApp).
+- `assets/cancion-config.js` — Configuración de moneda (`EUR`/`USD`), Stripe Payment Links (`12,90 €` / `19,90 €`) y URL del worker de generación automática.
+- `assets/cancion-catalog.js` — Ocasiones, estilos regionales ES/MX/AR, demos y generador de letras personalizadas.
+- `assets/cancion/` — Fotografías editoriales (`hero-emocion.jpg`, `regalo-qr.jpg`, `familia-celebracion.jpg`).
+- `assets/audio/` — Pistas reales de estudio generadas para demos web y gancho `t = 0.00 s` de los vídeos.
+- `worker/lyria-song-worker.js` — Cloudflare Worker listo para desplegar con `GEMINI_API_KEY` usando la API oficial de **Gemini `lyria-3.5`** (`v1beta/interactions`, ~`$0.08` por canción completa de estudio).
+- `EDITAR/MOTOR_ESTUDIO/generar_3_videos.py` — Fábrica automática en 1 comando que renderiza vídeos `1080×1920 @ 30 fps` con reglas estadísticas de retención programadas.
+- `EDITAR/MOTOR_ESTUDIO/stage_cancion.html` — Escenario visual vertical `1080×1920` (corte/movimiento cada `≤ 2,2 s`, móvil interactivo real, ecualizador en vivo, QR y subtítulos cinéticos en zona segura).
 
-- La web independiente del cliente de motocicletas (**Orero / Motor Motocicletas**) está separada fuera de este repositorio en:
-  `C:\Users\Fathi\Downloads\motorcycle-store-orero`
+---
 
+## 3. Reglas estadísticas de retención programadas en el motor de vídeo
+
+Cada vídeo generado por `generar_3_videos.py` aplica obligatoriamente estos parámetros empíricos (prohibido editar «a ojo»):
+
+| Regla | Dato estadístico de referencia | Implementación fija en código |
+| :--- | :--- | :--- |
+| **Gancho en `t = 0.00 s`** | 70–71 % decide si desliza en los primeros 3 s (30–50 % abandona en `0–3 s`; Meta mide desde `1,3 s`). | Sin saludos ni intros. En el fotograma 0 ya suena la canción personalizada + titular grande de 3–5 palabras + sobre/QR en movimiento. |
+| **Frecuencia de corte visual** | Pacing óptimo en corto: cambio visual cada `1,5 – 3,0 s`. | Cambio de escena, zoom físico o tarjeta UI cada **`1,8 – 2,2 s`** máximo. |
+| **Velocidad de locución** | Corto de alta retención: `150 – 180 WPM` sin pausas muertas. | Voz `Orus Studio HD` (`gemini-3.8-flash-tts`), recorte automático de silencios `> 0,14 s` a `0,05 s`, calibrado en **`160 – 175 WPM`**. |
+| **Subtítulos cinéticos** | +12 % de tiempo medio visto y rescate de audiencia sin sonido. | Bloques de `2–4 palabras` sincronizados palabra a palabra con `faster-whisper` en zona segura inferior (sin tapar botones de IG/FB/YT). |
+| **Mix de duraciones diario** | Máxima completación: `21–34 s`. Máximo AVD en YouTube Shorts (estudio Paddy Galloway, 3.300 M vistas): `48–58 s`. | Los **3 vídeos diarios** rotan siempre: **2 vídeos rápidos (`26–30 s`)** para Shares/Completación + **1 vídeo storytelling (`46–52 s`)** para AVD en Shorts y FB Reels. |
+| **Masterización y limpieza API** | Cero marcas de agua, audio potente y metadatos limpios. | H.264 `CRF 15`, `1080×1920`, AAC `192 kbps` a **`-11.8 LUFS`**, `-map_metadata -1`, + `info.json` listo para API. |
+
+---
+
+## 4. Cómo generar vídeos cada mañana en 1 solo comando
+
+### A) Generar los 3 vídeos diarios distintos («Genérame tres vídeos»)
+```powershell
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --todos
+```
+Genera 3 piezas distintas en `EDITAR/SALIDA_EDITADOS/` (cada una con su carpeta `<pack>/video.mp4` + `info.json`):
+1. **Ángulo 1 (`26–28 s` · Emoción / Cumpleaños Mamá · Pop Acústico):** optimizado para **Shares / DM en Instagram y Facebook Reels**.
+2. **Ángulo 2 (`28–30 s` · Demo Móvil + Quinceañera / Pareja · Cumbia o Balada):** optimizado para **Guardados y comentarios con palabra clave (`CANCIÓN`)**.
+3. **Ángulo 3 (`46–52 s` · Storytelling Regalo de Última Hora `12,90 €` · Mariachi/Serenata):** optimizado para **AVD máximo en YouTube Shorts y Facebook Reels**.
+
+### B) Generar un único vídeo demo o un ángulo concreto
+```powershell
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --angulo 1
+```
+
+### C) Personalizar nombre, ocasión o destino Drive (para tu portátil 24/7)
+```powershell
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --todos --export-drive "G:\Mi unidad\BANDEJAAAAAAAAAAAAAAAA\GRUPO_CANCION_QR"
+```
+
+---
+
+## 5. Checklist de publicación por API (Portátil 24/7 — Nunca desde este PC)
+
+1. **Arquitectura de hardware:** Este PC de sobremesa **solo crea vídeos y exporta packs (`video.mp4` + `info.json`) a Drive**. El portátil 24/7 con módem 4G se encarga en exclusiva de publicar y responder comentarios.
+2. **Facebook Pages API:** Publicar siempre por el endpoint **`/video_reels`** (nunca por el antiguo `/videos`, que provoca alcance ~0).
+3. **Instagram Graph API:** Publicar con `media_type=REELS` y subtítulos/música ya quemados en el `.mp4` (la API no añade audios nativos).
+4. **YouTube Data API v3 (`videos.insert`):** Mantener `9:16` (`1080×1920`), `< 60 s` y `#Shorts` en título/descripción. Medir cada semana el KPI **`Viewed vs Swiped Away` (objetivo ≥ 70 %)**.
+
+---
+
+## 6. Pasos rápidos para activar pagos y canciones reales 100 % automáticas en producción
+
+1. **Stripe Payment Links:** Crea en Stripe 2 enlaces de pago único (`12,90 €` y `19,90 €`, más `$12.90` y `$19.90` USD si quieres cobrar en dólares en MX/AR) con redirección post-pago a `https://miweblocal.com/gracias/` (o tu dominio nuevo) y pégalos en `assets/cancion-config.js`.
+2. **Worker de generación real Lyria 3.5:** Sube `worker/lyria-song-worker.js` a Cloudflare Workers, añade tu secreto `GEMINI_API_KEY` y pega la URL en `CANCION_CONFIG.songWorkerUrl` dentro de `assets/cancion-config.js`.
+3. **Dominio recomendado:** El proyecto funciona ya en `miweblocal.com` (`CNAME`), pero para máxima conversión en regalos emocionales se recomienda registrar un `.com` dedicado (ej. `tucancionqr.com`) y actualizar el archivo `CNAME`.
