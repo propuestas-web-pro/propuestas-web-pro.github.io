@@ -162,10 +162,11 @@
       .hero { padding: 48px 0 64px; min-height: calc(100dvh - 60px); display: flex; align-items: center; }
     }
     .hero-grid {
-      display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start;
     }
+    .hero-grid > * { min-width: 0; max-width: 100%; }
     @media (min-width: 960px) {
-      .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 48px; align-items: center; }
+      .hero-grid { grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr); gap: 48px; align-items: center; }
     }
 
     .eyebrow {
@@ -348,70 +349,88 @@
     .qr-copy span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
 
     .preview-unlock-bar {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      margin-top: 12px; flex-wrap: wrap;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
+      margin-top: 12px;
     }
-    .preview-unlock-bar .btn { flex: 1; height: 44px; font-size: 14px; padding: 0 18px; }
-    .preview-unlock-bar .btn-ghost { height: 44px; padding: 0 14px; font-size: 13px; }
+    @media (min-width: 520px) {
+      .preview-unlock-bar { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+    }
+    .preview-unlock-bar .btn { width: 100%; height: 46px; font-size: 14px; padding: 0 18px; }
+    .preview-unlock-bar .btn-ghost { width: 100%; height: 46px; padding: 0 16px; font-size: 13.5px; }
 
     /* GENERIC SECTION SPACING */
     section.band { padding: 68px 0; }
     section.band-tint { background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    @media (max-width: 640px) { section.band { padding: 48px 0; } }
-    .sec-head { max-width: 620px; margin-bottom: 32px; }
-    .sec-head h2 { font-size: clamp(1.65rem, 3.2vw, 2.45rem); line-height: 1.08; margin-bottom: 10px; }
-    .sec-head p { font-size: 16px; color: var(--muted); max-width: 58ch; }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      section.band { padding: 48px 0; }
+      .phone-stage { padding: 14px; border-radius: 22px; }
+      .miniweb-preview { padding: 14px; }
+      .mw-head { flex-wrap: wrap; gap: 6px; }
+      .qr-strip { flex-direction: row; align-items: center; gap: 12px; }
+    }
+    .sec-head { max-width: 660px; margin-bottom: 32px; }
+    .sec-head-center { max-width: 680px; margin: 0 auto 36px; text-align: center; }
+    .sec-head-center p { margin: 0 auto; }
+    .sec-head h2, .sec-head-center h2 { font-size: clamp(1.65rem, 3.2vw, 2.45rem); line-height: 1.08; margin-bottom: 10px; }
+    .sec-head p, .sec-head-center p { font-size: 16px; color: var(--muted); max-width: 58ch; }
 
     /* SECTION 2: REAL DEMOS + EDITORIAL PHOTO */
     .demos-layout {
-      display: grid; grid-template-columns: 1fr; gap: 28px; align-items: stretch;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch;
     }
+    .demos-layout > * { min-width: 0; max-width: 100%; }
     @media (min-width: 920px) {
       .demos-layout { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 36px; }
     }
     .photo-frame {
       border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--line);
-      background: var(--tint); position: relative; min-height: 280px;
+      background: var(--tint); position: relative; min-height: 260px; width: 100%; max-width: 100%;
     }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
     .photo-caption {
-      position: absolute; left: 14px; right: 14px; bottom: 14px;
-      background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(10px);
+      position: absolute; left: 12px; right: 12px; bottom: 12px;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
       border: 1px solid rgba(17, 19, 24, 0.08); border-radius: 14px;
-      padding: 12px 14px; font-size: 13.5px; color: var(--ink);
+      padding: 11px 13px; font-size: 13px; color: var(--ink);
     }
-    .photo-caption b { display: block; font-family: var(--display); font-size: 14px; }
-    .photo-caption span { color: var(--muted); font-size: 12.5px; }
+    .photo-caption b { display: block; font-family: var(--display); font-size: 13.5px; }
+    .photo-caption span { color: var(--muted); font-size: 12px; line-height: 1.35; display: block; margin-top: 2px; }
 
-    .demo-list { display: grid; gap: 12px; }
+    .demo-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; min-width: 0; width: 100%; }
     .demo-row {
       background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 16px;
-      padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+      padding: 13px 14px; display: flex; align-items: center; gap: 12px;
+      width: 100%; max-width: 100%; min-width: 0; overflow: hidden;
       transition: border-color 0.18s ease, box-shadow 0.18s ease;
     }
     .demo-row.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
-    .demo-info { flex: 1; min-width: 0; }
-    .demo-info h3 { font-size: 15.5px; font-weight: 800; margin-bottom: 2px; }
-    .demo-info .demo-meta { font-size: 12.5px; color: var(--accent); font-weight: 700; margin-bottom: 3px; }
-    .demo-info .demo-quote { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .demo-info { flex: 1; min-width: 0; overflow: hidden; }
+    .demo-info h3 { font-size: 15px; font-weight: 800; margin-bottom: 2px; line-height: 1.2; }
+    .demo-info .demo-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 2px; }
+    .demo-info .demo-quote {
+      font-size: 12.5px; color: var(--muted); line-height: 1.35;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
     .demo-time { font-family: var(--mono); font-size: 12px; color: var(--muted); flex-shrink: 0; }
 
     /* SECTION 3: 3-CELL ASYMMETRIC BENTO (EXACTLY 3 CELLS) */
     .bento-3 {
-      display: grid; grid-template-columns: 1fr; gap: 18px;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px;
     }
+    .bento-3 > * { min-width: 0; max-width: 100%; }
     @media (min-width: 900px) {
-      .bento-3 { grid-template-columns: 1.15fr 0.85fr; grid-template-rows: auto auto; }
+      .bento-3 { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-rows: auto auto; }
       .bento-big { grid-row: span 2; }
     }
     .bento-tile {
       border-radius: var(--r-card); border: 1px solid var(--line);
       overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;
     }
-    .bento-big img { width: 100%; height: 280px; object-fit: cover; }
+    .bento-big img { width: 100%; height: 240px; object-fit: cover; }
     @media (min-width: 900px) { .bento-big img { height: 320px; } }
-    .bento-body { padding: 22px; display: grid; gap: 8px; }
-    .bento-body h3 { font-size: 1.2rem; }
+    .bento-body { padding: 20px; display: grid; gap: 8px; }
+    .bento-body h3 { font-size: 1.15rem; }
     .bento-body p { font-size: 14.5px; color: var(--muted); }
     .bento-rose { background: var(--accent-soft); border-color: var(--accent-border); }
     .bento-tint { background: #FFFFFF; }
@@ -423,14 +442,15 @@
 
     /* SECTION 4: HORIZONTAL 3-STEP FLOW + FAMILY PHOTO */
     .steps-wrap {
-      display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center;
     }
+    .steps-wrap > * { min-width: 0; max-width: 100%; }
     @media (min-width: 920px) {
-      .steps-wrap { grid-template-columns: 1.08fr 0.92fr; gap: 40px; }
+      .steps-wrap { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 40px; }
     }
     .step-list { display: grid; gap: 18px; }
     .step-item {
-      display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start;
+      display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start;
       padding-bottom: 18px; border-bottom: 1px solid var(--line);
     }
     .step-item:last-child { border-bottom: 0; padding-bottom: 0; }
@@ -443,41 +463,44 @@
     .step-item h3 { font-size: 1.05rem; margin-bottom: 4px; }
     .step-item p { font-size: 14.5px; color: var(--muted); }
 
-    /* SECTION 5: PRICING (2 CLEAN CARDS) */
+    /* SECTION 5: PRICING (CENTERED CLEAN 2 CARDS) */
     .pricing-grid {
-      display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 880px;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px;
+      max-width: 920px; margin: 0 auto;
     }
-    @media (min-width: 760px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+    .pricing-grid > * { min-width: 0; max-width: 100%; }
+    @media (min-width: 760px) { .pricing-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
     .price-card {
       background: #FFFFFF; border: 1.5px solid var(--line); border-radius: var(--r-card);
-      padding: 26px; display: flex; flex-direction: column; gap: 16px;
+      padding: 24px; display: flex; flex-direction: column; gap: 16px;
     }
     .price-card.featured {
       border-color: var(--accent); box-shadow: 0 22px 48px -24px rgba(225, 29, 72, 0.22);
     }
-    .plan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .plan-top h3 { font-size: 1.25rem; }
+    .plan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .plan-top h3 { font-size: 1.2rem; }
     .plan-pill {
       font-size: 11.5px; font-weight: 700; color: var(--accent);
       background: var(--accent-soft); border: 1px solid var(--accent-border);
       padding: 4px 10px; border-radius: var(--r-pill); white-space: nowrap;
     }
     .plan-price {
-      font-family: var(--display); font-size: 2.35rem; font-weight: 800; line-height: 1;
-      display: flex; align-items: baseline; gap: 8px;
+      font-family: var(--display); font-size: 2.25rem; font-weight: 800; line-height: 1;
+      display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
     }
     .plan-price small { font-family: var(--body); font-size: 13.5px; font-weight: 600; color: var(--muted); }
     .plan-list { list-style: none; display: grid; gap: 10px; font-size: 14.5px; color: var(--ink-2); flex: 1; }
     .plan-list li { display: flex; align-items: flex-start; gap: 9px; }
     .plan-list i { color: var(--accent); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
     .price-card .btn, .price-card .btn-ghost { width: 100%; height: 48px; }
-    .price-footnote { margin-top: 16px; font-size: 13.5px; color: var(--muted); }
+    .price-footnote { margin: 20px auto 0; max-width: 720px; text-align: center; font-size: 13.5px; color: var(--muted); }
 
-    /* SECTION 6: QUOTES + FAQ */
+    /* SECTION 6: QUOTES + CENTERED FAQ */
     .quotes-grid {
-      display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 44px;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 52px;
     }
-    @media (min-width: 780px) { .quotes-grid { grid-template-columns: repeat(3, 1fr); } }
+    .quotes-grid > * { min-width: 0; max-width: 100%; }
+    @media (min-width: 780px) { .quotes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .quote-card {
       background: #FFFFFF; border: 1px solid var(--line); border-radius: var(--r-card);
       padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
@@ -486,7 +509,7 @@
     .quote-author { font-size: 13px; color: var(--muted); font-weight: 600; }
     .quote-author b { color: var(--ink); }
 
-    .faq-list { display: grid; gap: 10px; max-width: 760px; }
+    .faq-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: 820px; margin: 0 auto; }
     .faq-item {
       background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
     }
@@ -499,26 +522,42 @@
     .faq-item[open] summary i { transform: rotate(45deg); }
     .faq-item p { margin-top: 10px; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
 
-    /* CHECKOUT MODAL (ZERO FRICTION: NO DOMAIN, NO NIF) */
+    /* CHECKOUT MODAL (STRIPE-READY ZERO FRICTION) */
     .modal-backdrop {
       position: fixed; inset: 0; z-index: 90;
       background: rgba(17, 19, 24, 0.56); backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center; padding: 16px;
+      display: none; align-items: center; justify-content: center; padding: 14px;
     }
     .modal-backdrop.open { display: flex; }
     .modal {
-      width: 100%; max-width: 480px; background: #FFFFFF; border-radius: 22px;
-      border: 1px solid var(--line); padding: 24px; box-shadow: 0 30px 70px -20px rgba(17, 19, 24, 0.3);
-      display: grid; gap: 16px; max-height: 92dvh; overflow-y: auto;
+      width: 100%; max-width: 470px; background: #FFFFFF; border-radius: 22px;
+      border: 1px solid var(--line); padding: 22px; box-shadow: 0 30px 70px -20px rgba(17, 19, 24, 0.3);
+      display: grid; gap: 14px; max-height: 92dvh; overflow-y: auto;
     }
     .modal-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
-    .modal-head h3 { font-size: 1.3rem; }
+    .modal-head h3 { font-size: 1.25rem; }
     .modal-close {
       width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
-      background: var(--tint); color: var(--ink); cursor: pointer; display: grid; place-items: center;
+      background: var(--tint); color: var(--ink); cursor: pointer; display: grid; place-items: center; flex-shrink: 0;
     }
+    .plan-switch {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .plan-opt {
+      border: 1.5px solid var(--line); background: var(--tint); border-radius: 14px;
+      padding: 10px 12px; text-align: left; cursor: pointer; display: grid; gap: 2px;
+      transition: border-color 0.16s ease, background 0.16s ease;
+    }
+    .plan-opt b { font-family: var(--display); font-size: 13.5px; color: var(--ink); }
+    .plan-opt span { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+    .plan-opt[aria-pressed="true"] {
+      border-color: var(--accent); background: var(--accent-soft);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+    .plan-opt[aria-pressed="true"] span { color: var(--accent); }
+
     .summary-box {
-      background: var(--tint); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+      background: var(--tint); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px;
       display: grid; gap: 6px; font-size: 14px;
     }
     .summary-row { display: flex; justify-content: space-between; gap: 10px; }
@@ -527,12 +566,24 @@
       font-family: var(--display); font-weight: 800; font-size: 16px;
     }
     .upsell-box {
-      display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px;
+      display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px;
       border-radius: 14px; background: var(--accent-soft); border: 1.5px solid var(--accent-border);
-      cursor: pointer; font-size: 13.5px; color: var(--ink);
+      cursor: pointer; font-size: 13px; color: var(--ink);
     }
-    .upsell-box input { margin-top: 3px; accent-color: var(--accent); width: 17px; height: 17px; flex-shrink: 0; }
-    .modal .btn { width: 100%; height: 52px; }
+    .upsell-box input { margin-top: 2px; accent-color: var(--accent); width: 17px; height: 17px; flex-shrink: 0; }
+    .pay-badges {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--muted);
+    }
+    .pay-badges span {
+      padding: 4px 9px; border-radius: 8px; background: var(--tint); border: 1px solid var(--line);
+    }
+    .stripe-note {
+      display: none; background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E;
+      border-radius: 12px; padding: 11px 13px; font-size: 13px; line-height: 1.45;
+    }
+    .stripe-note.show { display: block; }
+    .modal .btn { width: 100%; height: 50px; }
 
     /* FOOTER */
     footer {
@@ -779,8 +830,8 @@
     <!-- SECTION 5: PRICING -->
     <section class="band band-tint" id="precios">
       <div class="wrap">
-        <span class="eyebrow">Pago único · Sin suscripciones</span>
-        <div class="sec-head">
+        <div class="sec-head-center">
+          <span class="eyebrow">Pago único · Sin suscripciones</span>
           <h2>Un regalo inolvidable por menos que un ramo de flores</h2>
           <p id="price-anchor-copy">Pago seguro con tarjeta, Apple Pay o Google Pay. Entrega digital inmediata en España, México y Argentina.</p>
         </div>
@@ -830,7 +881,7 @@
     <!-- SECTION 6: QUOTES + FAQ -->
     <section class="band">
       <div class="wrap">
-        <div class="sec-head">
+        <div class="sec-head-center">
           <h2>Lo que pasa cuando escanean el código</h2>
         </div>
 
@@ -849,7 +900,7 @@
           </blockquote>
         </div>
 
-        <div class="sec-head" style="margin-bottom:20px;">
+        <div class="sec-head-center" style="margin-bottom:24px;">
           <h2>Preguntas frecuentes</h2>
         </div>
 
@@ -887,17 +938,33 @@
     </div>
   </footer>
 
-  <!-- CHECKOUT MODAL: ZERO FRICTION -->
+  <!-- CHECKOUT MODAL: STRIPE-READY ZERO FRICTION -->
   <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
       <div class="modal-head">
         <div>
-          <h3 id="modal-title">Desbloquear tu canción</h3>
-          <p style="font-size:13.5px; color:var(--muted); margin-top:3px;">Entrega digital inmediata · Sin registro</p>
+          <h3 id="modal-title">Finalizar pago seguro</h3>
+          <p style="font-size:13.5px; color:var(--muted); margin-top:2px;">Pasarela Stripe · Entrega digital en 2 minutos</p>
         </div>
         <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar ventana">
           <i class="ph-bold ph-x" aria-hidden="true"></i>
         </button>
+      </div>
+
+      <div class="plan-switch" role="group" aria-label="Elegir plan">
+        <button type="button" class="plan-opt" data-modal-plan="single" aria-pressed="false">
+          <b>Canción + QR</b>
+          <span data-price="single">12,90 €</span>
+        </button>
+        <button type="button" class="plan-opt" data-modal-plan="pack3" aria-pressed="true">
+          <b>Pack ×3 + Vídeo</b>
+          <span data-price="pack3">19,90 €</span>
+        </button>
+      </div>
+
+      <div class="field-block" style="margin-bottom:0;">
+        <label class="field-label" for="checkout-email">Tu correo para recibir el MP3 y el QR</label>
+        <input id="checkout-email" class="input" type="email" placeholder="tunombre@correo.com" autocomplete="email" />
       </div>
 
       <div class="summary-box">
@@ -915,11 +982,22 @@
         </span>
       </label>
 
+      <div class="stripe-note" id="stripe-fallback-note">
+        <strong>Pago inmediato con Stripe / Bizum:</strong> El enlace automático de Stripe para este importe se está activando. Puedes solicitar ahora mismo el enlace de pago por WhatsApp o abrir tu vista previa de entrega.
+      </div>
+
       <button type="button" class="btn" id="btn-confirm-pay">
         <i class="ph-bold ph-lock-simple" aria-hidden="true"></i>
-        <span>Pagar y recibir ahora</span>
+        <span id="btn-pay-label">Pagar con Stripe (<span id="pay-btn-amount">19,90 €</span>)</span>
       </button>
-      <p style="font-size:12px; color:var(--muted); text-align:center;">Tarjeta, Apple Pay o Google Pay · Garantía de 14 días · 0 €/mes</p>
+
+      <div class="pay-badges" aria-label="Métodos de pago aceptados">
+        <span>Stripe</span>
+        <span>Apple Pay</span>
+        <span>Google Pay</span>
+        <span>Visa / Mastercard</span>
+      </div>
+      <p style="font-size:12px; color:var(--muted); text-align:center;">Pago cifrado 256-bit · Garantía de 14 días · 0 €/mes</p>
     </div>
   </div>
 
@@ -1183,22 +1261,31 @@
       // Checkout modal logic
       const modal = document.getElementById('checkout-modal');
       const upsellCheck = document.getElementById('upsell-photo-check');
+      const emailInput = document.getElementById('checkout-email');
+      const stripeNote = document.getElementById('stripe-fallback-note');
 
       function updateModalSummary() {
         const order = buildCurrentOrder();
         const cur = CANCION_CONFIG.currencies[state.currency];
         const base = state.selectedPlan === 'single' ? cur.singleNum : cur.pack3Num;
         const total = base + (state.upsellPhoto ? cur.upsellNum : 0);
+        const formatted = cancionFormatPrice(total, state.currency);
         document.getElementById('sum-name').textContent = order.recipient;
         document.getElementById('sum-genre').textContent = cancionGetGenre(order.genre).label;
         document.getElementById('sum-plan').textContent = state.selectedPlan === 'single'
           ? 'Canción + Mini-Web QR'
           : 'Pack Emoción ×3 + Vídeo 9:16';
-        document.getElementById('sum-total').textContent = cancionFormatPrice(total, state.currency);
+        document.getElementById('sum-total').textContent = formatted;
+        const amtEl = document.getElementById('pay-btn-amount');
+        if (amtEl) amtEl.textContent = formatted;
+        document.querySelectorAll('[data-modal-plan]').forEach((b) => {
+          b.setAttribute('aria-pressed', b.dataset.modalPlan === state.selectedPlan ? 'true' : 'false');
+        });
       }
 
       function openCheckout(plan) {
         state.selectedPlan = plan || 'pack3';
+        if (stripeNote) stripeNote.classList.remove('show');
         updateModalSummary();
         modal.classList.add('open');
       }
@@ -1206,6 +1293,12 @@
       document.getElementById('btn-unlock-preview').addEventListener('click', () => openCheckout('single'));
       document.querySelectorAll('[data-choose-plan]').forEach((btn) => {
         btn.addEventListener('click', () => openCheckout(btn.dataset.choosePlan));
+      });
+      document.querySelectorAll('[data-modal-plan]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.selectedPlan = btn.dataset.modalPlan;
+          updateModalSummary();
+        });
       });
       document.getElementById('btn-copy-preview').addEventListener('click', () => {
         const share = cancionBuildShareUrl(buildCurrentOrder(), true);
@@ -1220,8 +1313,13 @@
       document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
       modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
 
-      document.getElementById('btn-confirm-pay').addEventListener('click', () => {
-        cancionStartCheckout(buildCurrentOrder());
+      document.getElementById('btn-confirm-pay').addEventListener('click', async () => {
+        const order = buildCurrentOrder();
+        order.email = emailInput ? emailInput.value.trim() : '';
+        const res = await cancionStartCheckout(order);
+        if (res && res.mode === 'awaiting_stripe_link' && stripeNote) {
+          stripeNote.classList.add('show');
+        }
       });
 
       // Init

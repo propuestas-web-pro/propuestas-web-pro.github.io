@@ -70,9 +70,9 @@
 </head>
 <body>
   <main class="card">
-    <span class="badge"><i class="ph-bold ph-check-circle"></i> Pedido registrado · Entrega inmediata</span>
+    <span class="badge" id="ty-badge"><i class="ph-bold ph-check-circle"></i> Pago confirmado · Entrega inmediata</span>
     <h1 id="ty-title">Tu canción personalizada está lista</h1>
-    <p>Guarda tu enlace permanente y tu código QR. Puedes enviarlo por WhatsApp o imprimir la tarjeta ahora mismo.</p>
+    <p id="ty-desc">Guarda tu enlace permanente y tu código QR. Puedes enviarlo por WhatsApp o imprimir la tarjeta ahora mismo.</p>
     <div class="ref" id="ty-ref">Referencia: TCQ-DEMO</div>
 
     <div class="delivery-box">
@@ -124,7 +124,17 @@
       document.getElementById('ty-open-web').href = share.rel;
       document.getElementById('ty-download-mp3').href = '../' + genre.audioFile;
 
-      const waMsg = `Hola! Acabo de pedir mi canción personalizada (${ref}).\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}\nEnlace mini-web: ${share.abs}`;
+      const pendingPay = qs.get('pending_pay') === '1';
+      if (pendingPay) {
+        document.getElementById('ty-badge').innerHTML = '<i class="ph-bold ph-lock-simple"></i> Último paso · Confirmar pago';
+        document.getElementById('ty-title').textContent = 'Completa el pago para desbloquear tu canción';
+        document.getElementById('ty-desc').textContent = 'Tu letra y tu código QR ya están preparados. Pulsa abajo para recibir el enlace de pago por Stripe o Bizum y activar tu canción al instante.';
+        document.getElementById('ty-wa-backup').innerHTML = '<i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;"></i> Solicitar enlace Stripe / Bizum ahora por WhatsApp';
+      }
+
+      const waMsg = pendingPay
+        ? `Hola! Quiero pagar y activar mi canción personalizada (${ref}).\nPlan: ${plan === 'single' ? 'Canción + QR (12,90 €)' : 'Pack ×3 + Vídeo (19,90 €)'}\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}`
+        : `Hola! Acabo de pedir mi canción personalizada (${ref}).\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}\nEnlace mini-web: ${share.abs}`;
       document.getElementById('ty-wa-backup').href = `https://wa.me/${CANCION_CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
 
       try {

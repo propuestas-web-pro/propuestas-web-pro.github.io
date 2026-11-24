@@ -133,12 +133,18 @@
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
       background: #FFFFFF; border-top: 1px solid var(--line);
       padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
-      display: none; align-items: center; justify-content: center; gap: 12px;
+      display: none; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
       box-shadow: 0 -10px 30px rgba(17, 19, 24, 0.08);
     }
     .preview-bar.show { display: flex; }
     .preview-bar span { font-size: 13px; font-weight: 700; color: var(--ink); }
     .preview-bar .btn { height: 40px; padding: 0 18px; font-size: 13.5px; }
+    @media (max-width: 440px) {
+      body { padding-bottom: 112px; }
+      .preview-bar span { display: none; }
+      .preview-bar .btn { width: 100%; }
+      .qr-card { flex-direction: column; text-align: center; }
+    }
 
     @media print {
       .envelope-screen, .actions, .preview-bar { display: none !important; }
