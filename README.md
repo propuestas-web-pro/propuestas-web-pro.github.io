@@ -23,22 +23,22 @@ Plataforma comercial de alto volumen pensada para **España, México y Argentina
 - `assets/cancion/` — Fotografías editoriales (`hero-emocion.jpg`, `regalo-qr.jpg`, `familia-celebracion.jpg`).
 - `assets/audio/` — Pistas reales de estudio generadas para demos web y gancho `t = 0.00 s` de los vídeos.
 - `worker/lyria-song-worker.js` — Cloudflare Worker listo para desplegar con `GEMINI_API_KEY` usando la API oficial de **Gemini `lyria-3.5`** (`v1beta/interactions`, ~`$0.08` por canción completa de estudio).
-- `EDITAR/MOTOR_ESTUDIO/generar_3_videos.py` — Fábrica automática en 1 comando que renderiza vídeos `1080×1920 @ 30 fps` con reglas estadísticas de retención programadas.
-- `EDITAR/MOTOR_ESTUDIO/stage_cancion.html` — Escenario visual vertical `1080×1920` (corte/movimiento cada `≤ 2,2 s`, móvil interactivo real, ecualizador en vivo, QR y subtítulos cinéticos en zona segura).
+- `EDITAR/MOTOR_ESTUDIO/generar_3_videos.py` — Fábrica automática en 1 comando (**Motor V4 Cero-Anuncio · Bucle 15 s · Split-Screen**) que renderiza vídeos `1080×1920 @ 30 fps` + `info.json` (`title`, `caption` y `pinned_comment`).
+- `EDITAR/MOTOR_ESTUDIO/stage_viral_v4.html` — Escenario visual `1080×1920` replicado de los 6 Shorts líderes reales (`639K` a `29M` vistas): Cold-Open `0:00` + WhatsApp oscuro QR + Cámara iOS POV + Split-Screen 50/50 con tu mini-web real `/cancion/`.
 
 ---
 
-## 3. Reglas estadísticas de retención programadas en el motor V3 (Formato Nativo Viral)
+## 3. Reglas estadísticas de retención programadas en el motor V4 («Cero Anuncio · Bucle 15 s»)
 
-Cero diapositivas corporativas y cero terminales de programador. Cada vídeo generado por `generar_3_videos.py` replica la estructura nativa de mayor retención en **Instagram Reels, Facebook Reels y YouTube Shorts**:
+En auditoría real EN VIVO sobre YouTube Shorts, los vídeos con pinta de agencia/folleto/precios en pantalla se quedan en **60–200 vistas**, mientras que los ganadores orgánicos del nicho (`PrayerSong` **10,58M** y **6,62M**, `Art Define Ignition` **897K en 15 s**, `HeartMoments` **710K con 4,15K subs = 171×**, `YCufz6Pnaio` **217K en 13 s**) siguen este patrón exacto:
 
-| Acto / Regla | Por qué retiene (evidencia de mercado) | Implementación en Motor V3 (`stage_viral_v3.html`) |
+| Acto / Regla | Evidencia en vivo (Shorts 217K – 29M) | Implementación en Motor V4 (`stage_viral_v4.html`) |
 | :--- | :--- | :--- |
-| **Acto 1 (`0–6 s`) · Drama real de WhatsApp** | El formato *WhatsApp/iMessage Story* dispara el instinto de curiosidad («cotilleo») y rompe el aspecto de anuncio en los primeros `1,3–3 s`. | Chat real de WhatsApp en modo oscuro sobre plano vertical `9:16` con movimiento de cámara en mano, burbujas en vivo y SFX auténticos de WhatsApp (`«Se me olvidó el cumple 15 min antes»`). |
-| **Acto 2 (`6–13 s`) · Demo real del móvil** | Ver la web real funcionando en un iPhone (no dibujos) dispara la confianza y los guardados. | `iframe` real en vivo de `miweblocal.com` en formato iPhone escribiendo el nombre, eligiendo estilo y bajando hasta el código QR real. |
-| **Acto 3 (`13–19 s`) · Escaneo POV del QR** | Puente físico→digital (formato Loveyuu/Songfinch): las esquinas amarillas de cámara iOS crean suspense inmediato. | Plano vertical `9:16` POV + interfaz nativa de Cámara iOS bloqueando el QR + banner amarillo `miweblocal.com ↗` + sonido de enfoque. |
-| **Acto 4 (`19–29 s`) · Reacción + Notificaciones WA** | El contagio emocional (lágrimas reales) + prueba social en comentarios dispara los **Envíos por DM (Shares)** en IG y FB. | Plano `9:16` de madre emocionada llorando frente al móvil + notificaciones iOS reales de `Mamá ❤️` y `Hermano` pidiendo el enlace + CTA orgánico (`COMENTA «CANCIÓN»`). |
-| **Audio y subtítulos nativos** | Subtítulos nativos suben `+12 %` watch time; voz natural sin deformar evita rechazo. | Voz 1.0x sin `atempo` (`Orus` en tono anécdota) + balada acústica emotiva in crescendo + subtítulos blancos/amarillos estilo CapCut en zona segura + `-11.8 LUFS` y `-map_metadata -1`. |
+| **Acto 1 (`0.0–2.5 s`) · Cold-Open + música en `0:00`** | `PrayerSong` (`6,6M`) y `JAX` (`29M`) abren con cara real emocionada + caja blanca nativa TikTok + música ya sonando en `0:00`. | Plano `9:16` de madre emocionada llorando + píldora blanca nativa (*«Mi madre pensó que olvidé su cumple… hasta que escaneó este QR 😭❤️»*) + balada y nombre propio desde `t = 0.00 s`. |
+| **Acto 2 (`2.5–5.6 s`) · Chat real de WhatsApp con QR** | `Art Define Ignition` (`897K`, `0:15`, `133×` subs) usa un chat real de WhatsApp enviando un QR para crear suspense inmediato. | Chat a pantalla completa de WhatsApp en modo oscuro con barra iOS, tarjeta QR en el mensaje y sonidos auténticos de mensaje. |
+| **Acto 3 (`5.6–8.9 s`) · Cámara iOS POV escaneando QR** | `YCufz6Pnaio` (`217K`, `0:13`, `105×` subs) demuestra que ver la cámara nativa enfocar el QR físico y pulsar el banner evita el swipe. | Plano vertical `9:16` POV + esquinas amarillas de Cámara iOS bloqueando el QR + banner amarillo `miweblocal.com ↗` + pulso de dedo + sonido de enfoque. |
+| **Acto 4 (`8.9–15.5 s`) · Split-Screen 50/50 + Cero Anuncio** | `PrayerSong` (`6,6M`) usa pantalla partida 50/50 + letra limpia blanca en la costura central y **CERO precio ni slide de venta dentro del vídeo**. | Arriba: madre llorando + notificación iOS (`«¿¿Hiciste una canción con MI nombre?? 😭»`); abajo: `iframe` real en vivo de `/cancion/` abriendo su canción; en la costura central: letra blanca sincronizada. El enlace y CTA van en `info.json` (`caption` + `pinned_comment`). |
+| **Duración bucle `~15–16 s` y audio maestro** | Los vídeos de `13–15 s` disparan >100 % de retención media por repetición automática y comentarios de intención (*«¿Cómo se hace??»*). | Voz íntima emocional (`Gemini 3.8 Flash TTS · Aoede`) + balada acústica in crescendo + `-11.8 LUFS` + `-map_metadata -1`. |
 
 ---
 
@@ -48,10 +48,10 @@ Cero diapositivas corporativas y cero terminales de programador. Cada vídeo gen
 ```powershell
 python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --todos
 ```
-Genera 3 piezas distintas en `EDITAR/SALIDA_EDITADOS/` (cada una con su carpeta `<pack>/video.mp4` + `info.json`):
-1. **Ángulo 1 (`26–28 s` · Emoción / Cumpleaños Mamá · Pop Acústico):** optimizado para **Shares / DM en Instagram y Facebook Reels**.
-2. **Ángulo 2 (`28–30 s` · Demo Móvil + Quinceañera / Pareja · Cumbia o Balada):** optimizado para **Guardados y comentarios con palabra clave (`CANCIÓN`)**.
-3. **Ángulo 3 (`46–52 s` · Storytelling Regalo de Última Hora `12,90 €` · Mariachi/Serenata):** optimizado para **AVD máximo en YouTube Shorts y Facebook Reels**.
+Genera 3 piezas virales distintas en bucle `~15–16 s` en `EDITAR/SALIDA_EDITADOS/` (cada una con su carpeta `<pack>/video.mp4` + `info.json` con `title`, `caption` y `pinned_comment`):
+1. **Ángulo 1 (`v4_loop15_mama` · Cumpleaños Mamá · Pop Acústico):** optimizado para **Shares / DM y comentarios en Instagram y Facebook Reels**.
+2. **Ángulo 2 (`v4_loop15_pareja` · Aniversario Pareja · Balada a Piano):** optimizado para **Guardados y bucle >100 % en Shorts/Reels**.
+3. **Ángulo 3 (`v4_loop15_papa_mx_ar` · Serenata Papá MX/AR · Mariachi):** optimizado para **viralidad familiar en México, Argentina y España**.
 
 ### B) Generar un único vídeo demo o un ángulo concreto
 ```powershell
