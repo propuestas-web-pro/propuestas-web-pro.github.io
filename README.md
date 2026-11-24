@@ -23,39 +23,39 @@ Plataforma comercial de alto volumen pensada para **España, México y Argentina
 - `assets/cancion/` — Fotografías editoriales (`hero-emocion.jpg`, `regalo-qr.jpg`, `familia-celebracion.jpg`).
 - `assets/audio/` — Pistas reales de estudio generadas para demos web y gancho `t = 0.00 s` de los vídeos.
 - `worker/lyria-song-worker.js` — Cloudflare Worker listo para desplegar con `GEMINI_API_KEY` usando la API oficial de **Gemini `lyria-3.5`** (`v1beta/interactions`, ~`$0.08` por canción completa de estudio).
-- `EDITAR/MOTOR_ESTUDIO/generar_3_videos.py` — Fábrica automática en 1 comando (**Motor V6 · 10 Ángulos Virales `≤ 15 s` hechos 100 % con código + IA**) que renderiza vídeos `1080×1920 @ 30 fps` + `info.json` (`title`, `caption` y `pinned_comment`).
-- `EDITAR/MOTOR_ESTUDIO/stage_viral_10.html` — Escenario con los 10 formatos virales `8,5–13,5 s` validados contra Shorts reales de `160K` a `103M` visitas (`Batalla 4 IAs 2×2`, `Botón HTML que huye`, `reCAPTCHA 3×3`, `AirDrop iOS`, `WhatsApp+QR`, `Física Canvas JS`, `VS Code→Regalo`, `Hermano vs Yo 8,5 s`, `Pánico 15 min` y `Split-Screen 0:00`).
+- `EDITAR/REMOTION_ESTUDIO/crear_video_remotion.py` — Fábrica oficial en 1 comando (**Motor Remotion 4 + React/TypeScript + 3D Apple Keynote**) que renderiza vídeos `1080×1920 @ 30 fps` (`H.264`, `yuv420p`, `crf=15`, `≤ 15 s`) con voz humana española, música de estudio + SFX (`-11.8 LUFS`), subtítulos cinéticos `faster-whisper`, limpieza de metadatos (`-map_metadata -1`) e `info.json` (`title`, `caption`, `pinned_comment`).
+- `EDITAR/REMOTION_ESTUDIO/src/KeynoteFilm.tsx` — Composición 3D Remotion 4 con físicas `spring()` amortiguadas, escenario OLED volumétrico, Tarjeta QR 3D física con láser escáner, iPhone 16 Pro 3D Titanio con Dynamic Island viva y reacción emocional + notificaciones VisionOS.
 
 ---
 
-## 3. Reglas estadísticas de retención programadas en el motor V6 (10 Ángulos `≤ 15 s` · Código + IA)
+## 3. Estándar de producción y retención (Remotion 4 · `≤ 15 s`)
 
-En auditoría real EN VIVO sobre YouTube Shorts, los formatos puramente visuales hechos con código/HTML/Canvas/Claude que alcanzan millones duran entre **6 y 15 segundos** (`6 s` → **31,39M** y **15,07M**; `7 s` → **62,10M**; `10 s` → **46,86M**; `14 s` → **94,66M**; `15 s` → **897K**), forzando bucles de `1,8×–2,5×` (**>150 % retención**) y comentarios de intención sin pinta de anuncio.
+Cada vídeo combina retención corta (`12–14 s`, optimizada para bucles >100 % en Shorts/Reels) con calidad visual de lanzamiento Apple Keynote: tipografía cinética con tachado láser en `t = 0.0 s`, Tarjeta QR 3D escaneable, iPhone 16 Pro Titanio 3D con Dynamic Island animada + letra en vivo y cierre emocional real sin tapar rostros, todo sincronizado palabra a palabra con audio masterizado a `-11.8 LUFS`.
 
 ---
 
 ## 4. Cómo generar vídeos cada mañana en 1 solo comando
 
-### A) Generar 3 vídeos diarios distintos por cuenta (rotación automática entre los 10 ángulos `≤ 15 s`)
+### A) Generar 1 vídeo (rotación automática entre Mamá, Pareja y Papá)
 ```powershell
-# 3 ángulos diarios para Cuenta 1 (España + Global · ángulos 1, 2, 5, 8, 10)
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --cuenta 1
-
-# 3 ángulos diarios para Cuenta 2 (Latam MX/AR · ángulos 3, 4, 6, 7, 9)
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --cuenta 2
-
-# O elegir ángulos exactos (1..10):
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --angulo 1,2,4
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_remotion.py" --angulo next
 ```
 
-### B) Generar un único vídeo demo o un ángulo concreto
+### B) Generar los 3 vídeos diarios completos (o elegir ángulo `1`, `2` o `3`)
 ```powershell
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --angulo 1
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_remotion.py" --todos
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_remotion.py" --angulo 1
 ```
 
-### C) Personalizar nombre, ocasión o destino Drive (para tu portátil 24/7)
+### C) Exportar directo a la bandeja de Drive (para tu portátil 24/7)
 ```powershell
-python "C:\Users\Fathi\Downloads\mi web\EDITAR\MOTOR_ESTUDIO\generar_3_videos.py" --todos --export-drive "G:\Mi unidad\BANDEJAAAAAAAAAAAAAAAA\GRUPO_CANCION_QR"
+python "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO\crear_video_remotion.py" --todos --export-drive "G:\Mi unidad\BANDEJAAAAAAAAAAAAAAAA\GRUPO_CANCION_QR"
+```
+
+### D) Previsualizar y ajustar en tiempo real con Remotion Studio (`http://localhost:3000`)
+```powershell
+cd "C:\Users\Fathi\Downloads\mi web\EDITAR\REMOTION_ESTUDIO"
+npm run studio
 ```
 
 ---
