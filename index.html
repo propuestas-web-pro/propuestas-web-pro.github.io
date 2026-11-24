@@ -339,10 +339,20 @@
       display: flex; align-items: center; gap: 14px;
       background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 12px;
     }
+    .qr-box-wrap { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
     .qr-box {
       width: 72px; height: 72px; border-radius: 10px; border: 1px solid var(--line);
-      background: #FFFFFF; padding: 5px; flex-shrink: 0; display: grid; place-items: center;
+      background: #FFFFFF; padding: 5px; display: grid; place-items: center;
     }
+    .qr-box.locked svg { filter: blur(4.5px); opacity: 0.34; pointer-events: none; user-select: none; }
+    .qr-lock-badge {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2px;
+      font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--accent);
+      background: rgba(255, 255, 255, 0.72); border-radius: 10px; text-align: center;
+      pointer-events: none;
+    }
+    .qr-lock-badge i { font-size: 18px; }
     .qr-box svg { width: 100%; height: 100%; display: block; }
     .qr-copy { min-width: 0; flex: 1; }
     .qr-copy b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 2px; }
@@ -697,32 +707,36 @@
               <div class="player-mid">
                 <div class="wave-bars" id="hero-wave" aria-hidden="true"></div>
                 <div class="player-meta">
-                  <span id="hero-time" class="num">0:00 / 0:30</span>
-                  <span id="hero-audio-status">Adelanto de estudio</span>
+                  <span id="hero-time" class="num">0:00 / 0:15</span>
+                  <span id="hero-audio-status">Adelanto gratuito (15 s)</span>
                 </div>
               </div>
             </div>
 
             <div class="lyrics-snippet">
-              <strong>Estribillo personalizado</strong>
+              <strong>Muestra del estribillo (letra completa tras el pago)</strong>
               <div id="mw-lyrics"></div>
             </div>
 
             <div class="qr-strip">
-              <div class="qr-box" id="hero-qr" aria-label="Código QR de la mini-web"></div>
+              <div class="qr-box-wrap">
+                <div class="qr-box locked" id="hero-qr" aria-label="Código QR bloqueado hasta completar el pago"></div>
+                <span class="qr-lock-badge" aria-hidden="true"><i class="ph-fill ph-lock-key"></i>BLOQUEADO</span>
+              </div>
               <div class="qr-copy">
-                <b>Tu Código QR listo para regalar</b>
-                <span>Escanea con cualquier móvil para abrir la canción y su letra sin descargar apps.</span>
+                <b>Código QR y MP3 protegidos</b>
+                <span>Se desbloquean en alta resolución al instante tras completar el pago seguro con Stripe.</span>
               </div>
             </div>
           </div>
 
           <div class="preview-unlock-bar">
             <button type="button" class="btn" id="btn-unlock-preview">
-              <span>Desbloquear completa (<span data-price="single">12,90 €</span>)</span>
+              <i class="ph-bold ph-lock-key-open" aria-hidden="true"></i>
+              <span>Pagar y desbloquear (<span data-price="single">12,90 €</span>)</span>
             </button>
             <button type="button" class="btn-ghost" id="btn-copy-preview">
-              <i class="ph-bold ph-qr-code" aria-hidden="true"></i> Probar enlace
+              <i class="ph-bold ph-eye" aria-hidden="true"></i> Vista previa
             </button>
           </div>
         </aside>
@@ -983,7 +997,7 @@
       </label>
 
       <div class="stripe-note" id="stripe-fallback-note">
-        <strong>Pago inmediato con Stripe / Bizum:</strong> El enlace automático de Stripe para este importe se está activando. Puedes solicitar ahora mismo el enlace de pago por WhatsApp o abrir tu vista previa de entrega.
+        <strong>Pasarela Stripe obligatoria antes de la entrega:</strong> Finaliza la activación de tus enlaces de Stripe en <code>assets/cancion-config.js</code> (o escríbenos por <a id="modal-wa-pay" href="https://wa.me/34632768152" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700;">WhatsApp aquí</a> para recibir tu enlace directo de pago Stripe). La canción completa y el código QR solo se entregan tras confirmar el pago.
       </div>
 
       <button type="button" class="btn" id="btn-confirm-pay">
@@ -1102,7 +1116,8 @@
         document.getElementById('mw-from').textContent = `Dedicada por ${order.sender}`;
         document.getElementById('mw-lyrics').innerHTML = lyrics.chorus.map((line) => `<p>${line}</p>`).join('');
         document.getElementById('open-full-miniweb').href = share.rel;
-        renderQr(document.getElementById('hero-qr'), share.abs);
+        // NUNCA codificar el enlace real antes de pagar: el QR en portada permanece bloqueado
+        renderQr(document.getElementById('hero-qr'), 'https://' + CANCION_CONFIG.domainDisplay + '/#precios');
 
         if (state.activeDemoId === 'hero' && state.activeAudioSrc !== genre.audioFile) {
           audioEl.pause();
@@ -1173,12 +1188,23 @@
         });
       }
 
+      const PREVIEW_CAP_SEC = (CANCION_CONFIG && CANCION_CONFIG.previewSeconds) || 15;
+
       audioEl.addEventListener('timeupdate', () => {
         const cur = audioEl.currentTime || 0;
         const dur = audioEl.duration || 30;
         if (state.activeDemoId === 'hero') {
-          heroTime.textContent = `${formatSec(cur)} / ${formatSec(dur)}`;
-          const ratio = dur > 0 ? cur / dur : 0;
+          if (cur >= PREVIEW_CAP_SEC) {
+            audioEl.pause();
+            audioEl.currentTime = 0;
+            heroTime.textContent = `0:${String(PREVIEW_CAP_SEC).padStart(2, '0')} / 0:${String(PREVIEW_CAP_SEC).padStart(2, '0')}`;
+            heroStatus.textContent = '🔒 Adelanto finalizado · Paga para desbloquear';
+            heroWave.querySelectorAll('span').forEach((s) => s.classList.remove('lit'));
+            syncPlayButtons();
+            return;
+          }
+          heroTime.textContent = `${formatSec(cur)} / 0:${String(PREVIEW_CAP_SEC).padStart(2, '0')}`;
+          const ratio = cur / PREVIEW_CAP_SEC;
           const spans = heroWave.querySelectorAll('span');
           const litCount = Math.round(ratio * spans.length);
           spans.forEach((s, idx) => s.classList.toggle('lit', idx < litCount));

@@ -1,11 +1,12 @@
 /* ==========================================================================
-   TUCANCIÓNQR · CONFIGURACIÓN DE STRIPE, MONEDAS (ES/MX/AR) Y WORKER IA
+   TUCANCIÓNQR · CONFIGURACIÓN DE STRIPE, BLOQUEO PRE-PAGO Y MONEDAS (ES/MX/AR)
    --------------------------------------------------------------------------
-   - Configura aquí tus enlaces de Stripe Payment Links para 12,90 € y 19,90 €
-     (y sus equivalentes en USD si cobras por separado en México/Argentina).
-   - Para generación 100 % automática de la canción real al vuelo con Lyria 3.5,
-     despliega worker/lyria-song-worker.js en Cloudflare Workers y pega su URL
-     en songWorkerUrl.
+   REGLA ESTRICTA DE NEGOCIO:
+   - Antes de pagar: SOLO adelanto de 15 s + estribillo de muestra. QR, letra
+     completa, descarga MP3 e impresión permanecen 100 % bloqueados.
+   - Tras pagar en Stripe Live (redirección con {CHECKOUT_SESSION_ID}): se firma
+     el enlace permanente de regalo para que el destinatario pueda escanear el QR
+     desde cualquier móvil sin bloqueos.
    ========================================================================== */
 
 const CANCION_CONFIG = {
@@ -13,12 +14,12 @@ const CANCION_CONFIG = {
   domainDisplay: 'miweblocal.com',
   whatsapp: '34632768152',
   supportEmail: 'hola@miweblocal.com',
+  previewSeconds: 15,
 
   // Cuenta Stripe Live verificada del proyecto (acct_1TOvtGGcKo8sPYaQ · EUR)
   stripePublishableKey: 'pk_live_51TOvtGGcKo8sPYaQukhMmk1bBmyZwxq85qvQuOLRjJ87PbOcxIRsCFfOX1LuWy0oNoJMQqorm80NnqYdZjclvwb200HF1GznMm',
 
-  // Opción 1 (más rápida, sin servidor): pega aquí tus Stripe Payment Links de 12,90 € y 19,90 €
-  // creados en https://dashboard.stripe.com/payment-links (redirección post-pago: https://miweblocal.com/gracias/)
+  // Enlaces oficiales de Stripe Payment Links (Pago único · Redirección a /gracias/?paid=1&session_id={CHECKOUT_SESSION_ID})
   stripeLinks: {
     EUR: {
       single: '',       // Payment Link 12,90 € (Canción + Mini-Web + QR)
@@ -27,17 +28,17 @@ const CANCION_CONFIG = {
       pack3Photo: ''    // Payment Link 27,80 € (Pack 3 + Foto Antigua Animada)
     },
     USD: {
-      single: '',       // Payment Link $12.90 USD (México / Argentina / Latam)
-      singlePhoto: '',  // Payment Link $20.80 USD
-      pack3: '',        // Payment Link $19.90 USD
-      pack3Photo: ''    // Payment Link $27.80 USD
+      single: '',       // Payment Link $12.90 USD (si vacío, usa pasarela internacional EUR de Stripe con conversión automática)
+      singlePhoto: '',
+      pack3: '',
+      pack3Photo: ''
     }
   },
 
-  // Opción 2 (dinámica): URL de Cloudflare Worker (ver worker/stripe-checkout-worker.js)
+  // Opción dinámica: Cloudflare Worker (worker/stripe-checkout-worker.js)
   stripeCheckoutWorkerUrl: '',
 
-  // URL de Cloudflare Worker (ver worker/lyria-song-worker.js) para generar canciones Lyria 3.5 en vivo
+  // Cloudflare Worker (worker/lyria-song-worker.js) para generar canciones Lyria 3.5 en vivo
   songWorkerUrl: '',
 
   currencies: {
@@ -63,7 +64,7 @@ const CANCION_CONFIG = {
       singleNum: 12.9,
       pack3Num: 19.9,
       upsellNum: 7.9,
-      anchorNote: 'Pago único con tarjeta, Apple Pay o Google Pay'
+      anchorNote: 'Pago único con tarjeta internacional, Apple Pay o Google Pay'
     }
   }
 };
@@ -102,7 +103,35 @@ function cancionDecodePayload(token) {
   }
 }
 
-function cancionBuildShareUrl(order, isPreview) {
+function cancionComputeUnlockSig(compact) {
+  const seed = `TCQ_PAID_V1|${compact.r || ''}|${compact.s || ''}|${compact.g || ''}|${compact.sid || ''}`;
+  let h1 = 0x811c9dc5;
+  let h2 = 0x9e3779b9;
+  for (let i = 0; i < seed.length; i++) {
+    const c = seed.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 ^ (c + i), 0x85ebca6b) >>> 0;
+  }
+  return h1.toString(36) + h2.toString(36);
+}
+
+function cancionIsValidStripeSessionId(sid) {
+  return typeof sid === 'string' && /^cs_(live|test)_[A-Za-z0-9_]{16,}$/.test(sid.trim());
+}
+
+function cancionIsUnlocked(decoded) {
+  try {
+    if (window.location && window.location.hostname === '127.0.0.1') {
+      const qs = new URLSearchParams(window.location.search);
+      if (qs.get('render') === '1') return true;
+    }
+  } catch (e) {}
+  if (!decoded || typeof decoded !== 'object') return false;
+  if (!decoded.sid || !decoded.u || String(decoded.sid).length < 10) return false;
+  return decoded.u === cancionComputeUnlockSig(decoded);
+}
+
+function cancionBuildShareUrl(order, isPreview, verifiedSessionId) {
   const compact = {
     r: String(order.recipient || 'Mamá Carmen').slice(0, 48),
     s: String(order.sender || 'Tu familia').slice(0, 40),
@@ -113,6 +142,12 @@ function cancionBuildShareUrl(order, isPreview) {
     a: String(order.audioId || 'mama'),
     p: order.plan || 'pack3'
   };
+
+  if (!isPreview && cancionIsValidStripeSessionId(verifiedSessionId)) {
+    compact.sid = verifiedSessionId.trim().slice(-18);
+    compact.u = cancionComputeUnlockSig(compact);
+  }
+
   const encoded = cancionEncodePayload(compact);
   const origin = (window.location && window.location.origin && window.location.origin !== 'null')
     ? window.location.origin
@@ -120,13 +155,14 @@ function cancionBuildShareUrl(order, isPreview) {
   const pathPrefix = window.location.pathname.includes('/cancion/') || window.location.pathname.includes('/gracias/')
     ? '../cancion/'
     : 'cancion/';
-  const rel = `${pathPrefix}?d=${encoded}${isPreview ? '&preview=1' : ''}`;
-  const abs = `${origin}/cancion/?d=${encoded}${isPreview ? '&preview=1' : ''}`;
-  return { rel, abs, token: encoded };
+  const suffix = (!compact.u) ? '&preview=1' : '';
+  const rel = `${pathPrefix}?d=${encoded}${suffix}`;
+  const abs = `${origin}/cancion/?d=${encoded}${suffix}`;
+  return { rel, abs, token: encoded, unlocked: Boolean(compact.u) };
 }
 
 function cancionSavePendingOrder(order) {
-  const ref = 'TCQ-' + Date.now().toString(36).toUpperCase().slice(-6);
+  const ref = order.ref || ('TCQ-' + Date.now().toString(36).toUpperCase().slice(-6));
   const full = Object.assign({}, order, { ref, createdAt: Date.now() });
   try {
     localStorage.setItem('tucancionqr_pending_order', JSON.stringify(full));
@@ -142,12 +178,46 @@ function cancionLoadPendingOrder() {
   }
 }
 
+function cancionSavePaidReceipt(ref, sessionId, unlockedShare) {
+  try {
+    const map = JSON.parse(localStorage.getItem('tucancionqr_paid_receipts') || '{}');
+    map[ref] = { sessionId, share: unlockedShare, paidAt: Date.now() };
+    localStorage.setItem('tucancionqr_paid_receipts', JSON.stringify(map));
+  } catch (e) {}
+}
+
+function cancionLoadPaidReceipt(ref) {
+  try {
+    const map = JSON.parse(localStorage.getItem('tucancionqr_paid_receipts') || '{}');
+    return ref && map[ref] ? map[ref] : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function cancionResolveStripeLink(order) {
+  const cur = order.currency === 'USD' ? 'USD' : 'EUR';
+  const curLinks = CANCION_CONFIG.stripeLinks[cur] || {};
+  const eurLinks = CANCION_CONFIG.stripeLinks.EUR || {};
+  let link = '';
+  if (order.plan === 'single') {
+    link = order.upsellPhoto
+      ? (curLinks.singlePhoto || eurLinks.singlePhoto || curLinks.single || eurLinks.single)
+      : (curLinks.single || eurLinks.single);
+  } else {
+    link = order.upsellPhoto
+      ? (curLinks.pack3Photo || eurLinks.pack3Photo || curLinks.pack3 || eurLinks.pack3)
+      : (curLinks.pack3 || eurLinks.pack3);
+  }
+  return (link && /^https:\/\/(buy\.stripe\.com|checkout\.stripe\.com)\//.test(link)) ? link : '';
+}
+
 async function cancionStartCheckout(order) {
   const saved = cancionSavePendingOrder(order);
   const cur = order.currency === 'USD' ? 'USD' : 'EUR';
-  const share = cancionBuildShareUrl(saved, false);
+  const previewShare = cancionBuildShareUrl(saved, true);
 
-  // 1) Si hay Worker dinámico de Stripe Checkout configurado, crea sesión exacta al céntimo
+  // 1) Worker dinámico de Stripe Checkout Sessions (si está activo)
   if (CANCION_CONFIG.stripeCheckoutWorkerUrl) {
     try {
       const r = await fetch(CANCION_CONFIG.stripeCheckoutWorkerUrl.replace(/\/$/, '') + '/create-checkout', {
@@ -162,12 +232,12 @@ async function cancionStartCheckout(order) {
           sender: saved.sender,
           genre: saved.genre,
           email: saved.email || '',
-          token: share.token
+          token: previewShare.token
         })
       });
       if (r.ok) {
         const d = await r.json();
-        if (d && d.url) {
+        if (d && d.url && /^https:\/\/checkout\.stripe\.com\//.test(d.url)) {
           window.location.href = d.url;
           return { mode: 'stripe_session', ref: saved.ref };
         }
@@ -175,31 +245,19 @@ async function cancionStartCheckout(order) {
     } catch (e) {}
   }
 
-  // 2) Si hay Payment Link de Stripe configurado para este plan, redirige en 1 clic a Stripe Live
-  const links = CANCION_CONFIG.stripeLinks[cur] || CANCION_CONFIG.stripeLinks.EUR;
-  let link = '';
-  if (order.plan === 'single') {
-    link = order.upsellPhoto ? (links.singlePhoto || links.single) : links.single;
-  } else {
-    link = order.upsellPhoto ? (links.pack3Photo || links.pack3) : links.pack3;
-  }
-
-  if (link && /^https:\/\/(buy\.stripe\.com|checkout\.stripe\.com)\//.test(link)) {
+  // 2) Stripe Payment Link oficial (Pago único -> redirige tras cobrar a /gracias/?paid=1&session_id={CHECKOUT_SESSION_ID})
+  const link = cancionResolveStripeLink(saved);
+  if (link) {
     const params = new URLSearchParams();
     params.set('client_reference_id', saved.ref);
     params.set('locale', 'es');
-    if (order.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(order.email)) {
-      params.set('prefilled_email', order.email);
+    if (saved.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(saved.email)) {
+      params.set('prefilled_email', saved.email);
     }
     window.location.href = link + (link.includes('?') ? '&' : '?') + params.toString();
     return { mode: 'stripe_link', ref: saved.ref };
   }
 
-  // 3) Si aún faltan por pegar los Payment Links de 12,90 € / 19,90 € en cancion-config.js,
-  // abre la pantalla de entrega/activación inmediata por WhatsApp + Bizum/Stripe manual sin cobrar otro importe.
-  const thanksPath = window.location.pathname.includes('/cancion/')
-    ? '../gracias/'
-    : 'gracias/';
-  window.location.href = `${thanksPath}?ref=${encodeURIComponent(saved.ref)}&plan=${encodeURIComponent(saved.plan)}&cur=${encodeURIComponent(cur)}&d=${encodeURIComponent(share.token)}&pending_pay=1`;
-  return { mode: 'instant_activation', ref: saved.ref };
+  // 3) BLOQUEO ESTRICTO: NUNCA entregar el producto ni redirigir a /gracias/ sin pago confirmado en Stripe
+  return { mode: 'awaiting_stripe_link', ref: saved.ref };
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex" />
-  <title>Tu canción está lista · TuCanciónQR</title>
+  <title>Entrega de tu canción · TuCanciónQR</title>
   <meta name="theme-color" content="#FFFFFF" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,34 +66,46 @@
       color: var(--ink); border: 1.5px solid #D1D5DB; font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700; font-size: 13.5px; cursor: pointer; text-decoration: none;
     }
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
-  <main class="card">
-    <span class="badge" id="ty-badge"><i class="ph-bold ph-check-circle"></i> Pago confirmado · Entrega inmediata</span>
-    <h1 id="ty-title">Tu canción personalizada está lista</h1>
-    <p id="ty-desc">Guarda tu enlace permanente y tu código QR. Puedes enviarlo por WhatsApp o imprimir la tarjeta ahora mismo.</p>
-    <div class="ref" id="ty-ref">Referencia: TCQ-DEMO</div>
+  <!-- PANTALLA BLOQUEADA SI ALGUIEN ENTRA SIN HABER PAGADO EN STRIPE -->
+  <main class="card" id="unpaid-card">
+    <span class="badge"><i class="ph-bold ph-lock-key"></i> Pago requerido antes de recibir tu canción</span>
+    <h1>Aún no se ha confirmado el pago</h1>
+    <p>Por seguridad, la canción completa en MP3, la mini-web desbloqueada y la tarjeta con código QR solo se generan y entregan automáticamente tras completar el pago único en Stripe.</p>
+    <a class="btn" href="../#precios">
+      <i class="ph-bold ph-lock-simple"></i> Volver y completar pago con Stripe
+    </a>
+  </main>
+
+  <!-- PANTALLA DE ENTREGA EXCLUSIVA POST-PAGO STRIPE (session_id cs_live_...) -->
+  <main class="card hidden" id="paid-card">
+    <span class="badge"><i class="ph-bold ph-check-circle"></i> Pago confirmado en Stripe · Entrega inmediata</span>
+    <h1>Tu canción personalizada está desbloqueada</h1>
+    <p>Guarda tu enlace permanente y tu código QR. Cualquier persona que escanee este código verá la canción completa y toda su letra sin bloqueos.</p>
+    <div class="ref" id="ty-ref">Referencia: —</div>
 
     <div class="delivery-box">
       <div class="qr-out" id="ty-qr"></div>
       <div class="delivery-copy">
-        <b id="ty-song-name">Feliz cumpleaños, Mamá Carmen</b>
-        <span id="ty-song-meta" style="font-size:13px; color:var(--muted);">Pop Acústico · Pago único 0 €/mes</span>
+        <b id="ty-song-name">Tu canción personalizada</b>
+        <span id="ty-song-meta" style="font-size:13px; color:var(--muted);">Pago único confirmado</span>
       </div>
     </div>
 
     <div class="grid-btns">
-      <a class="btn" id="ty-open-web" href="../cancion/" target="_blank" rel="noopener">
-        <i class="ph-bold ph-music-notes"></i> Abrir Mini-Web
+      <a class="btn" id="ty-open-web" href="#" target="_blank" rel="noopener">
+        <i class="ph-bold ph-music-notes"></i> Abrir Mini-Web desbloqueada
       </a>
-      <a class="btn-ghost" id="ty-download-mp3" href="../assets/audio/demo-mama-carmen.mp3" download>
+      <a class="btn-ghost" id="ty-download-mp3" href="#" download>
         <i class="ph-bold ph-download-simple"></i> Descargar MP3
       </a>
     </div>
 
     <a class="btn-ghost" id="ty-wa-backup" href="#" target="_blank" rel="noopener">
-      <i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;"></i> Recibir versión personalizada final por WhatsApp
+      <i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;"></i> Recibir copia en mi WhatsApp
     </a>
   </main>
 
@@ -103,6 +115,21 @@
     (function () {
       const qs = new URLSearchParams(window.location.search);
       const pending = cancionLoadPendingOrder() || {};
+      const sessionId = qs.get('session_id') || '';
+      const ref = qs.get('ref') || pending.ref || '';
+      const savedReceipt = cancionLoadPaidReceipt(ref);
+
+      const isPaidNow = cancionIsValidStripeSessionId(sessionId);
+      const effectiveSession = isPaidNow ? sessionId : (savedReceipt && savedReceipt.sessionId ? savedReceipt.sessionId : '');
+
+      if (!cancionIsValidStripeSessionId(effectiveSession)) {
+        // Bloqueo total: no se renderiza ni QR, ni enlace desbloqueado, ni descarga MP3
+        return;
+      }
+
+      document.getElementById('unpaid-card').classList.add('hidden');
+      document.getElementById('paid-card').classList.remove('hidden');
+
       const token = qs.get('d') || '';
       const decoded = cancionDecodePayload(token) || {};
 
@@ -112,35 +139,32 @@
       const genreId = decoded.g || pending.genre || 'pop_acustico';
       const memory = decoded.m || pending.memory || '';
       const plan = qs.get('plan') || pending.plan || 'pack3';
-      const ref = qs.get('ref') || pending.ref || 'TCQ-LIVE';
+      const finalRef = ref || ('TCQ-' + effectiveSession.slice(-6).toUpperCase());
       const genre = cancionGetGenre(genreId);
       const title = decoded.t || cancionGenerateTitle(recipient, occasion);
 
-      const share = cancionBuildShareUrl({ recipient, sender, occasion, genre: genreId, memory, title, plan }, false);
+      const unlockedShare = cancionBuildShareUrl(
+        { recipient, sender, occasion, genre: genreId, memory, title, plan },
+        false,
+        effectiveSession
+      );
+      cancionSavePaidReceipt(finalRef, effectiveSession, unlockedShare);
 
-      document.getElementById('ty-ref').textContent = `Referencia: ${ref} · Plan: ${plan === 'single' ? 'Canción + QR' : 'Pack Emoción ×3 + Vídeo'}`;
+      document.getElementById('ty-ref').textContent =
+        `Ref: ${finalRef} · Plan: ${plan === 'single' ? 'Canción + QR' : 'Pack Emoción ×3 + Vídeo'}`;
       document.getElementById('ty-song-name').textContent = title;
       document.getElementById('ty-song-meta').textContent = `${genre.label} · Dedicada por ${sender}`;
-      document.getElementById('ty-open-web').href = share.rel;
+      document.getElementById('ty-open-web').href = unlockedShare.rel;
       document.getElementById('ty-download-mp3').href = '../' + genre.audioFile;
 
-      const pendingPay = qs.get('pending_pay') === '1';
-      if (pendingPay) {
-        document.getElementById('ty-badge').innerHTML = '<i class="ph-bold ph-lock-simple"></i> Último paso · Confirmar pago';
-        document.getElementById('ty-title').textContent = 'Completa el pago para desbloquear tu canción';
-        document.getElementById('ty-desc').textContent = 'Tu letra y tu código QR ya están preparados. Pulsa abajo para recibir el enlace de pago por Stripe o Bizum y activar tu canción al instante.';
-        document.getElementById('ty-wa-backup').innerHTML = '<i class="ph-fill ph-whatsapp-logo" style="color:#E11D48;"></i> Solicitar enlace Stripe / Bizum ahora por WhatsApp';
-      }
-
-      const waMsg = pendingPay
-        ? `Hola! Quiero pagar y activar mi canción personalizada (${ref}).\nPlan: ${plan === 'single' ? 'Canción + QR (12,90 €)' : 'Pack ×3 + Vídeo (19,90 €)'}\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}`
-        : `Hola! Acabo de pedir mi canción personalizada (${ref}).\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nRecuerdo: ${memory || 'libre'}\nEnlace mini-web: ${share.abs}`;
-      document.getElementById('ty-wa-backup').href = `https://wa.me/${CANCION_CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+      const waMsg = `Hola! Mi pago en Stripe ya está confirmado (${finalRef}).\nPara: ${recipient}\nDe: ${sender}\nEstilo: ${genre.label}\nEnlace mini-web desbloqueada: ${unlockedShare.abs}`;
+      document.getElementById('ty-wa-backup').href =
+        `https://wa.me/${CANCION_CONFIG.whatsapp}?text=${encodeURIComponent(waMsg)}`;
 
       try {
         if (typeof qrcode === 'function') {
           const qr = qrcode(0, 'M');
-          qr.addData(share.abs);
+          qr.addData(unlockedShare.abs);
           qr.make();
           document.getElementById('ty-qr').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
         }
