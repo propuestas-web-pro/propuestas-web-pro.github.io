@@ -28,18 +28,17 @@ Plataforma comercial de alto volumen pensada para **España, México y Argentina
 
 ---
 
-## 3. Reglas estadísticas de retención programadas en el motor de vídeo
+## 3. Reglas estadísticas de retención programadas en el motor V3 (Formato Nativo Viral)
 
-Cada vídeo generado por `generar_3_videos.py` aplica obligatoriamente estos parámetros empíricos (prohibido editar «a ojo»):
+Cero diapositivas corporativas y cero terminales de programador. Cada vídeo generado por `generar_3_videos.py` replica la estructura nativa de mayor retención en **Instagram Reels, Facebook Reels y YouTube Shorts**:
 
-| Regla | Dato estadístico de referencia | Implementación fija en código (Motor V2) |
+| Acto / Regla | Por qué retiene (evidencia de mercado) | Implementación en Motor V3 (`stage_viral_v3.html`) |
 | :--- | :--- | :--- |
-| **Gancho en `t = 0.00 s` + Cero voces solapadas** | 70–71 % decide si desliza en los primeros 3 s (Meta mide desde `1,3 s`). | Sin saludos ni intros y **nunca 2 voces hablando a la vez**: voz `Orus Studio HD` cristalina sobre base 100 % instrumental Neo-Soul Rhodes (`music_synth.py`) con sidechain automático. |
-| **Claridad narrativa (5 capítulos anclados)** | La retención cae si la pantalla confunde al espectador. | Carril vertical izquierdo progresivo (`01` a `05`) + consola inferior viva + cambio de escena disparado **en el milisegundo exacto** de la palabra clave (`faster-whisper`). |
-| **Velocidad de locución natural** | Corto entendible y ágil: `150 – 175 WPM` sin pausas largas ni voz estirada. | Voz `Orus Studio HD` (`gemini-3.8-flash-tts`), recorte suave de pausas `> 0,22 s` a `0,085 s` sin deformar el timbre (`atempo` máx `0.91–1.08`). |
-| **Subtítulos arriba a la altura de los ojos** | +12 % de tiempo medio visto y comprensión instantánea sin sonido. | Subtítulos enormes (`64 px`) de `2–3 palabras` en la parte superior con píldora `#E11D48` activa palabra a palabra, sin cortar preposiciones y lejos de los botones de IG/FB/YT. |
-| **Mix de duraciones diario** | Máxima completación: `21–34 s`. Máximo AVD en YouTube Shorts (estudio Paddy Galloway, 3.300 M vistas): `48–58 s`. | Los **3 vídeos diarios** rotan siempre: **2 vídeos rápidos (`26–30 s`)** para Shares/Completación + **1 vídeo storytelling (`46–52 s`)** para AVD en Shorts y FB Reels. |
-| **Masterización y limpieza API** | Cero marcas de agua, audio potente y metadatos limpios. | H.264 `CRF 15`, `1080×1920`, AAC `192 kbps` a **`-11.8 LUFS`**, `-map_metadata -1`, + `info.json` listo para API. |
+| **Acto 1 (`0–6 s`) · Drama real de WhatsApp** | El formato *WhatsApp/iMessage Story* dispara el instinto de curiosidad («cotilleo») y rompe el aspecto de anuncio en los primeros `1,3–3 s`. | Chat real de WhatsApp en modo oscuro sobre plano vertical `9:16` con movimiento de cámara en mano, burbujas en vivo y SFX auténticos de WhatsApp (`«Se me olvidó el cumple 15 min antes»`). |
+| **Acto 2 (`6–13 s`) · Demo real del móvil** | Ver la web real funcionando en un iPhone (no dibujos) dispara la confianza y los guardados. | `iframe` real en vivo de `miweblocal.com` en formato iPhone escribiendo el nombre, eligiendo estilo y bajando hasta el código QR real. |
+| **Acto 3 (`13–19 s`) · Escaneo POV del QR** | Puente físico→digital (formato Loveyuu/Songfinch): las esquinas amarillas de cámara iOS crean suspense inmediato. | Plano vertical `9:16` POV + interfaz nativa de Cámara iOS bloqueando el QR + banner amarillo `miweblocal.com ↗` + sonido de enfoque. |
+| **Acto 4 (`19–29 s`) · Reacción + Notificaciones WA** | El contagio emocional (lágrimas reales) + prueba social en comentarios dispara los **Envíos por DM (Shares)** en IG y FB. | Plano `9:16` de madre emocionada llorando frente al móvil + notificaciones iOS reales de `Mamá ❤️` y `Hermano` pidiendo el enlace + CTA orgánico (`COMENTA «CANCIÓN»`). |
+| **Audio y subtítulos nativos** | Subtítulos nativos suben `+12 %` watch time; voz natural sin deformar evita rechazo. | Voz 1.0x sin `atempo` (`Orus` en tono anécdota) + balada acústica emotiva in crescendo + subtítulos blancos/amarillos estilo CapCut en zona segura + `-11.8 LUFS` y `-map_metadata -1`. |
 
 ---
 
