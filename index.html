@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>TuCanciónQR · Canción Personalizada + QR · Hoy 0,99 € (-92 %)</title>
   <meta name="description" content="Regala una canción real con su nombre + sobre privado + tarjeta QR en 2 minutos. Oferta lanzamiento: 0,99 € (antes 12,90 €)." />
-  <meta name="theme-color" content="#111318" />
+  <meta name="theme-color" content="#0F1115" />
   <meta property="og:title" content="TuCanciónQR · Canción con su nombre + QR · Hoy 0,99 €" />
   <meta property="og:description" content="Escucha el adelanto gratis. MP3 de estudio, sobre privado y tarjeta QR imprimible por 0,99 € pago único." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,7 +26,7 @@
   <style>
     :root {
       --bg: #FFFFFF;
-      --tint: #F6F7F9;
+      --tint: #F5F6F8;
       --ink: #0F1115;
       --ink-2: #272B35;
       --muted: #525B6B;
@@ -47,7 +47,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; scroll-padding-top: 62px; -webkit-text-size-adjust: 100%; }
     body {
       background: var(--bg);
       color: var(--ink);
@@ -60,29 +60,24 @@
     button, input { font-family: inherit; }
     button, a, summary { touch-action: manipulation; }
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
     .num { font-variant-numeric: tabular-nums; }
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
     @media (min-width: 768px) { .wrap { padding: 0 24px; } }
 
-    /* 1. TOP URGENCY BAR (SINGLE CRISP LINE) */
+    /* 1. TOP URGENCY BAR */
     .top-bar {
-      background: var(--ink);
-      color: #FFFFFF;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 700;
+      background: var(--ink); color: #FFFFFF;
+      padding: 7px 10px; font-size: 12px; font-weight: 700;
     }
     .top-bar-inner {
       max-width: 1120px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: nowrap;
-      white-space: nowrap;
+      display: flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap;
     }
     .tb-pill {
       background: var(--accent); color: #FFFFFF; font-family: var(--mono);
       font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 5px;
     }
-    .tb-old { text-decoration: line-through; opacity: 0.58; font-weight: 500; }
+    .tb-old { text-decoration: line-through; opacity: 0.56; font-weight: 500; }
     .tb-new { color: var(--gold); font-family: var(--display); font-weight: 800; }
     .tb-time {
       display: inline-flex; align-items: center; gap: 4px;
@@ -91,7 +86,7 @@
     }
     @media (max-width: 420px) { .tb-hide { display: none; } }
 
-    /* 2. ULTRA-CLEAN HEADER */
+    /* 2. CLEAN HEADER */
     .nav-shell {
       position: sticky; top: 0; z-index: 60;
       background: rgba(255, 255, 255, 0.94);
@@ -99,12 +94,12 @@
       border-bottom: 1px solid var(--line);
     }
     .nav {
-      max-width: 1120px; margin: 0 auto; height: 52px; padding: 0 16px;
+      max-width: 1120px; margin: 0 auto; height: 50px; padding: 0 16px;
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .brand {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.03em;
+      font-family: var(--display); font-weight: 800; font-size: 1.04rem; letter-spacing: -0.03em;
     }
     .brand-mark {
       width: 28px; height: 28px; border-radius: 8px; background: var(--accent);
@@ -129,14 +124,13 @@
       background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     }
     .nav-cta {
-      display: none; align-items: center; gap: 6px;
-      height: 36px; padding: 0 15px; border-radius: 999px;
+      display: none; align-items: center; gap: 6px; height: 36px; padding: 0 15px; border-radius: 999px;
       background: var(--accent); color: #FFFFFF; font-family: var(--display);
       font-weight: 800; font-size: 13px; border: 0; cursor: pointer;
     }
     @media (min-width: 768px) { .nav-cta { display: inline-flex; } .nav { height: 58px; padding: 0 24px; } }
 
-    /* 3. SHOPIFY PDP HERO (IMAGE FIRST ON MOBILE, 2-COL ON DESKTOP) */
+    /* 3. HERO: LIVE INTERACTIVE PRODUCT SHOWCASE + BUY BOX (ZERO CROPPED PHOTOS!) */
     .pdp {
       padding: 14px 0 28px;
       background: linear-gradient(180deg, #FFFFFF 0%, var(--tint) 100%);
@@ -144,94 +138,164 @@
     }
     @media (min-width: 900px) { .pdp { padding: 34px 0 48px; } }
     .pdp-grid {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start;
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start;
     }
     .pdp-grid > * { min-width: 0; max-width: 100%; }
     @media (min-width: 900px) {
-      .pdp-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; align-items: start; }
+      .pdp-grid { grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 38px; align-items: start; }
     }
 
-    /* VISUAL PRODUCT GALLERY */
-    .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; max-width: 100%; }
-    .gallery > * { min-width: 0; max-width: 100%; }
-    .gallery-stage {
-      position: relative; border-radius: 20px; overflow: hidden;
-      aspect-ratio: 4 / 3; background: #141418;
-      border: 1px solid var(--line);
-      box-shadow: 0 20px 44px -24px rgba(15, 17, 21, 0.25);
+    /* LIVE INTERACTIVE DARK LUXURY PRODUCT STAGE (UPDATES WITH RECIPIENT NAME IN REAL TIME) */
+    .stage-card {
+      position: relative;
+      border-radius: 22px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(225, 29, 72, 0.34), transparent 52%),
+        radial-gradient(circle at 86% 82%, rgba(245, 158, 11, 0.24), transparent 52%),
+        linear-gradient(155deg, #16111B 0%, #0E0D14 55%, #19101C 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 50px -22px rgba(15, 17, 21, 0.55);
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px;
+      overflow: hidden;
     }
-    @media (max-width: 640px) { .gallery-stage { aspect-ratio: 16 / 11; border-radius: 18px; } }
-    .gallery-stage img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
-      transition: transform 0.35s var(--ease);
+    @media (min-width: 768px) { .stage-card { padding: 22px; gap: 18px; } }
+
+    .stage-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
     }
-    .gallery-stage::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.26) 0%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.56) 100%);
-    }
-    .gal-badge-top {
-      position: absolute; top: 12px; left: 12px; z-index: 2;
-      background: rgba(15, 17, 21, 0.84); backdrop-filter: blur(8px); color: #FFFFFF;
-      font-family: var(--mono); font-size: 11px; font-weight: 700;
-      padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.16);
+    .stage-live {
       display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 4px 10px; border-radius: 999px; font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+      color: #F3F4F6;
     }
-    .gal-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; }
-    .gal-badge-off {
-      position: absolute; top: 12px; right: 12px; z-index: 2;
+    .stage-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.24); }
+    .stage-off {
       background: var(--accent); color: #FFFFFF; font-family: var(--display);
-      font-size: 12px; font-weight: 800; padding: 5px 11px; border-radius: 999px;
-      box-shadow: 0 8px 20px rgba(225, 29, 72, 0.45);
+      font-size: 11.5px; font-weight: 800; padding: 4px 10px; border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(225, 29, 72, 0.45);
     }
 
-    /* FLOATING LIVE PLAY BAR RIGHT ON TOP OF THE HERO PHOTO */
-    .gal-play-bar {
-      position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 3;
-      background: rgba(15, 17, 21, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 16px;
-      padding: 9px 12px; display: flex; align-items: center; gap: 11px; color: #FFFFFF;
-      cursor: pointer;
+    /* PHYSICAL GIFT CARD + SPINNING VINYL MOCKUP (100% CRISP VECTOR, NEVER CROPPED) */
+    .product-visual {
+      display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center;
+      padding: 4px 0;
+    }
+    .gift-card-mock {
+      background: linear-gradient(155deg, #FFFDF9 0%, #F7EFE3 100%);
+      color: var(--ink);
+      border: 2px solid rgba(212, 164, 70, 0.72);
+      border-radius: 16px;
+      padding: 13px 14px;
+      box-shadow: 0 18px 34px -14px rgba(0, 0, 0, 0.65);
+      display: grid; gap: 6px;
+      position: relative;
+      z-index: 2;
+    }
+    .gc-kicker {
+      font-family: var(--mono); font-size: 9.5px; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .gc-name {
+      font-family: var(--display); font-size: clamp(1.05rem, 3.6vw, 1.35rem);
+      font-weight: 800; line-height: 1.12; color: var(--ink);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .gc-sub { font-size: 11.5px; color: var(--muted); font-weight: 600; }
+    .gc-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding-top: 6px; margin-top: 2px; border-top: 1px solid rgba(15, 17, 21, 0.08);
+    }
+    .gc-tag {
+      font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--ink-2);
+      background: rgba(15, 17, 21, 0.06); padding: 3px 7px; border-radius: 6px;
+    }
+    .gc-qr-mini {
+      position: relative; width: 46px; height: 46px; border-radius: 8px;
+      background: #FFFFFF; border: 1px solid #E5D5B7; padding: 3px; flex-shrink: 0;
+    }
+    .gc-qr-mini.locked svg { filter: blur(3.5px); opacity: 0.34; pointer-events: none; }
+    .gc-qr-mini svg { width: 100%; height: 100%; display: block; }
+    .gc-qr-lock {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      color: var(--accent); font-size: 15px; background: rgba(255, 255, 255, 0.52); border-radius: 7px;
+    }
+
+    /* SPINNING VINYL DISC BESIDE THE CARD */
+    .vinyl-wrap {
+      width: 112px; height: 112px; position: relative; flex-shrink: 0;
+      display: grid; place-items: center;
+    }
+    @media (min-width: 768px) { .vinyl-wrap { width: 146px; height: 146px; } }
+    .vinyl-disc {
+      width: 100%; height: 100%; border-radius: 50%;
+      background:
+        repeating-radial-gradient(circle at center, #111116 0px, #111116 3px, #23232C 4px, #111116 5.5px);
+      border: 2px solid rgba(253, 224, 71, 0.4);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.65), inset 0 0 16px rgba(255, 255, 255, 0.08);
+      display: grid; place-items: center;
+      animation: spinSlow 14s linear infinite;
+      animation-play-state: paused;
+    }
+    .playing .vinyl-disc { animation-play-state: running; }
+    @keyframes spinSlow { to { transform: rotate(360deg); } }
+    .vinyl-label {
+      width: 46%; height: 46%; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #881337 100%);
+      border: 2.5px solid var(--gold);
+      display: grid; place-items: center; position: relative;
+    }
+    .vinyl-hole { width: 10px; height: 10px; border-radius: 50%; background: #0E0D14; }
+
+    /* LIVE AUDIO PLAY BAR INSIDE STAGE */
+    .stage-player {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px; padding: 10px 12px;
+      display: flex; align-items: center; gap: 11px; cursor: pointer;
     }
     .play-fab {
-      width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
       background: var(--accent); color: #FFFFFF; flex-shrink: 0;
       display: grid; place-items: center; font-size: 18px;
       box-shadow: 0 8px 20px rgba(225, 29, 72, 0.55);
       transition: transform 0.15s var(--ease);
     }
     .play-fab:active { transform: scale(0.94); }
-    .gal-play-mid { flex: 1; min-width: 0; display: grid; gap: 4px; }
-    .gal-play-title {
-      font-family: var(--display); font-size: 13px; font-weight: 800;
+    .sp-mid { flex: 1; min-width: 0; display: grid; gap: 5px; }
+    .sp-title {
+      font-family: var(--display); font-size: 13px; font-weight: 800; color: #FFFFFF;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .gal-wave { height: 18px; display: flex; align-items: center; gap: 2.5px; }
     .gal-wave span {
-      flex: 1; border-radius: 99px; background: rgba(255, 255, 255, 0.28); height: var(--h, 40%);
+      flex: 1; border-radius: 99px; background: rgba(255, 255, 255, 0.24); height: var(--h, 40%);
       transition: background 0.16s ease;
     }
     .gal-wave span.lit { background: var(--gold); }
-    .playing .gal-wave span.lit { animation: waveB 0.8s ease-in-out infinite alternate; }
-    @keyframes waveB { from { transform: scaleY(0.7); } to { transform: scaleY(1.15); } }
-    .gal-time { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, 0.82); flex-shrink: 0; }
+    .playing .gal-wave span.lit { animation: waveB 0.75s ease-in-out infinite alternate; }
+    @keyframes waveB { from { transform: scaleY(0.68); } to { transform: scaleY(1.16); } }
+    .sp-time { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, 0.8); flex-shrink: 0; }
 
-    .thumbs {
-      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;
+    /* LIVE 2-LINE CHORUS PREVIEW INSIDE STAGE */
+    .stage-lyrics {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 12px; padding: 9px 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
-    .thumb {
-      border: 2px solid transparent; border-radius: 12px; overflow: hidden; padding: 0;
-      aspect-ratio: 16 / 10; cursor: pointer; background: #E5E7EB; position: relative;
-      transition: border-color 0.16s ease, transform 0.14s var(--ease);
+    .stage-lyrics-txt {
+      font-size: 12px; color: rgba(255, 255, 255, 0.84); line-height: 1.38; font-style: italic;
+      min-width: 0; flex: 1;
     }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
-    .thumb[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-ring); }
-    .thumb span {
-      position: absolute; left: 4px; bottom: 4px; right: 4px;
-      background: rgba(15, 17, 21, 0.72); color: #FFFFFF; font-size: 10px; font-weight: 700;
-      padding: 2px 5px; border-radius: 6px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    .stage-lyrics a {
+      font-family: var(--display); font-size: 11.5px; font-weight: 800; color: var(--gold);
+      white-space: nowrap; flex-shrink: 0;
     }
 
-    /* RIGHT BUY BOX (CLEAN, ZERO WALLS OF TEXT) */
+    /* RIGHT BUY BOX */
     .buy-box {
       background: #FFFFFF; border: 1px solid var(--line); border-radius: 20px;
       padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px;
@@ -260,24 +324,24 @@
     .pdp-title em { font-style: normal; color: var(--accent); }
 
     .price-row {
-      display: flex; align-items: center; gap: 8px; flex-wrap: nowrap;
-      padding: 10px 12px; border-radius: 14px; background: var(--tint); border: 1px solid var(--line);
+      display: flex; align-items: center; gap: 7px; flex-wrap: nowrap;
+      padding: 10px 11px; border-radius: 14px; background: var(--tint); border: 1px solid var(--line);
     }
     .price-now {
-      font-family: var(--display); font-size: 1.72rem; font-weight: 900; line-height: 1; color: var(--ink); white-space: nowrap;
+      font-family: var(--display); font-size: 1.68rem; font-weight: 900; line-height: 1; color: var(--ink); white-space: nowrap;
     }
     .price-old {
-      font-size: 0.95rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700; white-space: nowrap;
+      font-size: 0.92rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700; white-space: nowrap;
     }
     .price-badge {
       background: var(--accent); color: #FFFFFF; font-family: var(--mono); white-space: nowrap;
-      font-size: 10.5px; font-weight: 800; padding: 4px 7px; border-radius: 7px;
+      font-size: 10px; font-weight: 800; padding: 3.5px 7px; border-radius: 6px;
     }
     .price-timer {
       margin-left: auto; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap;
     }
 
-    /* 1-LINE SWIPEABLE CHIPS (ZERO VERTICAL BLOAT ON MOBILE!) */
+    /* 1-LINE SWIPEABLE CHIPS */
     .step-lbl {
       font-size: 12px; font-weight: 800; color: var(--ink);
       display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;
@@ -291,14 +355,11 @@
     .chip {
       border: 1.5px solid var(--line); background: var(--tint); color: var(--ink-2);
       border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700;
-      white-space: nowrap; flex-shrink: 0; cursor: pointer;
-      transition: all 0.15s ease;
+      white-space: nowrap; flex-shrink: 0; cursor: pointer; transition: all 0.15s ease;
     }
-    .chip[aria-pressed="true"] {
-      background: var(--ink); border-color: var(--ink); color: #FFFFFF;
-    }
+    .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #FFFFFF; }
 
-    .input-row { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .input-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
     .input {
       width: 100%; height: 46px; padding: 0 14px; border-radius: 12px;
       border: 1.5px solid var(--line-strong); background: #FFFFFF; color: var(--ink);
@@ -315,29 +376,20 @@
     .opt-more summary::-webkit-details-marker { display: none; }
     .opt-more-grid { margin-top: 8px; display: grid; gap: 8px; }
 
-    /* MAIN BUY & PREVIEW BUTTONS */
     .btn-buy {
-      width: 100%; height: 54px; border-radius: 14px; border: 0; cursor: pointer;
+      width: 100%; height: 54px; padding: 0 14px; border-radius: 14px; border: 0; cursor: pointer;
       background: var(--accent); color: #FFFFFF;
-      font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap;
       box-shadow: 0 14px 28px -10px rgba(225, 29, 72, 0.52);
       transition: transform 0.16s var(--ease), background 0.16s ease;
     }
     .btn-buy:hover { background: var(--accent-hi); transform: translateY(-1px); }
     .btn-buy:active { transform: scale(0.98); }
-    .btn-buy s { opacity: 0.72; font-weight: 600; font-size: 14px; }
-
-    .btn-sec {
-      width: 100%; height: 44px; border-radius: 12px; border: 1.5px solid var(--line-strong);
-      background: #FFFFFF; color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 13.5px;
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer;
-    }
-    .btn-sec:hover { border-color: var(--ink); }
+    .btn-buy s { opacity: 0.72; font-weight: 600; font-size: 13.5px; white-space: nowrap; }
 
     .micro-trust {
       display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;
-      padding-top: 4px;
     }
     .mt-item {
       background: var(--tint); border-radius: 10px; padding: 7px 4px;
@@ -346,123 +398,90 @@
     }
     .mt-item i { color: var(--accent); font-size: 16px; }
 
-    /* COMPACT LIVE MINI-PREVIEW DRAWER (ONLY WHEN USER TESTS OR CLICKS) */
-    .live-preview-mini {
-      background: var(--tint); border: 1px solid var(--line); border-radius: 14px;
-      padding: 12px; display: grid; gap: 10px;
-    }
-    .lpm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .lpm-top b { font-family: var(--display); font-size: 13.5px; }
-    .lpm-top a { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
-    .lpm-lyrics {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 10px;
-      padding: 10px 12px; font-size: 12.5px; color: var(--ink-2); line-height: 1.45;
-    }
-    .lpm-qr-row {
-      display: flex; align-items: center; gap: 10px;
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px;
-    }
-    .qr-box-wrap { position: relative; width: 54px; height: 54px; flex-shrink: 0; }
-    .qr-box {
-      width: 54px; height: 54px; border-radius: 8px; border: 1px solid var(--line);
-      background: #FFFFFF; padding: 4px; display: grid; place-items: center;
-    }
-    .qr-box.locked svg { filter: blur(4px); opacity: 0.34; pointer-events: none; }
-    .qr-lock-badge {
-      position: absolute; inset: 0; display: grid; place-items: center;
-      color: var(--accent); font-size: 17px; background: rgba(255, 255, 255, 0.6); border-radius: 8px;
-    }
-    .qr-box svg { width: 100%; height: 100%; }
-    .lpm-qr-copy { font-size: 12px; color: var(--muted); line-height: 1.3; }
-    .lpm-qr-copy b { display: block; color: var(--ink); font-size: 12.5px; }
-
-    /* VISUAL SECTIONS BELOW FOLD (ULTRA SHORT, 80% IMAGERY) */
-    section.band { padding: 34px 0; }
+    /* SECTIONS BELOW FOLD (100% CLEAN PRODUCT UI, ZERO CROPPED PHOTOS) */
+    section.band { padding: 30px 0; }
     section.band-tint { background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .sec-title {
-      font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.7rem);
-      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px;
+      font-family: var(--display); font-size: clamp(1.18rem, 2.5vw, 1.65rem);
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px;
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
-    .sec-title small { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 700; }
+    .sec-title small { font-family: var(--mono); font-size: 10.5px; color: var(--accent); font-weight: 700; white-space: nowrap; flex-shrink: 0; }
 
-    /* 4 VISUAL AUDIO DEMO CARDS (SWIPEABLE ON MOBILE, 4-COL ON DESKTOP) */
-    .visual-strip {
-      display: grid; grid-auto-flow: column; grid-auto-columns: 74%; gap: 12px;
-      overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px;
-      scrollbar-width: none;
+    /* 4 SPOTIFY-STYLE PLAYABLE DEMO CARDS */
+    .demo-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
     }
-    .visual-strip::-webkit-scrollbar { display: none; }
-    @media (min-width: 768px) {
-      .visual-strip { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
+    .demo-grid > * { min-width: 0; max-width: 100%; }
+    @media (min-width: 720px) { .demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .track-card {
+      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 16px;
+      padding: 11px 12px; display: flex; align-items: center; gap: 10px;
+      min-width: 0; max-width: 100%; overflow: hidden;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
     }
-    .demo-card {
-      scroll-snap-align: start; background: #FFFFFF; border: 1.5px solid var(--line);
-      border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
-      transition: border-color 0.16s ease;
+    .track-card.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+    .track-cover {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      display: grid; place-items: center; color: #FFFFFF; font-size: 21px;
+      position: relative;
     }
-    .demo-card.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
-    .demo-img-wrap { position: relative; aspect-ratio: 16 / 10; background: #141418; overflow: hidden; }
-    .demo-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-    .demo-img-wrap .play-fab {
-      position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; font-size: 16px;
+    .track-info { flex: 1; min-width: 0; overflow: hidden; }
+    .track-info h3 {
+      font-family: var(--display); font-size: 14px; font-weight: 800; line-height: 1.2;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .demo-tag {
-      position: absolute; left: 10px; top: 10px;
-      background: rgba(15, 17, 21, 0.78); color: #FFFFFF; font-size: 10.5px; font-weight: 700;
-      padding: 3px 8px; border-radius: 999px;
+    .track-info span {
+      font-size: 11.5px; color: var(--muted); font-weight: 600; display: block; margin-top: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .demo-body { padding: 11px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .demo-body h3 { font-family: var(--display); font-size: 14px; font-weight: 800; line-height: 1.2; }
-    .demo-body span { font-size: 11.5px; color: var(--muted); display: block; }
-    .demo-dur { font-family: var(--mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .track-meta { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .track-dur { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .track-card .play-fab { width: 38px; height: 38px; font-size: 15px; box-shadow: none; }
 
-    /* 3 VISUAL DELIVERABLE CARDS */
-    .visual-3 {
-      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
-    }
-    @media (max-width: 640px) {
-      .visual-3 { grid-template-columns: 1fr; gap: 10px; }
-      .v3-card { flex-direction: row !important; align-items: center; }
-      .v3-card img { width: 108px !important; height: 84px !important; aspect-ratio: auto !important; flex-shrink: 0; }
-    }
-    .v3-card {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px;
-      overflow: hidden; display: flex; flex-direction: column;
-    }
-    .v3-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center 25%; }
-    .v3-body { padding: 12px 14px; }
-    .v3-body b { display: block; font-family: var(--display); font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
-    .v3-body span { font-size: 12.5px; color: var(--muted); }
-
-    /* COMPACT VISUAL REVIEWS (1 LINE EACH) */
-    .rev-grid {
+    /* 3 CRISP VECTOR DELIVERABLE CARDS */
+    .deliv-3 {
       display: grid; grid-template-columns: 1fr; gap: 10px;
     }
+    @media (min-width: 720px) { .deliv-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+    .d3-card {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px;
+      padding: 15px; display: flex; align-items: center; gap: 13px;
+    }
+    .d3-ico {
+      width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+      display: grid; place-items: center; font-size: 23px;
+      background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border);
+    }
+    .d3-card b { display: block; font-family: var(--display); font-size: 14.5px; margin-bottom: 2px; }
+    .d3-card span { font-size: 12.5px; color: var(--muted); }
+
+    /* COMPACT REVIEWS */
+    .rev-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
     @media (min-width: 720px) { .rev-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (min-width: 1024px) { .rev-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
     .rev-card {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 14px;
-      display: grid; gap: 7px;
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 13px 14px;
+      display: grid; gap: 6px;
     }
     .rev-top { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
     .rev-card p { font-size: 13px; color: var(--ink-2); font-weight: 500; }
     .rev-who { font-size: 11.5px; color: var(--muted); font-weight: 700; }
 
-    /* COMPACT FINAL OFFER CARD */
+    /* FINAL IMPULSE OFFER */
     .final-offer {
-      background: var(--ink); color: #FFFFFF; border-radius: 22px; padding: 24px 20px;
+      background: linear-gradient(155deg, #15101A 0%, #0F1115 100%);
+      color: #FFFFFF; border-radius: 22px; padding: 24px 18px;
       display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
     }
-    .final-offer h2 { font-family: var(--display); font-size: clamp(1.4rem, 3.2vw, 2rem); line-height: 1.1; }
+    .final-offer h2 { font-family: var(--display); font-size: clamp(1.35rem, 3.2vw, 1.95rem); line-height: 1.1; }
     .final-offer .fo-prices { display: flex; align-items: baseline; gap: 10px; font-family: var(--display); }
-    .final-offer s { color: rgba(255, 255, 255, 0.5); font-size: 1.15rem; }
-    .final-offer strong { color: var(--gold); font-size: 2.4rem; line-height: 1; }
+    .final-offer s { color: rgba(255, 255, 255, 0.48); font-size: 1.1rem; }
+    .final-offer strong { color: var(--gold); font-size: 2.35rem; line-height: 1; }
     .final-offer .btn-buy { max-width: 360px; }
     .final-offer small { font-size: 12px; color: rgba(255, 255, 255, 0.72); }
 
-    /* COMPACT 3-LINE FAQ */
-    .faq-list { display: grid; gap: 8px; max-width: 720px; margin: 0 auto; }
+    .faq-list { display: grid; gap: 8px; max-width: 720px; margin: 0 auto; width: 100%; }
     .faq-item { background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px; }
     .faq-item summary {
       font-family: var(--display); font-weight: 700; font-size: 14px; cursor: pointer;
@@ -476,7 +495,7 @@
     /* CHECKOUT MODAL */
     .modal-backdrop {
       position: fixed; inset: 0; z-index: 90;
-      background: rgba(15, 17, 21, 0.6); backdrop-filter: blur(6px);
+      background: rgba(15, 17, 21, 0.62); backdrop-filter: blur(6px);
       display: none; align-items: center; justify-content: center; padding: 14px;
     }
     .modal-backdrop.open { display: flex; }
@@ -564,7 +583,7 @@
   <div class="top-bar" role="region" aria-label="Oferta hoy">
     <div class="top-bar-inner">
       <span class="tb-pill">-92 % HOY</span>
-      <span><span class="tb-hide">Oferta lanzamiento: </span><span class="tb-old" data-price="singleOld">12,90 €</span> → <span class="tb-new" data-price="single">0,99 €</span></span>
+      <span><span class="tb-hide">Oferta prueba: </span><span class="tb-old" data-price="singleOld">12,90 €</span> → <span class="tb-new" data-price="single">0,99 €</span></span>
       <span class="tb-time num"><i class="ph-bold ph-clock" aria-hidden="true"></i> <span data-countdown>14:59</span></span>
     </div>
   </div>
@@ -587,52 +606,63 @@
   </header>
 
   <main>
-    <!-- 3. VISUAL PDP HERO (PHOTO + AUDIO PLAY FIRST, COMPACT BUY BOX) -->
+    <!-- 3. INTERACTIVE PRODUCT HERO (LIVE GIFT CARD + SPINNING VINYL + AUDIO PLAY) -->
     <section class="pdp" id="crear">
       <div class="wrap pdp-grid">
-        <!-- LEFT/TOP: VISUAL GALLERY WITH LIVE AUDIO PLAYER ON THE PHOTO -->
-        <div class="gallery">
-          <div class="gallery-stage" id="hero-player">
-            <img id="main-gal-img" src="assets/cancion/regalo-qr.jpg" alt="Persona escaneando una tarjeta QR con su canción personalizada" />
-            <span class="gal-badge-top"><span class="gal-dot"></span> <span id="gal-caption">Escanea el QR y suena</span></span>
-            <span class="gal-badge-off">-92 %</span>
+        <!-- LEFT/TOP: LIVE PRODUCT PREVIEW STAGE (UPDATES AS USER TYPES!) -->
+        <div class="stage-card" id="hero-player">
+          <div class="stage-top">
+            <span class="stage-live"><span class="stage-dot"></span> Vista previa en vivo</span>
+            <span class="stage-off">-92 % HOY</span>
+          </div>
 
-            <div class="gal-play-bar" id="hero-play-bar" role="button" tabindex="0" aria-label="Escuchar canción real">
-              <button type="button" class="play-fab" id="hero-play-btn" aria-label="Reproducir">
-                <i class="ph-fill ph-play" aria-hidden="true"></i>
-              </button>
-              <div class="gal-play-mid">
-                <div class="gal-play-title" id="hero-track-title">▶ Escucha un ejemplo real (Mamá Carmen)</div>
-                <div class="gal-wave" id="hero-wave" aria-hidden="true"></div>
+          <div class="product-visual">
+            <div class="gift-card-mock">
+              <span class="gc-kicker" id="gc-tag">CUMPLEAÑOS · QR</span>
+              <div class="gc-name" id="mw-title">Mamá Carmen</div>
+              <div class="gc-sub" id="gc-from">De parte de Tus hijos</div>
+              <div class="gc-foot">
+                <span class="gc-tag" id="gc-genre">Pop Acústico</span>
+                <div class="gc-qr-mini locked" id="hero-qr" aria-label="QR bloqueado hasta pagar">
+                  <span class="gc-qr-lock" aria-hidden="true"><i class="ph-fill ph-lock-key"></i></span>
+                </div>
               </div>
-              <span class="gal-time num" id="hero-time">0:15</span>
+            </div>
+
+            <div class="vinyl-wrap" aria-hidden="true">
+              <div class="vinyl-disc">
+                <div class="vinyl-label">
+                  <div class="vinyl-hole"></div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="thumbs" id="gal-thumbs" role="group" aria-label="Fotos del regalo">
-            <button type="button" class="thumb" data-img="assets/cancion/regalo-qr.jpg" data-cap="Escanea el QR y suena" aria-pressed="true">
-              <img src="assets/cancion/regalo-qr.jpg" alt="Escaneo QR" /><span>Tarjeta QR</span>
+          <div class="stage-player" id="hero-play-bar" role="button" tabindex="0" aria-label="Escuchar adelanto real">
+            <button type="button" class="play-fab" id="hero-play-btn" aria-label="Reproducir">
+              <i class="ph-fill ph-play" aria-hidden="true"></i>
             </button>
-            <button type="button" class="thumb" data-img="assets/cancion/ugc_mama_reaccion.jpg" data-cap="Reacción al oír su nombre" aria-pressed="false">
-              <img src="assets/cancion/ugc_mama_reaccion.jpg" alt="Reacción real" /><span>Reacción</span>
-            </button>
-            <button type="button" class="thumb" data-img="assets/cancion/ugc_qr_pov.jpg" data-cap="Lista para imprimir o WhatsApp" aria-pressed="false">
-              <img src="assets/cancion/ugc_qr_pov.jpg" alt="Sobre regalo" /><span>Sobre + QR</span>
-            </button>
-            <button type="button" class="thumb" data-img="assets/cancion/familia-celebracion.jpg" data-cap="Para familia, pareja o amigos" aria-pressed="false">
-              <img src="assets/cancion/familia-celebracion.jpg" alt="Celebración" /><span>Para todos</span>
-            </button>
+            <div class="sp-mid">
+              <div class="sp-title" id="hero-track-title">Escuchar adelanto real (Pop Acústico)</div>
+              <div class="gal-wave" id="hero-wave" aria-hidden="true"></div>
+            </div>
+            <span class="sp-time num" id="hero-time">0:15</span>
+          </div>
+
+          <div class="stage-lyrics">
+            <div class="stage-lyrics-txt" id="mw-lyrics">“Hoy cantamos fuerte tu nombre, Mamá Carmen...”</div>
+            <a href="cancion/?preview=1" id="open-full-miniweb" target="_blank" rel="noopener">Abrir sobre ↗</a>
           </div>
         </div>
 
-        <!-- RIGHT/BOTTOM: ZERO-FLUFF PDP BUY BOX -->
+        <!-- RIGHT/BOTTOM: DIRECT BUY BOX -->
         <form class="buy-box" id="song-wizard" novalidate>
           <div class="rating-row">
-            <span class="stars" aria-label="Valoración 4,9 sobre 5">
+            <span class="stars" aria-label="4,9 estrellas">
               <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-              <span style="color:var(--ink);margin-left:5px;font-size:12.5px;">4,9 · Regalo viral</span>
+              <span style="color:var(--ink);margin-left:4px;">4,9 · Regalo viral</span>
             </span>
-            <span class="fast-chip"><i class="ph-bold ph-lightning"></i> Lista en 2 min</span>
+            <span class="fast-chip"><i class="ph-bold ph-lightning"></i> En 2 min</span>
           </div>
 
           <h1 class="pdp-title">Canción real con <em>su nombre</em> + Tarjeta QR</h1>
@@ -650,7 +680,7 @@
           </div>
 
           <div class="input-row">
-            <div class="step-lbl" style="margin-bottom:0;"><span>2. Su nombre</span><small>Sonará cantado</small></div>
+            <div class="step-lbl" style="margin-bottom:0;"><span>2. Su nombre</span><small>Actualiza la tarjeta arriba</small></div>
             <input id="recipient-name" class="input" type="text" maxlength="42" placeholder="Ej. Mamá Carmen, Lucía, Javi, Mateo..." value="Mamá Carmen" autocomplete="off" required />
             <span class="input-err" id="name-error">Escribe su nombre primero.</span>
           </div>
@@ -673,30 +703,6 @@
             <span>CREAR AHORA · <span data-price="single">0,99 €</span> <s data-price="singleOld">12,90 €</s></span>
           </button>
 
-          <button type="submit" class="btn-sec" id="btn-generate">
-            <i class="ph-fill ph-play-circle" style="color:var(--accent);font-size:18px;"></i>
-            <span>Escuchar adelanto gratis (15 s)</span>
-          </button>
-
-          <!-- COMPACT LIVE PREVIEW CARD (SHOWS REAL LYRICS + LOCKED QR) -->
-          <div class="live-preview-mini" id="preview-panel">
-            <div class="lpm-top">
-              <b id="mw-title">Feliz cumpleaños, Mamá Carmen</b>
-              <a href="cancion/?preview=1" id="open-full-miniweb" target="_blank" rel="noopener">Vista previa ↗</a>
-            </div>
-            <div class="lpm-lyrics" id="mw-lyrics"></div>
-            <div class="lpm-qr-row">
-              <div class="qr-box-wrap">
-                <div class="qr-box locked" id="hero-qr" aria-label="QR bloqueado hasta pagar"></div>
-                <span class="qr-lock-badge" aria-hidden="true"><i class="ph-fill ph-lock-key"></i></span>
-              </div>
-              <div class="lpm-qr-copy">
-                <b>MP3 completo + Sobre + QR bloqueados</b>
-                Se desbloquean al instante al pagar <strong data-price="single">0,99 €</strong>.
-              </div>
-            </div>
-          </div>
-
           <div class="micro-trust" aria-label="Garantías">
             <div class="mt-item"><i class="ph-fill ph-lightning"></i>2 minutos</div>
             <div class="mt-item"><i class="ph-fill ph-credit-card"></i>Pago único</div>
@@ -707,51 +713,51 @@
       </div>
     </section>
 
-    <!-- 4. VISUAL DEMOS STRIP (TAP PHOTO TO LISTEN) -->
+    <!-- 4. SPOTIFY-STYLE PLAYABLE DEMOS (ZERO CROPPED IMAGES) -->
     <section class="band" id="demos">
       <div class="wrap">
         <div class="sec-title">
-          <span>Escucha cómo suenan</span>
-          <small>1 TOQUE · AUDIO REAL</small>
+          <span>Escucha 4 ejemplos reales</span>
+          <small>1 TOQUE · REAL</small>
         </div>
-        <div class="visual-strip" id="demos-list"></div>
+        <div class="demo-grid" id="demos-list"></div>
       </div>
     </section>
 
-    <!-- 5. VISUAL 3-PHOTO DELIVERABLES (ZERO PARAGRAPHS) -->
+    <!-- 5. CRISP DELIVERABLES (NO STOCK PHOTOS) -->
     <section class="band band-tint" id="incluye">
       <div class="wrap">
         <div class="sec-title">
           <span>Qué recibes por <span data-price="single">0,99 €</span></span>
           <small>ENTREGA INMEDIATA</small>
         </div>
-        <div class="visual-3">
-          <article class="v3-card">
-            <img src="assets/cancion/ugc_qr_pov.jpg" alt="Tarjeta QR lista para regalar" loading="lazy" />
-            <div class="v3-body">
-              <b>Tarjeta QR imprimible</b>
-              <span>Para sobre, ramo o WhatsApp.</span>
-            </div>
-          </article>
-          <article class="v3-card">
-            <img src="assets/cancion/hero-emocion.jpg" alt="Canción MP3 de estudio" loading="lazy" />
-            <div class="v3-body">
+        <div class="deliv-3">
+          <article class="d3-card">
+            <span class="d3-ico" aria-hidden="true"><i class="ph-fill ph-music-notes"></i></span>
+            <div>
               <b>Canción MP3 de estudio</b>
-              <span>Cantada con su nombre real.</span>
+              <span>Cantada con su nombre y descargable para siempre.</span>
             </div>
           </article>
-          <article class="v3-card">
-            <img src="assets/cancion/familia-celebracion.jpg" alt="Sobre web privado" loading="lazy" />
-            <div class="v3-body">
-              <b>Sobre web para siempre</b>
-              <span>Se abre en cualquier móvil.</span>
+          <article class="d3-card">
+            <span class="d3-ico" aria-hidden="true"><i class="ph-fill ph-qr-code"></i></span>
+            <div>
+              <b>Tarjeta QR imprimible</b>
+              <span>Lista para meter en un sobre o mandar por WhatsApp.</span>
+            </div>
+          </article>
+          <article class="d3-card">
+            <span class="d3-ico" aria-hidden="true"><i class="ph-fill ph-envelope-open"></i></span>
+            <div>
+              <b>Sobre web privado</b>
+              <span>Se abre en cualquier móvil sin instalar apps.</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 6. ULTRA-SHORT REVIEWS (ALL ANGLES) -->
+    <!-- 6. SHORT REVIEWS (ALL ANGLES) -->
     <section class="band">
       <div class="wrap">
         <div class="sec-title">
@@ -779,9 +785,9 @@
       </div>
     </section>
 
-    <!-- 7. FINAL IMPULSE OFFER BANNER + 3-LINE FAQ -->
+    <!-- 7. FINAL OFFER + 3-LINE FAQ -->
     <section class="band band-tint" id="precios">
-      <div class="wrap" style="display:grid;gap:24px;">
+      <div class="wrap" style="display:grid;gap:22px;">
         <div class="final-offer">
           <span class="tb-pill">OFERTA LANZAMIENTO -92 % · ACABA EN <span data-countdown>14:59</span></span>
           <h2>Sorprende hoy por menos que un café</h2>
@@ -903,11 +909,11 @@
   <script src="assets/cancion-catalog.js"></script>
   <script>
     (function () {
-      const DEMO_PHOTOS = {
-        mama: 'assets/cancion/ugc_mama_reaccion.jpg',
-        pareja: 'assets/cancion/regalo-qr.jpg',
-        mariachi: 'assets/cancion/familia-celebracion.jpg',
-        cumbia: 'assets/cancion/ugc_table_bg.jpg'
+      const DEMO_STYLES = {
+        mama: { bg: 'linear-gradient(135deg,#E11D48,#9F1239)', icon: 'ph-heart' },
+        pareja: { bg: 'linear-gradient(135deg,#7C3AED,#4C1D95)', icon: 'ph-sparkle' },
+        mariachi: { bg: 'linear-gradient(135deg,#D97706,#92400E)', icon: 'ph-music-notes' },
+        cumbia: { bg: 'linear-gradient(135deg,#059669,#065F46)', icon: 'ph-confetti' }
       };
 
       const state = {
@@ -943,7 +949,7 @@
       const stripeNote = document.getElementById('stripe-fallback-note');
       const mobileStickyBar = document.getElementById('mobile-sticky-bar');
 
-      const barHeights = [36, 62, 44, 86, 68, 96, 52, 80, 90, 48, 74, 94, 60, 42, 84, 66, 50, 88, 58, 38];
+      const barHeights = [34, 62, 44, 86, 68, 96, 52, 80, 90, 48, 74, 94, 60, 42, 84, 66, 50, 88, 58, 38];
       heroWave.innerHTML = barHeights.map((h, i) => `<span style="--h:${h}%;animation-delay:${(i * 0.05).toFixed(2)}s"></span>`).join('');
 
       function formatSec(sec) {
@@ -958,7 +964,8 @@
             const qr = qrcode(0, 'M');
             qr.addData(url);
             qr.make();
-            targetEl.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+            const svg = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+            targetEl.innerHTML = svg + '<span class="gc-qr-lock" aria-hidden="true"><i class="ph-fill ph-lock-key"></i></span>';
             return;
           }
         } catch (e) {}
@@ -995,15 +1002,19 @@
       }
 
       function updatePreview() {
+        const occ = cancionGetOccasion(state.occasion);
         const genre = cancionGetGenre(state.genre);
         const order = buildCurrentOrder();
         const lyrics = cancionGenerateLyrics(order.recipient, order.occasion, order.genre, order.memory, order.sender);
         const share = cancionBuildShareUrl(order, true);
 
-        document.getElementById('mw-title').textContent = order.title;
-        document.getElementById('mw-lyrics').innerHTML = lyrics.chorus.slice(0, 2).map((line) => `<p>${line}</p>`).join('');
+        document.getElementById('gc-tag').textContent = `${occ.shortTag.toUpperCase()} · QR`;
+        document.getElementById('mw-title').textContent = order.recipient;
+        document.getElementById('gc-from').textContent = `De parte de ${order.sender}`;
+        document.getElementById('gc-genre').textContent = genre.label;
+        document.getElementById('mw-lyrics').textContent = `“${lyrics.chorus[0]}”`;
         document.getElementById('open-full-miniweb').href = share.rel;
-        heroTrackTitle.textContent = `▶ Escuchar: ${order.title} (${genre.label})`;
+        heroTrackTitle.textContent = `Escuchar: ${order.title} (${genre.label})`;
         // QR estrictamente bloqueado antes de pagar
         renderQr(document.getElementById('hero-qr'), 'https://' + CANCION_CONFIG.domainDisplay + '/#precios');
 
@@ -1024,24 +1035,26 @@
       }
 
       function renderDemos() {
-        demosList.innerHTML = CANCION_DEMOS.map((d) => `
-          <article class="demo-card" data-demo-row="${d.id}">
-            <div class="demo-img-wrap">
-              <img src="${DEMO_PHOTOS[d.id] || 'assets/cancion/hero-emocion.jpg'}" alt="${d.title}" loading="lazy" />
-              <span class="demo-tag">${d.genreLabel.split('·')[0].trim()}</span>
-              <button type="button" class="play-fab" data-play-demo="${d.id}" aria-label="Reproducir ${d.title}">
-                <i class="ph-fill ph-play" aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="demo-body">
-              <div>
-                <h3>${d.recipient}</h3>
-                <span>${d.title}</span>
+        demosList.innerHTML = CANCION_DEMOS.map((d) => {
+          const st = DEMO_STYLES[d.id] || DEMO_STYLES.mama;
+          return `
+            <article class="track-card" data-demo-row="${d.id}">
+              <div class="track-cover" style="background:${st.bg};">
+                <i class="ph-fill ${st.icon}" aria-hidden="true"></i>
               </div>
-              <span class="demo-dur num" data-demo-time="${d.id}">${d.duration}</span>
-            </div>
-          </article>
-        `).join('');
+              <div class="track-info">
+                <h3>${d.title}</h3>
+                <span>${d.genreLabel}</span>
+              </div>
+              <div class="track-meta">
+                <span class="track-dur num" data-demo-time="${d.id}">${d.duration}</span>
+                <button type="button" class="play-fab" data-play-demo="${d.id}" aria-label="Reproducir ${d.title}">
+                  <i class="ph-fill ph-play" aria-hidden="true"></i>
+                </button>
+              </div>
+            </article>
+          `;
+        }).join('');
       }
 
       function syncPlayButtons() {
@@ -1102,22 +1115,11 @@
         heroWave.querySelectorAll('span').forEach((s) => s.classList.remove('lit'));
       });
 
-      // Gallery thumbnail switcher
-      document.getElementById('gal-thumbs').addEventListener('click', (e) => {
-        const btn = e.target.closest('.thumb');
-        if (!btn) return;
-        document.getElementById('main-gal-img').src = btn.dataset.img;
-        document.getElementById('gal-caption').textContent = btn.dataset.cap;
-        document.querySelectorAll('#gal-thumbs .thumb').forEach((t) => t.setAttribute('aria-pressed', t === btn ? 'true' : 'false'));
-      });
-
-      // Play audio directly from hero photo bar
       heroPlayBar.addEventListener('click', () => {
         const g = cancionGetGenre(state.genre);
         playTrack(g.audioFile, 'hero');
       });
 
-      // Chips & Inputs
       occContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-occ]');
         if (!btn) return;
@@ -1150,14 +1152,7 @@
 
       document.getElementById('song-wizard').addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!recipientInput.value.trim()) {
-          nameError.classList.add('show');
-          recipientInput.focus();
-          return;
-        }
-        updatePreview();
-        const g = cancionGetGenre(state.genre);
-        playTrack(g.audioFile, 'hero');
+        openCheckout('single');
       });
 
       demosList.addEventListener('click', (e) => {
@@ -1174,10 +1169,9 @@
         });
       });
 
-      // Checkout Modal
       function syncMobileBar() {
         if (!mobileStickyBar) return;
-        const show = window.scrollY > 420 && !modal.classList.contains('open');
+        const show = window.scrollY > 380 && !modal.classList.contains('open');
         mobileStickyBar.classList.toggle('visible', show);
       }
 
@@ -1254,7 +1248,6 @@
         }
       });
 
-      // Countdown timer (14:59 per session)
       function startOfferTimer() {
         const KEY = 'tcq_offer_deadline_v1';
         let deadline = Number(sessionStorage.getItem(KEY) || 0);
