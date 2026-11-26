@@ -242,39 +242,39 @@
     @media (min-width: 768px) { .buy-box { padding: 22px; gap: 14px; } }
 
     .rating-row {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-      font-size: 12.5px; font-weight: 700; color: var(--ink-2);
+      display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: nowrap;
+      font-size: 12px; font-weight: 700; color: var(--ink-2);
     }
-    .stars { color: #F59E0B; display: inline-flex; align-items: center; gap: 2px; font-size: 14px; }
+    .stars { color: #F59E0B; display: inline-flex; align-items: center; gap: 1.5px; font-size: 13px; white-space: nowrap; }
     .fast-chip {
-      display: inline-flex; align-items: center; gap: 4px;
+      display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
       background: var(--green-soft); color: var(--green);
-      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      font-family: var(--mono); font-size: 10.5px; font-weight: 700;
       padding: 3px 8px; border-radius: 999px;
     }
 
     .pdp-title {
-      font-family: var(--display); font-size: clamp(1.38rem, 3.2vw, 1.85rem);
+      font-family: var(--display); font-size: clamp(1.32rem, 3.2vw, 1.85rem);
       font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink);
     }
     .pdp-title em { font-style: normal; color: var(--accent); }
 
     .price-row {
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      display: flex; align-items: center; gap: 8px; flex-wrap: nowrap;
       padding: 10px 12px; border-radius: 14px; background: var(--tint); border: 1px solid var(--line);
     }
     .price-now {
-      font-family: var(--display); font-size: 2rem; font-weight: 900; line-height: 1; color: var(--ink);
+      font-family: var(--display); font-size: 1.72rem; font-weight: 900; line-height: 1; color: var(--ink); white-space: nowrap;
     }
     .price-old {
-      font-size: 1.05rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700;
+      font-size: 0.95rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700; white-space: nowrap;
     }
     .price-badge {
-      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
-      font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 7px;
+      background: var(--accent); color: #FFFFFF; font-family: var(--mono); white-space: nowrap;
+      font-size: 10.5px; font-weight: 800; padding: 4px 7px; border-radius: 7px;
     }
     .price-timer {
-      margin-left: auto; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent);
+      margin-left: auto; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap;
     }
 
     /* 1-LINE SWIPEABLE CHIPS (ZERO VERTICAL BLOAT ON MOBILE!) */
@@ -594,7 +594,7 @@
         <div class="gallery">
           <div class="gallery-stage" id="hero-player">
             <img id="main-gal-img" src="assets/cancion/regalo-qr.jpg" alt="Persona escaneando una tarjeta QR con su canción personalizada" />
-            <span class="gal-badge-top"><span class="gal-dot"></span> <span id="gal-caption">Escanea el QR y suena su nombre</span></span>
+            <span class="gal-badge-top"><span class="gal-dot"></span> <span id="gal-caption">Escanea el QR y suena</span></span>
             <span class="gal-badge-off">-92 %</span>
 
             <div class="gal-play-bar" id="hero-play-bar" role="button" tabindex="0" aria-label="Escuchar canción real">
@@ -610,14 +610,14 @@
           </div>
 
           <div class="thumbs" id="gal-thumbs" role="group" aria-label="Fotos del regalo">
-            <button type="button" class="thumb" data-img="assets/cancion/regalo-qr.jpg" data-cap="Escanea el QR y suena su nombre" aria-pressed="true">
+            <button type="button" class="thumb" data-img="assets/cancion/regalo-qr.jpg" data-cap="Escanea el QR y suena" aria-pressed="true">
               <img src="assets/cancion/regalo-qr.jpg" alt="Escaneo QR" /><span>Tarjeta QR</span>
             </button>
-            <button type="button" class="thumb" data-img="assets/video_v3/ugc_mama_reaccion.jpg" data-cap="La reacción al oír su nombre" aria-pressed="false">
-              <img src="assets/video_v3/ugc_mama_reaccion.jpg" alt="Reacción real" /><span>Reacción</span>
+            <button type="button" class="thumb" data-img="assets/cancion/ugc_mama_reaccion.jpg" data-cap="Reacción al oír su nombre" aria-pressed="false">
+              <img src="assets/cancion/ugc_mama_reaccion.jpg" alt="Reacción real" /><span>Reacción</span>
             </button>
-            <button type="button" class="thumb" data-img="assets/video_v3/ugc_qr_pov.jpg" data-cap="Lista para imprimir o WhatsApp" aria-pressed="false">
-              <img src="assets/video_v3/ugc_qr_pov.jpg" alt="Sobre regalo" /><span>Sobre + QR</span>
+            <button type="button" class="thumb" data-img="assets/cancion/ugc_qr_pov.jpg" data-cap="Lista para imprimir o WhatsApp" aria-pressed="false">
+              <img src="assets/cancion/ugc_qr_pov.jpg" alt="Sobre regalo" /><span>Sobre + QR</span>
             </button>
             <button type="button" class="thumb" data-img="assets/cancion/familia-celebracion.jpg" data-cap="Para familia, pareja o amigos" aria-pressed="false">
               <img src="assets/cancion/familia-celebracion.jpg" alt="Celebración" /><span>Para todos</span>
@@ -727,7 +727,7 @@
         </div>
         <div class="visual-3">
           <article class="v3-card">
-            <img src="assets/video_v3/ugc_qr_pov.jpg" alt="Tarjeta QR lista para regalar" loading="lazy" />
+            <img src="assets/cancion/ugc_qr_pov.jpg" alt="Tarjeta QR lista para regalar" loading="lazy" />
             <div class="v3-body">
               <b>Tarjeta QR imprimible</b>
               <span>Para sobre, ramo o WhatsApp.</span>
@@ -772,7 +772,7 @@
             <p>“Metimos sus anécdotas en la letra y se partió de risa toda la noche.”</p>
           </article>
           <article class="rev-card">
-            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Abuelos · Bilbao</span></div>
+            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Padre · Bilbao</span></div>
             <p>“Mi padre nunca pide nada y cuando oyó su nombre se le rompió la voz.”</p>
           </article>
         </div>
@@ -904,10 +904,10 @@
   <script>
     (function () {
       const DEMO_PHOTOS = {
-        mama: 'assets/video_v3/ugc_mama_reaccion.jpg',
+        mama: 'assets/cancion/ugc_mama_reaccion.jpg',
         pareja: 'assets/cancion/regalo-qr.jpg',
         mariachi: 'assets/cancion/familia-celebracion.jpg',
-        cumbia: 'assets/video_v3/ugc_table_bg.jpg'
+        cumbia: 'assets/cancion/ugc_table_bg.jpg'
       };
 
       const state = {
