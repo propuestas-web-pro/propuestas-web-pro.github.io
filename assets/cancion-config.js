@@ -47,24 +47,30 @@ const CANCION_CONFIG = {
       label: 'España (€)',
       symbol: '€',
       single: '0,99 €',
+      singleOld: '12,90 €',
+      savings: '11,91 €',
       pack3: '19,90 €',
       upsellPhoto: '+7,90 €',
       singleNum: 0.99,
+      singleOldNum: 12.9,
       pack3Num: 19.9,
       upsellNum: 7.9,
-      anchorNote: 'Oferta de prueba por tiempo limitado · Menos que un café'
+      anchorNote: 'Oferta relámpago de lanzamiento (-92 %) · Menos que un café'
     },
     USD: {
       code: 'USD',
       label: 'México / Argentina ($)',
       symbol: '$',
       single: '$0.99 USD',
+      singleOld: '$12.90 USD',
+      savings: '$11.91 USD',
       pack3: '$19.90 USD',
       upsellPhoto: '+$7.90 USD',
       singleNum: 0.99,
+      singleOldNum: 12.9,
       pack3Num: 19.9,
       upsellNum: 7.9,
-      anchorNote: 'Oferta de prueba · Pago único con tarjeta internacional, Apple Pay o Google Pay'
+      anchorNote: 'Oferta relámpago (-92 %) · Pago único con tarjeta internacional, Apple Pay o Google Pay'
     }
   }
 };

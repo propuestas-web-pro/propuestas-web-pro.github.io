@@ -76,6 +76,38 @@
     }
     .num { font-variant-numeric: tabular-nums; }
 
+    /* TOP LAUNCH OFFER URGENCY BAR */
+    .offer-bar {
+      background: #111318;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .offer-bar-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+      text-align: center;
+    }
+    .offer-badge {
+      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
+      font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.04em;
+    }
+    .offer-old { text-decoration: line-through; opacity: 0.6; font-weight: 500; }
+    .offer-new { color: #FDE047; font-weight: 800; font-family: var(--display); }
+    .offer-timer {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 2px 9px; border-radius: var(--r-pill); font-family: var(--mono); font-size: 12px; font-weight: 700;
+      color: #FDE047;
+    }
+    @media (max-width: 640px) {
+      .offer-bar { font-size: 11.5px; padding: 7px 10px; }
+      .offer-bar-inner { gap: 6px; }
+      .offer-hide-xs { display: none; }
+    }
+
     /* NAV: single line, 60px desktop / 56px mobile */
     .nav-shell {
       position: sticky; top: 0; z-index: 60;
@@ -595,6 +627,133 @@
     .stripe-note.show { display: block; }
     .modal .btn { width: 100%; height: 50px; }
 
+    /* HERO OFFER STRIP + TRUST PILLS + ANGLE CARDS + MOBILE STICKY CTA */
+    .hero-offer-pill {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+      background: #111318; color: #FFFFFF; border-radius: 16px;
+      padding: 10px 14px; margin-bottom: 16px;
+      box-shadow: 0 14px 32px -18px rgba(17, 19, 24, 0.45);
+    }
+    .hero-offer-tag {
+      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
+      font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 999px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .hero-offer-prices {
+      display: inline-flex; align-items: baseline; gap: 7px; font-family: var(--display);
+    }
+    .hero-offer-prices s { color: rgba(255, 255, 255, 0.52); font-size: 14px; font-weight: 600; }
+    .hero-offer-prices strong { color: #FDE047; font-size: 1.35rem; font-weight: 900; line-height: 1; }
+    .hero-offer-meta { font-size: 12.5px; color: rgba(255, 255, 255, 0.84); margin-left: auto; }
+    .hero-offer-meta b { color: #FDE047; font-family: var(--mono); }
+    @media (max-width: 640px) {
+      .hero-offer-pill { padding: 9px 12px; gap: 7px; margin-bottom: 12px; }
+      .hero-offer-meta { margin-left: 0; font-size: 11.5px; width: 100%; }
+    }
+
+    .wizard-micro {
+      text-align: center; font-size: 12.5px; color: var(--muted); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+    }
+    .wizard-micro i { color: #059669; font-size: 15px; }
+
+    .trust-strip {
+      background: #FFFFFF; border-bottom: 1px solid var(--line); padding: 16px 0;
+    }
+    .trust-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+    }
+    @media (min-width: 820px) { .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; color: var(--ink-2);
+    }
+    .trust-item i {
+      width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft);
+      color: var(--accent); display: grid; place-items: center; font-size: 17px; flex-shrink: 0;
+    }
+    .trust-item span { line-height: 1.25; }
+    .trust-item small { display: block; font-size: 11.5px; font-weight: 500; color: var(--muted); }
+
+    /* UNIVERSAL ANGLES GRID */
+    .angles-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px;
+    }
+    @media (min-width: 560px) { .angles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 960px) { .angles-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } }
+    .angle-card {
+      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 18px;
+      padding: 16px; text-align: left; cursor: pointer;
+      display: flex; flex-direction: column; gap: 8px; width: 100%;
+      transition: border-color 0.18s ease, transform 0.18s var(--ease), box-shadow 0.18s ease;
+    }
+    .angle-card:hover {
+      border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 14px 30px -18px rgba(225, 29, 72, 0.28);
+    }
+    .angle-card:active { transform: scale(0.98); }
+    .angle-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .angle-ico {
+      width: 36px; height: 36px; border-radius: 11px; background: var(--accent-soft);
+      color: var(--accent); display: grid; place-items: center; font-size: 19px; flex-shrink: 0;
+    }
+    .angle-badge {
+      font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: var(--accent);
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      padding: 3px 8px; border-radius: 999px;
+    }
+    .angle-card h3 { font-size: 15.5px; font-weight: 800; line-height: 1.2; }
+    .angle-card p { font-size: 13px; color: var(--muted); line-height: 1.4; flex: 1; }
+    .angle-cta {
+      font-family: var(--display); font-size: 12.5px; font-weight: 800; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 2px;
+    }
+
+    /* PRICE OFFER ANCHORS */
+    .price-flash-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      background: #111318; color: #FFFFFF; border-radius: 12px; padding: 9px 12px;
+      font-size: 12px; font-weight: 700;
+    }
+    .price-flash-bar b { color: #FDE047; font-family: var(--mono); }
+    .price-old-strike {
+      font-size: 1.15rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700;
+    }
+    .price-save-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0;
+      font-family: var(--mono); font-size: 11.5px; font-weight: 800;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .modal-offer-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;
+      border-radius: 12px; padding: 9px 12px; font-size: 12.5px; font-weight: 700;
+    }
+    .modal-offer-banner b { font-family: var(--mono); }
+
+    /* MOBILE STICKY CONVERSION BAR */
+    .mobile-sticky-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 75;
+      background: rgba(17, 19, 24, 0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      transform: translateY(115%); transition: transform 0.25s var(--ease);
+    }
+    .mobile-sticky-bar.visible { transform: translateY(0); }
+    .msb-left { display: grid; gap: 1px; color: #FFFFFF; min-width: 0; }
+    .msb-prices { display: flex; align-items: baseline; gap: 6px; font-family: var(--display); }
+    .msb-prices s { font-size: 12.5px; color: rgba(255, 255, 255, 0.55); font-weight: 600; }
+    .msb-prices strong { font-size: 1.25rem; color: #FDE047; font-weight: 900; line-height: 1; }
+    .msb-tag {
+      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
+      font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 5px;
+    }
+    .msb-sub { font-size: 11px; color: rgba(255, 255, 255, 0.76); font-family: var(--mono); }
+    .mobile-sticky-bar .btn { height: 44px; padding: 0 18px; font-size: 13.5px; flex-shrink: 0; }
+    @media (min-width: 960px) { .mobile-sticky-bar { display: none; } }
+    @media (max-width: 959px) { body { padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); } }
+
     /* FOOTER */
     footer {
       border-top: 1px solid var(--line); padding: 32px 0; background: #FFFFFF;
@@ -608,6 +767,15 @@
   </style>
 </head>
 <body>
+  <!-- TOP LAUNCH OFFER BAR -->
+  <div class="offer-bar" role="region" aria-label="Oferta de lanzamiento">
+    <div class="offer-bar-inner">
+      <span class="offer-badge">-92 % HOY</span>
+      <span>Oferta prueba: <span class="offer-old" data-price="singleOld">12,90 €</span> → <span class="offer-new" data-price="single">0,99 €</span> <span class="offer-hide-xs">pago único · sin suscripciones</span></span>
+      <span class="offer-timer num"><i class="ph-bold ph-clock" aria-hidden="true"></i> <span data-countdown>14:59</span></span>
+    </div>
+  </div>
+
   <header class="nav-shell">
     <nav class="nav" aria-label="Navegación principal">
       <a href="#crear" class="brand">
@@ -615,16 +783,17 @@
         <span>TuCanciónQR</span>
       </a>
       <div class="nav-links">
+        <a href="#angulos">Para quién es</a>
         <a href="#demos">Escuchar demos</a>
         <a href="#incluye">Qué incluye</a>
-        <a href="#precios">Precios</a>
+        <a href="#precios">Oferta 0,99 €</a>
       </div>
       <div class="nav-right">
         <div class="cur-switch" role="group" aria-label="Seleccionar moneda">
           <button type="button" class="cur-btn" data-cur="EUR" aria-pressed="true">ES €</button>
           <button type="button" class="cur-btn" data-cur="USD" aria-pressed="false">MX/AR $</button>
         </div>
-        <a href="#crear" class="btn btn-sm">Crear canción</a>
+        <a href="#crear" class="btn btn-sm">Crear · <span data-price="single">0,99 €</span></a>
       </div>
     </nav>
   </header>
@@ -634,13 +803,22 @@
     <section class="hero" id="crear">
       <div class="wrap hero-grid">
         <div>
-          <span class="eyebrow"><i class="ph-fill ph-music-notes" aria-hidden="true"></i> España · México · Argentina</span>
-          <h1>Una canción con <em>su nombre</em>. Lista en 2 minutos.</h1>
-          <p class="hero-sub">Escucha el adelanto gratis antes de pagar. Incluye MP3 de estudio, mini-web interactiva con su letra y código QR imprimible.</p>
+          <span class="eyebrow"><i class="ph-fill ph-sparkle" aria-hidden="true"></i> Para madres, padres, pareja, hijos, abuelos o amigos</span>
+          <h1>Una canción con <em>su nombre</em> lista en 2 minutos. Hoy por <em><span data-price="single">0,99 €</span></em>.</h1>
+          <p class="hero-sub">El regalo que hace llorar o reír a cualquiera (jóvenes y mayores). Escucha gratis el adelanto antes de pagar y llévate MP3 de estudio, sobre privado y tarjeta QR imprimible.</p>
+
+          <div class="hero-offer-pill" aria-label="Resumen oferta hoy">
+            <span class="hero-offer-tag">OFERTA -92 %</span>
+            <span class="hero-offer-prices num">
+              <s data-price="singleOld">12,90 €</s>
+              <strong data-price="single">0,99 €</strong>
+            </span>
+            <span class="hero-offer-meta">Pago único · Termina en <b data-countdown>14:59</b></span>
+          </div>
 
           <form class="wizard-card" id="song-wizard" novalidate>
             <div class="field-block">
-              <span class="field-label">1. ¿Para quién es la canción?</span>
+              <span class="field-label">1. ¿Para quién es la canción? <span class="field-hint">10 ocasiones</span></span>
               <div class="chip-row" id="occasion-chips" role="group" aria-label="Ocasión"></div>
             </div>
 
@@ -648,7 +826,7 @@
               <div class="two-col-inputs">
                 <div>
                   <label class="field-label" for="recipient-name" style="margin-bottom:6px;">2. Su nombre</label>
-                  <input id="recipient-name" class="input" type="text" maxlength="42" placeholder="Ej. Mamá Carmen, Lucía, Don Carlos" value="Mamá Carmen" autocomplete="off" required />
+                  <input id="recipient-name" class="input" type="text" maxlength="42" placeholder="Ej. Mamá Carmen, Lucía, Javi, Mateo" value="Mamá Carmen" autocomplete="off" required />
                 </div>
                 <div>
                   <label class="field-label" for="sender-name" style="margin-bottom:6px;">De parte de</label>
@@ -664,18 +842,22 @@
             </div>
 
             <details class="details-toggle">
-              <summary><i class="ph-bold ph-plus-circle" aria-hidden="true"></i> Añadir un recuerdo o anécdota (opcional)</summary>
+              <summary><i class="ph-bold ph-plus-circle" aria-hidden="true"></i> Añadir un recuerdo, broma o anécdota (opcional)</summary>
               <div class="details-inner">
                 <label class="field-label" for="memory-text">¿Qué detalle quieres que mencione la letra?</label>
-                <input id="memory-text" class="input" type="text" maxlength="120" placeholder="Ej. sus croquetas de los domingos y su risa" />
+                <input id="memory-text" class="input" type="text" maxlength="120" placeholder="Ej. sus comidas de domingo, un viaje o una broma interna" />
               </div>
             </details>
 
             <div class="wizard-cta-row" style="margin-top:14px;">
               <button type="submit" class="btn" id="btn-generate">
                 <i class="ph-fill ph-play-circle" aria-hidden="true"></i>
-                <span>Crear canción</span>
+                <span>Escuchar adelanto gratis ahora</span>
               </button>
+              <div class="wizard-micro">
+                <i class="ph-fill ph-shield-check" aria-hidden="true"></i>
+                <span>Sin registro ni tarjeta para probar · Desbloqueo hoy: <strong data-price="single">0,99 €</strong> (antes <span data-price="singleOld">12,90 €</span>)</span>
+              </div>
             </div>
           </form>
         </div>
@@ -733,13 +915,35 @@
           <div class="preview-unlock-bar">
             <button type="button" class="btn" id="btn-unlock-preview">
               <i class="ph-bold ph-lock-key-open" aria-hidden="true"></i>
-              <span>Pagar y desbloquear (<span data-price="single">0,99 €</span>)</span>
+              <span>Desbloquear hoy · <span data-price="single">0,99 €</span> <s style="opacity:.7;font-weight:600;margin-left:4px;" data-price="singleOld">12,90 €</s></span>
             </button>
             <button type="button" class="btn-ghost" id="btn-copy-preview">
               <i class="ph-bold ph-eye" aria-hidden="true"></i> Vista previa
             </button>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip" aria-label="Garantías y entrega">
+      <div class="wrap trust-grid">
+        <div class="trust-item"><i class="ph-fill ph-lightning" aria-hidden="true"></i><span>Lista en 2 minutos<small>Entrega digital al instante</small></span></div>
+        <div class="trust-item"><i class="ph-fill ph-users-three" aria-hidden="true"></i><span>Para todas las edades<small>Familia, pareja, hijos o amigos</small></span></div>
+        <div class="trust-item"><i class="ph-fill ph-lock-key" aria-hidden="true"></i><span>Pago único <span data-price="single">0,99 €</span><small>0 €/mes · Stripe · Apple/Google Pay</small></span></div>
+        <div class="trust-item"><i class="ph-fill ph-qr-code" aria-hidden="true"></i><span>Sobre + Tarjeta QR<small>Se abre sin instalar ninguna app</small></span></div>
+      </div>
+    </section>
+
+    <!-- SECTION 1.5: UNIVERSAL ANGLES (EVERYONE SEES THEIR EXACT MOMENT) -->
+    <section class="band band-tint" id="angulos">
+      <div class="wrap">
+        <div class="sec-head-center">
+          <span class="eyebrow"><i class="ph-fill ph-gift" aria-hidden="true"></i> Sirve para cualquier persona</span>
+          <h2>Elige para quién quieres crearla hoy</h2>
+          <p>Toca cualquier caso y preparamos tu plantilla al instante: desde lágrimas de emoción con tu familia hasta risas épicas con amigos o un regalo de última hora a las 23:58.</p>
+        </div>
+        <div class="angles-grid" id="angles-grid"></div>
       </div>
     </section>
 
@@ -845,34 +1049,39 @@
     <section class="band band-tint" id="precios">
       <div class="wrap">
         <div class="sec-head-center">
-          <span class="eyebrow">Pago único · Sin suscripciones</span>
-          <h2>Un regalo inolvidable por menos que un ramo de flores</h2>
-          <p id="price-anchor-copy">Pago seguro con tarjeta, Apple Pay o Google Pay. Entrega digital inmediata en España, México y Argentina.</p>
+          <span class="eyebrow"><i class="ph-fill ph-fire" aria-hidden="true"></i> Oferta relámpago -92 % · Sin suscripciones</span>
+          <h2>Un regalo que no se olvida por menos que un café</h2>
+          <p id="price-anchor-copy">Oferta relámpago de lanzamiento (-92 %) · Menos que un café. Entrega digital inmediata con tarjeta, Apple Pay o Google Pay.</p>
         </div>
 
         <div class="pricing-grid">
           <article class="price-card featured">
+            <div class="price-flash-bar">
+              <span>OFERTA DE LANZAMIENTO -92 %</span>
+              <span>Acaba en <b data-countdown>14:59</b></span>
+            </div>
             <div class="plan-top">
               <h3>Canción + Mini-Web QR</h3>
-              <span class="plan-pill">Oferta prueba</span>
+              <span class="price-save-pill">Ahorras <span data-price="savings">11,91 €</span></span>
             </div>
             <div class="plan-price num">
+              <span class="price-old-strike" data-price="singleOld">12,90 €</span>
               <span data-price="single">0,99 €</span>
-              <small>para siempre</small>
+              <small>pago único · para siempre</small>
             </div>
             <ul class="plan-list">
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Canción completa personalizada con su nombre (MP3 de estudio)</li>
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Mini-web privada con sobre animado y letra completa</li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Código QR descargable listo para imprimir o WhatsApp</li>
+              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Código QR descargable listo para imprimir o mandar por WhatsApp</li>
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Sin cuotas mensuales ni registro obligatorio</li>
             </ul>
-            <button type="button" class="btn" data-choose-plan="single">Elegir Canción + QR</button>
+            <button type="button" class="btn" data-choose-plan="single">Conseguir mi canción por <span data-price="single">0,99 €</span></button>
           </article>
 
           <article class="price-card">
             <div class="plan-top">
               <h3>Pack Emoción ×3 + Vídeo</h3>
-              <span class="plan-pill">Completo</span>
+              <span class="plan-pill">Pack completo</span>
             </div>
             <div class="plan-price num">
               <span data-price="pack3">19,90 €</span>
@@ -888,7 +1097,7 @@
           </article>
         </div>
 
-        <p class="price-footnote">¿Quieres añadir un toque aún más especial? Dentro del pedido puedes sumar la restauración y animación de una foto antigua (<strong data-price="upsell">+7,90 €</strong>).</p>
+        <p class="price-footnote">¿Solo quieres probar cómo emociona? Empieza hoy por <strong data-price="single">0,99 €</strong> (antes <span data-price="singleOld">12,90 €</span>). Pago cifrado por Stripe · Sin renovaciones.</p>
       </div>
     </section>
 
@@ -896,21 +1105,33 @@
     <section class="band">
       <div class="wrap">
         <div class="sec-head-center">
-          <h2>Lo que pasa cuando escanean el código</h2>
+          <h2>Lo que pasa cuando escanean el código (en cualquier edad)</h2>
         </div>
 
         <div class="quotes-grid">
           <blockquote class="quote-card">
             <p>“Imprimí el código QR dentro de una tarjeta por los 60 de mi madre. En el segundo cuatro ya estaba llorando de emoción.”</p>
-            <footer class="quote-author"><b>Laura Méndez</b>, Madrid (España)</footer>
+            <footer class="quote-author"><b>Laura Méndez</b> · Madre · Madrid</footer>
           </blockquote>
           <blockquote class="quote-card">
-            <p>“Le pusimos el mariachi con el nombre de mi papá en la comida del domingo y todos nos pidieron el enlace para guardarlo.”</p>
-            <footer class="quote-author"><b>Diego Hernández</b>, Monterrey (México)</footer>
+            <p>“Eran las 23:55 y al día siguiente era nuestro aniversario. Se la puse en el coche fingiendo que era la radio y no se lo podía creer.”</p>
+            <footer class="quote-author"><b>Álvaro Ruiz</b> · Pareja · Valencia</footer>
           </blockquote>
           <blockquote class="quote-card">
-            <p>“Lo resolví en el autobús diez minutos antes de los XV de mi sobrina. Bailó su cumbia personalizada toda la noche.”</p>
-            <footer class="quote-author"><b>Sofía Pereyra</b>, Córdoba (Argentina)</footer>
+            <p>“Le metimos todas las anécdotas y liadas de mi mejor amigo en una canción. La puso en bucle toda la noche en su cumple.”</p>
+            <footer class="quote-author"><b>Sergio Navarro</b> · Mejor amigo · Sevilla</footer>
+          </blockquote>
+          <blockquote class="quote-card">
+            <p>“Mi padre siempre dice ‘no me compréis nada’. Se hizo el duro dos segundos hasta que escuchó su nombre y se le rompió la voz.”</p>
+            <footer class="quote-author"><b>Nerea Etxebarria</b> · Padre · Bilbao</footer>
+          </blockquote>
+          <blockquote class="quote-card">
+            <p>“Le hicimos una canción a nuestro bebé por su primer añito con sus risas y su nombre. Es el recuerdo más bonito que tenemos.”</p>
+            <footer class="quote-author"><b>Diego Hernández</b> · Hijo · Monterrey</footer>
+          </blockquote>
+          <blockquote class="quote-card">
+            <p>“Se la pusimos a mi abuela de 82 años en la comida del domingo. Toda la mesa acabó abrazándola y pidiendo el enlace.”</p>
+            <footer class="quote-author"><b>Sofía Pereyra</b> · Abuela · Córdoba (AR)</footer>
           </blockquote>
         </div>
 
@@ -939,6 +1160,19 @@
       </div>
     </section>
   </main>
+
+  <!-- MOBILE STICKY BOTTOM OFFER BAR -->
+  <div class="mobile-sticky-bar" id="mobile-sticky-bar" aria-label="Oferta rápida móvil">
+    <div class="msb-left">
+      <div class="msb-prices num">
+        <s data-price="singleOld">12,90 €</s>
+        <strong data-price="single">0,99 €</strong>
+        <span class="msb-tag">-92 %</span>
+      </div>
+      <div class="msb-sub">Acaba en <span data-countdown>14:59</span> · Pago único</div>
+    </div>
+    <button type="button" class="btn" id="btn-mobile-sticky-cta">Crear · <span data-price="single">0,99 €</span></button>
+  </div>
 
   <footer>
     <div class="wrap foot-row">
@@ -981,10 +1215,16 @@
         <input id="checkout-email" class="input" type="email" placeholder="tunombre@correo.com" autocomplete="email" />
       </div>
 
+      <div class="modal-offer-banner" id="modal-offer-banner">
+        <span><i class="ph-fill ph-tag" aria-hidden="true"></i> Oferta -92 % · Ahorras <span style="white-space:nowrap;" data-price="savings">11,91 €</span></span>
+        <b data-countdown>14:59</b>
+      </div>
+
       <div class="summary-box">
         <div class="summary-row"><span>Dedicada a</span><strong id="sum-name">Mamá Carmen</strong></div>
         <div class="summary-row"><span>Estilo musical</span><strong id="sum-genre">Pop Acústico</strong></div>
         <div class="summary-row"><span>Plan elegido</span><strong id="sum-plan">Canción + Mini-Web QR</strong></div>
+        <div class="summary-row" id="sum-old-row"><span>Precio habitual</span><s class="num" style="color:var(--muted);" data-price="singleOld">12,90 €</s></div>
         <div class="summary-row summary-total"><span>Total pago único</span><span id="sum-total" class="num">0,99 €</span></div>
       </div>
 
@@ -1093,6 +1333,8 @@
       function updatePricesUI() {
         const c = CANCION_CONFIG.currencies[state.currency];
         document.querySelectorAll('[data-price="single"]').forEach((el) => { el.textContent = c.single; });
+        document.querySelectorAll('[data-price="singleOld"]').forEach((el) => { el.textContent = c.singleOld || '12,90 €'; });
+        document.querySelectorAll('[data-price="savings"]').forEach((el) => { el.textContent = c.savings || '11,91 €'; });
         document.querySelectorAll('[data-price="pack3"]').forEach((el) => { el.textContent = c.pack3; });
         document.querySelectorAll('[data-price="upsell"]').forEach((el) => { el.textContent = c.upsellPhoto; });
         const anchor = document.getElementById('price-anchor-copy');
@@ -1294,12 +1536,18 @@
         const order = buildCurrentOrder();
         const cur = CANCION_CONFIG.currencies[state.currency];
         const upsellWrap = document.getElementById('upsell-photo-wrap');
+        const offerBanner = document.getElementById('modal-offer-banner');
+        const oldRow = document.getElementById('sum-old-row');
         if (state.selectedPlan === 'single') {
           state.upsellPhoto = false;
           if (upsellCheck) upsellCheck.checked = false;
           if (upsellWrap) upsellWrap.style.display = 'none';
-        } else if (upsellWrap) {
-          upsellWrap.style.display = '';
+          if (offerBanner) offerBanner.style.display = '';
+          if (oldRow) oldRow.style.display = '';
+        } else {
+          if (upsellWrap) upsellWrap.style.display = '';
+          if (offerBanner) offerBanner.style.display = 'none';
+          if (oldRow) oldRow.style.display = 'none';
         }
         const base = state.selectedPlan === 'single' ? cur.singleNum : cur.pack3Num;
         const total = base + (state.upsellPhoto ? cur.upsellNum : 0);
@@ -1322,6 +1570,7 @@
         if (stripeNote) stripeNote.classList.remove('show');
         updateModalSummary();
         modal.classList.add('open');
+        if (typeof syncMobileBar === 'function') syncMobileBar();
       }
 
       document.getElementById('btn-unlock-preview').addEventListener('click', () => openCheckout('single'));
@@ -1344,8 +1593,8 @@
         updateModalSummary();
       });
 
-      document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
-      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+      document.getElementById('modal-close').addEventListener('click', () => { modal.classList.remove('open'); if (typeof syncMobileBar === 'function') syncMobileBar(); });
+      modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('open'); if (typeof syncMobileBar === 'function') syncMobileBar(); } });
 
       document.getElementById('btn-confirm-pay').addEventListener('click', async () => {
         const order = buildCurrentOrder();
@@ -1356,11 +1605,87 @@
         }
       });
 
+      function renderAngleCards() {
+        const grid = document.getElementById('angles-grid');
+        if (!grid || typeof CANCION_ANGLE_CARDS === 'undefined') return;
+        grid.innerHTML = CANCION_ANGLE_CARDS.map((card) => `
+          <button type="button" class="angle-card" data-angle-card="${card.id}">
+            <div class="angle-head">
+              <span class="angle-ico" aria-hidden="true"><i class="ph-fill ${card.icon}"></i></span>
+              <span class="angle-badge">${card.badge}</span>
+            </div>
+            <h3>${card.title}</h3>
+            <p>${card.desc}</p>
+            <span class="angle-cta">Crear esta canción <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></span>
+          </button>
+        `).join('');
+        grid.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-angle-card]');
+          if (!btn) return;
+          const card = CANCION_ANGLE_CARDS.find((c) => c.id === btn.dataset.angleCard);
+          if (!card) return;
+          state.occasion = card.occasion;
+          state.genre = card.genre;
+          state.recipient = card.name;
+          state.sender = card.sender;
+          state.memory = card.memory;
+          recipientInput.value = card.name;
+          recipientInput.dataset.touched = '';
+          senderInput.value = card.sender;
+          memoryInput.value = card.memory;
+          renderChips();
+          updatePreview();
+          document.getElementById('crear').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => recipientInput.focus({ preventScroll: true }), 420);
+        });
+      }
+
+      // Live session countdown timer (14:59 per session)
+      function startOfferTimer() {
+        const KEY = 'tcq_offer_deadline_v1';
+        let deadline = Number(sessionStorage.getItem(KEY) || 0);
+        const now = Date.now();
+        if (!deadline || deadline < now + 60000) {
+          deadline = now + (14 * 60 + 59) * 1000;
+          try { sessionStorage.setItem(KEY, String(deadline)); } catch (e) {}
+        }
+        function tick() {
+          let rem = Math.floor((deadline - Date.now()) / 1000);
+          if (rem <= 0) {
+            deadline = Date.now() + (14 * 60 + 59) * 1000;
+            try { sessionStorage.setItem(KEY, String(deadline)); } catch (e) {}
+            rem = 14 * 60 + 59;
+          }
+          const mm = String(Math.floor(rem / 60)).padStart(2, '0');
+          const ss = String(rem % 60).padStart(2, '0');
+          const txt = `${mm}:${ss}`;
+          document.querySelectorAll('[data-countdown]').forEach((el) => { el.textContent = txt; });
+        }
+        tick();
+        setInterval(tick, 1000);
+      }
+
+      // Sticky mobile bottom bar visibility
+      const mobileStickyBar = document.getElementById('mobile-sticky-bar');
+      const mobileStickyBtn = document.getElementById('btn-mobile-sticky-cta');
+      if (mobileStickyBtn) {
+        mobileStickyBtn.addEventListener('click', () => openCheckout('single'));
+      }
+      function syncMobileBar() {
+        if (!mobileStickyBar) return;
+        const show = window.scrollY > 360 && !modal.classList.contains('open');
+        mobileStickyBar.classList.toggle('visible', show);
+      }
+      window.addEventListener('scroll', syncMobileBar, { passive: true });
+
       // Init
       renderChips();
+      renderAngleCards();
       renderDemos();
       updatePricesUI();
       updatePreview();
+      startOfferTimer();
+      syncMobileBar();
     })();
   </script>
 </body>

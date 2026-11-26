@@ -1,14 +1,117 @@
 /* ==========================================================================
-   TUCANCIÓNQR · CATÁLOGO DE OCASIONES, ESTILOS ES/MX/AR, DEMOS Y LETRAS IA
+   TUCANCIÓNQR · CATÁLOGO UNIVERSAL (10 ÁNGULOS · TODAS LAS EDADES · ES/MX/AR)
    ========================================================================== */
 
 const CANCION_OCCASIONS = [
   { id: 'cumpleanos', label: 'Cumpleaños', defaultName: 'Mamá Carmen', defaultMemory: 'su sonrisa cada mañana y las comidas de los domingos', shortTag: 'Cumpleaños' },
-  { id: 'mama', label: 'Mamá', defaultName: 'Mamá Elena', defaultMemory: 'estar siempre ahí sin pedir nada a cambio', shortTag: 'Para Mamá' },
-  { id: 'papa', label: 'Papá', defaultName: 'Papá Carlos', defaultMemory: 'sus consejos en el coche y su sentido del humor', shortTag: 'Para Papá' },
-  { id: 'pareja', label: 'Pareja / Aniversario', defaultName: 'Lucía', defaultMemory: 'nuestro primer café bajo la lluvia y 5 años juntos', shortTag: 'Aniversario' },
-  { id: 'quince', label: 'Quinceañera (XV)', defaultName: 'Valeria', defaultMemory: 'verla crecer y celebrar sus 15 con toda la familia', shortTag: 'XV Años' },
-  { id: 'abuelos', label: 'Abuelos / Familia', defaultName: 'Abuela Rosa', defaultMemory: 'sus abrazos eternos y las historias de siempre', shortTag: 'Familia' }
+  { id: 'mama', label: 'Madres', defaultName: 'Mamá Elena', defaultMemory: 'estar siempre ahí sin pedir nada a cambio', shortTag: 'Para Mamá' },
+  { id: 'papa', label: 'Padres', defaultName: 'Papá Carlos', defaultMemory: 'sus consejos en el coche y su sentido del humor', shortTag: 'Para Papá' },
+  { id: 'pareja', label: 'Pareja / Aniversario', defaultName: 'Lucía', defaultMemory: 'nuestro primer café bajo la lluvia y cada viaje juntos', shortTag: 'Aniversario' },
+  { id: 'hijos', label: 'Hijos / Bebé', defaultName: 'Pequeño Mateo', defaultMemory: 'tus primeras risas y la luz que trajiste a casa', shortTag: 'Para mi Hijo/a' },
+  { id: 'amigos', label: 'Amigos / Broma', defaultName: 'Javi', defaultMemory: 'llegar tarde siempre y nuestras noches de risas', shortTag: 'Mejor Amigo' },
+  { id: 'abuelos', label: 'Abuelos / Mayores', defaultName: 'Abuela Rosa', defaultMemory: 'sus abrazos eternos y las comidas de domingo', shortTag: 'Para Abuelos' },
+  { id: 'hermanos', label: 'Hermanos', defaultName: 'Valeria', defaultMemory: 'nuestras charlas a medianoche y apoyarnos siempre', shortTag: 'Hermanos' },
+  { id: 'boda', label: 'Boda / XV / Fiesta', defaultName: 'Marta y Dani', defaultMemory: 'este día inolvidable rodeados de toda nuestra gente', shortTag: 'Celebración' },
+  { id: 'sorpresa', label: 'Última hora / Perdón', defaultName: 'Paula', defaultMemory: 'no haberme olvidado jamás de lo importante que eres', shortTag: 'Sorpresa QR' }
+];
+
+const CANCION_ANGLE_CARDS = [
+  {
+    id: 'mama',
+    icon: 'ph-heart',
+    badge: 'Lágrimas seguras',
+    title: 'Para tu Madre',
+    desc: 'Que escuche su nombre cantado con vuestros recuerdos de toda la vida.',
+    occasion: 'mama',
+    genre: 'pop_acustico',
+    name: 'Mamá Carmen',
+    sender: 'Tus hijos',
+    memory: 'tu café de la mañana y estar siempre ahí'
+  },
+  {
+    id: 'pareja',
+    icon: 'ph-sparkle',
+    badge: 'Salva aniversarios',
+    title: 'Para tu Pareja',
+    desc: 'Aniversario, San Valentín o sorpresa en el coche: inolvidable en 2 minutos.',
+    occasion: 'pareja',
+    genre: 'balada_piano',
+    name: 'Lucía',
+    sender: 'Tu amor',
+    memory: 'nuestro primer viaje y tu risa contagiosa'
+  },
+  {
+    id: 'papa',
+    icon: 'ph-shield-star',
+    badge: 'Hasta el más duro',
+    title: 'Para tu Padre',
+    desc: 'Para el que siempre dice «no me compres nada» y acaba con nudo en la garganta.',
+    occasion: 'papa',
+    genre: 'rumba',
+    name: 'Papá Carlos',
+    sender: 'Tu familia',
+    memory: 'tus consejos de siempre y tu apoyo incondicional'
+  },
+  {
+    id: 'hijos',
+    icon: 'ph-baby',
+    badge: 'Recuerdo eterno',
+    title: 'Para tus Hijos o Bebé',
+    desc: 'Un regalo único para su cumple, bautizo o nacimiento que guardará para siempre.',
+    occasion: 'hijos',
+    genre: 'pop_acustico',
+    name: 'Pequeño Mateo',
+    sender: 'Mamá y Papá',
+    memory: 'tu sonrisa cada mañana y ver cómo creces'
+  },
+  {
+    id: 'amigos',
+    icon: 'ph-smiley-wink',
+    badge: 'Risas garantizadas',
+    title: 'Para tu Mejor Amigo',
+    desc: 'Mete sus anécdotas, apodos o liadas en una canción de estudio para partirse de risa.',
+    occasion: 'amigos',
+    genre: 'cumbia',
+    name: 'Javi',
+    sender: 'Tu grupo',
+    memory: 'llegar siempre tarde y nuestras mil locuras'
+  },
+  {
+    id: 'abuelos',
+    icon: 'ph-sun-horizon',
+    badge: 'Emoción en familia',
+    title: 'Para tus Abuelos',
+    desc: 'Un día darías todo por volver a ver su cara al oír sus historias cantadas.',
+    occasion: 'abuelos',
+    genre: 'balada_piano',
+    name: 'Abuela Rosa',
+    sender: 'Tus nietos',
+    memory: 'las comidas de domingo y tus abrazos de casa'
+  },
+  {
+    id: 'boda',
+    icon: 'ph-confetti',
+    badge: 'Bodas · XV · Cumples',
+    title: 'Bodas, XV y Fiestas',
+    desc: 'Pon el código QR en la mesa o proyéctalo delante de todos los invitados.',
+    occasion: 'boda',
+    genre: 'bachata',
+    name: 'Marta y Dani',
+    sender: 'Vuestros amigos',
+    memory: 'veros dar el sí rodeados de toda vuestra gente'
+  },
+  {
+    id: 'sorpresa',
+    icon: 'ph-clock-countdown',
+    badge: 'Listo en 2 min',
+    title: 'Última Hora (23:58)',
+    desc: 'Sin tiendas ni envíos: créala ahora en el móvil y manda el sobre QR por WhatsApp.',
+    occasion: 'sorpresa',
+    genre: 'pop_acustico',
+    name: 'Paula',
+    sender: 'Con todo mi cariño',
+    memory: 'que pensaras que me olvidé cuando tenía esta sorpresa'
+  }
 ];
 
 const CANCION_GENRES = [
@@ -31,24 +134,6 @@ const CANCION_GENRES = [
     demoId: 'pareja'
   },
   {
-    id: 'mariachi',
-    label: 'Mariachi Serenata',
-    region: 'México · Fiesta',
-    bpm: 108,
-    mood: 'Trompetas, guitarrón y emoción',
-    audioFile: 'assets/audio/demo-mariachi-carlos.mp3',
-    demoId: 'mariachi'
-  },
-  {
-    id: 'cumbia',
-    label: 'Cumbia Festiva',
-    region: 'Argentina · México',
-    bpm: 102,
-    mood: 'Ritmo alegre para bailar en familia',
-    audioFile: 'assets/audio/demo-cumbia-valeria.mp3',
-    demoId: 'cumbia'
-  },
-  {
     id: 'rumba',
     label: 'Rumba Española',
     region: 'España · Celebración',
@@ -65,6 +150,24 @@ const CANCION_GENRES = [
     mood: 'Requinto romántico y percusión cálida',
     audioFile: 'assets/audio/demo-pareja-lucia.mp3',
     demoId: 'pareja'
+  },
+  {
+    id: 'mariachi',
+    label: 'Mariachi Serenata',
+    region: 'México · Fiesta',
+    bpm: 108,
+    mood: 'Trompetas, guitarrón y emoción',
+    audioFile: 'assets/audio/demo-mariachi-carlos.mp3',
+    demoId: 'mariachi'
+  },
+  {
+    id: 'cumbia',
+    label: 'Cumbia Festiva',
+    region: 'Fiesta · Humor · Amigos',
+    bpm: 102,
+    mood: 'Ritmo alegre para bailar y reír',
+    audioFile: 'assets/audio/demo-cumbia-valeria.mp3',
+    demoId: 'cumbia'
   }
 ];
 
@@ -99,10 +202,10 @@ const CANCION_DEMOS = [
     id: 'mariachi',
     title: 'Serenata para Don Carlos',
     recipient: 'Don Carlos',
-    sender: 'Tu familia en Monterrey',
+    sender: 'Tu familia',
     occasion: 'papa',
     genre: 'mariachi',
-    genreLabel: 'Mariachi · México',
+    genreLabel: 'Mariachi · Padres y Mayores',
     duration: '0:30',
     audioFile: 'assets/audio/demo-mariachi-carlos.mp3',
     memory: 'tu ejemplo diario, tus chistes y el orgullo de tenerte',
@@ -110,16 +213,16 @@ const CANCION_DEMOS = [
   },
   {
     id: 'cumbia',
-    title: 'Los XV de Valeria',
+    title: 'Fiesta para Valeria y amigos',
     recipient: 'Valeria',
-    sender: 'Mamá, Papá y tus primos',
-    occasion: 'quince',
+    sender: 'Tu grupo y familia',
+    occasion: 'amigos',
     genre: 'cumbia',
-    genreLabel: 'Cumbia Festiva · Arg / Méx',
+    genreLabel: 'Cumbia Festiva · Jóvenes y Fiesta',
     duration: '0:30',
     audioFile: 'assets/audio/demo-cumbia-valeria.mp3',
-    memory: 'tu risa contagiosa y esta noche mágica de tus quince',
-    highlight: '«Hoy baila todo el mundo porque Valeria cumple quince...»'
+    memory: 'tu risa contagiosa y nuestras noches inolvidables',
+    highlight: '«Hoy baila todo el mundo porque celebramos a Valeria...»'
   }
 ];
 
@@ -147,8 +250,13 @@ function cancionGenerateTitle(recipient, occasionId) {
     mama: `Gracias por todo, ${name}`,
     papa: `Mi orgullo, ${name}`,
     pareja: `Nuestra historia, ${name}`,
+    hijos: `Para siempre contigo, ${name}`,
+    amigos: `El himno oficial de ${name}`,
+    abuelos: `Siempre en mi corazón, ${name}`,
+    hermanos: `Qué suerte tenerte, ${name}`,
+    boda: `Brindamos por vosotros, ${name}`,
     quince: `La noche de tus XV, ${name}`,
-    abuelos: `Siempre en mi corazón, ${name}`
+    sorpresa: `Una sorpresa para ti, ${name}`
   };
   return map[occasionId] || `Una canción para ${name}`;
 }
@@ -184,10 +292,16 @@ function cancionGenerateLyrics(recipientRaw, occasionId, genreId, memoryRaw, sen
       `Si me dieran a elegir mil vidas volvería justo aquí,`,
       `reviviendo ${mem}.`
     ],
-    quince: [
-      `Hoy se ilumina la pista porque llegaron tus quince, ${name},`,
-      `de niña soñadora a la mujer increíble que brilla en este día.`,
-      `Toda tu gente se reúne para celebrar quién eres hoy,`,
+    hijos: [
+      `${name}, desde el primer día llenaste nuestra casa de alegría,`,
+      `y cada paso tuyo es el regalo más grande de nuestra vida.`,
+      `Cuando crezcas vuelve a darle al play para recordar cuánto te amamos,`,
+      `celebrando ${mem}.`
+    ],
+    amigos: [
+      `Atención que hoy suena el himno oficial de ${name},`,
+      `nadie más en este grupo tiene historias tan épicas como tú.`,
+      `Entre risas y locuras nos salvaste mil veces el día,`,
       `recordando ${mem}.`
     ],
     abuelos: [
@@ -195,6 +309,30 @@ function cancionGenerateLyrics(recipientRaw, occasionId, genreId, memoryRaw, sen
       `cada consejo tuyo es un tesoro que el tiempo nunca borra ni pasa.`,
       `Esta canción queda guardada para que la escuches una y otra vez,`,
       `celebrando ${mem}.`
+    ],
+    hermanos: [
+      `${name}, aunque a veces discutamos sabes que siempre somos equipo,`,
+      `cómplices de secretos, risas y recuerdos desde pequeños.`,
+      `Hoy te dedico esta canción para que no olvides lo que vales,`,
+      `guardando ${mem}.`
+    ],
+    boda: [
+      `Hoy alzamos las copas por ${name} en un día para la historia,`,
+      `que esta melodía guarde para siempre el brillo de vuestra mirada.`,
+      `Que la vida os regale mil viajes, risas y bailes juntos,`,
+      `recordando ${mem}.`
+    ],
+    quince: [
+      `Hoy se ilumina la pista porque llegaron tus quince, ${name},`,
+      `de niña soñadora a la mujer increíble que brilla en este día.`,
+      `Toda tu gente se reúne para celebrar quién eres hoy,`,
+      `recordando ${mem}.`
+    ],
+    sorpresa: [
+      `Pensabas que me había olvidado, ${name}, pero escucha bien esto,`,
+      `en vez de un regalo frío quise escribir algo solo con tu nombre.`,
+      `Cada acorde lleva un mensaje que nunca se borra ni se gasta,`,
+      `pensando en ${mem}.`
     ]
   };
 
