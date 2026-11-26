@@ -12,25 +12,24 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>TuCanciónQR · Una canción con su nombre y mini-web QR en 2 minutos</title>
-  <meta name="description" content="Regala una canción personalizada con su nombre, mini-web interactiva con letra y código QR imprimible. Escucha gratis el adelanto antes de pagar. Pago único 0,99 €." />
-  <meta name="theme-color" content="#FFFFFF" />
-  <meta property="og:title" content="TuCanciónQR · Una canción con su nombre en 2 minutos" />
-  <meta property="og:description" content="Escucha el adelanto gratis antes de pagar. MP3 de estudio, mini-web interactiva y código QR imprimible desde 0,99 €." />
+  <title>TuCanciónQR · Canción Personalizada + QR · Hoy 0,99 € (-92 %)</title>
+  <meta name="description" content="Regala una canción real con su nombre + sobre privado + tarjeta QR en 2 minutos. Oferta lanzamiento: 0,99 € (antes 12,90 €)." />
+  <meta name="theme-color" content="#111318" />
+  <meta property="og:title" content="TuCanciónQR · Canción con su nombre + QR · Hoy 0,99 €" />
+  <meta property="og:description" content="Escucha el adelanto gratis. MP3 de estudio, sobre privado y tarjeta QR imprimible por 0,99 € pago único." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
   <style>
     :root {
       --bg: #FFFFFF;
-      --tint: #F7F8FA;
-      --surface: #FFFFFF;
-      --ink: #111318;
+      --tint: #F6F7F9;
+      --ink: #0F1115;
       --ink-2: #272B35;
-      --muted: #4B5563;
+      --muted: #525B6B;
       --line: #E5E7EB;
       --line-strong: #D1D5DB;
       --accent: #E11D48;
@@ -38,1131 +37,785 @@
       --accent-soft: #FFF1F2;
       --accent-border: #FECDD3;
       --accent-ring: rgba(225, 29, 72, 0.16);
+      --green: #059669;
+      --green-soft: #ECFDF5;
+      --gold: #FDE047;
       --display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --r-card: 20px;
-      --r-input: 12px;
-      --r-pill: 999px;
-      --sh-card: 0 18px 44px -22px rgba(17, 19, 24, 0.12);
-      --sh-accent: 0 14px 30px -12px rgba(225, 29, 72, 0.42);
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
     body {
       background: var(--bg);
       color: var(--ink);
       font-family: var(--body);
-      font-size: 16px;
-      line-height: 1.55;
+      font-size: 15px;
+      line-height: 1.45;
       -webkit-font-smoothing: antialiased;
       overflow-x: clip;
     }
-    ::selection { background: var(--accent); color: #FFFFFF; }
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font-family: inherit; }
+    button, input { font-family: inherit; }
     button, a, summary { touch-action: manipulation; }
-    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
-
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-    h1, h2, h3 {
-      font-family: var(--display);
-      letter-spacing: -0.035em;
-      color: var(--ink);
-      text-wrap: balance;
-    }
     .num { font-variant-numeric: tabular-nums; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 24px; } }
 
-    /* TOP LAUNCH OFFER URGENCY BAR */
-    .offer-bar {
-      background: #111318;
+    /* 1. TOP URGENCY BAR (SINGLE CRISP LINE) */
+    .top-bar {
+      background: var(--ink);
       color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
     }
-    .offer-bar-inner {
-      max-width: 1180px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
-      text-align: center;
+    .top-bar-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: nowrap;
+      white-space: nowrap;
     }
-    .offer-badge {
+    .tb-pill {
       background: var(--accent); color: #FFFFFF; font-family: var(--mono);
-      font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.04em;
+      font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 5px;
     }
-    .offer-old { text-decoration: line-through; opacity: 0.6; font-weight: 500; }
-    .offer-new { color: #FDE047; font-weight: 800; font-family: var(--display); }
-    .offer-timer {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 2px 9px; border-radius: var(--r-pill); font-family: var(--mono); font-size: 12px; font-weight: 700;
-      color: #FDE047;
+    .tb-old { text-decoration: line-through; opacity: 0.58; font-weight: 500; }
+    .tb-new { color: var(--gold); font-family: var(--display); font-weight: 800; }
+    .tb-time {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(255, 255, 255, 0.12); padding: 2px 8px; border-radius: 999px;
+      font-family: var(--mono); font-size: 11px; color: var(--gold);
     }
-    @media (max-width: 640px) {
-      .offer-bar { font-size: 11.5px; padding: 7px 10px; }
-      .offer-bar-inner { gap: 6px; }
-      .offer-hide-xs { display: none; }
-    }
+    @media (max-width: 420px) { .tb-hide { display: none; } }
 
-    /* NAV: single line, 60px desktop / 56px mobile */
+    /* 2. ULTRA-CLEAN HEADER */
     .nav-shell {
       position: sticky; top: 0; z-index: 60;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
     .nav {
-      max-width: 1180px; margin: 0 auto; height: 60px; padding: 0 20px;
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      max-width: 1120px; margin: 0 auto; height: 52px; padding: 0 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .brand {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: var(--display); font-weight: 800; font-size: 1.12rem; letter-spacing: -0.03em;
-      flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.03em;
     }
     .brand-mark {
-      width: 30px; height: 30px; border-radius: 9px; background: var(--accent);
-      display: inline-flex; align-items: center; justify-content: center; gap: 2.5px; flex-shrink: 0;
+      width: 28px; height: 28px; border-radius: 8px; background: var(--accent);
+      display: inline-flex; align-items: center; justify-content: center; gap: 2px;
     }
-    .brand-mark span { width: 2.8px; border-radius: 99px; background: #FFFFFF; display: block; }
-    .brand-mark span:nth-child(1) { height: 8px; }
-    .brand-mark span:nth-child(2) { height: 15px; }
-    .brand-mark span:nth-child(3) { height: 19px; }
-    .brand-mark span:nth-child(4) { height: 11px; }
+    .brand-mark span { width: 2.5px; border-radius: 99px; background: #FFFFFF; display: block; }
+    .brand-mark span:nth-child(1) { height: 7px; }
+    .brand-mark span:nth-child(2) { height: 14px; }
+    .brand-mark span:nth-child(3) { height: 18px; }
+    .brand-mark span:nth-child(4) { height: 10px; }
 
-    .nav-links {
-      display: none; align-items: center; gap: 26px;
-      font-size: 14.5px; font-weight: 600; color: var(--muted);
-    }
-    .nav-links a { white-space: nowrap; transition: color 0.18s ease; }
-    .nav-links a:hover { color: var(--ink); }
-    @media (min-width: 960px) { .nav-links { display: flex; } }
-
-    .nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
     .cur-switch {
       display: inline-flex; background: var(--tint); border: 1px solid var(--line);
-      border-radius: var(--r-pill); padding: 3px; gap: 2px;
+      border-radius: 999px; padding: 2px; gap: 2px;
     }
     .cur-btn {
       border: 0; background: transparent; color: var(--muted);
-      font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: var(--r-pill);
-      cursor: pointer; white-space: nowrap; transition: background 0.18s ease, color 0.18s ease;
+      font-size: 11.5px; font-weight: 700; padding: 4px 9px; border-radius: 999px; cursor: pointer;
     }
-    .cur-btn[aria-pressed="true"] { background: #FFFFFF; color: var(--ink); box-shadow: 0 2px 6px rgba(17, 19, 24, 0.08); }
+    .cur-btn[aria-pressed="true"] {
+      background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+    .nav-cta {
+      display: none; align-items: center; gap: 6px;
+      height: 36px; padding: 0 15px; border-radius: 999px;
+      background: var(--accent); color: #FFFFFF; font-family: var(--display);
+      font-weight: 800; font-size: 13px; border: 0; cursor: pointer;
+    }
+    @media (min-width: 768px) { .nav-cta { display: inline-flex; } .nav { height: 58px; padding: 0 24px; } }
 
-    /* BUTTONS: locked pill shape, high WCAG contrast, single line */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      height: 50px; padding: 0 24px; border-radius: var(--r-pill); border: 0; cursor: pointer;
-      background: var(--accent); color: #FFFFFF;
-      font-family: var(--display); font-weight: 800; font-size: 15px; letter-spacing: -0.015em;
-      white-space: nowrap; box-shadow: var(--sh-accent);
-      transition: transform 0.18s var(--ease), background 0.18s ease;
-    }
-    .btn:hover { background: var(--accent-hi); transform: translateY(-1px); }
-    .btn:active { transform: scale(0.98); }
-    .btn-sm { height: 38px; padding: 0 16px; font-size: 13.5px; box-shadow: none; }
-    .btn-ghost {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      height: 46px; padding: 0 20px; border-radius: var(--r-pill);
-      background: #FFFFFF; color: var(--ink); border: 1.5px solid var(--line-strong);
-      font-family: var(--display); font-weight: 700; font-size: 14px; white-space: nowrap;
-      cursor: pointer; transition: border-color 0.18s ease, color 0.18s ease, transform 0.18s var(--ease);
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .btn-ghost:active { transform: scale(0.98); }
-
-    @media (max-width: 640px) {
-      .nav { height: 56px; padding: 0 14px; gap: 8px; }
-      .brand { font-size: 1rem; gap: 7px; }
-      .cur-btn { padding: 4px 8px; font-size: 11px; }
-      .nav .btn-sm { display: none; }
-    }
-
-    /* HERO: Above-the-fold priority on BOTH 390x844 mobile and desktop */
-    .hero {
-      padding: 28px 0 44px;
+    /* 3. SHOPIFY PDP HERO (IMAGE FIRST ON MOBILE, 2-COL ON DESKTOP) */
+    .pdp {
+      padding: 14px 0 28px;
       background: linear-gradient(180deg, #FFFFFF 0%, var(--tint) 100%);
       border-bottom: 1px solid var(--line);
     }
-    @media (min-width: 960px) {
-      .hero { padding: 48px 0 64px; min-height: calc(100dvh - 60px); display: flex; align-items: center; }
+    @media (min-width: 900px) { .pdp { padding: 34px 0 48px; } }
+    .pdp-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start;
     }
-    .hero-grid {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start;
-    }
-    .hero-grid > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 960px) {
-      .hero-grid { grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr); gap: 48px; align-items: center; }
+    .pdp-grid > * { min-width: 0; max-width: 100%; }
+    @media (min-width: 900px) {
+      .pdp-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 40px; align-items: start; }
     }
 
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: var(--mono); font-size: 11px; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-border);
-      padding: 5px 12px; border-radius: var(--r-pill); margin-bottom: 14px;
-    }
-    .hero h1 {
-      font-size: clamp(1.95rem, 4.4vw, 3.25rem);
-      line-height: 1.06;
-      margin-bottom: 10px;
-    }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero-sub {
-      font-size: 15.5px; color: var(--muted); max-width: 52ch; margin-bottom: 18px; line-height: 1.5;
-    }
-    @media (max-width: 640px) {
-      .hero { padding: 16px 0 32px; }
-      .eyebrow { margin-bottom: 10px; font-size: 10.5px; }
-      .hero h1 { font-size: 1.75rem; margin-bottom: 8px; }
-      .hero-sub { font-size: 14px; margin-bottom: 14px; }
-    }
-
-    /* WIZARD CARD */
-    .wizard-card {
-      background: #FFFFFF;
+    /* VISUAL PRODUCT GALLERY */
+    .gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; min-width: 0; max-width: 100%; }
+    .gallery > * { min-width: 0; max-width: 100%; }
+    .gallery-stage {
+      position: relative; border-radius: 20px; overflow: hidden;
+      aspect-ratio: 4 / 3; background: #141418;
       border: 1px solid var(--line);
-      border-radius: var(--r-card);
-      padding: 20px;
-      box-shadow: var(--sh-card);
+      box-shadow: 0 20px 44px -24px rgba(15, 17, 21, 0.25);
     }
-    @media (max-width: 640px) { .wizard-card { padding: 16px; } }
-    .field-block { display: grid; gap: 7px; margin-bottom: 14px; }
-    .field-block:last-of-type { margin-bottom: 16px; }
-    .field-label {
-      font-size: 13px; font-weight: 700; color: var(--ink);
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    @media (max-width: 640px) { .gallery-stage { aspect-ratio: 16 / 11; border-radius: 18px; } }
+    .gallery-stage img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+      transition: transform 0.35s var(--ease);
     }
-    .field-hint { font-size: 12px; font-weight: 500; color: var(--muted); }
-
-    .chip-row {
-      display: flex; flex-wrap: wrap; gap: 7px;
+    .gallery-stage::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.26) 0%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.56) 100%);
     }
-    .chip {
-      border: 1.5px solid var(--line); background: var(--tint); color: var(--ink-2);
-      border-radius: var(--r-pill); padding: 7px 12px; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: border-color 0.16s ease, background 0.16s ease, color 0.16s ease, transform 0.14s var(--ease);
-    }
-    .chip:hover { border-color: var(--accent); }
-    .chip:active { transform: scale(0.97); }
-    .chip[aria-pressed="true"] {
-      background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-ring);
-    }
-    @media (max-width: 640px) { .chip { padding: 6px 10px; font-size: 12.5px; } }
-
-    .two-col-inputs { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    @media (min-width: 520px) { .two-col-inputs { grid-template-columns: 1.15fr 0.85fr; } }
-
-    .input {
-      width: 100%; height: 46px; padding: 0 14px;
-      border-radius: var(--r-input); border: 1.5px solid var(--line-strong);
-      background: #FFFFFF; color: var(--ink); font-size: 16px; outline: none;
-      transition: border-color 0.16s ease, box-shadow 0.16s ease;
-    }
-    .input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-ring); }
-    .input::placeholder { color: #6B7280; }
-    .input-error { font-size: 12.5px; color: var(--accent); font-weight: 600; display: none; }
-    .input-error.show { display: block; }
-
-    .wizard-cta-row { display: grid; gap: 10px; }
-    .wizard-cta-row .btn { width: 100%; height: 52px; font-size: 15.5px; }
-    .details-toggle {
-      margin-top: 10px;
-      font-size: 13px; color: var(--muted);
-    }
-    .details-toggle summary {
-      cursor: pointer; font-weight: 700; color: var(--ink-2); list-style: none;
+    .gal-badge-top {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      background: rgba(15, 17, 21, 0.84); backdrop-filter: blur(8px); color: #FFFFFF;
+      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.16);
       display: inline-flex; align-items: center; gap: 6px;
     }
-    .details-toggle summary::-webkit-details-marker { display: none; }
-    .details-inner { margin-top: 10px; display: grid; gap: 10px; }
+    .gal-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; }
+    .gal-badge-off {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: var(--accent); color: #FFFFFF; font-family: var(--display);
+      font-size: 12px; font-weight: 800; padding: 5px 11px; border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(225, 29, 72, 0.45);
+    }
 
-    /* LIVE SMARTPHONE MINI-WEB PREVIEW (REAL WORKING AUDIO + QR) */
-    .phone-stage {
-      background: #FFFFFF;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 18px;
-      box-shadow: var(--sh-card);
+    /* FLOATING LIVE PLAY BAR RIGHT ON TOP OF THE HERO PHOTO */
+    .gal-play-bar {
+      position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 3;
+      background: rgba(15, 17, 21, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 16px;
+      padding: 9px 12px; display: flex; align-items: center; gap: 11px; color: #FFFFFF;
+      cursor: pointer;
     }
-    .phone-top {
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid var(--line);
-    }
-    .live-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 12.5px; font-weight: 700; color: var(--ink);
-    }
-    .live-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-ring); animation: pulseDot 1.6s infinite;
-    }
-    @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
-    .phone-open-link {
-      font-size: 12.5px; font-weight: 700; color: var(--accent);
-      display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
-    }
-    .phone-open-link:hover { text-decoration: underline; }
-
-    .miniweb-preview {
-      background: var(--tint);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      display: grid; gap: 14px;
-    }
-    .mw-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .mw-tag {
-      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--accent);
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      padding: 4px 10px; border-radius: var(--r-pill);
-    }
-    .mw-genre { font-size: 12px; font-weight: 600; color: var(--muted); }
-    .mw-title { font-family: var(--display); font-size: 1.3rem; font-weight: 800; line-height: 1.15; }
-    .mw-from { font-size: 13px; color: var(--muted); }
-
-    .player-box {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .play-circle {
-      width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+    .play-fab {
+      width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
       background: var(--accent); color: #FFFFFF; flex-shrink: 0;
       display: grid; place-items: center; font-size: 18px;
-      box-shadow: 0 10px 22px -10px rgba(225, 29, 72, 0.55);
+      box-shadow: 0 8px 20px rgba(225, 29, 72, 0.55);
+      transition: transform 0.15s var(--ease);
+    }
+    .play-fab:active { transform: scale(0.94); }
+    .gal-play-mid { flex: 1; min-width: 0; display: grid; gap: 4px; }
+    .gal-play-title {
+      font-family: var(--display); font-size: 13px; font-weight: 800;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .gal-wave { height: 18px; display: flex; align-items: center; gap: 2.5px; }
+    .gal-wave span {
+      flex: 1; border-radius: 99px; background: rgba(255, 255, 255, 0.28); height: var(--h, 40%);
+      transition: background 0.16s ease;
+    }
+    .gal-wave span.lit { background: var(--gold); }
+    .playing .gal-wave span.lit { animation: waveB 0.8s ease-in-out infinite alternate; }
+    @keyframes waveB { from { transform: scaleY(0.7); } to { transform: scaleY(1.15); } }
+    .gal-time { font-family: var(--mono); font-size: 11px; color: rgba(255, 255, 255, 0.82); flex-shrink: 0; }
+
+    .thumbs {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;
+    }
+    .thumb {
+      border: 2px solid transparent; border-radius: 12px; overflow: hidden; padding: 0;
+      aspect-ratio: 16 / 10; cursor: pointer; background: #E5E7EB; position: relative;
+      transition: border-color 0.16s ease, transform 0.14s var(--ease);
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+    .thumb[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-ring); }
+    .thumb span {
+      position: absolute; left: 4px; bottom: 4px; right: 4px;
+      background: rgba(15, 17, 21, 0.72); color: #FFFFFF; font-size: 10px; font-weight: 700;
+      padding: 2px 5px; border-radius: 6px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* RIGHT BUY BOX (CLEAN, ZERO WALLS OF TEXT) */
+    .buy-box {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 20px;
+      padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px;
+      min-width: 0; max-width: 100%;
+      box-shadow: 0 18px 40px -24px rgba(15, 17, 21, 0.14);
+    }
+    .buy-box > * { min-width: 0; max-width: 100%; }
+    @media (min-width: 768px) { .buy-box { padding: 22px; gap: 14px; } }
+
+    .rating-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      font-size: 12.5px; font-weight: 700; color: var(--ink-2);
+    }
+    .stars { color: #F59E0B; display: inline-flex; align-items: center; gap: 2px; font-size: 14px; }
+    .fast-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--green-soft); color: var(--green);
+      font-family: var(--mono); font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 999px;
+    }
+
+    .pdp-title {
+      font-family: var(--display); font-size: clamp(1.38rem, 3.2vw, 1.85rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--ink);
+    }
+    .pdp-title em { font-style: normal; color: var(--accent); }
+
+    .price-row {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      padding: 10px 12px; border-radius: 14px; background: var(--tint); border: 1px solid var(--line);
+    }
+    .price-now {
+      font-family: var(--display); font-size: 2rem; font-weight: 900; line-height: 1; color: var(--ink);
+    }
+    .price-old {
+      font-size: 1.05rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700;
+    }
+    .price-badge {
+      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
+      font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 7px;
+    }
+    .price-timer {
+      margin-left: auto; font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--accent);
+    }
+
+    /* 1-LINE SWIPEABLE CHIPS (ZERO VERTICAL BLOAT ON MOBILE!) */
+    .step-lbl {
+      font-size: 12px; font-weight: 800; color: var(--ink);
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;
+    }
+    .step-lbl small { font-weight: 600; color: var(--muted); font-size: 11px; }
+    .swipe-chips {
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .swipe-chips::-webkit-scrollbar { display: none; }
+    .chip {
+      border: 1.5px solid var(--line); background: var(--tint); color: var(--ink-2);
+      border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 700;
+      white-space: nowrap; flex-shrink: 0; cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip[aria-pressed="true"] {
+      background: var(--ink); border-color: var(--ink); color: #FFFFFF;
+    }
+
+    .input-row { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .input {
+      width: 100%; height: 46px; padding: 0 14px; border-radius: 12px;
+      border: 1.5px solid var(--line-strong); background: #FFFFFF; color: var(--ink);
+      font-size: 16px; font-weight: 600; outline: none;
+    }
+    .input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+    .input-err { font-size: 12px; color: var(--accent); font-weight: 700; display: none; }
+    .input-err.show { display: block; }
+
+    .opt-more summary {
+      font-size: 12.5px; font-weight: 700; color: var(--muted); cursor: pointer; list-style: none;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .opt-more summary::-webkit-details-marker { display: none; }
+    .opt-more-grid { margin-top: 8px; display: grid; gap: 8px; }
+
+    /* MAIN BUY & PREVIEW BUTTONS */
+    .btn-buy {
+      width: 100%; height: 54px; border-radius: 14px; border: 0; cursor: pointer;
+      background: var(--accent); color: #FFFFFF;
+      font-family: var(--display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      box-shadow: 0 14px 28px -10px rgba(225, 29, 72, 0.52);
       transition: transform 0.16s var(--ease), background 0.16s ease;
     }
-    .play-circle:hover { background: var(--accent-hi); }
-    .play-circle:active { transform: scale(0.95); }
-    .player-mid { flex: 1; min-width: 0; display: grid; gap: 6px; }
-    .wave-bars {
-      height: 24px; display: flex; align-items: center; gap: 3px; cursor: pointer;
-    }
-    .wave-bars span {
-      flex: 1; border-radius: 99px; background: #D1D5DB; height: var(--h, 40%);
-      transition: background 0.18s ease, transform 0.2s ease;
-    }
-    .wave-bars span.lit { background: var(--accent); }
-    .playing .wave-bars span.lit { animation: waveBounce 0.9s ease-in-out infinite alternate; }
-    @keyframes waveBounce { from { transform: scaleY(0.72); } to { transform: scaleY(1.12); } }
-    .player-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      font-family: var(--mono); font-size: 11px; color: var(--muted);
-    }
+    .btn-buy:hover { background: var(--accent-hi); transform: translateY(-1px); }
+    .btn-buy:active { transform: scale(0.98); }
+    .btn-buy s { opacity: 0.72; font-weight: 600; font-size: 14px; }
 
-    .lyrics-snippet {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px;
-      padding: 13px 15px; font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
+    .btn-sec {
+      width: 100%; height: 44px; border-radius: 12px; border: 1.5px solid var(--line-strong);
+      background: #FFFFFF; color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 13.5px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer;
     }
-    .lyrics-snippet strong {
-      display: block; font-size: 11px; font-family: var(--mono); letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
-    }
-    .lyrics-snippet p { margin-bottom: 3px; }
+    .btn-sec:hover { border-color: var(--ink); }
 
-    .qr-strip {
-      display: flex; align-items: center; gap: 14px;
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 12px;
+    .micro-trust {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;
+      padding-top: 4px;
     }
-    .qr-box-wrap { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
+    .mt-item {
+      background: var(--tint); border-radius: 10px; padding: 7px 4px;
+      text-align: center; font-size: 11px; font-weight: 700; color: var(--ink-2);
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+    }
+    .mt-item i { color: var(--accent); font-size: 16px; }
+
+    /* COMPACT LIVE MINI-PREVIEW DRAWER (ONLY WHEN USER TESTS OR CLICKS) */
+    .live-preview-mini {
+      background: var(--tint); border: 1px solid var(--line); border-radius: 14px;
+      padding: 12px; display: grid; gap: 10px;
+    }
+    .lpm-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .lpm-top b { font-family: var(--display); font-size: 13.5px; }
+    .lpm-top a { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+    .lpm-lyrics {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 10px;
+      padding: 10px 12px; font-size: 12.5px; color: var(--ink-2); line-height: 1.45;
+    }
+    .lpm-qr-row {
+      display: flex; align-items: center; gap: 10px;
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px;
+    }
+    .qr-box-wrap { position: relative; width: 54px; height: 54px; flex-shrink: 0; }
     .qr-box {
-      width: 72px; height: 72px; border-radius: 10px; border: 1px solid var(--line);
-      background: #FFFFFF; padding: 5px; display: grid; place-items: center;
+      width: 54px; height: 54px; border-radius: 8px; border: 1px solid var(--line);
+      background: #FFFFFF; padding: 4px; display: grid; place-items: center;
     }
-    .qr-box.locked svg { filter: blur(4.5px); opacity: 0.34; pointer-events: none; user-select: none; }
+    .qr-box.locked svg { filter: blur(4px); opacity: 0.34; pointer-events: none; }
     .qr-lock-badge {
-      position: absolute; inset: 0; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 2px;
-      font-family: var(--mono); font-size: 9.5px; font-weight: 700; color: var(--accent);
-      background: rgba(255, 255, 255, 0.72); border-radius: 10px; text-align: center;
-      pointer-events: none;
+      position: absolute; inset: 0; display: grid; place-items: center;
+      color: var(--accent); font-size: 17px; background: rgba(255, 255, 255, 0.6); border-radius: 8px;
     }
-    .qr-lock-badge i { font-size: 18px; }
-    .qr-box svg { width: 100%; height: 100%; display: block; }
-    .qr-copy { min-width: 0; flex: 1; }
-    .qr-copy b { display: block; font-size: 13.5px; color: var(--ink); margin-bottom: 2px; }
-    .qr-copy span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+    .qr-box svg { width: 100%; height: 100%; }
+    .lpm-qr-copy { font-size: 12px; color: var(--muted); line-height: 1.3; }
+    .lpm-qr-copy b { display: block; color: var(--ink); font-size: 12.5px; }
 
-    .preview-unlock-bar {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
-      margin-top: 12px;
-    }
-    @media (min-width: 520px) {
-      .preview-unlock-bar { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
-    }
-    .preview-unlock-bar .btn { width: 100%; height: 46px; font-size: 14px; padding: 0 18px; }
-    .preview-unlock-bar .btn-ghost { width: 100%; height: 46px; padding: 0 16px; font-size: 13.5px; }
-
-    /* GENERIC SECTION SPACING */
-    section.band { padding: 68px 0; }
+    /* VISUAL SECTIONS BELOW FOLD (ULTRA SHORT, 80% IMAGERY) */
+    section.band { padding: 34px 0; }
     section.band-tint { background: var(--tint); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .sec-title {
+      font-family: var(--display); font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .sec-title small { font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 700; }
+
+    /* 4 VISUAL AUDIO DEMO CARDS (SWIPEABLE ON MOBILE, 4-COL ON DESKTOP) */
+    .visual-strip {
+      display: grid; grid-auto-flow: column; grid-auto-columns: 74%; gap: 12px;
+      overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .visual-strip::-webkit-scrollbar { display: none; }
+    @media (min-width: 768px) {
+      .visual-strip { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: visible; }
+    }
+    .demo-card {
+      scroll-snap-align: start; background: #FFFFFF; border: 1.5px solid var(--line);
+      border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+      transition: border-color 0.16s ease;
+    }
+    .demo-card.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+    .demo-img-wrap { position: relative; aspect-ratio: 16 / 10; background: #141418; overflow: hidden; }
+    .demo-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .demo-img-wrap .play-fab {
+      position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; font-size: 16px;
+    }
+    .demo-tag {
+      position: absolute; left: 10px; top: 10px;
+      background: rgba(15, 17, 21, 0.78); color: #FFFFFF; font-size: 10.5px; font-weight: 700;
+      padding: 3px 8px; border-radius: 999px;
+    }
+    .demo-body { padding: 11px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .demo-body h3 { font-family: var(--display); font-size: 14px; font-weight: 800; line-height: 1.2; }
+    .demo-body span { font-size: 11.5px; color: var(--muted); display: block; }
+    .demo-dur { font-family: var(--mono); font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+    /* 3 VISUAL DELIVERABLE CARDS */
+    .visual-3 {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
+    }
     @media (max-width: 640px) {
-      .wrap { padding: 0 16px; }
-      section.band { padding: 48px 0; }
-      .phone-stage { padding: 14px; border-radius: 22px; }
-      .miniweb-preview { padding: 14px; }
-      .mw-head { flex-wrap: wrap; gap: 6px; }
-      .qr-strip { flex-direction: row; align-items: center; gap: 12px; }
+      .visual-3 { grid-template-columns: 1fr; gap: 10px; }
+      .v3-card { flex-direction: row !important; align-items: center; }
+      .v3-card img { width: 108px !important; height: 84px !important; aspect-ratio: auto !important; flex-shrink: 0; }
     }
-    .sec-head { max-width: 660px; margin-bottom: 32px; }
-    .sec-head-center { max-width: 680px; margin: 0 auto 36px; text-align: center; }
-    .sec-head-center p { margin: 0 auto; }
-    .sec-head h2, .sec-head-center h2 { font-size: clamp(1.65rem, 3.2vw, 2.45rem); line-height: 1.08; margin-bottom: 10px; }
-    .sec-head p, .sec-head-center p { font-size: 16px; color: var(--muted); max-width: 58ch; }
+    .v3-card {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px;
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .v3-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center 25%; }
+    .v3-body { padding: 12px 14px; }
+    .v3-body b { display: block; font-family: var(--display); font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
+    .v3-body span { font-size: 12.5px; color: var(--muted); }
 
-    /* SECTION 2: REAL DEMOS + EDITORIAL PHOTO */
-    .demos-layout {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: stretch;
+    /* COMPACT VISUAL REVIEWS (1 LINE EACH) */
+    .rev-grid {
+      display: grid; grid-template-columns: 1fr; gap: 10px;
     }
-    .demos-layout > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 920px) {
-      .demos-layout { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 36px; }
+    @media (min-width: 720px) { .rev-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .rev-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .rev-card {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 14px;
+      display: grid; gap: 7px;
     }
-    .photo-frame {
-      border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--line);
-      background: var(--tint); position: relative; min-height: 260px; width: 100%; max-width: 100%;
-    }
-    .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-    .photo-caption {
-      position: absolute; left: 12px; right: 12px; bottom: 12px;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-      border: 1px solid rgba(17, 19, 24, 0.08); border-radius: 14px;
-      padding: 11px 13px; font-size: 13px; color: var(--ink);
-    }
-    .photo-caption b { display: block; font-family: var(--display); font-size: 13.5px; }
-    .photo-caption span { color: var(--muted); font-size: 12px; line-height: 1.35; display: block; margin-top: 2px; }
+    .rev-top { display: flex; align-items: center; justify-content: space-between; font-size: 12px; }
+    .rev-card p { font-size: 13px; color: var(--ink-2); font-weight: 500; }
+    .rev-who { font-size: 11.5px; color: var(--muted); font-weight: 700; }
 
-    .demo-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; min-width: 0; width: 100%; }
-    .demo-row {
-      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 16px;
-      padding: 13px 14px; display: flex; align-items: center; gap: 12px;
-      width: 100%; max-width: 100%; min-width: 0; overflow: hidden;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    /* COMPACT FINAL OFFER CARD */
+    .final-offer {
+      background: var(--ink); color: #FFFFFF; border-radius: 22px; padding: 24px 20px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
     }
-    .demo-row.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
-    .demo-info { flex: 1; min-width: 0; overflow: hidden; }
-    .demo-info h3 { font-size: 15px; font-weight: 800; margin-bottom: 2px; line-height: 1.2; }
-    .demo-info .demo-meta { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 2px; }
-    .demo-info .demo-quote {
-      font-size: 12.5px; color: var(--muted); line-height: 1.35;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .demo-time { font-family: var(--mono); font-size: 12px; color: var(--muted); flex-shrink: 0; }
+    .final-offer h2 { font-family: var(--display); font-size: clamp(1.4rem, 3.2vw, 2rem); line-height: 1.1; }
+    .final-offer .fo-prices { display: flex; align-items: baseline; gap: 10px; font-family: var(--display); }
+    .final-offer s { color: rgba(255, 255, 255, 0.5); font-size: 1.15rem; }
+    .final-offer strong { color: var(--gold); font-size: 2.4rem; line-height: 1; }
+    .final-offer .btn-buy { max-width: 360px; }
+    .final-offer small { font-size: 12px; color: rgba(255, 255, 255, 0.72); }
 
-    /* SECTION 3: 3-CELL ASYMMETRIC BENTO (EXACTLY 3 CELLS) */
-    .bento-3 {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px;
-    }
-    .bento-3 > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 900px) {
-      .bento-3 { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); grid-template-rows: auto auto; }
-      .bento-big { grid-row: span 2; }
-    }
-    .bento-tile {
-      border-radius: var(--r-card); border: 1px solid var(--line);
-      overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;
-    }
-    .bento-big img { width: 100%; height: 240px; object-fit: cover; }
-    @media (min-width: 900px) { .bento-big img { height: 320px; } }
-    .bento-body { padding: 20px; display: grid; gap: 8px; }
-    .bento-body h3 { font-size: 1.15rem; }
-    .bento-body p { font-size: 14.5px; color: var(--muted); }
-    .bento-rose { background: var(--accent-soft); border-color: var(--accent-border); }
-    .bento-tint { background: #FFFFFF; }
-    .tile-icon {
-      width: 40px; height: 40px; border-radius: 12px; background: #FFFFFF;
-      border: 1px solid var(--accent-border); color: var(--accent);
-      display: grid; place-items: center; font-size: 20px; margin-bottom: 4px;
-    }
-
-    /* SECTION 4: HORIZONTAL 3-STEP FLOW + FAMILY PHOTO */
-    .steps-wrap {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center;
-    }
-    .steps-wrap > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 920px) {
-      .steps-wrap { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 40px; }
-    }
-    .step-list { display: grid; gap: 18px; }
-    .step-item {
-      display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start;
-      padding-bottom: 18px; border-bottom: 1px solid var(--line);
-    }
-    .step-item:last-child { border-bottom: 0; padding-bottom: 0; }
-    .step-num {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      color: var(--accent); font-family: var(--mono); font-weight: 700; font-size: 14px;
-      display: grid; place-items: center;
-    }
-    .step-item h3 { font-size: 1.05rem; margin-bottom: 4px; }
-    .step-item p { font-size: 14.5px; color: var(--muted); }
-
-    /* SECTION 5: PRICING (CENTERED CLEAN 2 CARDS) */
-    .pricing-grid {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px;
-      max-width: 920px; margin: 0 auto;
-    }
-    .pricing-grid > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 760px) { .pricing-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
-    .price-card {
-      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: var(--r-card);
-      padding: 24px; display: flex; flex-direction: column; gap: 16px;
-    }
-    .price-card.featured {
-      border-color: var(--accent); box-shadow: 0 22px 48px -24px rgba(225, 29, 72, 0.22);
-    }
-    .plan-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-    .plan-top h3 { font-size: 1.2rem; }
-    .plan-pill {
-      font-size: 11.5px; font-weight: 700; color: var(--accent);
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      padding: 4px 10px; border-radius: var(--r-pill); white-space: nowrap;
-    }
-    .plan-price {
-      font-family: var(--display); font-size: 2.25rem; font-weight: 800; line-height: 1;
-      display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
-    }
-    .plan-price small { font-family: var(--body); font-size: 13.5px; font-weight: 600; color: var(--muted); }
-    .plan-list { list-style: none; display: grid; gap: 10px; font-size: 14.5px; color: var(--ink-2); flex: 1; }
-    .plan-list li { display: flex; align-items: flex-start; gap: 9px; }
-    .plan-list i { color: var(--accent); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-    .price-card .btn, .price-card .btn-ghost { width: 100%; height: 48px; }
-    .price-footnote { margin: 20px auto 0; max-width: 720px; text-align: center; font-size: 13.5px; color: var(--muted); }
-
-    /* SECTION 6: QUOTES + CENTERED FAQ */
-    .quotes-grid {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; margin-bottom: 52px;
-    }
-    .quotes-grid > * { min-width: 0; max-width: 100%; }
-    @media (min-width: 780px) { .quotes-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    .quote-card {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: var(--r-card);
-      padding: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
-    }
-    .quote-card p { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
-    .quote-author { font-size: 13px; color: var(--muted); font-weight: 600; }
-    .quote-author b { color: var(--ink); }
-
-    .faq-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: 820px; margin: 0 auto; }
-    .faq-item {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
-    }
+    /* COMPACT 3-LINE FAQ */
+    .faq-list { display: grid; gap: 8px; max-width: 720px; margin: 0 auto; }
+    .faq-item { background: #FFFFFF; border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px; }
     .faq-item summary {
-      font-family: var(--display); font-weight: 700; font-size: 15.5px; cursor: pointer;
-      list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      font-family: var(--display); font-weight: 700; font-size: 14px; cursor: pointer;
+      list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary i { color: var(--accent); transition: transform 0.2s ease; flex-shrink: 0; }
+    .faq-item summary i { color: var(--accent); transition: transform 0.2s ease; }
     .faq-item[open] summary i { transform: rotate(45deg); }
-    .faq-item p { margin-top: 10px; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+    .faq-item p { margin-top: 8px; font-size: 13px; color: var(--muted); }
 
-    /* CHECKOUT MODAL (STRIPE-READY ZERO FRICTION) */
+    /* CHECKOUT MODAL */
     .modal-backdrop {
       position: fixed; inset: 0; z-index: 90;
-      background: rgba(17, 19, 24, 0.56); backdrop-filter: blur(6px);
+      background: rgba(15, 17, 21, 0.6); backdrop-filter: blur(6px);
       display: none; align-items: center; justify-content: center; padding: 14px;
     }
     .modal-backdrop.open { display: flex; }
     .modal {
-      width: 100%; max-width: 470px; background: #FFFFFF; border-radius: 22px;
-      border: 1px solid var(--line); padding: 22px; box-shadow: 0 30px 70px -20px rgba(17, 19, 24, 0.3);
-      display: grid; gap: 14px; max-height: 92dvh; overflow-y: auto;
+      width: 100%; max-width: 440px; background: #FFFFFF; border-radius: 20px;
+      border: 1px solid var(--line); padding: 20px; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.35);
+      display: grid; gap: 12px; max-height: 92dvh; overflow-y: auto;
     }
-    .modal-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
-    .modal-head h3 { font-size: 1.25rem; }
+    .modal-head { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+    .modal-head h3 { font-family: var(--display); font-size: 1.2rem; }
     .modal-close {
-      width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
-      background: var(--tint); color: var(--ink); cursor: pointer; display: grid; place-items: center; flex-shrink: 0;
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line);
+      background: var(--tint); color: var(--ink); cursor: pointer; display: grid; place-items: center;
     }
-    .plan-switch {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-    }
+    .plan-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .plan-opt {
-      border: 1.5px solid var(--line); background: var(--tint); border-radius: 14px;
-      padding: 10px 12px; text-align: left; cursor: pointer; display: grid; gap: 2px;
-      transition: border-color 0.16s ease, background 0.16s ease;
+      border: 1.5px solid var(--line); background: var(--tint); border-radius: 12px;
+      padding: 9px 11px; text-align: left; cursor: pointer; display: grid; gap: 2px;
     }
-    .plan-opt b { font-family: var(--display); font-size: 13.5px; color: var(--ink); }
-    .plan-opt span { font-size: 12.5px; font-weight: 700; color: var(--muted); }
-    .plan-opt[aria-pressed="true"] {
-      border-color: var(--accent); background: var(--accent-soft);
-      box-shadow: 0 0 0 3px var(--accent-ring);
-    }
+    .plan-opt b { font-family: var(--display); font-size: 13px; }
+    .plan-opt span { font-size: 12.5px; font-weight: 800; color: var(--muted); }
+    .plan-opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
     .plan-opt[aria-pressed="true"] span { color: var(--accent); }
-
+    .modal-offer-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: var(--green-soft); border: 1px solid #A7F3D0; color: #065F46;
+      border-radius: 10px; padding: 8px 11px; font-size: 12px; font-weight: 700;
+    }
+    .modal-offer-banner b { font-family: var(--mono); }
     .summary-box {
-      background: var(--tint); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px;
-      display: grid; gap: 6px; font-size: 14px;
+      background: var(--tint); border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px;
+      display: grid; gap: 5px; font-size: 13.5px;
     }
     .summary-row { display: flex; justify-content: space-between; gap: 10px; }
     .summary-total {
-      padding-top: 8px; margin-top: 4px; border-top: 1px solid var(--line-strong);
-      font-family: var(--display); font-weight: 800; font-size: 16px;
+      padding-top: 7px; margin-top: 3px; border-top: 1px solid var(--line-strong);
+      font-family: var(--display); font-weight: 800; font-size: 15.5px;
     }
     .upsell-box {
-      display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px;
-      border-radius: 14px; background: var(--accent-soft); border: 1.5px solid var(--accent-border);
-      cursor: pointer; font-size: 13px; color: var(--ink);
+      display: flex; align-items: flex-start; gap: 9px; padding: 10px 12px;
+      border-radius: 12px; background: var(--accent-soft); border: 1.5px solid var(--accent-border);
+      cursor: pointer; font-size: 12.5px;
     }
-    .upsell-box input { margin-top: 2px; accent-color: var(--accent); width: 17px; height: 17px; flex-shrink: 0; }
+    .upsell-box input { margin-top: 2px; accent-color: var(--accent); width: 16px; height: 16px; }
     .pay-badges {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px;
-      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--muted);
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+      font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: var(--muted);
     }
-    .pay-badges span {
-      padding: 4px 9px; border-radius: 8px; background: var(--tint); border: 1px solid var(--line);
-    }
+    .pay-badges span { padding: 3px 8px; border-radius: 6px; background: var(--tint); border: 1px solid var(--line); }
     .stripe-note {
       display: none; background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E;
-      border-radius: 12px; padding: 11px 13px; font-size: 13px; line-height: 1.45;
+      border-radius: 10px; padding: 10px 12px; font-size: 12.5px;
     }
     .stripe-note.show { display: block; }
-    .modal .btn { width: 100%; height: 50px; }
 
-    /* HERO OFFER STRIP + TRUST PILLS + ANGLE CARDS + MOBILE STICKY CTA */
-    .hero-offer-pill {
-      display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
-      background: #111318; color: #FFFFFF; border-radius: 16px;
-      padding: 10px 14px; margin-bottom: 16px;
-      box-shadow: 0 14px 32px -18px rgba(17, 19, 24, 0.45);
-    }
-    .hero-offer-tag {
-      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
-      font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 999px;
-      letter-spacing: 0.04em; text-transform: uppercase;
-    }
-    .hero-offer-prices {
-      display: inline-flex; align-items: baseline; gap: 7px; font-family: var(--display);
-    }
-    .hero-offer-prices s { color: rgba(255, 255, 255, 0.52); font-size: 14px; font-weight: 600; }
-    .hero-offer-prices strong { color: #FDE047; font-size: 1.35rem; font-weight: 900; line-height: 1; }
-    .hero-offer-meta { font-size: 12.5px; color: rgba(255, 255, 255, 0.84); margin-left: auto; }
-    .hero-offer-meta b { color: #FDE047; font-family: var(--mono); }
-    @media (max-width: 640px) {
-      .hero-offer-pill { padding: 9px 12px; gap: 7px; margin-bottom: 12px; }
-      .hero-offer-meta { margin-left: 0; font-size: 11.5px; width: 100%; }
-    }
-
-    .wizard-micro {
-      text-align: center; font-size: 12.5px; color: var(--muted); font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
-    }
-    .wizard-micro i { color: #059669; font-size: 15px; }
-
-    .trust-strip {
-      background: #FFFFFF; border-bottom: 1px solid var(--line); padding: 16px 0;
-    }
-    .trust-grid {
-      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
-    }
-    @media (min-width: 820px) { .trust-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-    .trust-item {
-      display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; color: var(--ink-2);
-    }
-    .trust-item i {
-      width: 34px; height: 34px; border-radius: 10px; background: var(--accent-soft);
-      color: var(--accent); display: grid; place-items: center; font-size: 17px; flex-shrink: 0;
-    }
-    .trust-item span { line-height: 1.25; }
-    .trust-item small { display: block; font-size: 11.5px; font-weight: 500; color: var(--muted); }
-
-    /* UNIVERSAL ANGLES GRID */
-    .angles-grid {
-      display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px;
-    }
-    @media (min-width: 560px) { .angles-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (min-width: 960px) { .angles-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } }
-    .angle-card {
-      background: #FFFFFF; border: 1.5px solid var(--line); border-radius: 18px;
-      padding: 16px; text-align: left; cursor: pointer;
-      display: flex; flex-direction: column; gap: 8px; width: 100%;
-      transition: border-color 0.18s ease, transform 0.18s var(--ease), box-shadow 0.18s ease;
-    }
-    .angle-card:hover {
-      border-color: var(--accent); transform: translateY(-2px);
-      box-shadow: 0 14px 30px -18px rgba(225, 29, 72, 0.28);
-    }
-    .angle-card:active { transform: scale(0.98); }
-    .angle-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .angle-ico {
-      width: 36px; height: 36px; border-radius: 11px; background: var(--accent-soft);
-      color: var(--accent); display: grid; place-items: center; font-size: 19px; flex-shrink: 0;
-    }
-    .angle-badge {
-      font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: var(--accent);
-      background: var(--accent-soft); border: 1px solid var(--accent-border);
-      padding: 3px 8px; border-radius: 999px;
-    }
-    .angle-card h3 { font-size: 15.5px; font-weight: 800; line-height: 1.2; }
-    .angle-card p { font-size: 13px; color: var(--muted); line-height: 1.4; flex: 1; }
-    .angle-cta {
-      font-family: var(--display); font-size: 12.5px; font-weight: 800; color: var(--accent);
-      display: inline-flex; align-items: center; gap: 4px; margin-top: 2px;
-    }
-
-    /* PRICE OFFER ANCHORS */
-    .price-flash-bar {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-      background: #111318; color: #FFFFFF; border-radius: 12px; padding: 9px 12px;
-      font-size: 12px; font-weight: 700;
-    }
-    .price-flash-bar b { color: #FDE047; font-family: var(--mono); }
-    .price-old-strike {
-      font-size: 1.15rem; color: #9CA3AF; text-decoration: line-through; font-weight: 700;
-    }
-    .price-save-pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0;
-      font-family: var(--mono); font-size: 11.5px; font-weight: 800;
-      padding: 4px 10px; border-radius: 999px;
-    }
-    .modal-offer-banner {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px;
-      background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46;
-      border-radius: 12px; padding: 9px 12px; font-size: 12.5px; font-weight: 700;
-    }
-    .modal-offer-banner b { font-family: var(--mono); }
-
-    /* MOBILE STICKY CONVERSION BAR */
+    /* MOBILE STICKY BUY BAR */
     .mobile-sticky-bar {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 75;
-      background: rgba(17, 19, 24, 0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      background: rgba(15, 17, 21, 0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+      padding: 9px 14px calc(9px + env(safe-area-inset-bottom, 0px));
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      transform: translateY(115%); transition: transform 0.25s var(--ease);
+      transform: translateY(115%); transition: transform 0.22s var(--ease);
     }
     .mobile-sticky-bar.visible { transform: translateY(0); }
-    .msb-left { display: grid; gap: 1px; color: #FFFFFF; min-width: 0; }
+    .msb-left { display: grid; gap: 1px; color: #FFFFFF; }
     .msb-prices { display: flex; align-items: baseline; gap: 6px; font-family: var(--display); }
-    .msb-prices s { font-size: 12.5px; color: rgba(255, 255, 255, 0.55); font-weight: 600; }
-    .msb-prices strong { font-size: 1.25rem; color: #FDE047; font-weight: 900; line-height: 1; }
-    .msb-tag {
-      background: var(--accent); color: #FFFFFF; font-family: var(--mono);
-      font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 5px;
-    }
-    .msb-sub { font-size: 11px; color: rgba(255, 255, 255, 0.76); font-family: var(--mono); }
-    .mobile-sticky-bar .btn { height: 44px; padding: 0 18px; font-size: 13.5px; flex-shrink: 0; }
-    @media (min-width: 960px) { .mobile-sticky-bar { display: none; } }
-    @media (max-width: 959px) { body { padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); } }
+    .msb-prices s { font-size: 12px; color: rgba(255, 255, 255, 0.52); }
+    .msb-prices strong { font-size: 1.25rem; color: var(--gold); font-weight: 900; line-height: 1; }
+    .msb-tag { background: var(--accent); color: #FFFFFF; font-family: var(--mono); font-size: 10px; font-weight: 800; padding: 2px 5px; border-radius: 4px; }
+    .msb-sub { font-size: 10.5px; color: rgba(255, 255, 255, 0.72); font-family: var(--mono); }
+    .mobile-sticky-bar .btn-buy { width: auto; height: 42px; padding: 0 18px; font-size: 13.5px; border-radius: 999px; box-shadow: none; }
+    @media (min-width: 900px) { .mobile-sticky-bar { display: none; } }
+    @media (max-width: 899px) { body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); } }
 
-    /* FOOTER */
     footer {
-      border-top: 1px solid var(--line); padding: 32px 0; background: #FFFFFF;
-      font-size: 13.5px; color: var(--muted);
+      border-top: 1px solid var(--line); padding: 20px 0; font-size: 12.5px; color: var(--muted);
     }
-    .foot-row {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .foot-links { display: flex; flex-wrap: wrap; gap: 18px; font-weight: 600; color: var(--ink-2); }
-    .foot-links a:hover { color: var(--accent); }
+    .foot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+    .foot-links { display: flex; gap: 14px; font-weight: 700; color: var(--ink-2); }
   </style>
 </head>
 <body>
-  <!-- TOP LAUNCH OFFER BAR -->
-  <div class="offer-bar" role="region" aria-label="Oferta de lanzamiento">
-    <div class="offer-bar-inner">
-      <span class="offer-badge">-92 % HOY</span>
-      <span>Oferta prueba: <span class="offer-old" data-price="singleOld">12,90 €</span> → <span class="offer-new" data-price="single">0,99 €</span> <span class="offer-hide-xs">pago único · sin suscripciones</span></span>
-      <span class="offer-timer num"><i class="ph-bold ph-clock" aria-hidden="true"></i> <span data-countdown>14:59</span></span>
+  <!-- 1. TOP URGENCY BAR -->
+  <div class="top-bar" role="region" aria-label="Oferta hoy">
+    <div class="top-bar-inner">
+      <span class="tb-pill">-92 % HOY</span>
+      <span><span class="tb-hide">Oferta lanzamiento: </span><span class="tb-old" data-price="singleOld">12,90 €</span> → <span class="tb-new" data-price="single">0,99 €</span></span>
+      <span class="tb-time num"><i class="ph-bold ph-clock" aria-hidden="true"></i> <span data-countdown>14:59</span></span>
     </div>
   </div>
 
+  <!-- 2. MINIMAL HEADER -->
   <header class="nav-shell">
     <nav class="nav" aria-label="Navegación principal">
       <a href="#crear" class="brand">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
         <span>TuCanciónQR</span>
       </a>
-      <div class="nav-links">
-        <a href="#angulos">Para quién es</a>
-        <a href="#demos">Escuchar demos</a>
-        <a href="#incluye">Qué incluye</a>
-        <a href="#precios">Oferta 0,99 €</a>
-      </div>
       <div class="nav-right">
-        <div class="cur-switch" role="group" aria-label="Seleccionar moneda">
+        <div class="cur-switch" role="group" aria-label="Moneda">
           <button type="button" class="cur-btn" data-cur="EUR" aria-pressed="true">ES €</button>
           <button type="button" class="cur-btn" data-cur="USD" aria-pressed="false">MX/AR $</button>
         </div>
-        <a href="#crear" class="btn btn-sm">Crear · <span data-price="single">0,99 €</span></a>
+        <button type="button" class="nav-cta" id="btn-nav-buy">Crear · <span data-price="single">0,99 €</span></button>
       </div>
     </nav>
   </header>
 
   <main>
-    <!-- HERO: Above-the-fold wizard + live real player -->
-    <section class="hero" id="crear">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow"><i class="ph-fill ph-sparkle" aria-hidden="true"></i> Para madres, padres, pareja, hijos, abuelos o amigos</span>
-          <h1>Una canción con <em>su nombre</em> lista en 2 minutos. Hoy por <em><span data-price="single">0,99 €</span></em>.</h1>
-          <p class="hero-sub">El regalo que hace llorar o reír a cualquiera (jóvenes y mayores). Escucha gratis el adelanto antes de pagar y llévate MP3 de estudio, sobre privado y tarjeta QR imprimible.</p>
+    <!-- 3. VISUAL PDP HERO (PHOTO + AUDIO PLAY FIRST, COMPACT BUY BOX) -->
+    <section class="pdp" id="crear">
+      <div class="wrap pdp-grid">
+        <!-- LEFT/TOP: VISUAL GALLERY WITH LIVE AUDIO PLAYER ON THE PHOTO -->
+        <div class="gallery">
+          <div class="gallery-stage" id="hero-player">
+            <img id="main-gal-img" src="assets/cancion/regalo-qr.jpg" alt="Persona escaneando una tarjeta QR con su canción personalizada" />
+            <span class="gal-badge-top"><span class="gal-dot"></span> <span id="gal-caption">Escanea el QR y suena su nombre</span></span>
+            <span class="gal-badge-off">-92 %</span>
 
-          <div class="hero-offer-pill" aria-label="Resumen oferta hoy">
-            <span class="hero-offer-tag">OFERTA -92 %</span>
-            <span class="hero-offer-prices num">
-              <s data-price="singleOld">12,90 €</s>
-              <strong data-price="single">0,99 €</strong>
-            </span>
-            <span class="hero-offer-meta">Pago único · Termina en <b data-countdown>14:59</b></span>
-          </div>
-
-          <form class="wizard-card" id="song-wizard" novalidate>
-            <div class="field-block">
-              <span class="field-label">1. ¿Para quién es la canción? <span class="field-hint">10 ocasiones</span></span>
-              <div class="chip-row" id="occasion-chips" role="group" aria-label="Ocasión"></div>
-            </div>
-
-            <div class="field-block">
-              <div class="two-col-inputs">
-                <div>
-                  <label class="field-label" for="recipient-name" style="margin-bottom:6px;">2. Su nombre</label>
-                  <input id="recipient-name" class="input" type="text" maxlength="42" placeholder="Ej. Mamá Carmen, Lucía, Javi, Mateo" value="Mamá Carmen" autocomplete="off" required />
-                </div>
-                <div>
-                  <label class="field-label" for="sender-name" style="margin-bottom:6px;">De parte de</label>
-                  <input id="sender-name" class="input" type="text" maxlength="40" placeholder="Ej. Tus hijos" value="Tus hijos" autocomplete="off" />
-                </div>
-              </div>
-              <span class="input-error" id="name-error">Escribe el nombre de la persona para personalizar la letra.</span>
-            </div>
-
-            <div class="field-block">
-              <span class="field-label">3. Elige el estilo musical <span class="field-hint">Audio real</span></span>
-              <div class="chip-row" id="genre-chips" role="group" aria-label="Estilo musical"></div>
-            </div>
-
-            <details class="details-toggle">
-              <summary><i class="ph-bold ph-plus-circle" aria-hidden="true"></i> Añadir un recuerdo, broma o anécdota (opcional)</summary>
-              <div class="details-inner">
-                <label class="field-label" for="memory-text">¿Qué detalle quieres que mencione la letra?</label>
-                <input id="memory-text" class="input" type="text" maxlength="120" placeholder="Ej. sus comidas de domingo, un viaje o una broma interna" />
-              </div>
-            </details>
-
-            <div class="wizard-cta-row" style="margin-top:14px;">
-              <button type="submit" class="btn" id="btn-generate">
-                <i class="ph-fill ph-play-circle" aria-hidden="true"></i>
-                <span>Escuchar adelanto gratis ahora</span>
-              </button>
-              <div class="wizard-micro">
-                <i class="ph-fill ph-shield-check" aria-hidden="true"></i>
-                <span>Sin registro ni tarjeta para probar · Desbloqueo hoy: <strong data-price="single">0,99 €</strong> (antes <span data-price="singleOld">12,90 €</span>)</span>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <!-- LIVE WORKING MINI-WEB PREVIEW -->
-        <aside class="phone-stage" id="preview-panel" aria-label="Vista previa en vivo de la mini-web">
-          <div class="phone-top">
-            <span class="live-badge"><span class="live-dot" aria-hidden="true"></span> Vista previa en vivo</span>
-            <a href="cancion/?preview=1" id="open-full-miniweb" class="phone-open-link" target="_blank" rel="noopener">
-              Abrir mini-web <i class="ph-bold ph-arrow-up-right" aria-hidden="true"></i>
-            </a>
-          </div>
-
-          <div class="miniweb-preview" id="miniweb-card">
-            <div class="mw-head">
-              <span class="mw-tag" id="mw-tag">Cumpleaños</span>
-              <span class="mw-genre" id="mw-genre">Pop Acústico · España</span>
-            </div>
-
-            <div>
-              <div class="mw-title" id="mw-title">Feliz cumpleaños, Mamá Carmen</div>
-              <div class="mw-from" id="mw-from">Dedicada por Tus hijos</div>
-            </div>
-
-            <div class="player-box" id="hero-player">
-              <button type="button" class="play-circle" id="hero-play-btn" aria-label="Reproducir adelanto">
+            <div class="gal-play-bar" id="hero-play-bar" role="button" tabindex="0" aria-label="Escuchar canción real">
+              <button type="button" class="play-fab" id="hero-play-btn" aria-label="Reproducir">
                 <i class="ph-fill ph-play" aria-hidden="true"></i>
               </button>
-              <div class="player-mid">
-                <div class="wave-bars" id="hero-wave" aria-hidden="true"></div>
-                <div class="player-meta">
-                  <span id="hero-time" class="num">0:00 / 0:15</span>
-                  <span id="hero-audio-status">Adelanto gratuito (15 s)</span>
-                </div>
+              <div class="gal-play-mid">
+                <div class="gal-play-title" id="hero-track-title">▶ Escucha un ejemplo real (Mamá Carmen)</div>
+                <div class="gal-wave" id="hero-wave" aria-hidden="true"></div>
               </div>
-            </div>
-
-            <div class="lyrics-snippet">
-              <strong>Muestra del estribillo (letra completa tras el pago)</strong>
-              <div id="mw-lyrics"></div>
-            </div>
-
-            <div class="qr-strip">
-              <div class="qr-box-wrap">
-                <div class="qr-box locked" id="hero-qr" aria-label="Código QR bloqueado hasta completar el pago"></div>
-                <span class="qr-lock-badge" aria-hidden="true"><i class="ph-fill ph-lock-key"></i>BLOQUEADO</span>
-              </div>
-              <div class="qr-copy">
-                <b>Código QR y MP3 protegidos</b>
-                <span>Se desbloquean en alta resolución al instante tras completar el pago seguro con Stripe.</span>
-              </div>
+              <span class="gal-time num" id="hero-time">0:15</span>
             </div>
           </div>
 
-          <div class="preview-unlock-bar">
-            <button type="button" class="btn" id="btn-unlock-preview">
-              <i class="ph-bold ph-lock-key-open" aria-hidden="true"></i>
-              <span>Desbloquear hoy · <span data-price="single">0,99 €</span> <s style="opacity:.7;font-weight:600;margin-left:4px;" data-price="singleOld">12,90 €</s></span>
+          <div class="thumbs" id="gal-thumbs" role="group" aria-label="Fotos del regalo">
+            <button type="button" class="thumb" data-img="assets/cancion/regalo-qr.jpg" data-cap="Escanea el QR y suena su nombre" aria-pressed="true">
+              <img src="assets/cancion/regalo-qr.jpg" alt="Escaneo QR" /><span>Tarjeta QR</span>
             </button>
-            <button type="button" class="btn-ghost" id="btn-copy-preview">
-              <i class="ph-bold ph-eye" aria-hidden="true"></i> Vista previa
+            <button type="button" class="thumb" data-img="assets/video_v3/ugc_mama_reaccion.jpg" data-cap="La reacción al oír su nombre" aria-pressed="false">
+              <img src="assets/video_v3/ugc_mama_reaccion.jpg" alt="Reacción real" /><span>Reacción</span>
+            </button>
+            <button type="button" class="thumb" data-img="assets/video_v3/ugc_qr_pov.jpg" data-cap="Lista para imprimir o WhatsApp" aria-pressed="false">
+              <img src="assets/video_v3/ugc_qr_pov.jpg" alt="Sobre regalo" /><span>Sobre + QR</span>
+            </button>
+            <button type="button" class="thumb" data-img="assets/cancion/familia-celebracion.jpg" data-cap="Para familia, pareja o amigos" aria-pressed="false">
+              <img src="assets/cancion/familia-celebracion.jpg" alt="Celebración" /><span>Para todos</span>
             </button>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- TRUST STRIP -->
-    <section class="trust-strip" aria-label="Garantías y entrega">
-      <div class="wrap trust-grid">
-        <div class="trust-item"><i class="ph-fill ph-lightning" aria-hidden="true"></i><span>Lista en 2 minutos<small>Entrega digital al instante</small></span></div>
-        <div class="trust-item"><i class="ph-fill ph-users-three" aria-hidden="true"></i><span>Para todas las edades<small>Familia, pareja, hijos o amigos</small></span></div>
-        <div class="trust-item"><i class="ph-fill ph-lock-key" aria-hidden="true"></i><span>Pago único <span data-price="single">0,99 €</span><small>0 €/mes · Stripe · Apple/Google Pay</small></span></div>
-        <div class="trust-item"><i class="ph-fill ph-qr-code" aria-hidden="true"></i><span>Sobre + Tarjeta QR<small>Se abre sin instalar ninguna app</small></span></div>
-      </div>
-    </section>
-
-    <!-- SECTION 1.5: UNIVERSAL ANGLES (EVERYONE SEES THEIR EXACT MOMENT) -->
-    <section class="band band-tint" id="angulos">
-      <div class="wrap">
-        <div class="sec-head-center">
-          <span class="eyebrow"><i class="ph-fill ph-gift" aria-hidden="true"></i> Sirve para cualquier persona</span>
-          <h2>Elige para quién quieres crearla hoy</h2>
-          <p>Toca cualquier caso y preparamos tu plantilla al instante: desde lágrimas de emoción con tu familia hasta risas épicas con amigos o un regalo de última hora a las 23:58.</p>
         </div>
-        <div class="angles-grid" id="angles-grid"></div>
+
+        <!-- RIGHT/BOTTOM: ZERO-FLUFF PDP BUY BOX -->
+        <form class="buy-box" id="song-wizard" novalidate>
+          <div class="rating-row">
+            <span class="stars" aria-label="Valoración 4,9 sobre 5">
+              <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+              <span style="color:var(--ink);margin-left:5px;font-size:12.5px;">4,9 · Regalo viral</span>
+            </span>
+            <span class="fast-chip"><i class="ph-bold ph-lightning"></i> Lista en 2 min</span>
+          </div>
+
+          <h1 class="pdp-title">Canción real con <em>su nombre</em> + Tarjeta QR</h1>
+
+          <div class="price-row num">
+            <span class="price-now" data-price="single">0,99 €</span>
+            <span class="price-old" data-price="singleOld">12,90 €</span>
+            <span class="price-badge">-92 % HOY</span>
+            <span class="price-timer"><i class="ph-bold ph-clock"></i> <span data-countdown>14:59</span></span>
+          </div>
+
+          <div>
+            <div class="step-lbl"><span>1. ¿Para quién?</span><small>Desliza →</small></div>
+            <div class="swipe-chips" id="occasion-chips" role="group" aria-label="Para quién"></div>
+          </div>
+
+          <div class="input-row">
+            <div class="step-lbl" style="margin-bottom:0;"><span>2. Su nombre</span><small>Sonará cantado</small></div>
+            <input id="recipient-name" class="input" type="text" maxlength="42" placeholder="Ej. Mamá Carmen, Lucía, Javi, Mateo..." value="Mamá Carmen" autocomplete="off" required />
+            <span class="input-err" id="name-error">Escribe su nombre primero.</span>
+          </div>
+
+          <div>
+            <div class="step-lbl"><span>3. Estilo musical</span><small>Audio estudio</small></div>
+            <div class="swipe-chips" id="genre-chips" role="group" aria-label="Estilo"></div>
+          </div>
+
+          <details class="opt-more">
+            <summary><i class="ph-bold ph-plus-circle"></i> Añadir dedicatoria o anécdota (opcional)</summary>
+            <div class="opt-more-grid">
+              <input id="sender-name" class="input" type="text" maxlength="40" placeholder="De parte de (ej. Tus hijos)" value="Tus hijos" autocomplete="off" />
+              <input id="memory-text" class="input" type="text" maxlength="120" placeholder="Recuerdo o broma (ej. comidas de domingo)" />
+            </div>
+          </details>
+
+          <button type="button" class="btn-buy" id="btn-unlock-preview">
+            <i class="ph-bold ph-lock-key-open" aria-hidden="true"></i>
+            <span>CREAR AHORA · <span data-price="single">0,99 €</span> <s data-price="singleOld">12,90 €</s></span>
+          </button>
+
+          <button type="submit" class="btn-sec" id="btn-generate">
+            <i class="ph-fill ph-play-circle" style="color:var(--accent);font-size:18px;"></i>
+            <span>Escuchar adelanto gratis (15 s)</span>
+          </button>
+
+          <!-- COMPACT LIVE PREVIEW CARD (SHOWS REAL LYRICS + LOCKED QR) -->
+          <div class="live-preview-mini" id="preview-panel">
+            <div class="lpm-top">
+              <b id="mw-title">Feliz cumpleaños, Mamá Carmen</b>
+              <a href="cancion/?preview=1" id="open-full-miniweb" target="_blank" rel="noopener">Vista previa ↗</a>
+            </div>
+            <div class="lpm-lyrics" id="mw-lyrics"></div>
+            <div class="lpm-qr-row">
+              <div class="qr-box-wrap">
+                <div class="qr-box locked" id="hero-qr" aria-label="QR bloqueado hasta pagar"></div>
+                <span class="qr-lock-badge" aria-hidden="true"><i class="ph-fill ph-lock-key"></i></span>
+              </div>
+              <div class="lpm-qr-copy">
+                <b>MP3 completo + Sobre + QR bloqueados</b>
+                Se desbloquean al instante al pagar <strong data-price="single">0,99 €</strong>.
+              </div>
+            </div>
+          </div>
+
+          <div class="micro-trust" aria-label="Garantías">
+            <div class="mt-item"><i class="ph-fill ph-lightning"></i>2 minutos</div>
+            <div class="mt-item"><i class="ph-fill ph-credit-card"></i>Pago único</div>
+            <div class="mt-item"><i class="ph-fill ph-device-mobile"></i>Sin apps</div>
+            <div class="mt-item"><i class="ph-fill ph-shield-check"></i>Stripe</div>
+          </div>
+        </form>
       </div>
     </section>
 
-    <!-- SECTION 2: REAL PLAYABLE EXAMPLES + EDITORIAL PHOTO -->
+    <!-- 4. VISUAL DEMOS STRIP (TAP PHOTO TO LISTEN) -->
     <section class="band" id="demos">
       <div class="wrap">
-        <div class="sec-head">
-          <h2>Escucha canciones reales creadas en distintos estilos</h2>
-          <p>Pulsa play en cualquier ejemplo. Voces cálidas, instrumentos de estudio y estilos pensados para España, México y Argentina.</p>
+        <div class="sec-title">
+          <span>Escucha cómo suenan</span>
+          <small>1 TOQUE · AUDIO REAL</small>
         </div>
-
-        <div class="demos-layout">
-          <div class="photo-frame">
-            <img src="assets/cancion/hero-emocion.jpg" alt="Madre sonriendo emocionada al escuchar una canción personalizada en su móvil" loading="lazy" />
-            <div class="photo-caption">
-              <b>La reacción que ningún perfume consigue</b>
-              <span>Cuando escucha su propio nombre cantado en los primeros 5 segundos.</span>
-            </div>
-          </div>
-
-          <div class="demo-list" id="demos-list"></div>
-        </div>
+        <div class="visual-strip" id="demos-list"></div>
       </div>
     </section>
 
-    <!-- SECTION 3: 3-CELL BENTO (EXACTLY 3 DELIVERABLES) -->
+    <!-- 5. VISUAL 3-PHOTO DELIVERABLES (ZERO PARAGRAPHS) -->
     <section class="band band-tint" id="incluye">
       <div class="wrap">
-        <div class="sec-head">
-          <h2>Todo lo que recibes al instante tras el pago único</h2>
-          <p>Sin suscripciones, sin esperar envíos y sin conocimientos técnicos. Todo queda listo en tu móvil en menos de 2 minutos.</p>
+        <div class="sec-title">
+          <span>Qué recibes por <span data-price="single">0,99 €</span></span>
+          <small>ENTREGA INMEDIATA</small>
         </div>
-
-        <div class="bento-3">
-          <article class="bento-tile bento-big">
-            <img src="assets/cancion/regalo-qr.jpg" alt="Tarjeta minimalista con código QR escaneada con un smartphone en una cafetería" loading="lazy" />
-            <div class="bento-body">
-              <h3>Tarjeta con Código QR lista para imprimir o enviar</h3>
-              <p>Descarga tu tarjeta en alta resolución para meterla en un sobre, pegarla en un ramo, imprimirla en una taza o enviarla al instante por WhatsApp.</p>
+        <div class="visual-3">
+          <article class="v3-card">
+            <img src="assets/video_v3/ugc_qr_pov.jpg" alt="Tarjeta QR lista para regalar" loading="lazy" />
+            <div class="v3-body">
+              <b>Tarjeta QR imprimible</b>
+              <span>Para sobre, ramo o WhatsApp.</span>
             </div>
           </article>
-
-          <article class="bento-tile bento-rose">
-            <div class="bento-body">
-              <span class="tile-icon" aria-hidden="true"><i class="ph-fill ph-heart"></i></span>
-              <h3>Mini-web privada que no caduca</h3>
-              <p>Al abrir el enlace o escanear el QR aparece un sobre interactivo con su nombre, reproductor de audio y la letra completa en cualquier móvil.</p>
+          <article class="v3-card">
+            <img src="assets/cancion/hero-emocion.jpg" alt="Canción MP3 de estudio" loading="lazy" />
+            <div class="v3-body">
+              <b>Canción MP3 de estudio</b>
+              <span>Cantada con su nombre real.</span>
             </div>
           </article>
-
-          <article class="bento-tile bento-tint">
-            <div class="bento-body">
-              <span class="tile-icon" aria-hidden="true"><i class="ph-fill ph-waveform"></i></span>
-              <h3>MP3 de estudio y vídeo 9:16 opcional</h3>
-              <p>Descarga el archivo de audio para siempre y, con el Pack Emoción, llévate 3 estilos distintos más vídeo vertical listo para compartir en Reels o estados.</p>
+          <article class="v3-card">
+            <img src="assets/cancion/familia-celebracion.jpg" alt="Sobre web privado" loading="lazy" />
+            <div class="v3-body">
+              <b>Sobre web para siempre</b>
+              <span>Se abre en cualquier móvil.</span>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: HOW IT WORKS + CELEBRATION PHOTO -->
+    <!-- 6. ULTRA-SHORT REVIEWS (ALL ANGLES) -->
     <section class="band">
       <div class="wrap">
-        <div class="sec-head">
-          <h2>Cómo funciona en menos de 2 minutos</h2>
-          <p>Diseñado para que incluso un regalo de última hora sea el momento más recordado del día.</p>
+        <div class="sec-title">
+          <span>Para cualquier edad y ocasión</span>
+          <small>★★★★★ 4,9</small>
         </div>
-
-        <div class="steps-wrap">
-          <div class="step-list">
-            <div class="step-item">
-              <div class="step-num">01</div>
-              <div>
-                <h3>Escribe su nombre y elige el estilo</h3>
-                <p>Elige entre Pop Acústico, Balada a Piano, Mariachi, Cumbia, Rumba o Bachata y añade una anécdota si quieres.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">02</div>
-              <div>
-                <h3>Revisa la letra y escucha el adelanto gratis</h3>
-                <p>No pedimos registro ni tarjeta para probar. Ves la mini-web y el código QR funcionando antes de pagar.</p>
-              </div>
-            </div>
-            <div class="step-item">
-              <div class="step-num">03</div>
-              <div>
-                <h3>Desbloquea con un pago único y regálalo hoy</h3>
-                <p>Pagas una sola vez con tarjeta, Apple Pay o Google Pay y descargas al instante el MP3, la mini-web y la tarjeta QR.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="photo-frame">
-            <img src="assets/cancion/familia-celebracion.jpg" alt="Familia celebrando un cumpleaños alrededor de un móvil escuchando la canción dedicada" loading="lazy" />
-          </div>
+        <div class="rev-grid">
+          <article class="rev-card">
+            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Madre · Madrid</span></div>
+            <p>“Escaneó el QR y en el segundo 5 ya estaba llorando de emoción.”</p>
+          </article>
+          <article class="rev-card">
+            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Pareja · Valencia</span></div>
+            <p>“Eran las 23:55 antes de nuestro aniversario y me salvó la vida.”</p>
+          </article>
+          <article class="rev-card">
+            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Amigos · Sevilla</span></div>
+            <p>“Metimos sus anécdotas en la letra y se partió de risa toda la noche.”</p>
+          </article>
+          <article class="rev-card">
+            <div class="rev-top"><span class="stars">★★★★★</span><span class="rev-who">Abuelos · Bilbao</span></div>
+            <p>“Mi padre nunca pide nada y cuando oyó su nombre se le rompió la voz.”</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: PRICING -->
+    <!-- 7. FINAL IMPULSE OFFER BANNER + 3-LINE FAQ -->
     <section class="band band-tint" id="precios">
-      <div class="wrap">
-        <div class="sec-head-center">
-          <span class="eyebrow"><i class="ph-fill ph-fire" aria-hidden="true"></i> Oferta relámpago -92 % · Sin suscripciones</span>
-          <h2>Un regalo que no se olvida por menos que un café</h2>
-          <p id="price-anchor-copy">Oferta relámpago de lanzamiento (-92 %) · Menos que un café. Entrega digital inmediata con tarjeta, Apple Pay o Google Pay.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="price-card featured">
-            <div class="price-flash-bar">
-              <span>OFERTA DE LANZAMIENTO -92 %</span>
-              <span>Acaba en <b data-countdown>14:59</b></span>
-            </div>
-            <div class="plan-top">
-              <h3>Canción + Mini-Web QR</h3>
-              <span class="price-save-pill">Ahorras <span data-price="savings">11,91 €</span></span>
-            </div>
-            <div class="plan-price num">
-              <span class="price-old-strike" data-price="singleOld">12,90 €</span>
-              <span data-price="single">0,99 €</span>
-              <small>pago único · para siempre</small>
-            </div>
-            <ul class="plan-list">
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Canción completa personalizada con su nombre (MP3 de estudio)</li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Mini-web privada con sobre animado y letra completa</li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Código QR descargable listo para imprimir o mandar por WhatsApp</li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Sin cuotas mensuales ni registro obligatorio</li>
-            </ul>
-            <button type="button" class="btn" data-choose-plan="single">Conseguir mi canción por <span data-price="single">0,99 €</span></button>
-          </article>
-
-          <article class="price-card">
-            <div class="plan-top">
-              <h3>Pack Emoción ×3 + Vídeo</h3>
-              <span class="plan-pill">Pack completo</span>
-            </div>
-            <div class="plan-price num">
-              <span data-price="pack3">19,90 €</span>
-              <small>todo incluido</small>
-            </div>
-            <ul class="plan-list">
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span><strong>3 versiones completas</strong> en estilos distintos para quedarte con tu favorita</span></li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span>Vídeo vertical 9:16 con la letra listo para WhatsApp, Reels o TikTok</span></li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span>Mini-web interactiva sin caducidad y tarjeta QR imprimible</span></li>
-              <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span>Prioridad instantánea y garantía de satisfacción de 14 días</span></li>
-            </ul>
-            <button type="button" class="btn-ghost" data-choose-plan="pack3">Elegir Pack ×3</button>
-          </article>
-        </div>
-
-        <p class="price-footnote">¿Solo quieres probar cómo emociona? Empieza hoy por <strong data-price="single">0,99 €</strong> (antes <span data-price="singleOld">12,90 €</span>). Pago cifrado por Stripe · Sin renovaciones.</p>
-      </div>
-    </section>
-
-    <!-- SECTION 6: QUOTES + FAQ -->
-    <section class="band">
-      <div class="wrap">
-        <div class="sec-head-center">
-          <h2>Lo que pasa cuando escanean el código (en cualquier edad)</h2>
-        </div>
-
-        <div class="quotes-grid">
-          <blockquote class="quote-card">
-            <p>“Imprimí el código QR dentro de una tarjeta por los 60 de mi madre. En el segundo cuatro ya estaba llorando de emoción.”</p>
-            <footer class="quote-author"><b>Laura Méndez</b> · Madre · Madrid</footer>
-          </blockquote>
-          <blockquote class="quote-card">
-            <p>“Eran las 23:55 y al día siguiente era nuestro aniversario. Se la puse en el coche fingiendo que era la radio y no se lo podía creer.”</p>
-            <footer class="quote-author"><b>Álvaro Ruiz</b> · Pareja · Valencia</footer>
-          </blockquote>
-          <blockquote class="quote-card">
-            <p>“Le metimos todas las anécdotas y liadas de mi mejor amigo en una canción. La puso en bucle toda la noche en su cumple.”</p>
-            <footer class="quote-author"><b>Sergio Navarro</b> · Mejor amigo · Sevilla</footer>
-          </blockquote>
-          <blockquote class="quote-card">
-            <p>“Mi padre siempre dice ‘no me compréis nada’. Se hizo el duro dos segundos hasta que escuchó su nombre y se le rompió la voz.”</p>
-            <footer class="quote-author"><b>Nerea Etxebarria</b> · Padre · Bilbao</footer>
-          </blockquote>
-          <blockquote class="quote-card">
-            <p>“Le hicimos una canción a nuestro bebé por su primer añito con sus risas y su nombre. Es el recuerdo más bonito que tenemos.”</p>
-            <footer class="quote-author"><b>Diego Hernández</b> · Hijo · Monterrey</footer>
-          </blockquote>
-          <blockquote class="quote-card">
-            <p>“Se la pusimos a mi abuela de 82 años en la comida del domingo. Toda la mesa acabó abrazándola y pidiendo el enlace.”</p>
-            <footer class="quote-author"><b>Sofía Pereyra</b> · Abuela · Córdoba (AR)</footer>
-          </blockquote>
-        </div>
-
-        <div class="sec-head-center" style="margin-bottom:24px;">
-          <h2>Preguntas frecuentes</h2>
+      <div class="wrap" style="display:grid;gap:24px;">
+        <div class="final-offer">
+          <span class="tb-pill">OFERTA LANZAMIENTO -92 % · ACABA EN <span data-countdown>14:59</span></span>
+          <h2>Sorprende hoy por menos que un café</h2>
+          <div class="fo-prices num">
+            <s data-price="singleOld">12,90 €</s>
+            <strong data-price="single">0,99 €</strong>
+          </div>
+          <button type="button" class="btn-buy" data-choose-plan="single">
+            <i class="ph-bold ph-lock-simple"></i>
+            <span>CONSEGUIR MI CANCIÓN · <span data-price="single">0,99 €</span></span>
+          </button>
+          <small>Pago único Stripe · Sin suscripciones · Entrega instantánea</small>
         </div>
 
         <div class="faq-list">
           <details class="faq-item">
-            <summary>¿Cuánto tarda en llegar mi canción y el código QR? <i class="ph-bold ph-plus" aria-hidden="true"></i></summary>
-            <p>La entrega es digital e inmediata: al completar el pago accedes al instante a tu enlace de mini-web, la descarga del MP3 y tu tarjeta QR lista para compartir o imprimir.</p>
+            <summary>¿Cuándo recibo la canción y el QR? <i class="ph-bold ph-plus"></i></summary>
+            <p>Al instante tras el pago único en Stripe: descargas el MP3, el enlace privado y la tarjeta QR.</p>
           </details>
           <details class="faq-item">
-            <summary>¿Tengo que pagar alguna suscripción mensual? <i class="ph-bold ph-plus" aria-hidden="true"></i></summary>
-            <p>No. Es un único pago cerrado. No te cobramos nada al mes ni renovaciones automáticas, y la mini-web queda disponible para que la escuchen cuando quieran.</p>
+            <summary>¿Hay alguna suscripción mensual? <i class="ph-bold ph-plus"></i></summary>
+            <p>No. Solo pagas <strong data-price="single">0,99 €</strong> una vez y nunca más.</p>
           </details>
           <details class="faq-item">
-            <summary>¿Funciona si compro desde México, Argentina o España? <i class="ph-bold ph-plus" aria-hidden="true"></i></summary>
-            <p>Sí. Aceptamos tarjetas internacionales, Apple Pay y Google Pay, y puedes elegir géneros locales como Pop Acústico, Rumba, Mariachi, Cumbia, Balada o Bachata.</p>
-          </details>
-          <details class="faq-item">
-            <summary>¿La persona que recibe el regalo necesita instalar una app? <i class="ph-bold ph-plus" aria-hidden="true"></i></summary>
-            <p>No. Al apuntar la cámara de cualquier iPhone o Android al código QR (o tocar el enlace por WhatsApp), se abre directamente en el navegador con la música y la letra.</p>
+            <summary>¿Necesita app quien recibe el regalo? <i class="ph-bold ph-plus"></i></summary>
+            <p>No. Apunta con la cámara al QR o toca el enlace de WhatsApp y suena al momento.</p>
           </details>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- MOBILE STICKY BOTTOM OFFER BAR -->
-  <div class="mobile-sticky-bar" id="mobile-sticky-bar" aria-label="Oferta rápida móvil">
+  <!-- STICKY MOBILE BUY BAR -->
+  <div class="mobile-sticky-bar" id="mobile-sticky-bar" aria-label="Comprar ahora">
     <div class="msb-left">
       <div class="msb-prices num">
         <s data-price="singleOld">12,90 €</s>
@@ -1171,35 +824,32 @@
       </div>
       <div class="msb-sub">Acaba en <span data-countdown>14:59</span> · Pago único</div>
     </div>
-    <button type="button" class="btn" id="btn-mobile-sticky-cta">Crear · <span data-price="single">0,99 €</span></button>
+    <button type="button" class="btn-buy" id="btn-mobile-sticky-cta">Crear · <span data-price="single">0,99 €</span></button>
   </div>
 
   <footer>
     <div class="wrap foot-row">
-      <span>© 2026 TuCanciónQR · Pago único seguro</span>
+      <span>© 2026 TuCanciónQR · Pago único seguro Stripe</span>
       <div class="foot-links">
-        <a href="#crear">Crear canción</a>
-        <a href="#demos">Escuchar demos</a>
-        <a href="#precios">Precios</a>
-        <a id="footer-wa" href="https://wa.me/34632768152?text=Hola%2C%20tengo%20una%20duda%20sobre%20mi%20canci%C3%B3n%20personalizada%20con%20QR" target="_blank" rel="noopener">Ayuda por WhatsApp</a>
+        <a href="#crear">Crear</a>
+        <a href="#demos">Demos</a>
+        <a href="https://wa.me/34632768152?text=Hola%2C%20tengo%20una%20duda%20sobre%20TuCanci%C3%B3nQR" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
   </footer>
 
-  <!-- CHECKOUT MODAL: STRIPE-READY ZERO FRICTION -->
+  <!-- CHECKOUT MODAL (STRIPE LIVE 0,99 €) -->
   <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
       <div class="modal-head">
         <div>
           <h3 id="modal-title">Finalizar pago seguro</h3>
-          <p style="font-size:13.5px; color:var(--muted); margin-top:2px;">Pasarela Stripe · Entrega digital en 2 minutos</p>
+          <p style="font-size:12.5px; color:var(--muted);">Stripe · Entrega inmediata</p>
         </div>
-        <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar ventana">
-          <i class="ph-bold ph-x" aria-hidden="true"></i>
-        </button>
+        <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar"><i class="ph-bold ph-x"></i></button>
       </div>
 
-      <div class="plan-switch" role="group" aria-label="Elegir plan">
+      <div class="plan-switch" role="group" aria-label="Plan">
         <button type="button" class="plan-opt" data-modal-plan="single" aria-pressed="true">
           <b>Canción + QR</b>
           <span data-price="single">0,99 €</span>
@@ -1210,48 +860,40 @@
         </button>
       </div>
 
-      <div class="field-block" style="margin-bottom:0;">
-        <label class="field-label" for="checkout-email">Tu correo para recibir el MP3 y el QR</label>
+      <div>
+        <div class="step-lbl" style="margin-bottom:5px;"><span>Tu correo (para recibir el MP3 y QR)</span></div>
         <input id="checkout-email" class="input" type="email" placeholder="tunombre@correo.com" autocomplete="email" />
       </div>
 
       <div class="modal-offer-banner" id="modal-offer-banner">
-        <span><i class="ph-fill ph-tag" aria-hidden="true"></i> Oferta -92 % · Ahorras <span style="white-space:nowrap;" data-price="savings">11,91 €</span></span>
+        <span><i class="ph-fill ph-tag"></i> Oferta -92 % · Ahorras <span style="white-space:nowrap;" data-price="savings">11,91 €</span></span>
         <b data-countdown>14:59</b>
       </div>
 
       <div class="summary-box">
-        <div class="summary-row"><span>Dedicada a</span><strong id="sum-name">Mamá Carmen</strong></div>
-        <div class="summary-row"><span>Estilo musical</span><strong id="sum-genre">Pop Acústico</strong></div>
-        <div class="summary-row"><span>Plan elegido</span><strong id="sum-plan">Canción + Mini-Web QR</strong></div>
-        <div class="summary-row" id="sum-old-row"><span>Precio habitual</span><s class="num" style="color:var(--muted);" data-price="singleOld">12,90 €</s></div>
+        <div class="summary-row"><span>Para</span><strong id="sum-name">Mamá Carmen</strong></div>
+        <div class="summary-row"><span>Estilo</span><strong id="sum-genre">Pop Acústico</strong></div>
+        <div class="summary-row" id="sum-old-row"><span>Antes</span><s class="num" style="color:var(--muted);" data-price="singleOld">12,90 €</s></div>
         <div class="summary-row summary-total"><span>Total pago único</span><span id="sum-total" class="num">0,99 €</span></div>
       </div>
 
       <label class="upsell-box" id="upsell-photo-wrap" style="display:none;">
         <input type="checkbox" id="upsell-photo-check" />
-        <span>
-          <strong>Añadir foto antigua restaurada y animada (<span data-price="upsell">+7,90 €</span>)</strong><br />
-          <span style="color:var(--muted);">Dale vida a una foto especial para mostrarla dentro de su mini-web regalo.</span>
-        </span>
+        <span><strong>+ Foto antigua animada (<span data-price="upsell">+7,90 €</span>)</strong></span>
       </label>
 
       <div class="stripe-note" id="stripe-fallback-note">
-        <strong>Pasarela Stripe obligatoria antes de la entrega:</strong> Finaliza la activación de tus enlaces de Stripe en <code>assets/cancion-config.js</code> (o escríbenos por <a id="modal-wa-pay" href="https://wa.me/34632768152" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700;">WhatsApp aquí</a> para recibir tu enlace directo de pago Stripe). La canción completa y el código QR solo se entregan tras confirmar el pago.
+        <strong>Pago seguro requerido:</strong> <a id="modal-wa-pay" href="https://wa.me/34632768152" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700;">Solicitar enlace Stripe por WhatsApp</a>.
       </div>
 
-      <button type="button" class="btn" id="btn-confirm-pay">
-        <i class="ph-bold ph-lock-simple" aria-hidden="true"></i>
+      <button type="button" class="btn-buy" id="btn-confirm-pay" style="height:50px;">
+        <i class="ph-bold ph-lock-simple"></i>
         <span id="btn-pay-label">Pagar con Stripe (<span id="pay-btn-amount">0,99 €</span>)</span>
       </button>
 
-      <div class="pay-badges" aria-label="Métodos de pago aceptados">
-        <span>Stripe</span>
-        <span>Apple Pay</span>
-        <span>Google Pay</span>
-        <span>Visa / Mastercard</span>
+      <div class="pay-badges">
+        <span>Stripe</span><span>Apple Pay</span><span>Google Pay</span><span>Visa / MC</span>
       </div>
-      <p style="font-size:12px; color:var(--muted); text-align:center;">Pago cifrado 256-bit · Garantía de 14 días · 0 €/mes</p>
     </div>
   </div>
 
@@ -1261,6 +903,13 @@
   <script src="assets/cancion-catalog.js"></script>
   <script>
     (function () {
+      const DEMO_PHOTOS = {
+        mama: 'assets/video_v3/ugc_mama_reaccion.jpg',
+        pareja: 'assets/cancion/regalo-qr.jpg',
+        mariachi: 'assets/cancion/familia-celebracion.jpg',
+        cumbia: 'assets/video_v3/ugc_table_bg.jpg'
+      };
+
       const state = {
         currency: 'EUR',
         occasion: 'cumpleanos',
@@ -1283,20 +932,23 @@
       const nameError = document.getElementById('name-error');
       const heroWave = document.getElementById('hero-wave');
       const heroPlayBtn = document.getElementById('hero-play-btn');
+      const heroPlayBar = document.getElementById('hero-play-bar');
       const heroPlayer = document.getElementById('hero-player');
       const heroTime = document.getElementById('hero-time');
-      const heroStatus = document.getElementById('hero-audio-status');
+      const heroTrackTitle = document.getElementById('hero-track-title');
       const demosList = document.getElementById('demos-list');
+      const modal = document.getElementById('checkout-modal');
+      const upsellCheck = document.getElementById('upsell-photo-check');
+      const emailInput = document.getElementById('checkout-email');
+      const stripeNote = document.getElementById('stripe-fallback-note');
+      const mobileStickyBar = document.getElementById('mobile-sticky-bar');
 
-      // Build waveform bars
-      const barHeights = [35, 58, 42, 82, 65, 95, 54, 78, 88, 48, 70, 92, 62, 44, 80, 68, 52, 86, 60, 40, 74, 55, 45, 34];
-      heroWave.innerHTML = barHeights.map((h, i) => `<span style="--h:${h}%; animation-delay:${(i * 0.05).toFixed(2)}s"></span>`).join('');
+      const barHeights = [36, 62, 44, 86, 68, 96, 52, 80, 90, 48, 74, 94, 60, 42, 84, 66, 50, 88, 58, 38];
+      heroWave.innerHTML = barHeights.map((h, i) => `<span style="--h:${h}%;animation-delay:${(i * 0.05).toFixed(2)}s"></span>`).join('');
 
       function formatSec(sec) {
         if (!isFinite(sec) || sec < 0) return '0:00';
-        const m = Math.floor(sec / 60);
-        const s = Math.floor(sec % 60);
-        return `${m}:${String(s).padStart(2, '0')}`;
+        return `${Math.floor(sec / 60)}:${String(Math.floor(sec % 60)).padStart(2, '0')}`;
       }
 
       function renderQr(targetEl, url) {
@@ -1310,7 +962,6 @@
             return;
           }
         } catch (e) {}
-        targetEl.innerHTML = '<div style="font-size:10px;font-weight:700;text-align:center;">QR listo</div>';
       }
 
       function buildCurrentOrder() {
@@ -1337,8 +988,6 @@
         document.querySelectorAll('[data-price="savings"]').forEach((el) => { el.textContent = c.savings || '11,91 €'; });
         document.querySelectorAll('[data-price="pack3"]').forEach((el) => { el.textContent = c.pack3; });
         document.querySelectorAll('[data-price="upsell"]').forEach((el) => { el.textContent = c.upsellPhoto; });
-        const anchor = document.getElementById('price-anchor-copy');
-        if (anchor) anchor.textContent = `${c.anchorNote}. Entrega digital inmediata en España, México y Argentina.`;
         document.querySelectorAll('.cur-btn').forEach((btn) => {
           btn.setAttribute('aria-pressed', btn.dataset.cur === state.currency ? 'true' : 'false');
         });
@@ -1346,19 +995,16 @@
       }
 
       function updatePreview() {
-        const occ = cancionGetOccasion(state.occasion);
         const genre = cancionGetGenre(state.genre);
         const order = buildCurrentOrder();
         const lyrics = cancionGenerateLyrics(order.recipient, order.occasion, order.genre, order.memory, order.sender);
         const share = cancionBuildShareUrl(order, true);
 
-        document.getElementById('mw-tag').textContent = occ.shortTag;
-        document.getElementById('mw-genre').textContent = `${genre.label} · ${genre.region}`;
         document.getElementById('mw-title').textContent = order.title;
-        document.getElementById('mw-from').textContent = `Dedicada por ${order.sender}`;
-        document.getElementById('mw-lyrics').innerHTML = lyrics.chorus.map((line) => `<p>${line}</p>`).join('');
+        document.getElementById('mw-lyrics').innerHTML = lyrics.chorus.slice(0, 2).map((line) => `<p>${line}</p>`).join('');
         document.getElementById('open-full-miniweb').href = share.rel;
-        // NUNCA codificar el enlace real antes de pagar: el QR en portada permanece bloqueado
+        heroTrackTitle.textContent = `▶ Escuchar: ${order.title} (${genre.label})`;
+        // QR estrictamente bloqueado antes de pagar
         renderQr(document.getElementById('hero-qr'), 'https://' + CANCION_CONFIG.domainDisplay + '/#precios');
 
         if (state.activeDemoId === 'hero' && state.activeAudioSrc !== genre.audioFile) {
@@ -1379,17 +1025,22 @@
 
       function renderDemos() {
         demosList.innerHTML = CANCION_DEMOS.map((d) => `
-          <div class="demo-row" data-demo-row="${d.id}">
-            <button type="button" class="play-circle" data-play-demo="${d.id}" aria-label="Reproducir ${d.title}">
-              <i class="ph-fill ph-play" aria-hidden="true"></i>
-            </button>
-            <div class="demo-info">
-              <div class="demo-meta">${d.genreLabel}</div>
-              <h3>${d.title}</h3>
-              <div class="demo-quote">${d.highlight}</div>
+          <article class="demo-card" data-demo-row="${d.id}">
+            <div class="demo-img-wrap">
+              <img src="${DEMO_PHOTOS[d.id] || 'assets/cancion/hero-emocion.jpg'}" alt="${d.title}" loading="lazy" />
+              <span class="demo-tag">${d.genreLabel.split('·')[0].trim()}</span>
+              <button type="button" class="play-fab" data-play-demo="${d.id}" aria-label="Reproducir ${d.title}">
+                <i class="ph-fill ph-play" aria-hidden="true"></i>
+              </button>
             </div>
-            <span class="demo-time num" data-demo-time="${d.id}">${d.duration}</span>
-          </div>
+            <div class="demo-body">
+              <div>
+                <h3>${d.recipient}</h3>
+                <span>${d.title}</span>
+              </div>
+              <span class="demo-dur num" data-demo-time="${d.id}">${d.duration}</span>
+            </div>
+          </article>
         `).join('');
       }
 
@@ -1422,46 +1073,51 @@
           state.activeAudioSrc = src;
         }
         state.activeDemoId = sourceId;
-        audioEl.play().then(() => {
-          if (sourceId === 'hero') heroStatus.textContent = 'Reproduciendo demo real';
-          syncPlayButtons();
-        }).catch(() => {
-          if (sourceId === 'hero') heroStatus.textContent = 'Pulsa de nuevo para activar audio';
-        });
+        audioEl.play().then(syncPlayButtons).catch(() => {});
       }
 
       const PREVIEW_CAP_SEC = (CANCION_CONFIG && CANCION_CONFIG.previewSeconds) || 15;
-
       audioEl.addEventListener('timeupdate', () => {
         const cur = audioEl.currentTime || 0;
-        const dur = audioEl.duration || 30;
         if (state.activeDemoId === 'hero') {
           if (cur >= PREVIEW_CAP_SEC) {
             audioEl.pause();
             audioEl.currentTime = 0;
-            heroTime.textContent = `0:${String(PREVIEW_CAP_SEC).padStart(2, '0')} / 0:${String(PREVIEW_CAP_SEC).padStart(2, '0')}`;
-            heroStatus.textContent = '🔒 Adelanto finalizado · Paga para desbloquear';
+            heroTime.textContent = '🔒 0:15';
             heroWave.querySelectorAll('span').forEach((s) => s.classList.remove('lit'));
             syncPlayButtons();
             return;
           }
-          heroTime.textContent = `${formatSec(cur)} / 0:${String(PREVIEW_CAP_SEC).padStart(2, '0')}`;
-          const ratio = cur / PREVIEW_CAP_SEC;
+          heroTime.textContent = `${formatSec(cur)} / 0:15`;
           const spans = heroWave.querySelectorAll('span');
-          const litCount = Math.round(ratio * spans.length);
-          spans.forEach((s, idx) => s.classList.toggle('lit', idx < litCount));
+          const lit = Math.round((cur / PREVIEW_CAP_SEC) * spans.length);
+          spans.forEach((s, idx) => s.classList.toggle('lit', idx < lit));
         } else if (state.activeDemoId) {
-          const timeEl = demosList.querySelector(`[data-demo-time="${state.activeDemoId}"]`);
-          if (timeEl) timeEl.textContent = `${formatSec(cur)} / ${formatSec(dur)}`;
+          const el = demosList.querySelector(`[data-demo-time="${state.activeDemoId}"]`);
+          if (el) el.textContent = formatSec(cur);
         }
       });
-
       audioEl.addEventListener('ended', () => {
         syncPlayButtons();
         heroWave.querySelectorAll('span').forEach((s) => s.classList.remove('lit'));
       });
 
-      // Events
+      // Gallery thumbnail switcher
+      document.getElementById('gal-thumbs').addEventListener('click', (e) => {
+        const btn = e.target.closest('.thumb');
+        if (!btn) return;
+        document.getElementById('main-gal-img').src = btn.dataset.img;
+        document.getElementById('gal-caption').textContent = btn.dataset.cap;
+        document.querySelectorAll('#gal-thumbs .thumb').forEach((t) => t.setAttribute('aria-pressed', t === btn ? 'true' : 'false'));
+      });
+
+      // Play audio directly from hero photo bar
+      heroPlayBar.addEventListener('click', () => {
+        const g = cancionGetGenre(state.genre);
+        playTrack(g.audioFile, 'hero');
+      });
+
+      // Chips & Inputs
       occContainer.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-occ]');
         if (!btn) return;
@@ -1500,23 +1156,15 @@
           return;
         }
         updatePreview();
-        const genre = cancionGetGenre(state.genre);
-        playTrack(genre.audioFile, 'hero');
-        if (window.innerWidth < 960) {
-          document.getElementById('preview-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-
-      heroPlayBtn.addEventListener('click', () => {
-        const genre = cancionGetGenre(state.genre);
-        playTrack(genre.audioFile, 'hero');
+        const g = cancionGetGenre(state.genre);
+        playTrack(g.audioFile, 'hero');
       });
 
       demosList.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-play-demo]');
         if (!btn) return;
-        const demo = cancionGetDemoById(btn.dataset.playDemo);
-        playTrack(demo.audioFile, demo.id);
+        const d = cancionGetDemoById(btn.dataset.playDemo);
+        playTrack(d.audioFile, d.id);
       });
 
       document.querySelectorAll('.cur-btn').forEach((btn) => {
@@ -1526,11 +1174,12 @@
         });
       });
 
-      // Checkout modal logic
-      const modal = document.getElementById('checkout-modal');
-      const upsellCheck = document.getElementById('upsell-photo-check');
-      const emailInput = document.getElementById('checkout-email');
-      const stripeNote = document.getElementById('stripe-fallback-note');
+      // Checkout Modal
+      function syncMobileBar() {
+        if (!mobileStickyBar) return;
+        const show = window.scrollY > 420 && !modal.classList.contains('open');
+        mobileStickyBar.classList.toggle('visible', show);
+      }
 
       function updateModalSummary() {
         const order = buildCurrentOrder();
@@ -1554,9 +1203,6 @@
         const formatted = cancionFormatPrice(total, state.currency);
         document.getElementById('sum-name').textContent = order.recipient;
         document.getElementById('sum-genre').textContent = cancionGetGenre(order.genre).label;
-        document.getElementById('sum-plan').textContent = state.selectedPlan === 'single'
-          ? 'Canción + Mini-Web QR'
-          : 'Pack Emoción ×3 + Vídeo 9:16';
         document.getElementById('sum-total').textContent = formatted;
         const amtEl = document.getElementById('pay-btn-amount');
         if (amtEl) amtEl.textContent = formatted;
@@ -1566,14 +1212,20 @@
       }
 
       function openCheckout(plan) {
+        if (!recipientInput.value.trim()) {
+          recipientInput.value = cancionGetOccasion(state.occasion).defaultName;
+          state.recipient = recipientInput.value;
+        }
         state.selectedPlan = plan || 'single';
         if (stripeNote) stripeNote.classList.remove('show');
         updateModalSummary();
         modal.classList.add('open');
-        if (typeof syncMobileBar === 'function') syncMobileBar();
+        syncMobileBar();
       }
 
       document.getElementById('btn-unlock-preview').addEventListener('click', () => openCheckout('single'));
+      document.getElementById('btn-nav-buy').addEventListener('click', () => openCheckout('single'));
+      document.getElementById('btn-mobile-sticky-cta').addEventListener('click', () => openCheckout('single'));
       document.querySelectorAll('[data-choose-plan]').forEach((btn) => {
         btn.addEventListener('click', () => openCheckout(btn.dataset.choosePlan));
       });
@@ -1583,64 +1235,26 @@
           updateModalSummary();
         });
       });
-      document.getElementById('btn-copy-preview').addEventListener('click', () => {
-        const share = cancionBuildShareUrl(buildCurrentOrder(), true);
-        window.open(share.rel, '_blank', 'noopener');
-      });
-
-      upsellCheck.addEventListener('change', () => {
-        state.upsellPhoto = upsellCheck.checked;
-        updateModalSummary();
-      });
-
-      document.getElementById('modal-close').addEventListener('click', () => { modal.classList.remove('open'); if (typeof syncMobileBar === 'function') syncMobileBar(); });
-      modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('open'); if (typeof syncMobileBar === 'function') syncMobileBar(); } });
+      upsellCheck.addEventListener('change', () => { state.upsellPhoto = upsellCheck.checked; updateModalSummary(); });
+      document.getElementById('modal-close').addEventListener('click', () => { modal.classList.remove('open'); syncMobileBar(); });
+      modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('open'); syncMobileBar(); } });
 
       document.getElementById('btn-confirm-pay').addEventListener('click', async () => {
+        const payBtn = document.getElementById('btn-confirm-pay');
+        const payLabel = document.getElementById('btn-pay-label');
         const order = buildCurrentOrder();
-        order.email = emailInput ? emailInput.value.trim() : '';
+        order.email = (emailInput.value || '').trim();
+        payBtn.disabled = true;
+        payLabel.textContent = 'Abriendo Stripe...';
         const res = await cancionStartCheckout(order);
-        if (res && res.mode === 'awaiting_stripe_link' && stripeNote) {
-          stripeNote.classList.add('show');
+        if (res && res.mode === 'awaiting_stripe_link') {
+          payBtn.disabled = false;
+          updateModalSummary();
+          if (stripeNote) stripeNote.classList.add('show');
         }
       });
 
-      function renderAngleCards() {
-        const grid = document.getElementById('angles-grid');
-        if (!grid || typeof CANCION_ANGLE_CARDS === 'undefined') return;
-        grid.innerHTML = CANCION_ANGLE_CARDS.map((card) => `
-          <button type="button" class="angle-card" data-angle-card="${card.id}">
-            <div class="angle-head">
-              <span class="angle-ico" aria-hidden="true"><i class="ph-fill ${card.icon}"></i></span>
-              <span class="angle-badge">${card.badge}</span>
-            </div>
-            <h3>${card.title}</h3>
-            <p>${card.desc}</p>
-            <span class="angle-cta">Crear esta canción <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></span>
-          </button>
-        `).join('');
-        grid.addEventListener('click', (e) => {
-          const btn = e.target.closest('[data-angle-card]');
-          if (!btn) return;
-          const card = CANCION_ANGLE_CARDS.find((c) => c.id === btn.dataset.angleCard);
-          if (!card) return;
-          state.occasion = card.occasion;
-          state.genre = card.genre;
-          state.recipient = card.name;
-          state.sender = card.sender;
-          state.memory = card.memory;
-          recipientInput.value = card.name;
-          recipientInput.dataset.touched = '';
-          senderInput.value = card.sender;
-          memoryInput.value = card.memory;
-          renderChips();
-          updatePreview();
-          document.getElementById('crear').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => recipientInput.focus({ preventScroll: true }), 420);
-        });
-      }
-
-      // Live session countdown timer (14:59 per session)
+      // Countdown timer (14:59 per session)
       function startOfferTimer() {
         const KEY = 'tcq_offer_deadline_v1';
         let deadline = Number(sessionStorage.getItem(KEY) || 0);
@@ -1656,31 +1270,15 @@
             try { sessionStorage.setItem(KEY, String(deadline)); } catch (e) {}
             rem = 14 * 60 + 59;
           }
-          const mm = String(Math.floor(rem / 60)).padStart(2, '0');
-          const ss = String(rem % 60).padStart(2, '0');
-          const txt = `${mm}:${ss}`;
+          const txt = `${String(Math.floor(rem / 60)).padStart(2, '0')}:${String(rem % 60).padStart(2, '0')}`;
           document.querySelectorAll('[data-countdown]').forEach((el) => { el.textContent = txt; });
         }
         tick();
         setInterval(tick, 1000);
       }
 
-      // Sticky mobile bottom bar visibility
-      const mobileStickyBar = document.getElementById('mobile-sticky-bar');
-      const mobileStickyBtn = document.getElementById('btn-mobile-sticky-cta');
-      if (mobileStickyBtn) {
-        mobileStickyBtn.addEventListener('click', () => openCheckout('single'));
-      }
-      function syncMobileBar() {
-        if (!mobileStickyBar) return;
-        const show = window.scrollY > 360 && !modal.classList.contains('open');
-        mobileStickyBar.classList.toggle('visible', show);
-      }
       window.addEventListener('scroll', syncMobileBar, { passive: true });
-
-      // Init
       renderChips();
-      renderAngleCards();
       renderDemos();
       updatePricesUI();
       updatePreview();
