@@ -22,13 +22,13 @@ const CANCION_CONFIG = {
   // Enlaces oficiales de Stripe Payment Links EN VIVO (acct_1TOvtGGcKo8sPYaQ · Pago único · Redirección a /gracias/?paid=1&session_id={CHECKOUT_SESSION_ID})
   stripeLinks: {
     EUR: {
-      single: 'https://buy.stripe.com/3cI00jbgJewbaZe1zccfK07',       // 12,90 € · Canción Personalizada + Mini-Web QR
+      single: 'https://buy.stripe.com/eVq00j2KdgEjffub9McfK0b',       // 0,99 € · Oferta prueba · Canción Personalizada + Mini-Web QR (plink_1UfzzAGcKo8sPYaQHpmWgbic)
       singlePhoto: 'https://buy.stripe.com/14A00j0C53Rx4AQa5IcfK09',  // 20,80 € · Canción + QR + Foto Antigua Animada
       pack3: 'https://buy.stripe.com/6oUaEX5Wp0Flebq1zccfK08',        // 19,90 € · Pack Emoción x3 + Vídeo 9:16 + QR
       pack3Photo: 'https://buy.stripe.com/4gM00j2Kd5ZF4AQ3HkcfK0a'    // 27,80 € · Pack x3 + Vídeo + Foto Antigua Animada
     },
     USD: {
-      single: 'https://buy.stripe.com/3cI00jbgJewbaZe1zccfK07',       // Pasarela internacional Stripe (tarjetas MX/AR + Apple/Google Pay)
+      single: 'https://buy.stripe.com/eVq00j2KdgEjffub9McfK0b',       // 0,99 € · Pasarela internacional Stripe (tarjetas MX/AR + Apple/Google Pay)
       singlePhoto: 'https://buy.stripe.com/14A00j0C53Rx4AQa5IcfK09',
       pack3: 'https://buy.stripe.com/6oUaEX5Wp0Flebq1zccfK08',
       pack3Photo: 'https://buy.stripe.com/4gM00j2Kd5ZF4AQ3HkcfK0a'
@@ -46,25 +46,25 @@ const CANCION_CONFIG = {
       code: 'EUR',
       label: 'España (€)',
       symbol: '€',
-      single: '12,90 €',
+      single: '0,99 €',
       pack3: '19,90 €',
       upsellPhoto: '+7,90 €',
-      singleNum: 12.9,
+      singleNum: 0.99,
       pack3Num: 19.9,
       upsellNum: 7.9,
-      anchorNote: 'Menos que un ramo de flores o una cena rápida'
+      anchorNote: 'Oferta de prueba por tiempo limitado · Menos que un café'
     },
     USD: {
       code: 'USD',
       label: 'México / Argentina ($)',
       symbol: '$',
-      single: '$12.90 USD',
+      single: '$0.99 USD',
       pack3: '$19.90 USD',
       upsellPhoto: '+$7.90 USD',
-      singleNum: 12.9,
+      singleNum: 0.99,
       pack3Num: 19.9,
       upsellNum: 7.9,
-      anchorNote: 'Pago único con tarjeta internacional, Apple Pay o Google Pay'
+      anchorNote: 'Oferta de prueba · Pago único con tarjeta internacional, Apple Pay o Google Pay'
     }
   }
 };

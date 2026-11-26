@@ -1,5 +1,5 @@
 /**
- * Cloudflare Worker opcional — Sesiones Dinámicas de Stripe Checkout (12,90 € / 19,90 € / +7,90 €)
+ * Cloudflare Worker opcional — Sesiones Dinámicas de Stripe Checkout (0,99 € / 19,90 € / +7,90 €)
  * Permite cobrar con Stripe Live (Tarjeta, Apple Pay, Google Pay, Bizum) en EUR o USD sin crear
  * Payment Links manuales por cada combinación.
  *
@@ -25,7 +25,7 @@ export default {
       const b = await request.json();
       const cur = b.currency === "USD" ? "usd" : "eur";
       const isSingle = b.plan === "single";
-      const baseCents = isSingle ? 1290 : 1990;
+      const baseCents = isSingle ? 99 : 1990;
       const upsellCents = b.upsellPhoto ? 790 : 0;
       const recipient = String(b.recipient || "Regalo").slice(0, 48);
       const siteUrl = (env.SITE_URL || "https://miweblocal.com").replace(/\/$/, "");

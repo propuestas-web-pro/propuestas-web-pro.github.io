@@ -13,10 +13,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>TuCanciónQR · Una canción con su nombre y mini-web QR en 2 minutos</title>
-  <meta name="description" content="Regala una canción personalizada con su nombre, mini-web interactiva con letra y código QR imprimible. Escucha gratis el adelanto antes de pagar. Pago único 12,90 €." />
+  <meta name="description" content="Regala una canción personalizada con su nombre, mini-web interactiva con letra y código QR imprimible. Escucha gratis el adelanto antes de pagar. Pago único 0,99 €." />
   <meta name="theme-color" content="#FFFFFF" />
   <meta property="og:title" content="TuCanciónQR · Una canción con su nombre en 2 minutos" />
-  <meta property="og:description" content="Escucha el adelanto gratis antes de pagar. MP3 de estudio, mini-web interactiva y código QR imprimible desde 12,90 €." />
+  <meta property="og:description" content="Escucha el adelanto gratis antes de pagar. MP3 de estudio, mini-web interactiva y código QR imprimible desde 0,99 €." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -733,7 +733,7 @@
           <div class="preview-unlock-bar">
             <button type="button" class="btn" id="btn-unlock-preview">
               <i class="ph-bold ph-lock-key-open" aria-hidden="true"></i>
-              <span>Pagar y desbloquear (<span data-price="single">12,90 €</span>)</span>
+              <span>Pagar y desbloquear (<span data-price="single">0,99 €</span>)</span>
             </button>
             <button type="button" class="btn-ghost" id="btn-copy-preview">
               <i class="ph-bold ph-eye" aria-hidden="true"></i> Vista previa
@@ -851,13 +851,13 @@
         </div>
 
         <div class="pricing-grid">
-          <article class="price-card">
+          <article class="price-card featured">
             <div class="plan-top">
               <h3>Canción + Mini-Web QR</h3>
-              <span class="plan-pill">Pago único</span>
+              <span class="plan-pill">Oferta prueba</span>
             </div>
             <div class="plan-price num">
-              <span data-price="single">12,90 €</span>
+              <span data-price="single">0,99 €</span>
               <small>para siempre</small>
             </div>
             <ul class="plan-list">
@@ -866,13 +866,13 @@
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Código QR descargable listo para imprimir o WhatsApp</li>
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i> Sin cuotas mensuales ni registro obligatorio</li>
             </ul>
-            <button type="button" class="btn-ghost" data-choose-plan="single">Elegir Canción + QR</button>
+            <button type="button" class="btn" data-choose-plan="single">Elegir Canción + QR</button>
           </article>
 
-          <article class="price-card featured">
+          <article class="price-card">
             <div class="plan-top">
               <h3>Pack Emoción ×3 + Vídeo</h3>
-              <span class="plan-pill">Más elegido</span>
+              <span class="plan-pill">Completo</span>
             </div>
             <div class="plan-price num">
               <span data-price="pack3">19,90 €</span>
@@ -884,7 +884,7 @@
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span>Mini-web interactiva sin caducidad y tarjeta QR imprimible</span></li>
               <li><i class="ph-bold ph-check-circle" aria-hidden="true"></i><span>Prioridad instantánea y garantía de satisfacción de 14 días</span></li>
             </ul>
-            <button type="button" class="btn" data-choose-plan="pack3">Elegir Pack ×3</button>
+            <button type="button" class="btn-ghost" data-choose-plan="pack3">Elegir Pack ×3</button>
           </article>
         </div>
 
@@ -966,11 +966,11 @@
       </div>
 
       <div class="plan-switch" role="group" aria-label="Elegir plan">
-        <button type="button" class="plan-opt" data-modal-plan="single" aria-pressed="false">
+        <button type="button" class="plan-opt" data-modal-plan="single" aria-pressed="true">
           <b>Canción + QR</b>
-          <span data-price="single">12,90 €</span>
+          <span data-price="single">0,99 €</span>
         </button>
-        <button type="button" class="plan-opt" data-modal-plan="pack3" aria-pressed="true">
+        <button type="button" class="plan-opt" data-modal-plan="pack3" aria-pressed="false">
           <b>Pack ×3 + Vídeo</b>
           <span data-price="pack3">19,90 €</span>
         </button>
@@ -984,11 +984,11 @@
       <div class="summary-box">
         <div class="summary-row"><span>Dedicada a</span><strong id="sum-name">Mamá Carmen</strong></div>
         <div class="summary-row"><span>Estilo musical</span><strong id="sum-genre">Pop Acústico</strong></div>
-        <div class="summary-row"><span>Plan elegido</span><strong id="sum-plan">Pack Emoción ×3 + Vídeo</strong></div>
-        <div class="summary-row summary-total"><span>Total pago único</span><span id="sum-total" class="num">19,90 €</span></div>
+        <div class="summary-row"><span>Plan elegido</span><strong id="sum-plan">Canción + Mini-Web QR</strong></div>
+        <div class="summary-row summary-total"><span>Total pago único</span><span id="sum-total" class="num">0,99 €</span></div>
       </div>
 
-      <label class="upsell-box">
+      <label class="upsell-box" id="upsell-photo-wrap" style="display:none;">
         <input type="checkbox" id="upsell-photo-check" />
         <span>
           <strong>Añadir foto antigua restaurada y animada (<span data-price="upsell">+7,90 €</span>)</strong><br />
@@ -1002,7 +1002,7 @@
 
       <button type="button" class="btn" id="btn-confirm-pay">
         <i class="ph-bold ph-lock-simple" aria-hidden="true"></i>
-        <span id="btn-pay-label">Pagar con Stripe (<span id="pay-btn-amount">19,90 €</span>)</span>
+        <span id="btn-pay-label">Pagar con Stripe (<span id="pay-btn-amount">0,99 €</span>)</span>
       </button>
 
       <div class="pay-badges" aria-label="Métodos de pago aceptados">
@@ -1028,7 +1028,7 @@
         recipient: 'Mamá Carmen',
         sender: 'Tus hijos',
         memory: '',
-        selectedPlan: 'pack3',
+        selectedPlan: 'single',
         upsellPhoto: false,
         activeAudioSrc: '',
         activeDemoId: ''
@@ -1293,6 +1293,14 @@
       function updateModalSummary() {
         const order = buildCurrentOrder();
         const cur = CANCION_CONFIG.currencies[state.currency];
+        const upsellWrap = document.getElementById('upsell-photo-wrap');
+        if (state.selectedPlan === 'single') {
+          state.upsellPhoto = false;
+          if (upsellCheck) upsellCheck.checked = false;
+          if (upsellWrap) upsellWrap.style.display = 'none';
+        } else if (upsellWrap) {
+          upsellWrap.style.display = '';
+        }
         const base = state.selectedPlan === 'single' ? cur.singleNum : cur.pack3Num;
         const total = base + (state.upsellPhoto ? cur.upsellNum : 0);
         const formatted = cancionFormatPrice(total, state.currency);
@@ -1310,7 +1318,7 @@
       }
 
       function openCheckout(plan) {
-        state.selectedPlan = plan || 'pack3';
+        state.selectedPlan = plan || 'single';
         if (stripeNote) stripeNote.classList.remove('show');
         updateModalSummary();
         modal.classList.add('open');
